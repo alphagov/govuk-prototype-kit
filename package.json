@@ -1,0 +1,18 @@
+{
+  "name": "express-prototype",
+  "description": "GOVUK prototyping app in Express",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.7",
+    "mu2": "0.5.20",
+    "mu2Express": "0.0.1",
+    "govuk_frontend_toolkit": "0.41.0",
+    "govuk_template_mustache": "0.4.1",
+    "grunt": "0.4.2",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-copy": "0.5.0",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-contrib-sass": "0.7.1"
+  }
+}
