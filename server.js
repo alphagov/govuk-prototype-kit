@@ -8,6 +8,8 @@ var express = require('express'),
     applyRoutes,
     replace = require("replace");
 
+console.log("looking for filter:chroma in sass files...");
+
 replace({
   regex: "filter:chroma(.*);",
   replacement: 'filter:unquote("chroma$1");',
