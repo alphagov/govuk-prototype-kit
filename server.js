@@ -5,7 +5,16 @@ var express = require('express'),
     routes,
     applyLayout,
     renderPage,
-    applyRoutes;
+    applyRoutes,
+    replace = require("replace");
+
+replace({
+  regex: "filter:chroma(.*);",
+  replacement: 'filter:unquote("chroma$1");',
+  paths: [__dirname + '/node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'],
+  recursive: true,
+  silent: false,
+});
 
 // Function for wrapping partials in the govuk_template
 applyLayout = function (pageString, title, res) {
