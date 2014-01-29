@@ -12,9 +12,7 @@ You may already have some of these. Try the following to see:
 
 * for Node, try `node --version`
 * for NPM, try `npm --version`
-* for Grunt & Grunt-CLI, try `grunt --version` which should tell you the versions of bot
-
-This also assumes you have a version of Ruby on your machine (If it's a Mac, you will).
+* for Grunt & Grunt-CLI, try `grunt --version` which should tell you the versions of both
 
 ## Getting started
 
