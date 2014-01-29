@@ -7,15 +7,12 @@ Prototyping tool built in [Express](http://expressjs.com/).
 * [Node](http://nodejs.org/)
 * [Npm](https://npmjs.org/) (which comes with node).
 * [Grunt & Grunt-CLI](http://gruntjs.com/)
-* [SASS](http://sass-lang.com/)
-* [RubyGems](http://rubygems.org)
 
 You may already have some of these. Try the following to see:
 
 * for Node, try `node --version`
 * for NPM, try `npm --version`
-* for Grunt & Grunt-CLI, try `grunt --version` which should tell you the versions of both
-* for RubyGems, try `gem --version`
+* for Grunt & Grunt-CLI, try `grunt --version` which should tell you the versions of bot
 
 This also assumes you have a version of Ruby on your machine (If it's a Mac, you will).
 
@@ -32,16 +29,6 @@ The `start-app.sh` file needs Grunt's Command Line Interface (CLI) to run all th
 You can install the CLI using this command:
 
     npm install -g grunt-cli
-
-### RubyGems
-
-You can get RubyGems from their [downloads page](http://rubygems.org/pages/download).
-
-### SASS
-
-To install the SASS gem use:
-
-    gem install sass
 
 ### Everything else
 
