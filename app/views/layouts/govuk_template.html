@@ -11,19 +11,19 @@
       (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
     </script>
 
-    <!--[if gt IE 8]><!--><link href="{{ assetPath }}stylesheets/govuk-template.css?0.4.1" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
-    <!--[if IE 6]><link href="{{ assetPath }}stylesheets/govuk-template-ie6.css?0.4.1" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
-    <!--[if IE 7]><link href="{{ assetPath }}stylesheets/govuk-template-ie7.css?0.4.1" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
-    <!--[if IE 8]><link href="{{ assetPath }}stylesheets/govuk-template-ie8.css?0.4.1" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if gt IE 8]><!--><link href="{{ assetPath }}stylesheets/govuk-template.css?0.5.1" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+    <!--[if IE 6]><link href="{{ assetPath }}stylesheets/govuk-template-ie6.css?0.5.1" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link href="{{ assetPath }}stylesheets/govuk-template-ie7.css?0.5.1" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 8]><link href="{{ assetPath }}stylesheets/govuk-template-ie8.css?0.5.1" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
 
-    <link href="{{ assetPath }}stylesheets/govuk-template-print.css?0.4.1" media="print" rel="stylesheet" type="text/css" />
+    <link href="{{ assetPath }}stylesheets/govuk-template-print.css?0.5.1" media="print" rel="stylesheet" type="text/css" />
 
     <!--[if IE 8]>
     <script type="text/javascript">
       (function(){if(window.opera){return;}
        setTimeout(function(){var a=document,g,b={families:(g=
-       ["nta"]),urls:["{{ assetPath }}stylesheets/fonts-ie8.css?0.4.1"]},
-       c="{{ assetPath }}javascripts/vendor/goog/webfont-debug.js?0.4.1",d="script",
+       ["nta"]),urls:["{{ assetPath }}stylesheets/fonts-ie8.css?0.5.1"]},
+       c="{{ assetPath }}javascripts/vendor/goog/webfont-debug.js?0.5.1",d="script",
        e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
        ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
        .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
@@ -31,27 +31,27 @@
     </script>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-      <link href="{{ assetPath }}stylesheets/fonts.css?0.4.1" media="all" rel="stylesheet" type="text/css" />
+      <link href="{{ assetPath }}stylesheets/fonts.css?0.5.1" media="all" rel="stylesheet" type="text/css" />
     <!--<![endif]-->
 
 
     <!--[if lt IE 9]>
-      <script src="{{ assetPath }}javascripts/ie.js?0.4.1" type="text/javascript"></script>
+      <script src="{{ assetPath }}javascripts/ie.js?0.5.1" type="text/javascript"></script>
     <![endif]-->
 
-    <link rel="shortcut icon" href="{{ assetPath }}images/favicon.ico?0.4.1" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ assetPath }}images/favicon.ico?0.5.1" type="image/x-icon" />
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ assetPath }}images/apple-touch-icon-144x144.png?0.4.1">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ assetPath }}images/apple-touch-icon-144x144.png?0.5.1">
     <!-- For iPhone with high-resolution Retina display: -->
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ assetPath }}images/apple-touch-icon-114x114.png?0.4.1">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ assetPath }}images/apple-touch-icon-114x114.png?0.5.1">
     <!-- For first- and second-generation iPad: -->
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ assetPath }}images/apple-touch-icon-72x72.png?0.4.1">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ assetPath }}images/apple-touch-icon-72x72.png?0.5.1">
     <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <link rel="apple-touch-icon-precomposed" href="{{ assetPath }}images/apple-touch-icon-57x57.png?0.4.1">
+    <link rel="apple-touch-icon-precomposed" href="{{ assetPath }}images/apple-touch-icon-57x57.png?0.5.1">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:image" content="{{ assetPath }}images/opengraph-image.png?0.4.1">
+    <meta property="og:image" content="{{ assetPath }}images/opengraph-image.png?0.5.1">
 
     {{{ head }}}
   </head>
@@ -66,12 +66,12 @@
     </div>
 
     
-    <header role="banner" id="global-header" class="">
+    <header role="banner" id="global-header" class="{{{ headerClass }}}">
       <div class="header-wrapper">
         <div class="header-global">
           <div class="header-logo">
             <a href="https://www.gov.uk/" title="Go to the GOV.UK homepage" id="logo" class="content">
-              <img src="{{ assetPath }}images/gov.uk_logotype_crown.png?0.4.1" alt=""> GOV.UK
+              <img src="{{ assetPath }}images/gov.uk_logotype_crown.png?0.5.1" alt=""> GOV.UK
             </a>
           </div>
           {{{ insideHeader }}}
@@ -102,7 +102,7 @@
             {{{ footerSupportLinks }}}
 
             <div class="open-government-licence">
-              <h2><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2"><img src="{{ assetPath }}images/open-government-licence_2x.png?0.4.1" alt="OGL"></a></h2>
+              <h2><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2"><img src="{{ assetPath }}images/open-government-licence_2x.png?0.5.1" alt="OGL"></a></h2>
               <p>All content is available under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2">Open Government Licence v2.0</a>, except where otherwise stated</p>
             </div>
           </div>
@@ -118,7 +118,7 @@
 
     <div id="global-app-error" class="app-error hidden"></div>
 
-    <script src="{{ assetPath }}javascripts/govuk-template.js?0.4.1" type="text/javascript"></script>
+    <script src="{{ assetPath }}javascripts/govuk-template.js?0.5.1" type="text/javascript"></script>
 
     {{{ bodyEnd }}}
   </body>

@@ -14,6 +14,19 @@ applyLayout = function (pageString, title, res) {
       'pageTitle': title,
       'assetPath': '/assets/',
       'head': '<link href="/assets/stylesheets/application.css" rel="stylesheet" type="text/css" />',
+      'headerClass': 'with-proposition',
+      'propositionHeader': '<div class="header-proposition">' +
+                        '<div class="content">' +
+                          '<a href="#proposition-links" class="js-header-toggle menu">Menu</a>' +
+                          '<nav id="proposition-menu">' +
+                            '<a href="/" id="proposition-name">Service Name</a>' +
+                            '<ul id="proposition-links">' +
+                              '<li><a href="url-to-page-1" class="active">Navigation item #1</a></li>' +
+                              '<li><a href="url-to-page-2">Navigation item #2</a></li>' +
+                            '</ul>' +
+                          '</nav>' +
+                        '</div>' +
+                      '</div>',
       'content': pageString
     }
   });
