@@ -1,5 +1,10 @@
 @import '_colours';
+@import 'design-patterns/_alpha-beta';
 
 body {
   color: $red;
+}
+
+#phase-notice {
+  @include phase-banner(beta);
 }

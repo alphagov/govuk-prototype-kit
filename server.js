@@ -27,6 +27,9 @@ applyLayout = function (pageString, title, res) {
                           '</nav>' +
                         '</div>' +
                       '</div>',
+      'afterHeader': '<div id="phase-notice">' +
+                        '<p><strong>Beta:</strong> This is a new service - your <a href="">feedback</a> will help us to improve it</p>' +
+                      '</div>',
       'content': pageString
     }
   });
