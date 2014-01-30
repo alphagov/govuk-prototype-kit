@@ -1,6 +1,6 @@
 #!/bin/bash
 
-node server &
+node app &
 grunt
 
 #DIR=.
