@@ -38,24 +38,28 @@ renderPage = function (page, title, res) {
     });
 };
 
+
 // Application settings
 app.engine('html', mu2Express.engine);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/govuk/views');
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/govuk/public'));
 
 // Mustache settings
 mu.root = __dirname + '/views';
 
 // Routes - make sure to put the most specific at the top (the last one should always be '/'
-app.get('/sample', function (req, res) {
-  renderPage('sample-page.html', 'Sample page', res);
-});
 
 app.get('/', function (req, res) {
   renderPage('index.html', 'Index page', res);
+});
+
+
+app.get('/sample', function (req, res) {
+  renderPage('sample-page.html', 'Sample page', res);
 });
 
 app.listen(3000);
