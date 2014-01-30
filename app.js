@@ -1,12 +1,8 @@
 var express = require('express'),
-    mu = require('mu2'),
-    mu2Express = require('mu2Express'),
+    cons = require('consolidate'),
     app = express(),
-    routes,
-    applyLayout,
-    renderPage,
-    applyRoutes,
-    replace = require("replace");
+    replace = require("replace"),
+    mustacheRender = require("./lib/mustacheRender").mustacheRender;
 
 console.log("looking for filter:chroma in sass files...");
 
@@ -18,48 +14,26 @@ replace({
   silent: false,
 });
 
-// Function for wrapping partials in the govuk_template
-applyLayout = function (pageString, title, res) {
-  res.render('govuk_template', {
-    'locals' : {
-      'pageTitle': title,
-      'assetPath': '/public/',
-      'head': '<link href="/public/stylesheets/application.css" rel="stylesheet" type="text/css" />',
-      'content': pageString
-    }
-  });
-};
-
-// Function for rendering a page
-renderPage = function (page, title, res) {
-  mu.compileAndRender(page, {})
-    .on('data', function (data) {
-      applyLayout(data.toString(), title, res);    
-    });
-};
-
 
 // Application settings
-app.engine('html', mu2Express.engine);
+app.engine('html', cons.mustache);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/govuk/views');
+app.set('views', __dirname + '/views');
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk/public'));
 
-// Mustache settings
-mu.root = __dirname + '/views';
+// middleware to wrap mustache views in govuk template
 
-// Routes - make sure to put the most specific at the top (the last one should always be '/'
+app.use(mustacheRender);
 
 app.get('/', function (req, res) {
-  renderPage('index.html', 'Index page', res);
+  res.render('index', {'pageTitle': 'index'});
 });
 
-
 app.get('/sample', function (req, res) {
-  renderPage('sample-page.html', 'Sample page', res);
+  res.render('sample', {'pageTitle': 'sample'});
 });
 
 app.listen(3000);
