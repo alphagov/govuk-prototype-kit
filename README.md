@@ -1,4 +1,4 @@
-# Express prototing tool
+# Express prototyping tool
 
 Prototyping tool built in [Express](http://expressjs.com/).
 
@@ -22,7 +22,6 @@ Get the Node installer from [http://nodejs.org/](http://nodejs.org/). This will 
 
 ### Grunt
 
-The `start-app.sh` file needs Grunt's Command Line Interface (CLI) to run all the tasks for the project.
 
 You can install the CLI using this command:
 
@@ -36,8 +35,8 @@ Use this command to get everything else:
 
 ## Running the app
 
-To run the app:
+Start grunt to run the app:
 
-    ./start-app.sh
+    grunt
 
 The app recompiles app/assets/stylesheets/application.scss everytime changes are observed.

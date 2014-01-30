@@ -36,6 +36,10 @@ app.get('/sample', function (req, res) {
   res.render('sample', {'pageTitle': 'sample'});
 });
 
+app.get('/moop', function (req, res) {
+  res.render('sample', {'pageTitle': 'sample'});
+});
+
 app.listen(3000);
 console.log('');
 console.log('Listening on port 3000');
