@@ -23,8 +23,8 @@ applyLayout = function (pageString, title, res) {
   res.render('layouts/govuk_template', {
     'locals' : {
       'pageTitle': title,
-      'assetPath': '/assets/',
-      'head': '<link href="/assets/stylesheets/application.css" rel="stylesheet" type="text/css" />',
+      'assetPath': '/public/',
+      'head': '<link href="/public/stylesheets/application.css" rel="stylesheet" type="text/css" />',
       'content': pageString
     }
   });
@@ -41,18 +41,13 @@ renderPage = function (page, title, res) {
 // Application settings
 app.engine('html', mu2Express.engine);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/app/views');
+app.set('views', __dirname + '/views');
 
 // Middleware to serve static assets
-app.use('/assets/stylesheets', express.static(__dirname + '/public/stylesheets'));
-app.use('/assets/stylesheets', express.static(__dirname + '/app/assets/stylesheets'));
-app.use('/assets/javascripts', express.static(__dirname + '/public/javascripts'));
-app.use('/assets/javascripts', express.static(__dirname + '/app/assets/javascripts'));
-app.use('/assets/images', express.static(__dirname + '/public/images'));
-app.use('/assets/images', express.static(__dirname + '/app/assets/images'));
+app.use('/public', express.static(__dirname + '/public'));
 
 // Mustache settings
-mu.root = __dirname + '/app/views';
+mu.root = __dirname + '/views';
 
 // Routes - make sure to put the most specific at the top (the last one should always be '/'
 app.get('/sample', function (req, res) {
