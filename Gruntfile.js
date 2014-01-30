@@ -20,7 +20,7 @@ module.exports = function(grunt){
     copy: {
       govuk_template: {
         src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
-        dest: 'views/layouts/',
+        dest: 'govuk/views/',
         expand: true,
         flatten: true,
         filter: 'isFile'
@@ -31,7 +31,7 @@ module.exports = function(grunt){
             expand: true,
             src: '**',
             cwd: 'node_modules/govuk_template_mustache/assets',
-            dest: 'public/'
+            dest: 'govuk/public/'
           }
         ]
       }
