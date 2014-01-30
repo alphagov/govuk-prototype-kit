@@ -20,7 +20,7 @@ replace({
 
 // Function for wrapping partials in the govuk_template
 applyLayout = function (pageString, title, res) {
-  res.render('layouts/govuk_template', {
+  res.render('govuk_template', {
     'locals' : {
       'pageTitle': title,
       'assetPath': '/public/',
