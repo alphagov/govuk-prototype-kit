@@ -7,7 +7,7 @@ module.exports = function(grunt){
     sass: {
       dev: {
         files: {
-          'public/stylesheets/application.css': 'app/assets/stylesheets/application.scss'
+          'public/stylesheets/application.css': 'public/sass/application.scss'
         },
         options: {
           includePaths: ['node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'],
@@ -20,7 +20,7 @@ module.exports = function(grunt){
     copy: {
       govuk_template: {
         src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
-        dest: 'app/views/layouts/',
+        dest: 'views/layouts/',
         expand: true,
         flatten: true,
         filter: 'isFile'
@@ -39,7 +39,7 @@ module.exports = function(grunt){
     // Watches styles and specs for changes
     watch: {
       css: {
-        files: ['app/assets/stylesheets/**/*.scss'],
+        files: ['public/sass/**/*.scss'],
         tasks: ['sass'],
         options: { nospawn: true }
       }
