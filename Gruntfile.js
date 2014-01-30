@@ -16,6 +16,12 @@ module.exports = function(grunt){
       }
     },
 
+    nodemon: {
+      dev: {
+        script: 'app.js'
+      }
+    },
+
     // Copies templates and assets from external modules and dirs
     copy: {
       govuk_template: {
@@ -50,7 +56,8 @@ module.exports = function(grunt){
     'grunt-contrib-clean',
     'grunt-contrib-copy',
     'grunt-contrib-watch',
-    'grunt-sass'
+    'grunt-sass',
+    'grunt-nodemon'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
@@ -59,6 +66,7 @@ module.exports = function(grunt){
     'sass',
     'copy:govuk_template',
     'copy:govuk_assets',
+    'nodemon',
     'watch'
   ]);
 };
