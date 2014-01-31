@@ -18,6 +18,9 @@ node --version
 
 Get the Node installer from [http://nodejs.org/](http://nodejs.org/).
 
+To start the app run:
+
+
 ```
 node start.js
 ```
