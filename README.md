@@ -14,11 +14,11 @@ node --version
 
 ## Getting started
 
-### Node
+* Clone this repo.
 
-Get the Node installer from [http://nodejs.org/](http://nodejs.org/).
+* If you don't have Node, download it here: [http://nodejs.org/](http://nodejs.org/).
 
-To start the app run:
+* Run the app:
 
 
 ```
