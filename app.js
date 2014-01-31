@@ -1,18 +1,7 @@
 var express = require('express'),
     cons = require('consolidate'),
     app = express(),
-    replace = require("replace"),
     mustacheRender = require("./lib/mustacheRender").mustacheRender;
-
-console.log("looking for filter:chroma in sass files...");
-
-replace({
-  regex: "filter:chroma(.*);",
-  replacement: 'filter:unquote("chroma$1");',
-  paths: [__dirname + '/node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'],
-  recursive: true,
-  silent: false,
-});
 
 // Application settings
 app.engine('html', cons.mustache);
