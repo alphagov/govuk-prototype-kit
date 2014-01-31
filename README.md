@@ -25,6 +25,8 @@ node --version
 node start.js
 ```
 
+* Go to [localhost:3000](http://localhost:3000) in your browser.
+
 ### Hot reload
 
 Any code changes should update in the browser without you restarting the app.
