@@ -14,7 +14,6 @@ replace({
   silent: false,
 });
 
-
 // Application settings
 app.engine('html', cons.mustache);
 app.set('view engine', 'html');
@@ -33,10 +32,6 @@ app.get('/', function (req, res) {
 });
 
 app.get('/sample', function (req, res) {
-  res.render('sample', {'pageTitle': 'sample'});
-});
-
-app.get('/moop', function (req, res) {
   res.render('sample', {'pageTitle': 'sample'});
 });
 
