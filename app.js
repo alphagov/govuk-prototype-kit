@@ -16,13 +16,32 @@ app.use('/public', express.static(__dirname + '/govuk/public'));
 
 app.use(mustacheRender);
 
+//
+
+var commonHead = '<link href="/public/stylesheets/application.css" rel="stylesheet" type="text/css" />';
+
+// routes
+
 app.get('/', function (req, res) {
-  res.render('index', {'pageTitle': 'index'});
+
+  var head = commonHead;
+
+  res.render('index',
+            {'pageTitle': 'index',
+            'head' : head });
+  
 });
 
 app.get('/sample', function (req, res) {
-  res.render('sample', {'pageTitle': 'sample'});
+  
+  var head = commonHead;
+
+  res.render('sample',
+            {'pageTitle': 'sample',
+            'head' : head });
 });
+
+// start the app
 
 app.listen(3000);
 console.log('');

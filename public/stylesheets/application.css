@@ -1,4 +1,14 @@
 /* includes node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets */
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
 /* Cross-browser shims
 
   Ways of normalising properties across browsers.
@@ -92,6 +102,6 @@ Example usage:
 
 */
 
-/* Player overrides */
-body {
-  color: #b10e1e; }
+#content {
+  margin: 0 auto;
+  max-width: 1020px; }
