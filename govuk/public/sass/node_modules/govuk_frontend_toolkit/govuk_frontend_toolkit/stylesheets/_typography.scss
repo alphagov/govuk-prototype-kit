@@ -1,0 +1,400 @@
+@import '_font_stack.scss';
+@import '_conditionals.scss';
+@import '_device-pixels.scss';
+
+//  GOV.UK typography palettes
+
+//  ANATOMY OF A TYPE STYLE
+//  -----------------------
+//  These are a collection of graphic styles. They are deliberately
+//  abstracted from semantic HTML context to enable flexible re-use.
+//  Although there is a lot of duplication within this file, as long
+//  as you GZIP your CSS it shouldnt cause any bloat.
+
+
+// CORE FONTS - NEW TRANSPORT
+
+$is-print: false !default;
+
+@mixin core-80($line-height: (80 / 80), $line-height-640: (55 / 53), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 80px;
+  } @else {
+    font-size: 28pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 53px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-48($line-height: (50 / 48), $line-height-640: (35 / 32), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 48px;
+  } @else {
+    font-size: 18pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 32px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-36($line-height: (40 / 36), $line-height-640: (25 / 24), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 36px;
+  } @else {
+    font-size: 18pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 24px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-27($line-height: (30 / 27), $line-height-640: (20 / 18), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 27px;
+  } @else {
+    font-size: 16pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 18px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-24($line-height: (30 / 24), $line-height-640: (24 / 20), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 24px;
+  } @else {
+    font-size: 16pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 20px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-19($line-height: (25 / 19), $line-height-640: (20 / 16), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 19px;
+  } @else {
+    font-size: 14pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 16px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-16($line-height: (20 / 16), $line-height-640: (16 / 14), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 16px;
+  } @else {
+    font-size: 12pt;
+  }
+  line-height: $line-height;
+  font-weight: 300;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 14px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 12), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
+  @if $is-print == false {
+    font-size: 14px;
+  } @else {
+    font-size: 11pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 12px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin bold-80($line-height: (80 / 80), $line-height-640: (55 / 53), $tabular-numbers: false) {
+  @include core-80($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin bold-48($line-height: (50 / 48), $line-height-640: (35 / 32), $tabular-numbers: false) {
+  @include core-48($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin bold-36($line-height: (40 / 36), $line-height-640: (25 / 24), $tabular-numbers: false) {
+  @include core-36($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin bold-27($line-height: (30 / 27), $line-height-640: (20 / 18), $tabular-numbers: false) {
+  @include core-27($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin bold-24($line-height: (30 / 24), $line-height-640: (24 / 20), $tabular-numbers: false) {
+  @include core-24($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin bold-19($line-height: (25 / 19), $line-height-640: (20 / 16), $tabular-numbers: false) {
+  @include core-19($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin bold-16($line-height: (20 / 16), $line-height-640: (16 / 14), $tabular-numbers: false) {
+  @include core-16($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin bold-14($line-height: (20 / 14), $line-height-640: (15 / 12), $tabular-numbers: false) {
+  @include core-14($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
+  font-weight: 700;
+}
+
+@mixin heading-80($tabular-numbers: false) {
+  @include core-80($tabular-numbers: $tabular-numbers);
+
+  padding-top: 8px;
+  padding-bottom: 7px;
+
+  @include media(tablet){
+    padding-top: 6px;
+    padding-bottom: 14px;
+  }
+}
+
+@mixin heading-48($tabular-numbers: false) {
+  @include core-48($tabular-numbers: $tabular-numbers);
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  @include media(tablet){
+    padding-top: 7px;
+    padding-bottom: 13px;
+  }
+}
+
+@mixin heading-36($tabular-numbers: false) {
+  @include core-36($tabular-numbers: $tabular-numbers);
+
+  padding-top: 8px;
+  padding-bottom: 7px;
+
+  @include media(tablet){
+    padding-top: 6px;
+    padding-bottom: 9px;
+  }
+}
+
+@mixin heading-27($tabular-numbers: false) {
+  @include core-27($tabular-numbers: $tabular-numbers);
+
+  padding-top: 8px;
+  padding-bottom: 7px;
+
+  @include media(tablet){
+    padding-top: 4px;
+    padding-bottom: 6px;
+  }
+}
+
+@mixin heading-24($tabular-numbers: false) {
+  @include core-24($tabular-numbers: $tabular-numbers);
+
+  padding-top: 9px;
+  padding-bottom: 6px;
+
+  @include media(tablet){
+    padding-top: 6px;
+    padding-bottom: 4px;
+  }
+}
+
+@mixin copy-19($tabular-numbers: false) {
+  @include core-19($tabular-numbers: $tabular-numbers);
+
+  padding-top: 2px;
+  padding-bottom: 8px;
+
+  @include media(tablet){
+    padding-top: 0;
+    padding-bottom: 5px;
+  }
+}
+
+@mixin copy-16($tabular-numbers: false) {
+  @include core-16($tabular-numbers: $tabular-numbers);
+
+  padding-top: 8px;
+  padding-bottom: 7px;
+
+  @include media(tablet){
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+@mixin copy-14($tabular-numbers: false) {
+  @include core-14($tabular-numbers: $tabular-numbers);
+
+  padding-top: 8px;
+  padding-bottom: 7px;
+
+  @include media(tablet){
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+// External link styles for all font sizes
+
+// Private mixin for use solely by those below
+
+@mixin external-link-size($content, $top, $top-hover: top) {
+  &:after {
+    content: $content;
+    background-position: right $top;
+  }
+
+  @if $top-hover == top {
+    $top-hover: $top
+  }
+
+  &:hover:after {
+    background-position: right $top-hover;
+  }
+}
+
+@mixin external-link-12-no-hover {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0\A0\A0\A0", $top: 0px);
+}
+
+@mixin external-link-12 {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0\A0\A0\A0", $top: 0px, $top-hover: -388px);
+}
+
+@mixin external-link-13-no-hover {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0", $top: 1px);
+}
+
+@mixin external-link-13 {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0", $top: 1px, $top-hover: -387px);
+}
+
+@mixin external-link-14 {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0", $top: 1px, $top-hover: -387px);
+}
+
+@mixin external-link-14-bold-no-hover {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0\A0", $top: 2px);
+}
+
+@mixin external-link-16 {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0", $top: 3px, $top-hover: -385px);
+}
+
+@mixin external-link-16-bold-no-hover {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0\A0", $top: 3px);
+}
+
+@mixin external-link-19-no-hover {
+  @include external-link-size($content: "\A0\A0\A0\A0", $top: 6px);
+}
+
+@mixin external-link-19 {
+  @include external-link-size($content: "\A0\A0\A0\A0", $top: 6px, $top-hover: -382px);
+}
+
+@mixin external-link-19-bold-no-hover {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0\A0", $top: 6px);
+}
+
+@mixin external-link-default {
+  &:after {
+    background-image: image-url("external-link.png");
+    background-repeat: no-repeat;
+
+    @include device-pixel-ratio() {
+      background-image: image-url("external-link-24x24.png");
+      background-size: 12px 400px;
+    }
+  }
+}
+
+@mixin external-link-heading {
+  &:after {
+    background-image: image-url("external-link-black-12x12.png");
+    background-repeat: no-repeat;
+
+    @include device-pixel-ratio() {
+      background-image: image-url("external-link-black-24x24.png");
+      background-size: 12px 400px;
+    }
+  }
+}
