@@ -5,14 +5,20 @@
   "private": true,
   "dependencies": {
     "express": "3.4.7",
-    "mu2": "0.5.20",
-    "mu2Express": "0.x",
+    "consolidate": "0.x",
+    "mustache": "0.x",
+    "node-sass": "0.x",
     "govuk_frontend_toolkit": "0.41.0",
     "govuk_template_mustache": "0.5.1",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-copy": "0.5.0",
     "grunt-contrib-watch": "0.5.3",
-    "grunt-contrib-sass": "0.7.1"
+    "grunt-nodemon": "0.x"
+  },
+  "devDependencies": {
+    "grunt-sass": "~0.10.0",
+    "grunt-text-replace": "~0.3.10",
+    "grunt-concurrent": "~0.4.3"
   }
 }

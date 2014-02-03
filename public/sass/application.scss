@@ -1,0 +1,15 @@
+/* includes node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets */
+
+@import '_colours';
+@import '_typography';
+@import 'design-patterns/_buttons';
+@import 'design-patterns/_alpha-beta';
+
+#content {
+	margin: 0 auto;
+	max-width: 1020px;
+  
+  @include ie-lte(6)  {
+    width: 990px;
+  }
+}
