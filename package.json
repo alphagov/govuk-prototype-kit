@@ -3,6 +3,9 @@
   "description": "GOVUK prototyping app in Express",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": "0.10.x"
+  },
   "dependencies": {
     "express": "3.4.7",
     "consolidate": "0.x",
