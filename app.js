@@ -1,7 +1,8 @@
 var express = require('express'),
     cons = require('consolidate'),
     app = express(),
-    mustacheRender = require("./lib/mustacheRender").mustacheRender;
+    mustacheRender = require("./lib/mustacheRender").mustacheRender,
+    port = (process.env.PORT || 3000);
 
 // Application settings
 app.engine('html', cons.mustache);
@@ -43,7 +44,7 @@ app.get('/sample', function (req, res) {
 
 // start the app
 
-app.listen(3000);
+app.listen(port);
 console.log('');
-console.log('Listening on port 3000');
+console.log('Listening on port ' + port);
 console.log('');
