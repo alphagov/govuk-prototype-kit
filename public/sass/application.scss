@@ -13,3 +13,11 @@
     width: 990px;
   }
 }
+.page-header {
+  padding: 0 32px;
+
+  h1 {
+    @include bold-48;
+    padding: 25px 0 15px;
+  }
+}
