@@ -70,7 +70,7 @@ module.exports = function(grunt){
       dev: {
         script: 'app.js',
         options: {
-          ext: 'html'
+          ext: 'html, js'
         }
       }
     },
