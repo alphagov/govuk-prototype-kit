@@ -17,16 +17,20 @@ app.use('/public', express.static(__dirname + '/govuk/public'));
 app.get('/', function (req, res) {
 
   res.render('index',
-            {'pageTitle': 'index',
-            'assetPath' : '/public/'});
+            {'assetPath' : '/public/'});
   
 });
 
 app.get('/sample', function (req, res) {
   
   res.render('sample',
-            {'pageTitle': 'sample',
-            'assetPath' : '/public/'});
+            {'assetPath' : '/public/'});
+});
+
+app.get('/hmm', function (req, res) {
+  
+  res.render('hmm',
+            {'assetPath' : '/public/'});
 });
 
 // start the app
