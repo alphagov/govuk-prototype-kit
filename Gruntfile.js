@@ -68,7 +68,10 @@ module.exports = function(grunt){
     // nodemon watches for changes and restarts app
     nodemon: {
       dev: {
-        script: 'app.js'
+        script: 'app.js',
+        options: {
+          ext: 'html'
+        }
       }
     },
 
@@ -92,10 +95,22 @@ module.exports = function(grunt){
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
+  
+  grunt.registerTask(
+    'convert_template',
+    'Converts the govuk_template to use mustache inheritance',
+    function () {
+      var script = require(__dirname + '/lib/template-conversion.js');
+
+      script.convert();
+      grunt.log.writeln('govuk_template converted');
+    }
+  );
 
   grunt.registerTask('default', [
     'copy:govuk_template',
     'copy:govuk_assets',
+    'convert_template',
     'copy:govuk_frontend_toolkit',
     'replace',
     'sass',

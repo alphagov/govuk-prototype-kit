@@ -9,10 +9,10 @@
   "dependencies": {
     "express": "3.4.7",
     "consolidate": "0.x",
-    "mustache": "0.x",
+    "readdir": "0.0.6",
     "node-sass": "0.x",
     "govuk_frontend_toolkit": "0.41.0",
-    "govuk_template_mustache": "0.5.1",
+    "govuk_template_mustache": "0.6.2",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-copy": "0.5.0",
