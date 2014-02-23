@@ -80,7 +80,7 @@ Example usage:
 
 */
 /* local styleguide includes */
-/* New Greys */
+/* Old depricated greys, new things should use the toolkit greys */
 html, body, button, input, table, td, th {
   font-family: "nta", Arial, sans-serif; }
 
@@ -133,9 +133,11 @@ fieldset {
   border: none;
   padding: 0; }
 
-a,
+a:link {
+  color: #005ea5; }
+
 a:visited {
-  color: #2e3191; }
+  color: #2e8aca; }
 
 a:hover {
   color: #2e8aca; }
@@ -144,11 +146,11 @@ a:active {
   color: #2e8aca; }
 
 a[rel="external"]:after {
-  background-image: url(external-link.png?0.4.1);
+  background-image: url(external-links/external-link.png?0.6.2);
   background-repeat: no-repeat; }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     a[rel="external"]:after {
-      background-image: url(external-link-24x24.png?0.4.1);
+      background-image: url(external-links/external-link-24x24.png?0.6.2);
       background-size: 12px 400px; } }
 a[rel="external"]:after {
   content: "\A0\A0\A0\A0";
@@ -168,11 +170,11 @@ a[rel="external"]:hover:after {
 .external-link:hover:after {
   background-position: right 0px; }
 .external-link:after {
-  background-image: url(external-link-black-12x12.png?0.4.1);
+  background-image: url(external-links/external-link-black-12x12.png?0.6.2);
   background-repeat: no-repeat; }
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .external-link:after {
-      background-image: url(external-link-black-24x24.png?0.4.1);
+      background-image: url(external-links/external-link-black-24x24.png?0.6.2);
       background-size: 12px 400px; } }
 
 /*
@@ -304,6 +306,7 @@ a:focus {
 input:focus,
 textarea:focus,
 select:focus,
+button:focus,
 #global-header input:focus {
   outline: 3px solid #ffbf47; }
 
@@ -625,10 +628,17 @@ select:focus,
               position: static;
               width: auto;
               margin-bottom: 1em; } }
-          #footer .footer-meta .footer-meta-inner .open-government-licence h2 a, #footer .footer-meta .footer-meta-inner .open-government-licence h2 img {
+          #footer .footer-meta .footer-meta-inner .open-government-licence h2 a {
             display: block;
-            width: 43px;
-            height: 17px; }
+            width: 41px;
+            height: 17px;
+            overflow: hidden;
+            text-indent: -999em;
+            background: url(images/open-government-licence.png?0.6.2) 0 0 no-repeat; }
+            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+              #footer .footer-meta .footer-meta-inner .open-government-licence h2 a {
+                background-image: url(images/open-government-licence_2x.png?0.6.2);
+                background-size: 41px 17px; } }
         #footer .footer-meta .footer-meta-inner .open-government-licence p {
           font-family: "nta", Arial, sans-serif;
           font-size: 16px;
@@ -672,12 +682,12 @@ select:focus,
       #footer .footer-meta .copyright a {
         display: block;
         padding: 115px 0 0 0;
-        background: transparent url(images/govuk-crest.png?0.4.1) no-repeat 100% 0;
+        background: transparent url(images/govuk-crest.png?0.6.2) no-repeat 100% 0;
         text-align: right;
         text-decoration: none; }
         @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
           #footer .footer-meta .copyright a {
-            background-image: url(images/govuk-crest-2x.png?0.4.1);
+            background-image: url(images/govuk-crest-2x.png?0.6.2);
             background-size: 125px 102px; } }
       @media (max-width: 640px) {
         #footer .footer-meta .copyright {
