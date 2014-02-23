@@ -22,7 +22,8 @@ app.get('/', function (req, res) {
 
   res.render('index',
             {'pageTitle': 'index',
-            'head' : head });
+            'head' : head,
+            'assetPath' : '/public/'});
   
 });
 
@@ -32,7 +33,8 @@ app.get('/sample', function (req, res) {
 
   res.render('sample',
             {'pageTitle': 'sample',
-            'head' : head });
+            'head' : head,
+            'assetPath' : '/public/'});
 });
 
 // start the app
