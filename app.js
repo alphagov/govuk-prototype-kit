@@ -12,28 +12,20 @@ app.set('views', __dirname + '/views');
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk/public'));
 
-var commonHead = '<link href="/public/stylesheets/application.css" rel="stylesheet" type="text/css" />';
-
 // routes
 
 app.get('/', function (req, res) {
 
-  var head = commonHead;
-
   res.render('index',
             {'pageTitle': 'index',
-            'head' : head,
             'assetPath' : '/public/'});
   
 });
 
 app.get('/sample', function (req, res) {
   
-  var head = commonHead;
-
   res.render('sample',
             {'pageTitle': 'sample',
-            'head' : head,
             'assetPath' : '/public/'});
 });
 
