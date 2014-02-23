@@ -97,7 +97,7 @@
   }
 
   // header navigation toggle
-  if (document.querySelectorAll){
+  if (document.querySelectorAll && document.addEventListener){
     var els = document.querySelectorAll('.js-header-toggle'),
         i, _i;
     for(i=0,_i=els.length; i<_i; i++){
