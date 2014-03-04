@@ -1,4 +1,5 @@
 var express = require('express'),
+    routes = require(__dirname + '/routes.js'),
     app = express(),
     port = (process.env.PORT || 3000);
 
@@ -12,26 +13,9 @@ app.set('views', __dirname + '/views');
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk/public'));
 
-// routes
+// routes (found in routes.js)
 
-app.get('/', function (req, res) {
-
-  res.render('index',
-            {'assetPath' : '/public/'});
-  
-});
-
-app.get('/sample', function (req, res) {
-  
-  res.render('sample',
-            {'assetPath' : '/public/'});
-});
-
-app.get('/hmm', function (req, res) {
-  
-  res.render('hmm',
-            {'assetPath' : '/public/'});
-});
+routes.bind(app, '/public/');
 
 // start the app
 
