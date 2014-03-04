@@ -12,11 +12,5 @@ module.exports = {
       res.render('sample',
                 {'assetPath' : assetPath});
     });
-
-    app.get('/hmm', function (req, res) {
-      
-      res.render('hmm',
-                {'assetPath' : assetPath});
-    });
   }
 };
