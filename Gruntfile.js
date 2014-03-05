@@ -5,7 +5,10 @@ module.exports = function(grunt){
     sass: {
       dev: {
         files: {
-          'public/stylesheets/application.css': 'public/sass/application.scss'
+          'public/stylesheets/application.css': 'public/sass/application.scss',
+          'public/stylesheets/application-ie6.css': 'public/sass/application-ie6.scss',
+          'public/stylesheets/application-ie7.css': 'public/sass/application-ie7.scss',
+          'public/stylesheets/application-ie8.css': 'public/sass/application-ie8.scss'
         },
         options: {
           includePaths: ['govuk/public/sass'],
