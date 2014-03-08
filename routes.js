@@ -12,5 +12,12 @@ module.exports = {
       res.render('sample',
                 {'assetPath' : assetPath});
     });
+
+    app.get('/examples/template-partial-areas', function (req, res) {
+
+      res.render('examples/template_partial_areas',
+                {'assetPath' : assetPath});
+      
+    });
   }
 };
