@@ -13,6 +13,16 @@ module.exports = {
                 {'assetPath' : assetPath});
     });
 
+    /* Example pages */
+
+    app.get('/examples/hello-world', function (req, res) {
+      res.render('examples/hello_world', {'message' : 'Hello world'});
+    });
+
+    app.get('/examples/inheritance', function (req, res) {
+      res.render('examples/inheritance/page_level', {'message' : 'Hello world'});
+    });
+
     app.get('/examples/template-partial-areas', function (req, res) {
 
       res.render('examples/template_partial_areas',
