@@ -6,8 +6,8 @@
 @import 'design-patterns/_alpha-beta';
 
 #content {
-	margin: 0 auto;
-	max-width: 1020px;
+  margin: 0 auto;
+  max-width: 1020px;
   
   @include ie-lte(6)  {
     width: 990px;
@@ -20,4 +20,17 @@
     @include bold-48;
     padding: 25px 0 15px;
   }
+}
+
+/* Alpha/Beta styles */
+
+.alpha-banner  {
+  @include core-19;
+  @include phase-banner(alpha);
+  strong {
+    text-transform: uppercase;
+  }
+}
+.alpha-tag {
+  @include phase-tag(alpha);
 }
