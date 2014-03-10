@@ -23,6 +23,10 @@ module.exports = {
       res.render('examples/inheritance/page_level', {'message' : 'Hello world'});
     });
 
+    app.get('/examples/alpha', function (req, res) {
+      res.render('examples/alpha/alpha', {'assetPath' : assetPath });    
+    });
+
     app.get('/examples/template-partial-areas', function (req, res) {
 
       res.render('examples/template_partial_areas',
