@@ -6,7 +6,8 @@ module.exports = function(grunt){
       dev: {
         files: {
           'public/stylesheets/application.css': 'public/sass/application.scss',
-          'public/stylesheets/examples.css': 'public/sass/examples.scss'
+          'public/stylesheets/examples.css': 'public/sass/examples.scss',
+          'public/stylesheets/elements.css': 'public/sass/elements.scss'
         },
         options: {
           includePaths: ['govuk/public/sass'],
