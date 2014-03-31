@@ -10,6 +10,7 @@
     "express": "3.4.7",
     "consolidate": "0.x",
     "readdir": "0.0.6",
+    "minimist": "0.0.8",
     "node-sass": "0.x",
     "govuk_frontend_toolkit": "0.41.0",
     "govuk_template_mustache": "0.6.2",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "grunt-sass": "~0.10.0",
+    "grunt-contrib-sass": "0.7.3",
     "grunt-text-replace": "~0.3.10",
     "grunt-concurrent": "~0.4.3"
   }
