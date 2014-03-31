@@ -15,6 +15,8 @@ You may already have it, try:
 node --version
 ```
 
+Your version needs to be at least v0.10.0.
+
 ## Getting started
 
 * Clone this repo.
@@ -49,3 +51,9 @@ This app uses the [lib-sass](https://github.com/hcatlin/libsass) implementation 
 The one that may effect you is the lack of support for [@extend](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#extend). This means the you can't use [@extend %contain-floats](https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_shims.scss#L45) from the toolkit.
 
 This is explained in more detail [on the wiki](https://github.com/tombye/express_prototype/wiki/Writing-CSS#wiki-we-use-node-sass).
+
+If you need to use the Ruby version of Sass, Run the app like so:
+
+```
+node start.js --ruby
+```
