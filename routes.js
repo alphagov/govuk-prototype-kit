@@ -33,5 +33,20 @@ module.exports = {
                 {'assetPath' : assetPath});
       
     });
+
+    /* Elements example pages */
+
+    app.get('/examples/elements/grid-layout', function (req, res) {
+      res.render('examples/elements/grid_layout', {'assetPath' : assetPath });    
+    });
+
+    app.get('/examples/elements/typography', function (req, res) {
+      res.render('examples/elements/typography', {'assetPath' : assetPath });    
+    });
+    
+    app.get('/examples/elements/forms', function (req, res) {
+      res.render('examples/elements/forms', {'assetPath' : assetPath });    
+    });
+
   }
 };

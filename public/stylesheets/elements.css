@@ -1,0 +1,707 @@
+/* includes node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets */
+/* CSS 3 Mixins
+
+  Add them as you need them. This should let us manage vendor prefixes in one place.
+ */
+/* Cross-browser shims
+
+  Ways of normalising properties across browsers.
+ */
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/* Usage:
+   @include inline-block
+
+   or
+
+   @include inline-block("250px")
+
+   which gives a min-height to the inline-block elements.
+*/
+/* Contain floats usage:
+
+   .this-has-floated-children {
+     @extend %contain-floats;
+   }
+
+*/
+%contain-floats:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/* Cross-browser shims
+
+  Ways of normalising properties across browsers.
+ */
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/* Usage:
+   @include inline-block
+
+   or
+
+   @include inline-block("250px")
+
+   which gives a min-height to the inline-block elements.
+*/
+/* Contain floats usage:
+
+   .this-has-floated-children {
+     @extend %contain-floats;
+   }
+
+*/
+%contain-floats:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+/* Cross-browser shims
+
+  Ways of normalising properties across browsers.
+ */
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/* Usage:
+   @include inline-block
+
+   or
+
+   @include inline-block("250px")
+
+   which gives a min-height to the inline-block elements.
+*/
+/* Contain floats usage:
+
+   .this-has-floated-children {
+     @extend %contain-floats;
+   }
+
+*/
+%contain-floats:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+/* CSS 3 Mixins
+
+  Add them as you need them. This should let us manage vendor prefixes in one place.
+ */
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/*
+
+Mixin and defaults for making buttons on GOV.UK services.
+
+For guidance, see: https://www.gov.uk/service-manual/design-and-content/resources/buttons.html
+
+Example usage:
+
+.button{
+  @include button;
+}
+.button-secondary{
+  @include button($grey-3);
+}
+.button-warning{
+  @include button($red);
+}
+
+*/
+.cf:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+.main {
+  max-width: 1020px;
+  width: auto;
+  margin: 0 auto 90px; }
+  .main:after {
+    content: "";
+    display: block;
+    clear: both; }
+
+.main-full-width {
+  max-width: 100%; }
+
+.govuk {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 19px;
+  line-height: 1.31579;
+  font-weight: 400;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased; }
+  @media (max-width: 640px) {
+    .govuk {
+      font-size: 16px;
+      line-height: 1.25; } }
+.govuk p, .govuk pre {
+  margin-top: 5px;
+  margin-bottom: 20px; }
+.govuk .lede, .govuk .lead {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    .govuk .lede, .govuk .lead {
+      font-size: 20px;
+      line-height: 1.2; } }
+.govuk .copy-16 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    .govuk .copy-16 {
+      font-size: 14px;
+      line-height: 1.14286; } }
+.govuk .text {
+  max-width: 30em; }
+.govuk .heading-48 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 48px;
+  line-height: 1.04167;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 30px; }
+  @media (max-width: 640px) {
+    .govuk .heading-48 {
+      font-size: 32px;
+      line-height: 1.09375; } }
+  @media (min-width: 641px) {
+    .govuk .heading-48 {
+      margin-top: 30px;
+      margin-bottom: 60px; } }
+  .govuk .heading-48 .heading-27 {
+    display: block;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 27px;
+    line-height: 1.11111;
+    font-weight: 400;
+    text-transform: none;
+    color: #6f777b; }
+    @media (max-width: 640px) {
+      .govuk .heading-48 .heading-27 {
+        font-size: 18px;
+        line-height: 1.11111; } }
+.govuk .heading-36 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 36px;
+  line-height: 1.11111;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  margin-top: 25px;
+  margin-bottom: 10px; }
+  @media (max-width: 640px) {
+    .govuk .heading-36 {
+      font-size: 24px;
+      line-height: 1.04167; } }
+  @media (min-width: 641px) {
+    .govuk .heading-36 {
+      margin-top: 45px;
+      margin-bottom: 20px; } }
+.govuk .heading-24 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  margin-top: 25px;
+  margin-bottom: 10px; }
+  @media (max-width: 640px) {
+    .govuk .heading-24 {
+      font-size: 20px;
+      line-height: 1.2; } }
+  @media (min-width: 641px) {
+    .govuk .heading-24 {
+      margin-top: 45px;
+      margin-bottom: 20px; } }
+.govuk .heading-19 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 19px;
+  line-height: 1.31579;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 5px; }
+  @media (max-width: 640px) {
+    .govuk .heading-19 {
+      font-size: 16px;
+      line-height: 1.25; } }
+  @media (min-width: 641px) {
+    .govuk .heading-19 {
+      margin-top: 20px; } }
+.govuk .data-80 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    .govuk .data-80 {
+      font-size: 53px;
+      line-height: 1.03774; } }
+.govuk .data-48 {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 48px;
+  line-height: 1.04167;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  line-height: 0.9; }
+  @media (max-width: 640px) {
+    .govuk .data-48 {
+      font-size: 32px;
+      line-height: 1.09375; } }
+.govuk .data p {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none;
+  font-weight: 700; }
+  @media (max-width: 640px) {
+    .govuk .data p {
+      font-size: 14px;
+      line-height: 1.14286; } }
+.govuk .grid-wrapper {
+  padding: 0 15px; }
+  @media (min-width: 641px) {
+    .govuk .grid-wrapper {
+      padding: 0 15px; } }
+.govuk .grid {
+  float: left;
+  width: 100%; }
+@media (min-width: 641px) {
+  .govuk .grid .inner-block {
+    padding: 0 15px; } }
+.govuk .grid-1-2 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .grid-1-2 {
+      width: 50%; } }
+.govuk .grid-1-3 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .grid-1-3 {
+      width: 33.33333%; } }
+.govuk .grid-1-4 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .grid-1-4 {
+      width: 25%; } }
+.govuk .grid-2-3 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .grid-2-3 {
+      width: 66.66667%; } }
+.govuk .grid-3-4 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .grid-3-4 {
+      width: 75%; } }
+.govuk .button {
+  background-color: #006435;
+  position: relative;
+  display: -moz-inline-stack;
+  display: inline-block;
+  padding: 0.35em 0.5em 0.15em 0.5em;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -webkit-box-shadow: 0 2px 0 #00180c;
+  -moz-box-shadow: 0 2px 0 #00180c;
+  box-shadow: 0 2px 0 #00180c;
+  font-size: 1em;
+  line-height: 1.25;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  color: #fff;
+  margin: 0 15px 15px 0;
+  padding: 10px 10px 5px 10px;
+  vertical-align: top; }
+  .govuk .button:visited {
+    background-color: #006435; }
+  .govuk .button:hover, .govuk .button:focus {
+    background-color: #004b26; }
+  .govuk .button:active {
+    top: 2px;
+    -webkit-box-shadow: 0 0 0 #006435;
+    -moz-box-shadow: 0 0 0 #006435;
+    box-shadow: 0 0 0 #006435; }
+  .govuk .button.disabled, .govuk .button[disabled="disabled"], .govuk .button[disabled] {
+    zoom: 1;
+    filter: alpha(opacity=#{$trans * 100});
+    opacity: 0.5; }
+    .govuk .button.disabled:hover, .govuk .button[disabled="disabled"]:hover, .govuk .button[disabled]:hover {
+      cursor: default;
+      background-color: #006435; }
+    .govuk .button.disabled:active, .govuk .button[disabled="disabled"]:active, .govuk .button[disabled]:active {
+      top: 0;
+      -webkit-box-shadow: 0 2px 0 #00180c;
+      -moz-box-shadow: 0 2px 0 #00180c;
+      box-shadow: 0 2px 0 #00180c; }
+  .govuk .button:hover, .govuk .button:focus, .govuk .button:visited {
+    color: #fff; }
+  .govuk .button:before {
+    content: "";
+    height: 110%;
+    width: 100%;
+    display: block;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  .govuk .button:active:before {
+    top: -10%;
+    height: 120%; }
+  .govuk .button[rel="external"]:after {
+    display: none;
+    content: none;
+    margin-left: 0;
+    margin-right: 0; }
+.govuk .button:focus {
+  outline: 3px solid #ffbf47; }
+.govuk .get-started .button {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: 700;
+  line-height: 0.66667;
+  background-color: #00823b;
+  padding: 0.6em 1.7em 0.45em 0.67em;
+  background-image: url(https://assets.digital.cabinet-office.gov.uk/static/icon-pointer-063838cde108768e30b077e5303783fc.png);
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  margin-bottom: 0; }
+  @media (max-width: 640px) {
+    .govuk .get-started .button {
+      font-size: 20px;
+      line-height: 1.2; } }
+.govuk .get-started .button:hover {
+  background-color: #006435; }
+.govuk .get-started .destination {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  font-weight: 400;
+  text-transform: none;
+  color: #2e3133;
+  display: block;
+  margin-top: 7px;
+  max-width: 182px; }
+  @media (max-width: 640px) {
+    .govuk .get-started .destination {
+      font-size: 12px;
+      line-height: 1.25; } }
+.govuk .button-link {
+  background: none;
+  border: none;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  color: #2e3191;
+  line-height: 1.25;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 15px 15px 0;
+  padding: 10px 10px 5px 10px;
+  vertical-align: top; }
+.govuk .button-link:hover {
+  color: #2e8aca; }
+.govuk .button-link:focus {
+  outline: 3px solid #ffbf47; }
+.govuk .colour-purple {
+  background-color: #2e358b; }
+.govuk .colour-purple-50 {
+  background-color: #9799c4; }
+.govuk .colour-purple-25 {
+  background-color: #d5d6e7; }
+.govuk .colour-mauve {
+  background-color: #6f72af; }
+.govuk .colour-mauve-50 {
+  background-color: #b7b9d7; }
+.govuk .colour-mauve-25 {
+  background-color: #e2e2ef; }
+.govuk .colour-fuschia {
+  background-color: #912b88; }
+.govuk .colour-fuschia-50 {
+  background-color: #c994c3; }
+.govuk .colour-fuschia-25 {
+  background-color: #e9d4e6; }
+.govuk .colour-pink {
+  background-color: #d53880; }
+.govuk .colour-pink-50 {
+  background-color: #eb9bbe; }
+.govuk .colour-pink-25 {
+  background-color: #f6d7e5; }
+.govuk .colour-baby-pink {
+  background-color: #f499be; }
+.govuk .colour-baby-pink-50 {
+  background-color: #faccdf; }
+.govuk .colour-baby-pink-25 {
+  background-color: #fdebf2; }
+.govuk .colour-red {
+  background-color: #b10e1e; }
+.govuk .colour-red-50 {
+  background-color: #d9888c; }
+.govuk .colour-red-25 {
+  background-color: #efcfd1; }
+.govuk .colour-mellow-red {
+  background-color: #df3034; }
+.govuk .colour-mellow-red-50 {
+  background-color: #ef9998; }
+.govuk .colour-mellow-red-25 {
+  background-color: #f9d6d6; }
+.govuk .colour-orange {
+  background-color: #f47738; }
+.govuk .colour-orange-50 {
+  background-color: #fabb96; }
+.govuk .colour-orange-25 {
+  background-color: #fde4d4; }
+.govuk .colour-brown {
+  background-color: #b58840; }
+.govuk .colour-brown-50 {
+  background-color: #dac39c; }
+.govuk .colour-brown-25 {
+  background-color: #f0e7d7; }
+.govuk .colour-yellow {
+  background-color: #ffbf47; }
+.govuk .colour-yellow-50 {
+  background-color: #ffdf94; }
+.govuk .colour-yellow-25 {
+  background-color: #fff2d3; }
+.govuk .colour-green {
+  background-color: #006435; }
+.govuk .colour-green-50 {
+  background-color: #7fb299; }
+.govuk .colour-green-25 {
+  background-color: #cce0d6; }
+.govuk .colour-grass-green {
+  background-color: #85994b; }
+.govuk .colour-grass-green-50 {
+  background-color: #c2cca3; }
+.govuk .colour-grass-green-25 {
+  background-color: #e7ebda; }
+.govuk .colour-turquoise {
+  background-color: #28a197; }
+.govuk .colour-turquoise-50 {
+  background-color: #95d0cb; }
+.govuk .colour-turquoise-25 {
+  background-color: #d5ecea; }
+.govuk .colour-light-blue {
+  background-color: #2b8cc4; }
+.govuk .colour-light-blue-50 {
+  background-color: #96c6e2; }
+.govuk .colour-light-blue-25 {
+  background-color: #d5e8f3; }
+.govuk .text-secondary {
+  color: #6f777b; }
+.govuk .bg-hm-government {
+  background: #0076c0; }
+.govuk dl, .govuk menu, .govuk ol, .govuk ul {
+  margin: 0; }
+.govuk dd {
+  margin-left: 0; }
+.govuk menu, .govuk ol, .govuk ul {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 0; }
+.govuk ul, .govuk ol {
+  list-style-type: none; }
+.govuk ul li, .govuk ol li {
+  margin-bottom: 5px; }
+.govuk .list-bullet {
+  list-style-type: disc;
+  margin-left: 20px; }
+.govuk .list-number {
+  list-style-type: decimal;
+  margin-left: 20px; }
+.govuk form {
+  margin: 0; }
+.govuk fieldset {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-left: 0; }
+.govuk legend {
+  padding-left: 0;
+  width: 100%;
+  float: left;
+  clear: both; }
+.govuk legend.heading-36 {
+  margin: 0;
+  padding-top: 45px;
+  padding-bottom: 45px; }
+.govuk legend.heading-24 {
+  margin: 0;
+  padding-top: 45px;
+  padding-bottom: 20px; }
+.govuk button, .govuk input, .govuk select, .govuk textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle; }
+.govuk button, .govuk input {
+  line-height: normal; }
+.govuk input[type="text"], .govuk input[type="email"], .govuk input[type="date"], .govuk input[type="datetime"], .govuk input[type="datetime-local"], .govuk input[type="email"], .govuk input[type="month"], .govuk input[type="number"], .govuk input[type="search"], .govuk input[type="tel"], .govuk input[type="time"], .govuk input[type="url"], .govuk input[type="week"], .govuk select[size], .govuk textarea {
+  font-size: 1em;
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #bfc1c3;
+  -webkit-appearance: none;
+  border-radius: 0; }
+.govuk textarea {
+  overflow: auto;
+  vertical-align: top;
+  min-height: 190px;
+  height: auto; }
+.govuk .form-group {
+  float: left;
+  width: 100%;
+  clear: both; }
+  @media (min-width: 641px) {
+    .govuk .form-group {
+      margin-bottom: 45px; } }
+.govuk .form-group-compound {
+  margin-bottom: 10px; }
+.govuk .form-label, .govuk .govuk .date-of-birth legend, .govuk .date-of-birth .govuk legend, .govuk .form-group label {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 19px;
+  line-height: 1.31579;
+  font-weight: 400;
+  text-transform: none;
+  display: block;
+  margin-bottom: 5px; }
+  @media (max-width: 640px) {
+    .govuk .form-label, .govuk .form-group label {
+      font-size: 16px;
+      line-height: 1.25; } }
+.govuk .form-control {
+  width: 100%;
+  box-sizing: border-box; }
+  @media (min-width: 641px) {
+    .govuk .form-control {
+      width: 50%; } }
+.govuk .form-control-3-4 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .form-control-3-4 {
+      width: 75%; } }
+.govuk .form-control-1-2 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .form-control-1-2 {
+      width: 50%; } }
+.govuk .form-control-1-4 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .form-control-1-4 {
+      width: 25%; } }
+.govuk .form-control-1-8 {
+  width: 100%; }
+  @media (min-width: 641px) {
+    .govuk .form-control-1-8 {
+      width: 12.5%; } }
+.govuk .form-hint {
+  display: block;
+  color: #6f777b;
+  margin-top: 8px;
+  margin-bottom: 5px; }
+.govuk .date-of-birth label {
+  display: block;
+  color: #6f777b;
+  margin-bottom: 5px; }
+@media (min-width: 641px) {
+  .govuk .date-of-birth .form-group {
+    width: 50px;
+    float: left;
+    margin-right: 20px;
+    clear: none; } }
+@media (min-width: 641px) {
+  .govuk .date-of-birth .form-group-year {
+    width: 70px; } }
+.govuk .date-of-birth .form-group input {
+  width: 100%; }
+.govuk .form-checkbox input {
+  vertical-align: middle;
+  margin: -2px 5px 0 0; }
+.govuk .form-radio input {
+  vertical-align: middle;
+  margin: -4px 5px 0 0; }
+.govuk .form-group-indent {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-left: 5px solid #dee0e2;
+  padding-left: 15px;
+  margin: 30px 20px 30px 0; }
+.govuk .form-group-inline {
+  padding-top: 15px; }
+.govuk .form-group-inline .form-checkbox, .govuk .form-group-inline .form-radio {
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px; }
+.govuk .form-group-block .form-checkbox, .govuk .form-group-block .form-radio {
+  margin-bottom: 15px; }
+.govuk .form-group label.block-label {
+  display: inline-block; }
+.govuk .block-label {
+  display: inline-block;
+  padding: 18px 30px 15px 15px;
+  background: #dee0e2; }
+.govuk .block-label input:focus {
+  outline: none; }
+.govuk .add-focus {
+  outline: 3px solid #ffbf47; }
