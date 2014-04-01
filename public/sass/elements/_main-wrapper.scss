@@ -1,0 +1,14 @@
+.main {
+  max-width: 1020px;
+  width: auto;
+  margin: 0 auto 90px;
+  @include contain-floats;
+
+  @include ie-lte(6)  {
+    width: 990px;
+  }
+}
+
+.main-full-width {
+	max-width: 100%;
+}

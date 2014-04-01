@@ -1,0 +1,11 @@
+// Grid units take 100% width, unless a .grid-width class is applied
+.grid {
+  float: left;
+  width: 100%;
+}
+
+.grid .inner-block {
+  @include media(tablet) {
+    padding: 0 $gutter-half;
+  }
+}

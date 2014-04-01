@@ -1,0 +1,253 @@
+// Normalize form elements
+
+form {
+  margin: 0;
+}
+
+fieldset {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-left: 0;
+}
+
+legend {
+  padding-left: 0;
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+// Swap legend margins for padding
+legend.heading-36 {
+  margin: 0;
+  padding-top: 45px;
+  padding-bottom: ($gutter*1.5);
+}
+
+legend.heading-24 {
+  margin: 0;
+  padding-top: 45px;
+  padding-bottom: 20px
+}
+
+
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+button,
+input {
+    line-height: normal;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+select[size],
+textarea {
+  font-size: 1em;
+  
+  padding: 4px;
+  background-color: $white;
+  border: 1px solid $border-colour;
+  
+  // Disable webkit appearance and remove rounded corners
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  min-height: 190px;
+  height: auto;
+}
+
+// Form group is used to wrap label and input pairs
+
+.form-group {
+  float: left;
+  width: 100%;
+  clear: both;
+  @extend .cf;
+  @include media(tablet) {
+    margin-bottom: ($gutter*1.5);
+  }
+}
+
+.form-group-compound {
+  margin-bottom: 10px;
+}
+
+
+// Form labels, or for legends styled to look like labels
+.form-label,
+.form-group label {
+  @include core-19;
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+// By default, form controls are 50% width for desktop and 100% width for mobile
+
+.form-control {
+  width: 100%;
+  box-sizing: border-box;
+  @include media(tablet) {
+    width: 50%;
+  }
+}
+
+// Form control widths
+
+.form-control-3-4 {
+  width: 100%;
+  @include media(tablet) {
+    width: 75%;
+  }
+}
+
+.form-control-1-2 {
+  width: 100%;
+  @include media(tablet) {
+    width: 50%;
+  }
+}
+
+.form-control-1-4 {
+  width: 100%;
+  @include media(tablet) {
+    width: 25%;
+  }
+}
+
+.form-control-1-8 {
+  width: 100%;
+  @include media(tablet) {
+    width: 12.5%;
+  }
+}
+
+// Form hints & examples are light grey and sit above a form control
+
+.form-hint {
+  display: block;
+  color: $secondary-text-colour;
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+
+// Date of birth
+
+.date-of-birth legend {
+  @extend .form-label;
+}
+.date-of-birth label {
+  display: block;
+  color: $grey-1;
+  margin-bottom: 5px;
+}
+.date-of-birth .form-group {  
+  @include media(tablet){
+    width: 50px;
+    float: left;
+    margin-right: 20px;
+    clear: none;
+  }
+}
+.date-of-birth .form-group-year {
+  @include media(tablet){
+    width: 70px;
+  }
+}
+.date-of-birth .form-group input {
+  width: 100%;
+}
+
+// Vertical alignment of checkboxes
+
+.form-checkbox input {
+  vertical-align: middle;
+  margin: -2px 5px 0 0;
+}
+
+// Vertical alignment of radio buttons
+
+.form-radio input {
+  vertical-align: middle;
+  margin: -4px 5px 0 0;
+}
+
+// Grey indented panels
+
+.form-group-indent {
+  @include box-sizing(border-box);
+  border-left: 5px solid $grey-3;
+  padding-left: $gutter-half;
+  margin: ($gutter $gutter-two-thirds $gutter 0);
+}
+
+// Inline form layout (tablet and up)
+.form-group-inline {
+  padding-top: $gutter-half;
+}
+.form-group-inline .form-checkbox,
+.form-group-inline .form-radio {
+  float: left;
+  margin-right: $gutter-half;
+  margin-bottom: $gutter-half;
+}
+
+// Block form layout (tablet and up)
+
+.form-group-block {
+  @extend %contain-floats;
+}
+.form-group-block .form-checkbox,
+.form-group-block .form-radio {
+  margin-bottom: $gutter-half;
+}
+
+// Large hit areas for labels wrapping radio buttons and checkboxes
+.form-group label.block-label {
+  display: inline-block;
+}
+
+.block-label {
+  display: inline-block;
+  padding: (18px $gutter $gutter-half $gutter-half);
+  background: $grey-3;
+}
+
+
+// Only if JavaScript is enabled
+// Remove focus styles from radio and checkboxes
+
+.block-label input:focus {
+  outline: none;
+}
+
+// Instead, add focus styles to labels
+
+.add-focus {
+  outline: 3px solid $yellow;
+}
+

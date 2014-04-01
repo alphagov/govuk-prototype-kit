@@ -1,0 +1,6 @@
+.grid-2-3 {
+  width: 100%;
+  @include media(tablet) {
+    width: 66.666666667%;
+  }
+}
