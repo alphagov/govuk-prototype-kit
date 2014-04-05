@@ -1,0 +1,13 @@
+// Data
+.data-80 {
+  @include bold-80;
+}
+
+.data-48 {
+  @include bold-48;
+  line-height: 0.9;
+}
+
+.data p {
+  @include bold-16;
+}

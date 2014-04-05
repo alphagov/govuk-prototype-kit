@@ -6,12 +6,11 @@ module.exports = function(grunt){
       dev: {
         files: {
           'public/stylesheets/application.css': 'public/sass/application.scss',
-          'public/stylesheets/examples.css': 'public/sass/examples.scss',
-          'public/stylesheets/elements.css': 'public/sass/elements.scss'
+          'public/stylesheets/examples.css': 'public/sass/examples.scss'
         },
         options: {
-          includePaths: ['govuk/public/sass'],
-          outputStyle: 'expanded'
+          loadPath: ['govuk/public/sass'],
+          style: 'expanded'
         } 
       }
     },
@@ -46,18 +45,6 @@ module.exports = function(grunt){
 
     },
 
-    // workaround for libsass
-    replace: {
-      fixSass: {
-        src: ['govuk/public/sass/**/*.scss'],
-        overwrite: true,
-        replacements: [{ 
-          from: /filter:chroma(.*);/g,
-          to: 'filter:unquote("chroma$1");'
-        }]
-      }
-    },
-
     // Watches styles and specs for changes
     watch: {
       css: {
@@ -90,9 +77,8 @@ module.exports = function(grunt){
   [
     'grunt-contrib-copy',
     'grunt-contrib-watch',
-    'grunt-sass',
+    'grunt-contrib-sass',
     'grunt-nodemon',
-    'grunt-text-replace',
     'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
@@ -114,7 +100,6 @@ module.exports = function(grunt){
     'copy:govuk_assets',
     'convert_template',
     'copy:govuk_frontend_toolkit',
-    'replace',
     'sass',
     'concurrent:target'
   ]);
