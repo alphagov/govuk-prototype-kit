@@ -1,0 +1,31 @@
+// Add missing mixins and variables here
+
+
+// These can be removed once the govuk_frontend_toolkit node module is updated
+
+$gutter: 30px;
+$gutter-one-quarter: $gutter/4;
+$gutter-one-third: $gutter/3;
+$gutter-half: $gutter/2;
+$gutter-two-thirds: $gutter - $gutter-one-third;
+
+
+// Use an include here, since we can't extend the %contain-floats placeholder
+
+@mixin contain-floats {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  @include ie-lte(7) {
+    zoom: 1;
+  }
+}
+
+
+// Apply this to a the .cf 'contain-floats' or 'clearfix' class
+
+.cf {
+  @include contain-floats;
+}
