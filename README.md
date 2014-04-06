@@ -42,6 +42,12 @@ The app recompiles app/assets/stylesheets/application.scss everytime changes are
 
 Guides for getting set up and how to work with the prototyping application are available on this repo's [wiki](https://github.com/tombye/express_prototype/wiki).
 
+* [Getting started](https://github.com/tombye/express_prototype/wiki/Getting-started) (Read this first)
+* [Creating routes](https://github.com/tombye/express_prototype/wiki/Creating-routes)
+* [Making pages](https://github.com/tombye/express_prototype/wiki/Making-pages)
+* [Writing CSS](https://github.com/tombye/express_prototype/wiki/Writing-CSS)
+* [Tips and Tricks](https://github.com/tombye/express_prototype/wiki/Tips-and-Tricks)
+
 This project is built on top of Express, the idea is that it is straightforward to create simple static pages out of the box. However, you're not limited to that - more dynamic sites can be built with more understanding of Express. Here's a good [Express tutorial.](http://code.tutsplus.com/tutorials/introduction-to-express--net-33367)
 
 ## Disclaimer
