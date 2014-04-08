@@ -1,0 +1,63 @@
+@import "../colours";
+
+// Validation summary box
+.validation-summary {
+  border: 3px solid $error-colour;
+  background: $error-background;
+
+  padding: $gutter-half $gutter;
+  margin-bottom: $gutter;
+
+  @include ie-lte(6){
+    zoom: 1;
+  }
+}
+
+.validation-summary ul {
+  margin-top: 10px;
+}
+
+.validation-summary li,
+.validation-summary p {
+  @include core-16;
+}
+
+.validation-summary p {
+  margin-top: $gutter-half;
+  margin-bottom: 5px;
+}
+
+.validation-summary a {
+  color: $error-colour;
+  @include ie-lte(6) {
+    color: $error-colour !important;
+  }
+}
+
+.validation-summary .heading-19 {
+  margin-top: $gutter-half;
+}
+
+
+// Validation message box
+.validation {
+  @include contain-floats;
+  border-left: 3px solid $error-colour;
+  background: $error-background;
+  padding-top: $gutter-half;
+  padding-bottom: $gutter;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  margin-bottom: $gutter-half;
+}
+
+.validation p {
+  margin-bottom: 10px;
+}
+
+
+// Validation message
+.validation-message {
+  @include core-16;
+  color: $error-colour;
+}

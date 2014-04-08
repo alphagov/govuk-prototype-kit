@@ -11,32 +11,23 @@
 {{$headerClass}}with-proposition{{/headerClass}}
 
 {{$content}}
-<main class="main govuk">
+<main id="wrapper" role="main">
+  <div id="content">
+    <div class="inner-block">
 
-  <div class="grid-wrapper">
-    <div class="grid">
-      <div class="inner-block">
-        
-        <p class="heading-19">
-          Elements example pages
-        </p>
-        <ul class="list-bullet">
-          <li><a href="/examples/elements/grid-layout">Grid layout</a></li>
-          <li><a href="/examples/elements/typography">Typography</a></li>
-          <li><a href="/examples/elements/forms">Forms</a></li>
-        </ul>
+        <a href="/" class="example-back-link">Back to the prototyping kit</a>
 
         <h1 class="heading-48">
           Typography
         </h1>
 
         <div class="text">
-          
+
           <h1 class="heading-48">
             <span class="heading-27">A 27px section heading</span>
             A 48px heading
           </h1>
-          
+
           <p class="lede">
             This is an intro paragraph at 24px. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor. Vestibulum id ligula porta felis euismod semper.
           </p>
@@ -44,7 +35,7 @@
           <h2 class="heading-36">A 36px heading</h2>
 
           <p>
-            Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Aenean lacinia bibendum nulla sed consectetur. Sed posuere consectetur est at lobortis.
+            This is a body copy paragraph at 19px. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Aenean lacinia bibendum nulla sed consectetur. Sed posuere consectetur est at lobortis.
           </p>
 
           <h3 class="heading-24">A 24px heading</h3>
@@ -70,14 +61,12 @@
             <li>Vestibulum id ligula porta felis euismod semper.</li>
             <li>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</li>
           </ol>
-          
+
         </div>
 
-      </div><!-- /.inner-block -->
-    </div><!-- /.grid -->
-  </div><!-- /.grid-wrapper -->
-
-</main>
+    </div><!-- /.inner-block -->
+  </div><!-- /#content -->
+</main><!-- /#wrapper -->
 {{/content}}
 
 {{/govuk_template}}

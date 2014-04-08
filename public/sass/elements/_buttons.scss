@@ -1,56 +1,83 @@
+// Buttons
+// ==========================================================================
+
 .button {
-	@include button ($green);
-	margin: 0 $gutter-half $gutter-half 0;
-	padding: 10px 10px 5px 10px;
-	vertical-align: top;
+  @include button ($button-colour);
+  margin: 0 $gutter-half $gutter-half 0;
+  padding: 10px 10px 5px 10px;
+  vertical-align: top;
 }
+
 .button:focus {
-	outline: 3px solid $yellow;
+  outline: 3px solid $yellow;
 }
+
+
+// Disabled buttons
+
+// Do not change colour
+.disabled:hover {
+  background: $button-colour;
+}
+// Do not have a focus state
+.disabled:focus {
+  outline: none;
+}
+
 
 // Start now buttons
-.get-started .button {
-	@include bold-24;
-	line-height: 0.66667;
-	background-color: #00823b; // Not in palette!! 
-	padding: 0.60em 1.7em 0.45em 0.67em;
-	background-image: url(https://assets.digital.cabinet-office.gov.uk/static/icon-pointer-063838cde108768e30b077e5303783fc.png);
-	background-position: 100% 50%;
-	background-repeat: no-repeat;
-	margin-bottom: 0;
-}
-.get-started .button:hover {
-	background-color: $green;
-}
+.get-started {
 
-.get-started .destination {
-	@include core-14;
-	color: #2e3133;
-	display: block;
-	margin-top: 7px;
-	max-width: 182px;
+  .button {
+    @include bold-24;
+    line-height: 0.66667;
+    color: #FFF;
+    background-color: $button-colour;
+    padding: 14px 41px 10px 16px;
+    background-image: url(https://assets.digital.cabinet-office.gov.uk/static/icon-pointer-063838cde108768e30b077e5303783fc.png);
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    margin-bottom: 0;
+
+    // @include ie-lte(6){
+    //   background-image: url(https://assets.digital.cabinet-office.gov.uk/static/icon-pointer-indexed-837e19e1ba2d4beb5563d052b044770b.png);
+    // }
+  }
+
+  .button:hover {
+    background-color: $green;
+  }
+  .button:focus {
+    outline: 3px solid $yellow;
+  }
+  .destination {
+    @include core-14;
+    color: #2e3133;
+    display: block;
+    margin-top: 7px;
+    max-width: 182px;
+  }
+
 }
 
 // Link style buttons
 .button-link {
-	// Remove browser default button styles
-	background: none;
-	border: none;
-	// Override webkit default button styles
-	-webkit-font-smoothing: antialiased;
-	// Match .button styles
-	display: inline-block;
-	color: $link-colour;
-	line-height: 1.25;
-	text-decoration: underline;
-	cursor: pointer;
-	margin: 0 $gutter-half $gutter-half 0;
-	padding: 10px 10px 5px 10px;
-	vertical-align: top;
+  @include core-19;
+  background: none;
+  border: none;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  color: $link-colour;
+  line-height: 1.25;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 $gutter-half $gutter-half 0;
+  padding: 10px 10px 5px 10px;
+  vertical-align: top;
 }
 .button-link:hover {
-	color: $link-hover-colour;
+  color: $link-hover-colour;
 }
 .button-link:focus {
-	outline: 3px solid $yellow;
+  outline: 3px solid $yellow;
 }
