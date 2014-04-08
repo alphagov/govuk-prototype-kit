@@ -1,13 +1,5 @@
-dl,
-menu,
-ol,
-ul {
-  margin: 0;
-}
-
-dd {
-  margin-left: 0;
-}
+// Lists
+// ==========================================================================
 
 menu,
 ol,
@@ -36,5 +28,5 @@ ol li {
 // Numbered lists
 .list-number {
   list-style-type: decimal;
-  margin-left: 20px;
+  margin-left: 25px;
 }

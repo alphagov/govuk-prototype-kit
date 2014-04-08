@@ -1,0 +1,16 @@
+// Panels
+// ==========================================================================
+
+// Indented panels with a grey left hand border
+.panel-indent {
+  @include contain-floats;
+  clear: both;
+  border-left: 5px solid $grey-3;
+
+  padding-top: 10px;
+  padding-left: $gutter-half;
+  @include media(tablet){
+    padding-left: $gutter;
+  }
+  margin: ($gutter $gutter-half $gutter 0);
+}

@@ -1,49 +1,44 @@
-/* includes node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets */
+// includes node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets
 
 // Import GOV.UK frontend toolkit
+@import "colours";
+@import "measurements";
+@import "conditionals";
+@import "shims";
+@import "typography";
+@import "css3";
+@import "design-patterns/alpha-beta";
+@import "design-patterns/buttons";
 
-@import "_colours";
-@import "_css3";
-@import "_shims";
-@import "_typography";
-@import "_measurements";
+// Helpers
+@import "elements/helpers";
 
-@import "design-patterns/_alpha-beta";
-@import "design-patterns/_buttons";
+// Reset
+@import "elements/reset";
 
+// Typography
+@import "elements/typography";
 
-// Import GOV.UK elements styles - basic styles for typography and layout
+// Layout
+@import "elements/layout";
 
-// Helper classes
-@import "elements/_helpers.scss";
+// Modules
+// ==========================================================================
 
-// Main content wrapper
-@import "elements/_main-wrapper.scss";
+// Forms
+@import "elements/forms";
 
-// Scope the elements to .govuk
-// We only want to apply these styles to the main content wrapper, apply the govuk class here
+// Tables
+@import "elements/tables";
 
-.govuk {
+// Buttons
+@import "elements/buttons";
 
-  // Typography
-  @import "elements/_typography-base.scss";
-  @import "elements/_typography-general.scss";
-  @import "elements/_typography-headings.scss";
-  @import "elements/_typography-data.scss";
-  
-  // Grids
-  @import "elements/_grid-wrapper.scss";
-  @import "elements/_grid-unit.scss";
-  @import "elements/_grid-1-2.scss";
-  @import "elements/_grid-1-3.scss";
-  @import "elements/_grid-1-4.scss";
-  @import "elements/_grid-2-3.scss";
-  @import "elements/_grid-3-4.scss";
+// Lists
+@import "elements/lists";
 
-  // Modules
-  @import "elements/_buttons.scss";
-  @import "elements/_colours.scss";
-  @import "elements/_lists.scss";
-  @import "elements/_forms.scss";
+// Panels
+@import "elements/panels";
 
-}
+// Colours
+@import "elements/colours";
