@@ -39,9 +39,10 @@ module.exports = function(grunt){
       },
 
       govuk_frontend_toolkit: {
-        src: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets/*',
-        dest: 'govuk/public/sass',
-        expand: true
+        expand: true,
+        src: '**',
+        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets/',
+        dest: 'govuk/public/sass/'
       },
 
     },
