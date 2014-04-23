@@ -4,32 +4,12 @@
 @-o-viewport {
   width: device-width; }
 
-/* Cross-browser shims
-
-  Ways of normalising properties across browsers.
- */
 @-ms-viewport {
   width: device-width; }
 
 @-o-viewport {
   width: device-width; }
 
-/* Usage:
-   @include inline-block
-
-   or
-
-   @include inline-block("250px")
-
-   which gives a min-height to the inline-block elements.
-*/
-/* Contain floats usage:
-
-   .this-has-floated-children {
-     @extend %contain-floats;
-   }
-
-*/
 
 @font-face {
   font-family: GDS-Logo;
@@ -41,10 +21,6 @@
 @-o-viewport {
   width: device-width; }
 
-/* CSS 3 Mixins
-
-  Add them as you need them. This should let us manage vendor prefixes in one place.
- */
 @font-face {
   font-family: GDS-Logo;
   src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
@@ -55,89 +31,26 @@
 @-o-viewport {
   width: device-width; }
 
-/* Cross-browser shims
-
-  Ways of normalising properties across browsers.
- */
 @-ms-viewport {
   width: device-width; }
 
 @-o-viewport {
   width: device-width; }
 
-/* Usage:
-   @include inline-block
 
-   or
-
-   @include inline-block("250px")
-
-   which gives a min-height to the inline-block elements.
-*/
-/* Contain floats usage:
-
-   .this-has-floated-children {
-     @extend %contain-floats;
-   }
-
-*/
-
-/* Cross-browser shims
-
-  Ways of normalising properties across browsers.
- */
 @-ms-viewport {
   width: device-width; }
 
 @-o-viewport {
   width: device-width; }
 
-/* Usage:
-   @include inline-block
 
-   or
-
-   @include inline-block("250px")
-
-   which gives a min-height to the inline-block elements.
-*/
-/* Contain floats usage:
-
-   .this-has-floated-children {
-     @extend %contain-floats;
-   }
-
-*/
-
-/* CSS 3 Mixins
-
-  Add them as you need them. This should let us manage vendor prefixes in one place.
- */
 @-ms-viewport {
   width: device-width; }
 
 @-o-viewport {
   width: device-width; }
 
-/*
-
-Mixin and defaults for making buttons on GOV.UK services.
-
-For guidance, see: https://www.gov.uk/service-manual/design-and-content/resources/buttons.html
-
-Example usage:
-
-.button{
-  @include button;
-}
-.button-secondary{
-  @include button($grey-3);
-}
-.button-warning{
-  @include button($red);
-}
-
-*/
 .example-highlight-grid .grid-wrapper {
   background: #bfc1c3; }
 .example-highlight-grid .grid {
@@ -688,7 +601,7 @@ table td {
     box-shadow: 0 0 0 #00823b; }
   .button.disabled, .button[disabled="disabled"], .button[disabled] {
     zoom: 1;
-    filter: alpha(opacity=#{$trans * 100});
+    filter: alpha(opacity=50);
     opacity: 0.5; }
     .button.disabled:hover, .button[disabled="disabled"]:hover, .button[disabled]:hover {
       cursor: default;
@@ -698,7 +611,7 @@ table td {
       -webkit-box-shadow: 0 2px 0 #003518;
       -moz-box-shadow: 0 2px 0 #003518;
       box-shadow: 0 2px 0 #003518; }
-  .button:hover, .button:focus, .button:visited {
+  .button:link, .button:hover, .button:focus, .button:visited {
     color: #fff; }
   .button:before {
     content: "";
@@ -775,7 +688,7 @@ table td {
   border: none;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
-  color: #2e3191;
+  color: #005ea5;
   line-height: 1.25;
   text-decoration: underline;
   cursor: pointer;
