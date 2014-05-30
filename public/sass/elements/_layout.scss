@@ -1,0 +1,82 @@
+// Layout
+// ==========================================================================
+
+#wrapper {
+  text-align: center;
+  padding-bottom: $gutter;
+  @include media(desktop) {
+    padding-bottom: $gutter*3;
+  }
+}
+
+#content {
+  text-align: left;
+  @include outer-block;
+}
+
+// Use .outer-block to create a max width block of 1020px,
+// Use .inner-block to create padding that matches the header and footer
+
+.outer-block {
+  @include outer-block;
+}
+.inner-block {
+  @include inner-block;
+}
+
+
+// Grid layout
+.grid-wrapper {
+  @include contain-floats;
+  @include media(tablet) {
+    padding: 0 $gutter-half;
+  }
+}
+
+// Grid units take 100% width, unless a .grid-width class is applied
+.grid {
+  float: left;
+  width: 100%;
+}
+
+// Grid 'inner-block' aligns grid content with header and footer
+.grid .inner-block {
+  @include media(tablet) {
+    padding: 0 $gutter-half;
+  }
+}
+
+.grid-1-4 {
+  width: 100%;
+  @include media(tablet) {
+    width: 25%;
+  }
+}
+
+.grid-1-3 {
+  width: 100%;
+  @include media(tablet) {
+    width: 33.333333333%;
+  }
+}
+
+.grid-1-2 {
+  width: 100%;
+  @include media(tablet) {
+    width: 50%;
+  }
+}
+
+.grid-2-3 {
+  width: 100%;
+  @include media(tablet) {
+    width: 66.666666667%;
+  }
+}
+
+.grid-3-4 {
+  width: 100%;
+  @include media(tablet) {
+    width: 75%;
+  }
+}

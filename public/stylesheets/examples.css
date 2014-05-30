@@ -1,0 +1,18 @@
+.area {
+  font-family: 'nta', Sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  clear: both;
+  background: #912b88;
+  color: white;
+  border: dashed #fff 1px;
+  padding: 1em;
+  box-sizing: border-box; }
+
+/* area styles specific to certain ones */
+main.area {
+  min-height: 16em; }
+
+.header-proposition {
+  clear: none;
+  min-height: 6em; }

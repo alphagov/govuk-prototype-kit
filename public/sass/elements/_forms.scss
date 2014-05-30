@@ -1,0 +1,136 @@
+// Forms
+// ==========================================================================
+
+// Form layout
+fieldset,
+legend {
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+// Form group is used to wrap label and input pairs
+.form-group {
+  float: left;
+  width: 100%;
+  clear: both;
+  @include contain-floats;
+  @include media(tablet) {
+    margin-bottom: ($gutter*1.5);
+  }
+}
+
+.form-group-compound {
+  margin-bottom: 10px;
+}
+
+
+// Labels
+
+// Form labels, or for legends styled to look like labels
+.form-label {
+  @include core-19;
+  display: block;
+  margin-bottom: 10px;
+}
+
+// Used for paragraphs i n-between forms
+.form-block {
+  float: left;
+  width: 100%;
+  @include contain-floats;
+}
+
+// Form controls
+
+// By default, form controls are 50% width for desktop,
+// and 100% width for mobile
+.form-control {
+  width: 100%;
+  box-sizing: border-box;
+
+  font-size: 1em;
+
+  padding: 4px;
+  background-color: $white;
+  border: 1px solid $border-colour;
+
+  // Disable webkit appearance and remove rounded corners
+  -webkit-appearance: none;
+  border-radius: 0;
+
+  @include media(tablet) {
+    width: 50%;
+  }
+}
+
+// Form control widths
+.form-control-3-4 {
+  width: 100%;
+  @include media(tablet) {
+    width: 75%;
+  }
+}
+
+.form-control-1-2 {
+  width: 100%;
+  @include media(tablet) {
+    width: 50%;
+  }
+}
+
+.form-control-1-4 {
+  width: 100%;
+  @include media(tablet) {
+    width: 25%;
+  }
+}
+
+.form-control-1-8 {
+  width: 100%;
+  @include media(tablet) {
+    width: 12.5%;
+  }
+}
+
+// Hints
+
+// Form hints & examples are light grey and sit above a form control
+.form-hint {
+  display: block;
+  color: $secondary-text-colour;
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+
+// Radio buttons
+.form-radio {
+  display: block;
+  margin: 10px 0;
+}
+.form-radio input {
+  vertical-align: middle;
+  margin: -4px 5px 0 0;
+}
+
+
+// Checkboxes
+.form-checkbox {
+  display: block;
+  margin: $gutter-half 0;
+}
+.form-checkbox input {
+  vertical-align: middle;
+  margin: -2px 5px 0 0;
+}
+
+
+// Form validation
+@import "forms/form-validation";
+
+
+// Form patterns
+@import "forms/form-date-of-birth";
+
+@import "forms/form-chunky-labels";

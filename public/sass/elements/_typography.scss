@@ -1,0 +1,91 @@
+// Typography
+// ==========================================================================
+
+// Increase default font size to 19px
+#content {
+  @include core-19;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Headings 
+.heading-48 {
+  @include bold-48();
+  margin-top: $gutter-half;
+  margin-bottom: $gutter;
+  @include media(tablet) {
+    margin-top: $gutter;
+    margin-bottom: $gutter*2;
+  }
+  .heading-27 {
+    display: block;
+    @include core-27();
+    color: $secondary-text-colour;
+  }
+}
+
+.heading-36 {
+  @include bold-36();
+  margin-top: 25px;
+  margin-bottom: 10px;
+  @include media(tablet) {
+    margin-top: 45px;
+    margin-bottom: 20px;
+  }
+}
+
+.heading-24 {
+  @include bold-24();
+  margin-top: 25px;
+  margin-bottom: 10px;
+  @include media(tablet) {
+    margin-top: 45px;
+    margin-bottom: 20px;
+  }
+}
+
+.heading-19 {
+  @include bold-19();
+  margin-top: 10px;
+  margin-bottom: 5px;
+  @include media(tablet) {
+    margin-top: 20px;
+  }
+}
+
+// Text 
+p, 
+pre {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.lede,
+.lead {
+  @include core-24;
+}
+
+.copy-16 {
+  @include core-16;
+}
+
+// Set a max-width for text blocks
+// Less than 75 characters per line of text
+
+.text {
+  max-width: 30em;
+}
+
+// Data
+.data-80 {
+  @include bold-80;
+}
+
+.data-48 {
+  @include bold-48;
+  line-height: 0.9;
+}
+
+.data p {
+  @include bold-16;
+}
+
