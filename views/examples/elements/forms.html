@@ -1,0 +1,96 @@
+{{<govuk_template}}
+
+{{$head}}
+  {{>elements_head}}
+{{/head}}
+
+{{$propositionHeader}}
+  {{>propositional_navigation}}
+{{/propositionHeader}}
+
+{{$headerClass}}with-proposition{{/headerClass}}
+
+{{$content}}
+<main id="wrapper" role="main">
+  <div id="content">
+    <div class="inner-block">
+
+        <a href="/" class="example-back-link">Back to the prototyping kit</a>
+
+        <h1 class="heading-48">
+          Forms
+        </h1>
+
+        <form action="get" class="form">
+
+          <!-- Fieldset with hint and example text -->
+
+          <fieldset>
+
+            <legend class="heading-36">
+              Your personal details
+            </legend>
+
+            <div class="form-group">
+              <label class="form-label" for="full-name">Full name</label>
+              <p class="form-hint">As shown on your birth certificate or passport</p>
+              <input type="text" class="form-control" id="full-name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="other-names">Any other last names</label>
+              <input type="text" class="form-control" id="other-names">
+              <p class="form-hint">E.g. your maiden name</p>
+            </div>
+
+          </fieldset>
+
+          <!-- Compound form controls -->
+
+          <fieldset>
+
+            <legend class="heading-36">
+              Your address
+            </legend>
+
+             <div class="form-group form-group-compound">
+              <label class="form-label" for="address-line-1">Street address</label>
+              <input type="text" class="form-control" id="address-line-1">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="address-line-2" class="visuallyhidden">Second line of address</label>
+              <input type="text" class="form-control" id="address-line-2">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="address-town">Town or City</label>
+              <input type="text" class="form-control form-control-1-4" id="address-town">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="address-postcode">Postcode</label>
+              <input type="text" class="form-control form-control-1-8" id="address-postcode">
+            </div>
+
+          </fieldset>
+
+          <!-- Primary and secondary buttons -->
+
+          <fieldset>
+
+            <div class="form-group">
+              <input type="submit" class="button" value="Next">
+              <button class="button-link">Back</button>
+            </div>
+
+          </fieldset>
+
+        </form>
+
+    </div>
+  </div>
+</main>
+{{/content}}
+
+{{/govuk_template}}

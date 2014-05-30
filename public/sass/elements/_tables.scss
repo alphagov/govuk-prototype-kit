@@ -1,0 +1,40 @@
+// Tables
+// ==========================================================================
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table tr {
+  padding: 12px 8px 12px 16px;
+}
+
+table tr:nth-child(even) td {
+  background-color: #fff
+}
+
+@include ie-lte(8) {
+  table .stripe td {
+    background-color: #fff
+  }
+}
+
+table th,
+table td {
+  @include core-16;
+  text-align: left;
+  color: #0b0c0c;
+  background-color: #dee0e2;
+  border: solid 1px #a1acb2;
+  padding: 10px 16px;
+}
+
+table th {
+  font-weight: 700;
+}
+
+table td {
+  background: #eaedef;
+  border: dotted 1px #b8c6cc;
+}

@@ -5,7 +5,9 @@ module.exports = function(grunt){
     sass: {
       dev: {
         files: {
-          'public/stylesheets/application.css': 'public/sass/application.scss'
+          'public/stylesheets/application.css': 'public/sass/application.scss',
+          'public/stylesheets/examples.css': 'public/sass/examples.scss',
+          'public/stylesheets/elements.css': 'public/sass/elements.scss'
         },
         options: {
           includePaths: ['govuk/public/sass'],
@@ -37,9 +39,10 @@ module.exports = function(grunt){
       },
 
       govuk_frontend_toolkit: {
-        src: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets/*',
-        dest: 'govuk/public/sass',
-        expand: true
+        expand: true,
+        src: '**',
+        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets/',
+        dest: 'govuk/public/sass/'
       },
 
     },
@@ -68,7 +71,10 @@ module.exports = function(grunt){
     // nodemon watches for changes and restarts app
     nodemon: {
       dev: {
-        script: 'app.js'
+        script: 'app.js',
+        options: {
+          ext: 'html, js'
+        }
       }
     },
 
@@ -92,10 +98,22 @@ module.exports = function(grunt){
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
+  
+  grunt.registerTask(
+    'convert_template',
+    'Converts the govuk_template to use mustache inheritance',
+    function () {
+      var script = require(__dirname + '/lib/template-conversion.js');
+
+      script.convert();
+      grunt.log.writeln('govuk_template converted');
+    }
+  );
 
   grunt.registerTask('default', [
     'copy:govuk_template',
     'copy:govuk_assets',
+    'convert_template',
     'copy:govuk_frontend_toolkit',
     'replace',
     'sass',

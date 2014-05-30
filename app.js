@@ -1,49 +1,25 @@
 var express = require('express'),
-    cons = require('consolidate'),
+    routes = require(__dirname + '/routes.js'),
     app = express(),
-    mustacheRender = require("./lib/mustacheRender").mustacheRender;
+    port = (process.env.PORT || 3000);
 
 // Application settings
-app.engine('html', cons.mustache);
+app.engine('html', require(__dirname + '/lib/template-engine.js').__express);
 app.set('view engine', 'html');
+app.set('vendorViews', __dirname + '/govuk/views');
 app.set('views', __dirname + '/views');
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk/public'));
 
-// middleware to wrap mustache views in govuk template
+// routes (found in routes.js)
 
-app.use(mustacheRender);
-
-//
-
-var commonHead = '<link href="/public/stylesheets/application.css" rel="stylesheet" type="text/css" />';
-
-// routes
-
-app.get('/', function (req, res) {
-
-  var head = commonHead;
-
-  res.render('index',
-            {'pageTitle': 'index',
-            'head' : head });
-  
-});
-
-app.get('/sample', function (req, res) {
-  
-  var head = commonHead;
-
-  res.render('sample',
-            {'pageTitle': 'sample',
-            'head' : head });
-});
+routes.bind(app, '/public/');
 
 // start the app
 
-app.listen(3000);
+app.listen(port);
 console.log('');
-console.log('Listening on port 3000');
+console.log('Listening on port ' + port);
 console.log('');
