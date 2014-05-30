@@ -26,19 +26,12 @@ app.get(/^\/(.+)/, function (req, res) {
 	var path = (req.params[0]);
 
 	res.render(path, {'assetPath' : assetPath }, function(err, html) {
-
 		if (err) {
-
 			console.log(err);
-
 			res.send(404);
-
 		} else {
-
 			res.end(html);
-
 		}
-
 	});
 
 });
