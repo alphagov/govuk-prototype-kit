@@ -27,27 +27,5 @@ module.exports = {
       res.render('examples/elements', {'assetPath' : assetPath });    
     });
 
-    app.get(/^\/(.+)/, function (req, res) {
-
-      var path = (req.params[0]);
-
-      console.log('looking up ' + path);
-
-      res.render(path, {'assetPath' : assetPath }, function(err, html) {
-
-        if (err) {
-
-          res.send(404);
-
-        } else {
-
-          res.end(html);
-
-        }
-
-      });
-
-    });
-
   }
 };
