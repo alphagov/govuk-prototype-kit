@@ -19,8 +19,5 @@ module.exports = {
       res.render('examples/alpha/alpha', {'assetPath' : assetPath });    
     });
 
-    app.get('/moop', function (req, res) {
-      res.render('examples/elements', {'assetPath' : assetPath });    
-    });
   }
 };
