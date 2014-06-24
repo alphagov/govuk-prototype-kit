@@ -73,7 +73,8 @@ module.exports = function(grunt){
       dev: {
         script: 'app.js',
         options: {
-          ext: 'html, js'
+          ext: 'html, js',
+          ignore: ['node_modules/**']
         }
       }
     },
