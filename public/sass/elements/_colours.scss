@@ -1,11 +1,6 @@
 // Colours
 // ==========================================================================
 
-// Errors (TODO: Awaiting merge into frontend toolkit)
-$error-colour: $mellow-red;
-$error-background: #fef7f7;
-
-
 // Sass list for colour palette
 
 $palette: (
@@ -37,8 +32,3 @@ $palette: (
 
 // Usage:
 // @include color-palette;
-
-.text-secondary {
-  color: $secondary-text-colour;
-}
-

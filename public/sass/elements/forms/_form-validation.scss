@@ -3,8 +3,6 @@
 // Validation summary box
 .validation-summary {
   border: 3px solid $error-colour;
-  background: $error-background;
-
   padding: $gutter-half $gutter;
   margin-bottom: $gutter;
 
@@ -34,30 +32,33 @@
   }
 }
 
-.validation-summary .heading-19 {
+.validation-summary .heading-small {
   margin-top: $gutter-half;
 }
 
 
-// Validation message box
-.validation {
-  @include contain-floats;
-  border-left: 3px solid $error-colour;
-  background: $error-background;
-  padding-top: $gutter-half;
-  padding-bottom: $gutter;
-  padding-left: $gutter;
-  padding-right: $gutter;
-  margin-bottom: $gutter-half;
-}
+// Validation error message box
+// .validation-error {
+//   clear: both;
+//   @include contain-floats;
+//   border-left: 3px solid $error-colour;
+//   padding: $gutter- $gutter;
+//   margin-bottom: $gutter-half;
+//   margin-left: -($gutter);
+// }
 
-.validation p {
-  margin-bottom: 10px;
-}
+// .validation-error .form-group {
+//   margin-bottom: 20px;
+// }
+
+// .validation-error p {
+//   margin-bottom: 10px;
+// }
 
 
 // Validation message
 .validation-message {
+  display: block;
   @include core-16;
   color: $error-colour;
 }
