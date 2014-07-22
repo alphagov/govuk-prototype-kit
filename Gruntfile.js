@@ -5,9 +5,9 @@ module.exports = function(grunt){
     sass: {
       dev: {
         files: {
-          'public/stylesheets/application.css': 'public/sass/application.scss',
-          'public/stylesheets/examples.css': 'public/sass/examples.scss',
-          'public/stylesheets/elements.css': 'public/sass/elements.scss'
+          'public/stylesheets/application.css': 'app/assets/sass/application.scss',
+          'public/stylesheets/examples.css': 'app/assets/sass/examples.scss',
+          'public/stylesheets/elements.css': 'app/assets/sass/elements.scss'
         },
         options: {
           includePaths: ['govuk/public/sass'],
@@ -62,7 +62,7 @@ module.exports = function(grunt){
     // Watches styles and specs for changes
     watch: {
       css: {
-        files: ['public/sass/**/*.scss'],
+        files: ['app/assets/sass/**/*.scss'],
         tasks: ['sass'],
         options: { nospawn: true }
       }
@@ -71,7 +71,7 @@ module.exports = function(grunt){
     // nodemon watches for changes and restarts app
     nodemon: {
       dev: {
-        script: 'app.js',
+        script: 'server.js',
         options: {
           ext: 'html, js',
           ignore: ['node_modules/**']
