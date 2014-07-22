@@ -7,7 +7,7 @@ var express = require('express'),
 app.engine('html', require(__dirname + '/lib/template-engine.js').__express);
 app.set('view engine', 'html');
 app.set('vendorViews', __dirname + '/govuk/views');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/app/views');
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
