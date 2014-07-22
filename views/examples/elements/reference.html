@@ -1,0 +1,377 @@
+{{<govuk_template}}
+
+{{$head}}
+  {{>elements_head}}
+  <!-- Only for in-page examples -->
+  <!-- Override elements example styles -->
+  <style>
+.example {
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #bfc1c3;
+  margin-top: 15px;
+  /*margin-bottom: 45px;*/
+  padding-top: 30px;
+  padding-bottom: 15px; }
+  @media (min-width: 641px) {
+    .example {
+      padding-left: 30px;
+      padding-right: 30px; } }
+  .example:after {
+    content: "";
+    display: block;
+    clear: both; }
+  @media (min-width: 641px) {
+    .example {
+      padding-top: 45px;
+      padding-bottom: 30px; } }
+  .example:before {
+    content: "EXAMPLE";
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.21053em 0.78947em 0.21053em 0.78947em;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    font-weight: 400;
+    text-transform: none;
+    background: #bfc1c3;
+    color: white; }
+    @media (max-width: 640px) {
+      .example:before {
+        font-size: 12px;
+        line-height: 1.25; } }
+  .example .highlight {
+    font-style: normal;
+    color: #0076c0; }
+
+.example-grid p {
+  width: 100%;
+  background: url("http://govuk-elements.herokuapp.com/public/images/examples/grid.png") 0 0 repeat;
+  min-height: 30px;
+  margin-bottom: 0;
+  overflow: hidden;
+  text-indent: -999em; }
+  @media (min-width: 641px) {
+    .example-grid p {
+      min-height: 60px; } }
+
+.example .panel-indent {
+  margin: 0; }
+
+.swatch {
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%; }
+  @media (max-width: 640px) {
+    .swatch {
+      clear: both;
+      float: left;
+      margin-right: 15px;
+      margin-bottom: 15px; } }
+  @media (min-width: 641px) {
+    .swatch {
+      margin: 0 auto 15px auto; } }
+
+.swatch-purple {
+  background-color: #2e358b; }
+
+.swatch-mauve {
+  background-color: #6f72af; }
+
+.swatch-fuschia {
+  background-color: #912b88; }
+
+.swatch-pink {
+  background-color: #d53880; }
+
+.swatch-baby-pink {
+  background-color: #f499be; }
+
+.swatch-red {
+  background-color: #b10e1e; }
+
+.swatch-mellow-red {
+  background-color: #df3034; }
+
+.swatch-orange {
+  background-color: #f47738; }
+
+.swatch-brown {
+  background-color: #b58840; }
+
+.swatch-yellow {
+  background-color: #ffbf47; }
+
+.swatch-green {
+  background-color: #006435; }
+
+.swatch-grass-green {
+  background-color: #85994b; }
+
+.swatch-turquoise {
+  background-color: #28a197; }
+
+.swatch-light-blue {
+  background-color: #2b8cc4; }
+
+.swatch-alpha {
+  background-color: #d53880; }
+
+.swatch-beta {
+  background-color: #f47738; }
+
+.swatch-error {
+  background-color: #df3034; }
+
+.swatch-focus {
+  background-color: #ffbf47; }
+
+.swatch-button-colour {
+  background-color: #00823b; }
+
+.swatch-black {
+  background-color: #0b0c0c; }
+
+.swatch-grey-1 {
+  background-color: #6f777b; }
+
+.swatch-grey-2 {
+  background-color: #bfc1c3; }
+
+.swatch-grey-3 {
+  background-color: #dee0e2; }
+
+.swatch-grey-4 {
+  background-color: #f8f8f8; }
+
+.swatch-white {
+  background-color: #fff;
+  border: 1px solid #dee0e2; }
+
+.swatch-text-colour {
+  background-color: #0b0c0c; }
+
+.swatch-text-secondary {
+  background-color: #6f777b; }
+
+.swatch-page-colour {
+  background-color: #fff;
+  border: 1px solid #dee0e2; }
+
+.swatch-button-colour {
+  background-color: #00823b; }
+
+.swatch-link-colour {
+  background-color: #005ea5; }
+
+.swatch-link-colour-visited {
+  background-color: #2e8aca; }
+
+.swatch-link-colour-hover {
+  background-color: #2e8aca; }
+
+.swatch-border-colour {
+  background-color: #bfc1c3; }
+
+.swatch-panel-colour {
+  background-color: #dee0e2; }
+
+.swatch-highlight-colour {
+  background-color: #f8f8f8; }
+
+@media (min-width: 641px) {
+  .swatch-wrapper {
+    float: left;
+    width: 20%;
+    text-align: center; } }
+.swatch-wrapper .heading-small {
+  margin-bottom: 0.52632em; }
+.swatch-wrapper ul {
+  padding-bottom: 15px; }
+  @media (max-width: 640px) {
+    .swatch-wrapper ul {
+      min-height: 50px;
+      padding-top: 10px; } }
+.swatch-wrapper li {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none; }
+  @media (max-width: 640px) {
+    .swatch-wrapper li {
+      font-size: 14px;
+      line-height: 1.14286; } }
+.swatch-wrapper b {
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.example-images img {
+  max-width: 100%;
+  vertical-align: top; }
+
+.example-icons .heading-medium {
+  margin-top: 0; }
+
+.icon-list li {
+  margin-bottom: 5px;
+  position: relative;
+  min-height: 50px; }
+  .icon-list li:after {
+    content: "";
+    display: block;
+    clear: both; }
+
+.icon-list .icon {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px; }
+
+.icon-list .icon-text {
+  position: absolute;
+  left: 20%;
+  top: 0;
+  margin-top: 0; }
+
+.data .bold-xlarge, .data .bold-xxlarge {
+  line-height: 0.8; }
+
+.example .data p {
+  margin-bottom: 0; }
+
+.example .form-group {
+  margin-bottom: 0; }
+
+.form-group-example .form-group {
+  margin-bottom: 30px; }
+  @media (min-width: 641px) {
+    .form-group-example .form-group {
+      margin-bottom: 45px; } }
+
+.form-group-example .form-group-related {
+  margin-bottom: 10px; }
+  @media (min-width: 641px) {
+    .form-group-example .form-group-related {
+      margin-bottom: 20px !important; } }
+
+.example legend.form-label {
+  margin-bottom: 20px; }
+
+.example-button .button {
+  margin-bottom: 15px; }
+
+.example-button .heading-small {
+  margin-top: 0; }
+
+.example-button .swatch-wrapper {
+  width: 100%; }
+
+.example-button ul {
+  padding-bottom: 0; }
+
+pre, code {
+  font-size:14px;
+}
+
+.example-link {
+  margin-top: 15px;
+  display: inline-block;
+}
+  </style>
+  
+  {{>prism_head}}
+  {{>prism_scripts}}
+{{/head}}
+
+{{$propositionHeader}}
+  {{>propositional_navigation}}
+{{/propositionHeader}}
+
+{{$headerClass}}with-proposition{{/headerClass}}
+
+{{$content}}
+<main id="wrapper" role="main">
+  <div id="content">
+    <div class="inner-block">
+
+      <a href="/" class="example-back-link">Back to the prototyping kit</a>
+      
+      <h1 class="heading-large">GOV.UK elements reference</h1>
+      <p>The GOV.UK elements Sass files can be used to help with prototyping.</p>
+      <p>Here are the examples along with code snippets.</p>
+    
+      <h2 class="heading-medium">1. Layout</h2>
+      <p>
+        The prototyping kit has a full-width layout, with content that aligns to the header and footer.
+      </p>
+
+      <h3 class="heading-small">Grids</h3>
+      
+      <h4 class="heading-small">Halves</h4>
+      <div class="example example-grid">
+        <div class="grid-wrapper">
+          <div class="grid grid-1-2">
+            <div class="inner-block">
+              <p>Content</p>
+            </div>
+          </div>
+          <div class="grid grid-1-2">
+            <div class="inner-block">
+              <p>Content</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pre><code class="language-markup">&lt;div class=&quot;grid-wrapper&quot;&gt;
+  &lt;div class=&quot;grid grid-1-2&quot;&gt;
+    &lt;div class=&quot;inner-block&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;grid grid-1-2&quot;&gt;
+    &lt;div class=&quot;inner-block&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <a href="/examples/elements/grid-layout" class="example-link">See an example of GOV.UK grid layout</a>
+      
+      <h2 class="heading-medium">2. Typography</h2>
+      <h3 class="heading-small">Headings</h3>
+      <div class="example">
+          <h1 class="heading-xlarge">A <em class="highlight">48px Bold</em> heading</h1>
+          <h2 class="heading-large">A <em class="highlight">36px Bold</em> heading</h2>
+          <h3 class="heading-medium">A <em class="highlight">24px Bold</em> heading</h3>
+          <h4 class="heading-small">A <em class="highlight">19px Bold</em> heading</h4>
+        </div>
+<pre><code class="language-markup">&lt;h1 class=&quot;heading-xlarge&quot;&gt;A 48px Bold heading&lt;/h1&gt;
+&lt;h2 class=&quot;heading-large&quot;&gt;A 36px Bold heading&lt;/h2&gt;
+&lt;h3 class=&quot;heading-medium&quot;&gt;A 24px Bold heading&lt;/h3&gt;
+&lt;h4 class=&quot;heading-small&quot;&gt;A 19px Bold heading&lt;/h4&gt;</code></pre>
+
+
+      <a href="/examples/elements/typography" class="example-link">See an example of GOV.UK typography</a>
+    <!--
+      <h2 class="heading-medium">3. Colour</h2>
+      <h2 class="heading-medium">4. Icons and images</h2>
+      <h2 class="heading-medium">5. Data</h2>
+      <h2 class="heading-medium">6. Forms</h2>
+      <h2 class="heading-medium">7. Buttons</h2>
+      <h2 class="heading-medium">8. Errors and validation</h2>
+
+    </div><!-- /.inner-block -->
+  </div><!-- /#content -->
+</main><!-- /#wrapper -->
+{{/content}}
+
+{{$bodyEnd}}
+  {{>elements_scripts}}
+{{/bodyEnd}}
+
+{{/govuk_template}}
