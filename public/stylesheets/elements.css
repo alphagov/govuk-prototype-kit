@@ -353,6 +353,9 @@ p {
 .text {
   max-width: 30em; }
 
+.text-secondary {
+  color: #6f777b; }
+
 #wrapper {
   text-align: center;
   padding-bottom: 30px; }
