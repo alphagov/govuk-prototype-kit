@@ -1,5 +1,5 @@
 var express = require('express'),
-    routes = require(__dirname + '/routes.js'),
+    routes = require(__dirname + '/app/routes.js'),
     app = express(),
     port = (process.env.PORT || 3000);
 
