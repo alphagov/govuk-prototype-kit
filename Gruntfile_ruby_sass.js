@@ -10,7 +10,10 @@ module.exports = function(grunt){
           'public/stylesheets/elements.css': 'app/assets/sass/elements.scss'
         },
         options: {
-          loadPath: ['govuk_modules/public/sass'],
+          loadPath: [
+            'govuk_modules/govuk_template/assets/stylesheets',
+            'govuk_modules/govuk_frontend_toolkit/stylesheets'
+          ],
           style: 'expanded'
         } 
       }
@@ -20,30 +23,18 @@ module.exports = function(grunt){
     copy: {
 
       govuk_template: {
-        src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
-        dest: 'govuk_modules/views/',
-        expand: true,
-        flatten: true,
-        filter: 'isFile'
-      },
-
-      govuk_assets: {
-        files: [
-          {
-            expand: true,
-            src: '**',
-            cwd: 'node_modules/govuk_template_mustache/assets',
-            dest: 'govuk_modules/public/'
-          }
-        ]
+        cwd: 'node_modules/govuk_template_mustache/',
+        src: '**',
+        dest: 'govuk_modules/govuk_template/',
+        expand: true
       },
 
       govuk_frontend_toolkit: {
-        expand: true,
+        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/',
         src: '**',
-        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets/',
-        dest: 'govuk_modules/public/sass/'
-      },
+        dest: 'govuk_modules/govuk_frontend_toolkit/',
+        expand: true
+      }
 
     },
 
@@ -100,7 +91,7 @@ module.exports = function(grunt){
 
   grunt.registerTask('default', [
     'copy:govuk_template',
-    'copy:govuk_assets',
+    'copy:govuk_frontend_toolkit',
     'convert_template',
     'copy:govuk_frontend_toolkit',
     'sass',

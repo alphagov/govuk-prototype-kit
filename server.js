@@ -6,12 +6,12 @@ var express = require('express'),
 // Application settings
 app.engine('html', require(__dirname + '/lib/template-engine.js').__express);
 app.set('view engine', 'html');
-app.set('vendorViews', __dirname + '/govuk_modules/views');
+app.set('vendorViews', __dirname + '/govuk_modules/govuk_template/views/layouts');
 app.set('views', __dirname + '/app/views');
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
-app.use('/public', express.static(__dirname + '/govuk_modules/public'));
+app.use('/public', express.static(__dirname + '/govuk_modules/govuk_template/assets'));
 
 // routes (found in routes.js)
 
