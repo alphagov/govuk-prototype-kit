@@ -17,6 +17,7 @@
 #content {
   text-align: left;
   @include outer-block;
+  @include contain-floats; // Required as placeholder syntax isn't understood by prototype kit
 }
 
 .inner-block {
