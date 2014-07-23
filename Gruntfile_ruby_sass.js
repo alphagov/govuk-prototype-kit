@@ -10,7 +10,7 @@ module.exports = function(grunt){
           'public/stylesheets/elements.css': 'app/assets/sass/elements.scss'
         },
         options: {
-          loadPath: ['govuk/public/sass'],
+          loadPath: ['govuk_modules/public/sass'],
           style: 'expanded'
         } 
       }
@@ -21,7 +21,7 @@ module.exports = function(grunt){
 
       govuk_template: {
         src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
-        dest: 'govuk/views/',
+        dest: 'govuk_modules/views/',
         expand: true,
         flatten: true,
         filter: 'isFile'
@@ -33,7 +33,7 @@ module.exports = function(grunt){
             expand: true,
             src: '**',
             cwd: 'node_modules/govuk_template_mustache/assets',
-            dest: 'govuk/public/'
+            dest: 'govuk_modules/public/'
           }
         ]
       },
@@ -42,7 +42,7 @@ module.exports = function(grunt){
         expand: true,
         src: '**',
         cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets/',
-        dest: 'govuk/public/sass/'
+        dest: 'govuk_modules/public/sass/'
       },
 
     },
