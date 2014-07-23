@@ -1,4 +1,4 @@
-// Large hit area 
+// Large hit area
 // Radio buttons & checkboxes
 
 // By default, block labels stack vertically
@@ -9,15 +9,18 @@
   clear: left;
   position: relative;
 
-  background: $grey-3;
-  border: 1px solid $grey-3;
+  background: $panel-colour;
+  border: 1px solid $panel-colour;
   padding: (18px $gutter $gutter-half $gutter*1.5);
-  margin-bottom: $gutter-half;
-  
+  margin-top: 10px;
+  margin-bottom: 10px;
+
   cursor: pointer; // Encourage clicking on block labels
 
   @include media(tablet) {
     float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
     // width: 25%; - Test : check that text within labels will wrap
   }
 }
@@ -31,6 +34,7 @@
   position: absolute;
   top: 18px;
   left: $gutter-half;
+  cursor: pointer;
 }
 
 // Use inline, to sit block labels next to each other
