@@ -52,6 +52,23 @@
 @-o-viewport {
   width: device-width; }
 
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+%contain-floats:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
 %contain-floats:after {
   content: "";
   display: block;
@@ -368,6 +385,10 @@ p {
   margin: 0 auto;
   width: auto;
   max-width: 1020px; }
+  #content:after {
+    content: "";
+    display: block;
+    clear: both; }
 
 .inner-block {
   margin-left: 15px;
@@ -381,13 +402,14 @@ p {
   margin: 0; }
 
 .phase-banner {
-  padding: 8px 0;
-  background-color: #d53880; }
+  padding: 10px 0 8px 0;
+  border-bottom: 1px solid #bfc1c3; }
+  @media (min-width: 641px) {
+    .phase-banner {
+      padding-bottom: 10px; } }
   .phase-banner p {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 15px;
-    color: #0b0c0c;
+    margin: 0;
+    color: #000;
     font-family: "nta", Arial, sans-serif;
     font-size: 16px;
     line-height: 1.25;
@@ -397,10 +419,39 @@ p {
       .phase-banner p {
         font-size: 14px;
         line-height: 1.14286; } }
-  .phase-banner a, .phase-banner a:link, .phase-banner a:visited, .phase-banner a:active {
-    color: #0b0c0c; }
-  .phase-banner a:hover {
-    color: #0b0c0c; }
+  .phase-banner .phase-tag {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 8px 0 0;
+    padding: 2px 5px 0;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 300;
+    text-transform: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #d53880; }
+    @media (min-width: 641px) {
+      .phase-banner .phase-tag {
+        vertical-align: baseline; } }
+    @media (max-width: 640px) {
+      .phase-banner .phase-tag {
+        font-size: 14px;
+        line-height: 1.14286; } }
+  .phase-banner span {
+    display: -moz-inline-stack;
+    display: inline-block;
+    width: 75%;
+    vertical-align: top; }
+    @media (min-width: 641px) {
+      .phase-banner span {
+        width: auto;
+        vertical-align: baseline; } }
 
 .grid-wrapper:after {
   content: "";
@@ -747,7 +798,7 @@ table th {
   position: relative;
   display: -moz-inline-stack;
   display: inline-block;
-  padding: 0.35em 0.5em 0.15em 0.5em;
+  padding: 0.3em 0.6em 0.2em 0.6em;
   border: none;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
