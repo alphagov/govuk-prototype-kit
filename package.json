@@ -1,7 +1,7 @@
 {
   "name": "express-prototype",
   "description": "GOVUK prototyping app in Express",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "engines": {
     "node": "0.10.x"
@@ -11,8 +11,9 @@
     "consolidate": "0.x",
     "readdir": "0.0.6",
     "minimist": "0.0.8",
-    "govuk_frontend_toolkit": "0.46.1",
-    "govuk_template_mustache": "0.6.2"
+    "hogan.js": "3.0.2",
+    "govuk_frontend_toolkit": "1.5.0",
+    "govuk_template_mustache": "0.8.1"
   },
   "devDependencies": {
     "node-sass": "0.x",

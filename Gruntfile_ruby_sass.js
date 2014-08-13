@@ -5,11 +5,15 @@ module.exports = function(grunt){
     sass: {
       dev: {
         files: {
-          'public/stylesheets/application.css': 'public/sass/application.scss',
-          'public/stylesheets/examples.css': 'public/sass/examples.scss'
+          'public/stylesheets/application.css': 'app/assets/sass/application.scss',
+          'public/stylesheets/examples.css': 'app/assets/sass/examples.scss',
+          'public/stylesheets/elements.css': 'app/assets/sass/elements.scss'
         },
         options: {
-          loadPath: ['govuk/public/sass'],
+          loadPath: [
+            'govuk_modules/govuk_template/assets/stylesheets',
+            'govuk_modules/govuk_frontend_toolkit/stylesheets'
+          ],
           style: 'expanded'
         } 
       }
@@ -19,37 +23,25 @@ module.exports = function(grunt){
     copy: {
 
       govuk_template: {
-        src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
-        dest: 'govuk/views/',
-        expand: true,
-        flatten: true,
-        filter: 'isFile'
-      },
-
-      govuk_assets: {
-        files: [
-          {
-            expand: true,
-            src: '**',
-            cwd: 'node_modules/govuk_template_mustache/assets',
-            dest: 'govuk/public/'
-          }
-        ]
+        cwd: 'node_modules/govuk_template_mustache/',
+        src: '**',
+        dest: 'govuk_modules/govuk_template/',
+        expand: true
       },
 
       govuk_frontend_toolkit: {
-        expand: true,
+        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/',
         src: '**',
-        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets/',
-        dest: 'govuk/public/sass/'
-      },
+        dest: 'govuk_modules/govuk_frontend_toolkit/',
+        expand: true
+      }
 
     },
 
     // Watches styles and specs for changes
     watch: {
       css: {
-        files: ['public/sass/**/*.scss'],
+        files: ['app/assets/sass/**/*.scss'],
         tasks: ['sass'],
         options: { nospawn: true }
       }
@@ -58,7 +50,7 @@ module.exports = function(grunt){
     // nodemon watches for changes and restarts app
     nodemon: {
       dev: {
-        script: 'app.js',
+        script: 'server.js',
         options: {
           ext: 'html, js',
           ignore: ['node_modules/**']
@@ -99,7 +91,7 @@ module.exports = function(grunt){
 
   grunt.registerTask('default', [
     'copy:govuk_template',
-    'copy:govuk_assets',
+    'copy:govuk_frontend_toolkit',
     'convert_template',
     'copy:govuk_frontend_toolkit',
     'sass',
