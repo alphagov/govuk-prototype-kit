@@ -16,4 +16,4 @@ process.on('SIGINT', function() {
   fs.unlink(pidFile);
   process.kill(pid, 'SIGTERM');
   process.exit();
-})
+});
