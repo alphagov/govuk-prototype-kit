@@ -9,7 +9,9 @@ gruntfile = (argv.ruby) ? __dirname + '/Gruntfile_ruby_sass.js' : __dirname + '/
 require(__dirname + '/node_modules/grunt/lib/grunt.js').cli({
   'gruntfile' : gruntfile
 });
+
 fs.writeFileSync(pidFile, process.pid, fileOptions);
+
 process.on('SIGINT', function() {
   var pid = fs.readFileSync(pidFile, fileOptions);
 

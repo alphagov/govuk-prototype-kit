@@ -65,7 +65,8 @@ module.exports = function(grunt){
         script: 'server.js',
         options: {
           ext: 'html, js',
-          ignore: ['node_modules/**']
+          ignore: ['node_modules/**'],
+          args: grunt.option.flags()
         }
       }
     },
