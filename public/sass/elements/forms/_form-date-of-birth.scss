@@ -1,29 +1,45 @@
 // Date of birth
-.date-of-birth legend {
-  @extend .form-label;
-}
 
 .date-of-birth label {
   display: block;
-  color: $grey-1;
   margin-bottom: 5px;
 }
 
-.date-of-birth .form-group {  
-  @include media(tablet){
-    width: 50px;
-    float: left;
-    margin-right: 20px;
-    clear: none;
-  }
+.date-of-birth .form-group {
+  width: 50px;
+  float: left;
+  margin-right: 20px;
+  clear: none;
 }
 
 .date-of-birth .form-group-year {
-  @include media(tablet){
-    width: 70px;
-  }
+  width: 70px;
 }
 
 .date-of-birth .form-group input {
   width: 100%;
+}
+
+
+// Use Modernizr to detect for touch events
+// Build: http://modernizr.com/download/#-touch-cssclasses-teststyles-prefixes
+
+// Hide date of birth
+.touch .date-of-birth {
+  display: none;
+}
+
+// Hide native date of birth
+.no-touch .native-date-of-birth {
+  display: none;
+}
+
+// Show native date of birth
+.touch .native-date-of-birth {
+  display: block;
+}
+
+// Set a minimum height for date inputs
+.touch input[type="date"] {
+  min-height: 36px;
 }
