@@ -1,26 +1,38 @@
 module.exports = function(grunt){
   grunt.initConfig({
+    // Clean
+    clean: ['public', 'govuk_modules'],
 
     // Builds Sass
     sass: {
       dev: {
-        files: {
-          'public/stylesheets/application.css': 'app/assets/sass/application.scss',
-          'public/stylesheets/examples.css': 'app/assets/sass/examples.scss',
-          'public/stylesheets/elements.css': 'app/assets/sass/elements.scss'
-        },
         options: {
+          style: "expanded",
+          sourcemap: true,
           includePaths: [
             'govuk_modules/govuk_template/assets/stylesheets',
             'govuk_modules/govuk_frontend_toolkit/stylesheets'
-          ],
-          outputStyle: 'expanded'
-        } 
+          ]
+        },
+        files: [{
+          expand: true,
+          cwd: "app/assets/sass",
+          src: ["*.scss"],
+          dest: "public/stylesheets/",
+          ext: ".css"
+        }]
       }
     },
 
     // Copies templates and assets from external modules and dirs
     copy: {
+
+      govuk_frontend_toolkit: {
+        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit',
+        src: '**',
+        dest: 'govuk_modules/govuk_frontend_toolkit/',
+        expand: true
+      },
 
       govuk_template: {
         cwd: 'node_modules/govuk_template_mustache/',
@@ -29,10 +41,52 @@ module.exports = function(grunt){
         expand: true
       },
 
-      govuk_frontend_toolkit: {
-        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/',
+      template_css: {
+        cwd: 'node_modules/govuk_template_mustache/assets/stylesheets/',
         src: '**',
-        dest: 'govuk_modules/govuk_frontend_toolkit/',
+        dest: 'public/stylesheets/',
+        expand: true
+      },
+
+      assets_js: {
+        cwd: 'app/assets/javascripts/',
+        src: '**/*',
+        dest: 'public/javascripts/',
+        expand: true
+      },
+
+      toolkit_js: {
+        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/javascripts/',
+        src: ['govuk/selection-buttons.js', 'vendor/polyfills/bind.js'],
+        dest: 'public/javascripts/',
+        expand: true
+      },
+
+      template_js: {
+        cwd: 'node_modules/govuk_template_mustache/assets/javascripts/',
+        src: '**',
+        dest: 'public/javascripts/',
+        expand: true
+      },
+
+      toolkit_images: {
+        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/images/',
+        src: '**',
+        dest: 'public/images/',
+        expand: true
+      },
+
+      template_images: {
+        cwd: 'node_modules/govuk_template_mustache/assets/images/',
+        src: '**',
+        dest: 'public/images/',
+        expand: true
+      },
+
+      asset_images: {
+        cwd: 'app/assets/images/',
+        src: '**',
+        dest: 'public/images/',
         expand: true
       }
 
@@ -43,7 +97,7 @@ module.exports = function(grunt){
       fixSass: {
         src: ['govuk_modules/govuk_template/**/*.scss', 'govuk_modules/govuk_frontend_toolkit/**/*.scss'],
         overwrite: true,
-        replacements: [{ 
+        replacements: [{
           from: /filter:chroma(.*);/g,
           to: 'filter:unquote("chroma$1");'
         }]
@@ -84,6 +138,7 @@ module.exports = function(grunt){
   [
     'grunt-contrib-copy',
     'grunt-contrib-watch',
+    'grunt-contrib-clean',
     'grunt-sass',
     'grunt-nodemon',
     'grunt-text-replace',
@@ -91,7 +146,7 @@ module.exports = function(grunt){
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
-  
+
   grunt.registerTask(
     'convert_template',
     'Converts the govuk_template to use mustache inheritance',
@@ -104,10 +159,9 @@ module.exports = function(grunt){
   );
 
   grunt.registerTask('default', [
-    'copy:govuk_template',
-    'copy:govuk_frontend_toolkit',
+    'clean',
+    'copy',
     'convert_template',
-    'copy:govuk_frontend_toolkit',
     'replace',
     'sass',
     'concurrent:target'

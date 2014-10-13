@@ -1,4 +1,5 @@
 .sass-cache
 .DS_Store
 .start.pid
-public/*
+public
+govuk_modules
