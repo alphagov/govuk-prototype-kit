@@ -26,70 +26,28 @@ module.exports = function(grunt){
 
     // Copies templates and assets from external modules and dirs
     copy: {
-
-      govuk_frontend_toolkit: {
-        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit',
-        src: '**',
-        dest: 'govuk_modules/govuk_frontend_toolkit/',
-        expand: true
+      assets: {
+        files: [{
+          expand: true,
+          cwd: 'app/assets/',
+          src: ['**/*', '!sass/**'],
+          dest: 'public/'
+        }]
       },
-
-      govuk_template: {
-        cwd: 'node_modules/govuk_template_mustache/',
-        src: '**',
-        dest: 'govuk_modules/govuk_template/',
-        expand: true
+      govuk: {
+        files: [{
+          expand: true,
+          cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit',
+          src: '**',
+          dest: 'govuk_modules/govuk_frontend_toolkit/'
+        },
+        {
+          expand: true,
+          cwd: 'node_modules/govuk_template_mustache/',
+          src: '**',
+          dest: 'govuk_modules/govuk_template/'
+        }]
       },
-
-      template_css: {
-        cwd: 'node_modules/govuk_template_mustache/assets/stylesheets/',
-        src: '**',
-        dest: 'public/stylesheets/',
-        expand: true
-      },
-
-      assets_js: {
-        cwd: 'app/assets/javascripts/',
-        src: '**/*',
-        dest: 'public/javascripts/',
-        expand: true
-      },
-
-      toolkit_js: {
-        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/javascripts/',
-        src: ['govuk/selection-buttons.js', 'vendor/polyfills/bind.js'],
-        dest: 'public/javascripts/',
-        expand: true
-      },
-
-      template_js: {
-        cwd: 'node_modules/govuk_template_mustache/assets/javascripts/',
-        src: '**',
-        dest: 'public/javascripts/',
-        expand: true
-      },
-
-      toolkit_images: {
-        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/images/',
-        src: '**',
-        dest: 'public/images/',
-        expand: true
-      },
-
-      template_images: {
-        cwd: 'node_modules/govuk_template_mustache/assets/images/',
-        src: '**',
-        dest: 'public/images/',
-        expand: true
-      },
-
-      asset_images: {
-        cwd: 'app/assets/images/',
-        src: '**',
-        dest: 'public/images/',
-        expand: true
-      }
-
     },
 
     // workaround for libsass
