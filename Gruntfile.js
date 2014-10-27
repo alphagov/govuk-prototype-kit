@@ -1,41 +1,53 @@
 module.exports = function(grunt){
   grunt.initConfig({
+    // Clean
+    clean: ['public', 'govuk_modules'],
 
     // Builds Sass
     sass: {
       dev: {
-        files: {
-          'public/stylesheets/application.css': 'app/assets/sass/application.scss',
-          'public/stylesheets/examples.css': 'app/assets/sass/examples.scss',
-          'public/stylesheets/elements.css': 'app/assets/sass/elements.scss'
-        },
         options: {
+          style: "expanded",
+          sourcemap: true,
           includePaths: [
             'govuk_modules/govuk_template/assets/stylesheets',
             'govuk_modules/govuk_frontend_toolkit/stylesheets'
-          ],
-          outputStyle: 'expanded'
-        } 
+          ]
+        },
+        files: [{
+          expand: true,
+          cwd: "app/assets/sass",
+          src: ["*.scss"],
+          dest: "public/stylesheets/",
+          ext: ".css"
+        }]
       }
     },
 
     // Copies templates and assets from external modules and dirs
     copy: {
-
-      govuk_template: {
-        cwd: 'node_modules/govuk_template_mustache/',
-        src: '**',
-        dest: 'govuk_modules/govuk_template/',
-        expand: true
+      assets: {
+        files: [{
+          expand: true,
+          cwd: 'app/assets/',
+          src: ['**/*', '!sass/**'],
+          dest: 'public/'
+        }]
       },
-
-      govuk_frontend_toolkit: {
-        cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/',
-        src: '**',
-        dest: 'govuk_modules/govuk_frontend_toolkit/',
-        expand: true
-      }
-
+      govuk: {
+        files: [{
+          expand: true,
+          cwd: 'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit',
+          src: '**',
+          dest: 'govuk_modules/govuk_frontend_toolkit/'
+        },
+        {
+          expand: true,
+          cwd: 'node_modules/govuk_template_mustache/',
+          src: '**',
+          dest: 'govuk_modules/govuk_template/'
+        }]
+      },
     },
 
     // workaround for libsass
@@ -43,7 +55,7 @@ module.exports = function(grunt){
       fixSass: {
         src: ['govuk_modules/govuk_template/**/*.scss', 'govuk_modules/govuk_frontend_toolkit/**/*.scss'],
         overwrite: true,
-        replacements: [{ 
+        replacements: [{
           from: /filter:chroma(.*);/g,
           to: 'filter:unquote("chroma$1");'
         }]
@@ -84,6 +96,7 @@ module.exports = function(grunt){
   [
     'grunt-contrib-copy',
     'grunt-contrib-watch',
+    'grunt-contrib-clean',
     'grunt-sass',
     'grunt-nodemon',
     'grunt-text-replace',
@@ -91,7 +104,7 @@ module.exports = function(grunt){
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
-  
+
   grunt.registerTask(
     'convert_template',
     'Converts the govuk_template to use mustache inheritance',
@@ -104,10 +117,9 @@ module.exports = function(grunt){
   );
 
   grunt.registerTask('default', [
-    'copy:govuk_template',
-    'copy:govuk_frontend_toolkit',
+    'clean',
+    'copy',
     'convert_template',
-    'copy:govuk_frontend_toolkit',
     'replace',
     'sass',
     'concurrent:target'
