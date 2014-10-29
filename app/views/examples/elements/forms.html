@@ -1,7 +1,7 @@
 {{<govuk_template}}
 
 {{$head}}
-  {{>includes/elements_head}}
+  {{>includes/head}}
 {{/head}}
 
 {{$propositionHeader}}
@@ -11,86 +11,97 @@
 {{$headerClass}}with-proposition{{/headerClass}}
 
 {{$content}}
-<main id="wrapper" role="main">
-  <div id="content">
-    <div class="inner-block">
+<main id="page-container" role="main">
 
-        <a href="/" class="example-back-link">Back to the prototyping kit</a>
+  <a href="/" class="example-back-link">Back to the GOV.UK prototyping kit</a>
 
-        <h1 class="heading-48">
-          Forms
-        </h1>
+  <form action="/" method="post" class="form">
 
-        <form action="get" class="form">
+    <h1 class="form-title heading-large">
+      Your details
+    </h1>
 
-          <!-- Fieldset with hint and example text -->
-
-          <fieldset>
-
-            <legend class="heading-36">
-              Your personal details
-            </legend>
-
-            <div class="form-group">
-              <label class="form-label" for="full-name">Full name</label>
-              <p class="form-hint">As shown on your birth certificate or passport</p>
-              <input type="text" class="form-control" id="full-name">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="other-names">Any other last names</label>
-              <input type="text" class="form-control" id="other-names">
-              <p class="form-hint">E.g. your maiden name</p>
-            </div>
-
-          </fieldset>
-
-          <!-- Compound form controls -->
-
-          <fieldset>
-
-            <legend class="heading-36">
-              Your address
-            </legend>
-
-             <div class="form-group form-group-compound">
-              <label class="form-label" for="address-line-1">Street address</label>
-              <input type="text" class="form-control" id="address-line-1">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="address-line-2" class="visuallyhidden">Second line of address</label>
-              <input type="text" class="form-control" id="address-line-2">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="address-town">Town or City</label>
-              <input type="text" class="form-control form-control-1-4" id="address-town">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="address-postcode">Postcode</label>
-              <input type="text" class="form-control form-control-1-8" id="address-postcode">
-            </div>
-
-          </fieldset>
-
-          <!-- Primary and secondary buttons -->
-
-          <fieldset>
-
-            <div class="form-group">
-              <input type="submit" class="button" value="Next">
-              <button class="button-link">Back</button>
-            </div>
-
-          </fieldset>
-
-        </form>
-
+    <!-- Full name -->
+    <div class="form-group">
+      <label class="form-label-bold" for="full-name">Full name</label>
+      <p class="form-hint">As shown on your birth certificate or passport</p>
+      <input type="text" class="form-control" id="full-name">
     </div>
-  </div>
-</main>
+
+    <!-- National Insurance number -->
+    <div class="form-group">
+      <label class="form-label-bold" for="ni-number">
+        National Insurance number
+        <span class="form-hint">
+          It's on your National Insurance card, benefit letter, payslip or P60.
+          <br>
+          For example, 'VO 12 34 56 D'.
+        </span>
+      </label>
+      <input type="text" class="form-control" id="ni-number">
+    </div>
+
+    <!-- Date of birth -->
+    <div class="form-group">
+      <fieldset>
+        <legend class="form-label-bold">Date of birth</legend>
+
+        <div class="form-date">
+          <p class="form-hint">For example, 08 04 2014</p>
+
+          <div class="form-group form-group-day">
+            <label for="dob-day">Day</label>
+            <input type="text" class="form-control" id="dob-day">
+          </div>
+          <div class="form-group form-group-month">
+            <label for="dob-month">Month</label>
+            <input type="text" class="form-control" id="dob-month">
+          </div>
+          <div class="form-group form-group-year">
+            <label for="dob-year">Year</label>
+            <input type="text" class="form-control" id="dob-year">
+          </div>
+        </div>
+
+        <div class="form-date native-date-picker">
+          <p class="form-hint">For example, 08 April 2014</p>
+          <input type="date" class="form-control">
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <details>
+        <summary><span class="summary">Help with date of birth</span></summary>
+        <div class="panel-indent">
+          <p>
+            If you don’t know your exact date of birth, use the one you put on official documents (for example, your passport or driving licence).
+          </p>
+          <p>
+            If you can’t provide your date of birth you’ll have to send copies of identity documents through the post.
+          </p>
+        </div>
+      </details>
+    </div>
+
+
+    <!-- Primary buttons, secondary links -->
+    <div class="form-group">
+      <input type="submit" class="button" value="Continue">
+      <ul>
+        <li><a href="#">Skip this section for now</a></li>
+        <li><a href="/">Back</a></li>
+      </ul>
+    </div>
+
+  </form>
+
+</main><!-- / #page-container -->
 {{/content}}
+
+{{$bodyEnd}}
+  {{>includes/elements_scripts}}
+{{/bodyEnd}}
 
 {{/govuk_template}}

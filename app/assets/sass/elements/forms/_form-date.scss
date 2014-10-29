@@ -1,0 +1,46 @@
+// Date of birth
+
+.form-date label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-date .form-group {
+  width: 50px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 0;
+  clear: none;
+}
+
+.form-date .form-group-year {
+  width: 70px;
+}
+
+.form-date .form-group input {
+  width: 100%;
+}
+
+
+// Use Modernizr to detect for touch events
+// Build: http://modernizr.com/download/#-touch-cssclasses-teststyles-prefixes
+
+// Hide date of birth
+.touch .form-date {
+  display: none;
+}
+
+// Hide native date of birth
+.no-touch .native-date-picker {
+  display: none;
+}
+
+// Show native date of birth
+.touch .native-date-picker {
+  display: block;
+}
+
+// Set a minimum height for date inputs
+.touch input[type="date"] {
+  min-height: 36px;
+}

@@ -1,36 +1,44 @@
-/* includes node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets */
+// Import GOV.UK elements, this will import the frontend toolkit and some base styles.
+// Take a look at elements.scss to see which files are imported.
+@import 'elements';
 
-@import '_colours';
-@import '_typography';
-@import 'design-patterns/_buttons';
-@import 'design-patterns/_alpha-beta';
+// Set up your page container, using the frontend toolkit grid layout.
 
+// Content wraps the entire site content block, between the header and footer.
+// See elements _layout.scss line 8.
 #content {
-  margin: 0 auto;
-  max-width: 1020px;
-  
-  @include ie-lte(6)  {
-    width: 990px;
-  }
-}
-.page-header {
-  padding: 0 32px;
-
-  h1 {
-    @include bold-48;
-    padding: 25px 0 15px;
+  @include site-width-container;
+  @include contain-floats;
+  display: block;
+  padding-bottom: $gutter;
+  @include media(desktop) {
+    padding-bottom: $gutter*3;
   }
 }
 
-/* Alpha/Beta styles */
+// Here's an example heading
+// See elements _typography.scss line 11.
+#content h1 {
+  @include bold-48();
+  margin-top: $gutter-half;
+  margin-bottom: $gutter;
+  @include media(tablet) {
+    margin-top: $gutter;
+    margin-bottom: $gutter*2;
+  }
+}
 
+// Set up the phase banner
+// See elements _layout.scss line 22.
 .alpha-banner  {
-  @include core-19;
-  @include phase-banner(alpha);
+  @include phase-banner(alpha); // Change this to (beta) for a beta banner
   strong {
     text-transform: uppercase;
   }
 }
 .alpha-tag {
-  @include phase-tag(alpha);
+  @include phase-tag(alpha); // Change this to (beta) for a beta tag
 }
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you,
+// either add and import new partial files, or modify those in GOV.UK elements to fit your user needs.

@@ -12,8 +12,8 @@
     "readdir": "0.0.6",
     "minimist": "0.0.8",
     "hogan.js": "3.0.2",
-    "govuk_frontend_toolkit": "1.5.0",
-    "govuk_template_mustache": "0.8.1"
+    "govuk_frontend_toolkit": "^2.0.1",
+    "govuk_template_mustache": "^0.9.1"
   },
   "devDependencies": {
     "node-sass": "0.x",
