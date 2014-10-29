@@ -4,6 +4,7 @@
 // Departmental colours
 $attorney-generals-office: #9f1888;
 $cabinet-office: #005abb;
+$civil-service: #af292e;
 $department-for-business-innovation-skills: #003479;
 $department-for-communities-and-local-government: #00857e;
 $department-for-culture-media-sport: #d40072;
@@ -92,7 +93,7 @@ $white: #fff;
 $link-colour: $govuk-blue;
 $link-active-colour: #2e8aca;
 $link-hover-colour: #2e8aca;
-$link-visited-colour: #2e8aca;
+$link-visited-colour: #4c2c92;
 $button-colour: #00823b;
 $text-colour: $black;             // Standard text colour
 $secondary-text-colour: $grey-1;  // Section headers, help text etc.
@@ -103,3 +104,6 @@ $highlight-colour: $grey-4;       // Table stripes etc.
 $page-colour: $white;             // The page
 $alpha-colour: $pink;             // Alpha badges and banners
 $beta-colour: $orange;            // Beta badges and banners
+$banner-text-colour: #000;        // Text colour for Alpha & Beta banners
+$error-colour: $mellow-red;       // Error text and border colour
+$error-background: #fef7f7;       // Error background colour
