@@ -5,12 +5,22 @@
 .panel-indent {
   @include contain-floats;
   clear: both;
-  border-left: 5px solid $grey-3;
+  border-left: 4px solid $border-colour;
 
-  padding-top: 10px;
-  padding-left: $gutter-half;
-  @include media(tablet){
-    padding-left: $gutter;
-  }
-  margin: ($gutter $gutter-half $gutter 0);
+  padding: 10px 0 10px $gutter-half;
+  margin: ($gutter $gutter-half $gutter*1.5 0);
+}
+
+.panel-indent legend {
+  margin-top: 0;
+}
+
+// Remove bottom margin on last paragraph
+.panel-indent p:only-child,
+.panel-indent p:last-child {
+  margin-bottom: 0;
+}
+
+.panel-indent .form-group:last-child {
+  margin-bottom: 0;
 }

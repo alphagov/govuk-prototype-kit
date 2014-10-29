@@ -1,91 +1,175 @@
 // Typography
 // ==========================================================================
 
-// Increase default font size to 19px
-#content {
+// Increase the base font size to 19px for the main content area
+// Using the core-19 mixin from the govuk_toolkit _typography.scss file
+
+main {
   @include core-19;
   -webkit-font-smoothing: antialiased;
 }
 
-// Headings 
-.heading-48 {
-  @include bold-48();
-  margin-top: $gutter-half;
-  margin-bottom: $gutter;
-  @include media(tablet) {
-    margin-top: $gutter;
-    margin-bottom: $gutter*2;
-  }
-  .heading-27 {
-    display: block;
-    @include core-27();
-    color: $secondary-text-colour;
-  }
+// Core font sizes
+.font-xxlarge {
+  @include core-80;
 }
-
-.heading-36 {
-  @include bold-36();
-  margin-top: 25px;
-  margin-bottom: 10px;
-  @include media(tablet) {
-    margin-top: 45px;
-    margin-bottom: 20px;
-  }
+.font-xlarge {
+  @include core-48;
 }
-
-.heading-24 {
-  @include bold-24();
-  margin-top: 25px;
-  margin-bottom: 10px;
-  @include media(tablet) {
-    margin-top: 45px;
-    margin-bottom: 20px;
-  }
+.font-large {
+  @include core-36;
 }
-
-.heading-19 {
-  @include bold-19();
-  margin-top: 10px;
-  margin-bottom: 5px;
-  @include media(tablet) {
-    margin-top: 20px;
-  }
-}
-
-// Text 
-p, 
-pre {
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-
-.lede,
-.lead {
+.font-medium {
   @include core-24;
 }
-
-.copy-16 {
+.font-small {
+  @include core-19;
+}
+.font-xsmall {
   @include core-16;
+}
+
+// Bold font sizes
+.bold-xxlarge {
+  @include bold-80();
+}
+.bold-xlarge {
+  @include bold-48();
+}
+.bold-large {
+  @include bold-36();
+}
+.bold-medium {
+  @include bold-24();
+}
+.bold-small {
+  @include bold-19();
+}
+.bold-xsmall {
+  @include bold-16();
+}
+
+// Common heading sizes
+// Using the bold-xx mixins from the govuk_toolkit _typography.scss file
+// Spacing is set in em, using the px to em function in the elements _helpers.scss file
+
+// Headings
+.heading-xlarge {
+  @include bold-48();
+
+  margin-top: em(15, 32);
+  margin-bottom: em(30, 32);
+
+  @include media(tablet) {
+    margin-top: em(30, 48);
+    margin-bottom: em(60, 48);
+  }
+
+  .heading-secondary {
+    @include heading-27();
+
+    display: block;
+    color: $secondary-text-colour;
+  }
+
+}
+
+.heading-large {
+  @include bold-36();
+
+  margin-top: em(25, 24);
+  margin-bottom: em(10, 24);
+
+  @include media(tablet) {
+    margin-top: em(45, 36 );
+    margin-bottom: em(20, 36);
+  }
+
+  .heading-secondary {
+    @include heading-24();
+
+    display: block;
+    color: $secondary-text-colour;
+  }
+
+}
+
+.heading-medium {
+  @include bold-24();
+
+  margin-top: em(25, 20);
+  margin-bottom: em(10, 20);
+
+  @include media(tablet) {
+    margin-top: em(45, 24);
+    margin-bottom: em(20, 24);
+  }
+
+}
+
+.heading-small {
+  @include bold-19();
+
+  margin-top: em(10, 16);
+  margin-bottom: em(5, 16);
+
+  @include media(tablet) {
+    margin-top: em(20, 19);
+  }
+
+}
+
+// Text
+p {
+  margin-top: em(5, 16 );
+  margin-bottom: em(20, 16);
+
+  @include media(tablet) {
+    margin-top: em(5);
+    margin-bottom: em(20);
+  }
+
+}
+
+// Lede, or intro text
+.lede {
+  @include core-24;
 }
 
 // Set a max-width for text blocks
 // Less than 75 characters per line of text
-
 .text {
   max-width: 30em;
 }
 
-// Data
-.data-80 {
-  @include bold-80;
+.text-secondary {
+  color: $secondary-text-colour;
 }
 
-.data-48 {
-  @include bold-48;
-  line-height: 0.9;
+// Link styles
+.link {
+  color: $link-colour;
+  text-decoration: underline;
+}
+.link:visited {
+  color: $link-visited-colour;
+}
+.link:hover {
+  color: $link-hover-colour;
+}
+.link:active {
+  color: $link-colour;
 }
 
-.data p {
-  @include bold-16;
+// Code styles
+pre,
+code {
+  font-size: 13px;
+  line-height: 19px;
+  color: $black;
+  background-color: $highlight-colour;
+  border: 1px solid $border-colour;
+  padding: 3px 7px;
 }
+
 

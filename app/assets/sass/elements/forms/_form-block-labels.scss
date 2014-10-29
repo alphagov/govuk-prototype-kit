@@ -1,0 +1,67 @@
+// Large hit area
+// Radio buttons & checkboxes
+
+@import "colours";
+@import "measurements";
+@import "conditionals";
+
+// By default, block labels stack vertically
+.block-label {
+
+  display: block;
+  float: none;
+  clear: left;
+  position: relative;
+
+  background: $panel-colour;
+  border: 1px solid $panel-colour;
+  padding: (18px $gutter $gutter-half $gutter*1.5);
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  cursor: pointer; // Encourage clicking on block labels
+
+  @include media(tablet) {
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    // width: 25%; - Test : check that text within labels will wrap
+  }
+
+  // Absolutely position inputs within label, to allow text to wrap
+  input {
+    position: absolute;
+    top: 18px;
+    left: $gutter-half;
+    cursor: pointer;
+  }
+
+  // Change border on hover
+  &:hover {
+    border-color: $black;
+  }
+}
+
+// To stack horizontally, use .inline on parent, to sit block labels next to each other
+.inline .block-label {
+  clear: none;
+  margin-right: $gutter-half;
+}
+
+// Selected and focused states
+
+// Add selected state
+.js-enabled label.selected {
+  background: $white;
+  border-color: $black;
+}
+
+// Add focus to block labels
+.js-enabled label.focused {
+  outline: 3px solid $yellow;
+}
+
+// Remove focus from radio/checkboxes
+.js-enabled .focused input:focus {
+  outline: none;
+}

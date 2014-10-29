@@ -1,8 +1,14 @@
 // Helpers
 // ==========================================================================
 
-// Use the contain floats mixin for this project,
-// as placeholders are not supported by libsass
+// Return ems from a pixel value
+// This assumes a base of 19px
+@function em($px, $base: 19) {
+  @return ($px / $base) + em;
+}
+
+// Create a contain floats mixin for this project,
+// as placeholders are not yet supported by libsass
 @mixin contain-floats {
   &:after {
     content: "";
@@ -14,48 +20,37 @@
   }
 }
 
-// Add the outer block mixin here,
-// until it is merged into the front end toolkit
-@mixin outer-block {
-  margin: 0 auto;
-  width: auto;
-  max-width: 960 + $gutter*2;
-  @include contain-floats;
+// Create a site-container mixin for this project,
+// as placeholders are not yet supported by libsass
+@mixin site-width-container {
+  max-width: $site-width;
   @include ie-lte(8){
-    width: 1020px;
+    width: $site-width;
+  }
+  margin: 0 $gutter-half;
+  @include media(tablet){
+    margin: 0 $gutter;
+  }
+  @include media($min-width: ($site-width + $gutter * 2)){
+    margin: 0 auto;
   }
 }
 
-// Use the inner block mixin here,
-// until it is merged into the front end toolkit
-@mixin inner-block {
-  padding-left: $gutter-half;
-  padding-right: $gutter-half;
-
-  @include media(tablet) {
-    padding-left: $gutter;
-    padding-right: $gutter;
-  }
+// Create a grid-row mixin for this project,
+// as placeholders are not yet supported by libsass
+@mixin grid-row {
+  @include contain-floats;
+  margin: 0 (-$gutter-half);
 }
 
-// Add the measurements vars here, until the front end toolkit version is bumped
-// https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_measurements.scss
-$gutter: 30px;
-$gutter-one-quarter: $gutter/4;
-$gutter-one-third: $gutter/3;
-$gutter-half: $gutter/2;
-$gutter-two-thirds: $gutter - $gutter-one-third;
 
 // Want to see how the grid works?
 // add this class to the body to see how grid padding is set
 .example-highlight-grid {
-  .grid-wrapper {
+  .grid-row {
     background:  $grey-2;
   }
-  .grid {
-    background: $grey-4;
-  }
-  .is-inner-block-highlight {
+  .column-highlight {
     background: $grey-3;
     width: 100%;
   }
@@ -65,4 +60,18 @@ $gutter-two-thirds: $gutter - $gutter-one-third;
 .example-back-link {
   @include inline-block;
   margin-top: $gutter;
+}
+
+// Hide, but not for screenreaders
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
+// Hide, only when JavaScript is enabled
+.js-enabled .js-hidden {
+  display: none;
 }
