@@ -1,13 +1,10 @@
-# Contribution Guidelines
+# Contributing to the toolkit
 
-We welcome patches to the toolkit, as long as you follow these
-guidelines:
+We welcome patches to the toolkit. Please submit any changes
+to [the toolkit repository][govuk_frontend_toolkit] and they'll
+be included in the npm package when a new version is released.
 
-## Indentation and whitespace
+You shouldn't need to make any changes this repository to change
+the toolkit.
 
-2-space, soft-tabs only. No trailing whitespace.
-
-## Versioning
-
-We use [semantic versioning](http://semver.org/), and bump the version
-on master only. Please don't submit your own proposed version numbers.
+[govuk_frontend_toolkit]: https://www.npmjs.org/package/govuk_frontend_toolkit
