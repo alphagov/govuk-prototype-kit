@@ -1,0 +1,760 @@
+{{<govuk_template}}
+
+{{$head}}
+  {{>elements_head}}
+  <!-- Override elements example styles (for this page only) -->
+  <style>
+    pre, 
+    code {
+      font-size: 14px;
+      border: 0;
+      background: none;
+      line-height: inherit;
+      padding: 0;
+    }
+  </style>
+  
+  {{>prism_head}}
+  {{>prism_scripts}}
+{{/head}}
+
+{{$propositionHeader}}
+  {{>propositional_navigation}}
+{{/propositionHeader}}
+
+{{$headerClass}}with-proposition{{/headerClass}}
+
+{{$content}}
+<main id="wrapper" role="main">
+<div id="content">
+<div class="inner-block">
+
+<a href="/" class="example-back-link">Back to GOV.UK elements</a>
+
+<h1 class="heading-large">GOV.UK elements snippets</h1>
+<p class="text">
+  The GOV.UK elements Sass files can be used to help with prototyping. Here are the examples along with code snippets.
+</p>
+<p class="text text-secondary font-xsmall">
+  Colour and icons and images are excluded, these link back to the GOV.UK elements page.
+</p>
+
+<ol class="list-number">
+  <li><a href="#guide-layout">Layout</a></li>
+  <li><a href="#guide-typography">Typography</a></li>
+  <li><a href="http://govuk-elements.herokuapp.com/#guide-colour" rel="external">Colour</a></li>
+  <li><a href="http://govuk-elements.herokuapp.com/#guide-icons-images" rel="external">Icons and images</a></li>
+  <li><a href="#guide-data">Data</a></li>
+  <li><a href="#guide-forms">Forms</a></li>
+  <li><a href="#guide-buttons">Buttons</a></li>
+  <!-- TODO: <li><a href="#guide-errors">Errors and validation</a></li> -->
+</ol>
+
+<!-- 1. Layout -->
+<h2 class="heading-medium" id="guide-layout">1. Layout</h2>
+
+<h3 class="heading-medium">Grid unit proportions</h3>
+
+<h4 class="heading-small">Halves</h4>
+
+<div class="example example-grid">
+  <div class="grid-wrapper">
+    <div class="grid grid-1-2">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-2">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <div class="grid-wrapper">
+    <div class="grid grid-1-2">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-2">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</code>
+</pre>
+
+<h4 class="heading-small">Thirds</h4>
+
+<div class="example example-grid">
+  <div class="grid-wrapper">
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <div class="grid-wrapper">
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</code>
+</pre>
+
+<div class="example example-grid">
+  <div class="grid-wrapper">
+    <div class="grid grid-2-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <div class="grid-wrapper">
+    <div class="grid grid-2-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-3">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</code>
+</pre>
+
+<h4 class="heading-small">Quarters</h4>
+
+<div class="example example-grid">
+  <div class="grid-wrapper">
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <div class="grid-wrapper">
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+    <div class="grid grid-1-4">
+      <div class="inner-block">
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</code>
+</pre>
+
+<!-- 2. Typography -->
+
+<h2 class="heading-medium" id="guide-typography">2. Typography</h2>
+
+<h3 class="heading-small">Headings</h3>
+
+<div class="example">
+  <h1 class="heading-xlarge">A <em class="highlight">48px Bold</em> heading</h1>
+  <h2 class="heading-large">A <em class="highlight">36px Bold</em> heading</h2>
+  <h3 class="heading-medium">A <em class="highlight">24px Bold</em> heading</h3>
+  <h4 class="heading-small">A <em class="highlight">19px Bold</em> heading</h4>
+</div>
+
+<pre>
+<code class="language-markup">
+  <h1 class="heading-xlarge">A 48px Bold heading</h1>
+
+  <h2 class="heading-large">A 36px Bold heading</h2>
+
+  <h3 class="heading-medium">A 24px Bold heading</h3>
+
+  <h4 class="heading-small">A 19px Bold heading</h4>
+</code>
+</pre>
+
+<h3 class="heading-small">
+  Lead paragraph and body copy
+</h3>
+
+<div class="example">
+  <div class="text">
+    <p class="lede">A <em class="highlight">24px</em> lead paragraph.</p>
+    <p class="font-small">A <em class="highlight">19px</em> body copy paragraph.</p>
+    <p class="font-xsmall">A <em class="highlight">16px</em> supporting text paragraph.</p>
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <p class="lede">
+    A 24px lead paragraph.
+  </p>
+
+  <p class="font-small">
+    A 19px body copy paragraph.
+  </p>
+
+  <p class="font-xsmall">
+    A 16px supporting text paragraph.
+  </p>
+</code>
+</pre>
+
+<h3 class="heading-small">Lists</h3>
+
+<div class="example">
+  <ul class="list-bullet">
+    <li>here is a bulleted list</li>
+    <li>vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor</li>
+    <li>vestibulum id ligula porta felis euismod semper</li>
+    <li>integer posuere erat a ante venenatis dapibus posuere velit aliquet</li>
+  </ul>
+  <ol class="list-number">
+    <li>here is a numbered list</li>
+    <li>vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor</li>
+    <li>vestibulum id ligula porta felis euismod semper</li>
+    <li>integer posuere erat a ante venenatis dapibus posuere velit aliquet</li>
+  </ol>
+</div>
+
+<pre>
+<code class="language-markup">
+  <ul class="list-bullet">
+    <li>here is a bulleted list</li>
+    <li>vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor</li>
+    <li>vestibulum id ligula porta felis euismod semper</li>
+    <li>integer posuere erat a ante venenatis dapibus posuere velit aliquet</li>
+  </ul>
+  
+  <ol class="list-number">
+    <li>here is a numbered list</li>
+    <li>vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor</li>
+    <li>vestibulum id ligula porta felis euismod semper</li>
+    <li>integer posuere erat a ante venenatis dapibus posuere velit aliquet</li>
+  </ol>
+</code>
+</pre>
+
+<h3 class="heading-small">Inset text</h3>
+
+<div class="example">
+  <div class="panel-indent">
+    <p class="text">
+      It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application.
+    </p>
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <div class="panel-indent">
+    <p>
+      It can take up to 8 weeks to register a lasting power of attorney if 
+      there are no mistakes in the application.
+    </p>
+  </div>
+</code>
+</pre>
+
+<h3 class="heading-small">Hidden text (progressive disclosure)</h3>
+
+<div class="example">
+  <details>
+    <summary><span class="summary">Help with nationality</span></summary>
+    <div class="panel-indent text">
+      <p>
+        If you’re not sure about your nationality, try to find out from an official document like a passport or national ID card.
+      </p>
+      <p>
+        We need to know your nationality so we can work out which elections you’re entitled to vote in. If you can’t provide your nationality, you’ll have to send copies of identity documents through the post.
+      </p>
+    </div>
+  </details>
+</div>
+
+<pre>
+<code class="language-markup">
+  <details>
+    <summary><span class="summary">Help with nationality</span></summary>
+    <div class="panel-indent">
+      <p>
+        If you’re not sure about your nationality, try to find out from an official 
+        document like a passport or national ID card.
+      </p>
+      <p>
+        We need to know your nationality so we can work out which elections 
+        you’re entitled to vote in. If you can’t provide your nationality, you’ll 
+        have to send copies of identity documents through the post.
+      </p>
+    </div>
+  </details>
+</code>
+</pre>
+
+<!--
+  <h2 class="heading-medium">3. Colour</h2>
+  <h2 class="heading-medium">4. Icons and images</h2>
+-->
+
+<!-- 5. Data -->
+
+<h2 class="heading-medium" id="guide-data">5. Data</h2>
+
+<h3 class="heading-small">Data in a table</h3>
+
+<div class="example">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Business Plan</th>
+        <th>Actual</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vehicle volumes</td>
+        <td>103,672,000</td>
+        <td>97,424,000</td>
+      </tr>
+      <tr>
+        <td>Driver volumes</td>
+        <td>16,891,000</td>
+        <td>15,197,000</td>
+      </tr>
+      <tr>
+       <td>Electronic take-up target</td>
+        <td>54%</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>Electronic take-up (actual)</td>
+        <td>-</td>
+        <td>50.3%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<pre>
+<code class="language-markup">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Business Plan</th>
+        <th>Actual</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vehicle volumes</td>
+        <td>103,672,000</td>
+        <td>97,424,000</td>
+      </tr>
+      <tr>
+        <td>Driver volumes</td>
+        <td>16,891,000</td>
+        <td>15,197,000</td>
+      </tr>
+      <tr>
+       <td>Electronic take-up target</td>
+        <td>54%</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>Electronic take-up (actual)</td>
+        <td>-</td>
+        <td>50.3%</td>
+      </tr>
+    </tbody>
+  </table>
+</code>
+</pre>
+
+<!-- 6. Forms -->
+
+<h2 class="heading-medium" id="guide-forms">6. Forms</h2>
+
+<h3 class="heading-small">Form labels</h3>
+
+<div class="example">
+  <div class="form-group">
+    <label for="full-name" class="form-label">Full name</label>
+    <input type="text" class="form-control" id="full-name">
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <div class="form-group">
+    <label class="form-label" for="full-name" >Full name</label>
+    <input type="text" class="form-control" id="full-name">
+  </div>
+</code>
+</pre>
+
+<h3 class="heading-small">Hint text</h3>
+
+<div class="example">
+  <div class="form-group">
+    <label class="form-label" for="ni-number">
+      National Insurance number
+      <span class="form-hint">It'll be on your last payslip. For example, JH 21 90 0A.</span>
+    </label>
+    <input type="text" class="form-control" id="ni-number">
+  </div>
+</div>
+
+<pre>
+<code class="language-markup">
+  <div class="form-group">
+    <label class="form-label" for="ni-number">
+      National Insurance number
+      <span class="form-hint">It'll be on your last payslip. For example, JH 21 90 0A.</span>
+    </label>
+    <input type="text" class="form-control" id="ni-number">
+  </div>
+</code>
+</pre>
+
+<h3 class="heading-small">Radio buttons</h3>
+
+<div class="example">
+  <form class="form">
+    <fieldset class="inline">
+      <label for="radio-inline-1" class="block-label">
+        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+        Yes
+      </label>
+      <label for="radio-inline-2" class="block-label">
+        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+        No
+      </label>
+    </fieldset>
+  </form>
+</div>
+
+<pre>
+<code class="language-markup">
+  <form class="form">
+    <fieldset class="inline">
+
+      <label for="radio-inline-1" class="block-label">
+        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+        Yes
+      </label>
+
+      <label for="radio-inline-2" class="block-label">
+        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+        No
+      </label>
+
+    </fieldset>
+  </form>
+</code>
+</pre>
+
+<div class="example">
+  <form class="form">
+    <div class="form-group">
+      <label for="radio-1" class="block-label">
+        <input id="radio-1" type="radio" name="radio-group" value="1">
+        Northern Ireland
+      </label>
+      <label for="radio-2" class="block-label">
+        <input id="radio-2" type="radio" name="radio-group" value="2">
+        Isle of Man or the Channel Islands
+      </label>
+      <p class="form-block">or</p>
+      <label for="radio-3" class="block-label">
+        <input id="radio-3" type="radio" name="radio-group" value="2">
+        I am a British citizen living abroad
+      </label>
+    </div>
+  </form>
+</div>
+
+
+<pre>
+<code class="language-markup">
+  <form class="form">
+    <div class="form-group">
+
+      <label for="radio-1" class="block-label">
+        <input id="radio-1" type="radio" name="radio-group" value="Northern Ireland">
+        Northern Ireland
+      </label>
+
+      <label for="radio-2" class="block-label">
+        <input id="radio-2" type="radio" name="radio-group" value="Isle of Man or the Channel Islands">
+        Isle of Man or the Channel Islands
+      </label>
+
+      <p class="form-block">or</p>
+
+      <label for="radio-3" class="block-label">
+        <input id="radio-3" type="radio" name="radio-group" value="I am a British citizen living abroad">
+        I am a British citizen living abroad
+      </label>
+
+    </div>
+  </form>
+</code>
+</pre>
+
+<div class="example">
+  <form class="form">
+    <fieldset>
+      <legend class="form-label-bold">Which types of waste do you transport regularly?</legend>
+      <p>Select all that apply</p>
+      <label for="checkbox-1" class="block-label">
+        <input id="checkbox-1" type="checkbox" value="1">
+        Waste from animal carcasses
+      </label>
+      <label for="checkbox-2" class="block-label">
+        <input id="checkbox-2" type="checkbox" value="2">
+        Waste from mines or quarries
+      </label>
+      <label for="checkbox-3" class="block-label">
+        <input id="checkbox-3" type="checkbox" value="2">
+        Farm or agricultural waste
+      </label>
+    </fieldset>
+  </form>
+</div>
+
+<pre>
+<code class="language-markup">
+  <form class="form">
+    <fieldset>
+      <legend class="form-label-bold">Which types of waste do you transport regularly?</legend>
+      <p>Select all that apply</p>
+
+      <label for="checkbox-1" class="block-label">
+        <input id="checkbox-1" type="checkbox" value="Waste from animal carcasses">
+        Waste from animal carcasses
+      </label>
+
+      <label for="checkbox-2" class="block-label">
+        <input id="checkbox-2" type="checkbox" value="Waste from mines or quarries">
+        Waste from mines or quarries
+      </label>
+
+      <label for="checkbox-3" class="block-label">
+        <input id="checkbox-3" type="checkbox" value="Farm or agricultural waste">
+        Farm or agricultural waste
+      </label>
+
+    </fieldset>
+  </form>
+</code>
+</pre>
+
+<div class="example">
+  <form class="form">
+    <div class="form-group">
+      <label for="telephone-number" class="form-label">Enter your telephone number</label>
+      <input type="text" class="form-control" id="telephone-number">
+      <label for="checkbox-telephone-number" class="form-checkbox">
+        <input id="checkbox-telephone-number" type="checkbox" value="checkbox-telephone-number">
+        I need to be contacted using a text phone
+      </label>
+    </div>
+  </form>
+</div>
+
+<pre>
+<code class="language-markup">
+  <form class="form">
+    <div class="form-group">
+
+      <label for="telephone-number" class="form-label">Enter your telephone number</label>
+      <input type="text" class="form-control" id="telephone-number">
+
+      <label for="checkbox-telephone-number" class="form-checkbox">
+        <input id="checkbox-telephone-number" type="checkbox" value="checkbox-telephone-number">
+        I need to be contacted using a text phone
+      </label>
+
+    </div>
+  </form>
+</code>
+</pre>
+
+<h3 class="heading-small">Inset form elements</h3>
+
+<div class="example">
+  <!--
+  .form-group-example is used here to re-add the bottom margin on .form group,
+  the bottom margin is removed in this example page to keep examples compact
+  -->
+  <form class="form form-group-example">
+    <fieldset class="inline">
+      <legend class="form-label">Do you know their National Insurance number?</legend>
+      <div class="form-group form-group-related">
+        <label for="radio-indent-1" class="block-label" data-target="example-ni-number">
+          <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+          Yes
+        </label>
+        <label for="radio-indent-2" class="block-label">
+          <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+          No
+        </label>
+      </div>
+      <div class="panel-indent toggle-content" id="example-ni-number">
+        <label for="national-insurance" class="form-label">National Insurance number</label>
+        <input type="text" class="form-control" id="national-insurance">
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<pre>
+<code class="language-markup">
+  <form class="form">
+    <fieldset class="inline">
+      <legend class="form-label">Do you know their National Insurance number?</legend>
+
+      <div class="form-group form-group-related">
+        <label for="radio-indent-1" class="block-label" data-target="example-ni-number">
+          <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+          Yes
+        </label>
+        <label for="radio-indent-2" class="block-label">
+          <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+          No
+        </label>
+      </div>
+
+      <div class="panel-indent toggle-content" id="example-ni-number">
+        <label for="national-insurance" class="form-label">National Insurance number</label>
+        <input type="text" class="form-control" id="national-insurance">
+      </div>
+
+    </fieldset>
+  </form>
+</code>
+</pre>
+
+<!-- 7. Buttons -->
+
+<h2 class="heading-medium" id="guide-buttons">7. Buttons</h2>
+
+<div class="example">
+  <button class="button">Save and continue</button>
+</div>
+<pre>
+<code class="language-markup">
+  <button class="button">Save and continue</button>
+</code>
+</pre>
+
+<div class="example">
+  <button class="button" disabled="disabled">Save and continue</button>
+</div>
+<pre>
+<code class="language-markup">
+  <button class="button" disabled="disabled">Save and continue</button>
+</code>
+</pre>
+
+<div class="example">
+  <a href="#" class="button button-get-started">Start now</a>
+</div>
+<pre>
+<code class="language-markup">
+  <a href="#" class="button button-get-started">Start now</a>
+</code>
+</pre>
+
+<!-- 8. Errors and validation -->
+<!-- TODO :
+<h2 class="heading-medium" id="guide-errors">8. Errors and validation</h2>
+
+<pre><code class="language-markup">
+</code></pre>
+-->
+
+</div><!-- /.inner-block -->
+</div><!-- /#content -->
+</main><!-- /#wrapper -->
+{{/content}}
+
+{{$bodyEnd}}
+  {{>scripts}}
+{{/bodyEnd}}
+
+{{/govuk_template}}
