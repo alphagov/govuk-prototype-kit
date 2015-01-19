@@ -1,14 +1,12 @@
 // Layout
 // ==========================================================================
 
-// Page container
+// Content
 // ==========================================================================
 
-// Page container wraps the entire site content block
-#page-container {
-  @include site-width-container;
-  @include contain-floats;
-  display: block;
+#content {
+  @extend %site-width-container;
+  @extend %contain-floats;
   padding-bottom: $gutter;
   @include media(desktop) {
     padding-bottom: $gutter*3;
@@ -41,7 +39,7 @@
 
 // Use .grid-row to define a row for grid columns to sit in
 .grid-row {
-  @include grid-row;
+  @extend %grid-row;
 }
 
 // Use .grid-column to create a grid column with 15px gutter
