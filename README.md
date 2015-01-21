@@ -7,7 +7,7 @@ It will give you a basic Express app, with templates, css and images from the [G
 
 ## Requirements
 
-* [Node](http://nodejs.org/)
+#### [Node](http://nodejs.org/)
 
 You may already have it, try:
 
@@ -17,22 +17,35 @@ node --version
 
 Your version needs to be at least v0.10.0.
 
+If you don't have Node, download it here: [http://nodejs.org/](http://nodejs.org/).
+
 ## Getting started
 
-* Clone this repo.
+Install Node.js (see requirements)
 
-* If you don't have Node, download it here: [http://nodejs.org/](http://nodejs.org/).
+#### Clone this repo
 
-* Run the app:
+```
+git clone git@github.com:tombye/express_prototype.git
+```
 
+#### Install dependencies
+
+```
+npm install
+```
+
+This will install folders containing programs described by the package.json file to a folder called `node_modules`.
+
+#### Run the app
 
 ```
 node start.js
 ```
 
-* Go to [localhost:3000](http://localhost:3000) in your browser.
+Go to [localhost:3000](http://localhost:3000) in your browser.
 
-### Hot reload
+#### Hot reload
 
 Any code changes should update in the browser without you restarting the app.
 
