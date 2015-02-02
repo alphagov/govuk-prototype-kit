@@ -1,12 +1,17 @@
 // Forms
 // ==========================================================================
 
+// Fieldset is used to group more than one .form-group
+fieldset {
+  width: 100%;
+  @extend %contain-floats;
+}
+
 // Form group is used to wrap label and input pairs
 .form-group {
   float: left;
   width: 100%;
-  clear: both;
-  @include contain-floats;
+  @extend %contain-floats;
   margin-bottom: $gutter-half;
   @include media(tablet) {
     margin-bottom: $gutter;
@@ -24,14 +29,6 @@
   margin-bottom: 10px;
 }
 
-// Fieldset is used to group more than one .form-group
-fieldset {
-  width: 100%;
-  float: left;
-  clear: both;
-}
-
-
 // Form title
 .form-title {
   margin-bottom: $gutter;
@@ -44,15 +41,19 @@ fieldset {
 // Labels
 
 // Form labels, or for legends styled to look like labels
+.form-label,
+.form-label-bold {
+  display: block;
+  color: $text-colour;
+}
+
 .form-label {
   @include core-19;
-  display: block;
   margin-bottom: 5px;
 }
 
 .form-label-bold {
   @include bold-24;
-  display: block;
   margin-bottom: 0;
   .form-hint {
     @include core-19;
@@ -63,7 +64,7 @@ fieldset {
 .form-block {
   float: left;
   width: 100%;
-  @include contain-floats;
+  @extend %contain-floats;
 }
 
 

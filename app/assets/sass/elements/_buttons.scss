@@ -8,6 +8,12 @@
   vertical-align: top;
 }
 
+// Fix unwanted button padding in Firefox
+.button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
 .button:focus {
   outline: 3px solid $yellow;
 }
@@ -24,17 +30,17 @@
 // Start now buttons
 .button-get-started {
   @include bold-24;
-  background-image: url("../images/icons/icon-pointer.png");
+  background-image: file-url("icons/icon-pointer.png");
   background-repeat: no-repeat;
   background-position: 100% 50%;
   padding: em(7) em(41) em(4) em(16);
 
   @include device-pixel-ratio {
-    background-image: url("../images/icons/icon-pointer-2x.png");
+    background-image: file-url("icons/icon-pointer-2x.png");
     background-size: 30px 19px;
   }
 
   @include ie(6) {
-    background-image: url("../images/icons/icon-pointer-2x.png");
+    background-image: file-url("icons/icon-pointer-2x.png");
   }
 }

@@ -3,7 +3,7 @@
 
 // Indented panels with a grey left hand border
 .panel-indent {
-  @include contain-floats;
+  @extend %contain-floats;
   clear: both;
   border-left: 4px solid $border-colour;
 

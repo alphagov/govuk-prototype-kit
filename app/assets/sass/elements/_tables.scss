@@ -10,7 +10,7 @@ table {
 table th,
 table td {
   @include core-16;
-  padding: em(14) em(20) em(10) 0;
+  padding: em(12, 16) em(20, 16) em(9, 16) 0;
 
   text-align: left;
   color: #0b0c0c;
@@ -19,4 +19,15 @@ table td {
 
 table th {
   font-weight: 700;
+}
+
+// Right align headings for numeric content
+table th.numeric {
+  text-align: right;
+}
+
+// Use tabular numbers for numeric table cells
+table td.numeric {
+  @include core-16($tabular-numbers: true);
+  text-align: right;
 }

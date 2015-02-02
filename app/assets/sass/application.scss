@@ -2,39 +2,17 @@
 // Take a look at elements.scss to see which files are imported.
 @import 'elements';
 
-// Set up your page container, using the frontend toolkit grid layout.
+// Set up your main content area <main id="content">
+// This will give you a full width content block
+// See elements _layout.scss line 7.
 
-// Content wraps the entire site content block, between the header and footer.
-// See elements _layout.scss line 8.
-#content {
-  @include site-width-container;
-  @include contain-floats;
-  display: block;
-  padding-bottom: $gutter;
-  @include media(desktop) {
-    padding-bottom: $gutter*3;
-  }
-}
+// If you need it, set up your grid layout - refer to the grid layout usage example
+// See elements _layout.scss line 28.
 
-// Here's an example heading
-// See elements _typography.scss line 11.
-#content h1 {
-  @include bold-48();
-  margin-top: $gutter-half;
-  margin-bottom: $gutter;
-  @include media(tablet) {
-    margin-top: $gutter;
-    margin-bottom: $gutter*2;
-  }
-}
-
-// Set up the phase banner
+// If you need a phase banner, put this inside the main content area
 // See elements _layout.scss line 22.
 .alpha-banner  {
   @include phase-banner(alpha); // Change this to (beta) for a beta banner
-  strong {
-    text-transform: uppercase;
-  }
 }
 .alpha-tag {
   @include phase-tag(alpha); // Change this to (beta) for a beta tag
