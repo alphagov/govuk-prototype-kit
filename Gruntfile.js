@@ -62,12 +62,21 @@ module.exports = function(grunt){
       }
     },
 
-    // Watches styles and specs for changes
+    // Watches assets and sass for changes
     watch: {
       css: {
         files: ['app/assets/sass/**/*.scss'],
         tasks: ['sass'],
-        options: { nospawn: true }
+        options: {
+          spawn: false,
+        }
+      },
+      assets:{
+        files: ['app/assets/**/*', '!app/assets/sass/**'],
+        tasks: ['copy:assets'],
+        options: {
+          spawn: false,
+        }
       }
     },
 
@@ -76,8 +85,8 @@ module.exports = function(grunt){
       dev: {
         script: 'server.js',
         options: {
-          ext: 'html, js',
-          ignore: ['node_modules/**'],
+          ext: 'js',
+          ignore: ['node_modules/**', 'app/assets/**', 'public/**'],
           args: grunt.option.flags()
         }
       }
@@ -124,4 +133,15 @@ module.exports = function(grunt){
     'sass',
     'concurrent:target'
   ]);
+
+  grunt.event.on('watch', function(action, filepath, target) {
+
+    // just copy the asset that was changed, not all of them
+
+    if (target == "assets"){
+      grunt.config('copy.assets.files.0.src', filepath.replace("app/assets/",""));
+    }
+
+  });
+
 };
