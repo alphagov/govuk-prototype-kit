@@ -1,23 +1,11 @@
 module.exports = {
-  bind : function (app, assetPath) {
+  bind : function (app) {
+
     app.get('/', function (req, res) {
-      res.render('index',
-                {'assetPath' : assetPath});
+      res.render('index');
     });
 
-    /* Example pages */
-
-    app.get('/examples/hello-world', function (req, res) {
-      res.render('examples/hello-world', {'message' : 'Hello world'});
-    });
-
-    app.get('/examples/inheritance', function (req, res) {
-      res.render('examples/inheritance/page-level', {'message' : 'Hello world'});
-    });
-
-    app.get('/examples/alpha', function (req, res) {
-      res.render('examples/alpha/alpha', {'assetPath' : assetPath });    
-    });
+    // add your routes here
 
   }
 };

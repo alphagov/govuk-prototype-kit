@@ -29,11 +29,17 @@ app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk_modules/govuk_template/assets'));
 app.use('/public', express.static(__dirname + '/govuk_modules/govuk_frontend_toolkit'));
 
-// routes (found in routes.js)
 
-var assetPath = '/public/';
+// send assetPath to all views
+app.use(function (req, res, next) {
+  res.locals({'assetPath': '/public/'});
+  next();
+});
 
-routes.bind(app, assetPath);
+
+// routes (found in app/routes.js)
+
+routes.bind(app);
 
 // auto render any view that exists
 
@@ -41,7 +47,7 @@ app.get(/^\/(.+)/, function (req, res) {
 
 	var path = (req.params[0]);
 
-	res.render(path, {'assetPath' : assetPath }, function(err, html) {
+	res.render(path, function(err, html) {
 		if (err) {
 			console.log(err);
 			res.send(404);
