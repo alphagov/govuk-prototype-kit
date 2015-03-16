@@ -41,15 +41,15 @@ Will produce the following:
 
 When working with the prototyping app, your version of the above exists like so:
 
-We have the following route (where the `response` parameter is `res`) from [routes.js](../blob/master/routes.js):
+The following route (where the `response` parameter is `res`) would sit in [routes.js](../app/routes.js):
 
-    app.get('/examples/hello-world', function (req, res) {
-      res.render('examples/hello_world', {'message' : 'Hello world'});
+    app.get('/hello-world', function (req, res) {
+      res.render('hello_world', {'message' : 'Hello world'});
     });
 
-In the above, the Mustache template is `examples/hello_world` and the **hash** is `{'message' : 'Hello world'}`.
+In the above, the Mustache template is `views/hello_world` and the **hash** is `{'message' : 'Hello world'}`.
 
-Our [examples/hello_world.html](../blob/master/views/examples/hello_world.html) file is:
+Our `views/hello_world.html` file would be:
 
     <html>
         <head><title>Hello world page</title></head>
@@ -93,7 +93,7 @@ That Gist explains it pretty well, you can have many levels of inheritance but t
 
 So for example, given the following:
 
-We have a base template of [examples/inheritance/base_level.html](../blob/master/views/examples/inheritance/base_level.html):
+We have a base template of `views/base_level.html`:
 
     <html>
         <head>
@@ -106,26 +106,26 @@ We have a base template of [examples/inheritance/base_level.html](../blob/master
         </body>
     </html>
     
-We also have another template to set the section called [examples/inheritance/section_level.html](../blob/master/views/examples/inheritance/section_level.html):
+We also have another template to set the section called `views/section_level.html`:
 
-    {{<examples/inheritance/base_level}}
+    {{<base_level}}
     {{$section}}Guides{{/section}}
-    {{/examples/inheritance/base_level}}
+    {{base_level}}
     
-An example page is [examples/inheritance/page_level.html](../blob/master/views/examples/inheritance/page_level.html):
+An example page is `views/page_level.html`:
 
-    {{<examples/inheritance/section_level}}
+    {{<section_level}}
     {{$pageTitle}}Inheritance test page{{/pageTitle}}
     {{$pageHeading}}Inheritance test page{{/pageHeading}}
     {{$content}}
       <p>{{message}}</p>
     {{/content}}
-    {{/examples/inheritance/section_level}}
+    {{section_level}}
     
 We have the following route:
 
-    app.get('/examples/inheritance', function (req, res) {
-      res.render('examples/inheritance_page_level', {'message' : 'Hello world'});
+    app.get('/page-level', function (req, res) {
+      res.render('page_level', {'message' : 'Hello world'});
     });
 
 With all of the above, the resulting HTML page will be:
@@ -151,23 +151,23 @@ Partials are fragments of HTML you can include in your templates that let you ke
 
 Partials are included using a tag like the inheritance one but with a right-arrow:
 
-    {{>examples/inheritance/logo}}
+    {{>logo}}
     
-Try using the [examples/inheritance/logo.html](../blob/master/views/examples/inheritance/logo.html) file in your base template like so:
+Try using the `views/logo.html` file in your base template like so:
 
     <html>
         <head>
             <title>{{$pageTitle}}{{/pageTitle}}</title>
         </head>
         <body>
-            {{>examples/inheritance/logo}}
+            {{>logo}}
             <p>Section: {{$section}}{{/section}}</p>
             <h1>{{$pageHeading}}{{/pageHeading}}</h1>
             {{$content}}{{/content}}
         </body>
     </html>
     
-The [examples/inheritance/logo.html](../blob/master/views/examples/inheritance/logo.html) should be:
+The `views/logo.html` should be:
 
     <p>Prototyping application</p>
     
@@ -192,7 +192,7 @@ It's important to note that this form of inheritance works by combining all the 
             <title>{{$pageTitle}}Inheritance test page{{/pageTitle}}</title>
         </head>
         <body>
-            {{>examples/inheritance/logo}}
+            {{>logo}}
             <p>Section: {{$section}}Guides{{/section}}</p>
             <h1>{{$pageHeading}}{{/pageHeading}}</h1>
             {{$content}}
@@ -205,12 +205,12 @@ Because of this, partial tags should only be included either in the top-level te
 
 Rendering only takes place once the templates have been combined so partial tags in child templates cannot be parsed and so will break the render.
 
-All partials are kept in the [includes](../tree/master/views/includes/) folder.
+All partials are kept in the [includes](../app/views/includes/) folder.
 
 ## Inheriting the GOV.UK template
 
-Pages in the prototyping app are set up to use the [govuk_template](https://github.com/alphagov/govuk_template) as the base template in an inheritance chain. Have a look at the template files [layout.html](../blob/master/views/layout.html) and [index.html](../blob/master/views/index.html) to see an example.
+Pages in the prototyping app are set up to use the [govuk_template](https://github.com/alphagov/govuk_template) as the base template in an inheritance chain. Have a look at the template files `views/layout.html` and `views/index.html` to see an example.
 
 ### Template blocks
 
-All the tags in the GOV.UK template are listed in the [template_partial_areas.html](../blob/master/views/examples/template_partial_areas.html) page. You can see how they fit into the rendered page by starting the app and going to [http://localhost:3000/examples/template-partial-areas](http://localhost:3000/examples/template-partial-areas).
+All the tags in the GOV.UK template are listed in the `views/template_partial_areas.html` page. You can see how they fit into the rendered page by starting the app and going to [http://localhost:3000/examples/template-partial-areas](http://localhost:3000/examples/template-partial-areas).
