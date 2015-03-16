@@ -3,9 +3,9 @@
 We really like contributions and bug reports, in fact the project wouldn't have got to this stage without them. 
 We do have a few guidelines to bear in mind.
 
-## GOVUK Elements
+## GOV.UK Elements
 
-The project contains code taken from the [GOVUK Elements](https://github.com/alphagov/govuk_elements/) project.
+The project contains code taken from the [GOV.UK Elements](https://github.com/alphagov/govuk_elements/) project.
 Please check that any issues related to that code are raised with that project, not this one.
 
 ## Raising bugs
