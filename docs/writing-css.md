@@ -1,3 +1,5 @@
+# Writing CSS
+
 CSS used in the prototyping application (app) is written in the SCSS syntax of [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#syntax). 
 
 ## Sass

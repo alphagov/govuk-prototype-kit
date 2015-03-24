@@ -1,3 +1,5 @@
+# Getting started
+
 Before anything else there are a few things it's important to know.
 
 ## Technology

@@ -1,3 +1,5 @@
+# Making pages
+
 Save all HTML pages (called templates below) to the `app/views` folder otherwise they won't be recognised by the application.
 
 All template files should have the `.html` extension.

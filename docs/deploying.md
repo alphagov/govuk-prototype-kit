@@ -1,3 +1,5 @@
+# Deploying (getting your work online)
+
 We recommend using [Heroku](http://wwww.heroku.com) to get your prototype online. It's simple and fast to deploy new versions as you work.
 
 ### 1) If you're new to Heroku, get an account and install their toolbelt
