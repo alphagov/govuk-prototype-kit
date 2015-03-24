@@ -55,24 +55,10 @@ Note that you have to add 'dev:master' this time - if you dont add this, Heroku 
 
 If you don't want the wider world to be looking at your prototype then you can add some basic username/password authentication. Only one set of credentials is supported at this time.
 
-The first step is set some environment variables on your Heroku instance. You can do this in the Heroku admin console (under Settings ▶ Config Variables) or by running the following shell commands:
+You just need to set some environment variables on your Heroku instance. You can do this in the Heroku admin console (under Settings ▶ Config Variables) or by running the following shell commands:
 
 `heroku config:set NODE_ENV=production`
 `heroku config:set USERNAME=username_here`
 `heroku config:set PASSWORD=password_here`
-
-Then, at the start of app.js, authenticate against the provided username and password when running in the production environment (i.e. Heroku):
-
-`var username = process.env.USERNAME;`
-`var password = process.env.PASSWORD;`
-`var env = process.env.NODE_ENV || 'development';`
-
-`if (env === 'production'){`
-	`if (!username || !password){`
-		`console.log('Username or password is not set, exiting.');`
-		`process.exit(1);`
-	`}`
-	`app.use(express.basicAuth(username, password));`
-`}`
 
 Your app will now prompt you for a password when accessed on Heroku (but not when running locally).
