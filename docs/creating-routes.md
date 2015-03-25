@@ -25,19 +25,22 @@ Let's break this down into bits:
 * **template** : the 1st parameter sent to response.render, the name of the template file used to render the page, minus its `.html` extension
 * **data** : [optional] the 2nd parameter sent to response.render, an object containing variables to send into the template
 
-So as an example, a request for the URL `http://localhost:3000/sample` has this route:
+So as an example, a request for the URL `http://localhost:3000/examples/template-data` has this route:
 
-    get('/sample', function(req, res) {
-        res.render('sample');
+    get('/examples/template-data', function(req, res) {
+        res.render('examples/template-data', { 'name' : 'Foo' });
     });
     
-We are saying that for a `get` request for the `/sample` route we should run the code:
+We are saying that for a `get` request for the `/template-data` route we should run the code:
 
-    res.render('sample');
+    res.render('examples/template-data', { 'name' : 'Foo' });
     
-This is the `render` method of the `res` parameter being run with a single parameter: the template called `sample`.
+This is the `render` method of the `res` parameter being run with two parameters: 
 
-Template files are found this way: `/views/` + `template` parameter + `.html`. The `sample` template therefore points to the `/views/sample.html` file. 
+- the template called `template-data`
+- the data object `{ 'name' : 'Foo' }`
+
+Template files are found this way: `/views/` + `template` parameter + `.html`. The `sample` template therefore points to the `/views/examples/template-data.html` file. 
 
 In the same way, the template `/examples/hello_world` would point to the `/examples/hello_world.html` file.
 
