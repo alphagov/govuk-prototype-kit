@@ -23,22 +23,19 @@ Let's break this down into bits:
 * **response** : the 2nd parameter sent to the callback, an object representing the HTTP response that will be sent
 * **response.render** : method of the response object used to create a page to send back to the browser that made the request
 * **template** : the 1st parameter sent to response.render, the name of the template file used to render the page, minus its `.html` extension
-* **data** : the 2nd parameter sent to response.render, an object containing variables to send into the template
+* **data** : [optional] the 2nd parameter sent to response.render, an object containing variables to send into the template
 
 So as an example, a request for the URL `http://localhost:3000/sample` has this route:
 
     get('/sample', function(req, res) {
-        res.render('sample', { 'assetPath' : '/public/' });
+        res.render('sample');
     });
     
 We are saying that for a `get` request for the `/sample` route we should run the code:
 
-    res.render('sample', { 'assetPath' : '/public/' });
+    res.render('sample');
     
-This is the `render` method of the `res` parameter being run with the parameters:
-
-1. the template called `sample`
-2. the `{ 'assetPath' : '/public/' }` data object.
+This is the `render` method of the `res` parameter being run with a single parameter: the template called `sample`.
 
 Template files are found this way: `/views/` + `template` parameter + `.html`. The `sample` template therefore points to the `/views/sample.html` file. 
 
