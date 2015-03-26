@@ -58,7 +58,7 @@ The app recompiles app/assets/stylesheets/application.scss everytime changes are
 
 ## Documentation
 
-Guides for getting set up and how to work with the prototyping application are available on this repo's [wiki](https://github.com/tombye/express_prototype/wiki).
+Find out how to work with the prototyping application.
 
 * [Getting started](docs/getting-started.md) (Read this first)
 * [Creating routes](docs/creating-routes.md)
