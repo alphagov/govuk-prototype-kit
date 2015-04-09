@@ -149,13 +149,6 @@ fieldset {
   margin: -2px 5px 0 0;
 }
 
-// Buttons
-.form .button {
-  @include media(mobile) {
-    width: 100%;
-  }
-}
-
 
 // Form validation
 @import "forms/form-validation";
