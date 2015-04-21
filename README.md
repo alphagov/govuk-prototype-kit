@@ -31,7 +31,7 @@ Install Node.js (see requirements)
 #### Clone this repo
 
 ```
-git clone git@github.com:tombye/express_prototype.git
+git clone git@github.com:alphagov/govuk_prototype_kit.git
 ```
 
 #### Install dependencies
