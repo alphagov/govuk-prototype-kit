@@ -7,13 +7,13 @@ module.exports = function(grunt){
     sass: {
       dev: {
         options: {
-          style: "expanded",
-          sourcemap: true,
           includePaths: [
             'govuk_modules/govuk_template/assets/stylesheets',
             'govuk_modules/govuk_frontend_toolkit/stylesheets'
           ],
-          outputStyle: 'expanded'
+          outputStyle: 'expanded',
+          sourceComments: true,
+          sourceMap: true
         },
         files: [{
           expand: true,
