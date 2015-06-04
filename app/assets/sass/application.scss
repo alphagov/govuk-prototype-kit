@@ -18,13 +18,19 @@
   @include phase-tag(alpha); // Change this to (beta) for a beta tag
 }
 
-// For pages without GOV.UK branding
-.nongov {
+// If you need to create a page as part of your journey, but without GOV.UK branding
+// See localhost:3000/examples/unbranded/
+.unbranded {
   background: $white;
-}
-.nongov #footer {
-  border: 0;
-  background: $white;
+  // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
+  * {
+    font-family: Arial !important;
+  }
+  // Remove GOV.UK footer styles
+  #footer {
+    border: 0;
+    background: $white;
+  }
 }
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you,
