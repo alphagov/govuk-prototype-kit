@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lte-ie8" lang="" class="unbranded"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="" class="unbranded"><!--<![endif]-->
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <title>{{$pageTitle}}GOV.UK - The best place to find government services and information{{/pageTitle}}</title>
+
+    <script type="text/javascript">
+      (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
+    </script>
+
+    <!--[if gt IE 8]><!--><link href="{{assetPath}}stylesheets/govuk-template.css?0.12.0" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+    <!--[if IE 6]><link href="{{assetPath}}stylesheets/govuk-template-ie6.css?0.12.0" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link href="{{assetPath}}stylesheets/govuk-template-ie7.css?0.12.0" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 8]><link href="{{assetPath}}stylesheets/govuk-template-ie8.css?0.12.0" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+
+    <link href="{{assetPath}}stylesheets/govuk-template-print.css?0.12.0" media="print" rel="stylesheet" type="text/css" />
+
+    <!--[if IE 8]>
+    <script type="text/javascript">
+      (function(){if(window.opera){return;}
+       setTimeout(function(){var a=document,g,b={families:(g=
+       ["nta"]),urls:["{{assetPath}}stylesheets/fonts-ie8.css?0.12.0"]},
+       c="{{assetPath}}javascripts/vendor/goog/webfont-debug.js?0.12.0",d="script",
+       e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
+       ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
+       .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
+      })()
+    </script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <link href="{{assetPath}}stylesheets/fonts.css?0.12.0" media="all" rel="stylesheet" type="text/css" />
+    <!--<![endif]-->
+
+
+    <!--[if lt IE 9]>
+      <script src="{{assetPath}}javascripts/ie.js?0.12.0" type="text/javascript"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="{{assetPath}}images/favicon.ico" type="image/x-icon" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{$head}}{{/head}}
+  </head>
+
+  <body>
+    <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <header role="banner" id="global-header" class="{{$headerClass}}{{/headerClass}}">
+    </header>
+    <!--end header-->
+
+    {{$afterHeader}}{{/afterHeader}}
+
+    {{$content}}{{/content}}
+
+    <footer class="group js-footer" id="footer" role="contentinfo">
+    </footer>
+
+    <!--end footer-->
+
+    <!-- <div id="global-app-error" class="app-error hidden"></div> -->
+
+    <script src="{{assetPath}}javascripts/govuk-template.js?0.12.0" type="text/javascript"></script>
+
+    {{$bodyEnd}}{{/bodyEnd}}
+  </body>
+</html>
