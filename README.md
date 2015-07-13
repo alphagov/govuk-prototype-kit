@@ -37,6 +37,7 @@ git clone git@github.com:alphagov/govuk_prototype_kit.git
 #### Install dependencies
 
 ```
+cd govuk_prototype_kit
 npm install
 ```
 
