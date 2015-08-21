@@ -1,0 +1,4 @@
+prototypekit:
+  build: .
+  ports:
+    - 3000
