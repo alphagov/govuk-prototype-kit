@@ -13,7 +13,7 @@
     "readdir": "0.0.6",
     "minimist": "0.0.8",
     "hogan.js": "3.0.2",
-    "govuk_frontend_toolkit": "~4.0.1",
+    "govuk_frontend_toolkit": "^4.2.1",
     "govuk_template_mustache": "~0.13.0",
     "node-sass": "2.1.1",
     "grunt": "0.4.5",
