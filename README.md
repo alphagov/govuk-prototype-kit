@@ -28,20 +28,21 @@ If you don't have Node, download it here: [http://nodejs.org/](http://nodejs.org
 
 Install Node.js (see requirements)
 
-#### Clone this repo
+#### Download the prototype kit
 
-```
-git clone git@github.com:alphagov/govuk_prototype_kit.git
-```
+[Download the zip file](https://github.com/alphagov/govuk_prototype_kit/archive/master.zip)
+
+Unzip the file
 
 #### Install dependencies
 
+Open a command line app (Terminal on OSX) and change to the unzipped directory. Then run:
+
 ```
-cd govuk_prototype_kit
 npm install
 ```
 
-This will install folders containing programs described by the package.json file to a folder called `node_modules`.
+This will install extra code that the prototype kit needs.
 
 #### Run the app
 
