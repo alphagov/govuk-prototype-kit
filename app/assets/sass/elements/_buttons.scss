@@ -1,5 +1,9 @@
 // Buttons
 // ==========================================================================
+// GOV.UK front end toolkit dependencies
+@import "design-patterns/buttons";
+@import "measurements";
+@import "typography";
 
 .button {
   @include button ($button-colour);
@@ -19,7 +23,7 @@
 }
 
 .button:focus {
-  outline: 3px solid $yellow;
+  outline: 3px solid $focus-colour;
 }
 
 // Disabled buttons
@@ -32,6 +36,7 @@
 }
 
 // Start now buttons
+.button-start,
 .button-get-started {
   @include bold-24;
   background-image: file-url("icons/icon-pointer.png");

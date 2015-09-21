@@ -5,6 +5,7 @@
 @import "measurements";
 @import "conditionals";
 
+
 // By default, block labels stack vertically
 .block-label {
 
@@ -15,25 +16,28 @@
 
   background: $panel-colour;
   border: 1px solid $panel-colour;
-  padding: (18px $gutter $gutter-half $gutter*1.5);
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding: (18px $gutter $gutter-half $gutter*1.8);
 
+  margin-bottom: 10px;
   cursor: pointer; // Encourage clicking on block labels
 
   @include media(tablet) {
     float: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
     // width: 25%; - Test : check that text within labels will wrap
   }
 
   // Absolutely position inputs within label, to allow text to wrap
   input {
     position: absolute;
-    top: 18px;
+    top: 15px;
     left: $gutter-half;
     cursor: pointer;
+    margin: 0;
+    width: 29px;
+    height: 29px;
+    @include ie(8) {
+      top: 12px;
+    }
   }
 
   // Change border on hover
@@ -42,10 +46,14 @@
   }
 }
 
+.block-label:last-child {
+  margin-bottom: 0;
+}
+
 // To stack horizontally, use .inline on parent, to sit block labels next to each other
 .inline .block-label {
   clear: none;
-  margin-right: $gutter-half;
+  margin-right: 10px;
 }
 
 // Selected and focused states
@@ -58,7 +66,7 @@
 
 // Add focus to block labels
 .js-enabled label.focused {
-  outline: 3px solid $yellow;
+  outline: 3px solid $focus-colour;
 }
 
 // Remove focus from radio/checkboxes

@@ -1,5 +1,8 @@
 // Panels
 // ==========================================================================
+// GOV.UK front end toolkit dependencies
+@import "helpers";
+
 
 // Indented panels with a grey left hand border
 .panel-indent {
@@ -9,18 +12,18 @@
 
   padding: 10px 0 10px $gutter-half;
   margin: ($gutter $gutter-half $gutter*1.5 0);
-}
 
-.panel-indent legend {
-  margin-top: 0;
-}
-
-// Remove bottom margin on last paragraph
-.panel-indent p:only-child,
-.panel-indent p:last-child {
-  margin-bottom: 0;
-}
-
-.panel-indent .form-group:last-child {
-  margin-bottom: 0;
+  legend {
+    margin-top: 0;
+  }
+  
+  // Remove bottom margin on last paragraph
+  p:only-child,
+  p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
 }

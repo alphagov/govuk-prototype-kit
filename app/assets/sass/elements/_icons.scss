@@ -1,4 +1,6 @@
 // GOV.UK icons
+// GOV.UK front end toolkit dependencies
+@import "device-pixels";
 
 .icon {
   background-position: 0 0;
@@ -6,85 +8,94 @@
 }
 
 .icon-calendar {
+  width: 27px;
+  height: 27px;
   background-image: file-url("icons/icon-calendar.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-calendar-2x.png");
     background-size: 100%;
   }
-  width: 27px;
-  height: 27px;
 }
 
 .icon-download {
+  width: 30px;
+  height: 39px;
   background-image: file-url("icons/icon-file-download.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-file-download-2x.png");
     background-size: 100%;
-  }
-  width: 30px;
-  height: 39px;
+  } 
 }
 
 .icon-important {
+  width: 34px;
+  height: 34px;
   background-image: file-url("icons/icon-important.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-important-2x.png");
     background-size: 100%;
   }
-  width: 34px;
-  height: 34px;
 }
 
 .icon-information {
+  width: 27px;
+  height: 27px;
   background-image: file-url("icons/icon-information.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-information-2x.png");
     background-size: 100%;
   }
-  width: 27px;
-  height: 27px;
 }
 
 .icon-locator {
+  width: 26px;
+  height: 36px;
   background-image: file-url("icons/icon-locator.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-locator-2x.png");
     background-size: 100%;
   }
-  width: 26px;
-  height: 36px;
 }
 
 .icon-search {
+  width: 30px;
+  height: 22px;
+  background-color: $black;
   background-image: file-url("icons/icon-search.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-search-2x.png");
     background-size: 100%;
   }
-  width: 30px;
-  height: 22px;
-  background-color: black;
 }
 
 // GOV.UK arrow icons
 .icon-pointer {
+  width: 30px;
+  height: 19px;
+  background-color: $black;
   background-image: file-url("icons/icon-pointer.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-pointer-2x.png");
     background-size: 100%;
   }
-  width: 30px;
-  height: 19px;
-  background-color: black;
 }
+
 .icon-pointer-black {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-pointer-black.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-pointer-black-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 // GOV.UK external link icons
@@ -92,131 +103,144 @@
 
 // GOV.UK step icons
 .icon-step-1 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-1.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-1-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-2 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-2.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-2-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-3 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-3.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-3-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-4 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-4.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-4-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-5 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-5.png");
+  
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-5-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-6 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-6.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-6-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-7 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-7.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-7-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-8 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-8.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-8-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-9 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-9.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-9-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-10 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-10.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-10-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-11 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-11.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-11-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-12 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-12.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-12-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
 
 .icon-step-13 {
+  width: 23px;
+  height: 23px;
   background-image: file-url("icons/icon-steps/icon-step-13.png");
+
   @include device-pixel-ratio() {
     background-image: file-url("icons/icon-steps/icon-step-13-2x.png");
     background-size: 100%;
   }
-  width: 23px;
-  height: 23px;
 }
