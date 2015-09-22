@@ -1,38 +1,40 @@
 // Details
 // ==========================================================================
+// GOV.UK front end toolkit dependencies
+@import "colours";
 
 details {
   display: block;
-}
 
-details summary {
-  display: inline-block;
-  color: $govuk-blue;
-  cursor: pointer;
-  position: relative;
-  margin-bottom: em(5);
-}
+  summary {
+    display: inline-block;
+    color: $govuk-blue;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: em(5);
 
-details summary:hover {
-  color: $link-hover-colour;
-}
+    &:hover {
+      color: $link-hover-colour;
+    }
 
-details summary:focus {
-  outline: 3px solid $yellow;
-}
-
-// Underline only summary text (not the arrow)
-details .summary {
-  text-decoration: underline;
-}
-
-// Match fallback arrow spacing with -webkit default
-details .arrow {
-  margin-right: 0.35em;
-  font-style: normal;
-}
-
-// Remove top margin from bordered panel
-details .panel-indent {
-  margin-top: 0;
+    &:focus {
+      outline: 3px solid $focus-colour;
+    }
+  }
+  
+  // Underline only summary text (not the arrow)
+  .summary {
+    text-decoration: underline;
+  }
+  
+  // Match fallback arrow spacing with -webkit default
+  .arrow {
+    margin-right: .35em;
+    font-style: normal;
+  }
+  
+  // Remove top margin from bordered panel
+  .panel-indent {
+    margin-top: 0;
+  }
 }
