@@ -11,10 +11,10 @@
 
 // If you need a phase banner, put this inside the main content area
 // See elements _layout.scss line 22.
-.alpha-banner  {
+.phase-banner-alpha  {
   @include phase-banner(alpha); // Change this to (beta) for a beta banner
 }
-.alpha-tag {
+.phase-tag-alpha {
   @include phase-tag(alpha); // Change this to (beta) for a beta tag
 }
 
