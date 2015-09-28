@@ -16,9 +16,21 @@ In the folder of your prototype, run:
 
 `heroku apps:create my-prototype`
 
-Your prototype would then be available online at [http://my-prototype.herokuapp.com](#)
+Your prototype would then be available online at [http://my-prototype.herokuapp.com](#).
 
-### 3) Deploy changes
+However, the kit won't show your prototype online without setting a username and password:
+
+### 3) Set a username and password
+
+You can do this in the Heroku admin console (under Settings ▶ Config Variables) or by running the following commands:
+
+```
+heroku config:set USERNAME=username_here
+heroku config:set PASSWORD=password_here
+```
+
+
+### 4) Deploy changes
 
 If you make a change to your prototype, commit your changes as usual then run:
 
@@ -50,15 +62,5 @@ Push to the dev remote:
 Now your dev branch will be live at [dev-name].herokuapp.com
 
 Note that you have to add 'dev:master' this time - if you dont add this, Heroku assumes you want the master branch to be deployed.
-
-## Adding authentication
-
-If you don't want the wider world to be looking at your prototype then you can add some basic username/password authentication. Only one set of credentials is supported at this time.
-
-You just need to set some environment variables on your Heroku instance. You can do this in the Heroku admin console (under Settings ▶ Config Variables) or by running the following shell commands:
-
-`heroku config:set NODE_ENV=production`
-`heroku config:set USERNAME=username_here`
-`heroku config:set PASSWORD=password_here`
 
 Your app will now prompt you for a password when accessed on Heroku (but not when running locally).
