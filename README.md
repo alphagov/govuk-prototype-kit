@@ -65,6 +65,7 @@ The app recompiles app/assets/stylesheets/application.scss everytime changes are
 - [Making pages](docs/making-pages.md)
 - [Writing CSS](docs/writing-css.md)
 - [Deploying (getting your work online)](docs/deploying.md)
+- [Updating the kit to the latest version](updating-the-kit.md)
 - [Tips and tricks](docs/tips-and-tricks.md)
 - [Creating routes (server-side programming)](docs/creating-routes.md)
 
