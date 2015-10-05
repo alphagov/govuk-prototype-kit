@@ -1,7 +1,9 @@
 var path = require('path'),
     express = require('express'),
     routes = require(__dirname + '/app/routes.js'),
+    favicon = require('serve-favicon'),
     app = express(),
+    basicAuth = require('basic-auth-connect'),
     port = (process.env.PORT || 3000),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
@@ -16,7 +18,7 @@ if (env === 'production') {
     console.log('Username or password is not set, exiting.');
     process.exit(1);
   }
-  app.use(express.basicAuth(username, password));
+  app.use(basicAuth(username, password));
 }
 
 // Application settings
@@ -30,12 +32,12 @@ app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk_modules/govuk_template/assets'));
 app.use('/public', express.static(__dirname + '/govuk_modules/govuk_frontend_toolkit'));
 
-app.use(express.favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images','favicon.ico'))); 
+app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images','favicon.ico')));
 
 
 // send assetPath to all views
 app.use(function (req, res, next) {
-  res.locals({'assetPath': '/public/'});
+  res.locals.assetPath="/public/";
   next();
 });
 
@@ -53,7 +55,7 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 	res.render(path, function(err, html) {
 		if (err) {
 			console.log(err);
-			res.send(404);
+			res.sendStatus(404);
 		} else {
 			res.end(html);
 		}
