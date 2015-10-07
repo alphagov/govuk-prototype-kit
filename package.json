@@ -17,6 +17,7 @@
     "govuk_template_mustache": "^0.15.1",
     "node-sass": "3.3.3",
     "grunt": "0.4.5",
+    "merge": "^1.2.0",
     "grunt-cli": "0.1.13",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-copy": "0.5.0",
