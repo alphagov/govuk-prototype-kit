@@ -1,6 +1,13 @@
-{{<layout}}
 
-{{$content}}
+{% extends "layout.html" %}
+
+{% block head %}
+  {% include "includes/elements_head.html" %}
+{% endblock %}
+
+
+{% block content %}
+
 <main id="content" role="main">
 
   <a class="link-back" href="/examples/">Back to the GOV.UK prototype kit examples</a>
@@ -53,6 +60,6 @@
   </div>
 
 </main>
-{{/content}}
 
-{{/layout}}
+{% endblock %}
+

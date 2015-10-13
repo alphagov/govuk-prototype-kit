@@ -1,8 +1,8 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}Example of using variables in pages{{/pageTitle}}
+{% block pageTitle %}Example of using variables in pages{% endblock %}
 
-{{$content}}
+{% block content %}
 <main id="content" role="main">
   <h1 class="heading-xlarge">Example of using variables in pages</h1>
   <dl>
@@ -10,7 +10,7 @@
     <dd style="display: inline">{{ name }}</dd>
   </dl>
 </main>
-{{/content}}
+{% endblock %}
 
-{{/layout}}
+
 

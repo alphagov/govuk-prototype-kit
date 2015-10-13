@@ -1,85 +1,100 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$content}}
+{% block head %}
+  {% include "includes/elements_head.html" %}
+{% endblock %}
+
+{% block body_end %}
+  {% include "includes/elements_scripts.html" %}
+{% endblock %}
+
+{% block content %}
+
 <main id="content" role="main">
 
-  <a class="link-back" href="/examples/">Back to the GOV.UK prototype kit examples</a>
+  <div class="grid-row">
+    <div class="column-two-thirds">
 
-  <form action="/" method="post" class="form">
+      <a class="link-back" href="/examples/">Back to the GOV.UK prototype kit examples</a>
 
-    <h1 class="form-title heading-large">
-      Your details
-    </h1>
+      <form action="/" method="post" class="form">
 
-    <!-- Full name -->
-    <div class="form-group">
-      <label class="form-label-bold" for="full-name">Full name</label>
-      <p class="form-hint">As shown on your birth certificate or passport</p>
-      <input type="text" class="form-control" id="full-name">
-    </div>
+        <h1 class="form-title heading-large">
+          Your details
+        </h1>
 
-    <!-- National Insurance number -->
-    <div class="form-group">
-      <label class="form-label-bold" for="ni-number">
-        National Insurance number
-        <span class="form-hint">
-          It's on your National Insurance card, benefit letter, payslip or P60.
-          <br>
-          For example, 'VO 12 34 56 D'.
-        </span>
-      </label>
-      <input type="text" class="form-control" id="ni-number">
-    </div>
-
-    <!-- Date of birth -->
-    <div class="form-group">
-      <fieldset>
-        <legend class="form-label-bold">Date of birth</legend>
-
-        <div class="form-date">
-
-          <p class="form-hint">For example, 31 3 1980</p>
-
-          <div class="form-group form-group-day">
-            <label for="dob-day">Day</label>
-            <input class="form-control" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
-          </div>
-
-          <div class="form-group form-group-month">
-            <label for="dob-month">Month</label>
-            <input class="form-control" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
-          </div>
-
-          <div class="form-group form-group-year">
-            <label for="dob-year">Year</label>
-            <input class="form-control" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014">
-          </div>
+        <!-- Full name -->
+        <div class="form-group">
+          <label class="form-label-bold" for="full-name">Full name</label>
+          <p class="form-hint">As shown on your birth certificate or passport</p>
+          <input type="text" class="form-control" id="full-name">
         </div>
 
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <details>
-        <summary><span class="summary">Help with date of birth</span></summary>
-        <div class="panel-indent">
-          <p>
-            If you don’t know your exact date of birth, use the one you put on official documents (for example, your passport or driving licence).
-          </p>
-          <p>
-            If you can’t provide your date of birth you’ll have to send copies of identity documents through the post.
-          </p>
+        <!-- National Insurance number -->
+        <div class="form-group">
+          <label class="form-label-bold" for="ni-number">
+            National Insurance number
+            <span class="form-hint">
+              It's on your National Insurance card, benefit letter, payslip or P60.
+              <br>
+              For example, 'VO 12 34 56 D'.
+            </span>
+          </label>
+          <input type="text" class="form-control" id="ni-number">
         </div>
-      </details>
+
+        <!-- Date of birth -->
+        <div class="form-group">
+          <fieldset>
+            <legend class="form-label-bold">Date of birth</legend>
+
+            <div class="form-date">
+
+              <p class="form-hint">For example, 31 3 1980</p>
+
+              <div class="form-group form-group-day">
+                <label for="dob-day">Day</label>
+                <input class="form-control" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
+              </div>
+
+              <div class="form-group form-group-month">
+                <label for="dob-month">Month</label>
+                <input class="form-control" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+              </div>
+
+              <div class="form-group form-group-year">
+                <label for="dob-year">Year</label>
+                <input class="form-control" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014">
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+        <div class="form-group">
+          <details>
+            <summary><span class="summary">Help with date of birth</span></summary>
+            <div class="panel-indent">
+              <p>
+                If you don’t know your exact date of birth, use the one you put on official documents (for example, your passport or driving licence).
+              </p>
+              <p>
+                If you can’t provide your date of birth you’ll have to send copies of identity documents through the post.
+              </p>
+            </div>
+          </details>
+        </div>
+        
+      </form>
+
     </div>
 
-    <div class="form-group">
-      <input type="submit" class="button" value="Continue">
-    </div>
-
-  </form>
+  </div>
 
 </main>
-{{/content}}
 
-{{/layout}}
+{% endblock %}
