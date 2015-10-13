@@ -1,17 +1,14 @@
-{{<govuk_template}}
+{% extends "govuk_template.html" %}
 
-{{$head}}
-  {{>includes/head}}
-{{/head}}
+{% block head %}
 
-{{$propositionHeader}}
-  {{>includes/propositional_navigation}}
-{{/propositionHeader}}
+  {% include "includes/head.html" %}
 
-{{$headerClass}}with-proposition{{/headerClass}}
+{% endblock %}
 
-{{$bodyEnd}}
-  {{>includes/scripts}}
-{{/bodyEnd}}
 
-{{/govuk_template}}
+{% block bodyEnd %}
+
+  bodyEnd
+
+{% endblock %}
