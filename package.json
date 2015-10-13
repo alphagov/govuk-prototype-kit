@@ -11,6 +11,7 @@
     "body-parser": "^1.14.1",
     "consolidate": "0.x",
     "express": "4.13.3",
+    "express-nunjucks": "^0.9.3",
     "express-writer": "0.0.4",
     "govuk_frontend_toolkit": "^4.2.1",
     "govuk_template_mustache": "^0.15.1",
