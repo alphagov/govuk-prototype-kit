@@ -44,7 +44,13 @@ app.use(function (req, res, next) {
 
 // routes (found in app/routes.js)
 
-routes.bind(app);
+if (typeof(routes) != "function"){
+  console.log(routes.bind);
+  console.log("Warning: the use of bind in routes is deprecated - please check the prototype kit documentation for writing routes.")
+  routes.bind(app);
+} else {
+  app.use("/", routes);
+}
 
 // auto render any view that exists
 
