@@ -99,7 +99,7 @@ We have a base template of `views/base_level.html`:
 
     <html>
         <head>
-            <title>{{$pageTitle}}{{/pageTitle}}</title>
+            <title>{% block pageTitle %}{{/pageTitle}}</title>
         </head>
         <body>
             <p>Section: {{$section}}{{/section}}</p>
@@ -117,12 +117,12 @@ We also have another template to set the section called `views/section_level.htm
 An example page is `views/page_level.html`:
 
     {{<section_level}}
-        {{$pageTitle}}Inheritance test page{{/pageTitle}}
-        {{$pageHeading}}Inheritance test page{{/pageHeading}}
-        {{$content}}
-          <p>{{message}}</p>
-        {{/content}}
-    {{/section_level}}
+    {% block pageTitle %}Inheritance test page{{/pageTitle}}
+    {{$pageHeading}}Inheritance test page{{/pageHeading}}
+    {{$content}}
+      <p>{{message}}</p>
+    {{/content}}
+    {{section_level}}
     
 We have the following route:
 
@@ -159,7 +159,7 @@ Try using the `views/logo.html` file in your base template like so:
 
     <html>
         <head>
-            <title>{{$pageTitle}}{{/pageTitle}}</title>
+            <title>{% block pageTitle %}{{/pageTitle}}</title>
         </head>
         <body>
             {{>logo}}
@@ -191,7 +191,7 @@ It's important to note that this form of inheritance works by combining all the 
 
     <html>
         <head>
-            <title>{{$pageTitle}}Inheritance test page{{/pageTitle}}</title>
+            <title>{% block pageTitle %}Inheritance test page{{/pageTitle}}</title>
         </head>
         <body>
             {{>logo}}

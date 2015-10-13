@@ -26,8 +26,7 @@ if (env === 'production') {
 // Application settings
 
 app.set('view engine', 'html');
-app.set('vendorViews', __dirname + '/govuk_modules/govuk_template/views/layouts');
-app.set('views', path.join(__dirname, '/app/views'));
+app.set('views', [__dirname + '/app/views', __dirname + '/lib/']);
 
 nunjucks.setup({
     autoescape: true,
@@ -74,8 +73,14 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
 	res.render(path, function(err, html) {
 		if (err) {
-			console.log(err);
-			res.sendStatus(404);
+			res.render(path + "/index", function(err2, html) {
+        if (err2) {
+          console.log(err);
+          res.status(404).send(err).send(err2);
+        } else {
+          res.end(html);
+        }
+      });
 		} else {
 			res.end(html);
 		}
