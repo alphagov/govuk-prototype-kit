@@ -27,7 +27,7 @@ Let's break this down into bits:
 
 So as an example, a request for the URL `http://localhost:3000/examples/template-data` has this route:
 
-    get('/examples/template-data', function(req, res) {
+    router.get('/examples/template-data', function(req, res) {
         res.render('examples/template-data', { 'name' : 'Foo' });
     });
     
