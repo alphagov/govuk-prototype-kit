@@ -1,0 +1,11 @@
+.get-started {
+  .button {
+    display: inline-block;
+  }
+
+  .destination {
+    display: block;
+    @extend.font-xsmall;
+    max-width: 13em;
+  }
+}

@@ -1,6 +1,8 @@
 // Import GOV.UK elements, this will import the frontend toolkit and some base styles.
 // Take a look at elements.scss to see which files are imported.
 @import 'elements';
+@import 'base/headings';
+@import 'components/get-started';
 
 // Set up your main content area <main id="content">
 // This will give you a full width content block
@@ -35,15 +37,3 @@
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you,
 // either add and import new partial files, or modify those in GOV.UK elements to fit your user needs.
-
-h1 {
-  @extend .heading-xlarge;
-}
-
-h2 {
-  @extend .heading-medium;
-}
-
-h3 {
-  @extend .heading-small;
-}

@@ -1,0 +1,11 @@
+h1 {
+  @extend .heading-xlarge;
+}
+
+h2 {
+  @extend .heading-medium;
+}
+
+h3 {
+  @extend .heading-small;
+}
