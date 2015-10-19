@@ -111,18 +111,18 @@ We have a base template of `views/base_level.html`:
 We also have another template to set the section called `views/section_level.html`:
 
     {{<base_level}}
-    {{$section}}Guides{{/section}}
-    {{base_level}}
+        {{$section}}Guides{{/section}}
+    {{/base_level}}
     
 An example page is `views/page_level.html`:
 
     {{<section_level}}
-    {{$pageTitle}}Inheritance test page{{/pageTitle}}
-    {{$pageHeading}}Inheritance test page{{/pageHeading}}
-    {{$content}}
-      <p>{{message}}</p>
-    {{/content}}
-    {{section_level}}
+        {{$pageTitle}}Inheritance test page{{/pageTitle}}
+        {{$pageHeading}}Inheritance test page{{/pageHeading}}
+        {{$content}}
+          <p>{{message}}</p>
+        {{/content}}
+    {{/section_level}}
     
 We have the following route:
 
