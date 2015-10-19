@@ -1,0 +1,62 @@
+{{<layouts/layout-two-thirds}}
+
+{{$pageTitle}}
+Date of birth
+{{/pageTitle}}
+
+{{$sub-content}}
+<h1>Date of birth</h1>
+
+<h2>Test Case</h2>
+<div class="test-case">
+    <div class="form-group">
+        <fieldset>
+            <legend class="form-label-bold">Date of birth</legend>
+
+            <div class="form-date">
+
+                <p class="form-hint">For example, 31 3 1980</p>
+
+                <div class="form-group form-group-day">
+                    <label for="dob-day">Day</label>
+                    <input class="form-control" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
+                </div>
+
+                <div class="form-group form-group-month">
+                    <label for="dob-month">Month</label>
+                    <input class="form-control" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+                </div>
+
+                <div class="form-group form-group-year">
+                    <label for="dob-year">Year</label>
+                    <input class="form-control" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014">
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+
+<h2>Example Usage</h2>
+<p><a href="http://govuk-elements.herokuapp.com/form-elements/example-date/">GOV.UK Elements: Example: Date</a></p>
+
+<h2>Background</h2>
+
+<p>The service manual has a design pattern for collecting memorable dates. There is a code example for this in the
+    GOV.UK Elements. The code example uses a fieldset to group the inputs, with a legend for the title and paragraph
+    (with no wai-aria) for the hint. To prevent users from inputting the wrong information the input attributes pattern,
+    min and max are used. Is this the best implementation for screen readers and other assitive technologies?</p>
+
+<h3>Resources</h3>
+<ul>
+    <li><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/dates.html">Service Manual:
+        Design Pattern - Dates</a></li>
+</ul>
+
+
+<h2>Results</h2>
+insert findings or results when we have some
+
+{{/sub-content}}
+
+{{/layouts/layout-two-thirds}}

@@ -8,28 +8,30 @@ Conditionally revealing form content
 <h1>Conditionally revealing form content</h1>
 
 <h2>Test Case</h2>
-<fieldset class="inline">
-    <legend>
-      <span class="form-label">
-        Do you know their National Insurance number?
-      </span>
-    </legend>
-    <div class="form-group">
-        <label class="block-label" data-target="example-ni-no" for="radio-indent-1">
-            <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
-            Yes
-        </label>
-        <label class="block-label" for="radio-indent-2">
-            <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
-            No
-        </label>
+<div class="test-case">
+    <fieldset class="inline">
+        <legend>
+          <span class="form-label">
+            Do you know their National Insurance number?
+          </span>
+        </legend>
+        <div class="form-group">
+            <label class="block-label" data-target="example-ni-no" for="radio-indent-1">
+                <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+                Yes
+            </label>
+            <label class="block-label" for="radio-indent-2">
+                <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+                No
+            </label>
 
-        <div class="panel-indent js-hidden" id="example-ni-no">
-            <label class="form-label" for="national-insurance">National Insurance number</label>
-            <input class="form-control" name="national-insurance" type="text" id="national-insurance">
+            <div class="panel-indent js-hidden" id="example-ni-no">
+                <label class="form-label" for="national-insurance">National Insurance number</label>
+                <input class="form-control" name="national-insurance" type="text" id="national-insurance">
+            </div>
         </div>
-    </div>
-</fieldset>
+    </fieldset>
+</div>
 
 <h2>Example Usage</h2>
 <p><a href="http://govuk-elements.herokuapp.com/form-elements/#form-toggle-content">GOV.UK Element: Conditionally revealing content</a></p>
