@@ -1,43 +1,28 @@
-{{<layout}}
+{{<layout-two-thirds}}
 
-{{$pageTitle}}
-Link looks like a button
-{{/pageTitle}}
+{{$sub-content}}
+<h2>Test Case</h2>
+<a href="https://www.registertovote.service.gov.uk/register-to-vote/start" class="button" role="button">Start now</a>
 
-{{$content}}
-<main id="content" role="main" class="text">
-    <div class="grid-row">
+<h2>Example Usage</h2>
+<p><a href="https://www.gov.uk/register-to-vote">Register to vote</a></p>
 
-        <div class="column-two-thirds">
-            <h1 class="heading-xlarge">Link looks like a button</h1>
+<h2>Background</h2>
+<p>We have a button style (class="button") that is used to make inputs of type button, buttons and links look like
+    buttons.</p>
 
-            <h2 class="heading-large">Test Case</h2>
-            <a href="https://www.registertovote.service.gov.uk/register-to-vote/start" class="button" role="button">Start now</a>
+<p>When a link looks like a button a user with voice recognition software (such as
+    <a href="http://www.nuance.co.uk/dragon/index.htm">Dragon Naturally Speaking</a>) will/may have problems using
+    the link as they will call it a button.</p>
 
-            <h2 class="heading-large">Example Usage</h2>
-            <p><a href="https://www.gov.uk/register-to-vote">Register to vote</a></p>
+<p>There are many instances on GOV.UK of a role="button" being added to such links as there is a expectation that
+    voice recognition software will then treat is as a button. Is this assumption correct?</p>
 
-            <h2 class="heading-large">Background</h2>
-            <p>We have a button style (class="button") that is used to make inputs of type button, buttons and links look like
-                buttons.</p>
+<p>Buttons should be activated with the space bar. When you add a role="button" to a link you need to add some
+    javascript so that the link/button can be activated with the space bar. This is not happening on GOV.UK.</p>
 
-            <p>When a link looks like a button a user with voice recognition software (such as
-                <a href="http://www.nuance.co.uk/dragon/index.htm">Dragon Naturally Speaking</a>) will/may have problems using
-                the link as they will call it a button.</p>
+<h2>Findings</h2>
+<p>insert findings from testing with Dragon Naturally Speaking</p>
+{{/sub-content}}
 
-            <p>There are many instances on GOV.UK of a role="button" being added to such links as there is a expectation that
-                voice recognition software will then treat is as a button. Is this assumption correct?</p>
-
-            <p>Buttons should be activated with the space bar. When you add a role="button" to a link you need to add some
-                javascript so that the link/button can be activated with the space bar. This is not happening on GOV.UK.</p>
-
-            <h2 class="heading-large">Findings</h2>
-            <p>insert findings from testing with Dragon Naturally Speaking</p>
-        </div>
-
-    </div>
-
-</main>
-{{/content}}
-
-{{/layout}}
+{{/layout-two-thirds}}

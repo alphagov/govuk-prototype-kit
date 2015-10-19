@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/link-looks-like-button', function (req, res) {
-  res.render('link-looks-like-button', { 'name' : 'Foo' });
+  res.render('link-looks-like-button', { 'title' : 'Link looks like a button' });
 });
 
 
