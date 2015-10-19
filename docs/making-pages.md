@@ -45,7 +45,7 @@ When working with the prototyping app, your version of the above exists like so:
 
 The following route (where the `response` parameter is `res`) would sit in [routes.js](../app/routes.js):
 
-    app.get('/hello-world', function (req, res) {
+    router.get('/hello-world', function (req, res) {
       res.render('hello_world', {'message' : 'Hello world'});
     });
 
@@ -126,7 +126,7 @@ An example page is `views/page_level.html`:
     
 We have the following route:
 
-    app.get('/page-level', function (req, res) {
+    router.get('/page-level', function (req, res) {
       res.render('page_level', {'message' : 'Hello world'});
     });
 
