@@ -27,5 +27,9 @@
     "grunt-sass": "1.1.0-beta",
     "grunt-text-replace": "0.3.12",
     "grunt-concurrent": "0.4.3"
+  },
+  "devDependencies": {
+    "grunt-express-server": "^0.5.1",
+    "ngrok": "^0.1.99"
   }
 }

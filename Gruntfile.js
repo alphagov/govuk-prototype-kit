@@ -1,3 +1,5 @@
+var ngrok = require('ngrok');
+
 module.exports = function(grunt){
   grunt.initConfig({
     // Clean
@@ -100,6 +102,18 @@ module.exports = function(grunt){
                 logConcurrentOutput: true
             }
         }
+    },
+
+    express: {
+      options: {
+        port: 5000,
+        background: true
+      },
+      dev: {
+        options: {
+          script: 'server.js'
+        }
+      }
     }
   });
 
@@ -110,7 +124,8 @@ module.exports = function(grunt){
     'grunt-sass',
     'grunt-nodemon',
     'grunt-text-replace',
-    'grunt-concurrent'
+    'grunt-concurrent',
+    'grunt-express-server'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
@@ -138,6 +153,22 @@ module.exports = function(grunt){
     'generate-assets',
     'concurrent:target'
   ]);
+
+  grunt.registerTask('expose-localhost', ['express', 'ngrok']);
+
+  grunt.registerTask('ngrok', 'Run ngrok', function() {
+    var done = this.async();
+
+    ngrok.connect({
+      port: 5000,
+    }, function(err, url) {
+      if (err !== null) {
+        grunt.fail.fatal(err);
+        return done();
+      }
+      grunt.log.write('Exposing website: ' + url);
+    });
+  });
 
   grunt.event.on('watch', function(action, filepath, target) {
 
