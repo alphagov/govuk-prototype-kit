@@ -1,0 +1,55 @@
+{{<layouts/layout-two-thirds}}
+
+{{$pageTitle}}
+Money field with bad markup
+{{/pageTitle}}
+
+{{$sub-content}}
+<h1>Money field with bad markup</h1>
+
+<h2>Test Case</h2>
+<div class="test-case">
+    <form action="https://www.registertovote.service.gov.uk/register-to-vote/country-of-residence" method="POST">
+        <div class="form-group">
+            <fieldset class="">
+                <label for="payment-amount.value" class="form-label-bold">Amount to pay</label>
+                <span class="label__text">£</span>
+                <input type="text" step="any" min="0" class="form-control input--small" name="payment-amount.value" id="payment-amount.value" value="" aria-describedby="payment-amount-hint" required="">
+                <p id="payment-amount-hint" class="form-hint">Pay in full by the due date or you'll have to pay a <a href="https://www.gov.uk/self-assessment-tax-returns/penalties">penalty</a>.</p>
+            </fieldset>
+        </div>
+
+        <div class="form-group">
+            <button class="button">Continue</button>
+        </div>
+    </form>
+</div>
+
+
+<h2>Example Usage</h2>
+<p><a href="https://www.tax.service.gov.uk/pay-online/self-assessment">HMRC: Pay Online - Self Assessment</a></p>
+
+<h2>Background</h2>
+<p>This is an example of a form field with a couple of issues. There is a fieldset wrapped around the field which is not
+    needed. The pound symbol is not programatically associated with the input field - this means it is likey to be missed
+    by screen reader users.</p>
+
+<p>Things to find out:</p>
+<ul>
+    <li>What is the effact of the unneccessary fieldset on screen readers?</li>
+    <li>What is the best way to mark up the pound symbol - aria-labellby with multiple ids</li>
+</ul>
+
+<h3>Resources</h3>
+<ul>
+    <li><a href="http://www.w3.org/WAI/GL/wiki/Using_aria-labelledby_to_concatenate_a_label_from_several_text_nodes">Using aria-labelledby to concatenate a label from several text nodes</a></li>
+    <li><a href="https://www.paciellogroup.com/blog/2014/06/aria-labelledby-aria-describedby-support-popular-windows-browsers/">aria-labelledby and aria-describedby support in popular Windows browsers</a></li>
+</ul>
+
+
+<h2>Results</h2>
+insert findings or results when we have some
+
+{{/sub-content}}
+
+{{/layouts/layout-two-thirds}}
