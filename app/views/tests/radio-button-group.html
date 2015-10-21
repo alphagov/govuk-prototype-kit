@@ -1,0 +1,52 @@
+{{<layouts/layout-two-thirds}}
+
+{{$pageTitle}}
+Radio buttons
+{{/pageTitle}}
+
+{{$sub-content}}
+<h1>Radio buttons</h1>
+
+<h2>Test Case</h2>
+<div class="test-case">
+    <form action="/send" method="POST">
+        <fieldset class="inline">
+            <legend>
+              <span class="form-label">
+                Do you live with the client?
+              </span>
+            </legend>
+            <div class="form-group">
+                <label class="block-label" data-target="example-ni-no" for="radio-indent-1">
+                    <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+                    Yes
+                </label>
+                <label class="block-label" for="radio-indent-2">
+                    <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+                    No
+                </label>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<h2>Example Usage</h2>
+<p><a href="http://govuk-elements.herokuapp.com/form-elements/#form-toggle-content">GOV.UK Elements: Conditionally revealing content</a></p>
+
+<h2>Background</h2>
+<p>A group of radio buttons should be contained within a fiedlset with a legend as the first child</p>
+
+<h3>Resources</h3>
+<ul>
+    <li><a href="http://webaim.org/techniques/forms/controls#radio">WebAIM: Creating Accessible Forms</a></li>
+    <li><a href="https://dequeuniversity.com/rules/axe/1.1/radiogroup">Deque University: Radio inputs with the same name
+        attribute value must be part of a group</a></li>
+</ul>
+
+
+<h2>Results</h2>
+<p>Although this is the correct way to mark up radio buttons the legend is not read out by VoiceOver on OS 10.10 (Yosemite).</p>
+
+{{/sub-content}}
+
+{{/layouts/layout-two-thirds}}
