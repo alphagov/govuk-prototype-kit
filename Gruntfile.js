@@ -101,19 +101,13 @@ module.exports = function(grunt){
             options: {
                 logConcurrentOutput: true
             }
+        },
+        ngrok:{
+            tasks: ['watch', 'nodemon', 'ngrok'],
+            options: {
+                logConcurrentOutput: true
+            }
         }
-    },
-
-    express: {
-      options: {
-        port: 5000,
-        background: true
-      },
-      dev: {
-        options: {
-          script: 'server.js'
-        }
-      }
     }
   });
 
@@ -124,8 +118,7 @@ module.exports = function(grunt){
     'grunt-sass',
     'grunt-nodemon',
     'grunt-text-replace',
-    'grunt-concurrent',
-    'grunt-express-server'
+    'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
@@ -154,13 +147,16 @@ module.exports = function(grunt){
     'concurrent:target'
   ]);
 
-  grunt.registerTask('expose-localhost', ['express', 'ngrok']);
+  grunt.registerTask('expose-localhost', [
+    'generate-assets',
+    'concurrent:ngrok'
+  ]);
 
   grunt.registerTask('ngrok', 'Run ngrok', function() {
     var done = this.async();
 
     ngrok.connect({
-      port: 5000,
+      port: 3000,
     }, function(err, url) {
       if (err !== null) {
         grunt.fail.fatal(err);
