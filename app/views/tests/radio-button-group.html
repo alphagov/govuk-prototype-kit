@@ -53,11 +53,32 @@ Radio buttons
     </form>
 </div>
 
+<h2>Test Case 3 - Heading with visuallyhidden legend</h2>
+<div class="test-case">
+    <h3>Do you own a bicycle?</h3>
+    <form action="/send" method="POST">
+        <fieldset class="inline">
+            <legend class="visuallyhidden">
+                Do you own a bicycle?
+            </legend>
+            <div class="form-group">
+                <label class="block-label" for="radio-indent-1">
+                    <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+                    Yes
+                </label>
+                <label class="block-label" for="radio-indent-2">
+                    <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+                    No
+                </label>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
 
 <h2>Background</h2>
 <p>Radio buttons with the same name attribute value should be contained within a fiedlset with a legend as the first
-    child. The legend is not read out by VoiceOver on iOS 7 and 8. A possible solution is to use aria-describedby on
-    the input.</p>
+    child. However, the legend is not read out by VoiceOver on iOS 7 and 8.</p>
 
 <h3>Resources</h3>
 <ul>
