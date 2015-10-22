@@ -1,0 +1,99 @@
+{{<layouts/layout-two-thirds}}
+
+{{$pageTitle}}
+Radio buttons
+{{/pageTitle}}
+
+{{$sub-content}}
+<h1>Radio buttons with the same name attribute value</h1>
+
+<h2>Test Case 1 - Fieldset with legend</h2>
+<div class="test-case">
+    <form action="/send" method="POST">
+        <fieldset class="inline">
+            <legend>
+              <span class="form-label">
+                Do you own a car?
+              </span>
+            </legend>
+            <div class="form-group">
+                <label class="block-label" for="radio-indent-1">
+                    <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+                    Yes
+                </label>
+                <label class="block-label" for="radio-indent-2">
+                    <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+                    No
+                </label>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<h2>Test Case 2 - Fieldset with legend and aria-describedby on inputs</h2>
+<div class="test-case">
+    <form action="/send" method="POST">
+        <fieldset class="inline">
+            <legend id="legend-id-1>
+              <span class="form-label">
+                Do you own a motor bike?
+              </span>
+            </legend>
+            <div class="form-group">
+                <label class="block-label" for="radio-indent-1" aria-describedby="legend-id-1">
+                    <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+                    Yes
+                </label>
+                <label class="block-label" for="radio-indent-2" aria-describedby="legend-id-1">
+                    <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+                    No
+                </label>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<h2>Test Case 3 - Heading with visuallyhidden legend</h2>
+<div class="test-case">
+    <h3>Do you own a bicycle?</h3>
+    <form action="/send" method="POST">
+        <fieldset class="inline">
+            <legend class="visuallyhidden">
+                Do you own a bicycle?
+            </legend>
+            <div class="form-group">
+                <label class="block-label" for="radio-indent-1">
+                    <input id="radio-indent-1" type="radio" name="radio-indent-group" value="Yes">
+                    Yes
+                </label>
+                <label class="block-label" for="radio-indent-2">
+                    <input id="radio-indent-2" type="radio" name="radio-indent-group" value="No">
+                    No
+                </label>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+<h2>Background</h2>
+<p>Radio buttons with the same name attribute value should be contained within a fiedlset with a legend as the first
+    child. However, the legend is not read out by VoiceOver on iOS 7 and 8.</p>
+
+<h3>Resources</h3>
+<ul class="list-bullet">
+    <li><a href="https://github.com/18f/web-design-standards/issues/792">18F Github Issues: fieldset legend support on voiceover</a></li>
+    <li><a href="http://www.tyack.net/2015/01/27/accessibility-frustrations-with-apple-voiceover-on-ios-8-1/">Accessibility bugs in iOS with Safari</a></li>
+    <li><a href="http://webaim.org/discussion/mail_thread?thread=6939">WebAIM Thread: any solutions for fieldset/legend bug with iOS?</a></li>
+    <li><a href="http://webaim.org/techniques/forms/controls#radio">WebAIM: Creating Accessible Forms</a></li>
+    <li><a href="https://dequeuniversity.com/rules/axe/1.1/radiogroup">Deque University: Radio inputs with the same name
+        attribute value must be part of a group</a></li>
+</ul>
+
+
+<h2>Results</h2>
+<p>Although this is the correct way to mark up radio buttons the legend is not read out by VoiceOver on OS 10.10 (Yosemite).</p>
+
+{{/sub-content}}
+
+{{/layouts/layout-two-thirds}}

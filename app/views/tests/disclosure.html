@@ -1,0 +1,61 @@
+{{<layouts/layout-two-thirds}}
+
+{{$pageTitle}}
+using details element
+{{/pageTitle}}
+
+{{$sub-content}}
+<h1>Disclosure widget using details element</h1>
+
+<h2>Test Case</h2>
+<div class="test-case">
+    <details>
+
+        <summary><span class="summary">Help with nationality</span></summary>
+
+        <div class="panel-indent">
+
+            <p>
+                If you’re not sure about your nationality, try to find out from an official document like a passport or national ID card.
+            </p>
+
+            <p>
+                We need to know your nationality so we can work out which elections you’re entitled to vote in. If you can’t provide your nationality, you’ll have to send copies of identity documents through the post.
+            </p>
+
+        </div>
+
+    </details>
+</div>
+
+<h2>Example Usage</h2>
+<p><a href="http://govuk-elements.herokuapp.com/typography/#typography-hidden-text">GOV.UK Element: Hidden text (progressive disclosure)</a></p>
+
+<h2>Background</h2>
+<p>There are many ways to implement show/hide functionality.  GOV.UK currently uses an implementation of the details
+    element to do this. </p>
+
+<p>Questions I have include:</p>
+<ul class="list-bullet">
+    <li>Are voice recognition users able to open and close them?</li>
+    <li>How does it work in screen readers. Is the content always available - or does a screen reader user have to open
+        the widget to access the summary information. If they do state (open and closes) communicated?</li>
+    <li>What browsers are supported? What is the fallback for old browsers?</li>
+</ul>
+
+<p>There is an alternative implementation on
+    <a href="https://www.lastingpowerofattorney.service.gov.uk/home">Make a lasting power of attorney</a></p>
+
+<h3>Resources</h3>
+<ul class="list-bullet">
+    <li><a href="http://accessibleculture.org/articles/2012/03/screen-readers-and-details-summary/">Screen Readers and details/summary</a></li>
+    <li><a href="http://www.inclusivedesign24.org/">An example using a button with wai-aria</a></li>
+</ul>
+
+
+<h2>Results</h2>
+insert findings or results when we have some
+
+{{/sub-content}}
+
+{{/layouts/layout-two-thirds}}

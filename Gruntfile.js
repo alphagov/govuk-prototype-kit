@@ -1,3 +1,5 @@
+var ngrok = require('ngrok');
+
 module.exports = function(grunt){
   grunt.initConfig({
     // Clean
@@ -99,6 +101,12 @@ module.exports = function(grunt){
             options: {
                 logConcurrentOutput: true
             }
+        },
+        ngrok:{
+            tasks: ['watch', 'nodemon', 'ngrok'],
+            options: {
+                logConcurrentOutput: true
+            }
         }
     }
   });
@@ -138,6 +146,25 @@ module.exports = function(grunt){
     'generate-assets',
     'concurrent:target'
   ]);
+
+  grunt.registerTask('expose-localhost', [
+    'generate-assets',
+    'concurrent:ngrok'
+  ]);
+
+  grunt.registerTask('ngrok', 'Run ngrok', function() {
+    var done = this.async();
+
+    ngrok.connect({
+      port: 3000,
+    }, function(err, url) {
+      if (err !== null) {
+        grunt.fail.fatal(err);
+        return done();
+      }
+      grunt.log.write('Exposing website: ' + url);
+    });
+  });
 
   grunt.event.on('watch', function(action, filepath, target) {
 

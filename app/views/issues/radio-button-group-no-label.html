@@ -1,0 +1,67 @@
+{{<layouts/layout-two-thirds}}
+
+{{$pageTitle}}
+Radio button group is missing a common label
+{{/pageTitle}}
+
+{{$sub-content}}
+<h1>Radio button group is missing a common label</h1>
+<h2>Test Case</h2>
+
+<div class="test-case">
+    <form action="https://www.registertovote.service.gov.uk/register-to-vote/country-of-residence" method="POST">
+        <h3>Where do you live?</h3>
+        <div class="form-group">
+            <fieldset>
+                <label class="block-label" for="radio-1">
+                    <input id="radio-1" type="radio" name="country.residence" value="England">
+                    England
+                </label>
+                <label class="block-label" for="radio-2">
+                    <input id="radio-2" type="radio" name="country.residence" value="Scotland">
+                    Scotland
+                </label>
+                <label class="block-label" for="radio-3">
+                    <input id="radio-3" type="radio" name="country.residence" value="Wales">
+                    Wales
+                </label>
+                <p class="form-block">or</p>
+                <label class="block-label" for="radio-4">
+                    <input id="radio-4" type="radio" name="country.residence" value="Abroad">
+                    British citizen living in another country (including the Channel Islands or Isle of Man)
+                </label>
+            </fieldset>
+        </div>
+
+        <div class="form-group">
+            <button class="button">Continue</button>
+        </div>
+    </form>
+</div>
+
+<h2>Example Usage</h2>
+<ul>
+    <li><a href="https://www.registertovote.service.gov.uk/register-to-vote/country-of-residence">Register to vote:
+        Where do you live?</a></li>
+</ul>
+
+
+<h2>Background</h2>
+<p>It is often easy for sighted users to understand the purpose of a group of radio buttons based on context. This is
+    not the case for screen reader users. Grouping buttons together programmatically under a clear, descriptive name
+    eliminates the ambiguity screen reader users experience to create a more accessible product. In this example the
+    fieldset should either have a legend or the radio buttons should reference the same element with aria-labelledby.</p>
+
+<h3>Resources</h3>
+<ul>
+    <li><a href="https://dequeuniversity.com/rules/axe/1.1/radiogroup">Deque University: Radio inputs with the same name
+        attribute value must be part of a group</a></li>
+</ul>
+
+
+<h2>Results</h2>
+insert findings or results when we have some
+
+{{/sub-content}}
+
+{{/layouts/layout-two-thirds}}
