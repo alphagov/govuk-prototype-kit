@@ -52,6 +52,14 @@ node start.js
 
 Go to [localhost:3000](http://localhost:3000) in your browser.
 
+If you want to view multiple prototypes at the same time you can give them unique port numbers, like this:
+
+```
+PORT=3005 node start.js
+```
+
+To change the port number permanently, edit the port variable in /server.js. 
+
 #### Hot reload
 
 Any code changes should update in the browser without you restarting the app.
