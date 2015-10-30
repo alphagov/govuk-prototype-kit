@@ -1,0 +1,12 @@
+.check-your-answers {
+
+  td {
+    @include core-19;
+    vertical-align: top;
+  }
+
+  .change-answer {
+    text-align: right;
+  }
+
+}
