@@ -17,4 +17,4 @@ When building a prototype you'll be doing the following:
 
 ### Advanced
 
-3. [creating custom routes](./creating-routes)
+3. [creating custom routes](./creating-routes.md)

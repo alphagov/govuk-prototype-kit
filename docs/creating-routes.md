@@ -27,7 +27,7 @@ Let's break this down into bits:
 
 So as an example, a request for the URL `http://localhost:3000/examples/template-data` has this route:
 
-    get('/examples/template-data', function(req, res) {
+    router.get('/examples/template-data', function(req, res) {
         res.render('examples/template-data', { 'name' : 'Foo' });
     });
     
@@ -44,4 +44,4 @@ Template files are found this way: `/views/` + `template` parameter + `.html`. T
 
 In the same way, the template `/examples/hello_world` would point to the `/examples/hello_world.html` file.
 
-[Read the Express documentation for routes](http://expressjs.com/3x/api.html#app.VERB)
+[Read the Express documentation for routes](http://expressjs.com/4x/api.html#app.VERB)

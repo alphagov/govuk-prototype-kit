@@ -7,8 +7,10 @@
     "node": "4.x"
   },
   "dependencies": {
-    "express": "3.4.7",
+    "express": "4.13.3",
     "express-writer": "0.0.4",
+    "serve-favicon": "2.3.0",
+    "basic-auth-connect": "1.0.0",
     "consolidate": "0.x",
     "readdir": "0.0.6",
     "minimist": "0.0.8",
