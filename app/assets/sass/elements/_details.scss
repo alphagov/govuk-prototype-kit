@@ -21,20 +21,16 @@ details {
       outline: 3px solid $focus-colour;
     }
   }
-  
+
   // Underline only summary text (not the arrow)
   .summary {
     text-decoration: underline;
   }
-  
+
   // Match fallback arrow spacing with -webkit default
   .arrow {
     margin-right: .35em;
     font-style: normal;
   }
-  
-  // Remove top margin from bordered panel
-  .panel-indent {
-    margin-top: 0;
-  }
+
 }
