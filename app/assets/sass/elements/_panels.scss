@@ -8,22 +8,27 @@
 .panel-indent {
   @extend %contain-floats;
   clear: both;
-  border-left: 4px solid $border-colour;
+  border-left: 5px solid $border-colour;
 
-  padding: 10px 0 10px $gutter-half;
-  margin: ($gutter $gutter-half $gutter*1.5 0);
+  padding: em(15,19);
+  margin-bottom: em(15,19);
 
-  legend {
+  :first-child {
     margin-top: 0;
   }
-  
-  // Remove bottom margin on last paragraph
-  p:only-child,
-  p:last-child {
+
+  :only-child,
+  :last-child {
     margin-bottom: 0;
   }
-  
-  .form-group:last-child {
-    margin-bottom: 0;
-  }
+
+}
+
+.panel-indent-info {
+  border-left-width: 10px;
+}
+
+// Indented panels within form groups
+.form-group .panel-indent {
+  padding-bottom: 0;
 }
