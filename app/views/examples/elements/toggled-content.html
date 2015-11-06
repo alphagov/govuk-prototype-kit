@@ -1,0 +1,116 @@
+{{<layout}}
+
+{{$content}}
+<main id="content" role="main">
+  <a class="link-back" href="/examples/">Back to the GOV.UK prototype kit examples</a>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form action="/" method="post" class="form">
+
+        <h1 class="heading-xlarge">
+          Toggled content
+        </h1>
+
+        <p>
+          This page shows how to use the <code class="code">data-target</code> attribute to show and hide content when a radio button or checkbox is selected.
+        </p>
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">What is your nationality?</legend>
+
+            <label for="nationality_british" class="block-label">
+              <input type="checkbox" name="nationality_british" value="British" id="nationality_british">
+              British
+            </label>
+
+            <label for="nationality_irish" class="block-label">
+              <input type="checkbox" name="nationality_irish" value="Irish" id="nationality_irish">
+              Irish
+            </label>
+
+            <label for="nationality_other" class="block-label" data-target="example_nationality_other">
+              <input type="checkbox" name="nationality_other" value="Wales" id="nationality_other">
+              Citizen of another country
+            </label>
+
+            <div class="panel-indent js-hidden" id="example_nationality_other">
+              <label for="nationality_other_countries" class="form-label">
+                Country name
+              </label>
+              <input type="text" id="nationality_other_countries">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <h1 class="heading-large">
+          Where should we send your new<br> passport?
+        </h1>
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              Where should we send your new passport?
+            </legend>
+
+            <label for="radio-home-address" class="block-label">
+              <input id="radio-home-address" type="radio" name="radio-indent-group" value="Yes">
+              Home address
+            </label>
+
+            <label for="radio-other-address" class="block-label" data-target="example-other-address">
+              <input id="radio-other-address" type="radio" name="radio-indent-group" value="No">
+              Other address
+            </label>
+
+            <div class="panel-indent js-hidden" id="example-other-address">
+
+              <h2 class="heading-medium">
+                Your other address
+              </h2>
+
+              <fieldset>
+
+                <legend class="visuallyhidden">
+                  Your other address
+                </legend>
+
+                <div class="form-group form-group-compound">
+                  <label class="form-label" for="address-line-1">Street</label>
+                  <input type="text" class="form-control" id="address-line-1">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label visuallyhidden" for="address-line-2">Street</label>
+                  <input type="text" class="form-control" id="address-line-2">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="address-town">Town or City</label>
+                  <input type="text" class="form-control form-control-1-4" id="address-town">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="address-postcode">Postcode</label>
+                  <input type="text" class="form-control form-control-1-8" id="address-postcode">
+                </div>
+
+              </fieldset>
+
+            </div>
+          </fieldset>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{{/content}}
+
+{{/layout}}
