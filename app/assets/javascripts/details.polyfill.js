@@ -7,9 +7,6 @@
 // http://www.sitepoint.com/fixing-the-details-element/
 
 (function () {
-  'use strict';
-
-  var NATIVE_DETAILS = typeof document.createElement('details').open === 'boolean';
 
   // Add event construct for modern browsers or IE
   // which fires the callback with a pre-converted target reference
@@ -27,24 +24,16 @@
 
   // Handle cross-modal click events
   function addClickEvent(node, callback) {
-    // Prevent space(32) from scrolling the page
-    addEvent(node, 'keypress', function (e, target) {
-      if (target.nodeName === 'SUMMARY') {
-        if (e.keyCode === 32) {
-          if (e.preventDefault) {
-            e.preventDefault();
-          } else {
-            e.returnValue = false;
-          }
-        }
-      }
+    var keydown = false;
+    addEvent(node, 'keydown', function () {
+      keydown = true;
     });
-    // When the key comes up - check if it is enter(13) or space(32)
     addEvent(node, 'keyup', function (e, target) {
-      if (e.keyCode === 13 || e.keyCode === 32) { callback(e, target); }
+      keydown = false;
+      if (e.keyCode === 13) { callback(e, target); }
     });
-    addEvent(node, 'mouseup', function (e, target) {
-      callback(e, target);
+    addEvent(node, 'click', function (e, target) {
+      if (!keydown) { callback(e, target); }
     });
   }
 
@@ -81,8 +70,11 @@
 
     // else iterate through them to apply their initial state
     var n = list.length, i = 0;
-    for (i; i < n; i++) {
+    for (n; i < n; i++) {
       var details = list[i];
+
+      // Detect native implementations
+      details.__native = typeof(details.open) == 'boolean';
 
       // Save shortcuts to the inner summary and content elements
       details.__summary = details.getElementsByTagName('summary').item(0);
@@ -94,32 +86,24 @@
         details.__content.id = 'details-content-' + i;
       }
 
-      // Add ARIA role="group" to details
-      details.setAttribute('role', 'group');
-
       // Add role=button to summary
       details.__summary.setAttribute('role', 'button');
 
       // Add aria-controls
       details.__summary.setAttribute('aria-controls', details.__content.id);
 
-      // Set tabIndex so the summary is keyboard accessible for non-native elements
-      // http://www.saliences.com/browserBugs/tabIndex.html
-      if (!NATIVE_DETAILS) {
-        details.__summary.tabIndex = 0;
-      }
+      // Set tabindex so the summary is keyboard accessible
+      details.__summary.setAttribute('tabindex', '0');
 
-      // Detect initial open state
-      var openAttr = details.getAttribute('open') !== null;
-      if (openAttr === true) {
+      // Detect initial open/closed state
+      var detailsAttr = details.hasAttribute('open');
+      if (typeof detailsAttr !== 'undefined' && detailsAttr !== false) {
         details.__summary.setAttribute('aria-expanded', 'true');
         details.__content.setAttribute('aria-hidden', 'false');
       } else {
         details.__summary.setAttribute('aria-expanded', 'false');
         details.__content.setAttribute('aria-hidden', 'true');
-        if (!NATIVE_DETAILS) {
-          details.__content.style.display = 'none';
-        }
+        details.__content.style.display = 'none';
       }
 
       // Create a circular reference from the summary back to its
@@ -127,22 +111,12 @@
       details.__summary.__details = details;
 
       // If this is not a native implementation, create an arrow
-      // inside the summary
-      if (!NATIVE_DETAILS) {
-
+      // inside the summary, saving its reference as a summary property
+      if (!details.__native) {
         var twisty = document.createElement('i');
-
-        if (openAttr === true) {
-          twisty.className = 'arrow arrow-open';
-          twisty.appendChild(document.createTextNode('\u25bc'));
-        } else {
-          twisty.className = 'arrow arrow-closed';
-          twisty.appendChild(document.createTextNode('\u25ba'));
-        }
-
+        twisty.className = 'arrow arrow-closed';
+        twisty.appendChild(document.createTextNode('\u25ba'));
         details.__summary.__twisty = details.__summary.insertBefore(twisty, details.__summary.firstChild);
-        details.__summary.__twisty.setAttribute('aria-hidden', 'true');
-
       }
     }
 
@@ -150,22 +124,13 @@
     // Also update the arrow position
     function statechange(summary) {
 
-      var expanded = summary.__details.__summary.getAttribute('aria-expanded') === 'true';
-      var hidden = summary.__details.__content.getAttribute('aria-hidden') === 'true';
+      // Update aria-expanded attribute on click
+      var expanded = summary.__details.__summary.getAttribute('aria-expanded') == 'true';
+      var hidden = summary.__details.__content.getAttribute('aria-hidden') == 'true';
 
       summary.__details.__summary.setAttribute('aria-expanded', (expanded ? 'false' : 'true'));
       summary.__details.__content.setAttribute('aria-hidden', (hidden ? 'false' : 'true'));
-
-      if (!NATIVE_DETAILS) {
-        summary.__details.__content.style.display = (expanded ? 'none' : '');
-
-        var hasOpenAttr = summary.__details.getAttribute('open') !== null;
-        if (!hasOpenAttr) {
-          summary.__details.setAttribute('open', 'open');
-        } else {
-          summary.__details.removeAttribute('open');
-        }
-      }
+      summary.__details.__content.style.display = (expanded ? 'none' : 'block');
 
       if (summary.__twisty) {
         summary.__twisty.firstChild.nodeValue = (expanded ? '\u25ba' : '\u25bc');
