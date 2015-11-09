@@ -1,0 +1,98 @@
+{{<layout}}
+
+{{$content}}
+<main id="content" role="main">
+  <a class="link-back" href="/examples/">Back to the GOV.UK prototype kit examples</a>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form action="/" method="post" class="form">
+
+        <h1 class="heading-xlarge">
+          Radio buttons <br> and checkboxes
+        </h1>
+
+        <p>
+          This test page demonstrates selection-buttons.js from the govuk frontend toolkit, which
+          sets 'focused' and 'selected' states for the large hit area labels that wrap checkboxes and radio buttons.
+        </p>
+
+        <p>
+          It also demonstrates setting ARIA attributes when showing and hiding additional content.
+        </p>
+
+        <h2 class="heading-large">
+          What is your nationality?
+        </h2>
+
+        <p>If you have dual nationality, select all options that are relevant to you.</p>
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">What is your nationality?</legend>
+
+            <label for="nationality_british" class="block-label">
+              <input type="checkbox" name="nationality_british" value="British" id="nationality_british">
+              British
+            </label>
+
+            <label for="nationality_irish" class="block-label">
+              <input type="checkbox" name="nationality_irish" value="Irish" id="nationality_irish">
+              Irish
+            </label>
+
+            <label for="nationality_other" class="block-label" data-target="example_nationality_other">
+              <input type="checkbox" name="nationality_other" value="Wales" id="nationality_other">
+              Citizen of another country
+            </label>
+
+            <div class="panel-indent js-hidden" id="example_nationality_other">
+              <label for="nationality_other_countries" class="form-label">
+                Country name
+              </label>
+              <input type="text" id="nationality_other_countries">
+            </div>
+
+          </fieldset>
+        </div>
+
+        <h2 class="heading-large">
+          Which part of the Housing Act was your licence isued under?
+        </h2>
+
+        <p>
+          Select one of the options below.
+        </p>
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              Which part of the Housing Act was your licence isued under?
+            </legend>
+
+            <label for="radio-part-2" class="block-label">
+              <input id="radio-part-2" type="radio" name="housing-act" value="Part 2">
+              <span class="heading-small">Part 2 of the Housing Act 2004</span><br>
+              For properties that are 3 or more stories high and occupied by 5 or more people
+            </label>
+
+            <label for="radio-part-3" class="block-label">
+              <input id="radio-part-3" type="radio" name="housing-act" value="Part 3">
+              <span class="heading-small">Part 3 of the Housing Act 2004</span><br>
+              For properties that are within a geographical area defined by a local council
+            </label>
+
+          </fieldset>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{{/content}}
+
+{{/layout}}
