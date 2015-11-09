@@ -20,7 +20,7 @@ You may already have it, try:
 node --version
 ```
 
-Your version needs to be at least v0.10.0.
+Your version should be 4.2.2.
 
 If you don't have Node, download it here: [http://nodejs.org/](http://nodejs.org/).
 

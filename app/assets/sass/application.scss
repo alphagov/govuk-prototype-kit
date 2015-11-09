@@ -38,20 +38,3 @@
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you,
 // either add and import new partial files, or modify those in GOV.UK elements to fit your user needs.
-
-// Related links
-// (These styles will be moved to GOV.UK elements, duplicating here for now.)
-.related-links {
-  margin-top: $gutter;
-  border-top: 10px solid $govuk-blue;
-  padding-top: 5px;
-
-  .heading-medium {
-    margin-top: 0.3em;
-    margin-bottom: 0.5em
-  }
-
-  li {
-    margin-bottom: 10px;
-  }
-}
