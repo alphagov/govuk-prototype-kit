@@ -78,16 +78,6 @@ textarea{
   margin-bottom: 10px;
 }
 
-// Form title
-// TODO: Remove this (duplication of existing heading styles)
-.form-title {
-  margin-bottom: $gutter;
-
-  @include media(tablet) {
-    margin-bottom: ($gutter*1.5);
-  }
-}
-
 
 // 4. Form labels
 // ==========================================================================
@@ -125,16 +115,18 @@ legend {
   }
 }
 
-// Used for paragraphs in-between form elements
+// Used for the 'or' in between block label options
 .form-block {
   @extend %contain-floats;
   float: left;
   width: 100%;
 
+  margin-top: -5px;
   margin-bottom: 5px;
 
   @include media(tablet) {
-    margin-top: 10px;
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -163,7 +155,7 @@ legend {
 
   padding: 4px;
   background-color: $white;
-  border: 1px solid $border-colour;
+  border: 2px solid $grey-1;
 
   // TODO: Remove 50% width set for tablet and up
   // !! BREAKING CHANGE !!
