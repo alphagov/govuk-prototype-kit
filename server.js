@@ -1,9 +1,12 @@
 var path  = require('path'),
     express = require('express'),
     routes = require(__dirname + '/app/routes.js'),
+    form = require(__dirname + '/app/middleware/form'),
     favicon = require('serve-favicon'),
+    session = require('express-session'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
     app = express(),
-    basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
     port = (process.env.PORT || 3000),
     utils = require(__dirname + '/lib/utils.js'),
@@ -12,10 +15,9 @@ var path  = require('path'),
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
-    useAuth  = process.env.USE_AUTH || 'true';
-
-    env      = env.toLowerCase();
-    useAuth  = useAuth.toLowerCase();
+    useAuth  = process.env.USE_AUTH || 'true',
+    cookieSecret = process.env.COOKIE_SECRET || String(Date.now()),
+    sessionSecret = process.env.SESSION_SECRET || String(Date.now());
 
 // Authenticate against the environment-provided credentials if running
 // the app in production (Heroku, effectively)
@@ -43,12 +45,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(cookieParser(cookieSecret));
+app.use(session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: false,
+        maxAge: 631138519494
+    }
+}));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // send assetPath to all views
 app.use(function (req, res, next) {
   res.locals.assetPath="/public/";
   next();
 });
+
+
+//Global Middleware
+app.use(form);
 
 // routes (found in app/routes.js)
 
@@ -64,16 +82,18 @@ if (typeof(routes) != "function"){
 
 app.get(/^\/([^.]+)$/, function (req, res) {
 
-  var path = (req.params[0]);
+    var path = (req.params[0]);
+    var errors = req.form.getErrors();
+    var formData = req.form.getData();
 
-  res.render(path, function(err, html) {
-    if (err) {
-      console.log(err);
-      res.sendStatus(404);
-    } else {
-      res.end(html);
-    }
-  });
+    res.render(path, {errors: errors, formData: formData}, function (err, html) {
+        if (err) {
+            console.log(err);
+            res.sendStatus(404);
+        } else {
+            res.end(html);
+        }
+    });
 
 });
 
