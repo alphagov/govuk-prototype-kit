@@ -1,8 +1,8 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}} Confirmation page example {{/pageTitle}}
+{% block page_title %}Confirmation page example | GOV.UK Protoyping Kit{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 
@@ -27,8 +27,6 @@
     </div>
   </div>
 
-</main>
+</main><!-- / #page-container -->
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

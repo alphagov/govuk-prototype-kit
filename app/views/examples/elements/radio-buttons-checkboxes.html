@@ -1,6 +1,7 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$content}}
+{% block content %}
+
 <main id="content" role="main">
   <a class="link-back" href="/examples/">Back to the GOV.UK prototype kit examples</a>
 
@@ -92,7 +93,6 @@
 
     </div>
   </div>
-</main>
-{{/content}}
+</main><!-- / #page-container -->
 
-{{/layout}}
+{% endblock %}
