@@ -58,7 +58,7 @@ If you want to view multiple prototypes at the same time you can give them uniqu
 PORT=3005 node start.js
 ```
 
-To change the port number permanently, edit the port variable in /server.js. 
+To avoid conflicts we recommend using ports between 3000 and 3009. To change the port number permanently, edit the port variable in /server.js.
 
 #### Hot reload
 
