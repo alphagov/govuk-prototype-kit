@@ -58,7 +58,7 @@ If you want to view multiple prototypes at the same time you can give them uniqu
 PORT=3005 node start.js
 ```
 
-To change the port number permanently, edit the port variable in /server.js. 
+To avoid conflicts we recommend using ports between 3000 and 3009. To change the port number permanently, edit the port variable in /server.js.
 
 #### Hot reload
 
@@ -79,3 +79,9 @@ The app recompiles app/assets/stylesheets/application.scss everytime changes are
 
 This project is built on top of Express, the idea is that it is straightforward to create simple static pages out of the box. However, you're not limited to that - more dynamic sites can be built with more understanding of Express. Here's a good [Express tutorial.](http://code.tutsplus.com/tutorials/introduction-to-express--net-33367)
 
+## Community
+
+We have two Slack channels for this app. You'll need a government email address to join them.
+
+* [Slack channel for users of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
+* [Slack channel for developers of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/)
