@@ -1,6 +1,6 @@
 # Principles
 
-The prototyping kit:
+The prototype kit:
 
 - is designed for prototyping, not for production code
 - is as simple as possible without teaching bad habits

@@ -12,7 +12,7 @@ For more complex prototypes, you will need to use Mustache.
 
 ## Mustache
 
-All templates used in the prototyping application (app) should be written in the Mustache language. Its specification is listed on [this page](http://mustache.github.io/mustache.5.html).
+All templates used in the prototype kit should be written in the Mustache language. Its specification is listed on [this page](http://mustache.github.io/mustache.5.html).
 
 ### A quick example (from the specification):
 
@@ -41,7 +41,7 @@ Will produce the following:
 
 ### Using Mustache in the app
 
-When working with the prototyping app, your version of the above exists like so:
+When working with the prototype kit, your version of the above exists like so:
 
 The following route (where the `response` parameter is `res`) would sit in [routes.js](../app/routes.js):
 
@@ -89,7 +89,7 @@ When a page is requested, the templating language will work out what it should i
 
 ### Mustache inheritance
 
-As well as the features you get in standard Mustache, the prototyping app also contains an implementation of [this proposal](https://gist.github.com/spullara/1854699) for template inheritance.
+As well as the features you get in standard Mustache, the prototype kit also contains an implementation of [this proposal](https://gist.github.com/spullara/1854699) for template inheritance.
 
 That Gist explains it pretty well, you can have many levels of inheritance but they are all doing one thing: specifying what appears in certain blocks of the page.
 
@@ -171,7 +171,7 @@ Try using the `views/logo.html` file in your base template like so:
     
 The `views/logo.html` should be:
 
-    <p>Prototyping application</p>
+    <p>Prototype kit</p>
     
 You should find the resulting HTML page will be:
 
@@ -180,7 +180,7 @@ You should find the resulting HTML page will be:
             <title>Inheritance test page</title>
         </head>
         <body>
-            <p>Prototyping application</p>
+            <p>Prototype kit</p>
             <p>Section: Guides</p>
             <h1>Inheritance test page</h1>
             <p>Hello world</p>
@@ -211,7 +211,7 @@ All partials are kept in the [includes](../app/views/includes/) folder.
 
 ## Inheriting the GOV.UK template
 
-Pages in the prototyping app are set up to use the [govuk_template](https://github.com/alphagov/govuk_template) as the base template in an inheritance chain. Have a look at the template files `views/layout.html` and `views/index.html` to see an example.
+Pages in the prototype kit are set up to use the [govuk_template](https://github.com/alphagov/govuk_template) as the base template in an inheritance chain. Have a look at the template files `views/layout.html` and `views/index.html` to see an example.
 
 ### Template blocks
 
