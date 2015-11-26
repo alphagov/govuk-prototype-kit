@@ -4,6 +4,7 @@ var path = require('path'),
     favicon = require('serve-favicon'),
     app = express(),
     basicAuth = require('basic-auth-connect'),
+    bodyParser = require('body-parser'),
     port = (process.env.PORT || 3000),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
@@ -35,6 +36,12 @@ app.use('/public/images/icons', express.static(__dirname + '/govuk_modules/govuk
 // Elements refers to icon folder instead of images folder
 
 app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images','favicon.ico')));
+
+// Support for parsing data in POSTs
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // send assetPath to all views
 app.use(function (req, res, next) {
