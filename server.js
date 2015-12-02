@@ -6,6 +6,7 @@ var path = require('path'),
     basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
     port = (process.env.PORT || 3000),
+    utils = require(__dirname + '/lib/utils.js'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
@@ -13,31 +14,11 @@ var path = require('path'),
     env = process.env.NODE_ENV || 'development';
     useAuth = process.env.USE_AUTH || true;
 
-// Authentication
-var auth = function (req, res, next) {
-  function unauthorized(res) {
-    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-    return res.sendStatus(401);
-  }
-
-  var user = basicAuth(req);
-
-  if (!username || !password) {
-    console.log('Username or password is not set.');
-    return res.send('Error: username or password not set. <a href="https://github.com/alphagov/govuk_prototype_kit/blob/master/docs/deploying.md#3-set-a-username-and-password">See guidance for setting these</a>');
-  }
-  if (!user || !user.name || !user.pass) {
-    return unauthorized(res);
-  }
-  if (user.name === username && user.pass === password) {
-    return next();
-  }
-  else {
-    return unauthorized(res);
-  }
-};
-
-
+// Authenticate against the environment-provided credentials if running
+// the app in production (Heroku, effectively)
+if ((env === 'production') && (useAuth === true)){
+    app.use(utils.basicAuth(username, password));
+}
 
 // Application settings
 app.engine('html', require(__dirname + '/lib/template-engine.js').__express);
@@ -66,13 +47,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Authenticate against the environment-provided credentials, if running
-// the app in production (Heroku, effectively)
-if ((env === 'production') && (useAuth === true)){
-  app.get('*', auth, function (req, res, next) {
-    next();
-  });
-}
 // routes (found in app/routes.js)
 
 if (typeof(routes) != "function"){
