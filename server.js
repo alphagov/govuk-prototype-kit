@@ -5,10 +5,7 @@ var path  = require('path'),
     app = express(),
     basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
-    port = (process.env.PORT || 3000),
     utils = require(__dirname + '/lib/utils.js'),
-    prompt = require('prompt'),
-    portScanner = require('portscanner'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
@@ -81,45 +78,4 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
 // start the app
 
-console.log('');
-// Check that default port is free, else offer to change
-portScanner.findAPortNotInUse(port, port+50, '127.0.0.1', function(error, availablePort) {
-
-  if (port == availablePort){
-    app.listen(port);
-    console.log('Listening on port ' + port + '   url: http://localhost:' + port);
-  }
-  else {
-    // Default port in use - offer to change to available port
-    console.log("ERROR: Port " + port + " in use - do you have another prototype running?\n");
-    // Set up prompt settings
-    prompt.colors = false;
-    prompt.start();
-    prompt.message = "";
-    prompt.delimiter = "";
-
-    // Ask user if they want to change port
-    prompt.get([{
-      name: 'answer',
-      description: 'Change to an available port? (y/n)',
-      required: true,
-      type: 'string',
-      pattern: /y(es)?|no?/i,
-      message: 'Please enter y or n'
-    }], function (err, result) {
-      if (result.answer.match(/y(es)?/i) ) {
-        // User answers yes
-        port = availablePort;
-        app.listen(port);
-        console.log('Changed to port ' + port + '   url: http://localhost:' + port);
-      }
-      else {
-        // User answers no - exit
-        console.log('You can set a new default port in server.js, or by running the server with PORT=XXXX');
-        console.log("Exiting");
-        process.exit(0);
-      }
-    });
-  }
-});
-
+utils.findAvailablePort(app);
