@@ -1,53 +1,50 @@
-{{<govuk_template}}
+{% extends "govuk_template.html" %}
 
-{{$head}}
-  {{>includes/examples_head}}
-{{/head}}
+{% block head %}
+  {% include "includes/examples_head.html" %}
+{% endblock %}
 
-{{$homepageUrl}}
-  https://www.gov.uk.com
-{{/homepageUrl}}
+{% block homepage_url %}
+  https://www.gov.uk
+{% endblock %}
 
-{{$globalHeaderText}}
+{% block global_header_text %}
   GOV.UK
-{{/globalHeaderText}}
+{% endblock %}
 
-{{$headerClass}}with-proposition{{/headerClass}}
+{% block header_class %}with-proposition{% endblock %}
 
-{{$propositionHeader}}
+{% block proposition_header %}
   <div class="area header-proposition">Propositional navigation area</div>
-{{/propositionHeader}}
+{% endblock %}
 
-{{$insideHeader}}
+{% block inside_header %}
 <div class="area">Inside header area</div>
-{{/insideHeader}}
+{% endblock %}
 
-{{$afterHeader}}
+{% block after_eader %}
 <div class="area">After header area</div>
-{{/afterHeader}}
+{% endblock %}
 
-{{$cookieMessage}}
+{% block cookie_message %}
 <div class="area">Cookie message</div>
-{{/cookieMessage}}
+{% endblock %}
 
-{{$headerClass}}with-proposition{{/headerClass}}
+{% block header_class %}with-proposition{% endblock %}
 
-{{$content}}
+{% block content %}
 <main class="area">Content area</main>
-{{/content}}
+{% endblock %}
 
-{{$bodyEnd}}
+{% block body_end %}
 <div class="area">Body end area</div>
-{{/bodyEnd}}
+{% endblock %}
 
-{{$footerTop}}
+{% block footer_top %}
 <div class="area">Footer top area</div>
-{{/footerTop}}
+{% endblock %}
 
-{{$footerSupportLinks}}
+{% block footer_support_links %}
 <div class="area">Footer support links area</div>
-{{/footerSupportLinks}}
+{% endblock %}
 
-
-
-{{/govuk_template}}

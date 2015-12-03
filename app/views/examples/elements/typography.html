@@ -1,9 +1,10 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$content}}
+{% block content %}
+
 <main id="content" role="main">
 
-  {{>includes/breadcrumb_examples}}
+  {% include "includes/breadcrumb_examples.html" %}
 
   <h1 class="heading-xlarge">
     Typography
@@ -53,6 +54,6 @@
   </div>
 
 </main>
-{{/content}}
 
-{{/layout}}
+{% endblock %}
+

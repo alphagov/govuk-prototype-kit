@@ -1,10 +1,10 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}
-	GOV.UK prototype kit
-{{/pageTitle}}
+{% block pageTitle %}
+	GOV.UK prototyping kit
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 	<div class="grid-row">
@@ -59,6 +59,4 @@
 	</div>
 </main>
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

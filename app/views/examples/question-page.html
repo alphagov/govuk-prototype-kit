@@ -1,8 +1,14 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}Question page{{/pageTitle}}
+{% block page_title %}Question page example | GOV.UK Protoyping Kit{% endblock %}
 
-{{$content}}
+{% block proposition_header %}
+  {% include "includes/propositional_navigation.html" %}
+{% endblock %}
+
+{% block header_class %}with-proposition{% endblock %}
+
+{% block content %}
 
 <main id="content" role="main">
   <div class="grid-row">
@@ -48,8 +54,6 @@
 
     </div>
   </div>
-</main>
+</main><!-- / #page-container -->
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

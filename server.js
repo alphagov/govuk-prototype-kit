@@ -1,5 +1,6 @@
 var path = require('path'),
     express = require('express'),
+    nunjucks = require('express-nunjucks'),
     routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
     app = express(),
@@ -23,10 +24,14 @@ if (env === 'production') {
 }
 
 // Application settings
-app.engine('html', require(__dirname + '/lib/template-engine.js').__express);
+
 app.set('view engine', 'html');
-app.set('vendorViews', __dirname + '/govuk_modules/govuk_template/views/layouts');
-app.set('views', path.join(__dirname, '/app/views'));
+app.set('views', [__dirname + '/app/views', __dirname + '/lib/']);
+
+nunjucks.setup({
+    autoescape: true,
+    watch: true
+}, app);
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
@@ -45,7 +50,7 @@ app.use(bodyParser.urlencoded({
 
 // send assetPath to all views
 app.use(function (req, res, next) {
-  res.locals.assetPath="/public/";
+  res.locals.asset_path="/public/";
   next();
 });
 
@@ -68,8 +73,14 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
 	res.render(path, function(err, html) {
 		if (err) {
-			console.log(err);
-			res.sendStatus(404);
+			res.render(path + "/index", function(err2, html) {
+        if (err2) {
+          console.log(err);
+          res.status(404).send(err).send(err2);
+        } else {
+          res.end(html);
+        }
+      });
 		} else {
 			res.end(html);
 		}

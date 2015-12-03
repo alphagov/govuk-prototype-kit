@@ -1,8 +1,14 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}Check your answers{{/pageTitle}}
+{% block page_title %}Check your answers page example | GOV.UK Protoyping Kit{% endblock %}
 
-{{$content}}
+{% block proposition_header %}
+  {% include "includes/propositional_navigation.html" %}
+{% endblock %}
+
+{% block header_class %}with-proposition{% endblock %}
+
+{% block content %}
 
 <main id="content" role="main">
 
@@ -126,8 +132,6 @@
 		<a href="confirmation-page" class="button">Accept and send application</a>
 	</div>
 
-</main>
+</main><!-- / #page-container -->
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

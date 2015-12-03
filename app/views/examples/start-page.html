@@ -1,16 +1,8 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}} Start page example {{/pageTitle}}
+{% block page_title %}Confirmation page example | GOV.UK Protoyping Kit{% endblock %}
 
-{{$propositionHeader}}
-<!-- blank for no proposition header -->
-{{/propositionHeader}}
-
-{{$headerClass}}
-<!-- blank for no proposition header -->
-{{/headerClass}}
-
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 
@@ -67,8 +59,6 @@
     </div>
   </div>
 
-</main>
+</main><!-- / #page-container -->
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}
