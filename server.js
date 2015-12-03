@@ -1,25 +1,26 @@
-var path = require('path'),
+var path  = require('path'),
     express = require('express'),
     routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
     app = express(),
-    basicAuth = require('basic-auth-connect'),
+    basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
     port = (process.env.PORT || 3000),
+    utils = require(__dirname + '/lib/utils.js'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
-    env = process.env.NODE_ENV || 'development';
+    env      = process.env.NODE_ENV || 'development',
+    useAuth  = process.env.USE_AUTH || 'true';
 
-// Authenticate against the environment-provided credentials, if running
+    env      = env.toLowerCase();
+    useAuth  = useAuth.toLowerCase();
+
+// Authenticate against the environment-provided credentials if running
 // the app in production (Heroku, effectively)
-if (env === 'production') {
-  if (!username || !password) {
-    console.log('Username or password is not set, exiting.');
-    process.exit(1);
-  }
-  app.use(basicAuth(username, password));
+if (env === 'production' && useAuth === 'true'){
+    app.use(utils.basicAuth(username, password));
 }
 
 // Application settings
@@ -49,7 +50,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 // routes (found in app/routes.js)
 
 if (typeof(routes) != "function"){
@@ -64,16 +64,16 @@ if (typeof(routes) != "function"){
 
 app.get(/^\/([^.]+)$/, function (req, res) {
 
-	var path = (req.params[0]);
+  var path = (req.params[0]);
 
-	res.render(path, function(err, html) {
-		if (err) {
-			console.log(err);
-			res.sendStatus(404);
-		} else {
-			res.end(html);
-		}
-	});
+  res.render(path, function(err, html) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(404);
+    } else {
+      res.end(html);
+    }
+  });
 
 });
 

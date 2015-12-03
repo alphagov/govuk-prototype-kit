@@ -29,7 +29,10 @@ heroku config:set USERNAME=username_here
 heroku config:set PASSWORD=password_here
 ```
 
-
+If you don't want to have password protection on your prototype, you can set the `USE_AUTH` config var:
+```
+heroku config:set USE_AUTH=false
+```
 ### 4) Deploy changes
 
 If you make a change to your prototype, commit your changes as usual then run:
