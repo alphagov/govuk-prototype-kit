@@ -39,3 +39,47 @@ The resulting HTML page will be:
     </html>
 
 You can read more in the [Nunjucks documentation](https://mozilla.github.io/nunjucks/templating.html)
+
+
+## Converting old prototypes
+
+Earlier versions of the prototype kit used a different templating language called Mustache.
+
+Converting Mustache templates to Nunjucks ones is relatively simple. Here are the main things you'll need to do:
+
+### Template inheritance
+
+    {{<layout}}
+
+    {{/layout}}
+
+Becomes…
+
+    {% extends "layout.html" %}
+
+    {% endblock %}
+
+
+### Template blocks
+
+    {{$pageTitle}}
+        GOV.UK prototype kit
+    {{/pageTitle}}
+
+Becomes…
+
+    {% block pageTitle %}
+        GOV.UK prototype kit
+    {% endblock %}
+
+
+### Includes
+
+    {{>includes/breadcrumbs}}
+
+Becomes…
+
+    {% include "includes/breadcrumbs.html" %}
+
+
+
