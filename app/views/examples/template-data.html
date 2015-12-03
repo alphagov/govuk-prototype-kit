@@ -4,11 +4,21 @@
 
 {{$content}}
 <main id="content" role="main">
-  <h1 class="heading-xlarge">Example of using variables in pages</h1>
-  <dl>
-    <dt style="font-weight: bold; display: inline;">'name' variable: </dt>
-    <dd style="display: inline">{{ name }}</dd>
-  </dl>
+
+  {{>includes/breadcrumb_examples}}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">Passing data into pages</h1>
+
+      <p class="lede">The example route defined in '/routes.js' is passing the string '{{ name }}' to this page, via the 'name' variable.</p>
+
+      <p>Check our the source for this page at '/app/views/examples/template-data.html' to see how it works.</p>
+
+    </div>
+  </div>
+
 </main>
 {{/content}}
 

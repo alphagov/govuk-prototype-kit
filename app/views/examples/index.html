@@ -7,15 +7,26 @@
 {{$content}}
 
 <main id="content" role="main">
+
+  <div id="global-breadcrumb">
+    <ol>
+      <li><a href="/">GOV.UK prototype kit</a></li>
+    </ol>
+  </div>
+
+  <h1 class="heading-xlarge">Example pages and patterns</h1>
+
+  <p class="text">
+    Use these as the basis for your prototypes.
+    We recommend making copies of the examples rather than directly editing them.
+  </p>
+
+
   <div class="grid-row">
-    <div class="column-two-thirds">
-      <h1 class="heading-xlarge">Example pages</h1>
+
+    <div class="column-third">
+      <h2 class="heading-medium">Page elements</h2>
       <ul class="list-bullet">
-        <li>
-          <a href="/examples/blank">
-            Blank page
-          </a>
-        </li>
         <li>
           <a href="/examples/elements/grid-layout">
             Grid layout
@@ -28,46 +39,66 @@
         </li>
         <li>
           <a href="/examples/elements/forms">
-            Form
+            Basic form example
           </a>
         </li>
         <li>
           <a href="/examples/elements/radio-buttons-checkboxes">
-            Form elements - radio buttons and checkboxes
+            Radio buttons and checkboxes
           </a>
         </li>
         <li>
           <a href="/examples/elements/toggled-content">
-            Toggled content - show additional content when a radio button or checkbox is selected
+            Toggling content
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="column-third">
+
+      <h2 class="heading-medium">Page templates</h2>
+      <ul class="list-bullet">
+        <li>
+          <a href="/examples/blank-govuk">
+            Blank
           </a>
         </li>
         <li>
-          <a href="/examples/confirmation">
-            Confirmation
+          <a href="/examples/blank-unbranded">
+            Blank (non-GOV.UK)
           </a>
         </li>
         <li>
           <a href="/examples/start-page">
-            Start page
+            Start
           </a>
         </li>
         <li>
           <a href="/examples/question-page">
-            Question page
+            Question
           </a>
         </li>
         <li>
           <a href="/examples/check-your-answers-page">
-            Check your answers page
-        </li>
-        <li>
-          <a href="/examples/template-data">
-            Template data
+            Check your answers
           </a>
         </li>
         <li>
-          <a href="/examples/unbranded">
-            Blank page - without GOV.UK header and footer
+          <a href="/examples/confirmation-page">
+            Confirmation
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="column-third">
+
+      <h2 class="heading-medium">Template features</h2>
+      <ul class="list-bullet">
+        <li>
+          <a href="/examples/template-data">
+            Passing data into a template
           </a>
         </li>
         <li>
@@ -77,7 +108,9 @@
         </li>
       </ul>
     </div>
+    
   </div>
+
 </main>
 
 {{/content}}
