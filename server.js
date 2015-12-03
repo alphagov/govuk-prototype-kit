@@ -1,4 +1,4 @@
-var path = require('path'),
+var path  = require('path'),
     express = require('express'),
     routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
@@ -11,12 +11,15 @@ var path = require('path'),
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
-    env = process.env.NODE_ENV || 'development';
-    useAuth = process.env.USE_AUTH || true;
+    env      = process.env.NODE_ENV || 'development',
+    useAuth  = process.env.USE_AUTH || 'true';
+
+    env      = env.toLowerCase();
+    useAuth  = useAuth.toLowerCase();
 
 // Authenticate against the environment-provided credentials if running
 // the app in production (Heroku, effectively)
-if (env === 'production' && useAuth === true){
+if (env === 'production' && useAuth === 'true'){
     app.use(utils.basicAuth(username, password));
 }
 
