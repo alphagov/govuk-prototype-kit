@@ -1,6 +1,6 @@
 # Writing CSS
 
-CSS used in the prototyping application (app) is written in the SCSS syntax of [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#syntax). 
+CSS used in the prototype kit is written in the SCSS syntax of [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#syntax). 
 
 ## Sass
 
@@ -10,7 +10,7 @@ SCSS was chosen because you can paste CSS into it without breaking it which is u
 
 ## We use Node Sass
 
-The prototyping app uses [node-sass](https://github.com/andrew/node-sass), a node version of of [lib-sass](https://github.com/hcatlin/libsass). It's still a work in progress and so you may find a few things don't work, the most important of which is that [@extend](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#extend) mostly doesn't. 
+The prototype kit uses [node-sass](https://github.com/andrew/node-sass), a node version of of [lib-sass](https://github.com/hcatlin/libsass). It's still a work in progress and so you may find a few things don't work, the most important of which is that [@extend](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#extend) mostly doesn't. 
 
 We found most other features are in and development is progressing quick enough to work with most prototypes (any bugs we found were quickly fixed). Note that `@extend` is used in just one place in the toolkit: the `clear-floats` @extend in [_shims.scss](https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_shims.scss).
 
@@ -26,7 +26,7 @@ Your best bet is to use the Ruby version of Sass to compile your SCSS. Functiona
 
 ## Writing code
 
-You write your Sass in [app/assets/sass](../app/assets/sass) and the prototyping app will compile it into the CSS used in your page (found in /public/stylesheets). The app watches your files so this will happen automatically.
+You write your Sass in [app/assets/sass](../app/assets/sass) and the prototype kit will compile it into the CSS used in your page (found in /public/stylesheets). The app watches your files so this will happen automatically.
 
 There is already a CSS file included to use called [application.scss](../app/assets/sass/application.scss) which compiles into [application.css](../public/stylesheets/application.css). Note that Sass files are identified by the `.scss` extension.
 

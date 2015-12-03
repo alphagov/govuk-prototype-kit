@@ -1,6 +1,6 @@
 # Documentation
 
-- [Prototyping kit principles](principles.md)
+- [Prototype kit principles](principles.md)
 - [Getting started](getting-started.md)
 - [Making pages](making-pages.md)
 - [Writing CSS](writing-css.md)

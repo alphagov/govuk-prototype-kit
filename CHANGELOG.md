@@ -1,3 +1,3 @@
 # 1.0.0
 
-Initial release of prototyping kit
+Initial release of prototype kit
