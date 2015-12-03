@@ -26,6 +26,8 @@
     "hogan.js": "3.0.2",
     "minimist": "0.0.8",
     "node-sass": "3.3.3",
+    "portscanner": "^1.0.0",
+    "prompt": "^0.2.14",
     "readdir": "0.0.6",
     "serve-favicon": "2.3.0"
   }
