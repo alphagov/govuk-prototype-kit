@@ -19,6 +19,7 @@ var path  = require('path'),
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
 
+
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
 if (env === 'production' && useAuth === 'true'){
