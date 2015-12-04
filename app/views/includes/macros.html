@@ -1,0 +1,61 @@
+{# Macros #}
+
+{# Radio buttons #}
+
+{% macro radios(i) %}
+  {% for option, value in i.options %}
+    <label class="block-label" for="{{ i.id }}-{{ option }}">
+      <input type="radio" id="{{ i.id }}-{{ option }}" name="{{ i.id }}" value="{{ value }}">
+      {{ value }}
+    </label>
+  {% endfor %}
+{% endmacro %}
+
+
+{# Checkboxes #}
+
+{% macro checkboxes(i) %}
+  {% for option, value in i.options %}
+    <label class="block-label" for="{{ i.id }}-{{ option }}">
+      <input type="checkbox" id="{{ i.id }}-{{ option }}" name="{{ i.id }}-{{ option }}" value="{{ value }}">
+      {{ value }}
+    </label>
+  {% endfor %}
+{% endmacro %}
+
+
+{# Hint text #}
+
+{% macro hint(hint, default) %}
+  {% if hint != false %}      
+  <p>{{ hint | default( default ) }}</p>
+  {% endif %}
+{% endmacro %}
+
+
+{# Fieldsets #}
+
+{% macro fieldset(i) %}
+
+  <div class="form-group">
+    <fieldset class="{{ i.classes }}">
+      <legend class="heading-medium">{{ i.legend }}</legend>
+
+      {% if i.type == "radios" %}
+
+        {{ hint(i.hint, "Select one:") }}
+        
+        {{ radios(i) }}
+
+      {% elif i.type == "checkboxes" %}
+
+        {{ hint(i.hint, "Select all that apply:") }}
+
+        {{ checkboxes(i) }}
+        
+      {% endif %}
+    
+    </fieldset>
+  </div>
+
+{% endmacro %}

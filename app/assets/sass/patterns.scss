@@ -8,3 +8,15 @@
 
 // Patterns
 @import 'patterns/check-your-answers';
+
+
+.example{
+  @extend %contain-floats;
+  border: 2px solid $border-colour;
+  padding: $gutter;
+  margin-bottom: $gutter;
+
+  @include media(mobile) {
+    padding: $gutter/2;
+  }
+}

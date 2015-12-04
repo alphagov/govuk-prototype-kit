@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main"> 
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Checkboxes and radios
+      </h1>
+
+
+      <form action="/" method="post" class="form">
+
+      <p>Here's how to do a simple set of checkboxes:</p>
+    
+      <div class="example">
+
+          {{ macro.fieldset({
+
+            id:     "contact-method",
+            type:   "checkboxes",
+            legend: "How would you like us to contact you?",
+
+            options: { 
+              "1":  "By email", 
+              "2":  "By telephone",
+              "3":  "By post" 
+            }
+          
+          })}}
+
+      </div>
+
+      <p>Checkboxes and radios can be aligned horizontally as well:</p>
+
+      <div class="example">
+
+          {{ macro.fieldset({
+
+            id:     "receipt",
+            type:   "radios",
+            classes:"inline",
+            legend: "Do you want a receipt?",
+            hint:   false,
+
+            options: { 
+              "1":  "Yes", 
+              "2":  "No"
+            }
+          
+          })}}
+
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</main><!-- / #page-container -->
+
+{% endblock %}
