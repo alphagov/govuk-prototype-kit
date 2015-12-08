@@ -1,10 +1,15 @@
 // Lists
 // ==========================================================================
 
-ul,
-ol {
+.list {
   list-style-type: none;
   padding: 0;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.list li {
+  margin-bottom: 5px;
 }
 
 // Bulleted lists
@@ -17,20 +22,14 @@ ol {
 .list-number {
   list-style-type: decimal;
   padding-left: 20px;
-  
+
   @include ie-lte(7) {
     padding-left: 28px;
   }
 }
 
-.list-bullet,
-.list-number {
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-
-.list-bullet li,
-.list-number li {
-  margin-bottom: 5px;
+// Lists of related links
+.list-links li {
+  margin-bottom: 10px;
 }
 
