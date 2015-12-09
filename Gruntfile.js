@@ -50,7 +50,7 @@ module.exports = function(grunt){
         },
         {
           expand: true,
-          cwd: 'node_modules/govuk_elements/public/sass/',
+          cwd: 'node_modules/govuk-elements/public/sass/',
           src: '**',
           dest: 'govuk_modules/govuk_elements/sass/'
         }]
