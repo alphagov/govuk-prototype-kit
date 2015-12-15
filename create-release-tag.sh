@@ -2,12 +2,12 @@
 set -e
 
 # Create a new tag if the version file has been updated and a tag for that
-# version doesn't already exist
+# version doesn't already exist.
 
-# Are we on master branch, we shouldn't push tags for version bump branches
-MASTER_SHA=`git rev-parse origin/master`
-HEAD_SHA=`git rev-parse HEAD`
-if [ "$MASTER_SHA" == "$HEAD_SHA" ]; then
+# Are we on master branch?
+# We shouldn't push tags for version bump branches.
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+if [[ "$BRANCH" == "master" ]]; then
   # get the version from the version file
   VERSION_TAG="v`cat VERSION.txt`"
 
@@ -17,4 +17,6 @@ if [ "$MASTER_SHA" == "$HEAD_SHA" ]; then
     git tag $VERSION_TAG
     git push origin $VERSION_TAG
   fi
+else
+  echo "Not creating release tag because we're on a branch..."
 fi
