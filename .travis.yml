@@ -1,0 +1,3 @@
+language: bash
+script:
+        - ./create-release-tag.sh

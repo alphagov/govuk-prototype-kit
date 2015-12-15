@@ -1,6 +1,6 @@
 # Contribution guidelines
 
-We really like contributions and bug reports, in fact the project wouldn't have got to this stage without them. 
+We really like contributions and bug reports, in fact the project wouldn't have got to this stage without them.
 We do have a few guidelines to bear in mind.
 
 ## GOV.UK Elements
@@ -10,7 +10,7 @@ Please check that any issues related to that code are raised with that project, 
 
 ## Raising bugs
 
-When raising bugs please explain the issue in good detail and provide a guide to how to replicate it. 
+When raising bugs please explain the issue in good detail and provide a guide to how to replicate it.
 When describing the bug it's useful to follow the format:
 
 - what you did
@@ -30,8 +30,14 @@ This is just to ensure they are discussed properly before any time is spent on t
 
 ### Versioning
 
-We use [semantic versioning](http://semver.org/), and bump the version
-on master only. Please don't submit your own proposed version numbers.
+Follow the guidelines on [semver.org](http://semver.org/) for assigning version
+numbers.
+
+Versions should only be changed in a commit of their own, in a pull request of
+their own. This alerts team members to the new version and allows for
+last-minute scrutiny before the new version is released. Also, by raising a
+separate pull request, we avoid version number conflicts between feature
+branches.
 
 ### Commit hygiene
 
