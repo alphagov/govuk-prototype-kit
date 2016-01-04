@@ -47,7 +47,7 @@ This will install extra code that the prototype kit needs.
 #### Run the app
 
 ```
-node start.js
+npm start
 ```
 
 Go to [localhost:3000](http://localhost:3000) in your browser.
@@ -55,7 +55,7 @@ Go to [localhost:3000](http://localhost:3000) in your browser.
 If you want to view multiple prototypes at the same time you can give them unique port numbers, like this:
 
 ```
-PORT=3005 node start.js
+PORT=3005 npm start
 ```
 
 To avoid conflicts we recommend using ports between 3000 and 3009. To change the port number permanently, edit the port variable in /server.js.
