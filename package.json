@@ -6,6 +6,9 @@
   "engines": {
     "node": "4.x"
   },
+  "scripts": {
+    "start": "node start.js"
+  },
   "dependencies": {
     "basic-auth": "^1.0.3",
     "body-parser": "^1.14.1",
