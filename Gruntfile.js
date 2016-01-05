@@ -139,6 +139,14 @@ module.exports = function(grunt){
     'concurrent:target'
   ]);
 
+  grunt.registerTask(
+    'test',
+    'default',
+    function () {
+      grunt.log.writeln('Test that the app runs');
+    }
+  );
+
   grunt.event.on('watch', function(action, filepath, target) {
 
     // just copy the asset that was changed, not all of them

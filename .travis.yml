@@ -1,3 +1,17 @@
-language: bash
+language: node_js
+node_js:
+  - 0.1
+before_install:
+  - npm install -g grunt-cli
+install:
+  - npm install
 script:
-        - ./create-release-tag.sh
+  # Reference the locally-installed version of Grunt
+  - ./node_modules/grunt-cli/bin/grunt test
+  # If the app runs, check to see if the version file has been updated
+  - ./create-release-tag.sh
+
+notifications:
+  email: false
+
+sudo: false
