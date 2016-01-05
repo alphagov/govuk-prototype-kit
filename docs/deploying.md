@@ -41,29 +41,46 @@ If you make a change to your prototype, commit your changes as usual then run:
 
 to push your changes to Heroku
 
-## Deploying different versions
+## Deploying different branches
+
+By default when you push to Heroku your master branch will be deployed. Sometimes you may want to deploy code that's on a different branch, eg a test feature.
+
+To deploy a different branch:
+
+`git push heroku branch_name:master`
+
+This pushes your local branch `branch_name` on to the heroku master branch. If Heroku complains that the remote contains work you don't have, you can force push using `-f`:
+
+`git push -f heroku branch_name:master`
+
+
+## Deploying to more than one Heroku app
 
 We have found its helpful to have at least two different versions of a prototype online.
 
-1. **dev** - an experimental version, where things change rapidly and may well be broken
-2. **master** - a stable version, where other people can rely on seeing a working version of the prototype that you're happy with
+1. **dev** - an experimental version, where things change rapidly and may well be broken.
+2. **master** - a stable version, where other people can rely on seeing a working version of the prototype that you're happy with.
 
 If you've followed the instructions above, you already have a master version online.
 
-Create a dev branch:
+1. Rename your existing heroku remote to heroku-master:
 
-`git checkout -b dev`
+`git remote rename heroku heroku-master`
 
-Add a dev heroku remote:
+2. Create a dev heroku remote:
 
-`heroku apps:create --remote dev [dev-name]`
+`heroku apps:create --remote heroku-dev [dev-name]`
 
-Push to the dev remote:
+3. Push to the **dev** remote:
 
-`git push dev dev:master`
+`git push heroku-dev master`
 
-Now your dev branch will be live at [dev-name].herokuapp.com
+4. To push to the **master** remote:
 
-Note that you have to add 'dev:master' this time - if you dont add this, Heroku assumes you want the master branch to be deployed.
+`git push heroku-master master`
 
-Your app will now prompt you for a password when accessed on Heroku (but not when running locally).
+Now your work will be live at [dev-name].herokuapp.com
+
+If you want to deploy a different branch to one of your remotes:
+
+`git push heroku-dev branch_name:master`
