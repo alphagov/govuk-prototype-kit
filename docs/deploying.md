@@ -22,17 +22,23 @@ However, the kit won't show your prototype online without setting a username and
 
 ### 3) Set a username and password
 
-You can do this in the Heroku admin console (under Settings ▶ Config Variables) or by running the following commands:
+You can do this in the on the Heroku website (under Settings ▶ Config Variables) or by running the following commands:
 
 ```
 heroku config:set USERNAME=username_here
 heroku config:set PASSWORD=password_here
 ```
-
 If you don't want to have password protection on your prototype, you can set the `USE_AUTH` config var:
+
 ```
 heroku config:set USE_AUTH=false
 ```
+If you have more than one remote you'll need to add a flag to specify which remote to set.
+
+```
+heroku config:set PASSWORD=password_here -r remotename_here
+```
+
 ### 4) Deploy changes
 
 If you make a change to your prototype, commit your changes as usual then run:
