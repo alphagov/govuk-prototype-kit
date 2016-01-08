@@ -47,7 +47,21 @@ module.exports = function(grunt){
           cwd: 'node_modules/govuk_template_mustache/',
           src: '**',
           dest: 'govuk_modules/govuk_template/'
+        },
+        {
+          expand: true,
+          cwd: 'node_modules/govuk-elements/public/sass/',
+          src: '**',
+          dest: 'govuk_modules/govuk_elements/sass/'
         }]
+      },
+      govuk_elements: {
+        files: [{
+          expand: true,
+          cwd: 'govuk_modules/govuk_elements/sass/',
+          src: ['**', '!elements-page.scss', '!elements-page-ie6.scss', '!elements-page-ie7.scss', '!elements-page-ie8.scss', '!main.scss', '!main-ie6.scss', '!main-ie7.scss', '!main-ie8.scss', '!prism.scss'],
+          dest: 'app/assets/sass/'
+        }],
       },
     },
 

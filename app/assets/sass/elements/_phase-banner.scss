@@ -1,0 +1,10 @@
+// Phase banners
+// ==========================================================================
+
+.phase-banner-alpha {
+  @include phase-banner($state: alpha);
+}
+
+.phase-banner-beta {
+  @include phase-banner($state: beta);
+}

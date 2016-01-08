@@ -3,28 +3,14 @@
 
 // Contents:
 //
-// 1. GOV.UK front end toolkit dependencies
-// 2. Helpers
-// 3. Form wrappers
-// 4. Form labels
-// 5. Form hints
-// 6. Form controls
-// 7. Form control widths
+// 1. Helpers
+// 2. Form wrappers
+// 3. Form labels
+// 4. Form hints
+// 5. Form controls
+// 6. Form control widths
 
-// 8. Errors and validation styles
-// 9. Form design patterns
-//     - Date of birth
-//     - "Chunky" radio buttons and checkboxes
-
-
-// 1. GOV.UK front end toolkit dependencies
-// ==========================================================================
-
-@import "helpers";
-@import "colours";
-
-
-// 2. Helpers
+// 1. Helpers
 // ==========================================================================
 
 // Fieldset is used to group more than one .form-group
@@ -46,7 +32,7 @@ textarea{
 }
 
 
-// 3. Form wrappers
+// 2. Form wrappers
 // ==========================================================================
 
 // Form group is used to wrap label and input pairs
@@ -79,7 +65,7 @@ textarea{
 }
 
 
-// 4. Form labels
+// 3. Form labels
 // ==========================================================================
 
 // Form labels, or for legends styled to look like labels
@@ -130,7 +116,7 @@ legend {
   }
 }
 
-// 5. Form hints
+// 4. Form hints
 // ==========================================================================
 
 // Form hints and example text are light grey and sit above a form control
@@ -143,7 +129,7 @@ legend {
 }
 
 
-// 6. Form controls
+// 5. Form controls
 // ==========================================================================
 
 // By default, form controls are 50% width for desktop,
@@ -188,7 +174,7 @@ legend {
 }
 
 
-// 7. Form control widths
+// 6. Form control widths
 // ==========================================================================
 
 // TODO: Update these
@@ -237,20 +223,3 @@ legend {
     width: 12.5%;
   }
 }
-
-
-// 8. Errors and validation styles
-// ==========================================================================
-@import "forms/form-validation";
-
-
-// 9. Form design patterns
-//    - Date of birth
-//    - "Chunky" radio buttons and checkboxes
-// ==========================================================================
-
-// Date of birth
-@import "forms/form-date";
-
-// "Chunky" radios and checkboxes
-@import "forms/form-block-labels";

@@ -1,14 +1,11 @@
 // Panels
 // ==========================================================================
-// GOV.UK front end toolkit dependencies
-@import "helpers";
 
-
-// Indented panels with a grey left hand border
-.panel-indent {
+.panel {
   @extend %contain-floats;
   clear: both;
-  border-left: 5px solid $border-colour;
+  border-left-style: solid;
+  border-color: $border-colour;
 
   padding: em(15,19);
   margin-bottom: em(15,19);
@@ -21,14 +18,19 @@
   :last-child {
     margin-bottom: 0;
   }
-
 }
 
-.panel-indent-info {
+.panel-border-wide {
   border-left-width: 10px;
 }
 
-// Indented panels within form groups
-.form-group .panel-indent {
+// Used to show the left edge of "toggled" content
+.panel-border-narrow {
+  border-left-width: 5px;
+}
+
+// Panels within form groups
+// Remove the bottom padding as .form-group sets a bottom margin
+.form-group .panel-border-narrow {
   padding-bottom: 0;
 }
