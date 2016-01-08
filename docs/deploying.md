@@ -33,7 +33,7 @@ If you don't want to have password protection on your prototype, you can set the
 ```
 heroku config:set USE_AUTH=false
 ```
-If you have more than one remote you'll need to add a flag to specifiy which remote to set.
+If you have more than one remote you'll need to add a flag to specify which remote to set.
 
 ```
 heroku config:set PASSWORD=password_here -r remotename_here
