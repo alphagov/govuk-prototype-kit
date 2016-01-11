@@ -14,4 +14,3 @@ process.on('SIGINT', function() {
   process.kill(process.pid, 'SIGTERM');
   process.exit();
 });
-
