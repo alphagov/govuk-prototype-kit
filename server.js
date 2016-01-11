@@ -5,7 +5,6 @@ var path  = require('path'),
     app = express(),
     basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
-    port = (process.env.PORT || 3000),
     utils = require(__dirname + '/lib/utils.js'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
@@ -17,7 +16,7 @@ var path  = require('path'),
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
 
-// Authenticate against the environment-provided credentials if running
+// Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
 if (env === 'production' && useAuth === 'true'){
     app.use(utils.basicAuth(username, password));
@@ -79,7 +78,4 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
 // start the app
 
-app.listen(port);
-console.log('');
-console.log('Listening on port ' + port);
-console.log('');
+utils.findAvailablePort(app);
