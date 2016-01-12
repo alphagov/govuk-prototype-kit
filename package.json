@@ -26,7 +26,6 @@
     "hogan.js": "3.0.2",
     "minimist": "0.0.8",
     "readdir": "0.0.6",
-    "serve-favicon": "2.3.0",
-    "merge": "^1.2.0"
+    "serve-favicon": "2.3.0"
   }
 }
