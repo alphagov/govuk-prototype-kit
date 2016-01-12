@@ -5,14 +5,15 @@ var path  = require('path'),
     app = express(),
     basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
-    port = (process.env.PORT || 3000),
+    config = require(__dirname + '/app/config.js'),
+    port = (process.env.PORT || config.port),
     utils = require(__dirname + '/lib/utils.js'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
-    useAuth  = process.env.USE_AUTH || 'true';
+    useAuth  = process.env.USE_AUTH || config.useAuth;
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
@@ -47,6 +48,12 @@ app.use(bodyParser.urlencoded({
 // send assetPath to all views
 app.use(function (req, res, next) {
   res.locals.assetPath="/public/";
+  next();
+});
+
+// Add variables that are available in all views
+app.use(function (req, res, next) {
+  res.locals.serviceName=config.serviceName;
   next();
 });
 
