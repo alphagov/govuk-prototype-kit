@@ -51,18 +51,6 @@ module.exports = function(grunt){
       },
     },
 
-    // workaround for libsass
-    replace: {
-      fixSass: {
-        src: ['govuk_modules/govuk_template/**/*.scss', 'govuk_modules/govuk_frontend_toolkit/**/*.scss'],
-        overwrite: true,
-        replacements: [{
-          from: /filter:chroma(.*);/g,
-          to: 'filter:unquote("chroma$1");'
-        }]
-      }
-    },
-
     // Watches assets and sass for changes
     watch: {
       css: {
