@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var formRoutes = require(__dirname + '/routes/form');
+
+formRoutes(router);
 
 router.get('/', function (req, res) {
   res.render('index');

@@ -1,0 +1,220 @@
+{{<layout}}
+
+{{$content}}
+<main id="content" role="main">
+
+  <a class="link-back" href="/examples/">Back to the GOV.UK prototype kit examples</a>
+
+  <form action="/answer-question" method="post" class="form">
+
+    <h1 class="form-title heading-large">
+      Your details
+    </h1>
+
+    {{#errors}}
+    <div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+      <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+        Message to alert the user to a problem goes here
+      </h1>
+      <p>
+        Optional description of the error(s) and how to correct them
+      </p>
+      <ul class="error-summary-list">
+        {{#errors.full_name}}
+        <li><a href="#full-name-details">Please enter your full name</a></li>
+        {{/errors.full_name}}
+        {{#errors.ni_number}}
+        <li><a href="#ni-number-details">Please enter a valid National Insurance number</a></li>
+        {{/errors.ni_number}}
+        {{#errors.dob}}
+        <li><a href="#dob-details">Please enter a valid DOB</a></li>
+        {{/errors.dob}}
+        {{#errors.nationality}}
+        <li><a href="#nationality-details">Please tell us your nationality</a></li>
+        {{/errors.nationality}}
+        {{#errors.housing-act}}
+        <li><a href="#housing-act-details">Please tell us which part of the Housing Act was your licence issued under</a></li>
+        {{/errors.housing-act}}
+        {{#errors.specific_answer}}
+        <li><a href="#housing-act-details">Please enter the specified answer</a></li>
+        {{/errors.specific_answer}}
+      </ul>
+    </div>
+    {{/errors}}
+
+    <!-- Full name -->
+    <div class="form-group{{#errors.full_name}} error{{/errors.full_name}}">
+      <label class="form-label-bold" for="full-name" id="full-name-details">Full name</label>
+      {{#errors.full_name}}
+      <span class="error-message">Please enter your full name</span>
+      {{/errors.full_name}}
+      <p class="form-hint">As shown on your birth certificate or passport</p>
+      <input type="text" class="form-control" id="full-name" name="full_name"{{#formData.full_name}} value="{{formData.full_name}}"{{/formData.full_name}}>
+    </div>
+
+    <!-- National Insurance number -->
+    <div class="form-group{{#errors.ni_number}} error{{/errors.ni_number}}">
+      <label class="form-label-bold" for="ni-number" id="ni-number-details">
+        National Insurance number
+        <span class="form-hint">
+          It's on your National Insurance card, benefit letter, payslip or P60.
+          <br>
+          For example, 'VO 12 34 56 D'.
+        </span>
+      </label>
+      {{#errors.ni_number}}
+      <span class="error-message">Please enter a valid National Insurance number</span>
+      {{/errors.ni_number}}
+      <input type="text" class="form-control" id="ni-number" name="ni_number"{{#formData.ni_number}} value="{{formData.ni_number}}"{{/formData.ni_number}}>
+    </div>
+
+    <!-- Date of birth -->
+    <div class="form-group{{#errors.dob}} error{{/errors.dob}}">
+      <fieldset>
+        <legend class="form-label-bold" id="dob-details">Date of birth</legend>
+
+        <div class="form-date">
+
+          <p class="form-hint">For example, 31 3 1980</p>
+          {{#errors.dob}}
+          <span class="error-message">Please enter a valid DOB</span>
+          {{/errors.dob}}
+
+          <div class="form-group form-group-day">
+            <label for="dob-day">Day</label>
+            <input class="form-control" id="dob-day" name="dob" type="number" pattern="[0-9]*" min="0" max="31"
+                    {{#formData.dob.0}} value="{{formData.dob.0}}"{{/formData.dob.0}}>
+          </div>
+
+          <div class="form-group form-group-month">
+            <label for="dob-month">Month</label>
+            <input class="form-control" id="dob-month" name="dob" type="number" pattern="[0-9]*" min="0" max="12"
+                   {{#formData.dob.1}} value="{{formData.dob.1}}"{{/formData.dob.1}}>
+          </div>
+
+          <div class="form-group form-group-year">
+            <label for="dob-year">Year</label>
+            <input class="form-control" id="dob-year" name="dob" type="number" pattern="[0-9]*" min="0" max="2014"
+                   {{#formData.dob.2}} value="{{formData.dob.2}}"{{/formData.dob.2}}>
+          </div>
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <details>
+        <summary><span class="summary">Help with date of birth</span></summary>
+        <div class="panel-indent">
+          <p>
+            If you don’t know your exact date of birth, use the one you put on official documents (for example, your passport or driving licence).
+          </p>
+          <p>
+            If you can’t provide your date of birth you’ll have to send copies of identity documents through the post.
+          </p>
+        </div>
+      </details>
+    </div>
+
+
+    <h2 class="heading-large" id="nationality-details">
+      What is your nationality?
+    </h2>
+
+    <p>If you have dual nationality, select all options that are relevant to you.</p>
+
+    <div class="form-group{{#errors.nationality}} error{{/errors.nationality}}">
+      <fieldset>
+
+        <legend class="visuallyhidden">What is your nationality?</legend>
+
+        {{#errors.nationality}}
+        <span class="error-message">Please tell us your nationality</span>
+        {{/errors.nationality}}
+
+        <label for="nationality_british" class="block-label">
+          <input type="checkbox" name="nationality" value="British" id="nationality_british">
+          British
+        </label>
+
+        <label for="nationality_irish" class="block-label">
+          <input type="checkbox" name="nationality" value="Irish" id="nationality_irish">
+          Irish
+        </label>
+
+        <label for="nationality_other" class="block-label" data-target="example_nationality_other">
+          <input type="checkbox" name="nationality" value="Wales" id="nationality_other">
+          Citizen of another country
+        </label>
+
+      </fieldset>
+    </div>
+
+    <h2 class="heading-large">
+      Which part of the Housing Act was your licence issued under?
+    </h2>
+
+    <p>
+      Select one of the options below.
+    </p>
+
+    <div class="form-group{{#errors.housing-act}} error{{/errors.housing-act}}">
+      <fieldset id="housing-act-details">
+
+        <legend class="visuallyhidden">
+          Which part of the Housing Act was your licence issued under?
+        </legend>
+
+        {{#errors.housing-act}}
+        <span class="error-message">Please tell us which part of the Housing Act was your licence issued under</span>
+        {{/errors.housing-act}}
+
+        <label for="radio-part-2" class="block-label">
+          <input id="radio-part-2" type="radio" name="housing-act" value="Part 2">
+          <span class="heading-small">Part 2 of the Housing Act 2004</span><br>
+          For properties that are 3 or more stories high and occupied by 5 or more people
+        </label>
+
+        <label for="radio-part-3" class="block-label">
+          <input id="radio-part-3" type="radio" name="housing-act" value="Part 3">
+          <span class="heading-small">Part 3 of the Housing Act 2004</span><br>
+          For properties that are within a geographical area defined by a local council
+        </label>
+
+      </fieldset>
+    </div>
+
+    <h2 class="heading-large">
+      Specific Answer question
+    </h2>
+
+    <!-- Specific Answer -->
+    <div class="form-group{{#errors.specific_answer}} error{{/errors.specific_answer}}">
+      <label class="form-label-bold" for="specific-answer" id="specific-answer-details">Specific Answer</label>
+      {{#errors.specific_answer}}
+      <span class="error-message">Please enter the specified answer</span>
+      {{/errors.specific_answer}}
+      <p class="form-hint">You can find this answer below in the :expected input</p>
+      <input type="text" class="form-control" id="specific-answer" name="specific_answer"{{#formData.specific_answer}} value="{{formData.specific_answer}}"{{/formData.specific_answer}}>
+    </div>
+
+    <input type="hidden" name="full_name:expected" value="(\w+){1,100}">
+    <input type="hidden" name="ni_number:expected" value="[A-Za-z0-9]{9}">
+    <input type="hidden" name="dob:expected" value="(\d+){8}">
+    <input type="hidden" name="nationality:expected" value="(British|Wales|Irish)">
+    <input type="hidden" name="housing-act:expected" value="(Part 2|Part 3)">
+    <input type="hidden" name="specific_answer:expected" value="answer">
+
+    <input type="hidden" name="success_redirect" value="/success"/>
+    <input type="hidden" name="failure_redirect" value="/examples/elements/form-validation"/>
+
+    <div class="form-group">
+      <input type="submit" class="button" value="Continue">
+    </div>
+
+  </form>
+
+</main>
+{{/content}}
+
+{{/layout}}

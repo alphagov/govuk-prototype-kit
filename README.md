@@ -76,6 +76,7 @@ The app recompiles app/assets/stylesheets/application.scss everytime changes are
 - [Updating the kit to the latest version](docs/updating-the-kit.md)
 - [Tips and tricks](docs/tips-and-tricks.md)
 - [Creating routes (server-side programming)](docs/creating-routes.md)
+- [Form Validation](docs/form-validation.md)
 
 This project is built on top of Express, the idea is that it is straightforward to create simple static pages out of the box. However, you're not limited to that - more dynamic sites can be built with more understanding of Express. Here's a good [Express tutorial.](http://code.tutsplus.com/tutorials/introduction-to-express--net-33367)
 
