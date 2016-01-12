@@ -26,7 +26,6 @@
     "grunt-contrib-watch": "0.5.3",
     "grunt-nodemon": "0.4.0",
     "grunt-sass": "^1.1.0",
-    "grunt-text-replace": "0.3.12",
     "hogan.js": "3.0.2",
     "minimist": "0.0.8",
     "readdir": "0.0.6",

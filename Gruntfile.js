@@ -109,28 +109,14 @@ module.exports = function(grunt){
     'grunt-contrib-clean',
     'grunt-sass',
     'grunt-nodemon',
-    'grunt-text-replace',
     'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
 
-  grunt.registerTask(
-    'convert_template',
-    'Converts the govuk_template to use mustache inheritance',
-    function () {
-      var script = require(__dirname + '/lib/template-conversion.js');
-
-      script.convert();
-      grunt.log.writeln('govuk_template converted');
-    }
-  );
-
   grunt.registerTask('generate-assets', [
     'clean',
     'copy',
-    'convert_template',
-    'replace',
     'sass'
   ]);
 
