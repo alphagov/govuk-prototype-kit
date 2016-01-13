@@ -4,13 +4,13 @@
   Start page example
 {% endblock %}
 
-{{$propositionHeader}}
-<!-- blank for no proposition header -->
-{{/propositionHeader}}
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
 
-{{$headerClass}}
-<!-- blank for no proposition header -->
-{{/headerClass}}
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
 
 {% block content %}
 
