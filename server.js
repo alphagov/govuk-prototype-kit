@@ -4,7 +4,7 @@ var path = require('path'),
     routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
     app = express(),
-    basicAuth = require('basic-auth-connect'),
+    basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
     config = require(__dirname + '/app/config.js'),
     port = (process.env.PORT || config.port),
@@ -16,14 +16,10 @@ var path = require('path'),
     env      = process.env.NODE_ENV || 'development',
     useAuth  = process.env.USE_AUTH || config.useAuth;
 
-// Authenticate against the environment-provided credentials, if running
+// Authenticate against the environment-provided credentials if running
 // the app in production (Heroku, effectively)
-if (env === 'production') {
-  if (!username || !password) {
-    console.log('Username or password is not set, exiting.');
-    process.exit(1);
-  }
-  app.use(basicAuth(username, password));
+if (env === 'production' && useAuth === 'true'){
+    app.use(utils.basicAuth(username, password));
 }
 
 // Application settings
@@ -78,14 +74,8 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
   res.render(path, function(err, html) {
     if (err) {
-      res.render(path + "/index", function(err2, html) {
-        if (err2) {
-          console.log(err);
-          res.status(404).send(err).send(err2);
-        } else {
-          res.end(html);
-        }
-      });
+      console.log(err);
+      res.sendStatus(404);
     } else {
       res.end(html);
     }
@@ -94,6 +84,7 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 });
 
 // start the app
+
 app.listen(port);
 console.log('');
 console.log('Listening on port ' + port);
