@@ -50,9 +50,9 @@ module.exports = function(grunt){
         },
         {
           expand: true,
-          cwd: 'node_modules/govuk_template_jinja/',
+          cwd: 'node_modules/govuk_template_jinja/views/layouts/',
           src: '**',
-          dest: 'govuk_modules/govuk_template_jinja/'
+          dest: 'govuk_modules/govuk_template_jinja/views/layouts/'
         }]
       },
       govuk_template_jinja: {
