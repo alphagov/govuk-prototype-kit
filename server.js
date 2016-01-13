@@ -1,12 +1,15 @@
 var path = require('path'),
     express = require('express'),
     nunjucks = require('express-nunjucks'),
-    routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
-    app = express(),
     basicAuth = require('basic-auth-connect'),
     bodyParser = require('body-parser'),
     port = (process.env.PORT || 3000),
+    app = express(),
+
+    // routing and extras
+    routes        = require(__dirname + '/lib/default-routes.js'),
+    app_routes    = require(__dirname + '/app/routes.js'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
@@ -23,14 +26,13 @@ if (env === 'production') {
   app.use(basicAuth(username, password));
 }
 
-// Application settings
-
+// Setting up the templating system, nunjucks etc.
 app.set('view engine', 'html');
-app.set('views', [__dirname + '/app/views', __dirname + '/lib/']);
-
+app.set('views', [__dirname + '/app/views/', __dirname + '/lib/']);
 nunjucks.setup({
     autoescape: true,
-    watch: true
+    watch: true,
+    noCache: true
 }, app);
 
 // Middleware to serve static assets
@@ -54,41 +56,16 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-// routes (found in app/routes.js)
-
-if (typeof(routes) != "function"){
+// Routers
+if (typeof(routes) != "function") {
   console.log(routes.bind);
   console.log("Warning: the use of bind in routes is deprecated - please check the prototype kit documentation for writing routes.")
   routes.bind(app);
 } else {
-  app.use("/", routes);
+  console.log('Using routes');
+  app.use(app_routes);    // these have to come first.
+  app.use(routes);        // these come last because they mop up!
 }
-
-// auto render any view that exists
-
-app.get(/^\/([^.]+)$/, function (req, res) {
-
-	var path = (req.params[0]);
-
-	res.render(path, function(err, html) {
-		if (err) {
-			res.render(path + "/index", function(err2, html) {
-        if (err2) {
-          console.log(err);
-          res.status(404).send(err).send(err2);
-        } else {
-          res.end(html);
-        }
-      });
-		} else {
-			res.end(html);
-		}
-	});
-
-});
-
-// start the app
 
 app.listen(port);
 console.log('');

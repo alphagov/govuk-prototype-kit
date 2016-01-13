@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+	
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+<h1 class="heading-large">404</h1>
+
+<p><span style="color:#005EA5">{{ path }}</span> was not found</p>
+
+<div style="font-family:courier;font-size:14px;padding:15px;background:#ccc">
+  <p style="margin-top:0">{{ errors[0] }}</p>
+  <p style="margin:0">{{ errors[1] }}</p>
+</div>
+
+</main>
+
+{% endblock %}
