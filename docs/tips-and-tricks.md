@@ -2,15 +2,16 @@
 
 A few useful things to help you get started.
 
-Take a look in the `app/views/includes/` folder.
+## Update the Service name
 
-## Add your Service name to the header
+You can change the service name by editing the file '/app/config.js'.
 
-The Service name and navigation can be found in an include called `propositional_navigation.html`.
+    module.exports = {
 
-    <nav id="proposition-menu">
-      <a href="/" id="proposition-name">Service name</a>
-    </nav>
+      // Service name used in header. Eg: 'Renew your passport'
+      serviceName: "Service name goes here",
+
+    };
 
 ## Show navigation in the header
 
@@ -25,10 +26,6 @@ Remove the comments surrounding the unordered list with an ID of proposition lin
       </ul>
       -->
     </nav>
-
-You also need to set `header_class` to `with-proposition`.
-
-    {% block header_class %}with-proposition{% endblock %}
 
 An example of this can be seen in the [question-page.html](../app/views/examples/question-page.html) template.
 
