@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
+    "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.14.1",
     "consolidate": "0.x",
     "express": "4.13.3",
