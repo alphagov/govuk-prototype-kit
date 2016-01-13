@@ -4,7 +4,7 @@
   Example of using variables in pages
 {% endblock %}
 
-{{$content}}
+{% block content %}
 <main id="content" role="main">
 
   {% include "includes/breadcrumb_examples.html" %}
@@ -28,4 +28,4 @@
   </div>
 
 </main>
-{{/content}}
+{% endblock %}
