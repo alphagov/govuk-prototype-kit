@@ -1,246 +1,102 @@
-// GOV.UK icons
-// GOV.UK front end toolkit dependencies
-@import "device-pixels";
+// Icons
+// ==========================================================================
+
+// Icon mixin
+@mixin icon($icon-name, $icon-width, $icon-height, $icon-sub-folder:false) {
+
+  width: #{$icon-width}px;
+  height: #{$icon-height}px;
+
+  @if $icon-sub-folder {
+    background-image: file-url("icons/#{$icon-sub-folder}/#{$icon-name}.png");
+
+    @include device-pixel-ratio() {
+      background-image: file-url("icons/#{$icon-sub-folder}/#{$icon-name}-2x.png");
+      background-size: 100%;
+    }
+
+  } @else {
+    background-image: file-url("icons/#{$icon-name}.png");
+
+    @include device-pixel-ratio() {
+      background-image: file-url("icons/#{$icon-name}-2x.png");
+      background-size: 100%;
+    }
+  }
+}
 
 .icon {
+  display: inline-block;
+
   background-position: 0 0;
   background-repeat: no-repeat;
 }
 
+// GOV.UK front end toolkit icons
 .icon-calendar {
-  width: 27px;
-  height: 27px;
-  background-image: file-url("icons/icon-calendar.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-calendar-2x.png");
-    background-size: 100%;
-  }
+  @include icon(icon-calendar, 27, 27);
 }
 
-.icon-download {
-  width: 30px;
-  height: 39px;
-  background-image: file-url("icons/icon-file-download.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-file-download-2x.png");
-    background-size: 100%;
-  } 
+.icon-file-download {
+  @include icon(icon-file-download, 30, 39);
 }
 
 .icon-important {
-  width: 34px;
-  height: 34px;
-  background-image: file-url("icons/icon-important.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-important-2x.png");
-    background-size: 100%;
-  }
+  @include icon(icon-important, 35, 35);
 }
 
 .icon-information {
-  width: 27px;
-  height: 27px;
-  background-image: file-url("icons/icon-information.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-information-2x.png");
-    background-size: 100%;
-  }
+  @include icon(icon-information, 27, 27);
 }
 
 .icon-locator {
-  width: 26px;
-  height: 36px;
-  background-image: file-url("icons/icon-locator.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-locator-2x.png");
-    background-size: 100%;
-  }
+  @include icon(icon-locator, 26, 36);
 }
 
-.icon-search {
-  width: 30px;
-  height: 22px;
-  background-color: $black;
-  background-image: file-url("icons/icon-search.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-search-2x.png");
-    background-size: 100%;
-  }
-}
-
-// GOV.UK arrow icons
 .icon-pointer {
-  width: 30px;
-  height: 19px;
-  background-color: $black;
-  background-image: file-url("icons/icon-pointer.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-pointer-2x.png");
-    background-size: 100%;
-  }
+  @include icon(icon-pointer, 30, 19);
 }
 
 .icon-pointer-black {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-pointer-black.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-pointer-black-2x.png");
-    background-size: 100%;
-  }
+  @include icon(icon-pointer-black, 23, 23);
 }
 
-// GOV.UK external link icons
-// TODO (Are these provided by the template?)
+.icon-search {
+  @include icon(icon-search, 30, 22);
+}
+
 
 // GOV.UK step icons
-.icon-step-1 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-1.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-1-2x.png");
-    background-size: 100%;
+@for $i from 1 through 14 {
+  .icon-step-#{$i} {
+    @include icon(icon-step-#{$i}, 23, 23, icon-steps);
   }
 }
 
-.icon-step-2 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-2.png");
+// Propose replacing step icons with circles
+.circle {
+  display: inline-block;
+  @include border-radius(50%);
 
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-2-2x.png");
-    background-size: 100%;
-  }
+  background: $black;
+  color: $white;
+
+  font-family: $NTA-Light-Tabular;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
 }
 
-.icon-step-3 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-3.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-3-2x.png");
-    background-size: 100%;
-  }
+// All step circles are 24px x 24px
+.circle-step {
+  min-width: 24px;
+  min-height: 24px;
+  line-height: 24px;
 }
 
-.icon-step-4 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-4.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-4-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-5 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-5.png");
-  
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-5-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-6 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-6.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-6-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-7 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-7.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-7-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-8 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-8.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-8-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-9 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-9.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-9-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-10 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-10.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-10-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-11 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-11.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-11-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-12 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-12.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-12-2x.png");
-    background-size: 100%;
-  }
-}
-
-.icon-step-13 {
-  width: 23px;
-  height: 23px;
-  background-image: file-url("icons/icon-steps/icon-step-13.png");
-
-  @include device-pixel-ratio() {
-    background-image: file-url("icons/icon-steps/icon-step-13-2x.png");
-    background-size: 100%;
-  }
+.circle-step-large {
+  font-size: 19px;
+  min-width: 38px;
+  min-height: 38px;
+  line-height: 38px;
 }

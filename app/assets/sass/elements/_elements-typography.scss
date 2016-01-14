@@ -1,10 +1,6 @@
 // Typography
 // ==========================================================================
 
-// GOV.UK front end toolkit dependencies
-@import "typography";
-@import "colours";
-
 // Increase the base font size to 19px for the main content area
 // Using the core-19 mixin from the govuk_toolkit _typography.scss file
 
@@ -219,14 +215,6 @@ p {
     margin-top: -6px;
   }
 
-  // Improve arrow shape in Firefox
-  @-moz-document url-prefix() {
-    &::before {
-      border-top: 5px dotted rgba(255, 0, 0, 0);
-      border-bottom: 5px dotted rgba(255, 0, 0, 0);
-    }
-  }
-
   // Fallback
   // IE8 doesn't support rgba and only supports the single colon syntax for :before
   // IE7 doesn't support pseudo-elements, let's fallback to an image instead.
@@ -276,5 +264,22 @@ hr {
   padding: 0;
   @include ie-lte(7) {
     color: $border-colour;
+  }
+}
+
+// Notice, text with an icon to the left
+.notice {
+  @extend %contain-floats;
+  position: relative;
+  .icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -17px; // Half the height of the important icon
+  }
+  strong {
+    display: block;
+    padding-left: (35 + 30)+px;
+    margin-left: -$gutter-half;
   }
 }
