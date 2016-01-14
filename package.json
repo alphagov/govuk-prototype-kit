@@ -18,6 +18,7 @@
     "express": "4.13.3",
     "express-nunjucks": "^0.9.3",
     "express-writer": "0.0.4",
+    "govuk-elements-sass": "alphagov/govuk_elements#v1.1.1",
     "govuk_frontend_toolkit": "^4.2.1",
     "govuk_template_mustache": "^0.16.0",
     "grunt": "0.4.5",
