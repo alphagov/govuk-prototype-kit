@@ -27,8 +27,9 @@ app.set('view engine', 'html');
 app.set('views', [__dirname + '/app/views', __dirname + '/lib/']);
 
 nunjucks.setup({
-    autoescape: true,
-    watch: true
+  autoescape: true,
+  watch: true,
+  noCache: true
 }, app);
 
 // Middleware to serve static assets
