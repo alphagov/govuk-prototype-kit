@@ -56,7 +56,7 @@ module.exports = function(grunt){
         },
         {
           expand: true,
-          cwd: 'node_modules/govuk-elements-sass/',
+          cwd: 'node_modules/govuk-elements-sass',
           src: '**',
           dest: 'govuk_modules/govuk-elements-sass/'
         }]
@@ -67,6 +67,14 @@ module.exports = function(grunt){
           cwd: 'govuk_modules/govuk_template_jinja/views/layouts/',
           src: '**',
           dest: 'lib/'
+        }]
+      },
+      govuk_elements: {
+        files: [{
+          expand: true,
+          cwd: 'govuk_modules/govuk-elements-sass',
+          src: ['**', '!elements-page.scss', '!elements-page-ie6.scss', '!elements-page-ie7.scss', '!elements-page-ie8.scss', '!main.scss', '!main-ie6.scss', '!main-ie7.scss', '!main-ie8.scss', '!prism.scss'],
+          dest: 'app/assets/sass/'
         }]
       },
     },
