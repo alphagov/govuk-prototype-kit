@@ -38,7 +38,7 @@ module.exports = function(grunt){
       govuk: {
         files: [{
           expand: true,
-          cwd: 'node_modules/govuk_frontend_toolkit',
+          cwd: 'node_modules/govuk_frontend_toolkit/',
           src: '**',
           dest: 'govuk_modules/govuk_frontend_toolkit/'
         },
@@ -53,6 +53,12 @@ module.exports = function(grunt){
           cwd: 'node_modules/govuk_template_jinja/views/layouts/',
           src: '**',
           dest: 'govuk_modules/govuk_template_jinja/views/layouts/'
+        },
+        {
+          expand: true,
+          cwd: 'node_modules/govuk-elements-sass/',
+          src: '**',
+          dest: 'govuk_modules/govuk-elements-sass/'
         }]
       },
       govuk_template_jinja: {
@@ -96,12 +102,12 @@ module.exports = function(grunt){
     },
 
     concurrent: {
-        target: {
-            tasks: ['watch', 'nodemon'],
-            options: {
-                logConcurrentOutput: true
-            }
+      target: {
+        tasks: ['watch', 'nodemon'],
+        options: {
+          logConcurrentOutput: true
         }
+      }
     }
   });
 
