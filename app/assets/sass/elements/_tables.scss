@@ -1,9 +1,5 @@
 // Tables
 // ==========================================================================
-// GOV.UK front end toolkit dependencies
-@import "typography";
-@import "colours";
-
 
 table {
   border-collapse: collapse;
@@ -25,7 +21,7 @@ table {
     // Right align headings for numeric content
     &.numeric {
       text-align: right;
-    } 
+    }
   }
 
   // Use tabular numbers for numeric table cells

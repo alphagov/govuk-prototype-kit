@@ -1,12 +1,5 @@
 // Helpers
 // ==========================================================================
-// GOV.UK front end toolkit dependencies
-@import "colours";
-@import "shims";
-@import "measurements";
-@import "typography";
-@import "css3";
-@import "url-helpers";
 
 // Path to assets for use with file-url() is not already defined
 @if ($path == false) {
@@ -33,7 +26,14 @@
 
 }
 
+// Hide for both screenreaders and browsers
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
 // Hide, but not for screenreaders
+.visually-hidden,
 .visuallyhidden {
   position: absolute;
   overflow: hidden;

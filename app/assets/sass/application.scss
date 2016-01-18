@@ -1,32 +1,9 @@
 // Import GOV.UK elements, this will import the frontend toolkit and some base styles.
-// Take a look at elements.scss to see which files are imported.
-@import 'elements';
+// Take a look in _govuk-elements.scss to see which files are imported.
+@import 'govuk-elements';
 
 // Take a look at patterns.scss to see which files are imported.
 @import 'patterns';
-
-// Set up your main content area <main id="content">
-// This will give you a full width content block
-// See elements _layout.scss line 7.
-
-// If you need it, set up your grid layout - refer to the grid layout usage example
-// See elements _layout.scss line 28.
-
-// If you need a phase banner, put this inside the main content area
-// See elements _layout.scss line 22.
-.phase-banner-alpha  {
-  @include phase-banner(alpha);
-}
-.phase-tag-alpha {
-  @include phase-tag(alpha);
-}
-
-.phase-banner-beta {
-  @include phase-banner(beta);
-}
-.phase-tag-beta {
-  @include phase-tag(beta);
-}
 
 // If you need to create a page as part of your journey, but without GOV.UK branding
 // See localhost:3000/examples/unbranded/
@@ -42,9 +19,6 @@
     background: $white;
   }
 }
-
-// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you,
-// either add and import new partial files, or modify those in GOV.UK elements to fit your user needs.
 
 // Related links
 // (These styles will be moved to GOV.UK elements, duplicating here for now.)
@@ -62,3 +36,5 @@
     margin-bottom: 10px;
   }
 }
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
