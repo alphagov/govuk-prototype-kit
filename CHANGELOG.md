@@ -6,6 +6,7 @@ This is a breaking change.
 
 To convert your old prototype pages for use with this version, [follow this guide](https://github.com/alphagov/govuk_prototype_kit/blob/master/docs/updating-the-kit.md).
 
+- Bump the govuk frontend toolkit to 4.6.0 (#127)
 - Update govuk elements sass (#124)
 - Update the prototype kit to use Nunjucks for templating (#123)
 - Create config file that stores prototype configuration (#120)
