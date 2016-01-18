@@ -44,23 +44,25 @@ module.exports = function(grunt){
         },
         {
           expand: true,
-          cwd: 'node_modules/govuk_template_mustache/',
+          cwd: 'node_modules/govuk_template_mustache/assets/',
           src: '**',
-          dest: 'govuk_modules/govuk_template/'
+          dest: 'govuk_modules/govuk_template/assets/'
+        },
+        {
+          expand: true,
+          cwd: 'node_modules/govuk_template_jinja/views/layouts/',
+          src: '**',
+          dest: 'govuk_modules/govuk_template_jinja/views/layouts/'
         }]
       },
-    },
-
-    // workaround for libsass
-    replace: {
-      fixSass: {
-        src: ['govuk_modules/govuk_template/**/*.scss', 'govuk_modules/govuk_frontend_toolkit/**/*.scss'],
-        overwrite: true,
-        replacements: [{
-          from: /filter:chroma(.*);/g,
-          to: 'filter:unquote("chroma$1");'
+      govuk_template_jinja: {
+        files: [{
+          expand: true,
+          cwd: 'govuk_modules/govuk_template_jinja/views/layouts/',
+          src: '**',
+          dest: 'lib/'
         }]
-      }
+      },
     },
 
     // Watches assets and sass for changes
@@ -109,28 +111,14 @@ module.exports = function(grunt){
     'grunt-contrib-clean',
     'grunt-sass',
     'grunt-nodemon',
-    'grunt-text-replace',
     'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
 
-  grunt.registerTask(
-    'convert_template',
-    'Converts the govuk_template to use mustache inheritance',
-    function () {
-      var script = require(__dirname + '/lib/template-conversion.js');
-
-      script.convert();
-      grunt.log.writeln('govuk_template converted');
-    }
-  );
-
   grunt.registerTask('generate-assets', [
     'clean',
     'copy',
-    'convert_template',
-    'replace',
     'sass'
   ]);
 

@@ -1,9 +1,13 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$content}}
+{% block page_title %}
+  Example - Toggled content
+{% endblock %}
+
+{% block content %}
 <main id="content" role="main">
 
-  {{>includes/breadcrumb_examples}}
+  {% include "includes/breadcrumb_examples.html" %}
 
   <div class="grid-row">
     <div class="column-two-thirds">
@@ -112,6 +116,4 @@
     </div>
   </div>
 </main>
-{{/content}}
-
-{{/layout}}
+{% endblock %}

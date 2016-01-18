@@ -1,8 +1,10 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}Question page{{/pageTitle}}
+{% block page_title %}
+  Question page
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
   <div class="grid-row">
@@ -50,6 +52,4 @@
   </div>
 </main>
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

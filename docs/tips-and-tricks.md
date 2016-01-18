@@ -2,20 +2,43 @@
 
 A few useful things to help you get started.
 
-## Adding the propositional navigation to your app
+## Update the Service name
 
-Some base HTML for the propositional navigation is included in the [views/includes](../app/views/includes). You should include it as a partial in your views.
+You can change the service name by editing the file '/app/config.js'.
 
-As explained in the [govuk_template readme](https://github.com/alphagov/govuk_template#propositional-title-and-navigation), you also need to include the `headerClass` tag, set to the following in your template to add that class to the `#global-header` element:
+    module.exports = {
 
-    {{$headerClass}}with-proposition{{/headerClass}}
+      // Service name used in header. Eg: 'Renew your passport'
+      serviceName: "Service name goes here",
 
-An example of this can be seen in the [layout.html](../app/views/layout.html) template.
+    };
 
-## Adding the Alpha/Beta styling
+## Show navigation in the header
 
-You can add the styling for the Alpha or Beta phases by including the phase tag in your propositional navigation and adding the banner to your template.
+Remove the comments surrounding the unordered list with an ID of proposition links.
 
-### Adding the phase tag
+    <nav id="proposition-menu">
+      <a href="/" id="proposition-name">Service name</a>
+      <!--
+      <ul id="proposition-links">
+        <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
+        <li><a href="url-to-page-2">Navigation item #2</a></li>
+      </ul>
+      -->
+    </nav>
 
-The phase tag should be added to your service name in the propositional navigation. See the [propositional_navigation_alpha.html](../app/views/includes/propositional_navigation_alpha.html) partial for an example.
+An example of this can be seen in the [question-page.html](../app/views/examples/question-page.html) template.
+
+## Add a phase banner
+
+Include either the alpha or beta phase banner from the `app/views/includes/` folder.
+
+### How to include an Alpha banner
+
+    {% include "includes/phase_banner_alpha.html" %}
+
+### How to include a Beta banner
+
+    {% include "includes/phase_banner_beta.html" %}
+
+

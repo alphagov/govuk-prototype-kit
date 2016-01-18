@@ -2,7 +2,7 @@
   <div class="content">
     <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
     <nav id="proposition-menu">
-      <a href="/" id="proposition-name">{{$serviceName}}{{serviceName}}{{/serviceName}}</a>
+      <a href="/" id="proposition-name">{% if serviceName %} {{ serviceName }} {% endif %}</a>
       <!--
       <ul id="proposition-links">
         <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>

@@ -1,8 +1,10 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}Check your answers{{/pageTitle}}
+{% block page_title %}
+  Check your answers
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 
@@ -128,6 +130,4 @@
 
 </main>
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

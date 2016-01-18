@@ -1,10 +1,10 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}
+{% block page_title %}
   GOV.UK prototype kit
-{{/pageTitle}}
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 
@@ -112,6 +112,4 @@
 
 </main>
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

@@ -1,10 +1,10 @@
-{{<unbranded}}
+{% extends "layout_unbranded.html" %}
 
-{{$pageTitle}}
+{% block page_title %}
   Example without branding
-{{/pageTitle}}
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 
@@ -17,6 +17,4 @@
 
 </main>
 
-{{/content}}
-
-{{/unbranded}}
+{% endblock %}

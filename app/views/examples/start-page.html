@@ -1,16 +1,18 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}} Start page example {{/pageTitle}}
+{% block page_title %}
+  Start page example
+{% endblock %}
 
-{{$propositionHeader}}
-<!-- blank for no proposition header -->
-{{/propositionHeader}}
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
 
-{{$headerClass}}
-<!-- blank for no proposition header -->
-{{/headerClass}}
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 
@@ -26,7 +28,7 @@
     <div class="column-two-thirds">
 
       <h1 class="heading-xlarge">
-        Service name
+        {% if serviceName %} {{ serviceName }} {% endif %}
       </h1>
 
       <p>Use this service to:</p>
@@ -69,6 +71,4 @@
 
 </main>
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

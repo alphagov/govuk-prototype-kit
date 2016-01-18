@@ -7,16 +7,19 @@
     "node": "4.x"
   },
   "scripts": {
-    "start": "node start.js"
+    "start": "node start.js",
+    "install": "napa"
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
+    "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.14.1",
     "consolidate": "0.x",
     "express": "4.13.3",
+    "express-nunjucks": "^0.9.3",
     "express-writer": "0.0.4",
     "govuk_frontend_toolkit": "^4.2.1",
-    "govuk_template_mustache": "^0.15.1",
+    "govuk_template_mustache": "^0.16.0",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
     "grunt-concurrent": "0.4.3",
@@ -25,10 +28,13 @@
     "grunt-contrib-watch": "0.5.3",
     "grunt-nodemon": "0.4.0",
     "grunt-sass": "^1.1.0",
-    "grunt-text-replace": "0.3.12",
     "hogan.js": "3.0.2",
     "minimist": "0.0.8",
+    "napa": "^2.2.0",
     "readdir": "0.0.6",
     "serve-favicon": "2.3.0"
+  },
+  "napa": {
+    "govuk_template_jinja": "https://github.com/alphagov/govuk_template/releases/download/v0.16.0/jinja_govuk_template-0.16.0.tgz"
   }
 }

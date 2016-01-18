@@ -1,9 +1,13 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$content}}
+{% block page_title %}
+  Example - Forms
+{% endblock %}
+
+{% block content %}
 <main id="content" role="main">
 
-  {{>includes/breadcrumb_examples}}
+  {% include "includes/breadcrumb_examples.html" %}
 
   <form action="/" method="post" class="form">
 
@@ -80,6 +84,4 @@
   </form>
 
 </main>
-{{/content}}
-
-{{/layout}}
+{% endblock %}
