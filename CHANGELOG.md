@@ -1,5 +1,11 @@
 # 2.0.0
 
+This release switches templating language from [Mustache](http://mustache.github.io/) to [Nunjucks](https://mozilla.github.io/nunjucks/).
+
+This is a breaking change.
+
+To convert your old prototype pages for use with this version, [follow this guide](https://github.com/alphagov/govuk_prototype_kit/blob/master/docs/updating-the-kit.md).
+
 - Update govuk elements sass (#124)
 - Update the prototype kit to use Nunjucks for templating (#123)
 - Create config file that stores prototype configuration (#120)
