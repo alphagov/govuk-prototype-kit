@@ -30,6 +30,7 @@
     "grunt-nodemon": "0.4.0",
     "grunt-sass": "^1.1.0",
     "hogan.js": "3.0.2",
+    "lodash": "^4.0.0",
     "minimist": "0.0.8",
     "napa": "^2.2.0",
     "readdir": "0.0.6",
