@@ -33,14 +33,12 @@ nunjucks.setup({
   noCache: true
 }, app);
 
-// dynamically add filters to nunjucks
-nunjucks.ready(function(nj) {
 
+nunjucks.ready(function(nj) {
   // iterate over filter items and add each to nunjucks
   Object.keys(filters.items).forEach(function(filterName) {
     nj.addFilter(filterName, filters.items[filterName]);
   });
-
 });
 
 // Middleware to serve static assets
