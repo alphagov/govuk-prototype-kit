@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node start.js",
-    "install": "napa"
+    "install": "napa",
+    "postinstall": "node lib/npm_postinstall.js"
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
