@@ -19,6 +19,7 @@ It's built on the [Express](http://expressjs.com/) framework, and uses these GOV
 
 Read the [project principles](docs/principles.md).
 
+_The prototype kit is designed specifically for prototyping. It should not be used to build production systems._
 
 ## Requirements
 
