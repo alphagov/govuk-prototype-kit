@@ -29,8 +29,6 @@ Becomes…
 
     {% extends "layout.html" %}
 
-
-
 ### Template blocks
 
     {{$pageTitle}}
@@ -43,7 +41,18 @@ Becomes…
         GOV.UK prototype kit
     {% endblock %}
 
+and
 
+    {{$content}}
+    .......
+    {{/content}}
+    
+Becomes...
+
+    {% block content %}
+    ........
+    {% endblock %}
+    
 ### Includes
 
     {{>includes/breadcrumbs}}
