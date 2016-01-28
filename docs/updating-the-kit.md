@@ -41,7 +41,7 @@ Becomes…
         GOV.UK prototype kit
     {% endblock %}
 
-And
+and
 
     {{$content}}
     .......
