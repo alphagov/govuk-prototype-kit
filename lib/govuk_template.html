@@ -68,13 +68,13 @@
     </div>
 
     <div id="global-cookie-message">
-      
+
         {% block cookie_message %}{% endblock %}
-      
+
     </div>
     <!--end global-cookie-message-->
 
-    
+
     <header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
       <div class="header-wrapper">
         <div class="header-global">
@@ -89,14 +89,18 @@
       </div>
     </header>
     <!--end header-->
-    
+
 
     {% block after_header %}{% endblock %}
 
     <div id="global-header-bar"></div>
     <!--end global-header-bar-->
 
+    <main id="content" role="main">
+    {% block phase_banner %}{% endblock %}
     {% block content %}{% endblock %}
+    </main>
+    <!--end main-->
 
     <footer class="group js-footer" id="footer" role="contentinfo">
 
@@ -109,9 +113,9 @@
 
             <div class="open-government-licence">
               <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
-              
+
                 {% block licence_message %}<p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>{% endblock %}
-              
+
             </div>
           </div>
 

@@ -5,27 +5,25 @@
 {% endblock %}
 
 {% block content %}
-<main id="content" role="main">
 
-  {% include "includes/breadcrumb_examples.html" %}
+{% include "includes/breadcrumb_examples.html" %}
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+<div class="grid-row">
+  <div class="column-two-thirds">
 
-      <h1 class="heading-xlarge">
-        Passing data into pages
-      </h1>
+    <h1 class="heading-xlarge">
+      Passing data into pages
+    </h1>
 
-      <p>
-        The example route defined in <code class="code">/routes.js</code> is passing the string '{{ name }}' to this page, via the variable called 'name'.
-      </p>
+    <p>
+      The example route defined in <code class="code">/routes.js</code> is passing the string '{{ name }}' to this page, via the variable called 'name'.
+    </p>
 
-      <p>
-        Have a look at the source for this page in your text editor to see how it works: <code class="code">/app/views/examples/template-data.html</code>
-      </p>
+    <p>
+      Have a look at the source for this page in your text editor to see how it works: <code class="code">/app/views/examples/template-data.html</code>
+    </p>
 
-    </div>
   </div>
+</div>
 
-</main>
 {% endblock %}
