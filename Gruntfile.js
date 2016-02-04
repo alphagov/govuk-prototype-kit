@@ -1,7 +1,5 @@
 module.exports = function(grunt){
   grunt.initConfig({
-    // Clean
-    clean: ['public', 'govuk_modules'],
 
     // Builds Sass
     sass: {
@@ -26,36 +24,34 @@ module.exports = function(grunt){
     },
 
     // Copies templates and assets from external modules and dirs
-    copy: {
+    sync: {
       assets: {
         files: [{
           expand: true,
           cwd: 'app/assets/',
           src: ['**/*', '!sass/**'],
           dest: 'public/'
-        }]
+        }],
+        ignoreInDest: "**/stylesheets/**",
+        updateAndDelete: true
       },
       govuk: {
         files: [{
-          expand: true,
           cwd: 'node_modules/govuk_frontend_toolkit/',
           src: '**',
           dest: 'govuk_modules/govuk_frontend_toolkit/'
         },
         {
-          expand: true,
           cwd: 'node_modules/govuk_template_mustache/assets/',
           src: '**',
           dest: 'govuk_modules/govuk_template/assets/'
         },
         {
-          expand: true,
           cwd: 'node_modules/govuk_template_jinja/views/layouts/',
           src: '**',
           dest: 'govuk_modules/govuk_template_jinja/views/layouts/'
         },
         {
-          expand: true,
           cwd: 'node_modules/govuk-elements-sass/public/sass/',
           src: ['**', '!node_modules', '!elements-page.scss', '!elements-page-ie6.scss', '!elements-page-ie7.scss', '!elements-page-ie8.scss', '!main.scss', '!main-ie6.scss', '!main-ie7.scss', '!main-ie8.scss', '!prism.scss'],
           dest: 'govuk_modules/govuk-elements-sass/'
@@ -63,7 +59,6 @@ module.exports = function(grunt){
       },
       govuk_template_jinja: {
         files: [{
-          expand: true,
           cwd: 'govuk_modules/govuk_template_jinja/views/layouts/',
           src: '**',
           dest: 'lib/'
@@ -71,7 +66,6 @@ module.exports = function(grunt){
       },
       govuk_elements: {
         files: [{
-          expand: true,
           cwd: 'govuk_modules/govuk-elements-sass',
           src: ['**'],
           dest: 'app/assets/sass/'
@@ -90,7 +84,7 @@ module.exports = function(grunt){
       },
       assets:{
         files: ['app/assets/**/*', '!app/assets/sass/**'],
-        tasks: ['copy:assets'],
+        tasks: ['sync:assets'],
         options: {
           spawn: false,
         }
@@ -120,9 +114,8 @@ module.exports = function(grunt){
   });
 
   [
-    'grunt-contrib-copy',
+    'grunt-sync',
     'grunt-contrib-watch',
-    'grunt-contrib-clean',
     'grunt-sass',
     'grunt-nodemon',
     'grunt-concurrent'
@@ -131,8 +124,7 @@ module.exports = function(grunt){
   });
 
   grunt.registerTask('generate-assets', [
-    'clean',
-    'copy',
+    'sync',
     'sass'
   ]);
 
@@ -148,15 +140,4 @@ module.exports = function(grunt){
       grunt.log.writeln('Test that the app runs');
     }
   );
-
-  grunt.event.on('watch', function(action, filepath, target) {
-
-    // just copy the asset that was changed, not all of them
-
-    if (target == "assets"){
-      grunt.config('copy.assets.files.0.src', filepath.replace("app/assets/",""));
-    }
-
-  });
-
 };
