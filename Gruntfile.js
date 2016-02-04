@@ -116,7 +116,6 @@ module.exports = function(grunt){
   [
     'grunt-sync',
     'grunt-contrib-watch',
-    'grunt-contrib-clean',
     'grunt-sass',
     'grunt-nodemon',
     'grunt-concurrent'
