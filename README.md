@@ -1,6 +1,15 @@
 # GOV.UK Prototype kit
 
-The kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research.
+
+
+
+**Version 2.0.0 update:** the latest version of the kit (2.0.0) is not compatible with previous versions. If you update your old prototypes you'll need to [convert them as well](https://github.com/alphagov/govuk_prototype_kit/blob/master/docs/updating-the-kit.md).
+
+
+
+## About the prototype kit
+
+The prototype kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research.
 
 It's built on the [Express](http://expressjs.com/) framework, and uses these GOV.UK resources:
 
@@ -9,6 +18,7 @@ It's built on the [Express](http://expressjs.com/) framework, and uses these GOV
 - [GOV.UK elements](https://github.com/alphagov/govuk_elements)
 
 Read the [project principles](docs/principles.md).
+
 
 ## Requirements
 
@@ -26,13 +36,13 @@ If you don't have Node, download it here: [http://nodejs.org/](http://nodejs.org
 
 ## Getting started
 
-Install Node.js (see requirements)
+Install Node.js (see requirements).
 
 #### Download the prototype kit
 
-[Download the zip file](https://github.com/alphagov/govuk_prototype_kit/archive/master.zip)
+**[Download v2.0.0 of the kit](https://github.com/alphagov/govuk_prototype_kit/archive/v2.0.0.zip)**
 
-Unzip the file
+Unzip the file.
 
 #### Install dependencies
 

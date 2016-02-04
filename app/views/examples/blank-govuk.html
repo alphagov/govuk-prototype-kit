@@ -1,12 +1,12 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}}Blank page{{/pageTitle}}
+{% block page_title %}
+  Blank page
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 </main>
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}

@@ -1,9 +1,13 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$content}}
+{% block page_title %}
+  Example - Forms
+{% endblock %}
+
+{% block content %}
 <main id="content" role="main">
 
-  {{>includes/breadcrumb_examples}}
+  {% include "includes/breadcrumb_examples.html" %}
 
   <form action="/" method="post" class="form">
 
@@ -62,7 +66,7 @@
     <div class="form-group">
       <details>
         <summary><span class="summary">Help with date of birth</span></summary>
-        <div class="panel-indent">
+        <div class="panel panel-border-narrow">
           <p>
             If you don’t know your exact date of birth, use the one you put on official documents (for example, your passport or driving licence).
           </p>
@@ -80,6 +84,4 @@
   </form>
 
 </main>
-{{/content}}
-
-{{/layout}}
+{% endblock %}

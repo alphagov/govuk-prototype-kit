@@ -1,14 +1,6 @@
 // Layout
 // ==========================================================================
 
-// GOV.UK front end toolkit dependencies
-@import "measurements";
-@import "conditionals";
-@import "grid_layout";
-@import "helpers";
-@import "design-patterns/alpha-beta";
-
-
 // Content
 // ==========================================================================
 
@@ -17,18 +9,10 @@
   @extend %site-width-container;
   @extend %contain-floats;
   padding-bottom: $gutter;
-  
+
   @include media(desktop) {
     padding-bottom: $gutter*3;
   }
-}
-
-
-// Phase banner
-// ==========================================================================
-
-.phase-banner {
-  @include phase-banner(alpha);
 }
 
 
@@ -39,10 +23,10 @@
 // For two equal columns
 
 // <div class="grid-row">
-//   <div class="column-half">
+//   <div class="column-one-half">
 //
 //   </div>
-//   <div class="column-half">
+//   <div class="column-one-half">
 //
 //   </div>
 // </div>
@@ -54,15 +38,18 @@
 
 // Use .grid-column to create a grid column with 15px gutter
 // By default grid columns break to become full width at tablet size
-.column-quarter {
+.column-quarter,
+.column-one-quarter {
   @include grid-column(1/4);
 }
 
-.column-half {
+.column-half,
+.column-one-half {
   @include grid-column(1/2);
 }
 
-.column-third {
+.column-third,
+.column-one-third {
   @include grid-column(1/3);
 }
 

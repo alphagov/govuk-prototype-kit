@@ -1,8 +1,10 @@
-{{<layout}}
+{% extends "layout.html" %}
 
-{{$pageTitle}} Confirmation page example {{/pageTitle}}
+{% block page_title %}
+  Confirmation page example
+{% endblock %}
 
-{{$content}}
+{% block content %}
 
 <main id="content" role="main">
 
@@ -29,6 +31,4 @@
 
 </main>
 
-{{/content}}
-
-{{/layout}}
+{% endblock %}
