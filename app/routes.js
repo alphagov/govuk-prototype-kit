@@ -20,7 +20,7 @@ router.get('/examples/template-data', function (req, res) {
 
 // Branching
 
-router.get('/examples/over18', function (req, res) {
+router.get('/examples/over-18', function (req, res) {
 
   // get the answer from the query string (eg. ?over18=false)
 	var over18 = req.query.over18;
@@ -28,12 +28,12 @@ router.get('/examples/over18', function (req, res) {
   if (over18 == "false"){
 
     // redirect to the relevant page
-    res.redirect("/examples/under18");
+    res.redirect("/examples/under-18");
 
   } else {
 
     // render the page requested
-    res.render('examples/over18');
+    res.render('examples/over-18');
 
   }
 
