@@ -22,6 +22,7 @@ The kit is not meant as a starter framework for production services. The code in
 
 >**DO NOT** enter real user data in to prototypes hosted online in services like Heroku. If your prototype stores or collects user data, talk to a security professional about appropriate security steps you must take.
 
+---
 [Next page (requirements)](requirements.md)
 
 ---

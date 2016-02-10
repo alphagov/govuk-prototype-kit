@@ -87,7 +87,7 @@ npm install
 ```
 The install may take up to a minute.
 
-
+---
 [Previous page (requirements)](requirements.md)
 
 [Next page (run the kit)](run-the-kit.md)

@@ -11,6 +11,11 @@ Installation guide for developers (technical):
 
 [Developer install instructions](developer-install-instructions.md)
 
+# Guides
+
+1. [Setting up git](guides/setting-up-git.md)
+1. [Publishing on Heroku](guides/publishing-on-heroku.md)
+
 # Documentation
 
 - [Prototype kit principles](principles.md)
