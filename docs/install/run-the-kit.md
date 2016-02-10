@@ -38,7 +38,7 @@ In terminal press the `ctrl` and `c` keys together.
 
 The kit is now installed. Congratulations!
 
-[Previous page (install the ki)](install-the-kit.md)
+[Previous page (install the kit)](install-the-kit.md)
 
 
 ---

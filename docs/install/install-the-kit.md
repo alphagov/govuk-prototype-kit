@@ -35,8 +35,9 @@ Move the kit in to your newly created `projects` folder.
 The terminal (terminal on mac and linux, git bash on windows) lets you type in commands and run programs on your computer. You can also use it to browse your file system - to open folders, etc.
 
 Learning a few basic terminal commands can make using the kit much easier.
-[Tutorial on using terminal (mac)](http://mac.appstorm.net/how-to/utilities-how-to/how-to-use-terminal-the-basics/)
-[Tutorial on using git bash (windows)](https://openhatch.org/missions/windows-setup/open-git-bash-prompt)
+
+* [Tutorial on using terminal (mac)](http://mac.appstorm.net/how-to/utilities-how-to/how-to-use-terminal-the-basics/)
+* [Tutorial on using git bash (windows)](https://openhatch.org/missions/windows-setup/open-git-bash-prompt)
 
 ### Navigating to your prototype
 
@@ -53,11 +54,11 @@ Navigating will depend on whether you have a `Documents` or a `My Documents` fol
 
 Documents:
 ```
-cd ~/Documents/juggling-license-prototype
+cd ~/Documents/projects/juggling-license-prototype
 ```
 My Documents:
 ```
-cd ~/My\ Documents/juggling-license-prototype
+cd ~/My\ Documents/projects/juggling-license-prototype
 ```
 
 #### Returning to this folder
