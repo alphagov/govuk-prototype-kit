@@ -21,10 +21,8 @@ Read the [project principles](docs/principles.md).
 
 ## Guides
 
-1. Tutorial - creating a simple prototype (not finished)
-2. Tutorial - create a branching prototype (not finished)
-3. Committing your work (Git basics)
-4. Publishing a prototype on the web (Heroku deployment)
+1. [Setting up git](guides/setting-up-git.md)
+1. [Publishing on Heroku](guides/publishing-on-heroku.md)
 
 ## Other documentation
 
