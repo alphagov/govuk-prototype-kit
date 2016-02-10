@@ -21,8 +21,8 @@ Read the [project principles](docs/principles.md).
 
 ## Guides
 
-1. [Setting up git](guides/setting-up-git.md)
-1. [Publishing on Heroku](guides/publishing-on-heroku.md)
+1. [Setting up git](docs/guides/setting-up-git.md)
+1. [Publishing on Heroku](docs/guides/publishing-on-heroku.md)
 
 ## Other documentation
 
