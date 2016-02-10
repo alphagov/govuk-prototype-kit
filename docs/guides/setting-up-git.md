@@ -8,7 +8,7 @@ This guide will walk you through setting up a git repo (repository) and committi
 
 > Git is not the same as GitHub. Git stores versions of your work, and lets you collaborate more easily with others. Github puts it all online with a nice web interface.
 
-## Set up Git
+## 1) Set up Git
 
 Before using Git, it's best to set it up with your name and email address, this helps other people know who worked on what.
 
@@ -22,7 +22,7 @@ For example,  `git config --global user.name "John Smith"`
 
 If you have an account on Github, use the *same* email address for both.
 
-## Initialise a Git repo
+## 2) Initialise a Git repo
 
 The first time you want to use Git on your prototype, you need to initialise it.
 
@@ -33,7 +33,7 @@ git init
 
 This sets up git to track the files in your prototype folder.
 
-## Check the Git status
+## 3) Check the Git status
 
 It’s a good idea to run `git status` frequently. This tells you the current status - for example, if you made changes to files that haven’t been committed.
 
@@ -44,7 +44,7 @@ git status
 
 As this is a new git repo, all files in the kit will be listed as having changes.
 
-## Doing your first commit
+## 4) Doing your first commit
 
 There are two stages to committing your changes. The first is to select the specific files with changes you want to commit, called **‘staging’**. The second is to commit all the changes in ‘staging’.
 
@@ -73,11 +73,11 @@ git commit -m “First commit”
 ```
 The message you put in the speech marks should be descriptive of the changes you are committing. This will help in the future if you look back at your changes and want to know why you made them.
 
-## Check Git status again
+## 5) Check Git status again
 
 Run `git status` again and it should say `Nothing to commit` - all the changes you selected have been saved.
 
-## Learning Git
+## 6) Learning Git
 
 We recommend doing a tutorial on Git basics. Once you’ve done that, the best thing is to keep using Git each day (commit at least one change, etc) so it becomes familiar to you. Ask developers on your team to help you until you’re comfortable on your own.
 
