@@ -10,7 +10,9 @@ The prototype kit provides a simple way to make interactive prototypes that look
 
 Read the [project principles](docs/principles.md).
 
-> You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately. *DO NOT* enter real user data in to prototypes hosted online in services like Heroku. If your prototype stores or collects user data, talk to a security professional about appropriate security steps you must take.
+> You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately. 
+
+> **DO NOT** enter real user data in to prototypes hosted online in services like Heroku. If your prototype stores or collects user data, talk to a security professional about appropriate security steps you must take.
 
 ## Installation instructions
 
