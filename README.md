@@ -8,27 +8,21 @@
 
 The prototype kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research.
 
-It's built on the [Express](http://expressjs.com/) framework, and uses these GOV.UK resources:
-
-- [GOV.UK template](https://github.com/alphagov/govuk_template)
-- [GOV.UK front end toolkit](https://github.com/alphagov/govuk_frontend_toolkit)
-- [GOV.UK elements](https://github.com/alphagov/govuk_elements)
-
 Read the [project principles](docs/principles.md).
+
+> You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately. _DO NOT_ enter real user data in to prototypes hosted online in services like Heroku. If your prototype stores or collects user data, talk to a security professional about appropriate security steps you must take.
 
 ## Installation instructions
 
-- [Installation guide for new users (non technical)](docs/install-guide/introduction.md)
+- [Installation guide for new users (non technical)](docs/install/introduction.md)
 - [Installation guide for developers (technical)](docs/developer-install-instructions.md)
 
 ## Guides
 
-These guides are meant to be followed in order.
-
-* Tutorial - creating a simple prototype (not finished)
-* Tutorial - create a branching prototype (not finished)
-* Committing your work (Git basics)
-* Publishing a prototype on the web (Heroku deployment)
+1. Tutorial - creating a simple prototype (not finished)
+2. Tutorial - create a branching prototype (not finished)
+3. Committing your work (Git basics)
+4. Publishing a prototype on the web (Heroku deployment)
 
 ## Other documentation
 
