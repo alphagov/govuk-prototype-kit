@@ -1,12 +1,14 @@
 # Installation guide
 
 Installation guide for new users (non technical):
+
 1. [Introduction](install/introduction.md)
 2. [Requirements](install/requirements.md)
 3. [Install the kit](install/install-the-kit.md)
 4. [Run the kit](install/run-the-kit.md)
 
 Installation guide for developers (technical):
+
 [Developer install instructions](developer-install-instructions.md)
 
 # Documentation
