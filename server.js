@@ -1,6 +1,5 @@
 var path = require('path'),
     express = require('express'),
-    browserSync = require('browser-sync'),
     nunjucks = require('express-nunjucks'),
     routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
@@ -95,21 +94,4 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 });
 
 // start the app
-utils.findAvailablePort(app, function(port) {
-  console.log('Listening on port ' + port + '   url: http://localhost:' + port);
-  if (env === 'production') {
-    app.listen(port);
-  } else {
-    app.listen(port,function()
-    {
-      browserSync({
-        proxy:'localhost:'+port,
-        port:port+1,
-        ui:false,
-        files:['public/**/*.{js,css,png}','app/views/**/*.html'],
-        ghostmode:{clicks:true, forms: true, scroll:true},
-        open:false,
-      });
-    });
-  }
-});
+utils.findAvailablePort(app);
