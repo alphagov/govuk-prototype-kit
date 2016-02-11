@@ -14,7 +14,7 @@ Installation guide for developers (technical):
 # Guides
 
 1. [Setting up git](guides/setting-up-git.md)
-1. [Publishing on Heroku](guides/publishing-on-heroku.md)
+1. [Publishing on the web (Heroku)](guides/publishing-on-heroku.md)
 
 # Documentation
 
