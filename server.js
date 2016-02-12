@@ -9,6 +9,7 @@ var path = require('path'),
     config = require(__dirname + '/app/config.js'),
     port = (process.env.PORT || config.port),
     utils = require(__dirname + '/lib/utils.js'),
+    filters = require(__dirname + '/lib/filters.js'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     username = process.env.USERNAME,
@@ -34,6 +35,14 @@ nunjucks.setup({
   watch: true,
   noCache: true
 }, app);
+
+
+nunjucks.ready(function(nj) {
+  // iterate over filter items and add each to nunjucks
+  Object.keys(filters.items).forEach(function(filterName) {
+    nj.addFilter(filterName, filters.items[filterName]);
+  });
+});
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example of using filters in pages
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-xlarge">Using built-in and custom filters in templates</h1>
+      <p>Nunjucks ships with a set of builtin filters <a href="https://mozilla.github.io/nunjucks/templating.html#builtin-filters">documented on it's website</a>. For example, you can pipe a string to the 'upper' filter as here:</p>
+			<p><code class="code">{% raw %}{{ "Hello World" | upper }}{% endraw %}</code> will output {{ "Hello World" | upper }}</p>
+			<p>You can also add your own custom filters to: <code class="code">/lib/filters.js</code> for example this padZeros filter.</p>
+			<p><code class="code">{% raw %}{{ 3 | padZeros(2) }}{% endraw %}</code> will output {{ 3 | padZeros(2) }}</p>
+    </div>
+  </div>
+
+</main>
+{% endblock %}
