@@ -2,6 +2,7 @@ var path = require('path'),
     express = require('express'),
     nunjucks = require('express-nunjucks'),
     routes = require(__dirname + '/app/routes.js'),
+    docRoutes = require(__dirname + '/docs/routes.js'),
     favicon = require('serve-favicon'),
     app = express(),
     basicAuth = require('basic-auth'),
@@ -27,7 +28,7 @@ if (env === 'production' && useAuth === 'true'){
 
 // Application settings
 app.set('view engine', 'html');
-app.set('views', [__dirname + '/app/views', __dirname + '/lib/']);
+app.set('views', [__dirname + '/app/views', __dirname + '/lib/', __dirname + '/docs/views']);
 
 nunjucks.setup({
   autoescape: true,
@@ -62,6 +63,13 @@ app.use(function (req, res, next) {
   res.locals.cookieText=config.cookieText;
   next();
 });
+
+// Create separate router for docs
+var docs = new express.Router()
+app.use("/docs", docs);
+
+// Docs under the /docs namespace
+docs.use("/", docRoutes);
 
 // routes (found in app/routes.js)
 if (typeof(routes) != "function"){
