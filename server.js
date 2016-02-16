@@ -1,12 +1,12 @@
 var path = require('path'),
     express = require('express'),
-    nunjucks = require('express-nunjucks'),
-    docs_nunjucks = require('express-nunjucks'),
+    // nunjucks = require('express-nunjucks'),
+    nunjucks = require('nunjucks'),
     routes = require(__dirname + '/app/routes.js'),
-    docRoutes = require(__dirname + '/docs/routes.js'),
+    docsRoutes = require(__dirname + '/docs/routes.js'),
     favicon = require('serve-favicon'),
     app = express(),
-    docs_app = express(),
+    docsApp = express(),
     basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
     config = require(__dirname + '/app/config.js'),
@@ -28,21 +28,26 @@ if (env === 'production' && useAuth === 'true'){
     app.use(utils.basicAuth(username, password));
 }
 
+var appViews = [__dirname + '/app/views', __dirname + '/lib/'];
+var docsViews = [__dirname + '/docs/views', __dirname + '/lib/'];
+
+nunjucks.configure(appViews, {
+    autoescape: true,
+    express: app,
+    noCache: true,
+    watch: true
+});
+
+nunjucks.configure(docsViews, {
+    autoescape: true,
+    express: docsApp,
+    noCache: true,
+    watch: true
+});
+
 // Application settings
 app.set('view engine', 'html');
-app.set('views', [__dirname + '/app/views', __dirname + '/lib/', __dirname + '/docs/views']);
-
-nunjucks.setup({
-  autoescape: true,
-  watch: true,
-  noCache: true
-}, app);
-
-docs_nunjucks.setup({
-  autoescape: true,
-  watch: true,
-  noCache: true
-}, docs_app);
+docsApp.set('view engine', 'html');
 
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
@@ -74,10 +79,13 @@ app.use(function (req, res, next) {
 
 // Create separate router for docs
 // var docs = new express.Router()
-app.use("/docs", docs_app);
+app.use("/docs", docsApp);
 
 // Docs under the /docs namespace
-docs_app.use("/", docRoutes);
+docsApp.use("/", docsRoutes);
+
+
+// docs_app.set('views', [__dirname + '/lib/', __dirname + '/docs/views']);
 
 // routes (found in app/routes.js)
 if (typeof(routes) != "function"){
