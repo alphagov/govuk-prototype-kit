@@ -1,10 +1,12 @@
 var path = require('path'),
     express = require('express'),
     nunjucks = require('express-nunjucks'),
+    docs_nunjucks = require('express-nunjucks'),
     routes = require(__dirname + '/app/routes.js'),
     docRoutes = require(__dirname + '/docs/routes.js'),
     favicon = require('serve-favicon'),
     app = express(),
+    docs_app = express(),
     basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
     config = require(__dirname + '/app/config.js'),
@@ -36,6 +38,12 @@ nunjucks.setup({
   noCache: true
 }, app);
 
+docs_nunjucks.setup({
+  autoescape: true,
+  watch: true,
+  noCache: true
+}, docs_app);
+
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk_modules/govuk_template/assets'));
@@ -65,11 +73,11 @@ app.use(function (req, res, next) {
 });
 
 // Create separate router for docs
-var docs = new express.Router()
-app.use("/docs", docs);
+// var docs = new express.Router()
+app.use("/docs", docs_app);
 
 // Docs under the /docs namespace
-docs.use("/", docRoutes);
+docs_app.use("/", docRoutes);
 
 // routes (found in app/routes.js)
 if (typeof(routes) != "function"){
