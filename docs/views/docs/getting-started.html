@@ -1,0 +1,53 @@
+{% extends "/layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block proposition_header %}
+  {% include "includes/prototype_kit_navigation.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">Getting started</h1>
+
+      <p class="lede">
+        Get up and running with the kit in 30 minutes.
+      </p>
+
+      <h2 class="heading-medium">About the kit</h2>
+
+      <p>The prototype kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research.</p>
+
+      <div class="panel panel-border-wide">
+        <p>You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.</p>
+      </div>
+
+      <h2 class="heading-medium">Download the kit</h2>
+      <a href="https://github.com/alphagov/govuk_prototype_kit/archive/v2.0.0.zip" class="button download">Download kit (zip)</a>
+
+      <h2 class="heading-medium">Installation instructions</h2>
+
+      <ul>
+      <li><a href="/alphagov/govuk_prototype_kit/blob/docs-rewrite/docs/install/introduction.md">Installation guide for new users (non technical)</a></li>
+      <li><a href="/alphagov/govuk_prototype_kit/blob/docs-rewrite/docs/developer-install-instructions.md">Installation guide for developers (technical)</a></li>
+      </ul>
+
+      
+
+    </div>
+
+
+  </div>
+
+  
+</main>
+
+{% endblock %}
+
+
