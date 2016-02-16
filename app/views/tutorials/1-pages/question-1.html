@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Question page
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a class="link-back" href="start-page">Back</a>
+
+      <h1 class="heading-large">
+        What's the most number of balls you can juggle?
+      </h1>
+
+      <form class="form" action="question-2">
+
+        <p>[RADIO BUTTONS GO HERE]</p>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
