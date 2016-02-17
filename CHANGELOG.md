@@ -1,8 +1,9 @@
 # 2.1.0
 
-New documentation to make it easier to install and run from scratch. The kit will now copy new files from assets to public (previously only updates to existing files were copied). It's easier to run multiple prototypes at once - the kit will automatically find a free port to run on.
+New documentation to make it easier to install and run from scratch - tested with users and everything! The kit will now copy new files from assets to public (previously only updates to existing files were copied). It's easier to run multiple prototypes at once - the kit will automatically find a free port to run on.
 
-- All-new documentation - tested with users and everything!
+- Add default cookie message (#150)
+- New documentation (#145)
 - Add example pages for branching (#143)
 - Use grunt-sync for assets (#141)
 - Fix warning for npm engine (#140)
