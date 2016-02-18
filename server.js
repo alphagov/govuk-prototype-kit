@@ -78,9 +78,7 @@ app.use(function (req, res, next) {
 });
 
 // Create separate router for docs
-// var docs = new express.Router()
 app.use("/docs", docsApp);
-
 // Docs under the /docs namespace
 docsApp.use("/", docsRoutes);
 
@@ -97,26 +95,17 @@ if (typeof(routes) != "function"){
 }
 
 // auto render any view that exists
+
+// App folder routes get priority
 app.get(/^\/([^.]+)$/, function (req, res) {
-
-  var path = (req.params[0]);
-
-  res.render(path, function(err, html) {
-    if (err) {
-      res.render(path + "/index", function(err2, html) {
-        if (err2) {
-          console.log(err);
-          res.status(404).send(err + "<br>" + err2);
-        } else {
-          res.end(html);
-        }
-      });
-    } else {
-      res.end(html);
-    }
-  });
-
+  utils.matchRoutes('/', req, res);
 });
+
+// Docs folder routes
+docsApp.get(/^\/([^.]+)$/, function (req, res) {
+  utils.matchRoutes('docs/', req, res);
+});
+
 
 // start the app
 
