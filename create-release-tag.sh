@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ev
 
 # Create a new tag if the version file has been updated and a tag for that
 # version doesn't already exist.
