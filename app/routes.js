@@ -39,9 +39,10 @@ router.get('/examples/over-18', function (req, res) {
 
 });
 
-// Routes for tutorial 3
+// Routes for tutorials
 
 require(__dirname + '/views/tutorials/3-routes/routes')(router);
+require(__dirname + '/views/tutorials/4-data/routes')(router);
 
 
 
