@@ -16,36 +16,42 @@ Getting started - GOV.UK Prototype kit
         Get up and running with the kit in 30 minutes.
       </p>
 
-      <h2 class="heading-medium">Requirements</h2>
+      <h2 class="heading-medium">Download the kit</h2>
+      <a href="{{releaseURL}}" class="button secondary-button">Download kit (zip)</a>
 
-      <ul>
-        <li>Node.js 4.3.0</li>
-        <li>Command line tools (Mac)</li>
-        <li>Git</li>
-      </ul>
+      <h2 class="heading-medium">What type of instructions would you like?</h2>
+      <div class="form-group">
+        <fieldset>
 
-      <h2 class="heading-medium">Install instructions (quick)</h2>
-      <p>NPM install <br>
-        NPM start</p>
-        <p>Visit <a href="localhost:3000">localhost:3000</a> in your browser</p>
+          <legend class="visuallyhidden">
+            What type of instructions would you like?
+          </legend>
 
-      <ul>
+          <label for="radio-part-2" class="block-label">
+            <input id="radio-part-2" type="radio" name="housing-act" value="Part 2">
+            <span class="heading-small">Non-techincal</span><br>
+            Users who haven't used git or the terminal before.
+          </label>
 
-      <h2 class="heading-medium">Install instructions (detailed)</h2>
-      
+          <label for="radio-part-3" class="block-label">
+            <input id="radio-part-3" type="radio" name="housing-act" value="Part 3">
+            <span class="heading-small">Technical</span><br>
+            Users comfortable with git and the terminal.
+          </label>
 
-      <li><a href="/alphagov/govuk_prototype_kit/blob/docs-rewrite/docs/install/introduction.md">Installation guide for new users (non technical)</a></li>
-      <li><a href="/alphagov/govuk_prototype_kit/blob/docs-rewrite/docs/developer-install-instructions.md">Installation guide for developers (technical)</a></li>
-      </ul>
+        </fieldset>
+      </div>
 
-      
-
-    </div>
-
+      <div class="form-group">
+        <input type="submit" class="button" value="Continue">
+      </div>
 
   </div>
 
-  
+
+</div>
+
+
 </main>
 
 {% endblock %}
