@@ -1,3 +1,15 @@
+# 2.1.0
+
+New documentation to make it easier to install and run from scratch - tested with users and everything! The kit will now copy new files from assets to public (previously only updates to existing files were copied). It's easier to run multiple prototypes at once - the kit will automatically find a free port to run on.
+
+- Add default cookie message (#150)
+- New documentation (#145)
+- Add example pages for branching (#143)
+- Use grunt-sync for assets (#141)
+- Fix warning for npm engine (#140)
+- Add tmuxp config files to gitignore (#132)
+- Improve 'port in use' errors, find a new port (#130)
+
 # 2.0.0
 
 This release switches templating language from [Mustache](http://mustache.github.io/) to [Nunjucks](https://mozilla.github.io/nunjucks/).
