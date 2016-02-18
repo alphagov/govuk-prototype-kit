@@ -8,7 +8,8 @@ install:
 script:
   # Reference the locally-installed version of Grunt
   - ./node_modules/grunt-cli/bin/grunt test
-  # If the app runs, check to see if the version file has been updated
+after_success:
+  # Check to see if the version file has been updated
   - ./create-release-tag.sh
 deploy:
   provider: heroku
