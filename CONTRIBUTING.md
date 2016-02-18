@@ -3,10 +3,12 @@
 We really like contributions and bug reports, in fact the project wouldn't have got to this stage without them.
 We do have a few guidelines to bear in mind.
 
-## GOV.UK Elements
+## Community
 
-The project contains code taken from the [GOV.UK Elements](https://github.com/alphagov/govuk_elements/) project.
-Please check that any issues related to that code are raised with that project, not this one.
+We have two Slack channels for the Prototype kit. You'll need a government email address to join them.
+
+* [Slack channel for users of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
+* [Slack channel for developers of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/)
 
 ## Raising bugs
 
@@ -20,7 +22,13 @@ When describing the bug it's useful to follow the format:
 ## Suggesting features
 
 Please raise feature requests as issues before contributing any code.
-This is just to ensure they are discussed properly before any time is spent on them.
+
+This ensures they are discussed properly before any time is spent on them.
+
+## GOV.UK Elements
+
+The project contains code taken from the [GOV.UK Elements](https://github.com/alphagov/govuk_elements/) project.
+Please check that any issues related to that code are raised with that project, not this one.
 
 ## Contributing code
 

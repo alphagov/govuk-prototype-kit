@@ -4,6 +4,10 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
+{% block cookie_message %}
+  <p>{{cookieText | safe }}</p>
+{% endblock %}
+
 {% block proposition_header %}
   {% include "includes/propositional_navigation.html" %}
 {% endblock %}
