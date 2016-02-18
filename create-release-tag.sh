@@ -1,13 +1,13 @@
 #!/bin/bash
-set -ev
+set -ex
 
 # Create a new tag if the version file has been updated and a tag for that
 # version doesn't already exist.
 
 # Are we on master branch?
 # We shouldn't push tags for version bump branches.
-BRANCH=`git rev-parse --abbrev-ref HEAD`
-if [[ "$BRANCH" == "master" ]]; then
+
+if [[ "$TRAVIS_BRANCH" == "master" ]]; then
   # get the version from the version file
   VERSION_TAG="v`cat VERSION.txt`"
 
