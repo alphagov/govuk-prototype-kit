@@ -1,4 +1,4 @@
-@import "_colours";
+@import "govuk-elements";
 
 .area {
   font-family: 'nta', Sans-serif;
@@ -18,5 +18,10 @@ main.area {
 }
 .header-proposition {
   clear: none;
-  min-height: 6em;
+  // min-height: 6em;
+}
+
+.code-block{
+  @extend .code;
+  margin-bottom: $gutter;
 }

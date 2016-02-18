@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block head %}
+  {% include "../includes/examples_head.html" %}
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Passing data
+      </h1>
+
+      <p>
+        You may want to use or display data a user has entered over a few screens.
+      </p>
+
+      <p>
+        You can see the code for this example here:
+      </p>
+
+      <div class="code-block">
+        /app/views/examples/pass-data.html
+      </div>
+
+      <form action="/examples/vehicle-check-answers" method="post" class="form">
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              What is your vehicle registration number?
+            </legend>
+
+            <label for="vehicleRegistration" class="form-label">
+              What is your vehicle registration number?
+            </label>
+
+            <input class="form-control" type="text" name="vehicleRegistration">
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

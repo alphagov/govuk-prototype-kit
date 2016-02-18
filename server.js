@@ -10,6 +10,7 @@ var path = require('path'),
     port = (process.env.PORT || config.port),
     utils = require(__dirname + '/lib/utils.js'),
     packageJson = require(__dirname + '/package.json'),
+    session = require('express-session');
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     releaseVersion = packageJson.version;
@@ -52,18 +53,31 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// send assetPath to all views
-app.use(function (req, res, next) {
-  res.locals.asset_path="/public/";
-  next();
-});
+// Support for session
+app.use(session({secret: "prototype-kit"}));
 
-// Add variables that are available in all views
 app.use(function (req, res, next) {
+
+  // store any data sent in session
+  for (var i in req.body){
+    req.session[i] = req.body[i];
+  }
+
+  // send session data to all views
+  for (var i in req.session){
+    res.locals[i] = req.session[i];
+  }
+
+  // send assetPath to all views
+  res.locals.asset_path="/public/";
+
+  // Add variables that are available in all views
   res.locals.serviceName=config.serviceName;
   res.locals.cookieText=config.cookieText;
   res.locals.releaseVersion="v" + releaseVersion;
+
   next();
+
 });
 
 // routes (found in app/routes.js)
@@ -76,7 +90,8 @@ if (typeof(routes) != "function"){
 }
 
 // auto render any view that exists
-app.get(/^\/([^.]+)$/, function (req, res) {
+
+function autoroute (req, res) {
 
   var path = (req.params[0]);
 
@@ -95,7 +110,10 @@ app.get(/^\/([^.]+)$/, function (req, res) {
     }
   });
 
-});
+}
+
+app.get(/^\/([^.]+)$/, autoroute);
+app.post(/^\/([^.]+)$/, autoroute);
 
 console.log("\nGOV.UK Prototype kit v" + releaseVersion);
 // Display warning not to use kit for production services.
