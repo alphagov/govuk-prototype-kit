@@ -39,6 +39,12 @@ router.get('/examples/over-18', function (req, res) {
 
 });
 
+// Routes for tutorial 3
+
+require(__dirname + '/views/tutorials/3-routes/routes')(router);
+
+
+
 // add your routes here
 
 module.exports = router;

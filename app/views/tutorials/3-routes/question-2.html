@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Question page
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a class="link-back" href="question-1">Back</a>
+
+      <h1 class="heading-large">
+        What's your most impressive juggling feat?
+      </h1>
+
+      <form class="form" action="check-your-answers-page">
+
+        <fieldset class="form-group">
+
+          <legend class="visuallyhidden">What's your most impressive juggling feat?</legend>
+
+          <label class="form-group-label" for="feat">Describe it in no more than 500 words</label>
+          <textarea class="form-control form-control-3-4" rows="8" id="feat" name="feat"></textarea>
+
+        </fieldset>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
