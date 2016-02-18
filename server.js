@@ -93,7 +93,7 @@ if (typeof(routes) != "function"){
 
 function autoroute (req, res) {
 
-  var path = (req.params[0]);
+  var path = req.params[0];
 
   res.render(path, function(err, html) {
     if (err) {
@@ -113,7 +113,11 @@ function autoroute (req, res) {
 }
 
 app.get(/^\/([^.]+)$/, autoroute);
-app.post(/^\/([^.]+)$/, autoroute);
+
+// redirect all POSTs to GETs to avoid nasty refresh warning
+app.post(/^\/([^.]+)$/, function(req, res){
+  res.redirect("/" + req.params[0]);
+});
 
 console.log("\nGOV.UK Prototype kit v" + releaseVersion);
 // Display warning not to use kit for production services.
