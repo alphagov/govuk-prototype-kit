@@ -60,6 +60,7 @@ app.use(session({
   saveUninitialized: false
 }));
 
+<<<<<<< HEAD
 app.use(function (req, res, next) {
 
   // store any data sent in session
@@ -94,6 +95,9 @@ app.use(function (req, res, next) {
 
 });
 
+app.use(utils.autoStoreData);
+app.use(utils.commonData);
+
 // routes (found in app/routes.js)
 if (typeof(routes) != "function"){
   console.log(routes.bind);
@@ -101,29 +105,6 @@ if (typeof(routes) != "function"){
   routes.bind(app);
 } else {
   app.use("/", routes);
-}
-
-// auto render any view that exists
-
-function autoroute (req, res) {
-
-  var path = req.params[0];
-
-  res.render(path, function(err, html) {
-    if (err) {
-      res.render(path + "/index", function(err2, html) {
-        if (err2) {
-          console.log(err);
-          res.status(404).send(err + "<br>" + err2);
-        } else {
-          res.end(html);
-        }
-      });
-    } else {
-      res.end(html);
-    }
-  });
-
 }
 
 app.get('/_/clear-data', function(req, res){
@@ -134,7 +115,7 @@ app.get('/_/clear-data', function(req, res){
 
 });
 
-app.get(/^\/([^.]+)$/, autoroute);
+app.get(/^\/([^.]+)$/, utils.autoroute);
 
 // redirect all POSTs to GETs to avoid nasty refresh warning
 app.post(/^\/([^.]+)$/, function(req, res){
