@@ -126,6 +126,14 @@ function autoroute (req, res) {
 
 }
 
+app.get('/_/clear-data', function(req, res){
+
+  req.session.data = {};
+
+  res.render("_/clear-data");
+
+});
+
 app.get(/^\/([^.]+)$/, autoroute);
 
 // redirect all POSTs to GETs to avoid nasty refresh warning
