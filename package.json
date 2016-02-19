@@ -37,7 +37,8 @@
     "prompt": "^0.2.14",
     "readdir": "0.0.6",
     "request": "^2.69.0",
-    "serve-favicon": "2.3.0"
+    "serve-favicon": "2.3.0",
+    "sync-request": "^3.0.0"
   },
   "napa": {
     "govuk_template_jinja": "https://github.com/alphagov/govuk_template/releases/download/v0.16.0/jinja_govuk_template-0.16.0.tgz"
