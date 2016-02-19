@@ -54,12 +54,16 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Support for session
-app.use(session({secret: "prototype-kit"}));
+app.use(session({
+  secret: "prototype-kit",
+  resave: false,
+  saveUninitialized: false
+}));
 
 app.use(function (req, res, next) {
 
   // store any data sent in session
-  
+
   if (!req.session.data){
     req.session.data = {};
   }
