@@ -59,13 +59,23 @@ app.use(session({secret: "prototype-kit"}));
 app.use(function (req, res, next) {
 
   // store any data sent in session
+  
+  if (!req.session.data){
+    req.session.data = {};
+  }
+
   for (var i in req.body){
-    req.session[i] = req.body[i];
+    req.session.data[i] = req.body[i];
   }
 
   // send session data to all views
-  for (var i in req.session){
-    res.locals[i] = req.session[i];
+
+  if (!res.locals.data){
+    res.locals.data = {};
+  }
+
+  for (var i in req.session.data){
+    res.locals.data[i] = req.session.data[i];
   }
 
   // send assetPath to all views
