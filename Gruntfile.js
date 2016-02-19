@@ -9,7 +9,8 @@ module.exports = function(grunt){
           sourcemap: true,
           includePaths: [
             'govuk_modules/govuk_template/assets/stylesheets',
-            'govuk_modules/govuk_frontend_toolkit/stylesheets'
+            'govuk_modules/govuk_frontend_toolkit/stylesheets',
+            'docs/assets/sass'
           ],
           outputStyle: 'expanded'
         },
@@ -18,9 +19,18 @@ module.exports = function(grunt){
           cwd: "app/assets/sass",
           src: ["*.scss"],
           dest: "public/stylesheets/",
-          ext: ".css"
-        }]
-      }
+          ext: ".css",
+        }],
+      },
+      // docs: {
+      //   files: [{
+      //     expand: true,
+      //     cwd: "docs/assets/sass",
+      //     src: ["*.scss"],
+      //     dest: "public/stylesheets/",
+      //     ext: ".css"
+      //   }]
+      // }
     },
 
     // Copies templates and assets from external modules and dirs

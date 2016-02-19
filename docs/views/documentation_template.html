@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}Blank page{% endblock %}
+
+{% block body_classes %}
+  markdown
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main" class="docs">
+	<div class="breadcrumbs">
+	  <ol role="breadcrumbs">
+	    <li><a href="/docs">GOV.UK prototype kit</a></li>
+	    <li><a href="/docs/documentation-and-examples">Documentation and examples</a></li>
+	  </ol>
+	</div>
+
+	<div class="grid-row">
+
+		<div class="column-two-thirds">
+
+			{{document | safe}}
+
+		</div>
+
+	</div>
+	
+</main>
+
+{% endblock %}
