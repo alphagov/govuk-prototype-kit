@@ -105,7 +105,7 @@ app.get('/prototype-admin/download-latest', function (req, res) {
   res.redirect(url);
 });
 
-if (useDocs){
+if (useDocs == 'true'){
   // Create separate router for docs
   app.use("/docs", docsApp);
   // Docs under the /docs namespace
