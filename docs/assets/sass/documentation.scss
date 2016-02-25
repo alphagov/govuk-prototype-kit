@@ -43,5 +43,9 @@
 		@extend .panel;
 		@extend .panel-border-wide;
 	}
+
+	strong {
+		font-weight: 700;
+	}
 }
 

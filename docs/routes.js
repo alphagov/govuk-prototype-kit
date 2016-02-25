@@ -2,7 +2,6 @@ var express = require('express'),
     fs      = require('fs'),
     marked  = require('marked'),
     path    = require('path'),
-    request = require('request'),
     router = express.Router(),
     utils = require(__dirname + '/../lib/utils.js');
 
@@ -40,7 +39,7 @@ router.get('/examples/over-18', function (req, res) {
   if (over18 == "false"){
 
     // redirect to the relevant page
-    res.redirect("examples/under-18");
+    res.redirect("/docs/examples/under-18");
 
   } else {
 
