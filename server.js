@@ -100,7 +100,7 @@ if (typeof(routes) != "function"){
 }
 
 // Downloads returns a url to the zip of the latest release on github
-app.get('/download-latest', function (req, res) {
+app.get('/prototype-admin/download-latest', function (req, res) {
   url = utils.getLatestRelease();
   res.redirect(url);
 });
