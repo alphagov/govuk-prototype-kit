@@ -18,7 +18,7 @@ var path = require('path'),
     env      = process.env.NODE_ENV || 'development',
     useAuth  = process.env.USE_AUTH || config.useAuth,
     useDocs  = (config.useDocs == "true" ) ? true : false,
-    promoMode = process.env.PROMO_MODE || false,
+    promoMode = process.env.PROMO_MODE || 'false',
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
@@ -105,7 +105,7 @@ app.get('/download-latest', function (req, res) {
   res.redirect(url);
 });
 
-if (useDocs){
+if (useDocs == 'true'){
   // Create separate router for docs
   app.use("/docs", docsApp);
   // Docs under the /docs namespace
