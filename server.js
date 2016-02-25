@@ -83,7 +83,7 @@ app.use(function (req, res, next) {
 });
 
 // Redirect root to /docs when in promo mode.
-if (promoMode === true){
+if (promoMode == 'true'){
   console.log('Kit running in promo mode');
   app.get('/', function (req, res) {
     res.redirect('/docs');
