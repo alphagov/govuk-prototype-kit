@@ -1,4 +1,4 @@
-# Instructions for developers
+# Advanced install guide
 
 It's built on the [Express](http://expressjs.com/) framework, and uses these GOV.UK resources:
 
@@ -8,7 +8,8 @@ It's built on the [Express](http://expressjs.com/) framework, and uses these GOV
 
 ## Requirements
 
-node.js - version 4.x.x
+* Node.js - version 4.x.x
+* command line tools (mac)
 
 ## Install dependencies
 

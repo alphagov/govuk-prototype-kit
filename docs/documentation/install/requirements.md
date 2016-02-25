@@ -104,7 +104,7 @@ If you don’t have command line tools, it will open an installer. Follow the in
 ---
 [Previous page (introduction)](introduction.md)
 
+---
+
 [Next page (install the kit)](install-the-kit.md)
 
----
-[Documentation index](../README.md)

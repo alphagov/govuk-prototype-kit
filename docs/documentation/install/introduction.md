@@ -16,6 +16,3 @@ You’ll use a copy of the kit for each different prototype you want to make - t
 
 ---
 [Next page (requirements)](requirements.md)
-
----
-[Documentation index](../README.md)
