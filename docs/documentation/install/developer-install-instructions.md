@@ -9,6 +9,7 @@ It's built on the [Express](http://expressjs.com/) framework, and uses these GOV
 ## Requirements
 
 node.js - version 4.x.x
+command line tools (mac)
 
 ## Install dependencies
 
