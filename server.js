@@ -18,7 +18,7 @@ var path = require('path'),
     env      = process.env.NODE_ENV || 'development',
     useAuth  = process.env.USE_AUTH || config.useAuth,
     useDocs  = (config.useDocs == "true" ) ? true : false,
-    promoMode = process.env.PROMO_MODE || false,
+    promoMode = process.env.PROMO_MODE || 'false',
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
@@ -83,7 +83,7 @@ app.use(function (req, res, next) {
 });
 
 // Redirect root to /docs when in promo mode.
-if (promoMode === true){
+if (promoMode == 'true'){
   console.log('Kit running in promo mode');
   app.get('/', function (req, res) {
     res.redirect('/docs');
