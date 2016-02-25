@@ -24,9 +24,8 @@
 	pre > code {
 		@extend .code;
 		display: block;
-		padding: 15px;
-		border-left: 10px solid $grey-2;
-		font-size: 1em;
+		@extend .panel;
+		@extend .panel-border-wide;
 		font-family: monospace;
 		margin-bottom: 15px;
 	}
@@ -38,6 +37,11 @@
 	ul {
 		@extend .list;
 		@extend .list-bullet;
+	}
+
+	blockquote {
+		@extend .panel;
+		@extend .panel-border-wide;
 	}
 }
 
