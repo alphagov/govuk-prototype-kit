@@ -6,6 +6,11 @@ if (!fs.existsSync(__dirname + '/node_modules')) {
   process.exit(0);
 }
 
+// remove port.tmp if it exists  
+try {
+  fs.unlinkSync(__dirname + '/port.tmp');
+} catch(e){}
+
 var gruntfile = __dirname + '/Gruntfile.js';
 
 require(__dirname + '/node_modules/grunt/lib/grunt.js').cli({
