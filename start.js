@@ -24,7 +24,6 @@ process.on('SIGINT', function() {
     fs.unlinkSync(__dirname + '/port.tmp');
   } catch(e){}
 
-  // process.kill(process.pid, 'SIGTERM');
   process.exit(0);
 
 });
