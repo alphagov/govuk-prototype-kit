@@ -24,7 +24,7 @@ Unzip the kit you downloaded - you should end up with a folder called `govuk_pro
 
 ### Rename the kit
 
-Rename the folder to something descriptive for your prototype. For this guide, we’ll use `juggling-licence-prototype`.
+Rename the folder to something descriptive for your prototype. For this guide, we’ll use `juggling-license-prototype`.
 
 ### Move the kit in to projects folder
 
@@ -85,7 +85,7 @@ You need to download extra code used by the kit before it can run. You can get t
 ```
 npm install
 ```
-The install may take up to a minute.
+The install may take up to a minute. Whilst installing it may `WARN` about some items - this is ok. As long as there are no `ERROR`s you can continue.
 
 ---
 [Previous page (requirements)](requirements.md)
