@@ -21,16 +21,7 @@ module.exports = function(grunt){
           dest: "public/stylesheets/",
           ext: ".css",
         }],
-      },
-      // docs: {
-      //   files: [{
-      //     expand: true,
-      //     cwd: "docs/assets/sass",
-      //     src: ["*.scss"],
-      //     dest: "public/stylesheets/",
-      //     ext: ".css"
-      //   }]
-      // }
+      }
     },
 
     // Copies templates and assets from external modules and dirs

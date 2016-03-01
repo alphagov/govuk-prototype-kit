@@ -1,3 +1,5 @@
+// Modules and middleware
+
 var path = require('path'),
     express = require('express'),
     nunjucks = require('nunjucks'),
@@ -10,18 +12,28 @@ var path = require('path'),
     bodyParser = require('body-parser'),
     config = require(__dirname + '/app/config.js'),
     port = (process.env.PORT || config.port),
-    utils = require(__dirname + '/lib/utils.js'),
+    utils = require(__dirname + '/lib/utils.js');
 
-// Grab environment variables specified in Procfile or as Heroku config vars
-    username = process.env.USERNAME,
-    password = process.env.PASSWORD,
-    env      = process.env.NODE_ENV || 'development',
-    useAuth  = process.env.USE_AUTH || config.useAuth,
-    useDocs  = (config.useDocs == "true" ) ? true : false,
-    promoMode = process.env.PROMO_MODE || 'false',
-
+// Environment variables
+var env      = process.env.NODE_ENV || 'development',
     env      = env.toLowerCase();
+
+var username = process.env.USERNAME,
+    password = process.env.PASSWORD,
+
+    // Enable or disbale auth in app/config.js or using env variable
+    useAuth  = process.env.USE_AUTH || config.useAuth,
     useAuth  = useAuth.toLowerCase();
+
+    // Whether local docs are rendered or not - change in app/config.js
+var useDocs  = (config.useDocs == 'true' ) ? true : false,
+
+    // Promo mode redirects / to /docs - so our landing page is the docs when published on heroku
+    promoMode = process.env.PROMO_MODE || 'false',
+    promoMode = promoMode.toLowerCase();
+
+// Disable promo mode if docs aren't enabled
+if (!useDocs) promoMode = 'false';
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -105,7 +117,7 @@ app.get('/prototype-admin/download-latest', function (req, res) {
   res.redirect(url);
 });
 
-if (useDocs == true){
+if (useDocs === true){
   // Create separate router for docs
   app.use("/docs", docsApp);
   // Docs under the /docs namespace
