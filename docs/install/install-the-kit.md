@@ -45,7 +45,7 @@ You need to be able to navigate to your prototype from the terminal. Most comman
 
 #### Mac users:
 ```
-cd ~/projects/juggling-license-prototype
+cd ~/projects/juggling-licence-prototype
 ```
 
 #### Windows users:
@@ -54,11 +54,11 @@ Navigating will depend on whether you have a `Documents` or a `My Documents` fol
 
 Documents:
 ```
-cd ~/Documents/projects/juggling-license-prototype
+cd ~/Documents/projects/juggling-licence-prototype
 ```
 My Documents:
 ```
-cd ~/My\ Documents/projects/juggling-license-prototype
+cd ~/My\ Documents/projects/juggling-licence-prototype
 ```
 
 #### Returning to this folder
@@ -85,7 +85,7 @@ You need to download extra code used by the kit before it can run. You can get t
 ```
 npm install
 ```
-The install may take up to a minute.
+The install may take up to a minute. Whilst installing it may `WARN` about some items - this is ok. As long as there are no `ERROR`s you can continue.
 
 ---
 [Previous page (requirements)](requirements.md)
