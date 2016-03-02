@@ -24,7 +24,7 @@ Unzip the kit you downloaded - you should end up with a folder called `govuk_pro
 
 ### Rename the kit
 
-Rename the folder to something descriptive for your prototype. For this guide, we’ll use `juggling-license-prototype`.
+Rename the folder to something descriptive for your prototype. For this guide, we’ll use `juggling-licence-prototype`.
 
 ### Move the kit in to projects folder
 
@@ -45,7 +45,7 @@ You need to be able to navigate to your prototype from the terminal. Most comman
 
 #### Mac users:
 ```
-cd ~/projects/juggling-license-prototype
+cd ~/projects/juggling-licence-prototype
 ```
 
 #### Windows users:
@@ -54,11 +54,11 @@ Navigating will depend on whether you have a `Documents` or a `My Documents` fol
 
 Documents:
 ```
-cd ~/Documents/projects/juggling-license-prototype
+cd ~/Documents/projects/juggling-licence-prototype
 ```
 My Documents:
 ```
-cd ~/My\ Documents/projects/juggling-license-prototype
+cd ~/My\ Documents/projects/juggling-licence-prototype
 ```
 
 #### Returning to this folder
