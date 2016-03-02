@@ -20,7 +20,7 @@ Listening on port 3000 url: http://localhost:3000
 
 ## Check it works
 
-In your web browser, visit <a href="http://localhost:3000" target="_blank">http://localhost:3000<span class="visuallyHidden"> (opens in a new window)</span></a>
+In your web browser, visit <a href="http://localhost:3000" target="_blank">http://localhost:3000 (opens in a new tab)</a>
 
 You should see the prototype welcome page.
 
