@@ -91,11 +91,11 @@ if (typeof(routes) != "function"){
   app.use("/", routes);
 }
 
-app.get('/_/clear-data', function(req, res){
+app.get('/prototype-admin/clear-data', function(req, res){
 
-  req.session.data = {};
+  req.session.destroy();
 
-  res.render("_/clear-data");
+  res.render("prototype-admin/clear-data");
 
 });
 
