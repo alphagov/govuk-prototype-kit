@@ -4,10 +4,6 @@
   Example - Passing data
 {% endblock %}
 
-{% block head %}
-  {% include "../includes/examples_head.html" %}
-{% endblock %}
-
 {% block content %}
 <main id="content" role="main">
 
@@ -21,16 +17,26 @@
       </h1>
 
       <p>
-        You may want to use or display data a user has entered over a few screens.
+        You may want to use or display data a user has entered over a few screens. The kit automatically stores all data entered, so you can show it later.
+      </p>
+
+      <p>
+        To clear the data (for example at the end of a user research session) click the "Clear data" link in the footer.
       </p>
 
       <p>
         You can see the code for this example here:
       </p>
 
-      <div class="code-block">
-        /app/views/examples/pass-data.html
-      </div>
+      <pre>
+<div class="code">
+  /app/views/examples/pass-data.html
+  /app/views/examples/vehicle-type.html
+  /app/views/examples/vehicle-features.html
+  /app/views/examples/vehicle-check-answers.html
+
+</div>
+      </pre>
 
       <form action="/examples/vehicle-type" method="post" class="form">
 
