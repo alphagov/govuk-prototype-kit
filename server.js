@@ -9,8 +9,10 @@ var path = require('path'),
     config = require(__dirname + '/app/config.js'),
     port = (process.env.PORT || config.port),
     utils = require(__dirname + '/lib/utils.js'),
+    packageJson = require(__dirname + '/package.json'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
+    releaseVersion = packageJson.version;
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
@@ -60,6 +62,7 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
   res.locals.serviceName=config.serviceName;
   res.locals.cookieText=config.cookieText;
+  res.locals.releaseVersion="v" + releaseVersion;
   next();
 });
 
@@ -94,6 +97,9 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
 });
 
-// start the app
+console.log("\nGOV.UK Prototype kit v" + releaseVersion);
+// Display warning not to use kit for production services.
+console.log("\nNOTICE: the kit is for building prototypes, do not use it for production services.");
 
+// start the app
 utils.findAvailablePort(app);
