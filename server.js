@@ -18,9 +18,11 @@ var path = require('path'),
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
     useAuth  = process.env.USE_AUTH || config.useAuth;
+    useAutoStoreData = config.useAutoStoreData;
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
+    useAutoStoreData = useAutoStoreData.toLowerCase();
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -60,28 +62,7 @@ app.use(session({
   saveUninitialized: false
 }));
 
-<<<<<<< HEAD
 app.use(function (req, res, next) {
-
-  // store any data sent in session
-
-  if (!req.session.data){
-    req.session.data = {};
-  }
-
-  for (var i in req.body){
-    req.session.data[i] = req.body[i];
-  }
-
-  // send session data to all views
-
-  if (!res.locals.data){
-    res.locals.data = {};
-  }
-
-  for (var i in req.session.data){
-    res.locals.data[i] = req.session.data[i];
-  }
 
   // send assetPath to all views
   res.locals.asset_path="/public/";
@@ -95,7 +76,10 @@ app.use(function (req, res, next) {
 
 });
 
-app.use(utils.autoStoreData);
+if (useAutoStoreData == 'true'){
+  app.use(utils.autoStoreData);
+}
+
 app.use(utils.commonData);
 
 // routes (found in app/routes.js)
