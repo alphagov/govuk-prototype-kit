@@ -24,7 +24,7 @@ Macs come with `Terminal.app`. It’s located in the `Utilities` folder in the `
 
 ### Windows users
 
-This guide will use `Git Bash` as a terminal instead of the existing `CMD` application. Git Bash is more fully featured and uses the same commands as Mac and Linux, so instructions in this guide work for all.
+This guide will use `Git Bash` as a terminal instead of the existing `Command Prompt` application. Git Bash is more fully featured and uses the same commands as Mac and Linux, so instructions in this guide work for all.
 
 Installing `git bash` installs two things for you: a terminal (for entering commands), and git (used later to share your work with others).
 

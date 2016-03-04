@@ -1,6 +1,6 @@
 # Publishing on the web (Heroku)
 
-> These don't currently work on Windows due to a software incompatability. The Heroku toolbelt is not compatible with Git Bash - you will need to use CMD instead.
+> These don't currently work on Windows due to a software incompatability. The Heroku toolbelt is not compatible with Git Bash - you will need to use `Command Prompt` instead.
 
 We recommend using [Heroku](http://www.heroku.com) to get your prototype online. It’s simple and fast to deploy new versions as you work.
 
