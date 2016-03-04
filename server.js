@@ -80,8 +80,6 @@ if (useAutoStoreData == 'true'){
   app.use(utils.autoStoreData);
 }
 
-app.use(utils.commonData);
-
 // routes (found in app/routes.js)
 if (typeof(routes) != "function"){
   console.log(routes.bind);
