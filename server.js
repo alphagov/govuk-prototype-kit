@@ -99,7 +99,27 @@ app.get('/prototype-admin/clear-data', function(req, res){
 
 });
 
-app.get(/^\/([^.]+)$/, utils.autoroute);
+// auto render any view that exists
+app.get(/^\/([^.]+)$/, function (req, res) {
+
+  var path = (req.params[0]);
+
+  res.render(path, function(err, html) {
+    if (err) {
+      res.render(path + "/index", function(err2, html) {
+        if (err2) {
+          console.log(err);
+          res.status(404).send(err + "<br>" + err2);
+        } else {
+          res.end(html);
+        }
+      });
+    } else {
+      res.end(html);
+    }
+  });
+
+});
 
 // redirect all POSTs to GETs to avoid nasty refresh warning
 app.post(/^\/([^.]+)$/, function(req, res){
