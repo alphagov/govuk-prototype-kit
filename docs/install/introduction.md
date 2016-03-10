@@ -4,7 +4,7 @@ This guide will walk you through installing and getting started with the kit. Yo
 
 Installation takes up to 30 minutes depending on how much you need to install.
 
-If you’re comfortable using git and the terminal, you may prefer the [developer friendly instructions](../developer-install-instructions).
+If you’re comfortable using git and the terminal, you may prefer the [developer friendly instructions](../developer-install-instructions.md).
 
 > This guide is a work in progress. Please help [contribute](../../CONTRIBUTING.md) to make it even better.
 
