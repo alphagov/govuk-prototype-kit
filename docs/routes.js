@@ -52,7 +52,7 @@ router.get('/examples/over-18', function (req, res) {
 
 // Redirect documentation directory (just in case)
 router.get('/documentation/', function (req, res) {
-  res.redirect('documentation-and-examples');
+  res.redirect('guides-and-examples');
 });
 
 // Pages in documentation folder are markdown
