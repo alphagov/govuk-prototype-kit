@@ -40,7 +40,7 @@ heroku apps:create [NAME OF YOUR APP] --region eu
 ```
 Replace `[name of your app]` with what you want to call your prototype.
 
-## 5) Set a username and passwordg
+## 5) Set a username and password
 
 By default, prototypes made with the kit require a username and password to be used when deployed on Heroku.
 
