@@ -10,6 +10,7 @@ var path = require('path'),
     port = (process.env.PORT || config.port),
     utils = require(__dirname + '/lib/utils.js'),
     packageJson = require(__dirname + '/package.json'),
+    session = require('express-session');
 
 // Grab environment variables specified in Procfile or as Heroku config vars
     releaseVersion = packageJson.version;
@@ -17,9 +18,11 @@ var path = require('path'),
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
     useAuth  = process.env.USE_AUTH || config.useAuth;
+    useAutoStoreData = config.useAutoStoreData;
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
+    useAutoStoreData = useAutoStoreData.toLowerCase();
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -52,19 +55,30 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// send assetPath to all views
-app.use(function (req, res, next) {
-  res.locals.asset_path="/public/";
-  next();
-});
+// Support for session
+app.use(session({
+  secret: "prototype-kit",
+  resave: false,
+  saveUninitialized: false
+}));
 
-// Add variables that are available in all views
 app.use(function (req, res, next) {
+
+  // send assetPath to all views
+  res.locals.asset_path="/public/";
+
+  // Add variables that are available in all views
   res.locals.serviceName=config.serviceName;
   res.locals.cookieText=config.cookieText;
   res.locals.releaseVersion="v" + releaseVersion;
+
   next();
+
 });
+
+if (useAutoStoreData == 'true'){
+  app.use(utils.autoStoreData);
+}
 
 // routes (found in app/routes.js)
 if (typeof(routes) != "function"){
@@ -74,6 +88,14 @@ if (typeof(routes) != "function"){
 } else {
   app.use("/", routes);
 }
+
+app.get('/prototype-admin/clear-data', function(req, res){
+
+  req.session.destroy();
+
+  res.render("prototype-admin/clear-data");
+
+});
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, function (req, res) {
@@ -95,6 +117,11 @@ app.get(/^\/([^.]+)$/, function (req, res) {
     }
   });
 
+});
+
+// redirect all POSTs to GETs to avoid nasty refresh warning
+app.post(/^\/([^.]+)$/, function(req, res){
+  res.redirect("/" + req.params[0]);
 });
 
 console.log("\nGOV.UK Prototype kit v" + releaseVersion);

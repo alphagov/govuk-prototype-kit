@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Check your answers
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">
+        Check your answers before sending your application
+      </h1>
+
+      <p>
+        When a user has entered data on pages, show it by using code like this:  
+      </p>
+
+      <pre>
+        <div class="code">{% raw %}
+  &lt;tr&gt;
+    &lt;td&gt;
+      Vehicle type:
+    &lt;/td&gt;
+    &lt;td&gt;
+      {{vehicleType}}
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  {% endraw %}</div></pre>
+    </div>
+  </div>
+
+  <div class="form-group">
+
+    <table class="check-your-answers">
+
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2 class="heading-medium">
+              Vehicle details
+            </h2>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            Registration number
+          </td>
+          <td>
+            {{vehicleRegistration}}
+          </td>
+          <td class="change-answer">
+            <a href="/examples/pass-data">
+              Change <span class="visuallyhidden">registration number</span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Vehicle type
+          </td>
+          <td>
+            {{vehicleType}}
+          </td>
+          <td class="change-answer">
+            <a href="/examples/vehicle-type">
+              Change <span class="visuallyhidden">vehicle type</span>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Vehicle features
+          </td>
+          <td>
+            {{vehicleFeature}}
+          </td>
+          <td class="change-answer">
+            <a href="/examples/vehicle-type">
+              Change <span class="visuallyhidden">vehicle features</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-group">
+    <p>
+      <a href="/examples">
+        Return to prototype kit examples
+      </a>
+    </p>
+  </div>
+
+</main>
+
+{% endblock %}
