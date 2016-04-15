@@ -87,6 +87,15 @@ if (typeof(routes) != "function"){
   app.use("/", routes);
 }
 
+// Strip .html and .htm if provided
+app.get(/\.html?$/i, function (req, res){
+  var path = req.path;
+  var parts = path.split('.');
+  parts.pop();
+  path = parts.join('.');
+  res.redirect(path);
+});
+
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, function (req, res) {
 
