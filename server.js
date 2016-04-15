@@ -76,7 +76,7 @@ if (typeof(routes) != "function"){
 }
 
 // Strip .html and .htm if provided
-app.get(/.html?$/i, function (req, res){
+app.get(/\.html?$/i, function (req, res){
   var path = req.path;
   var parts = path.split('.');
   parts.pop();
