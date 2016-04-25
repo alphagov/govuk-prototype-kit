@@ -8,6 +8,8 @@ This guide will walk you through setting up a git repo (repository) and committi
 
 > Git is not the same as GitHub. Git stores versions of your work, and lets you collaborate more easily with others. Github puts it all online with a nice web interface.
 
+You'll need to install Git first. Installation instructions for Mac, Windows, and Linux can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). Once you've done that, read below to get set up.
+
 ## 1) Set up Git
 
 Before using Git, it's best to set it up with your name and email address, this helps other people know who worked on what.
