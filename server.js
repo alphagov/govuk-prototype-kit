@@ -76,6 +76,18 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Disallow search index idexing
+app.use(function (req, res, next) {
+  // Setting headers stops pages being indexed even if indexed pages link to them.
+  res.setHeader('X-Robots-Tag', 'noindex');
+  next();
+});
+
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain');
+  res.send("User-agent: *\nDisallow: /");
+});
+
 // routes (found in app/routes.js)
 if (typeof(routes) != "function"){
   console.log(routes.bind);
@@ -84,6 +96,15 @@ if (typeof(routes) != "function"){
 } else {
   app.use("/", routes);
 }
+
+// Strip .html and .htm if provided
+app.get(/\.html?$/i, function (req, res){
+  var path = req.path;
+  var parts = path.split('.');
+  parts.pop();
+  path = parts.join('.');
+  res.redirect(path);
+});
 
 // auto render any view that exists
 app.get(/^\/([^.]+)$/, function (req, res) {
