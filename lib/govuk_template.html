@@ -7,23 +7,19 @@
 
     <title>{% block page_title %}GOV.UK - The best place to find government services and information{% endblock %}</title>
 
-    <script type="text/javascript">
-      (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
-    </script>
+    <!--[if gt IE 8]><!--><link href="{{ asset_path }}stylesheets/govuk-template.css?0.17.0" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+    <!--[if IE 6]><link href="{{ asset_path }}stylesheets/govuk-template-ie6.css?0.17.0" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link href="{{ asset_path }}stylesheets/govuk-template-ie7.css?0.17.0" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 8]><link href="{{ asset_path }}stylesheets/govuk-template-ie8.css?0.17.0" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
 
-    <!--[if gt IE 8]><!--><link href="{{ asset_path }}stylesheets/govuk-template.css?0.16.4" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
-    <!--[if IE 6]><link href="{{ asset_path }}stylesheets/govuk-template-ie6.css?0.16.4" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
-    <!--[if IE 7]><link href="{{ asset_path }}stylesheets/govuk-template-ie7.css?0.16.4" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
-    <!--[if IE 8]><link href="{{ asset_path }}stylesheets/govuk-template-ie8.css?0.16.4" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
-
-    <link href="{{ asset_path }}stylesheets/govuk-template-print.css?0.16.4" media="print" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_path }}stylesheets/govuk-template-print.css?0.17.0" media="print" rel="stylesheet" type="text/css" />
 
     <!--[if IE 8]>
     <script type="text/javascript">
       (function(){if(window.opera){return;}
        setTimeout(function(){var a=document,g,b={families:(g=
-       ["nta"]),urls:["{{ asset_path }}stylesheets/fonts-ie8.css?0.16.4"]},
-       c="{{ asset_path }}javascripts/vendor/goog/webfont-debug.js?0.16.4",d="script",
+       ["nta"]),urls:["{{ asset_path }}stylesheets/fonts-ie8.css?0.17.0"]},
+       c="{{ asset_path }}javascripts/vendor/goog/webfont-debug.js?0.17.0",d="script",
        e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
        ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
        .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
@@ -31,27 +27,28 @@
     </script>
     <![endif]-->
     <!--[if gte IE 9]><!-->
-      <link href="{{ asset_path }}stylesheets/fonts.css?0.16.4" media="all" rel="stylesheet" type="text/css" />
+      <link href="{{ asset_path }}stylesheets/fonts.css?0.17.0" media="all" rel="stylesheet" type="text/css" />
     <!--<![endif]-->
 
 
     <!--[if lt IE 9]>
-      <script src="{{ asset_path }}javascripts/ie.js?0.16.4" type="text/javascript"></script>
+      <script src="{{ asset_path }}javascripts/ie.js?0.17.0" type="text/javascript"></script>
     <![endif]-->
 
-    <link rel="shortcut icon" href="{{ asset_path }}images/favicon.ico?0.16.4" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset_path }}images/favicon.ico?0.17.0" type="image/x-icon" />
+    <link rel="mask-icon" href="{{ asset_path }}images/gov.uk_logotype_crown.svg?0.17.0" color="#0b0c0c">
 
     <!-- Size for iPad and iPad mini (high resolution) -->
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ asset_path }}images/apple-touch-icon-152x152.png?0.16.4">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ asset_path }}images/apple-touch-icon-152x152.png?0.17.0">
     <!-- Size for iPhone and iPod touch (high resolution) -->
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ asset_path }}images/apple-touch-icon-120x120.png?0.16.4">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ asset_path }}images/apple-touch-icon-120x120.png?0.17.0">
     <!-- Size for iPad 2 and iPad mini (standard resolution) -->
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ asset_path }}images/apple-touch-icon-76x76.png?0.16.4">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ asset_path }}images/apple-touch-icon-76x76.png?0.17.0">
     <!-- Default non-defined size, also used for Android 2.1+ devices -->
-    <link rel="apple-touch-icon-precomposed" href="{{ asset_path }}images/apple-touch-icon-60x60.png?0.16.4">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset_path }}images/apple-touch-icon-60x60.png?0.17.0">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:image" content="{{ asset_path }}images/opengraph-image.png?0.16.4">
+    <meta property="og:image" content="{{ asset_path }}images/opengraph-image.png?0.17.0">
 
     {% block head %}{% endblock %}
   </head>
@@ -80,7 +77,7 @@
         <div class="header-global">
           <div class="header-logo">
             <a href="{{ homepage_url|default('https://www.gov.uk') }}" title="{{ logo_link_title|default('Go to the GOV.UK homepage') }}" id="logo" class="content">
-              <img src="{{ asset_path }}images/gov.uk_logotype_crown_invert_trans.png?0.16.4" width="35" height="31" alt=""> {{ global_header_text|default('GOV.UK') }}
+              <img src="{{ asset_path }}images/gov.uk_logotype_crown_invert_trans.png?0.17.0" width="35" height="31" alt=""> {{ global_header_text|default('GOV.UK') }}
             </a>
           </div>
           {% block inside_header %}{% endblock %}
@@ -126,7 +123,7 @@
 
     <div id="global-app-error" class="app-error hidden"></div>
 
-    <script src="{{ asset_path }}javascripts/govuk-template.js?0.16.4" type="text/javascript"></script>
+    <script src="{{ asset_path }}javascripts/govuk-template.js?0.17.0" type="text/javascript"></script>
 
     {% block body_end %}{% endblock %}
   </body>
