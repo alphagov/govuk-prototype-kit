@@ -69,7 +69,7 @@ Run `git status` to check the files you’ve got in the stage. You will see a li
 
 Run:
 ```
-git commit -m “First commit”
+git commit -m "First commit"
 ```
 The message you put in the speech marks should be descriptive of the changes you are committing. This will help in the future if you look back at your changes and want to know why you made them.
 
