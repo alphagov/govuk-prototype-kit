@@ -1,7 +1,5 @@
 # Publishing on the web (Heroku)
 
-> These don't currently work on Windows due to a software incompatability. The Heroku toolbelt is not compatible with Git Bash - you will need to use CMD instead.
-
 We recommend using [Heroku](http://www.heroku.com) to get your prototype online. It’s simple and fast to deploy new versions as you work.
 
 Once your prototype is on Heroku, other people will be able to access and try your prototype from their own computers or mobile devices.
@@ -23,6 +21,9 @@ If you’re new to Heroku, [sign up for a free account](https://signup.heroku.co
 Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
 
 The toolbelt lets you use Heroku through the terminal. You will need to restart the terminal after installing the toolbelt.
+
+> This doesn't currently work on Windows due to a software incompatability. The Heroku toolbelt is not compatible with Git Bash - you will need to use CMD instead.
+
 
 ## 3) Choose a name for your app.
 Pick a name for your app. You need to choose a name that's unique. The name is used in the url for your prototype. For example: 
