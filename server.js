@@ -66,6 +66,11 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Force HTTPs on production connections
+if (env === 'production') {
+  app.use(utils.forceSSL);
+}
+
 // Disallow search index idexing
 app.use(function (req, res, next) {
   // Setting headers stops pages being indexed even if indexed pages link to them.
