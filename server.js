@@ -16,10 +16,12 @@ var path = require('path'),
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
-    useAuth  = process.env.USE_AUTH || config.useAuth;
+    useAuth  = process.env.USE_AUTH || config.useAuth,
+    useSSL  = process.env.USE_SSL || config.useSSL;
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
+    useSSL   = useSSL.toLowerCase();
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -67,7 +69,7 @@ app.use(function (req, res, next) {
 });
 
 // Force HTTPs on production connections
-if (env === 'production') {
+if (env === 'production' && useSSL === 'true') {
   app.use(utils.forceSSL);
 }
 
