@@ -12,7 +12,7 @@ var path = require('path'),
     packageJson = require(__dirname + '/package.json'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
-    releaseVersion = packageJson.version;
+    releaseVersion = packageJson.version,
     username = process.env.USERNAME,
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
@@ -69,7 +69,7 @@ app.use(function (req, res, next) {
 });
 
 // Force HTTPs on production connections
-if (env === 'production' && useSSL === 'true') {
+if (env === 'production' && useSSL === 'true'){
   app.use(utils.forceSSL);
 }
 
