@@ -20,7 +20,8 @@ Read the [project principles](docs/principles.md).
 ## Guides
 
 1. [Setting up git](docs/guides/setting-up-git.md)
-1. [Publishing on the web (Heroku)](docs/guides/publishing-on-heroku.md)
+2. [Publishing on the web (Heroku)](docs/guides/publishing-on-heroku.md)
+3. [Using GOV.UK Verify](docs/guides/using-verify.md)
 
 ## Other documentation
 
