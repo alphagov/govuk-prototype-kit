@@ -11,7 +11,7 @@
   background: $white;
   // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
   * {
-    font-family: Arial !important;
+    font-family: $Helvetica-Regular !important;
   }
   // Remove GOV.UK footer styles
   #footer {
