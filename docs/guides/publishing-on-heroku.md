@@ -27,7 +27,7 @@ The toolbelt lets you use Heroku through the terminal. You will need to restart 
 ## 3) Choose a name for your app.
 Pick a name for your app. You need to choose a name that's unique. The name is used in the url for your prototype. For example: 
 `govuk-payments-prototype` will create an app at:
-`govuk-payments-prototype.herokuapp.com`.
+`govuk-payments-prototype.herokuapp.com`. (You don't need to use the same name as your project folder or GitHub project, but it's usually easier if you do.)
 
 ## 4) Create an app on Heroku
 
