@@ -42,23 +42,13 @@ Replace `[name of your app]` with what you want to call your prototype.
 
 ## 5) Set a username and password
 
-By default, prototypes made with the kit require a username and password to be used when deployed on Heroku.
-
-Authentication is a good way to stop members of the public coming across your prototype by accident.
+Prototypes made with the kit require a username and password when published online. This stops members of the public coming across your prototype by accident.
 
 ### To set username and password:
 
 ```
 heroku config:set USERNAME=username_here
 heroku config:set PASSWORD=password_here
-```
-
-### Turning off authentication:
-
-If you want your prototype to be accessible on the web without needing a username and password, you can disable authentication.
-
-```
-heroku config:set USE_AUTH=false
 ```
 
 ## 6) Deploy your work
