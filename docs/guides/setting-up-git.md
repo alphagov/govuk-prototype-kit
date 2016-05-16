@@ -73,7 +73,9 @@ Run:
 ```
 git commit -m "First commit"
 ```
-The message you put in the speech marks should be descriptive of the changes you are committing. This will help in the future if you look back at your changes and want to know why you made them.
+The message you put in the speech marks should be descriptive of the changes you are committing. This will help in the future if you or someone else needs to look back at your changes and know why you made them.
+
+More information on [writing good commit messages](https://github.com/alphagov/styleguides/blob/master/git.md#commit-messages) is in the GDS styleguide.
 
 ## 5) Check Git status again
 
