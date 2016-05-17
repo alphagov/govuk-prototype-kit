@@ -10,7 +10,11 @@ The prototype kit provides a simple way to make interactive prototypes that look
 
 Read the [project principles](docs/principles.md).
 
-> You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately. 
+## Security
+
+If you publish your prototypes online, they **must** be protected by a [username and password](docs/guides/publishing-on-heroku.md). This is to prevent members of the public finding prototypes and thinking they are real services.
+
+You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately. 
 
 ## Installation instructions
 
@@ -20,7 +24,8 @@ Read the [project principles](docs/principles.md).
 ## Guides
 
 1. [Setting up git](docs/guides/setting-up-git.md)
-1. [Publishing on the web (Heroku)](docs/guides/publishing-on-heroku.md)
+2. [Publishing on the web (Heroku)](docs/guides/publishing-on-heroku.md)
+3. [Using GOV.UK Verify](docs/guides/using-verify.md)
 
 ## Other documentation
 
