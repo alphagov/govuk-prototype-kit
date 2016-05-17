@@ -8,7 +8,6 @@ var path = require('path'),
     bodyParser = require('body-parser'),
     config = require(__dirname + '/app/config.js'),
     port = (process.env.PORT || config.port),
-    _ = require('lodash'),
     utils = require(__dirname + '/lib/utils.js'),
     packageJson = require(__dirname + '/package.json'),
 
@@ -40,10 +39,12 @@ nunjucks.setup({
   noCache: true
 }, app);
 
+// require core and custom filters, merges to one object
+// and then add the methods to nunjucks env obj
 nunjucks.ready(function(nj) {
   var coreFilters = require(__dirname + '/lib/filters.js')(nj),
     customFilters = require(__dirname + '/app/filters.js')(nj),
-    filters = _.merge(coreFilters, customFilters);
+    filters = Object.assign(coreFilters, customFilters);
   Object.keys(filters).forEach(function(filterName) {
     nj.addFilter(filterName, filters[filterName]);
   });

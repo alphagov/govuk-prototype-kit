@@ -12,13 +12,13 @@ module.exports = function(env) {
     add your methods to the filter obj below this comment block:
     @example
 
-    filter.sayHi = function(name) {
+    filters.sayHi = function(name) {
         return 'Hi ' + name + '!';
     }
 
   ------------------------------------------------------------------ */
 
-
+  
 
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
