@@ -10,8 +10,6 @@ var path = require('path'),
     port = (process.env.PORT || config.port),
     _ = require('lodash'),
     utils = require(__dirname + '/lib/utils.js'),
-    coreFilters = require(__dirname + '/lib/filters.js'),
-    customFilters = require(__dirname + '/app/filters.js'),
     packageJson = require(__dirname + '/package.json'),
 
 // Grab environment variables specified in Procfile or as Heroku config vars
@@ -41,7 +39,9 @@ nunjucks.setup({
 }, app);
 
 nunjucks.ready(function(nj) {
-  var filters = _.merge(coreFilters, customFilters);
+  var coreFilters = require(__dirname + '/lib/filters.js')(nj),
+    customFilters = require(__dirname + '/app/filters.js')(nj),
+    filters = _.merge(coreFilters, customFilters);
   Object.keys(filters).forEach(function(filterName) {
     nj.addFilter(filterName, filters[filterName]);
   });
