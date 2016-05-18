@@ -17,6 +17,7 @@
     "consolidate": "0.x",
     "express": "4.13.3",
     "express-nunjucks": "^0.9.3",
+    "express-session": "^1.13.0",
     "express-writer": "0.0.4",
     "govuk-elements-sass": "1.2.0",
     "govuk_frontend_toolkit": "^4.12.0",
