@@ -71,7 +71,7 @@ app.use(bodyParser.urlencoded({
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret: 'prototype-kit'
+  secret: Math.round(Math.random()*100000).toString()
 }));
 
 // send assetPath to all views
