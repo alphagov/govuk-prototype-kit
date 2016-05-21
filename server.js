@@ -132,15 +132,15 @@ console.log("\nNOTICE: the kit is for building prototypes, do not use it for pro
 
 // start the app
 utils.findAvailablePort(app, function(port) {
-  console.log('Listening on port ' + (port+50) + '   url: http://localhost:' + (port+50));
+  console.log('Listening on port ' + port + '   url: http://localhost:' + port);
   if (env === 'production') {
     app.listen(port);
   } else {
-    app.listen(port,function()
+    app.listen(port-50,function()
     {
       browserSync({
-        proxy:'localhost:'+port,
-        port:port+50,
+        proxy:'localhost:'+(port-50),
+        port:port,
         ui:false,
         files:['public/**/*.*','app/views/**/*.*'],
         ghostmode:false,
