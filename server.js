@@ -132,7 +132,7 @@ console.log("\nNOTICE: the kit is for building prototypes, do not use it for pro
 
 // start the app
 utils.findAvailablePort(app, function(port) {
-  console.log('Listening on port ' + port + '   url: http://localhost:' + port);
+  console.log('Listening on port ' + (port+50) + '   url: http://localhost:' + (port+50));
   if (env === 'production') {
     app.listen(port);
   } else {
@@ -145,7 +145,8 @@ utils.findAvailablePort(app, function(port) {
         files:['public/**/*.*','app/views/**/*.*'],
         ghostmode:false,
         open:false,
-        notify:false
+        notify:false,
+        logLevel: "error"
       });
     });
   }
