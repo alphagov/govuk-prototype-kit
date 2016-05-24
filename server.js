@@ -39,6 +39,17 @@ nunjucks.setup({
   noCache: true
 }, app);
 
+// require core and custom filters, merges to one object
+// and then add the methods to nunjucks env obj
+nunjucks.ready(function(nj) {
+  var coreFilters = require(__dirname + '/lib/core_filters.js')(nj),
+    customFilters = require(__dirname + '/app/filters.js')(nj),
+    filters = Object.assign(coreFilters, customFilters);
+  Object.keys(filters).forEach(function(filterName) {
+    nj.addFilter(filterName, filters[filterName]);
+  });
+});
+
 // Middleware to serve static assets
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/public', express.static(__dirname + '/govuk_modules/govuk_template/assets'));
