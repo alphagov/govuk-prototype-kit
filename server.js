@@ -132,15 +132,15 @@ console.log("\nNOTICE: the kit is for building prototypes, do not use it for pro
 
 // start the app
 utils.findAvailablePort(app, function(port) {
-  console.log('Listening on port ' + port + '     url: http://localhost:' + port);
+  console.log('Listening on port ' + port + '   url: http://localhost:' + port);
   if (env === 'production') {
     app.listen(port);
   } else {
-    app.listen(port,function()
+    app.listen(port-50,function()
     {
       browserSync({
-        proxy:'localhost:' + port,
-        port:(port+1),
+        proxy:'localhost:'+(port-50),
+        port:port,
         ui:false,
         files:['public/**/*.*','app/views/**/*.*'],
         ghostmode:false,
@@ -148,7 +148,6 @@ utils.findAvailablePort(app, function(port) {
         notify:false,
         logLevel: "error"
       });
-      console.log("Browsersync on port " + (port+1) + "   url: http://localhost:" + (port+1) );
     });
   }
 });
