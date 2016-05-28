@@ -33,7 +33,7 @@ if (env === 'production' && useAuth === 'true'){
 
 // Application settings
 app.set('view engine', 'html');
-app.set('views', [__dirname + '/app/views', __dirname + '/lib/']);
+app.set('views', [__dirname + '/app/views', __dirname + '/lib/views']);
 
 nunjucks.setup({
   autoescape: true,
