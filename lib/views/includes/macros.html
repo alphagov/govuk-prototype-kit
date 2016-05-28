@@ -1,0 +1,26 @@
+{% macro text(label, name) %}
+
+  <label class="form-label" for="{{name | slug}}">{{label}}</label>
+  <input class="form-control" id="{{name | slug}}" name="{{name}}" type="text" value="{{getValue(name)}}">
+
+{% endmacro %}
+
+
+{% macro radio(name, label) %}
+
+  <label class="block-label" for="{{label | slug}}">
+  <input id="{{label | slug}}" type="radio" name="{{name}}" value="{{label | slug}}">
+    {{label}}
+  </label>
+
+{% endmacro %}
+
+
+{% macro checkbox(label, name=label) %}
+
+  <label class="block-label" for="{{name | slug}}">
+    <input id="{{name | slug}}" name="{{name | slug}}" type="checkbox" value="{{name | slug}}">
+    {{label}}
+  </label>
+
+{% endmacro %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form action="/examples/pass-data/vehicle-features" method="post" class="form">
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              What type of vehicle do you have?
+            </legend>
+
+            <p class="heading-medium">
+              What type of vehicle do you have?
+            </p>
+
+            <label for="vehicleTypeCar" class="block-label">
+              <input type="radio" id="vehicleTypeCar" name="vehicleType" value="Car">
+              Car
+            </label>
+
+            <label for="vehicleTypeLorry" class="block-label">
+              <input type="radio" id="vehicleTypeLorry" name="vehicleType" value="Lorry">
+              Lorry
+            </label>
+
+            <label for="vehicleTypeIceCream" class="block-label">
+              <input type="radio" id="vehicleTypeIceCream" name="vehicleType" value="Ice-cream van">
+              Ice-cream van
+            </label>
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
