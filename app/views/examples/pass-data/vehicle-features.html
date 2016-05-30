@@ -25,20 +25,9 @@
               Which of these applies to your vehicle? (Select all that apply)
             </p>
 
-            <label class="block-label">
-              <input type="checkbox" name="vehicleFeature" value="Heated seats">
-              Heated seats
-            </label>
-
-            <label class="block-label">
-              <input type="checkbox" name="vehicleFeature" value="Radio">
-              Radio
-            </label>
-
-            <label class="block-label">
-              <input type="checkbox" name="vehicleFeature" value="Suspension">
-              Suspension
-            </label>
+            {{ macro.checkbox("vehicleFeature", "Heated seats") }}
+            {{ macro.checkbox("vehicleFeature", "Radio") }}
+            {{ macro.checkbox("vehicleFeature", "Suspension") }}
 
           </fieldset>
         </div>

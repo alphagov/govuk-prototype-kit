@@ -48,8 +48,26 @@ nunjucks.ready(function(nj) {
 
   app.use(function(req,res,next){
 
+    // add nunjucks function to get values, needs to be here as they need access to req.session
+
     nj.addGlobal("getValue",function(name){
         return req.session.data[name];
+    });
+
+    nj.addGlobal("checked",function(name, value){
+        var storedValue = nj.globals.getValue(name);
+
+        if (storedValue == undefined){
+          return "";
+        }
+
+        if (Array.isArray(storedValue)){
+          var inArray = storedValue.indexOf(value) != -1;
+          return inArray ? "checked" : "";
+        }
+
+        return value == storedValue ? "checked" : "";
+
     });
 
     next();
