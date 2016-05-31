@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form action="/examples/pass-data/vehicle-check-answers" method="post" class="form">
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              Which of these applies to your vehicle? (Select all that apply)
+            </legend>
+
+            <p class="heading-medium">
+              Which of these applies to your vehicle? (Select all that apply)
+            </p>
+
+            {{ macro.checkbox("vehicleFeature", "Heated seats") }}
+            {{ macro.checkbox("vehicleFeature", "Radio") }}
+            {{ macro.checkbox("vehicleFeature", "Suspension") }}
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

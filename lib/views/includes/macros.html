@@ -1,0 +1,38 @@
+{% macro text(label, name) %}
+
+  {% if not name %}
+
+    {% set name = label | camelCase %}
+
+  {% endif %}
+
+  {% set id = label | slug %}
+
+  <label class="form-label" for="{{id}}">{{label}}</label>
+  <input class="form-control" id="{{id}}" name="{{name}}" type="text" value="{{getValue(name)}}">
+
+{% endmacro %}
+
+
+{% macro radio(name, label) %}
+
+  {% set id = label | slug %}
+
+  <label class="block-label" for="{{id}}">
+  <input id="{{id}}" type="radio" name="{{name}}" value="{{label}}" {{ checked(name, value) }}>
+    {{label}}
+  </label>
+
+{% endmacro %}
+
+
+{% macro checkbox(name, label) %}
+
+  {% set id = label | slug %}
+
+  <label class="block-label" for="{{id}}">
+    <input id="{{id}}" name="{{name}}" type="checkbox" value="{{label}}" {{ checked(name, value) }}>
+    {{label}}
+  </label>
+
+{% endmacro %}

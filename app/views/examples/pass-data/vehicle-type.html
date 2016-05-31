@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form action="/examples/pass-data/vehicle-features" method="post" class="form">
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              What type of vehicle do you have?
+            </legend>
+
+            <p class="heading-medium">
+              What type of vehicle do you have?
+            </p>
+
+            {{ macro.radio("vehicleType", "Car") }}
+            {{ macro.radio("vehicleType", "Lorry") }}
+            {{ macro.radio("vehicleType", "Motorbike") }}
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Passing data from page to page
+      </h1>
+
+      <p>
+        You may want to use or display data a user has entered over a few screens. The kit automatically stores all data entered, so you can show it later.
+      </p>
+
+      <p>
+        To clear the data (for example at the end of a user research session) click the "Clear data" link in the footer.
+      </p>
+
+      <p>
+        You can see the code for this example here:
+      </p>
+
+      <pre>
+<div class="code">
+  /app/views/examples/pass-data
+  
+</div>
+      </pre>
+
+      <form action="/examples/pass-data/vehicle-type" method="post" class="form">
+
+        <div class="form-group">
+          <fieldset>
+
+            {{ macro.text("What is your vehicle registration number?") }}
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

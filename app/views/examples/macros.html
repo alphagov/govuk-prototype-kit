@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Macros
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Macros
+      </h1>
+
+      <form action="">
+
+        <div class="form-group">
+
+          {{ macro.text('First name') }}   
+
+        </div>
+
+        <div class="form-group">
+
+          {{ macro.text('Last name') }}  
+
+        </div> 
+
+        <div class="form-group">
+
+          <h2 class="heading-medium">
+            Role
+          </h2>
+
+          {{ macro.radio('Role', 'Teacher') }}
+
+          {{ macro.radio('Role', 'Student') }}
+
+          {{ macro.radio('Role', 'Administrator') }}
+
+        </div> 
+
+        <div class="form-group">
+
+          <h2 class="heading-medium">
+            How do you get to school?
+          </h2>
+
+          <p>Select all that apply</p>
+
+          {{ macro.checkbox('Bicycle') }}
+
+          {{ macro.checkbox('Bus') }}
+
+          {{ macro.checkbox('Car') }}
+
+          {{ macro.checkbox('Train') }}
+
+        </div> 
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
