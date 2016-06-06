@@ -20,7 +20,6 @@
     "express-writer": "0.0.4",
     "govuk-elements-sass": "1.2.0",
     "govuk_frontend_toolkit": "^4.12.0",
-    "govuk_template_mustache": "^0.17.3",
     "govuk_template_jinja": "https://github.com/alphagov/govuk_template/releases/download/v0.17.3/jinja_govuk_template-0.17.3.tgz",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
