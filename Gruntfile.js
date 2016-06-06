@@ -42,7 +42,7 @@ module.exports = function(grunt){
           dest: 'govuk_modules/govuk_frontend_toolkit/'
         },
         {
-          cwd: 'node_modules/govuk_template_mustache/assets/',
+          cwd: 'node_modules/govuk_template_jinja/assets/',
           src: '**',
           dest: 'govuk_modules/govuk_template/assets/'
         },
