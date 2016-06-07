@@ -9,14 +9,14 @@ This guide recommends additional software which will be used in later guides.
 If you have admin access to your machine, you can follow this guide to install the required software.
 
 If you do not have admin access, ask your computer administrator to install:
-* Node.js 4.3.0
+* Node.js 4.x.x
 * Sublime Text 3
 * Command line tools (Mac)
 * Git bash (Windows)
 
 ## Terminal
 
-You'll need a terminal application to install, start and stop the kit. Using a terminal is sometimes called ‘using the command line’. 
+You'll need a terminal application to install, start and stop the kit. Using a terminal is sometimes called ‘using the command line’.
 
 ### Mac users
 
@@ -45,7 +45,7 @@ Once you’ve typed the command, press enter to send it.
 
 ## Node.js version 4 LTS
 
-The kit is designed to work with Node.js version 4 LTS. The current latest is 4.3.0, but the kit works with any 4.x.x version.
+The kit is designed to work with Node.js version 4 LTS. The kit works with any 4.x.x version.
 
 ### Check if you have Node.js
 
@@ -63,7 +63,7 @@ If it says another number such as `0.12` or `5.x.x`, you need to download and in
 
 #### Mac / Windows users
 
-Download version 4 from [nodejs.org](https://nodejs.org/en/). At the time of writing, this is 4.3.0.
+Download version 4 from [nodejs.org](https://nodejs.org/en/).
 
 Run the installer with all default options.
 
