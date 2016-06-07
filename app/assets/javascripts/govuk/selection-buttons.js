@@ -11,9 +11,9 @@
     this.selectedClass = 'selected';
     this.focusedClass = 'focused';
     if (opts !== undefined) {
-      $.each(opts, function (optionName, optionObj) {
+      $.each(opts, $.proxy(function (optionName, optionObj) {
         this[optionName] = optionObj;
-      }.bind(this));
+      }, this));
     }
     if (typeof elmsOrSelector === 'string') {
       $elms = $(elmsOrSelector);
@@ -33,13 +33,13 @@
     }
   };
   SelectionButtons.prototype.setInitialState = function ($elms) {
-    $elms.each(function (idx, elm) {
+    $elms.each($.proxy(function (idx, elm) {
       var $elm = $(elm);
 
       if ($elm.is(':checked')) {
         this.markSelected($elm);
       }
-    }.bind(this));
+    }, this));
   };
   SelectionButtons.prototype.markFocused = function ($elm, state) {
     if (state === 'focused') {
@@ -82,18 +82,18 @@
       .on('focus blur', this.selector, this.focusHandler);
   };
   SelectionButtons.prototype.getClickHandler = function () {
-    return function (e) {
+    return $.proxy(function (e) {
       this.markSelected($(e.target));
-    }.bind(this);
+    }, this);
   };
   SelectionButtons.prototype.getFocusHandler = function (opts) {
     var focusEvent = (opts.level === 'document') ? 'focusin' : 'focus';
 
-    return function (e) {
+    return $.proxy(function (e) {
       var state = (e.type === focusEvent) ? 'focused' : 'blurred';
 
       this.markFocused($(e.target), state);
-    }.bind(this);
+    }, this);
   };
   SelectionButtons.prototype.destroy = function () {
     if (typeof this.selector !== 'undefined') {
