@@ -8,6 +8,13 @@ Breaking changes:
 
 All changes:
 
+- #213 Remove references to "latest version" of Node 
+- #212 Remove the mustache version of govuk template 
+- #211 Remove govuk_template.html copied in build task from the repository 
+- #209 Use release 1.2.0 of the govuk-elements-sass package 
+- #208 Remove govuk elements sass from the app folder 
+- #207 Bump the govuk frontend toolkit to 4.12.0 
+- #206 Bump the govuk template to 0.17.3 
 - #200 Adds custom 'filters' to the nunjucks templating engine 
 - #194 Windows heroku login instructions 
 - #193 Adding browser-sync to the prototyping kit. 
