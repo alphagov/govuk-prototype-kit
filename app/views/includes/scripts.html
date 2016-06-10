@@ -3,3 +3,32 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/govuk/selection-buttons.js"></script>
 <script src="/public/javascripts/application.js"></script>
+
+<script>
+  $('body').on('submit','form', function(e){
+
+    // on submit, add hidden inputs for checkboxes, so the server knows if they've been unchecked
+
+    var $checkboxes = $(this).find('input:checkbox');
+
+    var $inputs = [];
+    var names = {};
+
+    $checkboxes.each(function(){
+
+      var $this = $(this);
+
+      if (!names[$this.attr('name')]){
+        names[$this.attr('name')] = true;
+        var $input = $('<input type="hidden">');
+        $input.attr('name', $this.attr('name'));
+        $input.attr('value', "_unchecked");
+        $inputs.push($input);
+      }
+
+    });
+    
+    $(this).prepend($inputs);
+
+  });
+</script>
