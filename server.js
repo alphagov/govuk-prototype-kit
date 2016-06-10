@@ -159,6 +159,15 @@ nunjucks.ready(function(nj) {
     res.redirect(path);
   });
 
+  // clear data
+  app.get('/prototype-admin/clear-data', function(req, res){
+
+    req.session.destroy();
+
+    res.render("prototype-admin/clear-data");
+
+  });
+
   // auto render any view that exists
   app.get(/^\/([^.]+)$/, function (req, res) {
 
