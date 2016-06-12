@@ -17,11 +17,13 @@
 {% endblock %}
 
 {% block footer_support_links %}
-  <ul>
-    <li>
-      <a href="/prototype-admin/clear-data">Clear data</a>
-    </li>
-  </ul>
+  {% if useAutoStoreData %}
+    <ul>
+      <li>
+        <a href="/prototype-admin/clear-data">Clear data</a>
+      </li>
+    </ul>
+  {% endif %}
 {% endblock %}
 
 {% block body_end %}

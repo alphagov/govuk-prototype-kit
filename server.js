@@ -19,11 +19,12 @@ var path = require('path'),
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
     useAuth  = process.env.USE_AUTH || config.useAuth,
-    useHttps  = process.env.USE_HTTPS || config.useHttps;
+    useHttps = process.env.USE_HTTPS || config.useHttps;
+    useAutoStoreData  = process.env.USE_AUTOSTOREDATA || config.useAutoStoreData;
 
     env      = env.toLowerCase();
     useAuth  = useAuth.toLowerCase();
-    useHttps   = useHttps.toLowerCase();
+    useHttps = useHttps.toLowerCase();
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
@@ -116,9 +117,10 @@ nunjucks.ready(function(nj) {
 
   // Add variables that are available in all views
   app.use(function (req, res, next) {
-    res.locals.serviceName=config.serviceName;
-    res.locals.cookieText=config.cookieText;
-    res.locals.releaseVersion="v" + releaseVersion;
+    res.locals.serviceName = config.serviceName;
+    res.locals.cookieText = config.cookieText;
+    res.locals.releaseVersion = "v" + releaseVersion;
+    res.locals.useAutoStoreData = (useAutoStoreData == 'true');
     next();
   });
 
@@ -127,14 +129,17 @@ nunjucks.ready(function(nj) {
     app.use(utils.forceHttps);
   }
 
+  // Automatically store form data and send to all views
+  if (useAutoStoreData === 'true'){
+    app.use(utils.autoStoreData);
+  }
+
   // Disallow search index idexing
   app.use(function (req, res, next) {
     // Setting headers stops pages being indexed even if indexed pages link to them.
     res.setHeader('X-Robots-Tag', 'noindex');
     next();
   });
-
-  app.use(utils.autoStoreData);
 
   app.get('/robots.txt', function (req, res) {
     res.type('text/plain');

@@ -4,31 +4,33 @@
 <script src="/public/javascripts/govuk/selection-buttons.js"></script>
 <script src="/public/javascripts/application.js"></script>
 
-<script>
-  $('body').on('submit','form', function(e){
+{% if useAutoStoreData %}
+  <script>
+    $('body').on('submit','form', function(e){
 
-    // on submit, add hidden inputs for checkboxes, so the server knows if they've been unchecked
+      // on submit, add hidden inputs for checkboxes, so the server knows if they've been unchecked
 
-    var $checkboxes = $(this).find('input:checkbox');
+      var $checkboxes = $(this).find('input:checkbox');
 
-    var $inputs = [];
-    var names = {};
+      var $inputs = [];
+      var names = {};
 
-    $checkboxes.each(function(){
+      $checkboxes.each(function(){
 
-      var $this = $(this);
+        var $this = $(this);
 
-      if (!names[$this.attr('name')]){
-        names[$this.attr('name')] = true;
-        var $input = $('<input type="hidden">');
-        $input.attr('name', $this.attr('name'));
-        $input.attr('value', "_unchecked");
-        $inputs.push($input);
-      }
+        if (!names[$this.attr('name')]){
+          names[$this.attr('name')] = true;
+          var $input = $('<input type="hidden">');
+          $input.attr('name', $this.attr('name'));
+          $input.attr('value', "_unchecked");
+          $inputs.push($input);
+        }
+
+      });
+      
+      $(this).prepend($inputs);
 
     });
-    
-    $(this).prepend($inputs);
-
-  });
-</script>
+  </script>
+{% endif %}
