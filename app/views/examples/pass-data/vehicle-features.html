@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form action="/examples/pass-data/vehicle-check-answers" method="post" class="form">
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              Which of these applies to your vehicle? (Select all that apply)
+            </legend>
+
+            <p class="heading-medium">
+              Which of these applies to your vehicle? (Select all that apply)
+            </p>
+
+            <label class="block-label" for="vehicle-feature-heated-seats">
+              <input id="vehicle-feature-heated-seats" name="vehicleFeatures" type="checkbox" value="Heated seats" {{ checked("vehicleFeatures","Heated seats") }}>
+              Heated seats
+            </label>
+
+            <label class="block-label" for="vehicle-feature-gps">
+              <input id="vehicle-feature-gps" name="vehicleFeatures" type="checkbox" value="GPS" {{ checked("vehicleFeatures","GPS") }}>
+              GPS
+            </label>
+
+            <label class="block-label" for="vehicle-feature-radio">
+              <input id="vehicle-feature-radio" name="vehicleFeatures" type="checkbox" value="Radio" {{ checked("vehicleFeatures","Radio") }}>
+              Radio
+            </label>
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
