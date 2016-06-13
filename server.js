@@ -19,7 +19,7 @@ var path = require('path'),
     password = process.env.PASSWORD,
     env      = process.env.NODE_ENV || 'development',
     useAuth  = process.env.USE_AUTH || config.useAuth,
-    useHttps = process.env.USE_HTTPS || config.useHttps;
+    useHttps = process.env.USE_HTTPS || config.useHttps,
     useAutoStoreData  = process.env.USE_AUTOSTOREDATA || config.useAutoStoreData;
 
     env      = env.toLowerCase();
@@ -42,7 +42,6 @@ nunjucks.setup({
   noCache: true
 }, app);
 
-
 // require core and custom filters, merges to one object
 // and then add the methods to nunjucks env obj
 
@@ -60,25 +59,21 @@ nunjucks.ready(function(nj) {
 
     nj.addGlobal("checked",function(name, value){
 
-      if (req.session.data == undefined){
+      if (req.session.data === undefined){
         return "";
       }
 
       var storedValue = req.session.data[name];
 
-      if (storedValue == undefined){
+      if (storedValue === undefined){
         return "";
       }
 
       if (Array.isArray(storedValue)){
-
         var inArray = storedValue.indexOf(value) != -1;
         return inArray ? "checked" : "";
-
       } else {
-
         return value == storedValue ? "checked" : "";
-
       }
 
     });
@@ -225,6 +220,5 @@ nunjucks.ready(function(nj) {
       });
     }
   });
-
 
 });
