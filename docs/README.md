@@ -24,3 +24,4 @@ Installation guide for developers (technical):
 - [Updating the kit to the latest version](updating-the-kit.md)
 - [Tips and tricks](tips-and-tricks.md)
 - [Creating routes (server-side programming)](creating-routes.md)
+- [Storing data in session](session.md)
