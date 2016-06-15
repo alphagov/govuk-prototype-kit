@@ -1,12 +1,13 @@
 var path = require('path'),
     express = require('express'),
-    browserSync = require('browser-sync'),
+    session = require('express-session'),
     nunjucks = require('express-nunjucks'),
     routes = require(__dirname + '/app/routes.js'),
     favicon = require('serve-favicon'),
     app = express(),
     basicAuth = require('basic-auth'),
     bodyParser = require('body-parser'),
+    browserSync = require('browser-sync'),
     config = require(__dirname + '/app/config.js'),
     port = (process.env.PORT || config.port),
     utils = require(__dirname + '/lib/utils.js'),
@@ -64,6 +65,13 @@ app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets'
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
+}));
+
+// Support session data
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: Math.round(Math.random()*100000).toString()
 }));
 
 // send assetPath to all views
