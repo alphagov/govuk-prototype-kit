@@ -18,7 +18,7 @@ Copy everything from the latest kit to your project, apart from the `app` folder
 
 ## Upgrading via the command line
 
-If you are have intermediate experience with the command line and your prototype is running within a git source repository then you can choose to upgrade the kit with a series of commands.
+If you have experience with the command line and your prototype is running within a git source repository then you can choose to upgrade the kit with a series of commands.
 
 Upgrading via the command line involves fetching the latest code from the 'upstream' remote repository and then merging it into the git branch that contains your version of the prototyping kit. Below are the steps for doing that in detail.
 
