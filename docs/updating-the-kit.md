@@ -82,7 +82,7 @@ From https://github.com/alphagov/govuk_prototype_kit
  * branch            release    -> FETCH_HEAD
 ```
 
-Next, we will merge the brach we just 'fetched' into our master branch (note: you can substitute 'master' for the branch you want to merge into if different)
+Next, we will merge the branch we just 'fetched' into our master branch (note: you can substitute 'master' for the branch you want to merge into if different)
 
 ```
 git checkout master && git merge FETCH_HEAD
