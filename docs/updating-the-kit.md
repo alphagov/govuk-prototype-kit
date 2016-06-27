@@ -67,7 +67,7 @@ upstream	https://github.com/alphagov/govuk_prototype_kit.git (push)
 
 #### Merging from upstream
 
-Now that you've added the upstream remote, you can merge the latest code into yours with the following simple commands.
+Now that you've added the upstream remote, you can merge the latest code into yours with the following commands.
 
 First you will 'fetch' the latest code from the upstream release branch. Type the following command and wait a few seconds. 
 
