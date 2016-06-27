@@ -6,7 +6,7 @@ There are two ways you could upgrade the prototype kit. If you're confident in y
 
 **Important note**
 
-If you have made any changes outside the `app` folder, this process will destroy those changes. We will try and improve the update process to avoid this, but in the meantime you will need to make a note of your changes outside `app`, and add them back after updating.
+If you have made any changes outside the `app` folder, this process will destroy those changes. We will try and improve the update process to avoid this, but in the meantime you will need to make a note of your changes outside `app`, and add them back after upgrading.
 
 ### Steps
 
@@ -16,7 +16,9 @@ In your project, delete everything apart from the `app` and `.git` folder
 
 Copy everything from the latest kit to your project, apart from the `app` folder
 
-## Upgrading via the command line
+---
+
+## Upgrading via the command line (Advanced)
 
 If you have experience with the command line and your prototype is running within a git source repository then you can choose to upgrade the kit with a series of commands.
 
@@ -26,7 +28,7 @@ Upgrading via the command line involves fetching the latest code from the 'upstr
 
 #### View git remote(s)
 
-Firstly change to the base directory of your prototyping kit with in terminal, for example:
+Firstly change to the base directory of your prototyping kit in terminal, for example:
 
 ```
 cd ~/sites/govuk_prototype_kit
