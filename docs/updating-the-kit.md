@@ -1,8 +1,8 @@
 # Updating the kit
 
-There are two ways you could upgrade the prototype kit. If you're confident in your use of the command line interface such as terminal then read the 'Upgrading via the command line' instructions. If you'd prefer not to or are not using the command line to manage your prototype then read the 'Upgrading manually' instructions. 
+The steps below 'Upgrading' describe how to upgrade to the latest release of prototype kit. 
 
-## Upgrading manually
+## Upgrading
 
 **Important note**
 
