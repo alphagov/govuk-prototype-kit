@@ -10,9 +10,7 @@
   {% include "includes/breadcrumb_examples.html" %}
 
   <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <form action="/examples/over-18" method="get" class="form">
+    <div class="column-two-thirds">      
 
         <h1 class="heading-xlarge">
           Branching
@@ -21,15 +19,63 @@
         <p>
           You may want to show a user different pages, depending on how they've answered a question.
         </p>
-
+        
         <p>
-          You can see the code for this example here:
+          You can make this happen by including <code class="code">value="redirect(&lt;URL&gt;)"</code> in your form inputs. For example:</URL>
         </p>
 
+        <div class="code" style="width:110%">
+  &lt;input type=&quot;radio&quot; name=&quot;work-status&quot; value=&quot;redirect(branch/employed)&quot;&gt;
+  &lt;input type=&quot;radio&quot; name=&quot;work-status&quot; value=&quot;redirect(branch/selfemployed)&quot;&gt;
+  &lt;input type=&quot;radio&quot; name=&quot;work-status&quot; value=&quot;redirect(branch/director)&quot;&gt;
+        </div>
+        
+        <form action="/examples/branching" method="get" class="form">
+                  
+          <div class="form-group">
+            
+            <h2 class="heading-medium">
+              What is your employment status?
+            </h2>          
+            
+            <fieldset class="">
+
+              <legend class="visuallyhidden">What is your employment status?</legend>
+
+              <label for="workStatusEmp" class="block-label">
+                <input type="radio" name="work-status" value="redirect(branch/employed)" id="workStatusEmp">
+                Employed
+              </label>
+
+              <label for="workStatusSelf" class="block-label">
+                <input type="radio" name="work-status" value="redirect(branch/selfemployed)" id="workStatusSelf">
+                Self-employed
+              </label>
+              
+              <label for="workStatusDir" class="block-label">
+                <input type="radio" name="work-status" value="redirect(branch/director)" id="workStatusDir">
+                Director of a limited company
+              </label>
+
+            </fieldset>            
+          </div>
+          
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+        
+        </form>
+        
+        <p>&nbsp;</p>
+        
+        <p>If you need more comple logic to determine which page to show next you can write server-side code to achieve this as in the following example:</p>
+        
         <div class="code">
           /app/routes.js
           /app/views/examples/branching.html
         </div>
+        
+        <form action="/examples/over-18" method="get" class="form">
 
         <h2 class="heading-medium">
           Are you 18 or over?
