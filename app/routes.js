@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function (req, res) {
-  
+
   res.render('index');
 
 });
@@ -19,21 +19,20 @@ router.get('/examples/template-data', function (req, res) {
 });
 
 // Branching
+router.get('/examples/hoursperweek', function (req, res) {
 
-router.get('/examples/over-18', function (req, res) {
+  // get the answer from the query string (eg.?hours=20 )
+  var hours = req.query.hours;
 
-  // get the answer from the query string (eg. ?over18=false)
-  var over18 = req.query.over18;
-
-  if (over18 == "false"){
+  if (hours >= 35) {
 
     // redirect to the relevant page
-    res.redirect("/examples/under-18");
+    res.redirect("/examples/branch/full-time");
 
   } else {
 
-    // if over18 is any other value (or is missing) render the page requested
-    res.render('examples/over-18');
+    // redirect to the relevant page
+    res.redirect('/examples/branch/part-time');
 
   }
 

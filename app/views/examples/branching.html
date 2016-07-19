@@ -26,7 +26,7 @@
 
         <div class="code" style="width:110%">
   &lt;input type=&quot;radio&quot; name=&quot;work-status&quot; value=&quot;redirect(branch/employed)&quot;&gt;
-  &lt;input type=&quot;radio&quot; name=&quot;work-status&quot; value=&quot;redirect(branch/selfemployed)&quot;&gt;
+  &lt;input type=&quot;radio&quot; name=&quot;work-status&quot; value=&quot;redirect(branch/self-employed)&quot;&gt;
   &lt;input type=&quot;radio&quot; name=&quot;work-status&quot; value=&quot;redirect(branch/director)&quot;&gt;
         </div>
         
@@ -48,7 +48,7 @@
               </label>
 
               <label for="workStatusSelf" class="block-label">
-                <input type="radio" name="work-status" value="redirect(branch/selfemployed)" id="workStatusSelf">
+                <input type="radio" name="work-status" value="redirect(branch/self-employed)" id="workStatusSelf">
                 Self-employed
               </label>
               
@@ -57,7 +57,7 @@
                 Director of a limited company
               </label>
 
-            </fieldset>            
+            </fieldset>
           </div>
           
           <div class="form-group">
@@ -70,31 +70,40 @@
         
         <p>If you need more complex logic to determine which page to show next you can write server-side code to achieve this as in the following example:</p>
         
-        <div class="code">
-          /app/routes.js
-          /app/views/examples/branching.html
+        <div class="code" style="margin-bottom:30px;">
+  router.get('/examples/hoursperweek', function (req, res) {
+    
+    // get the answer from the query string (eg.?hours=20 )
+    var hours = req.query.hours;
+    
+    if (hours >= 35) {
+      
+      // redirect to the relevant page
+      res.redirect("/examples/branch/full-time");
+      
+    } else {
+      
+      // redirect to the relevant page
+      res.redirect('/examples/branch/part-time');
+      
+    }
+    
+  });
         </div>
         
-        <form action="/examples/over-18" method="get" class="form">
+        <p class="form-hint">You can find this code in <span class="code">/app/routes.js</span> and see an example of it working below:</p>
+        
+        <form action="/examples/hoursperweek" method="get" class="form">
 
         <h2 class="heading-medium">
-          Are you 18 or over?
+          How many hours per week do you work?
         </h2>
 
         <div class="form-group">
           <fieldset class="inline">
 
-            <legend class="visuallyhidden">Are you 18 or over?</legend>
-
-            <label for="over18True" class="block-label">
-              <input type="radio" name="over18" value="true" id="over18True">
-              Yes
-            </label>
-
-            <label for="over18False" class="block-label">
-              <input type="radio" name="over18" value="false" id="over18False">
-              No
-            </label>
+            <legend class="visuallyhidden">How many hours per week do you work?</legend>
+            <input type="text" class="form-control" name="hours" value="" type="number" pattern="[0-9]*"/>
 
           </fieldset>
         </div>
