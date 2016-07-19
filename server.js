@@ -124,16 +124,19 @@ app.get(/\.html?$/i, function (req, res){
 });
 
 // redirect if `redirect(<URL>)` is part of the submitted data.
-app.use('*',function(req,res,next)
-{  
-  var data;  
+app.use('*',function(req, res, next)
+{
+  var data;
   if (Object.keys(req.query).length !== 0) { data = req.query; }
   else if (Object.keys(req.body).length !== 0) { data = req.body; }
   if (data !== undefined) {
     for (var key in data) {
       var match = data[key].match(/^redirect\(([^\)]*)\)/);
-      if (match !== null ) res.redirect(match[1]);
-    }  
+      if (match !== null ) {
+        console.log("redirecting to: "+match[1]);
+        res.redirect(match[1]);
+      }
+    }
   }
   next();
 });
