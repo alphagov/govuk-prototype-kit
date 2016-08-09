@@ -8,6 +8,7 @@ install:
 script:
   # Reference the locally-installed version of Grunt
   - ./node_modules/grunt-cli/bin/grunt test
+  - npm test
 after_success:
   # Check to see if the version file has been updated
   - ./create-release-tag.sh
