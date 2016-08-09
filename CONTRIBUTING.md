@@ -34,7 +34,9 @@ Please check that any issues related to that code are raised with that project, 
 
 ### Indentation and whitespace
 
-2-space, soft-tabs only please. No trailing whitespace.
+Your JavaScript code should pass [linting](docs/linting.md).
+
+For anything else, maintain 2-space, soft-tabs only indentation. No trailing whitespace.
 
 ### Versioning
 
