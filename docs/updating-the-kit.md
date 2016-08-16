@@ -1,10 +1,12 @@
-# Updating the kit
+# Updating the kit 
+
+## Updating
 
 **Important note**
 
 If you have made any changes outside the `app` folder, this process will destroy those changes. We will try and improve the update process to avoid this, but in the meantime you will need to make a note of your changes outside `app`, and add them back after updating.
 
-## Steps
+### Steps
 
 Download the latest prototype kit zip file from GitHub
 
@@ -12,6 +14,83 @@ In your project, delete everything apart from the `app` and `.git` folder
 
 Copy everything from the latest kit to your project, apart from the `app` folder
 
+---
+
+## Updating via the command line (Advanced)
+
+If you have experience with the command line and your prototype is running within a git source repository then you can choose to update the kit with a series of commands.
+
+Updating via the command line involves fetching the latest code from the 'upstream' remote repository and then merging it into the git branch that contains your version of the prototyping kit. Below are the steps for doing that in detail.
+
+### Steps
+
+#### View git remote(s)
+
+Firstly change to the base directory of your prototyping kit in terminal, for example:
+
+```
+cd ~/sites/govuk_prototype_kit
+```
+
+Once in the directory start by listing the git remote(s) you have referenced from your machine. To do this you type:
+
+ ```git remote -v``` and hit enter
+
+This will typically output a list of all the remote git repositories that have the prototype code, for example:
+
+```
+origin  https://github.com/paulmsmith/govuk_prototype_kit.git (fetch)
+origin  https://github.com/paulmsmith/govuk_prototype_kit.git (push)
+```
+
+So long as you can see a list of repositories as above, we can move on to adding a reference to the original 'alphagov' repository which we will need in order to update.
+
+#### Adding the upstream remote repository
+
+To add the alphagov remote repository, type the following command and hit enter:
+
+```
+git remote add upstream https://github.com/alphagov/govuk_prototype_kit.git
+```
+
+All being well, you will just return to a command prompt, now if you type: 
+```git remote -v```
+
+You should see an 'upstream' in your list, for example:
+
+```
+origin	https://github.com/paulmsmith/govuk_prototype_kit.git (fetch)
+origin	https://github.com/paulmsmith/govuk_prototype_kit.git (push)
+upstream	https://github.com/alphagov/govuk_prototype_kit.git (fetch)
+upstream	https://github.com/alphagov/govuk_prototype_kit.git (push)
+```
+
+#### Merging from upstream
+
+Now that you've added the upstream remote, you can merge the latest code into yours with the following commands.
+
+First you will 'fetch' the latest code from the upstream release branch. Type the following command and wait a few seconds. 
+
+```
+git fetch upstream release 
+```
+
+You will see it output a few lines telling you that was successful, for example:
+
+```
+From https://github.com/alphagov/govuk_prototype_kit
+ * branch            release    -> FETCH_HEAD
+```
+
+Next, we will merge the branch we just 'fetched' into our master branch (note: you can substitute 'master' for the branch you want to merge into if different)
+
+```
+git checkout master && git merge FETCH_HEAD
+```
+
+You shouldn't have any merge conflicts if you've not changed files outside of the 'app' folder. If you do, there are plenty of ways to fix the conflicts and [github has instructions](https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/) that should be easy to follow if you need a refresher course.
+
+---
 
 ## Converting old prototypes
 
