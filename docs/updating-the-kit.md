@@ -1,12 +1,10 @@
-# Updating the kit
+# Updating the kit 
 
-The steps below 'Upgrading' describe how to upgrade to the latest release of prototype kit. 
-
-## Upgrading
+## Updating
 
 **Important note**
 
-If you have made any changes outside the `app` folder, this process will destroy those changes. We will try and improve the update process to avoid this, but in the meantime you will need to make a note of your changes outside `app`, and add them back after upgrading.
+If you have made any changes outside the `app` folder, this process will destroy those changes. We will try and improve the update process to avoid this, but in the meantime you will need to make a note of your changes outside `app`, and add them back after updating.
 
 ### Steps
 
@@ -18,11 +16,11 @@ Copy everything from the latest kit to your project, apart from the `app` folder
 
 ---
 
-## Upgrading via the command line (Advanced)
+## Updating via the command line (Advanced)
 
-If you have experience with the command line and your prototype is running within a git source repository then you can choose to upgrade the kit with a series of commands.
+If you have experience with the command line and your prototype is running within a git source repository then you can choose to update the kit with a series of commands.
 
-Upgrading via the command line involves fetching the latest code from the 'upstream' remote repository and then merging it into the git branch that contains your version of the prototyping kit. Below are the steps for doing that in detail.
+Updating via the command line involves fetching the latest code from the 'upstream' remote repository and then merging it into the git branch that contains your version of the prototyping kit. Below are the steps for doing that in detail.
 
 ### Steps
 
@@ -45,7 +43,7 @@ origin  https://github.com/paulmsmith/govuk_prototype_kit.git (fetch)
 origin  https://github.com/paulmsmith/govuk_prototype_kit.git (push)
 ```
 
-So long as you can see a list of repositories as above, we can move on to adding a reference to the original 'alphagov' repository which we will need in order to upgrade.
+So long as you can see a list of repositories as above, we can move on to adding a reference to the original 'alphagov' repository which we will need in order to update.
 
 #### Adding the upstream remote repository
 
