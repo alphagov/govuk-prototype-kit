@@ -38,7 +38,7 @@ In terminal press the `ctrl` and `c` keys together.
 
 The kit is now installed. Congratulations!
 
-Next you may want to try out some of the [examples or tutorials](/docs/guies-and-examples).
+Next you may want to try out some of the [examples or tutorials](/docs/guides-and-examples).
 
 ---
 [Previous page (install the kit)](install-the-kit.md)
