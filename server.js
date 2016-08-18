@@ -178,9 +178,9 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 
 if (useDocumentation) {
   // Documentation  routes
-  // documentationApp.get(/^\/([^.]+)$/, function (req, res) {
-  //   utils.matchRoutes(req, res)
-  // })
+  documentationApp.get(/^\/([^.]+)$/, function (req, res) {
+    utils.matchRoutes(req, res)
+  })
 }
 
 console.log('\nGOV.UK Prototype kit v' + releaseVersion)
