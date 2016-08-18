@@ -1,11 +1,10 @@
-module.exports = function(grunt){
+module.exports = function (grunt) {
   grunt.initConfig({
-
     // Builds Sass
     sass: {
       dev: {
         options: {
-          style: "expanded",
+          style: 'expanded',
           sourcemap: true,
           includePaths: [
             'govuk_modules/govuk_template/assets/stylesheets',
@@ -16,10 +15,10 @@ module.exports = function(grunt){
         },
         files: [{
           expand: true,
-          cwd: "app/assets/sass",
-          src: ["*.scss"],
-          dest: "public/stylesheets/",
-          ext: ".css"
+          cwd: 'app/assets/sass',
+          src: ['*.scss'],
+          dest: 'public/stylesheets/',
+          ext: '.css'
         }]
       }
     },
@@ -33,7 +32,7 @@ module.exports = function(grunt){
           src: ['**/*', '!sass/**'],
           dest: 'public/'
         }],
-        ignoreInDest: "**/stylesheets/**",
+        ignoreInDest: '**/stylesheets/**',
         updateAndDelete: true
       },
       govuk: {
@@ -73,14 +72,14 @@ module.exports = function(grunt){
         files: ['app/assets/sass/**/*.scss'],
         tasks: ['sass'],
         options: {
-          spawn: false,
+          spawn: false
         }
       },
-      assets:{
+      assets: {
         files: ['app/assets/**/*', '!app/assets/sass/**'],
         tasks: ['sync:assets'],
         options: {
-          spawn: false,
+          spawn: false
         }
       }
     },
@@ -105,33 +104,33 @@ module.exports = function(grunt){
         }
       }
     }
-  });
+  })
 
-  [
+  ;[
     'grunt-sync',
     'grunt-contrib-watch',
     'grunt-sass',
     'grunt-nodemon',
     'grunt-concurrent'
   ].forEach(function (task) {
-    grunt.loadNpmTasks(task);
-  });
+    grunt.loadNpmTasks(task)
+  })
 
   grunt.registerTask('generate-assets', [
     'sync',
     'sass'
-  ]);
+  ])
 
   grunt.registerTask('default', [
     'generate-assets',
     'concurrent:target'
-  ]);
+  ])
 
   grunt.registerTask(
     'test',
     'default',
     function () {
-      grunt.log.writeln('Test that the app runs');
+      grunt.log.writeln('Test that the app runs')
     }
-  );
-};
+  )
+}

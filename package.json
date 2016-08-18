@@ -7,7 +7,9 @@
     "node": ">=4.0 <5.0"
   },
   "scripts": {
-    "start": "node start.js"
+    "start": "node start.js",
+    "lint": "standard",
+    "test": "npm run lint"
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
@@ -34,6 +36,7 @@
     "portscanner": "^1.0.0",
     "prompt": "^0.2.14",
     "readdir": "0.0.6",
-    "serve-favicon": "2.3.0"
+    "serve-favicon": "2.3.0",
+    "standard": "^7.1.2"
   }
 }
