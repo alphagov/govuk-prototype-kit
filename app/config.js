@@ -12,6 +12,9 @@ module.exports = {
   // Enable or disable password protection on production
   useAuth: 'true',
 
+  // Enable or disable built-in docs and examples.
+  useDocumentation: 'true',
+
   // Force HTTP to redirect to HTTPs on production
   useHttps: 'true',
 

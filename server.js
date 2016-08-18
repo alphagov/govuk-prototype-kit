@@ -25,6 +25,15 @@ env = env.toLowerCase()
 useAuth = useAuth.toLowerCase()
 useHttps = useHttps.toLowerCase()
 
+var useDocumentation = (config.useDocumentation === 'true')
+
+// Promo mode redirects the root to /docs - so our landing page is docs when published on heroku
+var promoMode = process.env.PROMO_MODE || 'false'
+promoMode = promoMode.toLowerCase()
+
+// Disable promo mode if docs aren't enabled
+if (!useDocumentation) promoMode = 'false'
+
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
 if (env === 'production' && useAuth === 'true') {
@@ -47,32 +56,34 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 // Set views engine
 app.set('view engine', 'html')
 
-// Set up documentation app
-var documentationViews = [__dirname + '/docs/views/', __dirname + '/lib/']
-
-var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
-  autoescape: true,
-  express: documentationApp,
-  noCache: true,
-  watch: true
-})
-// Nunjucks filters
-utils.addNunjucksFilters(nunjucksDocumentationEnv)
-
-// Set views engine
-documentationApp.set('view engine', 'html')
-
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_template/assets')))
 app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit')))
 app.use('/public/images/icons', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit/images')))
 
-// TODO: is this the right way to serve these assets?
-documentationApp.use('/assets/images', express.static(__dirname + '/docs/assets/images'))
-
 // Elements refers to icon folder instead of images folder
 app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images', 'favicon.ico')))
+
+// Set up documentation app
+if (useDocumentation) {
+  var documentationViews = [__dirname + '/docs/views/', __dirname + '/lib/']
+
+  var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
+    autoescape: true,
+    express: documentationApp,
+    noCache: true,
+    watch: true
+  })
+  // Nunjucks filters
+  utils.addNunjucksFilters(nunjucksDocumentationEnv)
+
+  // Set views engine
+  documentationApp.set('view engine', 'html')
+
+  // TODO: is this the right way to serve these assets?
+  documentationApp.use('/assets/images', express.static(__dirname + '/docs/assets/images'))
+}
 
 // Support for parsing data in POSTs
 app.use(bodyParser.json())
@@ -118,6 +129,14 @@ app.get('/robots.txt', function (req, res) {
   res.send('User-agent: *\nDisallow: /')
 })
 
+// Redirect root to /docs when in promo mode.
+if (promoMode === 'true') {
+  console.log('Prototype kit running in promo mode')
+  app.get('/', function (req, res) {
+    res.redirect('/docs')
+  })
+}
+
 // routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
   console.log(routes.bind)
@@ -127,11 +146,13 @@ if (typeof (routes) !== 'function') {
   app.all('/', routes)
 }
 
-// Create separate router for docs
-app.use('/docs', documentationApp)
+if (useDocumentation) {
+  // Create separate router for docs
+  app.use('/docs', documentationApp)
 
-// Docs under the /docs namespace
-documentationApp.all('/', documentationRoutes)
+  // Docs under the /docs namespace
+  documentationApp.all('/', documentationRoutes)
+}
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {
@@ -149,10 +170,12 @@ app.get(/^\/([^.]+)$/, function (req, res) {
   utils.matchRoutes(req, res)
 })
 
-// Documentation  routes
-documentationApp.get(/^\/([^.]+)$/, function (req, res) {
-  utils.matchRoutes(req, res)
-})
+if (useDocumentation) {
+  // Documentation  routes
+  documentationApp.get(/^\/([^.]+)$/, function (req, res) {
+    utils.matchRoutes(req, res)
+  })
+}
 
 console.log('\nGOV.UK Prototype kit v' + releaseVersion)
 // Display warning not to use kit for production services.
