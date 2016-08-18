@@ -37,6 +37,7 @@
     "prompt": "^0.2.14",
     "readdir": "0.0.6",
     "serve-favicon": "2.3.0",
-    "standard": "^7.1.2"
+    "standard": "^7.1.2",
+    "sync-request": "^3.0.1"
   }
 }

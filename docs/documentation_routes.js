@@ -1,11 +1,17 @@
 var express = require('express')
 var router = express.Router()
+var utils = require('../lib/utils.js')
 
 // Page routes
 
 // Docs index
 router.get('/', function (req, res) {
   res.render('index')
+})
+
+router.get('/install', function (req, res) {
+  var url = utils.getLatestRelease()
+  res.render('install', { 'releaseURL': url })
 })
 
 // Examples - exampes post here
