@@ -26,8 +26,8 @@ router.get('/install/:page', function (req, res) {
 })
 
 // Examples - exampes post here
-router.post('/guides-and-examples', function (req, res) {
-  res.redirect('guides-and-examples')
+router.post('/tutorials-and-examples', function (req, res) {
+  res.redirect('tutorials-and-examples')
 })
 
 // Example routes

@@ -101,10 +101,4 @@ If you already have command line tools, this will display `xcode-select: error: 
 
 If you don’t have command line tools, it will open an installer. Follow the instructions to install the command line tools.
 
----
-[Previous page (introduction)](introduction.md)
-
-[Next page (install the kit)](install-the-kit.md)
-
----
-[Documentation index](../README.md)
+<a href="install-the-kit.md" class="button">Next (install the kit)</a>

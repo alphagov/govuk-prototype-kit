@@ -90,9 +90,3 @@ We recommend doing a tutorial on Git basics. Once you’ve done that, the best t
 [Advanced git tutorial](http://think-like-a-git.net/)
 
 > Git can be used via the command line or using an app. It’s up to you which you learn. Most developers use the command line, so if you’d like help from them, it’s often better to use that.
-
----
-[Next guide (publishing on Heroku)](publishing-on-heroku.md)
-
----
-[Documentation index](../README.md)

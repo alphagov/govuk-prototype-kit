@@ -38,8 +38,4 @@ In terminal press the `ctrl` and `c` keys together.
 
 The kit is now installed. Congratulations!
 
----
-[Previous page (install the kit)](install-the-kit.md)
-
----
-[Documentation index](../README.md)
+<!-- <a href="../../readme.md" class="button">Return to Getting Started</a> -->
