@@ -179,7 +179,9 @@ app.get(/^\/([^.]+)$/, function (req, res) {
 if (useDocumentation) {
   // Documentation  routes
   documentationApp.get(/^\/([^.]+)$/, function (req, res) {
-    utils.matchRoutes(req, res)
+    if (!utils.matchMdRoutes(req, res)) {
+      utils.matchRoutes(req, res)
+    }
   })
 }
 
