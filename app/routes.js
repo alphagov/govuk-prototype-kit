@@ -29,25 +29,23 @@ router.get('/examples/over-18', function (req, res) {
 })
 
 router.get('/examples/logging-data', function (req, res) {
-
   var users = {
-    "Alex": {
-      "age": 18,
-      "town": "London"
+    'Alex': {
+      'age': 18,
+      'town': 'London'
     },
-    "Charlie": {
-      "age": 65,
-      "town": "Edinburgh"
+    'Charlie': {
+      'age': 65,
+      'town': 'Edinburgh'
     },
-    "Sean": {
-      "age": 43,
-      "town": "Cardiff"
+    'Sean': {
+      'age': 43,
+      'town': 'Cardiff'
     }
   }
 
-  res.render('examples/logging-data', {users: users});
-
-});
+  res.render('examples/logging-data', {users: users})
+})
 
 // add your routes here
 
