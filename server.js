@@ -3,7 +3,7 @@ var express = require('express')
 var session = require('express-session')
 var nunjucks = require('nunjucks')
 var routes = require('./app/routes.js')
-var documentationRoutes = require(__dirname + '/docs/documentation_routes.js')
+var documentationRoutes = require('./docs/documentation_routes.js')
 var favicon = require('serve-favicon')
 var app = express()
 var documentationApp = express()
@@ -41,7 +41,7 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [__dirname + '/app/views/', __dirname + '/lib/']
+var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/')]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
@@ -67,7 +67,7 @@ app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets'
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [__dirname + '/docs/views/', __dirname + '/lib/']
+  var documentationViews = [path.join(__dirname, '/docs/views/'), path.join(__dirname, '/lib/')]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,
@@ -82,7 +82,7 @@ if (useDocumentation) {
   documentationApp.set('view engine', 'html')
 
   // TODO: is this the right way to serve these assets?
-  documentationApp.use('/assets/images', express.static(__dirname + '/docs/assets/images'))
+  documentationApp.use('/assets/images', express.static(path.join(__dirname, '/docs/assets/images')))
 }
 
 // Support for parsing data in POSTs
