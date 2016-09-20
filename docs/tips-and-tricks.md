@@ -42,3 +42,24 @@ Include either the alpha or beta phase banner from the `app/views/includes/` fol
     {% include "includes/phase_banner_beta.html" %}
 
 
+### How to use session variables 
+
+Run the following in command line:
+
+    npm install express-session
+
+In server.js file add the following with the other includes:
+
+    session = require('express-session')
+
+Then use session in server.js file. For example:
+
+    app.use(session({ secret: 'topSecret', cookie: { maxAge: 60000 }}));
+
+Where `topSecret` could be any secret and `60000` any expiary time that you would like to set.
+
+In routes.js file store session variable. For example: 
+
+    req.session.sessionName = someValue;
+
+See: https://github.com/expressjs/session for more details.
