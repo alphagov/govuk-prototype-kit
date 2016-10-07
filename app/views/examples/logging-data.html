@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Logging data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Logging data
+      </h1>
+
+      <p>You can send data to the browser console using the "log" filter in your template:</p>
+
+      {{ users | log }}
+
+      <p class="code">
+  {% raw %}{{ users | log }}{% endraw %}
+      </p>
+
+      <p>
+        Open the browser console to see the data in this example. In Chrome, press the <code class="code">cmd + alt + j</code> keys together to open the console.
+      </p>
+
+      <p>
+        This can be useful when using complex data in your prototype, to check it looks correct.
+      </p>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
