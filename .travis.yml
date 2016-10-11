@@ -22,4 +22,4 @@ notifications:
 sudo: false
 env:
   global:
-    secure: N2ZZwTYnOjrUwPjgD7IAfB99+/6lNnxrtPTEEUT7YJsD5EZ8qWSaNpxyPs9ybbhwtVUZySsGqDG1hmwnrmWF4iigkWUW6g9W7W9LuzsZHHKEfxuh09xcFTm31aJN8SD3uRzkRx0Le8frC0SLGgPLuDXOebQTB8nEbFiKXL+TGzk=
+  - secure: DNOsydCMSHOvp1SEQNRHx3SOqaUPA5XZQZ+eOsA/hcc4iXQktMxX004tfsKgUVfvzWdXVFtLscL2TpHad2TjPDvtcmb2vYH3tqgHHhyAK0fJRMp4UNh7z5RnHKsoe0WRAQGtGAqw8ND7a2GWV0/yWoxub66C1WZmSBNxlCH27dw=
