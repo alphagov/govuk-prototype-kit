@@ -18,7 +18,7 @@ if [ "$TRAVIS_REPO_SLUG" == "alphagov/govuk_prototype_kit" ] && [ "$TRAVIS_PULL_
   set -x
   # check the remote has been added
   git checkout -b latest-release v"$VERSION_TAG"
-  git push --f deploy-latest-release latest-release
+  git push --force deploy-latest-release latest-release
   echo "Pushed latest-release branch to GitHub"
 else
   echo "Not updating the latest-release branch as we're on a branch..."
