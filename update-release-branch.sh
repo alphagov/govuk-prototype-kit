@@ -13,7 +13,9 @@ if [ "$TRAVIS_REPO_SLUG" == "alphagov/govuk_prototype_kit" ] && [ "$TRAVIS_PULL_
   echo "Using the most recent tag: $VERSION_TAG and creating a latest-release branch"
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis CI"
+  set +x
   git remote add deploy-latest-release https://"${GH_TOKEN}"@github.com/alphagov/govuk_prototype_kit.git > /dev/null 2>&1
+  set -x
   # check the remote has been added
   git remote -v
   git checkout -b latest-release v"$VERSION_TAG"
