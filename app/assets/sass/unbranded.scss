@@ -1,3 +1,7 @@
+// Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
+// Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
+@import 'govuk-elements';
+
 // If you need to create a page as part of your journey, but without GOV.UK branding
 // See localhost:3000/examples/unbranded/
 
@@ -10,6 +14,7 @@ $toolkit-font-stack: $Helvetica-Regular;
 
   // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
   * {
+
     font-family: $toolkit-font-stack !important;
   }
 
