@@ -1,16 +1,14 @@
 language: node_js
 node_js:
-  - 4.0
+- 4.0
 before_install:
-  - npm install -g grunt-cli
+- npm install -g grunt-cli
 install:
-  - npm install
+- npm install
 script:
-  # Reference the locally-installed version of Grunt
-  - "./node_modules/grunt-cli/bin/grunt test"
-  - npm test
+- "./node_modules/grunt-cli/bin/grunt test"
+- npm test
 after_success:
-  # Check to see if the version file has been updated
 - "./create-release-tag.sh"
 - "./update-release-branch.sh"
 deploy:
@@ -19,11 +17,9 @@ deploy:
     secure: h/9/Rcd41XVU4VYYeBoKKvG6uShEoDksCGGZ/2dgeY1f3tYnhGzzgL6TIkvhafwDbKk2Y4o6d/MI05K+s7lorf2uTKpr1To2o52hQqmb4YREPWruZtBqoRo5X4nCeN2oEdW+yJRH3jZDNUmwkPzjytqxkcUUUeDPHfz3+xCtSZk=
   app: govuk-prototype-kit
   on: master
-
 notifications:
   email: false
-
 sudo: false
 env:
   global:
-    secure: "ZhMnjnMRkUdi+7kMAMQt5ZzyAV9FbJQCj23o/MG69D0TldRhf/2iA7dBCc99ZUjedRJH3ZyDcs+lSuBqPIvvZb96p1Lud8yMpKe9K2X9S0gH2mt7l2mBiNCzOHd/ERPkNspHjabYUtF8eJ6P0NgEXBABFaUzyRcoJ5/0AI8MZH8="
+  - secure: fBFdCKum6WXYAcBIAUiY9pqJ/vv7zjnwjvykNFIiu7QN35G6X9kdsirmhE5gKBjWSaNzNAyTBQG9yl5idLathCiukRFskiE5E3aUFAXul7XNNDEZrWU6gR7A0XypcecIqCBw7Oss1VVJP/czUQCfiuWVG0vS/mNCKSuGtRp8ick=
