@@ -7,19 +7,25 @@ install:
   - npm install
 script:
   # Reference the locally-installed version of Grunt
-  - ./node_modules/grunt-cli/bin/grunt test
+  - "./node_modules/grunt-cli/bin/grunt test"
   - npm test
 after_success:
   # Check to see if the version file has been updated
-  - ./create-release-tag.sh
+- "./create-release-tag.sh"
 deploy:
-  provider: heroku
-  api_key:
-    secure: h/9/Rcd41XVU4VYYeBoKKvG6uShEoDksCGGZ/2dgeY1f3tYnhGzzgL6TIkvhafwDbKk2Y4o6d/MI05K+s7lorf2uTKpr1To2o52hQqmb4YREPWruZtBqoRo5X4nCeN2oEdW+yJRH3jZDNUmwkPzjytqxkcUUUeDPHfz3+xCtSZk=
-  app: govuk-prototype-kit
-  on: master
+  - provider: heroku
+    api_key:
+      secure: h/9/Rcd41XVU4VYYeBoKKvG6uShEoDksCGGZ/2dgeY1f3tYnhGzzgL6TIkvhafwDbKk2Y4o6d/MI05K+s7lorf2uTKpr1To2o52hQqmb4YREPWruZtBqoRo5X4nCeN2oEdW+yJRH3jZDNUmwkPzjytqxkcUUUeDPHfz3+xCtSZk=
+    app: govuk-prototype-kit
+    on: master
+  - provider: script
+    script: "./update-release-branch.sh"
+    on: master
 
 notifications:
   email: false
 
 sudo: false
+env:
+  global:
+    secure: UfM2xrBjM4OJ5MVMATOz6AvF6NRlIfbPVty5CLGz1eW5tHHFpTBtz/Ru8bcKTXK3mHn1r6oPx+K2//Lpf3JtaqgvGij2mEq6z0ZvZN0TG2GiNrK1437CV+zKo5XMR5QGKC+ZFvTy+IdeVI9oYEisd5T6Tju36s6V1A43sl60efc=
