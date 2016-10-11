@@ -7,7 +7,7 @@ set -ex
 # check this is not a pull request
 # check we're on the master branch
 
-if [ "$TRAVIS_REPO_SLUG" == "alphagov/govuk_prototype_kit" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "alphagov/govuk_prototype_kit" ] && [ "$TRAVIS_PULL_REQUEST" == "true" ] && [ "$TRAVIS_BRANCH" == "test-travis" ]; then
   # get the version from the version file
   VERSION_TAG="$(cat VERSION.txt)"
   echo "Using the most recent tag: $VERSION_TAG and creating a latest-release branch"
