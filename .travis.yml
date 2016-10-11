@@ -20,6 +20,3 @@ deploy:
 notifications:
   email: false
 sudo: false
-env:
-  global:
-    secure: "itlYSNhbLY5fsRdFxEWRLFkdgRf8CV0dSlqjhAnNmB1sbpid3/QHwiOdgXjW29w5HLar3IgMedkrv3S0D+xCYqK5XkmixOY7zmeE0ixRxrMDDxmQB+3NSWITa14RTIlbQ+BKN5fTDq+h31KlUXkzWO+qi5wZMr4G30DH2GUUmIY="
