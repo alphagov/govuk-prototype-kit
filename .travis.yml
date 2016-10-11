@@ -12,15 +12,13 @@ script:
 after_success:
   # Check to see if the version file has been updated
 - "./create-release-tag.sh"
+- "./update-release-branch.sh"
 deploy:
-  - provider: heroku
-    api_key:
-      secure: h/9/Rcd41XVU4VYYeBoKKvG6uShEoDksCGGZ/2dgeY1f3tYnhGzzgL6TIkvhafwDbKk2Y4o6d/MI05K+s7lorf2uTKpr1To2o52hQqmb4YREPWruZtBqoRo5X4nCeN2oEdW+yJRH3jZDNUmwkPzjytqxkcUUUeDPHfz3+xCtSZk=
-    app: govuk-prototype-kit
-    on: master
-  - provider: script
-    script: "./update-release-branch.sh"
-    on: master
+  provider: heroku
+  api_key:
+    secure: h/9/Rcd41XVU4VYYeBoKKvG6uShEoDksCGGZ/2dgeY1f3tYnhGzzgL6TIkvhafwDbKk2Y4o6d/MI05K+s7lorf2uTKpr1To2o52hQqmb4YREPWruZtBqoRo5X4nCeN2oEdW+yJRH3jZDNUmwkPzjytqxkcUUUeDPHfz3+xCtSZk=
+  app: govuk-prototype-kit
+  on: master
 
 notifications:
   email: false
