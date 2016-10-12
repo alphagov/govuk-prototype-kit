@@ -69,17 +69,17 @@ upstream	https://github.com/alphagov/govuk_prototype_kit.git (push)
 
 Now that you've added the upstream remote, you can merge the latest code into yours with the following commands.
 
-First you will 'fetch' the latest code from the upstream release branch. Type the following command and wait a few seconds. 
+First you will 'fetch' the latest code from the upstream latest-release branch. Type the following command and wait a few seconds. 
 
 ```
-git fetch upstream release 
+git fetch upstream latest-release 
 ```
 
 You will see it output a few lines telling you that was successful, for example:
 
 ```
 From https://github.com/alphagov/govuk_prototype_kit
- * branch            release    -> FETCH_HEAD
+ * branch            latest-release    -> FETCH_HEAD
 ```
 
 Next, we will merge the branch we just 'fetched' into our master branch (note: you can substitute 'master' for the branch you want to merge into if different)
