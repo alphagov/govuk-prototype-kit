@@ -1,3 +1,21 @@
+# 4.0.0
+
+Breaking changes:
+
+- [#244](https://github.com/alphagov/govuk_prototype_kit/pull/244) Migrate documentation into a separate application
+
+All changes:
+
+- Bump all GOV.UK assets to their latest versions
+- Remove duplicate GOV.UK assets copied to the app
+- [#241](https://github.com/alphagov/govuk_prototype_kit/pull/241) Warn against using the prototype kit to build production services
+- [#268](https://github.com/alphagov/govuk_prototype_kit/pull/268) Automatically keep the latest release branch up to date. This can be used to update the kit
+- [#270](https://github.com/alphagov/govuk_prototype_kit/pull/270) Add a new stylesheet for the unbranded layout to fix font issues
+- [#257](https://github.com/alphagov/govuk_prototype_kit/pull/257) Make CSS output easier to debug (with sourcemaps)
+- [#237](https://github.com/alphagov/govuk_prototype_kit/pull/237) Make links with role="button" behave like buttons
+- [#224](https://github.com/alphagov/govuk_prototype_kit/pull/224) Lint the prototype kit’s codebase using [Standard](http://standardjs.com/). This only applies to the kit’s codebase - there’s no requirement for your app to meet this
+
+
 # 3.0.0
 
 BrowserSync support, so you don't need to refresh the browser to see your changes. Nunjucks filters file has been added, so you can [add your own filters](https://mozilla.github.io/nunjucks/api.html#custom-filters) to your project, check the examples page in the kit for more details.
@@ -8,38 +26,38 @@ Breaking changes:
 
 All changes:
 
-- #213 Remove references to "latest version" of Node 
-- #212 Remove the mustache version of govuk template 
-- #211 Remove govuk_template.html copied in build task from the repository 
-- #209 Use release 1.2.0 of the govuk-elements-sass package 
-- #208 Remove govuk elements sass from the app folder 
-- #207 Bump the govuk frontend toolkit to 4.12.0 
-- #206 Bump the govuk template to 0.17.3 
-- #200 Adds custom 'filters' to the nunjucks templating engine 
-- #194 Windows heroku login instructions 
-- #193 Adding browser-sync to the prototyping kit. 
-- #192 Security guidance 
-- #191 Edit sass docs for clarity 
-- #188 Force SSL on production 
-- #186 add guidance page for using verify prototype 
-- #181 Add link to styleguide on writing commit messages 
-- #180 Change smart quotes to straight quotes 
-- #177 Add a link to install Git 
-- #176 Bump govuk template to 0.17.0 
-- #175 Bump govuk frontend toolkit to 4.10.0 
-- #172 Fix closing </span> element 
-- #169 Fix broken url and typo 
-- #166 Stop prototypes being indexed by search engines. 
-- #165 Redirect .html and .htm if in url path 
-- #164 Fix link to developer install instructions 
-- #162 Have kit self-identify as being the GOV.UK Prototype kit 
-- #161 always convert port to Number 
-- #160 Minor documentation update 
-- #159 Remove invalid ARIA role 
-- #156 fix port restart issue 
-- #155 Update the GOV.UK template and remove napa as a dependency 
-- #154 Use TRAVIS_BRANCH when running in travis-ci 
-- #152 Amend travis yml 
+- #213 Remove references to "latest version" of Node
+- #212 Remove the mustache version of govuk template
+- #211 Remove govuk_template.html copied in build task from the repository
+- #209 Use release 1.2.0 of the govuk-elements-sass package
+- #208 Remove govuk elements sass from the app folder
+- #207 Bump the govuk frontend toolkit to 4.12.0
+- #206 Bump the govuk template to 0.17.3
+- #200 Adds custom 'filters' to the nunjucks templating engine
+- #194 Windows heroku login instructions
+- #193 Adding browser-sync to the prototyping kit.
+- #192 Security guidance
+- #191 Edit sass docs for clarity
+- #188 Force SSL on production
+- #186 add guidance page for using verify prototype
+- #181 Add link to styleguide on writing commit messages
+- #180 Change smart quotes to straight quotes
+- #177 Add a link to install Git
+- #176 Bump govuk template to 0.17.0
+- #175 Bump govuk frontend toolkit to 4.10.0
+- #172 Fix closing </span> element
+- #169 Fix broken url and typo
+- #166 Stop prototypes being indexed by search engines.
+- #165 Redirect .html and .htm if in url path
+- #164 Fix link to developer install instructions
+- #162 Have kit self-identify as being the GOV.UK Prototype kit
+- #161 always convert port to Number
+- #160 Minor documentation update
+- #159 Remove invalid ARIA role
+- #156 fix port restart issue
+- #155 Update the GOV.UK template and remove napa as a dependency
+- #154 Use TRAVIS_BRANCH when running in travis-ci
+- #152 Amend travis yml
 
 
 # 2.1.0
