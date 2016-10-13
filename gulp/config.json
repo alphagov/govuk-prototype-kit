@@ -1,0 +1,8 @@
+{
+  "assets": {
+    "output": "public/",
+	  "base" : "app/assets/",
+    "govuk_modules": "govuk_modules/",
+    "lib": "lib/"
+  }
+}
