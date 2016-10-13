@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 var browserSync = require('browser-sync')
 var config = require('./app/config.js')
 var utils = require('./lib/utils.js')
-var packageJson = require(path.join(__dirname, '/package.json'))
+var packageJson = require('./package.json')
 
 // Grab environment variables specified in Procfile or as Heroku config vars
 var releaseVersion = packageJson.version
