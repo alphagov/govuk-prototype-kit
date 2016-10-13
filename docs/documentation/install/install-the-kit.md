@@ -12,7 +12,7 @@ We recommend keeping all your prototypes in one folder called `projects`.
 
 Create a folder called `projects` in your home folder. You can open your home folder by opening a new finder window, and selecting `go > home` from the top menu.
 
-![Screenshot of a 'projects' folder in the mac home folder](../assets/images/mac-home-folder-projects.png)
+![Screenshot of a 'projects' folder in the mac home folder](/public/images/docs/mac-home-folder-projects.png)
 
 #### Windows users
 
@@ -87,10 +87,4 @@ npm install
 ```
 The install may take up to a minute. Whilst installing it may `WARN` about some items - this is ok. As long as there are no `ERROR`s you can continue.
 
----
-[Previous page (requirements)](requirements.md)
-
-[Next page (run the kit)](run-the-kit.md)
-
----
-[Documentation index](../README.md)
+<a href="run-the-kit.md" class="button">Next (run the kit)</a>

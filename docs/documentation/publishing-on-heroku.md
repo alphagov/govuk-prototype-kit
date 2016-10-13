@@ -66,7 +66,3 @@ After your work is deployed, you will be able to view it on the web by visiting 
 You can run `heroku open` to open your prototype in a browser.
 
 > Heroku puts apps to sleep that haven’t been accessed in a while - so if you’ve not visited your prototype for a while it may take a few seconds to open.
-
-
----
-[Documentation index](../README.md)

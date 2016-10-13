@@ -12,10 +12,8 @@ If you’re comfortable using git and the terminal, you may prefer the [develope
 
 The prototype kit provides a simple way to make interactive prototypes that look and feel like pages on GOV.UK. These prototypes can be used to design and lay out pages, and to use in user research.
 
+
+
 You’ll use a copy of the kit for each different prototype you want to make - they’re self contained. Once installed, the kit uses about 100mb.
 
----
-[Next page (requirements)](requirements.md)
-
----
-[Documentation index](../README.md)
+<a href="requirements.md" class="button">Next (requirements)</a>

@@ -24,7 +24,7 @@ In your web browser, visit <a href="http://localhost:3000" target="_blank">http:
 
 You should see the prototype welcome page.
 
-![Screenshot of the prototype kit homepage](../assets/images/prototype_kit_homepage.png)
+![Screenshot of the prototype kit homepage](/public/images/docs/prototype-kit-homepage.png)
 
 ## Quitting the kit
 
@@ -38,8 +38,4 @@ In terminal press the `ctrl` and `c` keys together.
 
 The kit is now installed. Congratulations!
 
----
-[Previous page (install the kit)](install-the-kit.md)
-
----
-[Documentation index](../README.md)
+<!-- <a href="../../readme.md" class="button">Return to Getting Started</a> -->

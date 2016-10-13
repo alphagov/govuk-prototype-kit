@@ -6,7 +6,7 @@ This guide will walk you through setting up a git repo (repository) and committi
 
 > You don’t *have* to use Git to use the prototype kit, but it will be really useful if you learn some basics.
 
-> Git is not the same as GitHub. Git stores versions of your work, and lets you collaborate more easily with others. Github puts it all online with a nice web interface.
+> Git is not the same as GitHub. Git stores versions of your work, and lets you collaborate more easily with others. GitHub puts it all online with a nice web interface.
 
 You'll need to install Git first. Installation instructions for Mac, Windows, and Linux can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). Once you've done that, read below to get set up.
 
@@ -22,7 +22,7 @@ git config --global user.email "YOUR EMAIL ADDRESS"
 
 For example,  `git config --global user.name "John Smith"`
 
-If you have an account on Github, use the *same* email address for both.
+If you have an account on GitHub, use the *same* email address for both.
 
 ## 2) Initialise a Git repo
 
@@ -85,14 +85,8 @@ Run `git status` again and it should say `Nothing to commit` - all the changes y
 
 We recommend doing a tutorial on Git basics. Once you’ve done that, the best thing is to keep using Git each day (commit at least one change, etc) so it becomes familiar to you. Ask developers on your team to help you until you’re comfortable on your own.
 
-[Github tutorial on git](https://try.github.io/levels/1/challenges/1)
+[GitHub tutorial on git](https://try.github.io/levels/1/challenges/1)
 
 [Advanced git tutorial](http://think-like-a-git.net/)
 
 > Git can be used via the command line or using an app. It’s up to you which you learn. Most developers use the command line, so if you’d like help from them, it’s often better to use that.
-
----
-[Next guide (publishing on Heroku)](publishing-on-heroku.md)
-
----
-[Documentation index](../README.md)

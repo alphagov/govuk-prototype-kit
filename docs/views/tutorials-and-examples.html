@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  <div class="breadcrumbs">
+    <ol>
+      <li><a href="/docs">GOV.UK prototype kit</a></li>
+    </ol>
+  </div>
+
+  <h1 class="heading-xlarge">Tutorials and examples</h1>
+
+  <div class="grid-row">
+
+    <div class="column-two-thirds">
+      <h2 class="heading-medium">Tutorials</h2>
+      <p>These tutorials are being actively developed. If you have suggestions for improvements, we'd love to hear from you.</p>
+    </div>
+  </div>
+  <div class="grid-row">
+    <div class="column-third">
+      <h3 class="heading-small">Getting started</h3>
+      <ul class="list list-bullet">
+        <li><a href="/prototype-admin/download-latest">Download kit (zip)</a></li>
+        <li><a href="/docs/install/introduction">Simple install guide</a>
+          <ol class="list list-number">
+            <li><a href="/docs/install/requirements">Kit requirements</a></li>
+            <li><a href="/docs/install/install-the-kit">Install the kit</a></li>
+            <li><a href="/docs/install/run-the-kit">Run the kit</a></li>
+          </ol>
+        </li>
+        <li><a href="/docs/install/developer-install-instructions">Advanced install guide</a></li>
+      </ul>
+
+
+    </div>
+    <div class="column-third">
+      <h3 class="heading-small">Basic usage</h3>
+      <ul class="list list-bullet">
+        <li><a href="/docs/making-pages">Making pages</a></li>
+        <li><a href="/docs/writing-css">Writing CSS</a></li>
+        <li><a href="/docs/setting-up-git">Setting up Git</a></li>
+        <li><a href="/docs/publishing-on-heroku">Publishing on the web (Heroku)</a></li>
+        <li><a href="/docs/examples/template-data">Passing data into a template</a></li>
+        <li><a href="/docs/tips-and-tricks">Tips and tricks</a></li>
+        <li><a href="/docs/updating-the-kit">Updating the kit</a></li>
+      </ul>
+    </div>
+    <div class="column-third">
+      <h3 class="heading-small">Advanced usage</h3>
+      <ul class="list list-bullet">
+        <li><a href="/docs/examples/branching">Branching</a>
+          <p class="font-xsmall">(Showing a different page based on user input)</p>
+        </li>
+        <li><a href="/docs/creating-routes">Creating routes (server side programming)</a></li>
+        <li><a href="/docs/session">Storing data in session</a></li>
+        <li><a href="/docs/using-verify">Using GOV.UK Verify</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-medium">Page templates</h2>
+      <p class="text">
+        Use these as the basis for your prototypes.
+        We recommend making copies the files rather than directly editing them.
+      </p>
+
+    </div>
+  </div>
+
+  <div class="grid-row">
+
+
+    <div class="column-third">
+      <h3 class="heading-small">Components</h3>
+      <ul class="list list-bullet">
+        <li>
+          <a href="/docs/examples/elements/grid-layout">
+            Grid layout
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/elements/typography">
+            Typography
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/elements/forms">
+            Basic form example
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/elements/radio-buttons-checkboxes">
+            Radio buttons and checkboxes
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/elements/toggled-content">
+            Toggling content
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/template-partial-areas">
+            Template partial areas
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="column-third">
+
+      <h3 class="heading-small">Entire pages</h3>
+      <ul class="list list-bullet">
+        <li>
+          <a href="/docs/examples/blank-govuk">
+            Blank
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/blank-unbranded">
+            Blank (non-GOV.UK)
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/start-page">
+            Start
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/question-page">
+            Question
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/check-your-answers-page">
+            Check your answers
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/confirmation-page">
+            Confirmation
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</main>
+
+{% endblock %}
