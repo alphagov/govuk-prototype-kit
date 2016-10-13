@@ -14,6 +14,7 @@ All changes:
 - [#257](https://github.com/alphagov/govuk_prototype_kit/pull/257) Make CSS output easier to debug (with sourcemaps)
 - [#237](https://github.com/alphagov/govuk_prototype_kit/pull/237) Make links with role="button" behave like buttons
 - [#224](https://github.com/alphagov/govuk_prototype_kit/pull/224) Lint the prototype kit’s codebase using [Standard](http://standardjs.com/). This only applies to the kit’s codebase - there’s no requirement for your app to meet this
+- [#197](https://github.com/alphagov/govuk_prototype_kit/pull/197) Add the ability to store user data per session
 
 
 # 3.0.0
