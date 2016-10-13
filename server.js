@@ -80,9 +80,6 @@ if (useDocumentation) {
 
   // Set views engine
   documentationApp.set('view engine', 'html')
-
-  // TODO: is this the right way to serve these assets?
-  documentationApp.use('/assets/images', express.static(path.join(__dirname, '/docs/assets/images')))
 }
 
 // Support for parsing data in POSTs

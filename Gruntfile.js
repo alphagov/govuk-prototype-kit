@@ -38,6 +38,11 @@ module.exports = function (grunt) {
           cwd: 'app/assets/',
           src: ['**/*', '!sass/**'],
           dest: 'public/'
+        }, {
+          expand: true,
+          cwd: 'docs/assets/',
+          src: ['**/*', '!sass/**'],
+          dest: 'public/'
         }],
         ignoreInDest: '**/stylesheets/**',
         updateAndDelete: true
