@@ -4,7 +4,7 @@ node_js:
 install:
 - npm install
 script:
-- "./node_modules/gulp/bin/gulp test"
+- gulp test
 - npm test
 after_success:
 - "./create-release-tag.sh"
