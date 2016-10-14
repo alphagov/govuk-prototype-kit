@@ -90,6 +90,26 @@ git checkout master && git merge FETCH_HEAD
 
 You shouldn't have any merge conflicts if you've not changed files outside of the 'app' folder. If you do, there are plenty of ways to fix the conflicts and [github has instructions](https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/) that should be easy to follow if you need a refresher course.
 
+Finally, after updating the kit it's time to start the application just to test that everything went smoothly. In terminal or command prompt type:
+
+```
+npm start
+```
+
+All being well the prototyping kit application will run as normal. If you see an error after updating, there may have been changes to underlying code that require an extra command to be run before you can start the application. Type the following into your terminal or command prompt: 
+
+```
+npm install
+```
+
+You will most likely see a progress indication of various pieces of newer code being installed. When it's finished you will be returned to the command prompt and should be able to start the prototyping kit with the previous command:
+
+```
+npm start
+```
+
+Running the install command will fix the majority of errors after updating the kit. If you still have an error, you can [raise an issue within github](https://github.com/alphagov/govuk_prototype_kit/issues) or ask in the [Slack channel for users of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/) by providing as much information as you can about the error and the computer you are attempting to run the prototyping kit on.
+
 ---
 
 ## Converting old prototypes
