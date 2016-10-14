@@ -9,7 +9,7 @@ var nodemon = require('gulp-nodemon')
 var config = require('./config.json')
 
 gulp.task('server', function () {
-  nodemon({ignore: [config.paths.public + '*', config.paths.public + '*'],
+  nodemon({ignore: [config.paths.public + '*', config.paths.nodeModules + '*'],
             script: 'server.js',
             ext: 'js, json',
             env: {NODE_ENV: 'development'}})
