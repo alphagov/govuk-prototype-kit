@@ -23,12 +23,12 @@ gulp.task('generate-assets', function (done) {
                 'copy-documentation-assets', done)
 })
 
-gulp.task('copy-govuk-modules', function (done) {
-  runSequence(['copy-toolkit',
-                'copy-template-assets',
-                'copy-elements-sass',
-                'copy-template'], done)
-})
+gulp.task('copy-govuk-modules', [
+          'copy-toolkit',
+          'copy-template-assets',
+          'copy-elements-sass',
+          'copy-template'
+])
 
 gulp.task('watch', function (done) {
   runSequence('watch-sass',
