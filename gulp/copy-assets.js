@@ -7,10 +7,10 @@
 var gulp = require('gulp')
 var config = require('./config.json')
 
-gulp.task('copy-assets', function () {
+gulp.task('copy-assets', function (cb) {
   return gulp.src(['!' + config.paths.assets + 'sass{,/**/*}',
     config.paths.assets + '/**'])
-  .pipe(gulp.dest(config.paths.public))
+  .pipe(gulp.dest(config.paths.public)), cb
 })
 
 gulp.task('copy-documentation-assets', function () {
