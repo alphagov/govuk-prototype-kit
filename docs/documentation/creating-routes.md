@@ -42,6 +42,6 @@ This is the `render` method of the `res` parameter being run with two parameters
 
 Template files are found this way: `/views/` + `template` parameter + `.html`.
 
-In the same way, the template `/docs/examples/hello_world` would point to the `/docs/examples/hello_world.html` file.
+In the same way, the route `/folder/hello_world` would point to the `/folder/hello_world.html` file.
 
 [Read the Express documentation for routes](http://expressjs.com/4x/api.html#app.VERB)
