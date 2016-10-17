@@ -24,10 +24,10 @@ gulp.task('generate-assets', function (done) {
 })
 
 gulp.task('copy-govuk-modules', [
-          'copy-toolkit',
-          'copy-template-assets',
-          'copy-elements-sass',
-          'copy-template'
+  'copy-toolkit',
+  'copy-template-assets',
+  'copy-elements-sass',
+  'copy-template'
 ])
 
 gulp.task('watch', function (done) {
