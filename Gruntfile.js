@@ -137,12 +137,4 @@ module.exports = function (grunt) {
     'generate-assets',
     'concurrent:target'
   ])
-
-  grunt.registerTask(
-    'test',
-    'default',
-    function () {
-      grunt.log.writeln('Test that the app runs')
-    }
-  )
 }

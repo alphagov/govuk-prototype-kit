@@ -206,3 +206,5 @@ utils.findAvailablePort(app, function (port) {
     })
   }
 })
+
+module.exports = app
