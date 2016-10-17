@@ -6,6 +6,7 @@
 
 var gulp = require('gulp')
 var gutil = require('gulp-util')
+var mocha = require('gulp-mocha')
 var runSequence = require('run-sequence')
 
 gulp.task('default', function (done) {
@@ -36,6 +37,13 @@ gulp.task('watch', function (done) {
 })
 
 gulp.task('test', function (done) {
-  gutil.log('Test that the app runs')
-  done()
+  runSequence('generate-assets',
+              'mocha',
+              done)
+})
+
+gulp.task('mocha', function () {
+  return gulp.src(['test/**/*.js'], { read: false })
+        .pipe(mocha({ reporter: 'spec' }))
+        .on('error', gutil.log)
 })

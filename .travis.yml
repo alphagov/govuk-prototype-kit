@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - 4.0
+- 6.0
+before_install:
+- npm install -g mocha
 install:
 - npm install
 script:
