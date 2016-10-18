@@ -1,4 +1,5 @@
 var path = require('path')
+var gulp = require('gulp')
 // Check for `node_modules` folder and warn if missing
 var fs = require('fs')
 
@@ -11,6 +12,12 @@ if (!fs.existsSync(path.join(__dirname, '/node_modules'))) {
 try {
   fs.unlinkSync(path.join(__dirname, '/.port.tmp'))
 } catch (e) {}
+
+// gulp
+var requireDir = require('require-dir')
+requireDir('./gulp', {recurse: true})
+
+gulp.start('default')
 
 process.on('SIGINT', function () {
   // remove .port.tmp if it exists

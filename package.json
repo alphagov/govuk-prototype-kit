@@ -7,7 +7,7 @@
     "node": ">=4.0 <6.7"
   },
   "scripts": {
-    "start": "node start.js && gulp",
+    "start": "node start.js",
     "lint": "standard",
     "test": "npm run lint"
   },
