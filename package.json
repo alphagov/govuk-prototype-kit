@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node start.js",
     "lint": "standard",
-    "test": "mocha && npm run lint"
+    "test": "gulp test && npm run lint"
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
