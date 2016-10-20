@@ -21,7 +21,7 @@ gulp.task('server', function () {
 
     // remove .port.tmp if it exists
     try {
-      fs.unlinkSync(path.join(__dirname, '/.port.tmp'))
+      fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
     } catch (e) {}
 
     process.exit(0)
