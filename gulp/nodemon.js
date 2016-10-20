@@ -17,15 +17,12 @@ gulp.task('server', function () {
     ignore: [config.paths.public + '*',
              config.paths.assets + '*',
              config.paths.nodeModules + '*']
-  }).on('quit', function(){
-
+  }).on('quit', function () {
     // remove .port.tmp if it exists
     try {
       fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
     } catch (e) {}
 
     process.exit(0)
-
   })
-
 })
