@@ -69,7 +69,7 @@ To check you’re in the right folder, you can run `ls` (list items):
 ```
 ls
 ```
-You should see a list of files inside the prototype, starting with `CHANGELOG.md, CONTRIBUTING.md, Gruntfile.js etc`
+You should see a list of files inside the prototype, starting with `CHANGELOG.md, CONTRIBUTING.md, gulpfile.js etc`
 
 > If you don’t see these files, check that you installed the kit into the right location and named it correctly.
 
@@ -86,5 +86,6 @@ You need to download extra code used by the kit before it can run. You can get t
 npm install
 ```
 The install may take up to a minute. Whilst installing it may `WARN` about some items - this is ok. As long as there are no `ERROR`s you can continue.
+
 
 <a href="run-the-kit.md" class="button">Next (run the kit)</a>

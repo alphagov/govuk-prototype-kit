@@ -1,12 +1,10 @@
 language: node_js
 node_js:
 - 4.0
-before_install:
-- npm install -g grunt-cli
 install:
 - npm install
 script:
-- "./node_modules/grunt-cli/bin/grunt test"
+- gulp test
 - npm test
 after_success:
 - "./create-release-tag.sh"

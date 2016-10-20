@@ -1,0 +1,10 @@
+{
+  "paths": {
+    "public": "public/",
+    "assets" : "app/assets/",
+    "docsAssets" : "docs/assets/",
+    "govukModules": "govuk_modules/",
+    "nodeModules": "node_modules/",
+    "lib": "lib/"
+  }
+}
