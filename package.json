@@ -7,7 +7,7 @@
     "node": ">=4.0 <6.7"
   },
   "scripts": {
-    "start": "if [ -d \"node_modules\" ]; then gulp; else echo 'gulp is missing - try running npm install' ; fi",
+    "start": "node start.js",
     "lint": "standard",
     "test": "npm run lint"
   },
