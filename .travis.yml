@@ -20,4 +20,4 @@ notifications:
 sudo: false
 env:
   global:
-  - secure: DNOsydCMSHOvp1SEQNRHx3SOqaUPA5XZQZ+eOsA/hcc4iXQktMxX004tfsKgUVfvzWdXVFtLscL2TpHad2TjPDvtcmb2vYH3tqgHHhyAK0fJRMp4UNh7z5RnHKsoe0WRAQGtGAqw8ND7a2GWV0/yWoxub66C1WZmSBNxlCH27dw=
+  - secure: esj3ut+TwKX25QzU1koJyTVIX+x1V55graI65X8LiYXKcOP040VPJ9lIC0HeRs5UViBM0Ur1F93rGdgW2zYVzu5MLZoH7KjpzMcG30x+FDqLChT0JfNcLLtLm/wIhx/OAAmsBxXlvjPp092BeEKd3Jug8d329TxwwK5G5XxAatg=
