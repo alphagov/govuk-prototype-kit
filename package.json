@@ -26,6 +26,7 @@
     "govuk_template_jinja": "0.19.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
+    "gulp-mocha": "^3.0.1",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
@@ -41,10 +42,7 @@
     "run-sequence": "^1.2.2",
     "serve-favicon": "2.3.0",
     "standard": "^7.1.2",
+    "supertest": "^2.0.0",
     "sync-request": "^3.0.1"
-  },
-  "devDependencies": {
-    "gulp-mocha": "^3.0.1",
-    "supertest": "^2.0.0"
   }
 }
