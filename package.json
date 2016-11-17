@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node start.js",
     "lint": "standard",
-    "test": "npm run lint"
+    "test": "gulp test && npm run lint"
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
@@ -42,5 +42,9 @@
     "serve-favicon": "2.3.0",
     "standard": "^7.1.2",
     "sync-request": "^3.0.1"
+  },
+  "devDependencies": {
+    "gulp-mocha": "^3.0.1",
+    "supertest": "^2.0.0"
   }
 }
