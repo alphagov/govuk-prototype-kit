@@ -1,3 +1,29 @@
+# 5.0.0
+
+Breaking changes:
+
+- [#284 Use Gulp instead of Grunt](https://github.com/alphagov/govuk_prototype_kit/pull/284)
+
+Use [Gulp.js](http://gulpjs.com/) rather than [Grunt](http://gruntjs.com/) as a build tool.
+It is recommended to [install Gulp globally](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), do so using:
+
+`npm install --global gulp-cli`
+
+All changes:
+
+The short version:
+- [#311 Update govuk-elements-sass to 2.2.0](https://github.com/alphagov/govuk_prototype_kit/pull/311)
+- [#308 Change node version from 4 to 6](https://github.com/alphagov/govuk_prototype_kit/pull/308)
+- [#299 Basic sanity check test suite](https://github.com/alphagov/govuk_prototype_kit/pull/299)
+- [#296 Keep the latest release branch up-to-date](https://github.com/alphagov/govuk_prototype_kit/pull/296)
+- Fix broken links for the documentation app
+
+The extended version:
+This release includes custom radio buttons and checkbox styles from govuk-elements-sass v2.2.0.
+The version of Node that the prototype kit uses has been updated, we recommend using LTS (version 6 or above).
+Travis will now run tests against each pull request to ensure that the app runs (by checking the server and build tasks).
+The latest-release branch can be used to update the prototype kit. Instructions for [updating your version of the prototype kit via the latest-release branch can be found here](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit#updating-via-the-command-line-advanced-).
+
 # 4.0.0
 
 Breaking changes:
