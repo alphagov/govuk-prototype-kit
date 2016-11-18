@@ -1,4 +1,4 @@
-# Updating the kit 
+# Updating the kit
 
 ## Updating
 
@@ -53,7 +53,7 @@ To add the alphagov remote repository, type the following command and hit enter:
 git remote add upstream https://github.com/alphagov/govuk_prototype_kit.git
 ```
 
-All being well, you will just return to a command prompt, now if you type: 
+All being well, you will just return to a command prompt, now if you type:
 ```git remote -v```
 
 You should see an 'upstream' in your list, for example:
@@ -69,10 +69,10 @@ upstream	https://github.com/alphagov/govuk_prototype_kit.git (push)
 
 Now that you've added the upstream remote, you can merge the latest code into yours with the following commands.
 
-First you will 'fetch' the latest code from the upstream latest-release branch. Type the following command and wait a few seconds. 
+First you will 'fetch' the latest code from the upstream latest-release branch. Type the following command and wait a few seconds.
 
 ```
-git fetch upstream latest-release 
+git fetch upstream latest-release
 ```
 
 You will see it output a few lines telling you that was successful, for example:
@@ -89,6 +89,36 @@ git checkout master && git merge FETCH_HEAD
 ```
 
 You shouldn't have any merge conflicts if you've not changed files outside of the 'app' folder. If you do, there are plenty of ways to fix the conflicts and [github has instructions](https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/) that should be easy to follow if you need a refresher course.
+
+Check that the application starts. In terminal or command prompt type:
+
+```
+npm start
+```
+
+After the kit has started, you should see a message telling you that the kit is running:
+
+```
+Listening on port 3000 url: http://localhost:3000
+```
+
+If you see an error after updating, you may need to download extra code used by the kit before it can run.
+
+You can get this by running:
+
+```
+npm install
+```
+
+The install may take up to a minute. Whilst installing it may WARN about some items - this is ok. As long as there are no ERRORs you can continue.
+
+In terminal:
+
+```
+npm start
+```
+
+If you still have an error, you can [raise an issue within github](https://github.com/alphagov/govuk_prototype_kit/issues) or ask in the [Slack channel for users of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/) by providing as much information as you can about the error and the computer you are attempting to run the prototyping kit on.
 
 ---
 
@@ -125,13 +155,13 @@ and
     {{$content}}
     .......
     {{/content}}
-    
+
 Becomes...
 
     {% block content %}
     ........
     {% endblock %}
-    
+
 ### Includes
 
     {{>includes/breadcrumbs}}
