@@ -11,7 +11,7 @@ $path: "/public/images/";
 
 // Override the govuk_frontend_toolkit's font stack
 // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_font_stack.scss#L13
-$toolkit-font-stack: $Helvetica-Regular;
+$toolkit-font-stack: $helvetica-regular;
 
 .unbranded {
   background: $white;
