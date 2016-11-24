@@ -18,18 +18,21 @@ function clearValidation () {
 
 function checkTextFields (errors) {
   $(document).find('input[type="text"], textarea').each(function () {
-    var $fieldset = $(this).closest('fieldset')
-    var label = $(this).parent().find('label').clone().children().remove().end().text()
+    var $this = $(this)
+    var $fieldset = $this.closest('fieldset')
+    var $entireLabel = $this.parent().find('label').clone()
+    var $labelWithoutHelpText = $entireLabel.children().remove().end()
+    var label = $labelWithoutHelpText.text()
 
-    if ($fieldset.attr('data-required') !== undefined && $(this).val() === '' && !$(this).parent().hasClass('js-hidden')) {
-      if ($(this).attr('id') === undefined) {
-        $(this).attr('id', $(this).attr('name'))
+    if ($fieldset.attr('data-required') !== undefined && $this.val() === '' && !$this.parent().hasClass('js-hidden')) {
+      if ($this.attr('id') === undefined) {
+        $this.attr('id', $this.attr('name'))
       }
 
       errors.push(
         {
-          id: $(this).attr('id'),
-          name: $(this).attr('name'),
+          id: $this.attr('id'),
+          name: $this.attr('name'),
           errorMessage: $fieldset.attr('data-error').toLowerCase() || defaultErrorMessage.toLowerCase(),
           label: label,
           type: 'text'
