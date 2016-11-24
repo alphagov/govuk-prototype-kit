@@ -47,20 +47,23 @@ function checkSelectors (errors) {
   var checked = []
 
   $(document).find('input[type="radio"], input[type="checkbox"]').each(function () {
-    var $fieldset = $(this).closest('fieldset')
-    var label = $fieldset.find('legend').clone().children().remove().end().text()
+    var $this = $(this)
+    var $fieldset = $this.closest('fieldset')
+    var $entireLabel = $fieldset.parent().find('legend').clone()
+    var $labelWithoutHelpText = $entireLabel.children().remove().end()
+    var label = $labelWithoutHelpText.text()
 
     if ($fieldset.attr('data-required') !== undefined && $fieldset.find(':checked').length === 0) {
-      if ($(this).attr('id') === undefined) {
-        $(this).attr('id', $(this).attr('name'))
+      if ($this.attr('id') === undefined) {
+        $this.attr('id', $this.attr('name'))
       }
 
-      if (checked.indexOf($(this).attr('name')) < 0) {
-        checked.push($(this).attr('name'))
+      if (checked.indexOf($this.attr('name')) < 0) {
+        checked.push($this.attr('name'))
         errors.push(
           {
-            id: $(this).attr('id'),
-            name: $(this).attr('name'),
+            id: $this.attr('id'),
+            name: $this.attr('name'),
             errorMessage: $fieldset.attr('data-error').toLowerCase() || defaultErrorMessage.toLowerCase(),
             label: label,
             type: 'text'
