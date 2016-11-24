@@ -18,7 +18,7 @@ function clearValidation () {
 
 function checkTextFields (errors) {
   $(document).find('input[type="text"], textarea').each(function () {
-    var $fieldset = $(this).parents('fieldset')
+    var $fieldset = $(this).closest('fieldset')
     var label = $(this).parent().find('label').clone().children().remove().end().text()
 
     if ($fieldset.attr('data-required') !== undefined && $(this).val() === '' && !$(this).parent().hasClass('js-hidden')) {
@@ -44,7 +44,7 @@ function checkSelectors (errors) {
   var checked = []
 
   $(document).find('input[type="radio"], input[type="checkbox"]').each(function () {
-    var $fieldset = $(this).parents('fieldset')
+    var $fieldset = $(this).closest('fieldset')
     var label = $fieldset.find('legend').clone().children().remove().end().text()
 
     if ($fieldset.attr('data-required') !== undefined && $fieldset.find(':checked').length === 0) {
@@ -93,7 +93,7 @@ function appendErrorMessages (errors) {
       $('.error-summary-list').append(
         '<li><a href="#' + errors[i].id + '">' + errors[i].label + ' - ' + errors[i].errorMessage + '</a></li>'
       )
-      var $fieldset = $(document).find('#' + errors[i].id).parents('fieldset')
+      var $fieldset = $(document).find('#' + errors[i].id).closest('fieldset')
       $fieldset.addClass('error')
 
       if ($fieldset.find('.error-message').length === 0) {
