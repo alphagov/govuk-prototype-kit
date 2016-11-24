@@ -106,6 +106,7 @@ app.use(function (req, res, next) {
   res.locals.serviceName = config.serviceName
   res.locals.cookieText = config.cookieText
   res.locals.releaseVersion = 'v' + releaseVersion
+  res.locals.promoMode = promoMode
   next()
 })
 
