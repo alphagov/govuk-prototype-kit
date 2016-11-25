@@ -20,6 +20,7 @@ var password = process.env.PASSWORD
 var env = process.env.NODE_ENV || 'development'
 var useAuth = process.env.USE_AUTH || config.useAuth
 var useHttps = process.env.USE_HTTPS || config.useHttps
+var analyticsId = process.env.ANALYTICS_TRACKING_ID
 
 env = env.toLowerCase()
 useAuth = useAuth.toLowerCase()
@@ -103,9 +104,11 @@ app.use(function (req, res, next) {
 
 // Add variables that are available in all views
 app.use(function (req, res, next) {
+  res.locals.analyticsId = analyticsId
   res.locals.serviceName = config.serviceName
   res.locals.cookieText = config.cookieText
   res.locals.releaseVersion = 'v' + releaseVersion
+  res.locals.promoMode = promoMode
   next()
 })
 
