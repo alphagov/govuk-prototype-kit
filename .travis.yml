@@ -10,6 +10,7 @@ script:
 - npm test
 after_success:
 - "./create-release-tag.sh"
+after_deploy:
 - "./update-release-branch.sh"
 deploy:
   provider: heroku
