@@ -1,3 +1,9 @@
+# 5.0.1
+
+- [#330 Update GOV.UK toolkit and StandardJS to latest](https://github.com/alphagov/govuk_prototype_kit/pull/330)
+- [#328 Update GOV.UK template to latest](https://github.com/alphagov/govuk_prototype_kit/pull/328)
+- [#324 Fix the example question page’s back link](https://github.com/alphagov/govuk_prototype_kit/pull/324)
+
 # 5.0.0
 
 Breaking changes:
