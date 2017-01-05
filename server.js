@@ -96,21 +96,13 @@ app.use(session({
   secret: Math.round(Math.random() * 100000).toString()
 }))
 
-// send assetPath to all views
-app.use(function (req, res, next) {
-  res.locals.asset_path = '/public/'
-  next()
-})
-
 // Add variables that are available in all views
-app.use(function (req, res, next) {
-  res.locals.analyticsId = analyticsId
-  res.locals.serviceName = config.serviceName
-  res.locals.cookieText = config.cookieText
-  res.locals.releaseVersion = 'v' + releaseVersion
-  res.locals.promoMode = promoMode
-  next()
-})
+app.locals.analyticsId = analyticsId
+app.locals.asset_path = '/public/'
+app.locals.cookieText = config.cookieText
+app.locals.promoMode = promoMode
+app.locals.releaseVersion = 'v' + releaseVersion
+app.locals.serviceName = config.serviceName
 
 // Force HTTPs on production connections
 if (env === 'production' && useHttps === 'true') {
@@ -153,6 +145,9 @@ app.get('/prototype-admin/download-latest', function (req, res) {
 })
 
 if (useDocumentation) {
+  // Copy app locals to documentation app locals
+  documentationApp.locals = app.locals
+
   // Create separate router for docs
   app.use('/docs', documentationApp)
 
