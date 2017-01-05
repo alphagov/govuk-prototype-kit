@@ -18,7 +18,7 @@ You need to [set up Git](setting-up-git) on your prototype before you can use He
 
 If you’re new to Heroku, [sign up for a free account](https://signup.heroku.com/). When asked what language you use, select `node.js`.
 
-## 3) Install the Heroku toolbelt.
+## 3) Install the Heroku toolbelt
 
 Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
 
@@ -26,7 +26,7 @@ Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
 
 The toolbelt lets you use Heroku through the terminal. You will need to restart the terminal after installing the toolbelt.
 
-## 4) Choose a name for your app.
+## 4) Choose a name for your app
 Pick a name for your app. You need to choose a name that's unique. The name is used in the url for your prototype. For example:
 `govuk-payments-prototype` will create an app at:
 `govuk-payments-prototype.herokuapp.com`.
