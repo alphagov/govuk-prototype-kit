@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Branching
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+
+      <h1 class="heading-xlarge">
+        Branching
+      </h1>
+
+      <p>
+        You may want to show a user different pages, depending on how they've answered a question.
+      </p>
+
+      <h2 class="heading-medium">Simple method (radio buttons only)</h2>
+
+      <p>If you're using radio buttons, you can set the page to redirect to in the value of the input element.</p>
+
+      <p>In this example the code is:</p>
+
+      <div class="code">
+  &lt;input type="radio" name="over18"
+  value="redirect(/docs/examples/branching/over-18)"&gt;
+      </div>
+
+      <form action="" method="get" class="form">
+
+        <div class="form-section">
+
+          <h3 class="heading-small">
+            Are you 18 or over?
+          </h3>
+
+          <div class="form-group">
+            <fieldset class="inline">
+
+              <legend class="visuallyhidden">Are you 18 or over?</legend>
+
+              <label for="over18True" class="block-label">
+                <input type="radio" name="over18" value="redirect(/docs/examples/branching/over-18)" id="over18True">
+                Yes
+              </label>
+
+              <label for="over18False" class="block-label">
+                <input type="radio" name="over18" value="redirect(/docs/examples/branching/under-18)" id="over18False">
+                No
+              </label>
+
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+
+        </div>
+
+      </form>
+
+      <h2 class="heading-medium">Advanced method</h2>
+
+      <p>You can write some 'route' code to branch on any kind of input.</p>
+
+      <p>You can see the code for this in <span class="code">/docs/documentation_routes.js</span></p>
+
+      <form action="/docs/examples/branching/aliens" method="get" class="form">
+
+        <div class="form-group">
+          <label class="form-label" for="aliens">How many aliens did you see?</label>
+          <p class="form-hint">Enter 0, 5 or 20 to see the branching pages</p>
+          <input type="text" class="form-control" name="aliens" id="aliens">
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
