@@ -129,6 +129,9 @@ if (promoMode === 'true') {
   })
 }
 
+// auto redirect based on selected inputs
+app.use(utils.autoRedirect)
+
 // routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
   console.log(routes.bind)
