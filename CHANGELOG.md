@@ -1,3 +1,16 @@
+# 5.1.0
+
+New features:
+- [#335 Add ability to override service name on a page](https://github.com/alphagov/govuk_prototype_kit/pull/335)
+
+Bug fixes:
+- [#350 Prevent asking users to authenticate twice](https://github.com/alphagov/govuk_prototype_kit/pull/350)
+- [#344 Removing links to route.js / updating example in branching.html](https://github.com/alphagov/govuk_prototype_kit/pull/344)
+- [#343 Remove the title attribute from the cookie message](https://github.com/alphagov/govuk_prototype_kit/pull/343)
+- [#341 fix css sourcemaps](https://github.com/alphagov/govuk_prototype_kit/pull/341)
+- [#337 Add Git step to Heroku guide](https://github.com/alphagov/govuk_prototype_kit/pull/337)
+- [#336 Use app.locals instead of app.use](https://github.com/alphagov/govuk_prototype_kit/pull/336)
+
 # 5.0.1
 
 - [#330 Update GOV.UK toolkit and StandardJS to latest](https://github.com/alphagov/govuk_prototype_kit/pull/330)
