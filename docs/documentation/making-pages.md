@@ -14,7 +14,7 @@ For more complex prototypes, you will need to use Nunjucks.
 
 All templates used in your app should be written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html) syntax.
 
-For example, the following route could be added to [routes.js](../app/routes.js):
+For example, the following route could be added to `routes.js`:
 
     router.get('/hello-world', function (req, res) {
       res.render('hello_world', {'message' : 'Hello world'});
