@@ -35,6 +35,13 @@ promoMode = promoMode.toLowerCase()
 // Disable promo mode if docs aren't enabled
 if (!useDocumentation) promoMode = 'false'
 
+// Force HTTPs on production connections. Do this before asking for basicAuth to
+// avoid making users fill in the username/password twice (once for `http`, and
+// once for `https`).
+if (env === 'production' && useHttps === 'true') {
+  app.use(utils.forceHttps)
+}
+
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
 if (env === 'production' && useAuth === 'true') {
@@ -103,11 +110,6 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
-
-// Force HTTPs on production connections
-if (env === 'production' && useHttps === 'true') {
-  app.use(utils.forceHttps)
-}
 
 // Disallow search index idexing
 app.use(function (req, res, next) {
