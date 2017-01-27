@@ -27,7 +27,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-mocha": "^3.0.1",
     "gulp-nodemon": "^2.1.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "3.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "marked": "^0.3.6",
