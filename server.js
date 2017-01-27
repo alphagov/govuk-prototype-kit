@@ -111,23 +111,30 @@ app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
-// Disallow search index idexing
-app.use(function (req, res, next) {
-  // Setting headers stops pages being indexed even if indexed pages link to them.
-  res.setHeader('X-Robots-Tag', 'noindex')
-  next()
-})
-
-app.get('/robots.txt', function (req, res) {
-  res.type('text/plain')
-  res.send('User-agent: *\nDisallow: /')
-})
-
 // Redirect root to /docs when in promo mode.
 if (promoMode === 'true') {
   console.log('Prototype kit running in promo mode')
+
   app.get('/', function (req, res) {
     res.redirect('/docs')
+  })
+
+  // allow search engines to index the prototype kit promo site
+  app.get('/robots.txt', function (req, res) {
+    res.type('text/plain')
+    res.send('User-agent: *\nAllow: /')
+  })
+} else {
+  // Disallow search index idexing
+  app.use(function (req, res, next) {
+    // Setting headers stops pages being indexed even if indexed pages link to them.
+    res.setHeader('X-Robots-Tag', 'noindex')
+    next()
+  })
+
+  app.get('/robots.txt', function (req, res) {
+    res.type('text/plain')
+    res.send('User-agent: *\nDisallow: /')
   })
 }
 
