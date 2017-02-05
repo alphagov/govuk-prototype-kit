@@ -10,6 +10,7 @@ const express = require('express')
 const favicon = require('serve-favicon')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 // prototype kit code
 const config = require('./app/config.js')
@@ -120,6 +121,9 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+
+// Support cookie data
+app.use(cookieParser(randomString))
 
 // Support session data
 app.use(session({
