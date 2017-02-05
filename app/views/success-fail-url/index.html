@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="heading-xlarge">Success/Fail Url Example</h1>
+            <p>
+                Send a user to success and failure urls that have been specified via url query parameters.
+            </p>
+            <p>
+                This is particularly useful when integrating with another teams agnostic prototype without having to include their code in your prototype.
+            </p>
+            <form method="post" action="/success-fail-url">
+                <div class="form-group">
+                    <fieldset>
+                        <input type="submit" value="Success" name="success" class="button">
+                        <input type="submit" value="Failure" name="failure" class="button">
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
