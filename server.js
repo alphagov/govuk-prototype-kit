@@ -18,6 +18,7 @@ const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
+const successFailUrl = require('./app/middleware/successFailUrl')
 
 const app = express()
 const documentationApp = express()
@@ -225,6 +226,9 @@ if (promoMode === 'true') {
     res.send('User-agent: *\nDisallow: /')
   })
 }
+
+// Global Middleware
+app.use(successFailUrl)
 
 // routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
