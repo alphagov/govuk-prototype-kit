@@ -33,6 +33,7 @@ var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreDat
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var useBrowserSync = config.useBrowserSync
 var analyticsId = process.env.ANALYTICS_TRACKING_ID
+var randomString = crypto.randomBytes(64).toString('hex')
 
 env = env.toLowerCase()
 useAuth = useAuth.toLowerCase()
@@ -132,10 +133,10 @@ app.use(session({
     secure: isSecure
   },
   // use random name to avoid clashes with other prototypes
-  name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
+  name: 'govuk-prototype-kit-' + randomString,
   resave: false,
   saveUninitialized: false,
-  secret: crypto.randomBytes(64).toString('hex')
+  secret: randomString
 }))
 
 // add nunjucks function called 'checked' to populate radios and checkboxes,
