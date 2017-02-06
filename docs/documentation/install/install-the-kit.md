@@ -2,7 +2,7 @@
 
 ## Download the kit as a zip
 
-The simplest way to get the kit is to [download it as a zip](https://github.com/alphagov/govuk_prototype_kit/archive/v3.0.0.zip). You'll use a new copy of the kit for each new prototype you make. That way your prototypes don’t interfere with each other.
+The simplest way to get the kit is to [download it as a zip](/prototype-admin/download-latest). You'll use a new copy of the kit for each new prototype you make. That way your prototypes don’t interfere with each other.
 
 ### Decide where you want to keep your prototypes
 
