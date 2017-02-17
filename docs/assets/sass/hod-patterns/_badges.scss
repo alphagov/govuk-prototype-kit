@@ -1,0 +1,23 @@
+// Pattern: badges
+// Problem: add numerical indicator
+
+
+@mixin badge ($badge-background: $panel-colour, $badge-text: $text-colour) {
+    background: $badge-background;
+    color: $badge-text;
+    display: inline-block;
+    line-height: 1;
+    padding: calc(1.5 * #{$space-sm}) calc(2.5 * #{$space-sm}) calc(1.2 * #{$space-sm}) calc(2.5 * #{$space-sm});
+    text-align: left;
+    margin: 0 calc(1.5 * #{$space-sm}) 0 0;
+    text-decoration: none;
+}
+.badge {
+    @include badge
+}
+.badge--blue {
+    @include badge($link-colour, $page-colour)
+}
+.badge--red {
+    @include badge($red, $page-colour)
+}

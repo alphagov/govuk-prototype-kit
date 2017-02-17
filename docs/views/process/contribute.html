@@ -1,0 +1,87 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li>Contributing to the patterns library</li>
+    </ol>
+</div>
+
+  <!-- h1 class="heading-xlarge">Home Office Digital design patterns</h1 -->
+
+{% include "includes/home_office_logo.html" %}
+
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-full">
+        <h2 class="heading-medium">Contributing</h2>
+        <p>We encourage everyone from Home Office Digital to join the discussion on the design patterns.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-medium">1. Talk about it (crit)</h2>
+      <p>Crits are a good place to discuss work with other designers to help solve design issues. A larger crit session is organised once every two weeks but informal crits are recommended whenever the need arises, they should include at least 3 designers.</p>
+      <ul class="list list-bullet">
+        <li>If possible, share the designs before a crit</li>
+        <li>Clarify the user need</li>
+        <li>Don't view the element in isolation, understand the journey</li>
+        <li>Explain the design issue</li>
+      </ul>
+
+      <div class="rule-above">
+        <h2 class="heading-medium">2. Document it (on the <a href="#">patterns trello board</a>)</h2>
+        <p>If the user need or design solution is new and there's no pattern that resolves the issue, add it to the patterns board and we will review with you so it can be developed to help others.</p>
+        <ul class="list list-bullet">
+          <li>Include what the problem the pattern is trying to solve</li>
+          <li>Add any comments or feedback from the crit</li>
+          <li>Use screenshots, with any personal data redacted</li>
+        </ul>
+        <p><a href="review">How designs will be reviewed</a> and fed back on.</p>
+      </div>
+
+      <div class="rule-above">
+        <h2 class="heading-medium">3. Develop it (and include in the pattern library)</h2>
+        <ul class="list list-bullet">
+          <li>Add to the sketch template file, if it's relevant</li>
+          <li>Add to the code repository</li>
+        </ul>
+      </div>
+
+      <div class="rule-above">
+        <h2 class="heading-medium">4. Share it, let people know the changes</h2>
+        <p>Add some detail around what the pattern does, and let others know (preferrably through slack) that a new pattern has been added.</p>
+        <p><a href="upstream">What happens next?</a></p>
+      </div>
+
+
+    </div>
+
+    <div class="column-one-third">
+      <div class="callout">
+        <h2 class="heading-medium">Processes</h2>
+        <ul class="list list-bullet">
+          <li><a href="/process/using">Using the patterns in your project</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+{% endblock %}

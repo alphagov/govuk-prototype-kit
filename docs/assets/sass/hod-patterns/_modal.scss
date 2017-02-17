@@ -1,0 +1,68 @@
+// Pattern: modal
+// Problem: css only 
+
+// Just for giving space to show example
+
+#example-block {
+    width: 100%;
+    min-height: 250px;
+}
+
+// actual modal
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba($text-colour, 0.5);
+    transition: opacity 200ms;
+    visibility: hidden;
+    opacity: 0;
+  .cancel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+  &:target {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.modal-heading {
+    display: block;
+    clear: both;
+    padding-bottom: calc(2 * #{$space-sm});
+    h1, h2, h3, h4, h5, h6 {
+        display: inline-block;
+        margin-top: 0;
+    }
+}
+.modal {
+    margin: calc(15 * #{$space-sm}) auto;
+    padding: 20px;
+    background: $page-colour;
+    width: 50%;
+    box-shadow: $box-shadow;
+    position: relative;
+  .close {
+    position: relative;
+    display: inline-block;
+    float: right;
+    transition: all 200ms;
+    font-weight: normal;
+    text-decoration: none;
+    color: $link-colour;
+    &:hover {
+      opacity: 1;
+    }
+    span {
+        font-size: .89em;
+        color: $link-colour;
+    }
+  }
+  .content {
+  }
+}

@@ -1,0 +1,96 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/patterns">Patterns</a></li>
+      <li>Tabs</li>
+    </ol>
+</div>
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h2 class="heading-large">Tabs</h2>
+        <p>Switching between views of grouped content<br>OR<br>Hiding content that is not absolutely necessary to see</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="heading-medium" id="example-component">Example component</h2>
+  <p></p>
+
+  <div class="example example-images">
+    <div class="grid-row">
+      {% include "includes/patterns/tabs.html" %}
+    </div>
+  </div>
+
+  </div>
+
+  <h2 class="heading-medium rule-above">Content principles</h2>
+  <ul class="list">
+    <li>The label should reflect the thing you need do with the content of that tab, not a description of what it is.</li>
+  </ul>
+
+  <h2 class="heading-medium">Interaction principles</h2>
+  <ul class="list">
+    <li>Only one tab can be active at a time.</li>
+    <li>The active tab should display the appropriate content for that tab.</li>
+    <li>The active tab should be distinguishable from the inactive, with maximum contrast ratio background:label.</li>
+    <li>Inactive tabs should have a hover state that is distinguisable with minimum contrast ratio background:label.</li>
+    <li>Focused tabs should be consistent with other focus states and distinguisable from active, inactive and hover states.</li>
+    <li>Horizontal rules can be used to separate groups of tabs.</li>
+    <!-- <li>If using tabs to complete a series of tasks in a non-linear way, ensure that tabs are marked upon completion.</li> -->
+  </ul>
+
+  <h2 class="heading-medium">Accessibility principles</h2>
+  <ul class="list">
+    <li>The active tab should be labelled as active in the code.</li>
+    <li>Only active tab content should be readable.</li>
+  </ul>
+
+  <h2 class="heading-medium">User research</h2>
+  <ul class="list">
+    <li>Notes from user research go here.</li>
+  </ul>
+
+<h2 class="heading-medium rule-above">Prototype code</h2>
+
+<ul>
+  <li>Layout &mdash; <a href="https://github.com/eliothill/home-office-digital-patterns/tree/master/app/views/includes/patterns/tabs.html">tabs.html</a></li>
+  <li>Styles &mdash; <a href="https://github.com/eliothill/home-office-digital-patterns/blob/master/app/assets/sass/hod-patterns/_tabs.scss">tabs.scss</a></li>
+  <li>Enhanced functionality &mdash; <a href="https://github.com/eliothill/home-office-digital-patterns/blob/master/app/assets/javascripts/tabs.js">tabs.js</a></li>
+</ul>
+
+<h2 class="heading-medium">Services using this pattern</h2>
+<ul class="list">
+  <li>Syrian refugee resettlement</li>
+  <li>Sponsoring people</li>
+  <li>Proving things to government</li>
+</ul>
+
+<h2 class="heading-medium rule-above">Things to do</h2>
+<ul class="list">
+  <li>tabs.js is essential rather than enhanced &mdash; what is the no-js solution for this pattern.</li>
+  <li>The design needs improving for narrower views.</li>
+  <li>Using tabs to complete a series of tasks in a non-linear way could be a separate pattern.</li>
+  <li>Add notes from user research.</li>
+  <li>If this is really hiding content that is not absolutely necessary to see, why does it need to be a tab, and not another page?</li>
+  <li>More and more it seems that tabs should not be a substitute for a list of things you need to do (research notes required).</li>
+</ul>
+
+</main>
+
+{% endblock %}

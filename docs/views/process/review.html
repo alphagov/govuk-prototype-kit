@@ -1,0 +1,55 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li>Contributing to the patterns library</li>
+    </ol>
+</div>
+
+  <!-- h1 class="heading-xlarge">Home Office Digital design patterns</h1 -->
+
+{% include "includes/home_office_logo.html" %}
+
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-full">
+        <h2 class="heading-medium">Reviewing patterns</h2>
+        <p>The process we will use for reviewing, feeding back and including new patterns.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-medium">How the design panel reviews patterns</h2>
+      <p>This are the criteria the design panel will look at when reviewing each pattern. We do this to ensure we are making the designs as useful and transferable across services and not repeating any lessons learnt.</p>
+      <ol class="list example-icon-list">
+        <li class="bold-small block-space"><span class="circle circle-step-large">1</span>&nbsp;&nbsp;Has the design solved the problem?</li>
+        <li class="bold-small block-space"><span class="circle circle-step-large">2</span>&nbsp;&nbsp;Is there more than one example of a problem being solved?</li>
+        <li class="bold-small block-space"><span class="circle circle-step-large">3</span>&nbsp;&nbsp;Has it been simplified down?</li>
+        <li class="bold-small block-space"><span class="circle circle-step-large">4</span>&nbsp;&nbsp;Is there something which solves the user need already in the library?</li>
+        <li class="bold-small block-space"><span class="circle circle-step-large">5</span>&nbsp;&nbsp;Is it appropriate?</li>
+        <li class="bold-small block-space"><span class="circle circle-step-large">6</span>&nbsp;&nbsp;Has the pattern been researched and tested?</li>
+        <li class="bold-small block-space"><span class="circle circle-step-large">7</span>&nbsp;&nbsp;Has the pattern been reviewed from an access needs perspective?</li>
+      </ol>
+    </div>
+
+  </div>
+
+
+</main>
+
+{% endblock %}

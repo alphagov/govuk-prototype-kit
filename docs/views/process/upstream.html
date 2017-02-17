@@ -1,0 +1,49 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/process/contribute">Contributing to the patterns library</a></li>
+      <li>Upstreaming</li>
+    </ol>
+</div>
+
+  <!-- h1 class="heading-xlarge">Home Office Digital design patterns</h1 -->
+
+{% include "includes/home_office_logo.html" %}
+
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-full">
+        <h2 class="heading-medium">After patterns are included in the library</h2>
+        <p>Once the patterns are included in the library, we haven't finished there.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-medium">Share with cross government design panel</h2>
+      <p>Meet and discuss regularly about new patterns and whether they should become government design patterns.</p>
+      <h2 class="heading-medium">Add the pattern to the GOV.UK prototyping kit</h2>
+      <p>Work with the GDS design team to include the pattern in the prototyping kit.</p>
+      <h2 class="heading-medium">Remove from our pattern library</h2>
+      <p>Once the pattern has been included and released into the protoyping kit and front-end framework. Remove it from the Home Office library.</p>
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

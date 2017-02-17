@@ -1,0 +1,81 @@
+// Pattern: flash cards
+// Problem: interupt the user with important information
+
+.tasks td {
+  padding: 12px;
+}
+
+.tasks td.task-status {
+  font-size: 14px;
+  padding-top: 16px;
+}
+
+.tasks td.status {
+  padding-top: 13px;
+  font-weight: 700;
+}
+
+.tasks td.done:before {
+  content: 'Done ';
+}
+
+.tasks td a {
+  font-weight: 700;
+}
+
+.tasks td.done a {
+  font-weight: 300;
+}
+
+.tasks tr.unavailable td {
+  color: #6f777b;
+}
+
+.tasks aside nav {
+  font-size: 16px;
+}
+
+.tasks aside h2 {
+  font-size: 19px;
+  margin: 5px 0 10px;
+  font-weight: 700;
+}
+
+.tasks.inline h2 {
+  border-top: 1px solid #bfc1c3;
+  padding-top: 10px;
+  margin-top: 40px;
+}
+
+.tasks.inline aside.govuk-related-items {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tiny-box {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-bottom: -2px;
+  margin-right: 7px;
+  border: 3px solid;
+  border-top-color: #dee0e2;
+  border-left-color: #dee0e2;
+  border-right-color: #dee0e2;
+  border-bottom-color: #dee0e2;
+}
+
+.tiny-box.black {
+  border-top-color: #0b0c0c;
+  border-left-color: #0b0c0c;
+  border-right-color: #0b0c0c;
+  border-bottom-color: #0b0c0c;
+}
+
+.tiny-box.grey {
+  border-top-color: #dee0e2;
+  border-left-color: #dee0e2;
+  border-right-color: #dee0e2;
+  border-bottom-color: #dee0e2;
+}

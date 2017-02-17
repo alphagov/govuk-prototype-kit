@@ -1,0 +1,52 @@
+// Pattern: flash cards
+// Problem: interupt the user with important information
+
+.flash-card {
+    margin-top: 1em;
+    padding: 30px;
+    background: $link-colour;
+    color: $page-colour;
+    h1 {
+      &:first-of-type {
+        margin-top: 0 !important;
+      }
+    }
+    a {
+      color: $page-colour;
+      &:visited, &:hover, &:active {
+        color: $page-colour; }
+    }
+    details {
+      margin-bottom: 1em;
+      summary {
+        color: $page-colour;
+      }
+      .panel {
+        border-left-color: $page-colour;
+      }
+    }
+    // .button {
+    //   color: $link-colour;
+    //   background-color: $page-colour;
+    //   // Link styles
+    //   a {
+    //     color: $link-colour;
+    //   }
+    //   &:visited {
+    //     color: $link-visited-colour;
+    //   }
+    //   &:hover {
+    //     color: $link-hover-colour;
+    //   }
+    //   &:active {
+    //     color: $link-active-colour;
+    //   }
+    // }
+}
+
+@media (min-width: 769px) {
+  .flash-card {
+      margin-top: 1.25em;
+      padding: 60px;
+  }
+}

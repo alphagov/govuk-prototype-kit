@@ -1,0 +1,60 @@
+// Pattern: accordion
+// Problem: extending the details markup for use as accordions
+
+@mixin accordion-detail($before-icon: "\f078", $before-icon-open: "\f077") {
+    details {
+        border-top: 1px solid $border-colour;
+        margin: 0;
+        &:hover {
+            background: $highlight-colour;
+        }
+        &[open] {
+            background: $page-colour;
+        }
+        &:last-of-type {
+            border-bottom: 1px solid $border-colour;
+        }
+        summary {
+            @extend .heading-small;
+            margin: 0 0 0 0;
+            color: $govuk-blue;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 1.5rem 0 0 0;
+            position: relative;
+            width: 100%;
+            &::-webkit-details-marker {
+                display: none;
+            }
+            &:before {
+                font-family: "hod";
+                content: $before-icon;
+                color: $govuk-blue;
+                display: block;
+                float: right;
+                font-size: 1em;
+                font-weight: bold;
+                margin: -3px 10px 6px 10px;
+                padding: 0 1rem 0.75rem 0;
+                text-align: center;
+                width: 20px;
+            }
+        }
+        .content {
+            padding-left: 1rem;
+        }
+    }
+    [open] summary:before {
+        font-family: "hod";
+        content: $before-icon-open;
+        margin-top: -5px;
+    }
+}
+
+.accordion-detail--arrows {
+    @include accordion-detail("\f078", "\f077")
+}
+
+.accordion-detail--plus {
+    @include accordion-detail("\ea0a", "\ea0b")
+}

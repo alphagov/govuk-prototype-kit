@@ -1,0 +1,74 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/patterns">Patterns</a></li>
+      <li>Logos and guidelines</li>
+    </ol>
+</div>
+  <!-- h1 class="heading-xlarge">Home Office Digital design patterns</h1 -->
+
+<div id="hod-row--aqua">
+  <div class="grid-row">
+    <div class="column-full">
+      <h2 class="heading-large">Logos and guidelines</h2>
+      <p>The Home Office logo and guidelines for the size and placement.</p>
+      <p></p>
+    </div>
+  </div>
+</div>
+
+<div class="grid-row">
+    <div class="column-two-thirds">
+      <p class="lede">The government identity system has been designed to be a practical and cost-effective solution for consistent identity creation.</p>
+      <h2 class="heading-medium">The identity system</h2>
+      <p>Its flexible approach allows identities to:</p>
+      <ul class="list list-bullet">
+        <li>work across different media platforms</li>
+        <li>be tailored to specific audiences.</li>
+        <li>All identities can be created in both landscape and portrait format to work across a range of media.</li>
+      </ul>
+      <p>All identities consist of three elements:</p>
+      <ul class="list list-bullet">
+        <li>a colour line</li>
+        <li>a symbol (primarily the Royal Coat of Arms)</li>
+        <li>the department or organisation name.</li>
+        <li>The principles of how the two lock-ups work are illustrated below. They have been designed to keep the sizing, weight and spacing of the three elements consistent.</li>
+      </ul>
+
+      <div class="example example-images">
+        <div class="grid-row">
+          <img src="{{ asset_path }}/images/guidelines/gis-home-office-landscape.png" alt="Home Office logos">
+          <p>Top image shows the portrait lock-up for use on traditional media, for example print, stationery and banners.</p>
+          <p>Second image shows the landscape lock-up for use online.</p>
+        </div>
+      </div>
+
+        <div class="block-space">
+          <div class="notice">
+            <i class="icon icon-important">
+              <span class="visuallyhidden">Warning</span>
+            </i>
+            <strong class="bold-small">By downloading the Home Office logo you accept responsibility for its consistent use and appropriate application.</strong>
+          </div>
+        </div>
+      <a href="{{ asset_path }}/download/ho-logo.zip" class="button download-button" role="button">Download</a>
+
+    </div>
+</div>
+
+</main>
+
+{% endblock %}

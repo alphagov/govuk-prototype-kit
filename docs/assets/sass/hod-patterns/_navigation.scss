@@ -1,0 +1,32 @@
+// Pattern: navigation
+// Problem: ...
+
+.navbar .navbar__list-items {
+  border-bottom: 1px solid $border-colour;
+  li {
+    display: inline-block;
+    a {
+      @include bold-16;
+      color: $text-colour;
+      display: inline-block;
+      padding: 15px 5px 10px 5px;
+      margin-right: 15px;
+      text-decoration: none;
+      &:hover {
+        -webkit-box-shadow: inset 0px -5px 0px 0px $black;
+        -moz-box-shadow: inset 0px -5px 0px 0px $black;
+        box-shadow: inset 0px -5px 0px 0px $black;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+    &.active a,
+    &.active a:hover {
+    color: $govuk-blue;
+    -webkit-box-shadow: inset 0px -5px 0px 0px $govuk-blue;
+    -moz-box-shadow: inset 0px -5px 0px 0px $govuk-blue;
+    box-shadow: inset 0px -5px 0px 0px $govuk-blue;
+    }
+  }
+}

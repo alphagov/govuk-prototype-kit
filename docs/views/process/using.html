@@ -1,0 +1,76 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li>Using the patterns</li>
+    </ol>
+</div>
+
+  <!-- h1 class="heading-xlarge">Home Office Digital design patterns</h1 -->
+
+{% include "includes/home_office_logo.html" %}
+
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-full">
+        <h2 class="heading-medium">Using the patterns in your project</h2>
+        <p>We encourage everyone to use the patterns as part of their project, to create consistency in services but also to gain better user feeback on them so we can iterate and improve.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-medium">Sketch file</h2>
+      <p>Use the <a href="#">sketch file</a> as are starting point for your designs, but consider feeding back any developments or changes you make <a href="/process/contribute">to the community</a>.</p>
+
+      <div class="rule-above">
+        <h3 class="heading-medium">Include in your html</h3>
+        <p>You can the css file in your html designs, it's a quicker way to get a design started but is not for production and should only be used in the short term.</p><p>You can include using:</p>
+<pre>
+<code class="language-css">https://home-office-digital-patterns.herokuapp.com/public/stylesheets/application.css</code>
+</pre>
+      </div>
+      <div class="rule-above">
+        <h3 class="heading-medium">Include in the prototyping kit</h3>
+        <ul class="list list-bullet">
+          <li>include this repository as node dependancy in the package.json file</li>
+          <li>import the SASS files required</li>
+          <li>the styles and assets will then be available in <code class="language-css">node_modules/hod-patterns</code></li>
+          <li>import the sass files required into your stylesheet</li>
+        </ul>
+
+        <p>Example of how to include the package in <code class="language-css">package.json</code></p>
+
+<pre>
+<code class="language-css">{
+  "devDependencies": {
+    "hod-patterns": "https://github.com/hod/hod-patterns.git#v1.0.0",
+  }
+}</code>
+</pre> 
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+</main>
+
+{% endblock %}

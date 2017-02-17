@@ -1,0 +1,25 @@
+<header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
+  <div class="header-wrapper">
+    <div class="header-global">
+      <div class="">
+        <a href="{{ homepage_url|default('https://www.gov.uk') }}" title="{{ logo_link_title|default('Go to the GOV.UK homepage') }}" id="logo" class="content">
+          <img src="{{ asset_path }}images/gov.uk_logotype_crown_invert_trans.png?0.18.3" width="36" height="32" alt=""> The name of the service
+        </a>
+      </div>
+    </div>
+    <div class="header-proposition">
+      <div class="content">
+        <!-- a href="#proposition-links" class="js-header-toggle menu">Menu</a -->
+        <nav id="proposition-menu">
+          <!-- <a href="/" id="proposition-name">Hello?</a> -->
+          <ul id="proposition-links">
+            <li><a href="url-to-page-1"><span class="hod-checkmark side-space js-hidden"></span>
+Search</a></li>
+            <li><a href="url-to-page-2">Sign out</a></li>
+          </ul>
+
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

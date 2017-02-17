@@ -1,0 +1,87 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/patterns">Patterns</a></li>
+      <li>Help</li>
+    </ol>
+</div>
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h2 class="heading-large">Contextual help</h2>
+        <p>Guidance to help users with more complex interactions</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="heading-medium" id="example-component">Example component</h2>
+  <p></p>
+
+  <div class="example example-images">
+    <div class="grid-row">
+      <img width="100%" height="auto" src="{{ asset_path }}/images/help1.png" alt="Form field contextual help">
+    </div>
+  </div>
+
+  <div class="example example-images">
+    <div class="grid-row">
+      <img width="100%" height="auto" src="{{ asset_path }}/images/help2.png" alt="Contextual help">
+    </div>
+  </div>
+
+  <h2 class="heading-medium rule-above">Content principles</h2>
+  <ul class="list list-bullet">
+    <li>help content should be easy to comprehend but descriptive.</li>
+  </ul>
+
+  <h2 class="heading-medium">Interaction principles</h2>
+  <ul class="list list-bullet">
+    <li>help should be available to users without interfering in their current flow.</li>
+    <li>help should be easy to close, move and minimise until the user needs it.</li>
+    <li>links to more comprehensive help should be easy to find, if contextual help doesn't answer a users question.</li>
+  </ul>
+
+  <h2 class="heading-medium">Accessibility principles</h2>
+  <ul class="list list-bullet">
+
+  </ul>
+
+  <h2 class="heading-medium">User research</h2>
+  <ul class="list list-bullet">
+    <li>users find side-by-side guidance more helpful and easier to use. Small overlay windows achieve this while creating the smallest interference with the users flow. </li>
+  </ul>
+
+<h2 class="heading-medium rule-above">Prototype code</h2>
+
+<ul>
+  <li>Styles &mdash; <a href="#">help.scss</a></li>
+</ul>
+
+<h2 class="heading-medium">Services using this pattern</h2>
+<ul class="list list-bullet">
+  <li>Application platform</li>
+  <li>Entities</li>
+</ul>
+
+<h2 class="heading-medium rule-above">Things to do</h2>
+<ul class="list list-bullet">
+  <li>code it up</li>
+</ul>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/patterns">Patterns</a></li>
+      <li>Header</li>
+    </ol>
+</div>
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h2 class="heading-large">Header</h2>
+        <p>Identify a common landmark at the top of every view</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="heading-medium" id="example-component">Example component</h2>
+  <p></p>
+
+  <div class="example example-images">
+    <div class="grid-row">
+      {% include "includes/patterns/header.html" %}
+    </div>
+  </div>
+
+  <h2 class="heading-medium rule-above">Content principles</h2>
+  <ul class="list">
+    <li>Pick a good service name. Find out more about <a href="https://www.gov.uk/service-manual/design/naming-your-service">naming your service</a> in the Service Manual.</li>
+    <li>For internal systems, only use the 'Digital by default' logo if your service has a public-facing element on GOV.UK</li>
+    <li>For internal systems, there is no need to use th GOV.UK blue bar which is for "branding" only.
+  </ul>
+
+  <h2 class="heading-medium">Interaction principles</h2>
+  <ul class="list">
+    <li>The service name should link to the logical starting (home) page.</li>
+    <li>If users need to sign in to the service under different roles, ensure the starting page is appropriate for them.</li>
+    <li>The header can be used for global actions. For example, search and sign out.</li>
+    <li>Do not add more than two global actions, unless their is a proven need to do so.
+  </ul>
+
+  <h2 class="heading-medium">Accessibility principles</h2>
+  <ul class="list">
+    <li>Correct link labelling</li>
+  </ul>
+
+  <h2 class="heading-medium">User research</h2>
+  <ul class="list">
+    <li>Notes from user research go here.</li>
+  </ul>
+
+<h2 class="heading-medium rule-above">Prototype code</h2>
+
+<ul>
+  <li>Layout &mdash; <a href="https://github.com/eliothill/home-office-digital-patterns/tree/master/app/views/includes/patterns/header.html">header.html</a></li>
+  <li>Styles &mdash; <a href="https://github.com/eliothill/home-office-digital-patterns/blob/master/app/assets/sass/hod-patterns/_header.scss">header.scss</a></li>
+  <li>Enhanced functionality &mdash; <a href="https://github.com/eliothill/home-office-digital-patterns/blob/master/app/assets/javascripts/header.js">header.js</a></li>
+</ul>
+
+<h2 class="heading-medium">Services using this pattern</h2>
+<ul class="list">
+  <li>Do all services use this pattern?</li>
+</ul>
+
+<h2 class="heading-medium rule-above">Things to do</h2>
+<ul class="list">
+  <li>Questions arose around placement of a username in top right of the header with additional options as a dropdown - we haven't got enough evidence to support a decision in terms of layout, but options shouldn't be hidden if we can avoid it as the user doesn't know what's there until they look.</li>
+  <li>The big question is, do users need to see their name, or do they just need to know how to sign out?</li>
+  <li>Add notes from user research.</li>
+</ul>
+
+</main>
+
+{% endblock %}

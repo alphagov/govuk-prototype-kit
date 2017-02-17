@@ -1,0 +1,82 @@
+{% extends "hod_layout.html" %}
+
+{% block page_title %}
+  Home Office Digital design patterns
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
+
+<div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/patterns">Patterns</a></li>
+      <li>Flash cards</li>
+    </ol>
+</div>
+
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        <h2 class="heading-large">Flash card</h2>
+        <p>Flash cards interupt the user flow with important information.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="heading-medium" id="example-component">Example component</h2>
+  <p></p>
+
+  <div class="example example-images">
+    <div class="grid-row">
+      {% include "includes/flash_card.html" %}
+    </div>
+  </div>
+
+  </div>
+
+  <div class="column-two-thirds">
+    <h2 class="heading-medium rule-above">Content principles</h2>
+    <ul class="list list-bullet">
+      <li>as this replaces a page follow usual content guidance</li>
+    </ul>
+
+      <h2 class="heading-medium">Interaction principles</h2>
+      <ul class="list list-bullet">
+        <li>should be used to draw the attention of the user to some important information</li>
+        <li>cards should have headings. You may want to visually hide the headings but as a general rule it's simpler not to</li>
+        <li>one thing per card</li>
+        <li>use larger text (24px) in cards</li>
+        <li>use "Continue" buttons to advance to the next card or page</li>
+        <li>don't use form elements (except buttons) within cards. Form elements will add extra complexity and you will need to deal with error states.</li>
+      </ul>
+
+      <h2 class="heading-medium">Accessibility principles</h2>
+      <ul class="list list-bullet">
+        <li>...</li>
+      </ul>
+
+      <h2 class="heading-medium">User research</h2>
+      <ul class="list list-bullet">
+        <li>we have found users can take information in more consistantly when we interupt their flow in this way</li>
+      </ul>
+
+    <h2 class="heading-medium rule-above">Prototype code</h2>
+    <ul class="list list-bullet">
+      <li>Styles &mdash; <a href="https://github.com/eliothill/home-office-digital-patterns/blob/master/app/assets/sass/hod-patterns/_flashcard.scss">flashcard.scss</a></li>
+    </ul>
+
+    <h2 class="heading-medium">Services using this pattern</h2>
+    <ul class="list list-bullet">
+      <li>Passport renewals</li>
+    </ul>
+
+  </div>
+
+</main>
+
+{% endblock %}

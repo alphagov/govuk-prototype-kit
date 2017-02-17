@@ -1,67 +1,118 @@
-{% extends "layout.html" %}
+{% extends "hod_layout.html" %}
 
 {% block page_title %}
-GOV.UK prototype kit
+  Home Office Digital design patterns
 {% endblock %}
 
 {% block content %}
 
 <main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
+{% block alpha_banner %}
+  {% include "includes/phase_banner_alpha.html" %}
+{% endblock %}
 
-      <h1 class="heading-xlarge">GOV.UK prototype kit</h1>
+  <!-- h1 class="heading-xlarge">Home Office Digital design patterns</h1 -->
+  {% include "includes/home_office_logo.html" %}
 
-      <p class="lede">
-        Rapidly create HTML prototypes of GOV.UK services.
-      </p>
-{{releaseVersion | log }}
+  <div id="hod-row--aqua">
+    <div class="grid-row">
+      <div class="column-full">
+        <h2 class="heading-large">Digital design guide and patterns library</h2>
+        <p>This is the pattern library for the Home Office, Home Office Digital. It expands on the <a href="https://govuk-elements.herokuapp.com">GOV.UK design patterns</a>. Our audiences are both internal and external, this pattern library has been developed to be used for both audiences.</p>
+      </div>
     </div>
-
-
   </div>
 
   <div class="grid-row">
+    <div class="column-one-half">
+      <h2 class="heading-medium">Patterns</h2>
+      <p>These patterns have been developed by the Home Office research and design teams to help develop and create consistent usable services.</p>
+      <p><a href="/docs/patterns">See the design patterns</a></p>
+    </div>
 
-        <div class="column-third">
-
-          <h2 class="heading-medium"><a href="/docs/install">Install</a></h2>
-          <p>
-            Download and installation instructions.
-          </p>
-
-        </div>
-        <div class="column-third">
-
-          <h2 class="heading-medium"><a href="/docs/tutorials-and-examples">Tutorials and examples</a></h2>
-          <p>
-            Tutorials, examples and templates.
-          </p>
-
-        </div>
-        <div class="column-third">
-
-          <h2 class="heading-medium"><a href="/docs/about">About</a></h2>
-          <p>
-            About the kit, principles, privacy.
-          </p>
-
-        </div>
-
+    <div class="column-one-half">
+      <div class="callout">
+        <h2 class="heading-medium">Processes</h2>
+        <ul class="list list-bullet">
+          <li><a href="/docs/process/contribute">Contributing to the patterns</a></li>
+          <li><a href="/docs/process/using">Using the patterns in your project</a></li>
+        </ul>
       </div>
-      <div class="grid-row">
+    </div>
+  </div>
 
-        <div class="column-third">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-medium rule-above">Resources</h2>
+      <p>These resources are for help developing your design patterns. Always understand your users and always do research with them.</p>
+    </div>
+  </div>
 
-          <h2 class="heading-medium"><a href="https://github.com/alphagov/govuk_prototype_kit">GitHub</a></h2>
-          <p>
-            Source code, contributing, bugs.
-          </p>
+  <div class="grid-row">
+    <div class="column-third">
+      <h3 class="heading-small">Accessibility</h3>
+      <ul class="list list-bullet">
+        <li>
+          <a href="http://webaim.org/resources/contrastchecker/">
+            Colour contrast checker
+          </a>
+        </li>
+        <li>
+          <a href="http://wave.webaim.org/">
+            WAVE
+          </a>
+        </li>
+        <li>
+          <a href="http://www.freedomscientific.com/Products/Blindness/JAWS">
+            JAWS screenreader
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/UKHomeOffice/posters/tree/master/accessibility">
+            Access needs posters
+          </a>
+        </li>
+      </ul>
+    </div>
 
-        </div>
+    <div class="column-third">
+      <h3 class="heading-small">Design</h3>
+      <ul class="list list-bullet">
+        <li>
+          <a href="http://semantic-ui.com/">
+            Semantic UI
+          </a>
+        </li>
+        <li>
+        	<a href="http://patternlab.io/">
+        		Atomic Design
+        	</a>
+        </li>
+        <li>
+        	<a href="http://styleguides.io/">
+        	Style Guides
+        	</a>
+        </li>
+      </ul>
+    </div>
 
+    <div class="column-third">
+      <h3 class="heading-small">Resources</h3>
+      <ul class="list list-bullet">
+        <li>
+          <a href="/docs/docs">
+            GOV.UK prototype kit docs
+          </a>
+        </li>
+        <li>
+          <a href="/docs/resources/logos">
+            Logos and guidelines
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-      </div>
 </main>
 
 {% endblock %}
