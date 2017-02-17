@@ -30,4 +30,18 @@ describe('The prototype kit', function () {
         }
       })
   })
+
+  it('should send with a well formed response for the docs page', function (done) {
+    request(app)
+      .get('/docs')
+      .expect('Content-Type', /text\/html/)
+      .expect(200)
+      .end(function (err, res) {
+        if (err) {
+          done(err)
+        } else {
+          done()
+        }
+      })
+  })
 })

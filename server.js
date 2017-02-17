@@ -36,6 +36,13 @@ promoMode = promoMode.toLowerCase()
 // Disable promo mode if docs aren't enabled
 if (!useDocumentation) promoMode = 'false'
 
+// Force HTTPs on production connections. Do this before asking for basicAuth to
+// avoid making users fill in the username/password twice (once for `http`, and
+// once for `https`).
+if (env === 'production' && useHttps === 'true') {
+  app.use(utils.forceHttps)
+}
+
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
 if (env === 'production' && useAuth === 'true') {
@@ -106,11 +113,6 @@ app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
-// Force HTTPs on production connections
-if (env === 'production' && useHttps === 'true') {
-  app.use(utils.forceHttps)
-}
-
 console.log({'autodata': useAutoStoreData})
 
 if (useAutoStoreData === 'true') {
@@ -167,18 +169,6 @@ if (useAutoStoreData === 'true') {
   })
 }
 
-// Disallow search index idexing
-app.use(function (req, res, next) {
-  // Setting headers stops pages being indexed even if indexed pages link to them.
-  res.setHeader('X-Robots-Tag', 'noindex')
-  next()
-})
-
-app.get('/robots.txt', function (req, res) {
-  res.type('text/plain')
-  res.send('User-agent: *\nDisallow: /')
-})
-
 app.get('/prototype-admin/clear-data', function (req, res) {
   req.session.destroy()
   res.render('prototype-admin/clear-data')
@@ -187,8 +177,27 @@ app.get('/prototype-admin/clear-data', function (req, res) {
 // Redirect root to /docs when in promo mode.
 if (promoMode === 'true') {
   console.log('Prototype kit running in promo mode')
+
   app.get('/', function (req, res) {
     res.redirect('/docs')
+  })
+
+  // allow search engines to index the prototype kit promo site
+  app.get('/robots.txt', function (req, res) {
+    res.type('text/plain')
+    res.send('User-agent: *\nAllow: /')
+  })
+} else {
+  // Disallow search index idexing
+  app.use(function (req, res, next) {
+    // Setting headers stops pages being indexed even if indexed pages link to them.
+    res.setHeader('X-Robots-Tag', 'noindex')
+    next()
+  })
+
+  app.get('/robots.txt', function (req, res) {
+    res.type('text/plain')
+    res.send('User-agent: *\nDisallow: /')
   })
 }
 

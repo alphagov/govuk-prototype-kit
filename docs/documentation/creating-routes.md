@@ -8,7 +8,7 @@ For example, with a route of `/sample` the URL is:
 
     http://localhost:3000/sample
     
-All routes for the application are kept in the [routes.js](../app/routes.js) file. They follow this format:
+All routes for the application are kept in the `routes.js` file. They follow this format:
 
     verb(route, callback(request, response) {
         response.render(template, data);

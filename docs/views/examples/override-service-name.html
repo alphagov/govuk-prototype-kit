@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit - override service name
+{% endblock %}
+
+{% block service_name %}
+  Report a smokey vehicle
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Override service name
+      </h1>{{releaseVersion | log }}
+      <p>
+        This is an example of overriding the normal service name on one page.
+      </p>
+
+      <p>
+        Use this code:
+      </p>
+
+        <div class="code">
+          {% raw %}
+  {% block service_name %}
+    Report a smokey vehicle
+  {% endblock %}
+          {% endraw %}
+        </div>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
