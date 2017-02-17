@@ -145,7 +145,6 @@ if (useAutoStoreData === 'true') {
     next()
   })
 
-  documentationApp.use(utils.autoStoreData)
   documentationApp.use(function (req, res, next) {
     // add nunjucks function to get values, needs to be here as they need access to req.session
 
