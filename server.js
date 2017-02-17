@@ -19,6 +19,7 @@ var username = process.env.USERNAME
 var password = process.env.PASSWORD
 var env = process.env.NODE_ENV || 'development'
 var useAuth = process.env.USE_AUTH || config.useAuth
+var useAutoStoreData = process.env.USE_AUTOSTOREDATA || config.useAutoStoreData
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var analyticsId = process.env.ANALYTICS_TRACKING_ID
 
@@ -106,10 +107,72 @@ app.use(session({
 // Add variables that are available in all views
 app.locals.analyticsId = analyticsId
 app.locals.asset_path = '/public/'
+app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+
+console.log({'autodata': useAutoStoreData})
+
+if (useAutoStoreData === 'true') {
+  app.use(utils.autoStoreData)
+  app.use(function (req, res, next) {
+    // add nunjucks function to get values, needs to be here as they need access to req.session
+
+    nunjucksAppEnv.addGlobal('checked', function (name, value) {
+      if (req.session.data === undefined) {
+        return ''
+      }
+
+      var storedValue = req.session.data[name]
+
+      if (storedValue === undefined) {
+        return ''
+      }
+
+      if (Array.isArray(storedValue)) {
+        var inArray = storedValue.indexOf(value) !== -1
+        return inArray ? 'checked' : ''
+      } else {
+        return value === storedValue ? 'checked' : ''
+      }
+    })
+
+    next()
+  })
+
+  documentationApp.use(utils.autoStoreData)
+  documentationApp.use(function (req, res, next) {
+    // add nunjucks function to get values, needs to be here as they need access to req.session
+
+    nunjucksDocumentationEnv.addGlobal('checked', function (name, value) {
+      if (req.session.data === undefined) {
+        return ''
+      }
+
+      var storedValue = req.session.data[name]
+
+      if (storedValue === undefined) {
+        return ''
+      }
+
+      if (Array.isArray(storedValue)) {
+        var inArray = storedValue.indexOf(value) !== -1
+        return inArray ? 'checked' : ''
+      } else {
+        return value === storedValue ? 'checked' : ''
+      }
+    })
+
+    next()
+  })
+}
+
+app.get('/prototype-admin/clear-data', function (req, res) {
+  req.session.destroy()
+  res.render('prototype-admin/clear-data')
+})
 
 // Redirect root to /docs when in promo mode.
 if (promoMode === 'true') {
@@ -188,6 +251,11 @@ if (useDocumentation) {
     }
   })
 }
+
+// redirect all POSTs to GETs - this allows users to use POST for autoStoreData
+app.post(/^\/([^.]+)$/, function (req, res) {
+  res.redirect('/' + req.params[0])
+})
 
 console.log('\nGOV.UK Prototype kit v' + releaseVersion)
 // Display warning not to use kit for production services.
