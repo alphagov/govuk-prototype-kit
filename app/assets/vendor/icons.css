@@ -1,0 +1,141 @@
+@font-face {
+  font-family: 'hod';
+  src:  url('ie7/fonts/hod.eot?jmlbqj');
+  src:  url('ie7/fonts/hod.eot?jmlbqj#iefix') format('embedded-opentype'),
+    url('ie7/fonts/hod.ttf?jmlbqj') format('truetype'),
+    url('ie7/fonts/hod.woff?jmlbqj') format('woff'),
+    url('ie7/fonts/hod.svg?jmlbqj#hod') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="hod-"], [class*=" hod-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'hod' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hod-home:before {
+  content: "\e900";
+}
+.hod-search:before {
+  content: "\f002";
+}
+.hod-search-plus:before {
+  content: "\f00e";
+}
+.hod-search-minus:before {
+  content: "\f010";
+}
+.hod-cog:before {
+  content: "\f013";
+}
+.hod-gear:before {
+  content: "\f013";
+}
+.hod-pencil:before {
+  content: "\f040";
+}
+.hod-map-marker:before {
+  content: "\f041";
+}
+.hod-chevron-left:before {
+  content: "\f053";
+}
+.hod-chevron-right:before {
+  content: "\f054";
+}
+.hod-info-circle:before {
+  content: "\f05a";
+}
+.hod-comment:before {
+  content: "\f075";
+}
+.hod-chevron-up:before {
+  content: "\f077";
+}
+.hod-chevron-down:before {
+  content: "\f078";
+}
+.hod-phone:before {
+  content: "\f095";
+}
+.hod-file:before {
+  content: "\f15b";
+}
+.hod-trash:before {
+  content: "\f1f8";
+}
+.hod-image:before {
+  content: "\e90d";
+}
+.hod-film:before {
+  content: "\e913";
+}
+.hod-file-empty:before {
+  content: "\e924";
+}
+.hod-clock:before {
+  content: "\e94e";
+}
+.hod-calendar:before {
+  content: "\e953";
+}
+.hod-printer:before {
+  content: "\e954";
+}
+.hod-mobile:before {
+  content: "\e958";
+}
+.hod-key:before {
+  content: "\e98d";
+}
+.hod-airplane:before {
+  content: "\e9af";
+}
+.hod-link:before {
+  content: "\e9cb";
+}
+.hod-warning:before {
+  content: "\ea07";
+}
+.hod-plus:before {
+  content: "\ea0a";
+}
+.hod-minus:before {
+  content: "\ea0b";
+}
+.hod-cross:before {
+  content: "\ea0f";
+}
+.hod-checkmark:before {
+  content: "\ea10";
+}
+.hod-arrow-up:before {
+  content: "\ea32";
+}
+.hod-arrow-right:before {
+  content: "\ea34";
+}
+.hod-arrow-down:before {
+  content: "\ea36";
+}
+.hod-arrow-left:before {
+  content: "\ea38";
+}
+.hod-embed2:before {
+  content: "\ea80";
+}
+.hod-github:before {
+  content: "\eab0";
+}
+
