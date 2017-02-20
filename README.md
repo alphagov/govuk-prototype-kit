@@ -1,4 +1,6 @@
-# GOV.UK Prototype kit
+# HOD Design kit
+
+Fork of [GOV.UK prototype kit](https://github.com/alphagov/govuk_prototype_kit)
 
 ## News
 
