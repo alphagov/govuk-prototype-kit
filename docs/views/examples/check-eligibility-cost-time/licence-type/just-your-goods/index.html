@@ -1,0 +1,50 @@
+{% extends "layout.html" %} {% block page_title %} Driving lessons {% endblock %} {% block content %}
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form method="get" action="/docs/examples/check-eligibility-cost-time/result/eligible" class="form">
+
+      {{formData | safe}}
+
+        <h1 class="heading-large">
+          Will you be transporting just your own goods?
+        </h1>
+
+        <fieldset>
+          <legend class="visuallyhidden">
+            Will you be transporting just your own goods?
+          </legend>
+
+          <div class="form-group">
+            <label for="just_your_goods_1" class="block-label">
+              <input type="radio" id="just_your_goods_1" name="just_your_goods" value="yes">
+              Yes
+            </label>
+
+            <label for="just_your_goods_2" class="block-label">
+              <input type="radio" id="just_your_goods_2" name="just_your_goods" value="no">
+              No
+            </label>
+
+            <label for="just_your_goods_3" class="block-label">
+              <input type="radio" id="just_your_goods_3" name="just_your_goods" value="no">
+              Not sure
+            </label>
+
+          </div>
+
+        </fieldset>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue" />
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}

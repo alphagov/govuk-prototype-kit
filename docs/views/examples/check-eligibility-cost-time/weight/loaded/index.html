@@ -1,0 +1,45 @@
+{% extends "layout.html" %} {% block page_title %} Driving lessons {% endblock %} {% block content %}
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form method="get" action="/docs/examples/check-eligibility-cost-time/how-many-vehicles" class="form">
+
+      {{formData | safe}}
+
+        <h1 class="heading-large">
+          Do your vehicles weigh 3,500 kg or more when loaded?
+        </h1>
+
+        <fieldset>
+          <legend class="visuallyhidden">
+            Do your vehicles weigh 3,500 kg or more when loaded?
+          </legend>
+
+          <div class="form-group">
+            <label for="weight_loaded_1" class="block-label">
+              <input type="radio" id="weight_loaded_1" name="weight_loaded" value="3,500 kg or more">
+              Yes
+            </label>
+
+            <label for="weight_loaded_2" class="block-label">
+              <input type="radio" id="weight_loaded_2" name="weight_loaded" value="less than 3,5000 kg">
+              No
+            </label>
+
+          </div>
+
+        </fieldset>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue" />
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}
