@@ -7,127 +7,125 @@
 {% block content %}
 
 <main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
 
-  <h1 class="heading-large">
-    Check your answers before sending your application
-  </h1>
+      <h1 class="heading-large">
+        Check your answers before sending your application
+      </h1>
 
-  <table class="check-your-answers">
+      <h2 class="heading-medium">
+        Organisations involved
+      </h2>
 
-    <thead>
-      <tr>
-        <th colspan="2">
-          <h2 class="heading-medium">
-            Organisations involved
-          </h2>
-        </th>
-        <th>
-        </th>
-      </tr>
-    </thead>
+      <dl class="govuk-check-your-answers">
+        <div>
+          <dt class="cya-question">
+            Exporter
+          </dt>
+          <dd class="cya-answer">
+            Exporter name<br>
+            First line of address<br>
+            Second line of address<br>
+            Contact: Contact Name<br>
+            Tel: 01234 567 890<br>
+            Email: email@email.com
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change <span class="visuallyhidden">Exporter name</span>
+            </a>
+          </dd>
+        </div>
 
-    <tbody>
-      <tr>
-        <td>
-          Exporter
-        </td>
-        <td>
-          Exporter name<br>
-          First line of address<br>
-          Second line of address<br>
-          Contact: Contact Name<br>
-          Tel: 01234 567 890<br>
-          Email: email@email.com
-        </td>
-        <td class="change-answer">
-          <a href="#">
-            Change <span class="visuallyhidden">Exporter name</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Producer
-        </td>
-        <td>
-          Producer name
-        </td>
-        <td class="change-answer">
-          <a href="#">
-            Change <span class="visuallyhidden">Producer name</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Site of export
-        </td>
-        <td>
-          Site of export name
-        </td>
-        <td class="change-answer">
-          <a href="#">
-            Change <span class="visuallyhidden">Site of export name</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Importer
-        </td>
-        <td>
-          Importer name<br>
-          First line of address<br>
-          Second line of address<br>
-          Contact: Contact Name<br>
-          Tel: 01234 567 890<br>
-          Email: email@email.com
-        </td>
-        <td class="change-answer">
-          <a href="#">
-            Change <span class="visuallyhidden">Importer name</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Recovery facilities
-        </td>
-        <td>
-          Recovery facilities name
-        </td>
-        <td class="change-answer">
-          <a href="#">
-            Change <span class="visuallyhidden">Recovery facilities name</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Recovery site
-        </td>
-        <td>
-          Recovery site name
-        </td>
-        <td class="change-answer">
-          <a href="#">
-            Change <span class="visuallyhidden">Recovery site name</span>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <div>
+          <dt class="cya-question">
+            Producer
+          </dt>
+          <dd class="cya-answer">
+            Producer name
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change <span class="visuallyhidden">Producer name</span>
+            </a>
+          </dd>
+        </div>
 
-  <h2 class="heading-medium">Now send your application</h2>
+        <div>
+          <dt class="cya-question">
+            Site of export
+          </dt>
+          <dd class="cya-answer">
+            Site of export name
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change <span class="visuallyhidden">Site of export name</span>
+            </a>
+          </dd>
+        </div>
 
-  <p class="text">
-    By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
-  </p>
+        <div>
+          <dt class="cya-question">
+            Importer
+          </dt>
+          <dd class="cya-answer">
+            Importer name<br>
+            First line of address<br>
+            Second line of address<br>
+            Contact: Contact Name<br>
+            Tel: 01234 567 890<br>
+            Email: email@email.com
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change <span class="visuallyhidden">Importer name</span>
+            </a>
+          </dd>
+        </div>
 
-  <div class="form-group">
-    <a href="confirmation-page" class="button">Accept and send application</a>
+        <div>
+          <dt class="cya-question">
+            Recovery facilities
+          </dt>
+          <dd class="cya-answer">
+            Recovery facilities name
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change <span class="visuallyhidden">Recovery facilities name</span>
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            Recovery site
+          </dt>
+          <dd class="cya-answer">
+            Recovery site name
+          </td>
+          <dd class="cya-change">
+            <a href="#">
+              Change <span class="visuallyhidden">Recovery site name</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="heading-medium">Now send your application</h2>
+
+      <p class="text">
+        By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <div class="form-group">
+        <a href="confirmation-page" class="button">Accept and send application</a>
+      </div>
+
+    </div>
   </div>
-
 </main>
 
 {% endblock %}
