@@ -12,6 +12,6 @@
 }
 
 &__button {
-  @extend button;
+  @extend .button;
 	border-radius: $border-radius;
 }
