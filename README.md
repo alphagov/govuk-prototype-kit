@@ -1,4 +1,4 @@
-# HOD Design kit
+# Home Office design kit
 
 Fork of [GOV.UK prototype kit](https://github.com/alphagov/govuk_prototype_kit)
 
