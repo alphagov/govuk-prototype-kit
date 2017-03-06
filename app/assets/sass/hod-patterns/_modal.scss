@@ -1,5 +1,5 @@
 // Pattern: modal
-// Problem: css only 
+// Problem: css only
 
 // Just for giving space to show example
 
@@ -10,7 +10,7 @@
 
 // actual modal
 
-.modal-overlay {
+&__modal-overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -31,7 +31,7 @@
     opacity: 1;
   }
 }
-.modal-heading {
+&__modal-heading {
     display: block;
     clear: both;
     padding-bottom: calc(2 * #{$space-sm});
@@ -40,7 +40,7 @@
         margin-top: 0;
     }
 }
-.modal {
+&__modal {
     margin: calc(15 * #{$space-sm}) auto;
     padding: 20px;
     background: $page-colour;

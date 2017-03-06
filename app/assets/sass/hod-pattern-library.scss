@@ -9,22 +9,22 @@ $path: "/public/images/";
 // Import GOV.UK elements from /govuk-modules/, need to use to include variables
 @import 'govuk-elements';
 
-// Settings (variables)
-@import "hod-patterns/variables";  	                               // Variables (setting measurements for HO patterns)
-// Guide (not a pattern)
-@import "hod-patterns/hod-guide";  	                               // Guide (this thing)
-// Components (patterns)
-@import "hod-patterns/navigation";  	                           // Navigation
-@import "hod-patterns/tabs";  	                                   // Tabs (grouping same-level content)
-@import "hod-patterns/buttons";  	                               // Buttons pattern
-@import "hod-patterns/flashcard";  	                               // Flashcard pattern
-@import "hod-patterns/tasks";  	                               	   // Tasks pattern
-@import "hod-patterns/labels";  	                               // Label
-@import "hod-patterns/badges";  	                           	   // Badges (notification)
-@import "hod-patterns/timeline";  	                           	   // Timeline
-@import "hod-patterns/accordion";  	                           	   // Accordion
-@import "hod-patterns/modal";  	                           	   	   // Modal
+.hod {
+  // Settings (variables)
+  @import "hod-patterns/variables";  	                               // Variables (setting measurements for HO patterns)
+  // Components (patterns)
+  @import "hod-patterns/navigation";  	                           // Navigation
+  @import "hod-patterns/tabs";  	                                   // Tabs (grouping same-level content)
+  @import "hod-patterns/buttons";  	                               // Buttons pattern
+  @import "hod-patterns/flashcard";  	                               // Flashcard pattern
+  @import "hod-patterns/tasks";  	                               	   // Tasks pattern
+  @import "hod-patterns/labels";  	                               // Label
+  @import "hod-patterns/badges";  	                           	   // Badges (notification)
+  @import "hod-patterns/timeline";  	                           	   // Timeline
+  @import "hod-patterns/accordion";  	                           	   // Accordion
+  @import "hod-patterns/modal";  	                           	   	   // Modal
 
-// Icons
-//@import "vendor/style";		  	                               	   // Icons created in icomoon
-//@import "vendor/variables";		  	                               // Icons created in icomoon
+  // Icons
+  //@import "vendor/style";		  	                               	   // Icons created in icomoon
+  //@import "vendor/variables";
+}	  	                               // Icons created in icomoon

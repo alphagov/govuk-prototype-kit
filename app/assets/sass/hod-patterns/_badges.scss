@@ -12,12 +12,12 @@
     margin: 0 calc(1.5 * #{$space-sm}) 0 0;
     text-decoration: none;
 }
-.badge {
+&__.badge {
     @include badge
 }
-.badge--blue {
+&__.badge--blue {
     @include badge($link-colour, $page-colour)
 }
-.badge--red {
+&__.badge--red {
     @include badge($red, $page-colour)
 }

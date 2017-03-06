@@ -1,7 +1,7 @@
 // Pattern: navigation
 // Problem: ...
 
-.navbar .navbar__list-items {
+&__navbar .navbar__list-items {
   border-bottom: 1px solid $border-colour;
   li {
     display: inline-block;

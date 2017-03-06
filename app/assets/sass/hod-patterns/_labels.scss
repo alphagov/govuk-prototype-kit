@@ -16,21 +16,21 @@
     font-size: 1.5rem;
     font-weight: normal;
 }
-.label {
+&__label {
     @include label
 }
-.label--white {
+&__label--white {
     @include label($page-colour, $text-colour)
 }
-.label--blue {
+&__label--blue {
     @include label(lighten($link-colour, 60%), $link-colour)
 }
-.label--green {
+&__label--green {
     @include label(#D6E9D3, $green)
 }
-.label--yellow {
+&__label--yellow {
     @include label(lighten($focus-colour, 27%), $focus-colour)
 }
-.label--red {
+&__label--red {
     @include label(lighten($red, 50%), $red)
 }

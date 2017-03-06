@@ -51,10 +51,10 @@
     }
 }
 
-.accordion-detail--arrows {
+&__accordion-detail--arrows {
     @include accordion-detail("\f078", "\f077")
 }
 
-.accordion-detail--plus {
+&__accordion-detail--plus {
     @include accordion-detail("\ea0a", "\ea0b")
 }

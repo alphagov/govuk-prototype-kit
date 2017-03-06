@@ -1,16 +1,17 @@
 // Pattern: buttons
 // Problem: Things need clicking
 
-.button-secondary {
+&__button--secondary {
    @include button($white);
    box-shadow: 0 2px 0 $black;
    border: $black 1px solid;
  }
 
- .button-affordance {
+ &__button--affordance {
   @include button($govuk-blue);
 }
 
-.button {
+&__button {
+  @extend button;
 	border-radius: $border-radius;
 }

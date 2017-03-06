@@ -1,7 +1,7 @@
 // Pattern: tabs
 // Problem: Switching between views of grouped content
 
-ul.tab--nav {
+&__tab--nav {
   @include core-16;
   border-right: 2px solid $border-colour;
 
@@ -42,7 +42,7 @@ ul.tab--nav {
 			margin: 0;
 		}
 }
-.tab--content {
+&__tab--content {
 	float: left;
 	width: 100%;
 }
