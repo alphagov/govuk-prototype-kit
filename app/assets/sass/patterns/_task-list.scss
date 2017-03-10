@@ -1,0 +1,71 @@
+// Task list pattern
+
+// Override column width for tablet and up
+.column-minimum {
+  @include media(tablet) {
+    min-width: 600px;
+  }
+}
+
+
+.task-list {
+  margin-top: 3em;
+}
+
+
+.task-list-section {
+  display: table;
+  @include bold-24;
+  padding-bottom: 0.25em;
+}
+
+.task-list-section-number {
+  display: table-cell;
+  padding-right: 0.25em;
+  @include media(tablet) {
+    width: 1.5em;
+    padding-right: 0;
+  }
+}
+
+
+.task-list-items {
+  margin-bottom: 3em;
+  @include media(tablet) {
+    padding-left: 2em;
+  }
+}
+
+.task-list-item {
+  border-bottom: 1px solid $border-colour;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  @extend %contain-floats;
+}
+
+.task-list-item:first-child {
+  border-top: 1px solid $border-colour;
+}
+
+
+.task-name {
+  width: 60%;
+  float: left;
+}
+
+.task-completed {
+  float: right;
+  @include inline-block;
+  margin-left: 8px;
+
+  padding-top: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  @include bold-16($line-height: 20 / 16);
+  letter-spacing: 1px;
+  text-decoration: none;
+
+  color: $white;
+  background-color: $govuk-blue;
+}
