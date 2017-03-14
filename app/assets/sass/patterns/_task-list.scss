@@ -7,39 +7,50 @@
   }
 }
 
+// Spacing to the left of the task list
+$task-list-indent: 35px;
 
 .task-list {
-  margin-top: 3em;
+  margin-top: $gutter;
+  @include media(tablet) {
+    margin-top: ($gutter * 2);
+  }
 }
 
 
 .task-list-section {
   display: table;
+
   @include bold-24;
-  padding-bottom: 0.25em;
+  padding-bottom: ($gutter / 6);
 }
 
 .task-list-section-number {
   display: table-cell;
-  padding-right: 0.25em;
+  padding-right: ($gutter / 6);
+
   @include media(tablet) {
-    width: 1.5em;
+    min-width: $task-list-indent;
     padding-right: 0;
   }
 }
 
 
 .task-list-items {
-  margin-bottom: 3em;
+  margin-bottom: $gutter;
   @include media(tablet) {
-    padding-left: 2em;
+    margin-bottom: ($gutter * 2);
+  }
+
+  @include media(tablet) {
+    padding-left: $task-list-indent;
   }
 }
 
 .task-list-item {
   border-bottom: 1px solid $border-colour;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: $gutter-one-third;
+  padding-bottom: $gutter-one-third;
   @extend %contain-floats;
 }
 
@@ -49,7 +60,7 @@
 
 
 .task-name {
-  width: 60%;
+  width: $two-thirds;
   float: left;
 }
 
