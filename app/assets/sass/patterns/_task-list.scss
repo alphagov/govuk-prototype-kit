@@ -65,18 +65,10 @@ $task-list-indent: 35px;
 }
 
 .task-completed {
+  @include phase-tag;
+
   float: right;
-  @include inline-block;
-  margin-left: 8px;
-
+  text-transform: none;
+  margin-right: 0;
   padding-top: 3px;
-  padding-left: 5px;
-  padding-right: 5px;
-
-  @include bold-16($line-height: 20 / 16);
-  letter-spacing: 1px;
-  text-decoration: none;
-
-  color: $white;
-  background-color: $govuk-blue;
 }
