@@ -24,70 +24,65 @@
 
         <!-- Copied from https://govuk-elements.herokuapp.com/form-elements/#form-radio-buttons -->
 
-        <div class="form-section">
-          <h1 class="heading-medium">Where do you live?</h1>
-          <form>
-            <div class="form-group">
-              <fieldset>
+        <h2 class="heading-medium">Where do you live?</h2>
 
-                <legend class="visually-hidden">Where do you live?</legend>
+        <div class="form-group">
+          <fieldset>
 
-                <div class="multiple-choice">
-                  <input id="radio-1" type="radio" name="radio-group" value="Northern Ireland">
-                  <label for="radio-1">Northern Ireland</label>
-                </div>
-                <div class="multiple-choice">
-                  <input id="radio-2" type="radio" name="radio-group" value="Isle of Man or the Channel Islands">
-                  <label for="radio-2">Isle of Man or the Channel Islands</label>
-                </div>
-                <p class="form-block">or</p>
-                <div class="multiple-choice">
-                  <input id="radio-3" type="radio" name="radio-group" value="I am a British citizen living abroad">
-                  <label for="radio-3">I am a British citizen living abroad</label>
-                </div>
+            <legend class="visually-hidden">Where do you live?</legend>
 
-              </fieldset>
+            <div class="multiple-choice">
+              <input id="radio-1" type="radio" name="radio-group" value="Northern Ireland">
+              <label for="radio-1">Northern Ireland</label>
             </div>
-          </form>
+            <div class="multiple-choice">
+              <input id="radio-2" type="radio" name="radio-group" value="Isle of Man or the Channel Islands">
+              <label for="radio-2">Isle of Man or the Channel Islands</label>
+            </div>
+            <p class="form-block">or</p>
+            <div class="multiple-choice">
+              <input id="radio-3" type="radio" name="radio-group" value="I am a British citizen living abroad">
+              <label for="radio-3">I am a British citizen living abroad</label>
+            </div>
+
+          </fieldset>
         </div>
 
         <!-- Copied from https://govuk-elements.herokuapp.com/form-elements/#form-toggle-content-checkboxes -->
 
-        <div class="form-section">
-          <h1 class="heading-medium">
-            What is your nationality?
-          </h1>
-          <p>
-            Select all options that are relevant to you.
-          </p>
+        <h2 class="heading-medium">
+          What is your nationality?
+        </h2>
+        <p>
+          Select all options that are relevant to you.
+        </p>
 
-          <form>
-            <div class="form-group">
-              <fieldset>
+        <div class="form-group">
+          <fieldset>
 
-                <legend class="visually-hidden">What is your nationality?</legend>
+            <legend class="visually-hidden">What is your nationality?</legend>
 
-                <div class="multiple-choice">
-                  <input id="nationalities-british" name="nationalities" type="checkbox" value="British">
-                  <label for="nationalities-british">British (including English, Scottish, Welsh and Northern Irish)</label>
-                </div>
-                <div class="multiple-choice">
-                  <input id="nationalities-irish" name="nationalities" type="checkbox" value="Irish">
-                  <label for="nationalities-irish">Irish</label>
-                </div>
-                <div class="multiple-choice" data-target="example-different-country">
-                  <input id="nationalities-other" name="nationalities" type="checkbox" value="Citizen of a different country">
-                  <label for="nationalities-other">Citizen of a different country</label>
-                </div>
-                <div class="panel panel-border-narrow js-hidden" id="example-different-country">
-                  <label class="form-label" for="nationalities-other-country">Country name</label>
-                  <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
-                </div>
-
-              </fieldset>
+            <div class="multiple-choice">
+              <input id="nationalities-british" name="nationalities" type="checkbox" value="British">
+              <label for="nationalities-british">British (including English, Scottish, Welsh and Northern Irish)</label>
             </div>
-          </form>
+            <div class="multiple-choice">
+              <input id="nationalities-irish" name="nationalities" type="checkbox" value="Irish">
+              <label for="nationalities-irish">Irish</label>
+            </div>
+            <div class="multiple-choice" data-target="example-different-country">
+              <input id="nationalities-other" name="nationalities" type="checkbox" value="Citizen of a different country">
+              <label for="nationalities-other">Citizen of a different country</label>
+            </div>
+            <div class="panel panel-border-narrow js-hidden" id="example-different-country">
+              <label class="form-label" for="nationalities-other-country">Country name</label>
+              <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
+            </div>
+
+          </fieldset>
         </div>
+
+      </form>
 
     </div>
   </div>
