@@ -25,20 +25,20 @@
               Which of these applies to your vehicle? (Select all that apply)
             </p>
 
-            <label class="block-label" for="vehicle-feature-heated-seats">
-              <input id="vehicle-feature-heated-seats" name="vehicleFeatures" type="checkbox" value="Heated seats" {{ checked("vehicleFeatures","Heated seats") }}>
-              Heated seats
-            </label>
+            <div class="multiple-choice">
+              <input id="vehicle-feature-heated-seats" name="vehicle-features" type="checkbox" value="Heated seats" {{ checked("vehicle-features", "Heated seats") }}>
+              <label for="vehicle-feature-heated-seats">Heated seats</label>
+            </div>
+            
+            <div class="multiple-choice">
+              <input id="vehicle-feature-gps" name="vehicle-features" type="checkbox" value="GPS" {{ checked("vehicle-features", "GPS") }}>
+              <label for="vehicle-feature-gps">GPS</label>
+            </div>
 
-            <label class="block-label" for="vehicle-feature-gps">
-              <input id="vehicle-feature-gps" name="vehicleFeatures" type="checkbox" value="GPS" {{ checked("vehicleFeatures","GPS") }}>
-              GPS
-            </label>
-
-            <label class="block-label" for="vehicle-feature-radio">
-              <input id="vehicle-feature-radio" name="vehicleFeatures" type="checkbox" value="Radio" {{ checked("vehicleFeatures","Radio") }}>
-              Radio
-            </label>
+            <div class="multiple-choice">
+              <input id="vehicle-feature-radio" name="vehicle-features" type="checkbox" value="Radio" {{ checked("vehicle-features", "Radio") }}>
+              <label for="vehicle-feature-radio">Radio</label>
+            </div>
 
           </fieldset>
         </div>

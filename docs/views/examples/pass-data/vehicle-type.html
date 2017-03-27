@@ -25,20 +25,20 @@
               What type of vehicle do you have?
             </p>
 
-            <label class="block-label" for="vehicle-type-car">
-              <input id="vehicle-type-car" type="radio" name="vehicleType" value="Car" {{ checked("vehicleType","Car") }}>
-              Car
-            </label>
+            <div class="multiple-choice">
+              <input id="vehicle-type-car" name="vehicle-type" type="radio" value="Car" {{ checked("vehicle-type", "Car") }}>
+              <label for="vehicle-type-car">Car</label>
+            </div>
 
-            <label class="block-label" for="vehicle-type-lorry">
-              <input id="vehicle-type-lorry" type="radio" name="vehicleType" value="Lorry" {{ checked("vehicleType","Lorry") }}>
-              Lorry
-            </label>
+            <div class="multiple-choice">
+              <input id="vehicle-type-lorry" name="vehicle-type" type="radio" value="Lorry" {{ checked("vehicle-type", "Lorry") }}>
+              <label for="vehicle-type-lorry">Lorry</label>
+            </div>
 
-            <label class="block-label" for="vehicle-type-motorcycle">
-              <input id="vehicle-type-motorcycle" type="radio" name="vehicleType" value="Motorcycle" {{ checked("vehicleType","Motorcycle") }}>
-              Motorcycle
-            </label>
+            <div class="multiple-choice">
+              <input id="vehicle-type-motorcycle" name="vehicle-type" type="radio" value="Motorcycle" {{ checked("vehicle-type", "Motorcycle") }}>
+              <label for="vehicle-type-motorcycle">Motorcycle</label>
+            </div>
 
           </fieldset>
         </div>
