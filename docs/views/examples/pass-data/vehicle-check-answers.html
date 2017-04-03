@@ -62,7 +62,13 @@ Check your answers
                 Vehicle features
               </td>
               <td>
-                {{data['vehicle-features']}}
+                <ul>
+                  {% for feature in data['vehicle-features'] %}
+                    <li>{{ feature }}</li>
+                  {% else %}
+                    <li>No features selected</li>
+                  {% endfor %}
+                </ul>
               </td>
               <td class="change-answer">
                 <a href="/docs/examples/pass-data/vehicle-features">
