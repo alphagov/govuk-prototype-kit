@@ -20,11 +20,13 @@ var password = process.env.PASSWORD
 var env = process.env.NODE_ENV || 'development'
 var useAuth = process.env.USE_AUTH || config.useAuth
 var useHttps = process.env.USE_HTTPS || config.useHttps
+var useBrowserSync = config.useBrowserSync
 var analyticsId = process.env.ANALYTICS_TRACKING_ID
 
 env = env.toLowerCase()
 useAuth = useAuth.toLowerCase()
 useHttps = useHttps.toLowerCase()
+useBrowserSync = useBrowserSync.toLowerCase()
 
 var useDocumentation = (config.useDocumentation === 'true')
 
@@ -196,7 +198,7 @@ console.log('\nNOTICE: the kit is for building prototypes, do not use it for pro
 // start the app
 utils.findAvailablePort(app, function (port) {
   console.log('Listening on port ' + port + '   url: http://localhost:' + port)
-  if (env === 'production') {
+  if (env === 'production' || useBrowserSync === 'false') {
     app.listen(port)
   } else {
     app.listen(port - 50, function () {
