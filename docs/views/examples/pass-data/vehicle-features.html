@@ -14,22 +14,26 @@
 
       <form action="/docs/examples/pass-data/vehicle-check-answers" method="post" class="form">
 
+        <h1 class="heading-medium">
+          Which of these applies to your vehicle?
+        </h1>
+
         <div class="form-group">
           <fieldset>
 
             <legend class="visuallyhidden">
-              Which of these applies to your vehicle? (Select all that apply)
+              Which of these applies to your vehicle?
             </legend>
 
-            <p class="heading-medium">
-              Which of these applies to your vehicle? (Select all that apply)
+            <p>
+              Select all that apply
             </p>
 
             <div class="multiple-choice">
               <input id="vehicle-feature-heated-seats" name="vehicle-features" type="checkbox" value="Heated seats" {{ checked("vehicle-features", "Heated seats") }}>
               <label for="vehicle-feature-heated-seats">Heated seats</label>
             </div>
-            
+
             <div class="multiple-choice">
               <input id="vehicle-feature-gps" name="vehicle-features" type="checkbox" value="GPS" {{ checked("vehicle-features", "GPS") }}>
               <label for="vehicle-feature-gps">GPS</label>

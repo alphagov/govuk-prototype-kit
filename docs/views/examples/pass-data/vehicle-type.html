@@ -14,16 +14,16 @@
 
       <form action="/docs/examples/pass-data/vehicle-features" method="post" class="form">
 
+        <h1 class="heading-medium">
+          What type of vehicle do you have?
+        </h1>
+
         <div class="form-group">
           <fieldset>
 
             <legend class="visuallyhidden">
               What type of vehicle do you have?
             </legend>
-
-            <p class="heading-medium">
-              What type of vehicle do you have?
-            </p>
 
             <div class="multiple-choice">
               <input id="vehicle-type-car" name="vehicle-type" type="radio" value="Car" {{ checked("vehicle-type", "Car") }}>

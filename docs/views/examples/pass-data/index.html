@@ -25,32 +25,76 @@
       </p>
 
       <p>
-        You can see the code for this example here:
+        <a href="/docs/examples/pass-data/vehicle-registration">You can see an example here.</a>
+      </p>
+
+      <p>
+        The code for the example is in this folder in the prototype kit:
       </p>
 
       <pre>
 <div class="code">
-  /app/views/examples/pass-data
+  /docs/views/examples/pass-data
 
 </div>
       </pre>
 
-      <form action="/docs/examples/pass-data/vehicle-type" method="post" class="form">
+      <h2 class="heading-medium">How to use</h2>
 
-        <div class="form-group">
-          <fieldset>
+      <p>The kit stores data from inputs using the name attribute of the input.</p>
 
-            <label class="form-label" for="registration-number">Vehicle registration number</label>
-            <input class="form-control" id="registration-number" name="vehicle-registration" type="text" value="{{data['vehicle-registration']}}">
+      <p>For example, if you have this input:</p>
 
-          </fieldset>
-        </div>
+      <pre>
+<div class="code">
+  &lt;input name="first-name"&gt;
 
-        <div class="form-group">
-          <input type="submit" class="button" value="Continue">
-        </div>
+</div>
+      </pre>
 
-      </form>
+      <p>You can show what the user entered later on like this:</p>
+
+      <pre>
+<div class="code">
+  &lt;p&gt;{%raw%}{{ data['first-name'] }}{%endraw%}&lt;/p&gt;
+
+</div>
+      </pre>
+
+      <h3 class="heading-small">
+        Setting inputs
+      </h3>
+
+      <p>
+        If a user goes back to a page where they entered data, they would expect to see the answer they gave.
+      </p>
+
+      <p>For a text input:</p>
+      <pre>
+<div class="code">
+  &lt;input name="first-name" value="{%raw%}{{ data['first-name'] }}{%endraw%}"&gt;
+
+</div>
+      </pre>
+
+      <p>For a radio or checkbox input you need to use the 'checked' function:</p>
+      <pre>
+<div class="code">
+  &lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked('over-18','yes') }}{%endraw%}&gt;
+
+</div>
+      </pre>
+
+      <h2 class="heading-small">Server-side (advanced)</h2>
+
+      <p>You can access the data on the server in a route, for example for an input with name="first-name":</p>
+
+      <pre>
+<div class="code">
+  var firstName = req.session.data['first-name']
+
+</div>
+      </pre>
 
     </div>
   </div>
