@@ -118,57 +118,47 @@ if (env === 'production' && useHttps === 'true') {
   app.use(utils.forceHttps)
 }
 
+// add nunjucks function called 'checked' to populate radios and checkboxes,
+// needs to be here as it needs access to req.session and nunjucks environment
+var addCheckedFunction = function (app, nunjucksEnv) {
+  app.use(function (req, res, next) {
+    nunjucksEnv.addGlobal('checked', function (name, value) {
+      // check session data exists
+      if (req.session.data === undefined) {
+        return ''
+      }
+
+      var storedValue = req.session.data[name]
+
+      // check the requested data exists
+      if (storedValue === undefined) {
+        return ''
+      }
+
+      var checked = ''
+
+      // if data is an array, check it exists in the array
+      if (Array.isArray(storedValue)) {
+        if (storedValue.indexOf(value) !== -1) {
+          checked = 'checked'
+        }
+      } else {
+        // the data is just a simple value, check it matches
+        if (storedValue === value) {
+          checked = 'checked'
+        }
+      }
+      return checked
+    })
+
+    next()
+  })
+}
+
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
-  app.use(function (req, res, next) {
-    // add nunjucks function to get values, needs to be here as they need access to req.session
-
-    nunjucksAppEnv.addGlobal('checked', function (name, value) {
-      if (req.session.data === undefined) {
-        return ''
-      }
-
-      var storedValue = req.session.data[name]
-
-      if (storedValue === undefined) {
-        return ''
-      }
-
-      if (Array.isArray(storedValue)) {
-        var inArray = storedValue.indexOf(value) !== -1
-        return inArray ? 'checked' : ''
-      } else {
-        return value === storedValue ? 'checked' : ''
-      }
-    })
-
-    next()
-  })
-
-  documentationApp.use(function (req, res, next) {
-    // add nunjucks function to get values, needs to be here as they need access to req.session
-
-    nunjucksDocumentationEnv.addGlobal('checked', function (name, value) {
-      if (req.session.data === undefined) {
-        return ''
-      }
-
-      var storedValue = req.session.data[name]
-
-      if (storedValue === undefined) {
-        return ''
-      }
-
-      if (Array.isArray(storedValue)) {
-        var inArray = storedValue.indexOf(value) !== -1
-        return inArray ? 'checked' : ''
-      } else {
-        return value === storedValue ? 'checked' : ''
-      }
-    })
-
-    next()
-  })
+  addCheckedFunction(app, nunjucksAppEnv)
+  addCheckedFunction(documentationApp, nunjucksDocumentationEnv)
 }
 
 // Disallow search index idexing
