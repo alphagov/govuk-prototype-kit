@@ -1,3 +1,4 @@
+var crypto = require('crypto')
 var path = require('path')
 var express = require('express')
 var session = require('express-session')
@@ -97,13 +98,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-// Support session data
-app.use(session({
-  resave: false,
-  saveUninitialized: false,
-  secret: Math.round(Math.random() * 100000).toString()
-}))
-
 // Add variables that are available in all views
 app.locals.analyticsId = analyticsId
 app.locals.asset_path = '/public/'
@@ -113,10 +107,27 @@ app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
+var isSecure = false
+
 // Force HTTPs on production connections
 if (env === 'production' && useHttps === 'true') {
   app.use(utils.forceHttps)
+  app.set('trust proxy', 1) // needed for secure cookies on heroku
+  isSecure = true
 }
+
+// Support session data
+app.use(session({
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 4, // 4 hours
+    secure: isSecure
+  },
+  // use random name to avoid clashes with other prototypes
+  name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
+  resave: false,
+  saveUninitialized: false,
+  secret: crypto.randomBytes(64).toString('hex')
+}))
 
 // add nunjucks function called 'checked' to populate radios and checkboxes,
 // needs to be here as it needs access to req.session and nunjucks environment
