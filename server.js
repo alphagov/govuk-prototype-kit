@@ -40,8 +40,12 @@ if (!useDocumentation) promoMode = 'false'
 // Force HTTPs on production connections. Do this before asking for basicAuth to
 // avoid making users fill in the username/password twice (once for `http`, and
 // once for `https`).
-if (env === 'production' && useHttps === 'true') {
+
+var isSecure = (env === 'production' && useHttps === 'true')
+
+if (isSecure) {
   app.use(utils.forceHttps)
+  app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
 
 // Authenticate against the environment-provided credentials, if running
@@ -106,15 +110,6 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
-
-var isSecure = false
-
-// Force HTTPs on production connections
-if (env === 'production' && useHttps === 'true') {
-  app.use(utils.forceHttps)
-  app.set('trust proxy', 1) // needed for secure cookies on heroku
-  isSecure = true
-}
 
 // Support session data
 app.use(session({
