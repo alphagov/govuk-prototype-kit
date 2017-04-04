@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Passing data from page to page
+      </h1>
+
+      <p>
+        You may want to use or display data a user has entered over a few screens. The kit automatically stores all data entered, so you can show it later.
+      </p>
+
+      <p>
+        To clear the data (for example at the end of a user research session) click the "Clear data" link in the footer.
+      </p>
+
+      <p>
+        <a href="/docs/examples/pass-data/vehicle-registration">You can see an example here.</a>
+      </p>
+
+      <p>
+        The code for the example is in this folder in the prototype kit:
+      </p>
+
+      <pre>
+<div class="code">
+  /docs/views/examples/pass-data
+
+</div>
+      </pre>
+
+      <h2 class="heading-medium">How to use</h2>
+
+      <p>The kit stores data from inputs using the name attribute of the input.</p>
+
+      <p>For example, if you have this input:</p>
+
+      <pre>
+<div class="code">
+  &lt;input name="first-name"&gt;
+
+</div>
+      </pre>
+
+      <p>You can show what the user entered later on like this:</p>
+
+      <pre>
+<div class="code">
+  &lt;p&gt;{%raw%}{{ data['first-name'] }}{%endraw%}&lt;/p&gt;
+
+</div>
+      </pre>
+
+
+      <h3 class="heading-small">
+        Clearing data
+      </h3>
+
+      <p>
+        To clear the data (for example at the end of a user research session) click the "Clear data" link in the footer.
+      </p>
+
+      <h3 class="heading-small">
+        Showing answers in inputs
+      </h3>
+
+      <p>
+        If a user goes back to a page where they entered data, they would expect to see the answer they gave.
+      </p>
+
+      <p>For a text input:</p>
+      <pre>
+<div class="code">
+  &lt;input name="first-name" value="{%raw%}{{ data['first-name'] }}{%endraw%}"&gt;
+
+</div>
+      </pre>
+
+      <p>For a radio or checkbox input you need to use the 'checked' function:</p>
+      <pre>
+<div class="code">
+  &lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked('over-18','yes') }}{%endraw%}&gt;
+
+</div>
+      </pre>
+
+      <h2 class="heading-medium">Advanced features</h2>
+
+      <h3 class="heading-small">
+        Using the data on the server
+      </h3>
+
+      <p>You can access the data on the server in a route, for example for an input with name="first-name":</p>
+
+      <pre>
+<div class="code">
+  var firstName = req.session.data['first-name']
+
+</div>
+      </pre>
+
+      <h3 class="heading-small">
+        Ignoring inputs
+      </h3>
+
+      <p>To prevent an input being stored, use an underscore at the start of the name.</p>
+
+      <pre>
+<div class="code">
+  &lt;input name="_secret"&gt;
+
+</div>
+      </pre>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

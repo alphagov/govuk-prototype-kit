@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Check your answers
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">
+        Check your answers before sending your application
+      </h1>
+
+      <div class="form-group">
+
+        <table class="check-your-answers">
+
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="heading-medium">
+                  Vehicle details
+                </h2>
+              </th>
+              <th>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                Registration number
+              </td>
+              <td>
+                {{data['vehicle-registration']}}
+              </td>
+              <td class="change-answer">
+                <a href="/docs/examples/pass-data/vehicle-registration">
+                  Change <span class="visuallyhidden">registration number</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Vehicle type
+              </td>
+              <td>
+                {{data['vehicle-type']}}
+              </td>
+              <td class="change-answer">
+                <a href="/docs/examples/pass-data/vehicle-type">
+                  Change <span class="visuallyhidden">vehicle type</span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Vehicle features
+              </td>
+              <td>
+                <ul>
+                  {% for feature in data['vehicle-features'] %}
+                    <li>{{ feature }}</li>
+                  {% else %}
+                    <li>No features selected</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td class="change-answer">
+                <a href="/docs/examples/pass-data/vehicle-features">
+                  Change <span class="visuallyhidden">vehicle features</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-group">
+        <p>
+          <a href="/docs/tutorials-and-examples">
+            Return to prototype kit examples
+          </a>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+{% endblock %}

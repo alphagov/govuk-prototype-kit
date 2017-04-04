@@ -12,6 +12,9 @@ module.exports = {
   // Enable or disable password protection on production
   useAuth: 'true',
 
+  // Automatically stores form data, and send to all views
+  useAutoStoreData: 'true',
+
   // Enable or disable built-in docs and examples.
   useDocumentation: 'true',
 
