@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Check your answers
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  <h1 class="heading-large">
+    Check your answers before sending your application
+  </h1>
+
+  <table class="check-your-answers">
+
+    <thead>
+      <tr>
+        <th colspan="2">
+          <h2 class="heading-medium">
+            Application details
+          </h2>
+        </th>
+        <th>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          Juggling ability
+        </td>
+        <td>
+          [Answer goes here]
+        </td>
+        <td class="change-answer">
+          <a href="juggling-ability">
+            Change <span class="visuallyhidden">juggling ability</span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Juggling feat
+        </td>
+        <td>
+          [Answer goes here]
+        </td>
+        <td class="change-answer">
+          <a href="juggling-feat">
+            Change <span class="visuallyhidden">juggling feat</span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="heading-medium">Now send your application</h2>
+
+  <p class="text">
+    By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
+  </p>
+
+  <div class="form-group">
+    <a href="application-complete" class="button">Accept and send application</a>
+  </div>
+
+</main>
+
+{% endblock %}
