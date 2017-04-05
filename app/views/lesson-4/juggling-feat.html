@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Juggling feat
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a class="link-back" href="juggling-ability">Back</a>
+
+      <h1 class="heading-large">Describe your most impressive juggling feat
+      </h1>
+
+      <form class="form" action="check-your-answers" method="post">
+
+        <div class="form-group">
+          <label class="form-label" for="juggling-feat">Describe it in 50 characters or less</label>
+          <input class="form-control" id="juggling-feat" type="text" name="juggling-feat" value="{{ data['juggling-feat'] }}">
+        </div>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
