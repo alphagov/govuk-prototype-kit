@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-  GOV.UK prototype kit
+  Prototype kit tutorial introduction
 {% endblock %}
 
 {% block content %}
@@ -10,55 +10,33 @@
   <div class="grid-row">
     <div class="column-two-thirds">
 
-      <h1 class="heading-xlarge">
-        The GOV.UK prototype kit
-        <span class="heading-secondary">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
+      <a class="link-back" href="/url/of/previous/page">Back</a>
 
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
+      <h1 class="heading-large">
+        Prototype kit tutorial
+      </h1>
 
-      <h2 class="heading-medium">About this page</h2>
+      <p class="lede">We're going to build a basic juggling licence prototype.</p>
 
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
+      <p>Our prototype will end up looking a bit like this:</p>
 
-			<h2 class="heading-medium">Examples and documentation</h2>
+      <img src="/public/images/juggling-tutorial-basic-flow.png" alt="Flow diagram of the prototype we'll make" width="100%">
 
-			<ul class="list list-bullet">
-				<li><a href="/docs/tutorials-and-examples">Example pages and documentation</a></li>
-				<li><a href="https://github.com/alphagov/govuk_prototype_kit">GitHub</a></li>
-			</ul>
+      <h2 class="heading-medium">Tutorial instructions</h2>
 
-      <h2 class="heading-medium">Other resources</h2>
+      <a href="https://docs.google.com/document/d/1qDkutvVb0FYmUGLMH0EG7bnuX5Ez-yD4IBPmhXqUxew/edit#">Google doc instructions</a>
 
-			<ul class="list list-bullet">
-				<li>
-					<a href="https://govuk-elements.herokuapp.com/snippets/">
-						Guide to GOV.UK Elements
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-			</ul>
+      <h2 class="heading-medium">Lessons</h2>
+      <ol>
+        <li><a href="lesson-1">Lesson 1</a></li>
+        <li><a href="lesson-2">Lesson 2</a></li>
+        <li><a href="lesson-3">Lesson 3</a></li>
+        <li><a href="lesson-4">Lesson 4</a></li>
+        <li><a href="lesson-5">Lesson 5</a></li>
+      </ol>
 
     </div>
   </div>
 </main>
 
 {% endblock %}
-
-
