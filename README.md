@@ -14,6 +14,11 @@ If you publish your prototypes online, they **must** be protected by a [username
 
 You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.
 
+## Installation instructions
+
+- [Installation guide for new users (non technical)](https://govuk-prototype-kit.herokuapp.com/docs/install/introduction)
+- [Installation guide for developers (technical)](https://govuk-prototype-kit.herokuapp.com/docs/install/developer-install-instructions)
+
 ## Community
 
 We have two Slack channels for the Prototype kit. You'll need a government email address to join them.
