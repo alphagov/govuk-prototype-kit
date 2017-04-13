@@ -47,6 +47,9 @@
 {% endblock %}
 
 {% block body_end %}
-  {% include "includes/scripts.html" %}
+  {% block scripts %}
+    {% include "includes/scripts.html" %}
+    {% block page_scripts %}{% endblock %}
+  {% endblock %}
   <!-- GOV.UK Prototype kit {{releaseVersion}} -->
 {% endblock %}
