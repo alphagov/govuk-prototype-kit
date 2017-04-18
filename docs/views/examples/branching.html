@@ -21,27 +21,23 @@
         </p>
 
         <p>
-          You can make this happen by including <code class="code">value="redirect(&lt;url&gt;)"</code> in your radio button values. For example:</URL>
+          You can make this happen by including <code class="code">, redirect(&lt;url&gt;)</code> after the data in your radio button values. For example:</URL>
         </p>
 
         <div class="code" style="width:150%;overflow:auto;margin-bottom:30px">
   &#x3C;div class=&#x22;multiple-choice&#x22;&#x3E;
-    &#x3C;input id=&#x22;workStatusEmp&#x22; type=&#x22;radio&#x22; name=&#x22;work-status&#x22; value=&#x22;redirect(branch/employed)&#x22;&#x3E;
+    &#x3C;input id=&#x22;workStatusEmp&#x22; type=&#x22;radio&#x22; name=&#x22;work_status&#x22; value=&#x22;employed, redirect(branch/employed)&#x22;&#x3E;
     &#x3C;label for=&#x22;workStatusEmp&#x22;&#x3E;Employed&#x3C;/label&#x3E;
   &#x3C;/div&#x3E;
   &#x3C;div class=&#x22;multiple-choice&#x22;&#x3E;
-    &#x3C;input id=&#x22;workStatusSelf&#x22; type=&#x22;radio&#x22; name=&#x22;work-status&#x22; value=&#x22;redirect(branch/self-employed),Self-Employed&#x22;&#x3E;
+    &#x3C;input id=&#x22;workStatusSelf&#x22; type=&#x22;radio&#x22; name=&#x22;work_status&#x22; value=&#x22;selfemployed, redirect(branch/self-employed)&#x22;&#x3E;
     &#x3C;label for=&#x22;workStatusSelf&#x22;&#x3E;Self-employed&#x3C;/label&#x3E;
   &#x3C;/div&#x3E;
   &#x3C;div class=&#x22;multiple-choice&#x22;&#x3E;
-    &#x3C;input id=&#x22;workStatusDir&#x22; type=&#x22;radio&#x22; name=&#x22;work-status&#x22; value=&#x22;redirect(branch/director)&#x22;&#x3E;
+    &#x3C;input id=&#x22;workStatusDir&#x22; type=&#x22;radio&#x22; name=&#x22;work_status&#x22; value=&#x22;director, redirect(branch/director)&#x22;&#x3E;
     &#x3C;label for=&#x22;workStatusDir&#x22;&#x3E;Director of a limited company&#x3C;/label&#x3E;
   &#x3C;/div&#x3E;
         </div>
-
-        <p>
-          If you want to pass a value as well as the redirect instruction, put the value after a comma within the input value. For example: <code class="code">value="redirect(&lt;url&gt;),&lt;value&gt;"</code>
-        </p>
 
         <form action="/docs/examples/branching" method="get" class="form">
 
@@ -56,17 +52,17 @@
               <legend class="visuallyhidden">What is your employment status?</legend>
 
               <div class="multiple-choice">
-                <input id="workStatusEmp" type="radio" name="work_status" value="redirect(branch/employed)">
+                <input id="workStatusEmp" type="radio" name="work_status" value="employed, redirect(branch/employed)">
                 <label for="workStatusEmp">Employed</label>
               </div>
 
               <div class="multiple-choice">
-                <input id="workStatusSelf" type="radio" name="work_status" value="redirect(branch/self-employed),Self-Employed">
+                <input id="workStatusSelf" type="radio" name="work_status" value="selfemployed, redirect(branch/self-employed)">
                 <label for="workStatusSelf">Self-employed</label>
               </div>
 
               <div class="multiple-choice">
-                <input id="workStatusDir" type="radio" name="work_status" value="redirect(branch/director)">
+                <input id="workStatusDir" type="radio" name="work_status" value="director, redirect(branch/director)">
                 <label for="workStatusDir">Director of a limited company</label>
               </div>
 
