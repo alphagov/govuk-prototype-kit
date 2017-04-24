@@ -112,68 +112,6 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
-app.locals.useHodPatterns = config.useHodPatterns
-
-console.log({'autodata': useAutoStoreData})
-
-if (useAutoStoreData === 'true') {
-  app.use(utils.autoStoreData)
-  app.use(function (req, res, next) {
-    // add nunjucks function to get values, needs to be here as they need access to req.session
-
-    nunjucksAppEnv.addGlobal('checked', function (name, value) {
-      if (req.session.data === undefined) {
-        return ''
-      }
-
-      var storedValue = req.session.data[name]
-
-      if (storedValue === undefined) {
-        return ''
-      }
-
-      if (Array.isArray(storedValue)) {
-        var inArray = storedValue.indexOf(value) !== -1
-        return inArray ? 'checked' : ''
-      } else {
-        return value === storedValue ? 'checked' : ''
-      }
-    })
-
-    next()
-  })
-
-  documentationApp.use(utils.autoStoreData)
-  documentationApp.use(function (req, res, next) {
-    // add nunjucks function to get values, needs to be here as they need access to req.session
-
-    nunjucksDocumentationEnv.addGlobal('checked', function (name, value) {
-      if (req.session.data === undefined) {
-        return ''
-      }
-
-      var storedValue = req.session.data[name]
-
-      if (storedValue === undefined) {
-        return ''
-      }
-
-      if (Array.isArray(storedValue)) {
-        var inArray = storedValue.indexOf(value) !== -1
-        return inArray ? 'checked' : ''
-      } else {
-        return value === storedValue ? 'checked' : ''
-      }
-    })
-
-    next()
-  })
-}
-
-app.get('/prototype-admin/clear-data', function (req, res) {
-  req.session.destroy()
-  res.render('prototype-admin/clear-data')
-})
 
 // Support session data
 app.use(session({
