@@ -27,20 +27,22 @@ Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
 The toolbelt lets you use Heroku through the terminal. You will need to restart the terminal after installing the toolbelt.
 
 ## 4) Choose a name for your app
-Pick a name for your app. You need to choose a name that's unique. The name is used in the url for your prototype. For example:
-`govuk-payments-prototype` will create an app at:
+Think of a name for your app. You need to choose a name that's unique. The name is used in the url for your prototype. For example the name:
+
+`govuk-payments-prototype`
+
+will create an app at:
+
 `govuk-payments-prototype.herokuapp.com`.
 
-## 5) Create an app on Heroku
+## 5) Create a Heroku app
 
-You need to create an app on Heroku for each prototype you want to put on the web.
-
-In the folder of your prototype, run:
+In the terminal, go to the folder of your prototype and run:
 
 ```
-heroku apps:create [NAME OF YOUR APP] --region eu
+heroku apps:create [name of your app] --region eu
 ```
-Replace `[name of your app]` with what you want to call your prototype.
+Replace `[name of your app]` with your app name from step 4.
 
 ## 6) Set a username and password
 
@@ -63,7 +65,7 @@ git push heroku master
 ```
 This will push your work to Heroku. Deploying may take a minute or so.
 
-## 7) View your prototype on the web
+## 8) View your prototype on the web
 
 After your work is deployed, you will be able to view it on the web by visiting `[name].herokuapp.com`.
 You can run `heroku open` to open your prototype in a browser.

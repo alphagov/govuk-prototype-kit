@@ -1,3 +1,20 @@
+# 6.0.0
+
+New features:
+- [#369 Add template pages for content and questions](https://github.com/alphagov/govuk_prototype_kit/pull/369)
+- [#340 Auto data session 4](https://github.com/alphagov/govuk_prototype_kit/pull/340)
+- [#367 Added config to turn off browser sync](https://github.com/alphagov/govuk_prototype_kit/pull/367)
+- [#368 Update Travis deployment to be consistent with other govuk frontend repos](https://github.com/alphagov/govuk_prototype_kit/pull/368)
+- [#361 Add an example of the task list pattern](https://github.com/alphagov/govuk_prototype_kit/pull/361)
+- [#364 Use GOV.UK elements v3.0.1](https://github.com/alphagov/govuk_prototype_kit/pull/364)
+- [#360 Bump govuk_frontend_toolkit to 5.1.1](https://github.com/alphagov/govuk_prototype_kit/pull/360)
+- [#352 bump gulp-sass to increase node-sass dependency](https://github.com/alphagov/govuk_prototype_kit/pull/352)
+
+Bug fixes:
+- [#356 fix download link](https://github.com/alphagov/govuk_prototype_kit/pull/356)
+- [#357 fix docs links](https://github.com/alphagov/govuk_prototype_kit/pull/357)
+- [#354 Allow search indexing in promo mode](https://github.com/alphagov/govuk_prototype_kit/pull/354)
+
 # 5.1.0
 
 New features:

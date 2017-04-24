@@ -21,32 +21,30 @@
         <p>
           This page shows how to use the <code class="code">data-target</code> attribute to show and hide content when a radio button or checkbox is selected.
         </p>
+        <p>
+          These examples require show-hide-content.js - updated in GOV.UK frontend toolkit v5.1.2.
+        </p>
 
         <div class="form-group">
           <fieldset>
 
-            <legend class="visuallyhidden">What is your nationality?</legend>
+            <legend class="visually-hidden">What is your nationality?</legend>
 
-            <label class="block-label" for="nationality_british">
-              <input type="checkbox" name="nationality_british" value="British" id="nationality_british">
-              British
-            </label>
-
-            <label class="block-label" for="nationality_irish">
-              <input type="checkbox" name="nationality_irish" value="Irish" id="nationality_irish">
-              Irish
-            </label>
-
-            <label class="block-label" for="nationality_other" data-target="example_nationality_other">
-              <input type="checkbox" name="nationality_other" value="Wales" id="nationality_other">
-              Citizen of another country
-            </label>
-
-            <div class="panel panel-border-narrow js-hidden" id="example_nationality_other">
-              <label class="form-label" for="nationality_other_countries">
-                Country name
-              </label>
-              <input class="form-control" type="text" id="nationality_other_countries">
+            <div class="multiple-choice">
+              <input id="nationalities-british" name="nationalities" type="checkbox" value="British">
+              <label for="nationalities-british">British (including English, Scottish, Welsh and Northern Irish)</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="nationalities-irish" name="nationalities" type="checkbox" value="Irish">
+              <label for="nationalities-irish">Irish</label>
+            </div>
+            <div class="multiple-choice" data-target="example-different-country">
+              <input id="nationalities-other" name="nationalities" type="checkbox" value="Citizen of a different country">
+              <label for="nationalities-other">Citizen of a different country</label>
+            </div>
+            <div class="panel panel-border-narrow js-hidden" id="example-different-country">
+              <label class="form-label" for="nationalities-other-country">Country name</label>
+              <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
             </div>
 
           </fieldset>
@@ -63,15 +61,14 @@
               Where should we send your new passport?
             </legend>
 
-            <label class="block-label" for="radio-home-address" >
-              <input id="radio-home-address" type="radio" name="radio-indent-group" value="Yes">
-              Home address
-            </label>
-
-            <label class="block-label" for="radio-other-address" data-target="example-other-address">
-              <input id="radio-other-address" type="radio" name="radio-indent-group" value="No">
-              Other address
-            </label>
+            <div class="multiple-choice">
+              <input id="radio-home-address" type="radio" name="radio-indent-group" value="Home">
+              <label for="radio-home-address">Home address</label>
+            </div>
+            <div class="multiple-choice" data-target="example-other-address">
+              <input id="radio-other-address" type="radio" name="radio-indent-group" value="Other">
+              <label for="radio-other-address">Other address</label>
+            </div>
 
             <div class="panel panel-border-narrow js-hidden" id="example-other-address">
 
@@ -81,7 +78,7 @@
 
               <fieldset>
 
-                <legend class="visuallyhidden">
+                <legend class="visually-hidden">
                   Your other address
                 </legend>
 

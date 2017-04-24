@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Passing data
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form action="/docs/examples/pass-data/vehicle-type" method="post" class="form">
+
+        <h1 class="heading-medium">
+          What is your vehicle registration number?
+        </h1>
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+              What is your vehicle registration number?
+            </legend>
+
+            <label class="visually-hidden" for="registration-number">Vehicle registration number</label>
+            <input class="form-control" id="registration-number" name="vehicle-registration" type="text" value="{{data['vehicle-registration']}}">
+
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
