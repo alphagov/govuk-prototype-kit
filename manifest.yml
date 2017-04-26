@@ -1,0 +1,4 @@
+---
+applications:
+- name: [PUT-PROTOTYPE-NAME-HERE]
+  memory: 128M
