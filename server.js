@@ -1,3 +1,4 @@
+require('dotenv').config()
 var crypto = require('crypto')
 var path = require('path')
 var express = require('express')

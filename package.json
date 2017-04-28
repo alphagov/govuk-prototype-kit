@@ -17,6 +17,7 @@
     "body-parser": "^1.14.1",
     "browser-sync": "^2.11.1",
     "cross-spawn": "^5.0.0",
+    "dotenv": "^4.0.0",
     "express": "4.13.3",
     "express-session": "^1.13.0",
     "express-writer": "0.0.4",
