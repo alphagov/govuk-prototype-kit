@@ -30,17 +30,17 @@
             </p>
 
             <div class="multiple-choice">
-              <input id="vehicle-feature-heated-seats" name="vehicle-features" type="checkbox" value="Heated seats" {{ checked("vehicle-features", "Heated seats") }}>
+              <input id="vehicle-feature-heated-seats" name="vehicle-feature[heated-seats]" type="checkbox" value="true" {{ checked("vehicle-feature[heated-seats]", "true") }}>
               <label for="vehicle-feature-heated-seats">Heated seats</label>
             </div>
 
             <div class="multiple-choice">
-              <input id="vehicle-feature-gps" name="vehicle-features" type="checkbox" value="GPS" {{ checked("vehicle-features", "GPS") }}>
+              <input id="vehicle-feature-gps" name="vehicle-feature[gps]" type="checkbox" value="true" {{ checked("vehicle-feature[gps]", "true") }}>
               <label for="vehicle-feature-gps">GPS</label>
             </div>
 
             <div class="multiple-choice">
-              <input id="vehicle-feature-radio" name="vehicle-features" type="checkbox" value="Radio" {{ checked("vehicle-features", "Radio") }}>
+              <input id="vehicle-feature-radio" name="vehicle-feature[radio]" type="checkbox" value="true" {{ checked("vehicle-feature[radio]", "true") }}>
               <label for="vehicle-feature-radio">Radio</label>
             </div>
 
