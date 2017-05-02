@@ -56,7 +56,7 @@ $(document).ready(function () {
 
 JavaScript can be directly written in a file.
 
-You can define a block that will add that will at the JavaScript to the page, this needs to be done in the ``.html`` file.
+You can define a block that will add the JavaScript to the page, this needs to be done in the ``.html`` file.
 
 ```
 {% block page_scripts %}
