@@ -1,6 +1,6 @@
 # GitHub and Cloud Foundry
 
-Unlike Heroku, GOV.UK PaaS's technology Cloud Foundry doesn’t depend on GitHub for you to deploy code. Pushing an app from your local machine is enough.
+Unlike Heroku, GOV.UK PaaS's technology Cloud Foundry doesn’t depend on Git for you to deploy code. Pushing an app from your local machine is enough.
 
 Git still provides advantages with version control and for collaboration. Using these features to ensure you have the most up to date code on your machine, you can simply push the app prototype from your local file system.
 
