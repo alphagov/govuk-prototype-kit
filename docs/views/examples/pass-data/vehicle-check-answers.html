@@ -63,9 +63,10 @@ Check your answers
               </td>
               <td>
                 <ul>
-                  {{ data['vehicle-feature'] | log }}
-                  {% for feature, item in data['vehicle-feature'] %}
-                    <li>{{ feature + ': ' + item }}</li>
+                  {% for feature in data['vehicle-features'] %}
+                    <li>{{ feature }}</li>
+                  {% else %}
+                    <li>No features selected</li>
                   {% endfor %}
                 </ul>
               </td>

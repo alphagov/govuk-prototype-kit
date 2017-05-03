@@ -12,17 +12,17 @@
   <div class="grid-row">
     <div class="column-two-thirds">
 
-      <form action="/docs/examples/pass-data/vehicle-extras" method="post" class="form">
+      <form action="/docs/examples/pass-data/vehicle-check-answers" method="post" class="form">
 
         <h1 class="heading-medium">
-          Which of these applies to your vehicle?
+          Which of these extras apply to your vehicle?
         </h1>
 
         <div class="form-group">
           <fieldset>
 
             <legend class="visuallyhidden">
-              Which of these applies to your vehicle?
+              Which of these extras apply to your vehicle?
             </legend>
 
             <p>
@@ -30,18 +30,18 @@
             </p>
 
             <div class="multiple-choice">
-              <input id="vehicle-feature-heated-seats" name="vehicle-features" type="checkbox" value="Heated seats" {{ checked("vehicle-features", "Heated seats") }}>
-              <label for="vehicle-feature-heated-seats">Heated seats</label>
+              <input id="vehicle-feature-decals" name="vehicle-extra[decals]" type="checkbox" value="true" {{ checked("vehicle-extra[decals]", "true") }}>
+              <label for="vehicle-extra-decals">Decals</label>
             </div>
 
             <div class="multiple-choice">
-              <input id="vehicle-feature-gps" name="vehicle-features" type="checkbox" value="GPS" {{ checked("vehicle-features", "GPS") }}>
-              <label for="vehicle-feature-gps">GPS</label>
+              <input id="vehicle-extra-alloys" name="vehicle-extra[alloys]" type="checkbox" value="true" {{ checked("vehicle-extra[alloys]", "true") }}>
+              <label for="vehicle-extra-alloys">Alloy wheels</label>
             </div>
 
             <div class="multiple-choice">
-              <input id="vehicle-feature-radio" name="vehicle-features" type="checkbox" value="Radio" {{ checked("vehicle-features", "Radio") }}>
-              <label for="vehicle-feature-radio">Radio</label>
+              <input id="vehicle-extra-tinted" name="vehicle-extra[tinted]" type="checkbox" value="true" {{ checked("vehicle-extra[tinted]", "true") }}>
+              <label for="vehicle-extra-tinted">Tinted windows</label>
             </div>
 
           </fieldset>
