@@ -1,3 +1,13 @@
+# 6.1.0
+
+New features:
+- [#386 Add GOV.UK Notify client library to kit](https://github.com/alphagov/govuk_prototype_kit/pull/386)
+- [#383 Add .env file to support storing private data](https://github.com/alphagov/govuk_prototype_kit/pull/383)
+- [#347 Add ie8 elements support](https://github.com/alphagov/govuk_prototype_kit/pull/347)
+- [#349 Add IE 8 bind polyfill](https://github.com/alphagov/govuk_prototype_kit/pull/349)
+- [#373 add page_scripts block](https://github.com/alphagov/govuk_prototype_kit/pull/373)
+- [#371 Update README](https://github.com/alphagov/govuk_prototype_kit/pull/371)
+
 # 6.0.0
 
 New features:
