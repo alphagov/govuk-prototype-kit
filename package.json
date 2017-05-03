@@ -34,6 +34,7 @@
     "keypather": "^2.0.1",
     "marked": "^0.3.6",
     "minimist": "0.0.8",
+    "notifications-node-client": "^3.0.0",
     "nunjucks": "^2.5.2",
     "portscanner": "^1.0.0",
     "prompt": "^0.2.14",
