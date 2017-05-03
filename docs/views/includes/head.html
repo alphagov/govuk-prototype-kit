@@ -1,5 +1,7 @@
-<link href="/public/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="/public/stylesheets/docs.css" media="screen" rel="stylesheet" type="text/css" />
+<!--[if lte IE 8]><link href="/public/stylesheets/application-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if gt IE 8]><!--><link href="/public/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+<!--[if lte IE 8]><link href="/public/stylesheets/docs-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if gt IE 8]><!--><link href="/public/stylesheets/docs.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
 
 {% if promoMode == 'true' and analyticsId %}
 	{% include "includes/analytics.html" %}

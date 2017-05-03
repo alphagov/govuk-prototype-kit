@@ -1,7 +1,7 @@
 {
   "name": "express-prototype",
   "description": "GOVUK prototyping app in Express",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "private": true,
   "engines": {
     "node": ">=6.0 <7.0"
@@ -17,6 +17,7 @@
     "body-parser": "^1.14.1",
     "browser-sync": "^2.11.1",
     "cross-spawn": "^5.0.0",
+    "dotenv": "^4.0.0",
     "express": "4.13.3",
     "express-session": "^1.13.0",
     "express-writer": "0.0.4",
@@ -32,6 +33,7 @@
     "gulp-util": "^3.0.7",
     "marked": "^0.3.6",
     "minimist": "0.0.8",
+    "notifications-node-client": "^3.0.0",
     "nunjucks": "^2.5.2",
     "portscanner": "^1.0.0",
     "prompt": "^0.2.14",
