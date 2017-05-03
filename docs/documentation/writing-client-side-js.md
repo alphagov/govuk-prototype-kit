@@ -1,8 +1,10 @@
-# Writing JavaScript
+# Writing client side JavaScript
 
 JavaScript is a programming language that can add interactivity to your prototype i.e validation, redirects or data storage.
 
 [More information](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics) about JavaScript.
+
+This is a guide is for client side JavaScript - this runs in the browser. You can also write server side JavaScript that is ran before the page is sent to the user.
 
 ## Working with the current JavaScript
 
@@ -115,3 +117,9 @@ You can also override the whole scripts block, this is in the ``scripts.html``, 
   <script src="/public/javascripts/other_new_script.js"></script>
 {% endblock %}
 ```
+
+## Links
+
+<ul class="list list-bullet">
+  <li><a href="creating-routes">Creating routes</a></li>
+</ul>
