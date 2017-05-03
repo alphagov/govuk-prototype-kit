@@ -33,6 +33,7 @@
     "gulp-util": "^3.0.7",
     "marked": "^0.3.6",
     "minimist": "0.0.8",
+    "notifications-node-client": "^3.0.0",
     "nunjucks": "^2.5.2",
     "portscanner": "^1.0.0",
     "prompt": "^0.2.14",
