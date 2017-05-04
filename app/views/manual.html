@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+<div id="wrapper">
+  <main role="main">
+    <div class="manuals-frontend-body">
+      <header>
+        <h1 id="manual-title">{{ content.title() }}</h1>
+        <div class="govuk-metadata">
+          <dl>
+            {% for item in content.metadata() %}
+              {% for name, value in item %}
+                {% if value %}
+                <dt>{{ name }}:</dt>
+                <dd>{{ value }}</dd>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </dl>
+        </div>
+      </header>  
+      <article id="content">
+        <div class="manual-body">
+          <p class="summary">{{ content.description() }}</p>
+          <div class="govuk-govspeak">
+            {{ content.body().govspeak | safe }}
+          </div>
+          <ol class="section-list">
+            {% for chapter in content.contentsList() %}
+              <li>
+                <a href="{{ chapter.link }}">
+                  <span class="subsection-title-text">{{ chapter.title }}</span>
+                  <span class="subsection-summary">{{ chapter.description }}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+      </article>
+    </div>
+  </main>  
+</div>
+{% endblock %}
+
+

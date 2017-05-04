@@ -2,6 +2,8 @@
 // in the govuk frontend toolkit's url-helpers partial
 $path: "/public/images/";
 
+@import 'core-layout';
+
 // Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
 // Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
 @import 'govuk-elements';
@@ -29,3 +31,461 @@ $path: "/public/images/";
 }
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.govuk-title {
+  .context {
+    margin: 0;
+  }
+}
+
+
+.dash-list {
+    margin-bottom: 20px
+}
+
+.dash-list li {
+    margin-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    list-style-type: disc
+}
+
+@supports (content: "—") {
+    .dash-list li {
+        list-style-type:none
+    }
+
+    .dash-list li:before {
+        content: "— ";
+        position: relative;
+        float: left;
+        width: 20px;
+        margin-left: -20px
+    }
+}
+
+.dash-list .nested-contents-item-h2 {
+    margin-left: 0;
+    list-style-type: none
+}
+
+.dash-list .nested-contents-item-h2:before {
+    content: ''
+}
+
+.dash-list .nested-contents-link-h2 {
+    font-weight: bold
+}
+
+.dash-list a {
+    text-decoration: none
+}
+
+.dash-list a:hover,.dash-list a:focus,.dash-list a:active {
+    text-decoration: underline
+}
+
+.description {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 18px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    max-width: 30em
+}
+
+@media (min-width: 641px) {
+    .description {
+        font-size:24px;
+        line-height: 1.25
+    }
+}
+
+@media (min-width: 641px) {
+    .description {
+        margin-bottom:45px
+    }
+}
+
+.manuals-frontend-body header {
+    background: #005ea5;
+    padding: 30px;
+    color: #fff;
+    // margin: 0 -15px;
+    font-family: "nta", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 300;
+    text-transform: none
+}
+
+.manuals-frontend-body header h1 {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 36px;
+    line-height: 1.11111;
+    font-weight: 400;
+    text-transform: none;
+    font-weight: bold;
+    padding: 0 0 15px 0
+}
+
+.manuals-frontend-body .section-list {
+    margin-top: 30px
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .section-list {
+        margin-top:60px
+    }
+}
+
+.manuals-frontend-body .section-list li {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.31579;
+    font-weight: 400;
+    text-transform: none;
+    list-style: none;
+    cursor: pointer;
+    border-top: 1px solid #bfc1c3
+}
+
+@media (max-width: 640px) {
+    .manuals-frontend-body .section-list li {
+        font-size:16px;
+        line-height: 1.25
+    }
+}
+
+.manuals-frontend-body .section-list li:hover {
+    background-color: #f8f8f8
+}
+
+.manuals-frontend-body .section-list li:last-child {
+    border-bottom: 1px solid #bfc1c3
+}
+
+.manuals-frontend-body .section-list li a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 10px 10px 0
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .section-list li a {
+        padding-right:33.33333%
+    }
+}
+
+.manuals-frontend-body .section-list li a .subsection-title-text {
+    color: #005ea5;
+    font-weight: bold;
+    display: block
+}
+
+.manuals-frontend-body .section-list li a .subsection-summary {
+    color: #0b0c0c;
+    display: block
+}
+
+.manuals-frontend-body .manual-body {
+    margin: 15px 0 90px
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .manual-body {
+        margin-top:30px
+    }
+}
+
+.manuals-frontend-body .manual-body .section-title {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 400;
+    text-transform: none;
+    padding-top: 9px;
+    padding-bottom: 6px;
+    font-weight: bold
+}
+
+@media (max-width: 640px) {
+    .manuals-frontend-body .manual-body .section-title {
+        font-size:20px;
+        line-height: 1.2
+    }
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .manual-body .section-title {
+        padding-top:6px;
+        padding-bottom: 4px
+    }
+}
+
+.manuals-frontend-body .manual-body .summary {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 400;
+    text-transform: none;
+    margin-bottom: 15px
+}
+
+@media (max-width: 640px) {
+    .manuals-frontend-body .manual-body .summary {
+        font-size:20px;
+        line-height: 1.2
+    }
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .manual-body .summary {
+        max-width:66.66667%;
+        margin-bottom: 30px
+    }
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .manual-body .body-content-wrapper {
+        width:66.66667%
+    }
+}
+
+.manuals-frontend-body .manual-body .footnotes {
+    border-top: 0;
+    padding-top: 0
+}
+
+.manuals-frontend-body .updates-list {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.31579;
+    font-weight: 400;
+    text-transform: none
+}
+
+@media (max-width: 640px) {
+    .manuals-frontend-body .updates-list {
+        font-size:16px;
+        line-height: 1.25
+    }
+}
+
+.manuals-frontend-body .updates-list dd {
+    margin-bottom: 1em
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .collapsible-subsections p {
+        margin-top:20px
+    }
+
+    .manuals-frontend-body .collapsible-subsections .call-to-action p {
+        margin: 0
+    }
+}
+
+.manuals-frontend-body .collapsible-subsections .js-subsection-title {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.31579;
+    font-weight: 400;
+    text-transform: none;
+    font-weight: 700;
+    display: block;
+    border-top: 1px solid #bfc1c3;
+    padding: 10px 30px 10px 0;
+    margin: 30px 0;
+    position: relative
+}
+
+@media (max-width: 640px) {
+    .manuals-frontend-body .collapsible-subsections .js-subsection-title {
+        font-size:16px;
+        line-height: 1.25
+    }
+}
+
+.manuals-frontend-body .collapsible-subsections .js-subsection-title a {
+    text-decoration: none
+}
+
+.manuals-frontend-body .subsection-collection {
+    margin-top: 15px
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .subsection-collection {
+        margin-top:30px
+    }
+}
+
+.manuals-frontend-body .subsection-collection .js-title-controls-wrap .section-title {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 400;
+    text-transform: none;
+    padding-top: 9px;
+    padding-bottom: 6px
+}
+
+@media (max-width: 640px) {
+    .manuals-frontend-body .subsection-collection .js-title-controls-wrap .section-title {
+        font-size:20px;
+        line-height: 1.2
+    }
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .subsection-collection .js-title-controls-wrap .section-title {
+        padding-top:6px;
+        padding-bottom: 4px
+    }
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .subsection-collection .js-title-controls-wrap .section-title {
+        float:left;
+        width: 75%
+    }
+}
+
+.manuals-frontend-body .subsection-collection .js-title-controls-wrap .js-collection-controls {
+    display: block;
+    margin-left: -5px;
+    margin-bottom: 15px
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .subsection-collection .js-title-controls-wrap .js-collection-controls {
+        margin:0 0 30px -5px;
+        float: right;
+        display: inline-block
+    }
+}
+
+.manuals-frontend-body .subsection-collection .js-title-controls-wrap .js-collection-controls a {
+    font-family: "nta", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 300;
+    text-transform: none;
+    padding: 0 5px 0 5px;
+    display: inline-block
+}
+
+@media (max-width: 640px) {
+    .manuals-frontend-body .subsection-collection .js-title-controls-wrap .js-collection-controls a {
+        font-size:14px;
+        line-height: 1.14286
+    }
+}
+
+.manuals-frontend-body .subsection-collection .js-title-controls-wrap .js-collection-controls a.disabled {
+    color: #6f777b;
+    text-decoration: none;
+    cursor: default
+}
+
+.manuals-frontend-body .js-openable {
+    border-top: 1px solid #bfc1c3;
+    padding-bottom: 30px
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .js-openable {
+        padding-bottom:60px
+    }
+}
+
+.manuals-frontend-body .js-openable .js-subsection-title {
+    cursor: pointer;
+    margin: 0;
+    border: none
+}
+
+.manuals-frontend-body .js-openable .js-subsection-title .js-toggle {
+    height: 25px;
+    width: 25px;
+    display: block;
+    background: url(https://assets.publishing.service.gov.uk/manuals-frontend/arrows_sprite-ca3a7e8041aeed11c82416b86b975ac5.png) no-repeat;
+    position: absolute;
+    right: 0;
+    top: 10px
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .manuals-frontend-body .js-openable .js-subsection-title .js-toggle {
+        background-image:url(https://assets.publishing.service.gov.uk/manuals-frontend/arrows_sprite-2x-112fb1d70d0e6c04877d2d9970178a51.png);
+        background-size: 32px 50px
+    }
+}
+
+.manuals-frontend-body .js-openable .js-subsection-body {
+    margin-top: 15px
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .js-openable .js-subsection-body {
+        margin-top:30px
+    }
+}
+
+.js-enabled .manuals-frontend-body .js-openable.closed {
+    padding: 0
+}
+
+.js-enabled .manuals-frontend-body .js-openable.closed .js-toggle {
+    background: url(https://assets.publishing.service.gov.uk/manuals-frontend/arrows_sprite-ca3a7e8041aeed11c82416b86b975ac5.png) no-repeat 0 -32px
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .js-enabled .manuals-frontend-body .js-openable.closed .js-toggle {
+        background-image:url(https://assets.publishing.service.gov.uk/manuals-frontend/arrows_sprite-2x-112fb1d70d0e6c04877d2d9970178a51.png);
+        background-size: 32px 50px
+    }
+}
+
+.js-enabled .manuals-frontend-body .js-openable.closed .js-subsection-body {
+    position: absolute;
+    left: -9999px;
+    width: 100px;
+    height: 1px;
+    overflow: hidden
+}
+
+.manuals-frontend-body .hmrc.section-list {
+    margin-top: 30px;
+    padding-bottom: 30px
+}
+
+.manuals-frontend-body .hmrc.section-list a {
+    padding-right: 0
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body .hmrc.section-list .title-wrap {
+        display:table-row
+    }
+
+    .manuals-frontend-body .hmrc.section-list .title-wrap div {
+        display: table-cell
+    }
+}
+
+.manuals-frontend-body .subsection-id {
+    min-width: 135px;
+    color: #6f777b;
+    padding-right: 15px
+}
+
+.manuals-frontend-body .print-page {
+    display: none
+}
+
+.js-enabled .manuals-frontend-body .print-page {
+    display: block
+}
+

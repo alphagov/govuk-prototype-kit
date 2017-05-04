@@ -1,0 +1,24 @@
+<nav role="navigation">
+  <h1 class="data-label-value">
+  {% if content.contentsLink %}
+    <a href="{{ content.contentsLink() }}">Contents</a>
+  {% else %}
+    Contents
+  {% endif %}
+  </h1>
+  <ol class="dash-list">
+    {% if content.isChapter %}
+      {% for item in content.chapterContents() %}
+      <li>
+        <a href="{{ item.link }}">{{ item.title }}</a>
+      </li>
+      {% endfor %}
+    {% else %}
+      {% for item in content.contentsList() %}
+      <li>
+        <a href="{{ item.link }}">{{ item.title }}</a>
+      </li>
+      {% endfor %}
+    {% endif %}
+  </ol>
+</nav>
