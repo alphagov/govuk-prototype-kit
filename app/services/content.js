@@ -11,7 +11,7 @@ Content.get = function (path) {
 Content.getManual = function (path) {
   return this.get(path).then(response => {
     let manual = response.getBody()
-    manual.links.sections.shift()
+    // manual.links.sections.shift()
     manual.chapters = manual.links.sections
     return manual
   })
