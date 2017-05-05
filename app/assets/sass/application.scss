@@ -119,6 +119,12 @@ $path: "/public/images/";
     text-transform: none
 }
 
+.manuals-frontend-body header:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 .manuals-frontend-body header h1 {
     font-family: "nta", Arial, sans-serif;
     font-size: 36px;
@@ -487,5 +493,68 @@ $path: "/public/images/";
 
 .js-enabled .manuals-frontend-body .print-page {
     display: block
+}
+
+.manuals-frontend-body header .in-manual-search {
+    position: relative;
+    margin: 30px 0 15px
+}
+
+.manuals-frontend-body header .in-manual-search label {
+    padding-bottom: 5px;
+    display: inline-block
+}
+
+.manuals-frontend-body header .in-manual-search .in-manual-search-box {
+    width: 86%;
+    width: calc(100% - 47px);
+    border: none;
+    padding: 6px
+}
+
+.manuals-frontend-body header .in-manual-search button {
+    width: 33px;
+    height: 33px;
+    border: 1px solid #0b0c0c;
+    border-width: 0 0 0 1px;
+    border-left-color: #222;
+    overflow: hidden;
+    text-indent: -5000px;
+    cursor: pointer;
+    color: #fff;
+    background: #0b0c0c url(https://assets.publishing.service.gov.uk/manuals-frontend/search-button-de28edec94868c92285a8f97a79bb469.png) no-repeat 0 50%;
+    position: absolute;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .manuals-frontend-body header .in-manual-search button {
+        background-size:52.5px 35px;
+        background-position: 115% 50%
+    }
+}
+
+@media (min-width: 641px) {
+    .manuals-frontend-body header {
+        margin:0
+    }
+
+    .manuals-frontend-body header .primary,.manuals-frontend-body header .secondary {
+        float: left
+    }
+
+    .manuals-frontend-body header .primary {
+        width: 66.66667%
+    }
+
+    .manuals-frontend-body header .secondary {
+        width: 33.33333%
+    }
+
+    .manuals-frontend-body header .secondary .secondary-inner {
+        padding-left: 30px
+    }
 }
 
