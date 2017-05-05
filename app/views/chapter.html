@@ -33,13 +33,19 @@
         </div>  
       </div>
     </header>
+    <ol class="breadcrumb-trail">
+        <li><a href="{{ content.contentsLink() }}">Contents</a></li>
+        <li class="last-child">{{ content.title() }}</li>
+    </ol>
     <div class="manual-body">
       {% if content.description %}<p class="description">{{ content.description() }}</p>{% endif %}
       <div class="grid-row sidebar-with-body">
+        {% if content.chapterContents().length > 0 %}
         <div class="column-third">
           {% include "includes/contents_list.html" %}
         </div>
-        <div class="column-two-thirds">
+        {% endif %}
+        <div class="{% if content.chapterContents().length > 0 %}column-two-thirds{% else %}column-full{% endif %}">
           <div class="govuk-govspeak">
             {{ content.body().govspeak | safe }}  
           </div>
