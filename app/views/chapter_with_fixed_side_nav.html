@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block body_classes %}
+  {% if fixedLayout %}
+    fixed-layout
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main" class="fixed-grid-container">
+  <div class="fixed-grid-row">
+    <div class="column-fixed-quarter column-fixed">
+      {% include "includes/contents_list.html" %}
+    </div>
+
+    <div class="manuals-frontend-body column-fixed-three-quarters column-fixed">
+      <div class="column-fixed-inner">
+        {% include "includes/manual_header.html" %}
+
+        <div class="manual-body">
+          {% if content.description %}<p class="description">{{ content.description() }}</p>{% endif %}
+          <div class="grid-row">
+            <div class="column-full">
+              <div class="govuk-govspeak">
+                {{ content.body().govspeak | safe }}  
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+

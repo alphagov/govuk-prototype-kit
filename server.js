@@ -129,12 +129,16 @@ app.use(session({
 
 app.use(function (req, res, next) {
   let showDeepNav = req.query.showDeepNav
+  let fixedLayout = req.query.fixedLayout
   // If param is set use param, else use session
   if (showDeepNav === 'true' || showDeepNav === 'false') {
     res.locals.showDeepNav = showDeepNav
   } else {
     res.locals.showDeepNav = req.session.data ? req.session.data['showDeepNav'] : 'false'
   }
+
+  res.locals.fixedLayout = (fixedLayout === 'true' || fixedLayout === 'false') ? fixedLayout : 'false'
+
   next()
 })
 
