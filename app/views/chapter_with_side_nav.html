@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-quarter">
+      {% include "includes/contents_list.html" %}
+    </div>
+
+    <div class="manuals-frontend-body column-three-quarters">
+      
+      {% include "includes/manual_header.html" %}
+
+      <div class="manual-body">
+        {% if content.description %}<p class="description">{{ content.description() }}</p>{% endif %}
+        <div class="grid-row">
+          <div class="column-full">
+            <div class="govuk-govspeak">
+              {{ content.body().govspeak | safe }}  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</main>
+
+{% endblock %}
+
+
