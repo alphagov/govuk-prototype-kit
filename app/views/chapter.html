@@ -8,35 +8,9 @@
 
 <main id="content" role="main">
   <div class="manuals-frontend-body">
-    <header>
-      <div class="primary">
-        <h1 id="manual-title">{{ content.title() }}</h1>
-        <div class="govuk-metadata">
-          <dl>
-            {% for item in content.metadata() %}
-              {% for name, value in item %}
-                {% if value %}
-                <dt>{{ name }}:</dt>
-                <dd>{{ value }}</dd>
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-          </dl>
-        </div>
-        <div class="in-manual-search">
-          <form action="/search">
-            <label for="search-box">Search this manual</label>
-            <input type="hidden" name="filter_manual[]" value="/guidance/immigration-rules">
-            <input id="search-box" class="in-manual-search-box" type="text" name="q">
-            <button type="submit">search</button>
-          </form>
-        </div>  
-      </div>
-    </header>
-    <ol class="breadcrumb-trail">
-        <li><a href="{{ content.contentsLink() }}">Contents</a></li>
-        <li class="last-child">{{ content.title() }}</li>
-    </ol>
+
+    {% include "includes/manual_header.html" %}
+
     <div class="manual-body">
       {% if content.description %}<p class="description">{{ content.description() }}</p>{% endif %}
       <div class="grid-row sidebar-with-body">

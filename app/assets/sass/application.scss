@@ -622,3 +622,27 @@ $path: "/public/images/";
 }
 
 
+
+// Chapter navigation
+
+.chapter-nav {
+  
+  padding-top: 20px;
+
+  > .dash-list {
+    
+    > li {
+      margin-left: 0;
+
+      &:before {
+        display: none;
+      }
+
+      ol {
+        margin-left: 20px;
+      }   
+    }
+  }
+}
+
+

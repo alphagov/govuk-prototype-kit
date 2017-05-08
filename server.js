@@ -132,7 +132,6 @@ app.use(function (req, res, next) {
   // If param is set use param, else use session
   if (showDeepNav === 'true' || showDeepNav === 'false') {
     res.locals.showDeepNav = showDeepNav
-    console.log('Param set', showDeepNav)
   } else {
     res.locals.showDeepNav = req.session.data ? req.session.data['showDeepNav'] : 'false'
   }

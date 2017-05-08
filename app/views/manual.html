@@ -8,32 +8,9 @@
 <div id="wrapper">
   <main role="main">
     <div class="manuals-frontend-body">
-      <header>
-        <div class="primary">
-          <h1 id="manual-title">{{ content.title() }}</h1>
-          <div class="govuk-metadata">
-            <dl>
-              {% for item in content.metadata() %}
-                {% for name, value in item %}
-                  {% if value %}
-                  <dt>{{ name }}:</dt>
-                  <dd>{{ value }}</dd>
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
-            </dl>
-          </div>
-          <div class="in-manual-search">
-            <form action="/search">
-              <label for="search-box">Search this manual</label>
-              <input type="hidden" name="filter_manual[]" value="/guidance/immigration-rules">
-              <input id="search-box" class="in-manual-search-box" type="text" name="q">
-              <button type="submit">search</button>
-            </form>
-          </div>
-        </div>
-        
-      </header>  
+      
+      {% include "includes/manual_header.html" %}
+
       <article id="content">
         <div class="manual-body">
           <p class="summary">{{ content.description() }}</p>
