@@ -625,6 +625,12 @@ $path: "/public/images/";
 
 // Chapter navigation
 
+.grid-row .column-fixed {
+  height: 100vh;
+  overflow-y: scroll;
+  // padding-right: 10px; 
+}
+
 .chapter-nav {
   
   padding-top: 20px;
@@ -632,7 +638,7 @@ $path: "/public/images/";
   li {
     line-height: 24px;
     padding-right: 0;
-    padding-top: 5px;    
+    padding-top: 8px;    
   }
 
   > .dash-list {
