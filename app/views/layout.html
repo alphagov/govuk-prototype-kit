@@ -47,6 +47,7 @@
 {% endblock %}
 
 {% block body_end %}
+  <input type="hidden" name="showDeepNav" value="{{ showDeepNav }}">
   {% block scripts %}
     {% include "includes/scripts.html" %}
     {% block page_scripts %}{% endblock %}

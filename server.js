@@ -127,6 +127,18 @@ app.use(session({
   secret: crypto.randomBytes(64).toString('hex')
 }))
 
+app.use(function (req, res, next) {
+  let showDeepNav = req.query.showDeepNav
+  // If param is set use param, else use session
+  if (showDeepNav === 'true' || showDeepNav === 'false') {
+    res.locals.showDeepNav = showDeepNav
+    console.log('Param set', showDeepNav)
+  } else {
+    res.locals.showDeepNav = req.session.data ? req.session.data['showDeepNav'] : 'false'
+  }
+  next()
+})
+
 // add nunjucks function called 'checked' to populate radios and checkboxes,
 // needs to be here as it needs access to req.session and nunjucks environment
 var addCheckedFunction = function (app, nunjucksEnv) {

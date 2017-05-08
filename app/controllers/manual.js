@@ -18,7 +18,7 @@ module.exports = {
     Content.getChapter(contentPath).then(response => {
       let json = response
       let manual = new Manual(json)
-      return res.status(200).render('chapter', { content: manual })
+      return res.status(200).render('chapter', { content: manual, showDeepNav: res.locals.showDeepNav })
     })
   }
 }
