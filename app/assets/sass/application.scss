@@ -629,18 +629,26 @@ $path: "/public/images/";
   
   padding-top: 20px;
 
+  li {
+    line-height: 24px;
+    padding-right: 0;
+    padding-top: 5px;    
+  }
+
   > .dash-list {
-    
+
+    font-size: 16px;
+
     > li {
       margin-left: 0;
 
       &:before {
         display: none;
-      }
+      }  
+    }
 
-      ol {
-        margin-left: 20px;
-      }   
+    ol {
+      margin-bottom: 0;
     }
   }
 }
