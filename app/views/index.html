@@ -36,6 +36,18 @@
 				</li>
 			</ul>
 
+      <ul>
+        {% if showDeepNav !== 'true' %}
+        <li>
+          <a href="/?showDeepNav=true">Enter deep contents list mode</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="/?showDeepNav=false">Exit deep contents list mode</a>
+        </li>
+        {% endif %}
+      </ul>
+
     </div>
   </div>
 </main>
