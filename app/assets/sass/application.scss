@@ -646,7 +646,12 @@ $path: "/public/images/";
   > .dash-list {
 
     > li {
+
       margin-left: 0;
+
+      & > a {
+        font-weight: bold;
+      }
 
       &:before {
         display: none;
