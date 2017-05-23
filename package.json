@@ -34,7 +34,7 @@
     "marked": "^0.3.6",
     "minimist": "1.2.0",
     "notifications-node-client": "^3.0.0",
-    "nunjucks": "^3.0.0",
+    "nunjucks": "^2.5.2",
     "portscanner": "^2.1.1",
     "prompt": "^1.0.0",
     "readdir": "0.0.13",
@@ -44,5 +44,10 @@
     "standard": "^10.0.2",
     "supertest": "^3.0.0",
     "sync-request": "^4.0.3"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "nunjucks"
+    ]
   }
 }
