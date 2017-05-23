@@ -16,7 +16,7 @@ const Manual = class extends ContentItem {
       link = this.json.base_path
     }
 
-    return `/manual?${link}`
+    return `/manual?path=${link}`
   }
 
   isChapter () {
