@@ -8,7 +8,7 @@
         {% for item in content.contentsList() %}
         <li>
           {% if item.subItems %}
-            {{ item.title }}
+            <strong>{{ item.title }}</strong>
             <ol class="dash-list">
               {% for subItem in item.subItems %}
               <li><a href="{{ subItem.link }}">{{ subItem.title }}</a></li>

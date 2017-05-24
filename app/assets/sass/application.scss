@@ -46,7 +46,11 @@ $path: "/public/images/";
     margin-left: 20px;
     padding-right: 20px;
     padding-top: 5px;
-    list-style-type: disc
+    list-style-type: disc;
+
+    > strong {
+      font-weight: bold;
+    }
 }
 
 @supports (content: "—") {
@@ -59,10 +63,12 @@ $path: "/public/images/";
         position: relative;
         float: left;
         width: 20px;
-        margin-left: -20px
+        margin-left: -20px;
     }
 
     .dash-list li.numbered-item {
+      margin-left: 0;
+
       &:before {
         display: none;
       }
