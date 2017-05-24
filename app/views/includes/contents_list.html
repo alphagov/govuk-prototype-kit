@@ -30,9 +30,18 @@
       {% endif %}
     {% else %}
       {% for item in content.contentsList() %}
-      <li class="{% if item.isNumberedItem %}numbered-item{% endif %}">
-        <a href="{{ item.link }}">{{ item.title }}</a>
-      </li>
+        {% if item.isNumberedItem %}
+          <li class="numbered-item">
+            <a href="{{ item.link }}">
+              <span class="number">{{ item.itemNumber }}.</span>
+              <span>{{ item.title }}</span>
+            </a>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ item.link }}">{{ item.title }}</a>
+          </li>
+        {% endif %}
       {% endfor %}
     {% endif %}
   </ol>

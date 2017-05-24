@@ -10,9 +10,17 @@ const HtmlPublication = class extends ContentItem {
     $headings.each((i, h) => {
       let $this = $(h)
       let re = new RegExp(/^\d/)
-      let isNumberedItem = re.test($this.text())
+      let text = $this.text()
+      let isNumberedItem = re.test(text)
+      let itemNumber
+      let formattedText = text
 
-      contents.push({ title: $this.text(), link: $this.attr('href'), isNumberedItem: isNumberedItem })
+      if (isNumberedItem) {
+        formattedText = text.split('. ')[1]
+        itemNumber = text.split('. ')[0]
+      }
+
+      contents.push({ title: formattedText, link: $this.attr('href'), isNumberedItem: isNumberedItem, itemNumber: itemNumber })
     })
 
     return contents

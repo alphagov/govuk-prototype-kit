@@ -68,6 +68,20 @@ $path: "/public/images/";
 
     .dash-list li.numbered-item {
       margin-left: 0;
+      padding-left: 28px;
+      position: relative;
+
+      span.number {
+        position: absolute;
+        top: 8px;
+        left: 0;
+
+        // + span {
+        //   padding-left: 7px;
+        // }
+      }
+
+
 
       &:before {
         display: none;
