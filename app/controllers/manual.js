@@ -17,10 +17,10 @@ module.exports = {
 
     Content.getChapter(contentPath).then(response => {
       let json = response
-      let manual = new Manual(json)
+      let manual = new Manual(json, 'manual')
       let template = (res.locals.showDeepNav === 'true') ? 'chapter_with_side_nav' : 'chapter'
 
-      template = (res.locals.fixedLayout === 'true') ? 'chapter_with_fixed_side_nav' : template
+      // template = (res.locals.fixedLayout === 'true') ? 'chapter_with_fixed_side_nav' : template
 
       return res.status(200).render(template, {
         content: manual,

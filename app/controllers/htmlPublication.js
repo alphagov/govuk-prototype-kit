@@ -7,7 +7,7 @@ module.exports = {
 
     Content.get(contentPath).then(response => {
       let json = response.getBody()
-      let publication = new HtmlPublication(json)
+      let publication = new HtmlPublication(json, 'html_publication')
       return res.status(200).render('format', { content: publication })
     })
   }

@@ -7,16 +7,18 @@
       {% if showDeepNav === 'true' %}
         {% for item in content.contentsList() %}
         <li>
-          <a href="{{ item.link }}">
+          {% if item.subItems %}
             {{ item.title }}
-            {% if item.subItems %}
             <ol class="dash-list">
               {% for subItem in item.subItems %}
               <li><a href="{{ subItem.link }}">{{ subItem.title }}</a></li>
               {% endfor %}
             </ol>
-            {% endif %}
-          </a>
+          {% else %}
+            <a href="{{ item.link }}">
+              {{ item.title }}
+            </a>
+          {% endif %}
         </li>
         {% endfor %}
       {% else %}
@@ -28,7 +30,7 @@
       {% endif %}
     {% else %}
       {% for item in content.contentsList() %}
-      <li>
+      <li class="{% if item.isNumberedItem %}numbered-item{% endif %}">
         <a href="{{ item.link }}">{{ item.title }}</a>
       </li>
       {% endfor %}

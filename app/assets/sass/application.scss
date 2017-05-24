@@ -61,6 +61,12 @@ $path: "/public/images/";
         width: 20px;
         margin-left: -20px
     }
+
+    .dash-list li.numbered-item {
+      &:before {
+        display: none;
+      }
+    }
 }
 
 .dash-list .nested-contents-item-h2 {
@@ -695,5 +701,105 @@ $path: "/public/images/";
 
 .column-fixed-inner {
   max-width: 792px;  
+}
+
+
+// HTML publication
+
+.html-publication {
+  padding-top: 30px;
+}
+
+.html-publication .html-publication-title {
+    margin-bottom: 15px;
+    margin-top: 15px
+}
+
+@media (min-width: 641px) {
+    .html-publication .html-publication-title {
+        margin-bottom:45px
+    }
+}
+
+@media (min-width: 641px) {
+    .html-publication .html-publication-title {
+        margin-top:45px
+    }
+}
+
+.html-publication .html-publication-title .context {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 20px;
+    line-height: 1.11111;
+    color: #fff;
+    margin-bottom: 10px
+}
+
+@media (min-width: 641px) {
+    .html-publication .html-publication-title .context {
+        font-size:27px;
+        line-height: 1.11111
+    }
+}
+
+.html-publication .html-publication-title h1 {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 32px;
+    line-height: 1.09375
+}
+
+@media (min-width: 641px) {
+    .html-publication .html-publication-title h1 {
+        font-size:48px;
+        line-height: 1.04167
+    }
+}
+
+.html-publication .headings {
+    margin-bottom: 30px
+}
+
+
+.html-publication .publication-header {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #fff;
+    background: #2b8cc4;
+    padding: 30px 30px 10px;
+    margin-bottom: 30px
+}
+
+.html-publication .publication-header a,.html-publication .publication-header a:visited,.html-publication .publication-header a:hover {
+    color: #fff;
+    text-decoration: underline
+}
+
+.html-publication .publication-header a:active {
+    color: #2b8cc4
+}
+
+@media (min-width: 641px) {
+    .html-publication .publication-header {
+        font-size:19px;
+        line-height: 1.31579
+    }
+}
+
+@media (min-width: 641px) {
+    .html-publication .publication-header {
+        margin-bottom:60px
+    }
+}
+
+.html-publication .publication-header.direction-rtl {
+    direction: rtl;
+    text-align: start
 }
 

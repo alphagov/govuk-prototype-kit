@@ -7,7 +7,7 @@ module.exports = {
 
     Content.get(contentPath).then(response => {
       let json = response.getBody()
-      let guide = new DetailedGuide(json)
+      let guide = new DetailedGuide(json, 'guide')
       return res.status(200).render('format', { content: guide })
     })
   }

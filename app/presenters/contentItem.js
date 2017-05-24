@@ -1,6 +1,7 @@
 const ContentItem = class {
-  constructor (json) {
+  constructor (json, type) {
     this.json = json
+    this.type = type
   }
 
   contentsList () {

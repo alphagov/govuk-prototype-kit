@@ -1,0 +1,24 @@
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <div class="govuk-title length-long">
+      <p class="context">{{ content.context() | title }}</p>
+      <h1>{{ content.title() }}</h1>
+    </div>
+  </div>
+</div>
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <div class="govuk-metadata">
+      <dl>
+        {% for item in content.metadata() %}
+          {% for name, value in item %}
+            {% if value %}
+            <dt>{{ name }}:</dt>
+            <dd>{{ value }}</dd>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </dl>
+    </div>
+  </div>
+</div>

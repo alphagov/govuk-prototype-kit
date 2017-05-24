@@ -6,31 +6,15 @@
 
 {% block content %}
 
-<main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <div class="govuk-title length-long">
-        <p class="context">{{ content.context() | title }}</p>
-        <h1>{{ content.title() }}</h1>
-      </div>
-    </div>
-  </div>
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <div class="govuk-metadata">
-        <dl>
-          {% for item in content.metadata() %}
-            {% for name, value in item %}
-              {% if value %}
-              <dt>{{ name }}:</dt>
-              <dd>{{ value }}</dd>
-              {% endif %}
-            {% endfor %}
-          {% endfor %}
-        </dl>
-      </div>
-    </div>
-  </div>
+
+
+<main id="content" role="main" class="{% if content.type == 'html_publication' %}html-publication{% endif %}">
+  {% if content.type == 'html_publication' %}
+    {% include "includes/html_publication_header.html" %}
+  {% else %}
+    {% include "includes/header.html" %}
+  {% endif %}
+  
   {% if content.description %}<p class="description">{{ content.description() }}</p>{% endif %}
   <div class="grid-row sidebar-with-body">
     <div class="column-third">
