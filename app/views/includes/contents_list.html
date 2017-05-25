@@ -6,7 +6,7 @@
     {% if content.isChapter %}
       {% if showDeepNav === 'true' %}
         {% for item in content.contentsList() %}
-        <li>
+        <li id="section{{ loop.index }}">
           {% if item.subItems %}
             <strong>{{ item.title }}</strong>
             <ol class="dash-list">
@@ -15,7 +15,7 @@
               {% endfor %}
             </ol>
           {% else %}
-            <a href="{{ item.link }}">
+            <a href="{{ item.link }}&anchor=section{{ loop.index }}">
               {{ item.title }}
             </a>
           {% endif %}

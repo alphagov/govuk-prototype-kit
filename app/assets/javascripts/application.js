@@ -20,4 +20,17 @@ $(document).ready(function () {
   // to toggle hidden content
   var showHideContent = new GOVUK.ShowHideContent()
   showHideContent.init()
+
+  // scroll to selected chapter in sidebar
+  var scrollto = location.search
+  if (scrollto.length) {
+    var found = scrollto.search('anchor')
+    if (found != -1) {
+      scrollto = scrollto.substring(found + 'anchor='.length)
+      var parentEl = $('#navwrapper')
+      var targetEl = $('#' + scrollto)
+      var offset = targetEl.position()
+      parentEl.scrollTop(offset.top)
+    }
+  }
 })

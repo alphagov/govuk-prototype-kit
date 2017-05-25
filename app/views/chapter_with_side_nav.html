@@ -8,12 +8,12 @@
 
 <main id="content" role="main">
   <div class="grid-row">
-    <div class="column-quarter column-fixed">
+    <div class="column-quarter column-fixed" id="navwrapper">
       {% include "includes/contents_list.html" %}
     </div>
 
     <div class="manuals-frontend-body column-three-quarters column-fixed">
-      
+
       {% include "includes/manual_header.html" %}
 
       <div class="manual-body">
@@ -21,15 +21,15 @@
         <div class="grid-row">
           <div class="column-full">
             <div class="govuk-govspeak">
-              {{ content.body().govspeak | safe }}  
+              {{ content.body().govspeak | safe }}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  
+
+
 </main>
 
 {% endblock %}
