@@ -12,6 +12,7 @@
     {% include "includes/manual_header.html" %}
 
     <div class="manual-body">
+      <h1 class="section-title">{{ content.title() }}</h1>
       {% if content.description %}<p class="description">{{ content.description() }}</p>{% endif %}
       <div class="grid-row sidebar-with-body">
         {% if content.chapterContents().length > 0 %}
@@ -21,7 +22,7 @@
         {% endif %}
         <div class="{% if content.chapterContents().length > 0 %}column-two-thirds{% else %}column-full{% endif %}">
           <div class="govuk-govspeak">
-            {{ content.body().govspeak | safe }}  
+            {{ content.body().govspeak | safe }}
           </div>
         </div>
       </div>

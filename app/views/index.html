@@ -7,54 +7,69 @@
 {% block content %}
 
 <main id="content" role="main">
+  <h1 class="heading-xlarge">
+    Long Text Prototype
+    <span class="heading-secondary">May 2017 - Template Consolidation Team {{releaseVersion}}</span>
+  </h1>{{releaseVersion | log }}
+
   <div class="grid-row">
     <div class="column-two-thirds">
+      <h2 class="heading-medium">About this prototype</h2>
+      <p>This prototype explores different ways for users to navigate Manuals and HTML Publications.</p>
 
-      <h1 class="heading-xlarge">
-        The GOV.UK prototype kit
-        <span class="heading-secondary">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        Below are the three long text formats being prototyped.
-      </p>
+      <hr/>
 
+      <h2 class="heading-medium">HTML Publications Prototype</h2>
+      <p>We have made a few changes to the layout of HTML Publications. These changes were made in order to address certain known issues with the layout, and to make the layout consistent with the work being done on the Short Text templates.</p>
+
+      <a href="/html-publication">View HTML Publication Prototype</a>
+
+      <h2 class="heading-medium">Manuals Prototype</h2>
+      <p>There are two prototypes:</p>
+      <ul class="list list-bullet">
+        <li>
+          <a href="/?showDeepNav=true">Prototype A - Deep Contents List</a>
+        </li>
+        <li>
+          <a href="/?showDeepNav=false">Prototype B - Chapter Contents List</a>
+        </li>
+      </ul>
+
+      {% if showDeepNav !== 'true' %}
+        <h2 class="heading-medium">Prototype B — Chapter contents list</h2>
+        <p>This design only takes the page content out of the accordion structure and replaces it with a small left hand nav. This is consistent with the layout of the Short Text template.</p>
+        <p><a href="/manual">View Manual Prototype B</a></p>
+      {% else %}
+        <h2 class="heading-medium">Prototype A — Deep contents list</h2>
+        <p>Basing the design on gov.uk technical documentation, we wanted to test whether surfacing the full structure of a manual in a side nav menu was a help or a hindrance to users.</p>
+        <p><a href="/manual">View Manual Prototype A</a></p>
+      {% endif %}
+
+<!--
 			<ul class="list list-bullet">
 				<li>
-					<a href="/detailed-guide">
-						Detailed guide
-					</a>
 				</li>
 				<li>
-					<a href="/html-publication">
-            HTML publication
-          </a>
 				</li>
 				<li>
-					<a href="/manual">
-            Manual
-          </a>
 				</li>
-        <!-- <li>
+        <li>
+        <a href="/detailed-guide">Detailed guide</a>
           <a href="/manual/chapter?fixedLayout=true&showDeepNav=true">
             Manual with scrollable nav
           </a>
-        </li> -->
+        </li>
 			</ul>
-
-      <ul>
-        {% if showDeepNav !== 'true' %}
-        <li>
-          <a href="/?showDeepNav=true">Enter deep contents list mode</a>
-        </li>
-        {% else %}
-        <li>
-          <a href="/?showDeepNav=false">Exit deep contents list mode</a>
-        </li>
-        {% endif %}
-      </ul>
+-->
 
     </div>
-  </div>
+<!--
+        {% if showDeepNav !== 'true' %}
+          <a href="/?showDeepNav=true" class="button">Enter deep contents list mode</a>
+        {% else %}
+          <a href="/?showDeepNav=false" class="button">Exit deep contents list mode</a>
+        {% endif %}
+-->
 </main>
 
 {% endblock %}

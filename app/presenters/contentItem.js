@@ -25,6 +25,10 @@ const ContentItem = class {
     return this.json.title
   }
 
+  manualTitle () {
+    return this.json.links.manual ? this.json.links.manual[0].title : this.title()
+  }
+
   context () {
     return this.json.navigation_document_supertype
   }
