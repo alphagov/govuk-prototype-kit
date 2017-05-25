@@ -33,4 +33,7 @@ $(document).ready(function () {
       parentEl.scrollTop(offset.top)
     }
   }
+
+  // begin the hacky
+  $('#logo').attr('href', '/')
 })
