@@ -37,6 +37,18 @@ $path: "/public/images/";
   }
 }
 
+// this style is to correct a bug
+.govuk-metadata {
+    dt {
+        padding: 0;
+        width: 29%;
+        min-width: 0;
+    }
+    dd {
+        margin-left: 5%;
+        width: 65%;
+    }
+}
 
 .dash-list {
     margin-bottom: 20px

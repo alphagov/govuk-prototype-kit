@@ -1,6 +1,6 @@
 <header>
+  <h1 id="manual-title">{{ content.title() }}</h1>
   <div class="primary">
-    <h1 id="manual-title">{{ content.title() }}</h1>
     <div class="govuk-metadata">
       <dl>
         {% for item in content.metadata() %}
@@ -20,7 +20,7 @@
         <input id="search-box" class="in-manual-search-box" type="text" name="q">
         <button type="submit">search</button>
       </form>
-    </div>  
+    </div>
   </div>
 </header>
 <ol class="breadcrumb-trail">
