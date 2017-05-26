@@ -24,7 +24,7 @@
 
       <a href="/html-publication">View HTML Publication Prototype</a>
 
-      <h2 class="heading-medium">Manuals Prototype</h2>
+      <h2 class="heading-medium" id="definitelyUnique">Manuals Prototype</h2>
       <p>There are two prototypes:</p>
       <ul class="list list-bullet">
         <li>
@@ -35,15 +35,17 @@
         </li>
       </ul>
 
-      {% if showDeepNav !== 'true' %}
-        <h2 class="heading-medium">Prototype B — Chapter contents list</h2>
-        <p>This design only takes the page content out of the accordion structure and replaces it with a small left hand nav. This is consistent with the layout of the Short Text template.</p>
-        <p><a href="/manual">View Manual Prototype B</a></p>
-      {% else %}
+      <div id="panel">
+      {% if showDeepNav == 'true' %}
         <h2 class="heading-medium">Prototype A — Deep contents list</h2>
         <p>Basing the design on gov.uk technical documentation, we wanted to test whether surfacing the full structure of a manual in a side nav menu was a help or a hindrance to users.</p>
         <p><a href="/manual">View Manual Prototype A</a></p>
+      {% elseif showDeepNav %}
+        <h2 class="heading-medium">Prototype B — Chapter contents list</h2>
+        <p>This design only takes the page content out of the accordion structure and replaces it with a small left hand nav. This is consistent with the layout of the Short Text template.</p>
+        <p><a href="/manual">View Manual Prototype B</a></p>
       {% endif %}
+      </div>
 
 <!--
 			<ul class="list list-bullet">

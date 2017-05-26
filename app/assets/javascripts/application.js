@@ -36,4 +36,17 @@ $(document).ready(function () {
 
   // begin the hacky
   $('#logo').attr('href', '/')
+
+  // continue the hacky
+  if ($('#definitelyUnique').length) {
+    var deep = window.location.search
+    console.log(deep)
+    if (!deep.length) {
+      $('#panel').hide()
+    } else if (deep.search('showDeepNav') != -1) {
+      $('html, body').animate({
+        scrollTop: $('#definitelyUnique').offset().top
+      }, 0)
+    }
+  }
 })
