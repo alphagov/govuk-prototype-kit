@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block page_title %} Example - Forms {% endblock %} {% block content %}
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+            <form method="get" action="/docs/examples/check-eligibility-cost-time/result/time" class="form">
+
+            {{formData | safe}}
+
+              <h2 class="heading-large">Money you will need for licence:</h2>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th class="numeric" scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr>
+                   <td>Application fee:</td>
+                    <td class="numeric">£257</td>
+                  </tr>
+
+                  <tr>
+                   <td>Issue of licence:</td>
+                    <td class="numeric">£401</td>
+                  </tr>
+
+                  <tr>
+                    <td>Maintenance (5 years) for <span class="bold">{{ data.how_many_vehicles }} vehicles</span>:</td>
+                    <td class="numeric">
+                      £{{maintenanceCosts}}
+                      <input type="hidden" name="maintenance_costs" value="{{maintenanceCosts}}" />
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+            <br>
+
+            <br>
+
+            <div class="form-group">
+              <input type="submit" class="button" value="Continue"/>
+            </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}

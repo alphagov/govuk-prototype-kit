@@ -1,0 +1,73 @@
+{% extends "layout.html" %} {% block page_title %} Example - Forms {% endblock %} {% block content %}
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+            <form method="get" action="#" class="form">
+
+            {{formData | safe}}
+
+
+            <br>
+            <br>
+
+              <p class="lede">Total time wait after applying:</p>
+
+              <div class="data">
+                <!-- 20-25 -->
+                <h2 class="bold-xxlarge">9 weeks</h2>
+              </div>
+
+            <input type="hidden" name="check_before_you_start" value="completed">
+
+            <br>
+
+            <div class="form-group">
+              <input type="submit" class="button" value="Continue"/>
+            </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}
+
+            <!-- application fee calculator
+            <p class="lede">The cost of applying is <span class="bold">£<span id="cost"></span></span></p>
+
+            <script>
+
+              var query = location.search.substr(1);
+              var result = {};
+              query.split("&").forEach(function(part) {
+                var item = part.split("=");
+                result[item[0]] = decodeURIComponent(item[1]);
+              });
+              data = result;
+              console.log(data)
+
+              var costToPay = 0;
+              if(data.shotguns = 'yes'){
+                costToPay += 79.5
+              }
+              if(data.rifles = 'yes'){
+                costToPay += 88
+              }
+
+              {{data.child_age}}
+
+              if(typeof data.number_of_visitors !== 'undefined'){
+                number_of_visitors = parseInt(data.number_of_visitors)
+                var visitorCost = number_of_visitors*20
+                costToPay += visitorCost
+              }
+
+              costToPay = costToPay.toFixed(2)
+
+              document.getElementById('cost').innerHTML = costToPay
+
+            </script>
+            -->

@@ -1,0 +1,38 @@
+{% extends "layout.html" %} {% block page_title %} Example - Forms {% endblock %} {% block content %}
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form method="get" action="/docs/examples/check-eligibility-cost-time/licence-type/just-your-goods" class="form">
+
+      {{formData | safe}}
+
+        <h1 class="heading-large">
+          How many vehicles will you operate? 
+        </h1>
+
+        <fieldset>
+          <legend class="visuallyhidden">
+            How many vehicles will you operate? 
+          </legend>
+
+          <label class="form-label" for="how_many_vehicles_1">Number of vehicles</label>
+          <input class="form-control form-control-1-8" id="how_many_vehicles_1" type="text" name="how_many_vehicles">
+
+          <br>
+          <br>
+
+        </fieldset>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue" />
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}

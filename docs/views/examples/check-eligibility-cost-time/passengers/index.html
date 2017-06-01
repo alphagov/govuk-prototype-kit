@@ -1,0 +1,45 @@
+{% extends "layout.html" %} {% block page_title %} Driving lessons {% endblock %} {% block content %}
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form method="get" action="/docs/examples/check-eligibility-cost-time/weight/empty" class="form">
+
+      {{formData | safe}}
+
+        <h1 class="heading-large">
+          Will your vehicles just be transporting passengers?
+        </h1>
+
+        <fieldset>
+          <legend class="visuallyhidden">
+            Will your vehicles just be transporting passengers?
+          </legend>
+
+          <div class="form-group">
+            <label for="passengers_1" class="block-label">
+              <input type="radio" id="passengers_1" name="passengers" value="yes">
+              Yes
+            </label>
+
+            <label for="passengers_2" class="block-label">
+              <input type="radio" id="passengers_2" name="passengers" value="no">
+              No
+            </label>
+
+          </div>
+
+        </fieldset>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue" />
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}

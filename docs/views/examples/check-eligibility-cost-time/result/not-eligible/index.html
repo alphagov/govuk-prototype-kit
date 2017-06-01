@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block page_title %} Example - Forms {% endblock %} {% block content %}
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <!-- under 18 -->
+      {% if
+        data.over18=="no" 
+      %}
+
+        <h1 class="heading-large">
+          You're not eligible for a permit
+        </h1>
+
+        <br>
+
+        <p class="lede">You must be 18 or over to transport goods.</p>
+
+      <!-- vehicles too light to need this licence -->
+      {% elif
+        data.weight_empty=="less than 1,525 kg" and data.weight_loaded=="less than 3,5000 kg"
+      %}
+
+        <h1 class="heading-large">
+          You don't need to apply for a permit.
+        </h1>
+
+        <br>
+
+        <p class="lede">You don't need to apply for a permit if your vehicles weigh less than: </p>
+
+        <ul class="lede">
+          <li>1,525 kg when empty</li> 
+          <li>3,500 kg when loaded</li>
+        </ul>
+
+      <!-- carrying passengers -->
+      {% elif
+        data.passengers=="yes" 
+      %}
+
+        <h1 class="heading-large">
+          You don't need to apply for this permit.
+        </h1>
+
+        <br>
+
+        <p class="lede">You don't need this permit if you're only carrying passengers. Apply for a <a href="https://www.gov.uk/psv-operator-licences">public service vehicle licence</a> instead.</p>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}
