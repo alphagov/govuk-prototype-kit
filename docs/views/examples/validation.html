@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">Validation</h1>
+
+      <form>
+        <!-- Text inputs -->
+        <div class="form-group">
+         <fieldset data-required data-error="Cannot be blank">
+           <label class="form-label-bold" for="full-name">
+             Full name
+             <span class="form-hint">As shown on your birth certificate or passport</span>
+           </label>
+           <input id="full-name" class="form-control" name="full-name" type="text">
+         </fieldset>
+        </div>
+
+        <div class="form-group">
+         <fieldset>
+           <label class="form-label-bold" for="occupation">
+             Occupation
+           </label>
+           <input class="form-control" name="occupation" type="text">
+         </fieldset>
+        </div>
+
+        <!-- Date of birth -->
+        <div class="form-group">
+         <fieldset data-required data-error="Cannot be blank">
+           <legend class="form-label-bold">Date of birth</legend>
+           <p class="form-hint" id="dob-hint">For example, 31 3 1980</p>
+
+           <div class="form-date">
+             <div class="form-group form-group-day">
+               <label for="dob-day">Day</label>
+               <input class="form-control" id="dob-day" name="dob-day" type="text" pattern="[0-9]*" min="0" max="31" aria-describedby="dob-hint">
+             </div>
+
+             <div class="form-group form-group-month">
+               <label for="dob-month">Month</label>
+                  <input class="form-control" id="dob-month" name="dob-month" type="text" pattern="[0-9]*" min="0" max="12">
+               </div>
+
+             <div class="form-group form-group-year">
+               <label for="dob-year">Year</label>
+               <input class="form-control" id="dob-year" name="dob-year" type="text" pattern="[0-9]*" min="0" max="2016">
+             </div>
+           </div>
+         </fieldset>
+        </div>
+
+        <!-- Radio buttons -->
+        <div class="form-group">
+         <fieldset class="inline" data-required data-error="Choose yes or no">
+           <legend class="heading-medium">Do have a personal user account?</legend>
+
+           <label class="block-label" for="radio-inline-1">
+             <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+             Yes
+           </label>
+
+           <label class="block-label" for="radio-inline-2">
+             <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+             No
+           </label>
+         </fieldset>
+        </div>
+
+        <!-- Checkboxes -->
+        <div class="form-group">
+         <fieldset data-required data-error="Choose at least one option">
+           <legend class="heading-medium">Which documents do you have?</legend>
+
+           <label class="block-label" for="passport">
+             <input id="passport" name="doc-types" type="checkbox" value="passport">
+             Passport
+           </label>
+
+           <label class="block-label" for="driving-licence">
+             <input id="driving-licence" name="doc-types" type="checkbox" value="driving-licence">
+             Driving licence
+           </label>
+
+           <label class="block-label" for="birth-certificate">
+             <input id="birth-certificate" name="doc-types" type="checkbox" value="birth-certificate">
+             Birth certificate
+           </label>
+         </fieldset>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+         <fieldset data-required data-error="Cannot be blank">
+           <legend class="heading-medium">Do you have difficulty completing daily activities</legend>
+
+           <label class="form-label" for="circumstances">
+             Tell us about your circumstances
+           </label>
+
+           <textarea id="circumstances" rows="5" cols="30" class="form-control" name="circumstances"></textarea>
+         </fieldset>
+        </div>
+
+        <div class="form-group">
+         <input type="submit" class="button" value="Continue">
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+
