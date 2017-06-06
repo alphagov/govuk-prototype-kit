@@ -49,6 +49,32 @@ $path: "/public/images/";
         width: 65%;
     }
 }
+// these styles make the back to contents link work
+.back-to-content {
+  @include core-16;
+  display: inline-block;
+  margin-bottom: $gutter-half;
+
+  .icon {
+    float: left;
+    margin-right: .3em;
+    width: .8em;
+    height: .968em;
+  }
+
+  .sidebar-with-body & .icon {
+    margin-left: $gutter-half;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+.sidebar-with-body {
+    position: relative;
+}
+
+
 
 .dash-list {
     margin-bottom: 20px

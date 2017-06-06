@@ -8,25 +8,41 @@
 
 
 
-<main id="content" role="main" class="{% if content.type == 'html_publication' %}html-publication{% endif %}">
+<main id="content" role="main" class="{% if content.type == 'html_publication' %}html-publication{% endif %}" >
   {% if content.type == 'html_publication' %}
     {% include "includes/html_publication_header.html" %}
   {% else %}
     {% include "includes/header.html" %}
   {% endif %}
-  
+
   {% if content.description %}<p class="description">{{ content.description() }}</p>{% endif %}
-  <div class="grid-row sidebar-with-body">
+  <div class="grid-row sidebar-with-body"
+    {% if content.type == 'html_publication' %}
+      data-module="sticky-element-container"
+      id="contentsSticky"
+    {% endif %}
+  >
     <div class="column-third">
       {% include "includes/contents_list.html" %}
     </div>
     <div class="column-two-thirds">
       <div class="govuk-govspeak">
-        {{ content.body().govspeak | safe }}  
+        {{ content.body().govspeak | safe }}
       </div>
-      
-
     </div>
+    {% if content.type == 'html_publication' %}
+      <div data-sticky-element class="sticky-element">
+        <a class="back-to-content"
+          data-track-category="contentsClicked"
+          data-track-action="backToContentsLinkClicked"
+          data-track-label="contents"
+          data-module="track-click"
+          href="#contentsSticky">
+            <svg class="icon" width="14" height="17" viewBox="0 0 14 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g transform="translate(-885.000000, -1380.000000) translate(886.000000, 1380.000000) translate(0.000000, 1.000000)" stroke-width="2" stroke="currentColor" fill="none" fill-rule="evenodd"><polyline points="12 6.61354167 6.10565074 0.719192411 0.312351484 6.51249167"/><path d="M6,1.52415365 L6,15" stroke-linecap="square"/></g></svg>
+            Contents
+        </a>
+      </div>
+    {% endif %}
   </div>
 </main>
 
