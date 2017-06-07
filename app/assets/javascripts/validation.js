@@ -7,10 +7,23 @@ $(document).on('submit', 'form', function (e) {
     for (var i = 0; i < reqFields.length; i++) {
       var $formGroup = $(reqFields[i])
       var type = findInputType($formGroup)
+      var errorMessage = getErrorMessage($formGroup, type)
+
       addErrorClass($formGroup)
+      // add the error message to the individual field
     }
+    // append the error summary
+    // loop error messages into summary
   }
 })
+
+function getErrorMessage ($formGroup, type) {
+  var customError = $formGroup.attr('data-required')
+  if (customError) {
+    return customError
+  }
+  return (type === 'text' || type === 'textarea') ? 'Cannot be blank' : 'Choose an option'
+}
 
 function addErrorClass ($formGroup) {
   return $formGroup.addClass('form-group-error')
