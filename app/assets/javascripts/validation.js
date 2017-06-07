@@ -7,11 +7,14 @@ $(document).on('submit', 'form', function (e) {
     for (var i = 0; i < reqFields.length; i++) {
       var $formGroup = $(reqFields[i])
       var type = findInputType($formGroup)
-      console.log(type)
+      addErrorClass($formGroup)
     }
   }
 })
 
+function addErrorClass ($formGroup) {
+  return $formGroup.addClass('form-group-error')
+}
 function findInputType ($formGroup) {
   if ($formGroup.find('input[type="radio"]').length > 0) {
     return 'radio'
