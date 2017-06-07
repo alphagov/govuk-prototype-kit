@@ -76,9 +76,11 @@ function addErrorLinksToSummary (errorMessages) {
   for (var i = 0; i < errorMessages.length; i++) {
     var message = errorMessages[i].message.toLowerCase()
     $errorSummaryList.append(
-      `<li>
-        <a href="#${errorMessages[i].linkID}">${errorMessages[i].label} - ${message}</a>
-      </li>`
+      '<li>' +
+        '<a href="#' + errorMessages[i].linkID + '">' +
+          errorMessages[i].label + ' - ' + message +
+        '</a>' +
+      '</li>'
     )
   }
 }
@@ -87,20 +89,16 @@ function prependErrorSummary () {
   var notPrepended = $('.error-summary').length === 0
   if (notPrepended) {
     $('main').prepend(
-      `<div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
-
-        <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
-          There's been a problem
-        </h1>
-
-        <p>
-          Check the following:
-        </p>
-        
-        <ul class="error-summary-list">
-          
-        </ul>
-      </div>`
+      '<div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">' +
+      ' <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">' +
+      '   There\'s been a problem' +
+      ' </h1>' +
+      ' <p>' +
+      '   Check the following:' +
+      ' </p>' +
+      ' <ul class="error-summary-list">' +
+      '  </ul>' +
+      '</div>'
     )
   }
 }
