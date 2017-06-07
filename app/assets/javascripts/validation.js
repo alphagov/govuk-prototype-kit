@@ -1,5 +1,4 @@
 $(document).on('submit', 'form', function (e) {
-  e.preventDefault()
   var reqFields = $('[data-required]')
 
   if (reqFields.length > 0) {
@@ -15,6 +14,7 @@ $(document).on('submit', 'form', function (e) {
       errorMessages.push({linkID, message: errorMessage})
 
       addErrorClass($formGroup)
+      appendLabelErrorMessage($formGroup, type, errorMessage)
       // add the error message to the individual field
     }
     // append the error summary
@@ -22,6 +22,20 @@ $(document).on('submit', 'form', function (e) {
   }
 })
 
+function appendLabelErrorMessage ($formGroup, type, errorMessage) {
+  var notAppended = $formGroup.find('.error-message').length === 0
+  if ((type === 'text' || type === 'textarea') && notAppended) {
+    return $formGroup.find('label').append(
+      '<span class="error-message">' + errorMessage + '</span>'
+    )
+  }
+
+  if ((type === 'radio' || type === 'checkbox') && notAppended) {
+    return $formGroup.find('legend').append(
+      '<span class="error-message">' + errorMessage + '</span>'
+    )
+  }
+}
 function getLinkID ($formGroup) {
   return $formGroup.find('input:first').attr('id') || ''
 }
