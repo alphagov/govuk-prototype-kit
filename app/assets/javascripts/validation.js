@@ -15,11 +15,34 @@ $(document).on('submit', 'form', function (e) {
 
       addErrorClass($formGroup)
       appendLabelErrorMessage($formGroup, type, errorMessage)
+      prependErrorSummary()
     }
     // append the error summary
     // loop error messages into summary
   }
 })
+
+function prependErrorSummary () {
+  var notPrepended = $('.error-summary').length === 0
+  if (notPrepended) {
+    $('main').prepend(
+      `<div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+        <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+          There's been a problem
+        </h1>
+
+        <p>
+          Check the following:
+        </p>
+        
+        <ul class="error-summary-list">
+          
+        </ul>
+      </div>`
+    )
+  }
+}
 
 function appendLabelErrorMessage ($formGroup, type, errorMessage) {
   var notAppended = $formGroup.find('.error-message').length === 0
