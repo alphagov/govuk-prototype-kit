@@ -5,8 +5,11 @@ $(document).on('submit', 'form', function (e) {
     var invalidFields = validateAll(reqFields)
     if (invalidFields.length > 0) {
       e.preventDefault()
-      clearAllErrors(reqFields)
-      sortErrorMessages(invalidFields)
+      setTimeout(function () {
+        clearAllErrors(reqFields)
+        sortErrorMessages(invalidFields)
+        $(window).scrollTop(0)
+      }, 800)
     }
   }
 })
