@@ -1,14 +1,22 @@
 $(document).on('submit', 'form', function (e) {
   var reqFields = $('[data-required]')
-  e.preventDefault()
 
   if (reqFields.length > 0) {
     var invalidFields = validateAll(reqFields)
-    console.log(invalidFields)
+    if (invalidFields.length > 0) {
+      e.preventDefault()
+      clearAllErrors(reqFields)
+      sortErrorMessages(invalidFields)
+    }
   }
-  // if errors
-  sortErrorMessages(reqFields)
 })
+
+function clearAllErrors(reqFields) {
+  $(reqFields).each(function () {
+    $(this).removeClass('form-group-error')
+    $(this).find('.error-message').remove()
+  })
+}
 
 function validateAll (reqFields) {
   var invalidFields = []
@@ -33,11 +41,11 @@ function validateSingleField ($formGroup) {
   return true
 }
 
-function sortErrorMessages (reqFields) {
+function sortErrorMessages (invalidFields) {
   var errorMessages = []
 
-  for (var i = 0; i < reqFields.length; i++) {
-    var $formGroup = $(reqFields[i])
+  for (var i = 0; i < invalidFields.length; i++) {
+    var $formGroup = $(invalidFields[i])
     var type = findInputType($formGroup)
     var errorMessage = getErrorMessage($formGroup, type)
     var linkID = getLinkID($formGroup)
