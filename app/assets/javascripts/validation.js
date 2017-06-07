@@ -1,25 +1,31 @@
 $(document).on('submit', 'form', function (e) {
   var reqFields = $('[data-required]')
+  e.preventDefault()
 
   if (reqFields.length > 0) {
-    e.preventDefault()
-    var errorMessages = []
-
-    for (var i = 0; i < reqFields.length; i++) {
-      var $formGroup = $(reqFields[i])
-      var type = findInputType($formGroup)
-      var errorMessage = getErrorMessage($formGroup, type)
-      var linkID = getLinkID($formGroup)
-
-      errorMessages.push({linkID, message: errorMessage})
-
-      addErrorClass($formGroup)
-      appendLabelErrorMessage($formGroup, type, errorMessage)
-    }
-    prependErrorSummary()
-    addErrorLinksToSummary(errorMessages)
+    // validate the fields
   }
+  // if errors
+  sortErrorMessages(reqFields)
 })
+
+function sortErrorMessages (reqFields) {
+  var errorMessages = []
+
+  for (var i = 0; i < reqFields.length; i++) {
+    var $formGroup = $(reqFields[i])
+    var type = findInputType($formGroup)
+    var errorMessage = getErrorMessage($formGroup, type)
+    var linkID = getLinkID($formGroup)
+
+    errorMessages.push({ linkID, message: errorMessage })
+
+    addErrorClass($formGroup)
+    appendLabelErrorMessage($formGroup, type, errorMessage)
+  }
+  prependErrorSummary()
+  addErrorLinksToSummary(errorMessages)
+}
 
 function addErrorLinksToSummary (errorMessages) {
   var $errorSummaryList = $('.error-summary-list:first')
