@@ -4,11 +4,15 @@ $(document).on('submit', 'form', function (e) {
 
   if (reqFields.length > 0) {
     e.preventDefault()
+    var errorMessages = []
+
     for (var i = 0; i < reqFields.length; i++) {
       var $formGroup = $(reqFields[i])
       var type = findInputType($formGroup)
       var errorMessage = getErrorMessage($formGroup, type)
       var linkID = getLinkID($formGroup)
+
+      errorMessages.push({linkID, message: errorMessage})
 
       addErrorClass($formGroup)
       // add the error message to the individual field
