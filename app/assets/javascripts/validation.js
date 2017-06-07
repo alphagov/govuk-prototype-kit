@@ -17,9 +17,21 @@ $(document).on('submit', 'form', function (e) {
       appendLabelErrorMessage($formGroup, type, errorMessage)
     }
     prependErrorSummary()
-    // loop error messages into summary
+    addErrorLinksToSummary(errorMessages)
   }
 })
+
+function addErrorLinksToSummary (errorMessages) {
+  var $errorSummaryList = $('.error-summary-list:first')
+  $errorSummaryList.html('')
+  for (var i = 0; i < errorMessages.length; i++) {
+    $errorSummaryList.append(
+      `<li>
+        <a href="#${errorMessages[i].linkID}">${errorMessages[i].message}</a>
+      </li>`
+    )
+  }
+}
 
 function prependErrorSummary () {
   var notPrepended = $('.error-summary').length === 0
