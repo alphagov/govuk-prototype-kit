@@ -85,16 +85,18 @@ function addErrorLinksToSummary (errorMessages) {
   }
 }
 
-function prependErrorSummary () {
+function prependErrorSummary() {
   var notPrepended = $('.error-summary').length === 0
+  var heading = $('main').attr('data-errorHeading') || 'There\'s been a problem'
+  var description = $('main').attr('data-errorDescription') || 'Check the following:'
   if (notPrepended) {
     $('main').prepend(
       '<div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">' +
       ' <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">' +
-      '   There\'s been a problem' +
+          heading +
       ' </h1>' +
       ' <p>' +
-      '   Check the following:' +
+          description +
       ' </p>' +
       ' <ul class="error-summary-list">' +
       '  </ul>' +
