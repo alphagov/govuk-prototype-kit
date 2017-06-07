@@ -8,6 +8,7 @@ $(document).on('submit', 'form', function (e) {
       var $formGroup = $(reqFields[i])
       var type = findInputType($formGroup)
       var errorMessage = getErrorMessage($formGroup, type)
+      var linkID = getLinkID($formGroup)
 
       addErrorClass($formGroup)
       // add the error message to the individual field
@@ -17,6 +18,9 @@ $(document).on('submit', 'form', function (e) {
   }
 })
 
+function getLinkID ($formGroup) {
+  return $formGroup.find('input:first').attr('id') || ''
+}
 function getErrorMessage ($formGroup, type) {
   var customError = $formGroup.attr('data-required')
   if (customError) {
@@ -24,7 +28,6 @@ function getErrorMessage ($formGroup, type) {
   }
   return (type === 'text' || type === 'textarea') ? 'Cannot be blank' : 'Choose an option'
 }
-
 function addErrorClass ($formGroup) {
   return $formGroup.addClass('form-group-error')
 }
