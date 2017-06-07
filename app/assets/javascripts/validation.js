@@ -15,7 +15,6 @@ $(document).on('submit', 'form', function (e) {
 
       addErrorClass($formGroup)
       appendLabelErrorMessage($formGroup, type, errorMessage)
-      // add the error message to the individual field
     }
     // append the error summary
     // loop error messages into summary
@@ -36,9 +35,11 @@ function appendLabelErrorMessage ($formGroup, type, errorMessage) {
     )
   }
 }
+
 function getLinkID ($formGroup) {
   return $formGroup.find('input:first').attr('id') || ''
 }
+
 function getErrorMessage ($formGroup, type) {
   var customError = $formGroup.attr('data-required')
   if (customError) {
@@ -46,9 +47,11 @@ function getErrorMessage ($formGroup, type) {
   }
   return (type === 'text' || type === 'textarea') ? 'Cannot be blank' : 'Choose an option'
 }
+
 function addErrorClass ($formGroup) {
   return $formGroup.addClass('form-group-error')
 }
+
 function findInputType ($formGroup) {
   if ($formGroup.find('input[type="radio"]').length > 0) {
     return 'radio'
