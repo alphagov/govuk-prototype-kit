@@ -3,11 +3,35 @@ $(document).on('submit', 'form', function (e) {
   e.preventDefault()
 
   if (reqFields.length > 0) {
-    // validate the fields
+    var invalidFields = validateAll(reqFields)
+    console.log(invalidFields)
   }
   // if errors
   sortErrorMessages(reqFields)
 })
+
+function validateAll (reqFields) {
+  var invalidFields = []
+  for (var i = 0; i < reqFields.length; i++) {
+    var $formGroup = $(reqFields[i])
+    var invalid = validateSingleField($formGroup)
+    if (invalid) {
+      invalidFields.push($formGroup)
+    }
+  }
+  return invalidFields
+}
+
+function validateSingleField ($formGroup) {
+  var type = findInputType($formGroup)
+  if ((type === 'text' || type === 'textarea') && $formGroup.find('input, textarea').val().length > 0) {
+    return false
+  }
+  if ((type === 'radio' || type === 'checkbox') && $formGroup.find(':checked').length > 0) {
+    return false
+  }
+  return true
+}
 
 function sortErrorMessages (reqFields) {
   var errorMessages = []
