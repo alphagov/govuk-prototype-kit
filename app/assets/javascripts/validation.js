@@ -49,8 +49,9 @@ function sortErrorMessages (invalidFields) {
     var type = findInputType($formGroup)
     var errorMessage = getErrorMessage($formGroup, type)
     var linkID = getLinkID($formGroup)
+    var label = getLabelText($formGroup, type)
 
-    errorMessages.push({ linkID, message: errorMessage })
+    errorMessages.push({ linkID, label, message: errorMessage })
 
     addErrorClass($formGroup)
     appendLabelErrorMessage($formGroup, type, errorMessage)
@@ -59,13 +60,21 @@ function sortErrorMessages (invalidFields) {
   addErrorLinksToSummary(errorMessages)
 }
 
+function getLabelText ($formGroup, type) {
+  if (type === 'radio' || type === 'checkbox') {
+    return $formGroup.find('legend').text()
+  }
+  return $formGroup.find('label').text()
+}
+
 function addErrorLinksToSummary (errorMessages) {
   var $errorSummaryList = $('.error-summary-list:first')
   $errorSummaryList.html('')
   for (var i = 0; i < errorMessages.length; i++) {
+    var message = errorMessages[i].message.toLowerCase()
     $errorSummaryList.append(
       `<li>
-        <a href="#${errorMessages[i].linkID}">${errorMessages[i].message}</a>
+        <a href="#${errorMessages[i].linkID}">${errorMessages[i].label} - ${message}</a>
       </li>`
     )
   }
