@@ -15,9 +15,8 @@ $(document).on('submit', 'form', function (e) {
 
       addErrorClass($formGroup)
       appendLabelErrorMessage($formGroup, type, errorMessage)
-      prependErrorSummary()
     }
-    // append the error summary
+    prependErrorSummary()
     // loop error messages into summary
   }
 })
