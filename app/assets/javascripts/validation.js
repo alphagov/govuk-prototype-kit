@@ -18,6 +18,7 @@ function clearAllErrors (reqFields) {
   $(reqFields).each(function () {
     $(this).removeClass('form-group-error')
     $(this).find('.error-message').remove()
+    $(this).find('.form-control-error').removeClass('form-control-error')
   })
 }
 
@@ -56,7 +57,7 @@ function sortErrorMessages (invalidFields) {
 
     errorMessages.push({ linkID, label, message: errorMessage })
 
-    addErrorClass($formGroup)
+    addErrorClass($formGroup, type)
     appendLabelErrorMessage($formGroup, type, errorMessage)
   }
   prependErrorSummary()
@@ -132,8 +133,11 @@ function getErrorMessage ($formGroup, type) {
   return (type === 'text' || type === 'textarea' || type === 'date') ? 'Cannot be blank' : 'Choose an option'
 }
 
-function addErrorClass ($formGroup) {
-  return $formGroup.addClass('form-group-error')
+function addErrorClass ($formGroup, type) {
+  if (type === 'text' || type === 'textarea' || type === 'date') {
+    $formGroup.find('.form-control').addClass('form-control-error')
+  }
+  $formGroup.addClass('form-group-error')
 }
 
 function findInputType ($formGroup) {
