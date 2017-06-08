@@ -6,13 +6,13 @@
 
 {% block content %}
 
-<main id="content" role="main">
+<main id="content" role="main" data-errorHeading="Message to alert the user to a problem goes here" data-errorDescription="Optional description of the errors and how to correct them">
   <div class="grid-row">
     <div class="column-two-thirds">
 			<h1 class="heading-xlarge">Validation</h1>
 
 			<form>
-				<div class="form-group" data-required="Fill this in">
+				<div class="form-group" data-required="Custom error message goes here">
 					<label class="form-label" for="full-name-f1">Full name</label>
 					<input class="form-control" id="full-name-f1" type="text">
 				</div>
