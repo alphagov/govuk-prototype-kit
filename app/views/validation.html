@@ -17,6 +17,31 @@
 					<input class="form-control" id="full-name-f1" type="text">
 				</div>
 
+				<div class="form-group" data-required>
+					<fieldset>
+						<legend>
+							<span class="form-label-bold">
+								What is your date of birth?
+							</span>
+							<span class="form-hint">For example, 31 3 1980</span>
+						</legend>
+						<div class="form-date">
+							<div class="form-group form-group-day">
+								<label class="form-label" for="dob-day">Day</label>
+								<input class="form-control" id="dob-day" name="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
+							</div>
+							<div class="form-group form-group-month">
+								<label class="form-label" for="dob-month">Month</label>
+								<input class="form-control" id="dob-month" name="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+							</div>
+							<div class="form-group form-group-year">
+								<label class="form-label" for="dob-year">Year</label>
+								<input class="form-control" id="dob-year" name="dob-year" type="number" pattern="[0-9]*" min="0" max="2016">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+
 				<h2 class="heading-medium">Do you already have a personal user account?</h2>
 				<div class="form-group" data-required>
 					<fieldset class="inline">

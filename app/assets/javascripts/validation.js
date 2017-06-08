@@ -64,8 +64,8 @@ function sortErrorMessages (invalidFields) {
 }
 
 function getLabelText ($formGroup, type) {
-  if (type === 'radio' || type === 'checkbox') {
-    return $formGroup.find('legend').text()
+  if (type === 'radio' || type === 'checkbox' || type === 'date') {
+    return $formGroup.find('legend span:first').text()
   }
   return $formGroup.find('label').text()
 }
@@ -85,7 +85,7 @@ function addErrorLinksToSummary (errorMessages) {
   }
 }
 
-function prependErrorSummary() {
+function prependErrorSummary () {
   var notPrepended = $('.error-summary').length === 0
   var heading = $('main').attr('data-errorHeading') || 'There\'s been a problem'
   var description = $('main').attr('data-errorDescription') || 'Check the following:'
@@ -113,7 +113,7 @@ function appendLabelErrorMessage ($formGroup, type, errorMessage) {
     )
   }
 
-  if ((type === 'radio' || type === 'checkbox') && notAppended) {
+  if ((type === 'radio' || type === 'checkbox' || type === 'date') && notAppended) {
     return $formGroup.find('legend').append(
       '<span class="error-message">' + errorMessage + '</span>'
     )
@@ -129,7 +129,7 @@ function getErrorMessage ($formGroup, type) {
   if (customError) {
     return customError
   }
-  return (type === 'text' || type === 'textarea') ? 'Cannot be blank' : 'Choose an option'
+  return (type === 'text' || type === 'textarea' || type === 'date') ? 'Cannot be blank' : 'Choose an option'
 }
 
 function addErrorClass ($formGroup) {
@@ -137,6 +137,9 @@ function addErrorClass ($formGroup) {
 }
 
 function findInputType ($formGroup) {
+  if ($formGroup.find('.form-date').length > 0) {
+    return 'date'
+  }
   if ($formGroup.find('input[type="radio"]').length > 0) {
     return 'radio'
   }
