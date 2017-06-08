@@ -1,14 +1,7 @@
 .check-your-answers {
-
-  td {
-    @include core-19;
-    vertical-align: top;
-  }
+  border-bottom: 1px solid $border-colour;
 
   .change-answer {
-    text-align: right;
     font-weight: bold;
-    padding-right: 0;
   }
-
 }
