@@ -32,6 +32,11 @@
 
 {% endblock %}
 
+{% block after_header %}
+  {% include "includes/prototype_warning.html" %}
+{% endblock %}
+
+
 {% block header_class %}
   with-proposition
 {% endblock %}
