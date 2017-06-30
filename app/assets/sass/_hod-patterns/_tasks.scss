@@ -1,59 +1,59 @@
 // Pattern: flash cards
 // Problem: interupt the user with important information
 
-&__tasks td {
+.tasks td {
   padding: 12px;
 }
 
-&__tasks td.task-status {
+.tasks td.task-status {
   font-size: 14px;
   padding-top: 16px;
 }
 
-&__tasks td.status {
+.tasks td.status {
   padding-top: 13px;
   font-weight: 700;
 }
 
-&__tasks td.done:before {
+.tasks td.done:before {
   content: 'Done ';
 }
 
-&__tasks td a {
+.tasks td a {
   font-weight: 700;
 }
 
-&__tasks td.done a {
+.tasks td.done a {
   font-weight: 300;
 }
 
-&__tasks tr.unavailable td {
+.tasks tr.unavailable td {
   color: #6f777b;
 }
 
-&__tasks aside nav {
+.tasks aside nav {
   font-size: 16px;
 }
 
-&__tasks aside h2 {
+.tasks aside h2 {
   font-size: 19px;
   margin: 5px 0 10px;
   font-weight: 700;
 }
 
-&__tasks.inline h2 {
+.tasks.inline h2 {
   border-top: 1px solid #bfc1c3;
   padding-top: 10px;
   margin-top: 40px;
 }
 
-&__tasks.inline aside.govuk-related-items {
+.tasks.inline aside.govuk-related-items {
   border: none;
   margin: 0;
   padding: 0;
 }
 
-&__tiny-box {
+.tiny-box {
   display: inline-block;
   width: 9px;
   height: 9px;
@@ -66,14 +66,14 @@
   border-bottom-color: #dee0e2;
 }
 
-&__tiny-box.black {
+.tiny-box.black {
   border-top-color: #0b0c0c;
   border-left-color: #0b0c0c;
   border-right-color: #0b0c0c;
   border-bottom-color: #0b0c0c;
 }
 
-&__tiny-box.grey {
+.tiny-box.grey {
   border-top-color: #dee0e2;
   border-left-color: #dee0e2;
   border-right-color: #dee0e2;

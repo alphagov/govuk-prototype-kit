@@ -1,7 +1,7 @@
 // Pattern: flash cards
 // Problem: interupt the user with important information
 
-&__flash-card {
+.flash-card {
     margin-top: 1em;
     padding: 30px;
     background: $link-colour;
@@ -45,7 +45,7 @@
 }
 
 @media (min-width: 769px) {
-  &__flash-card {
+  .flash-card {
       margin-top: 1.25em;
       padding: 60px;
   }

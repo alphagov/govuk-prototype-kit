@@ -1,7 +1,7 @@
 // Pattern: timeline
 // Problem: showing the history of an item or person in a time focused context
 
-&__timeline {
+.timeline {
   padding: calc(2 * #{$space-sm};
   margin: 0 auto;
   ul {
@@ -50,7 +50,7 @@
         z-index: 2;
         left: -30px;
         outline: 2px solid white;
-        top: 2px;
+        top: 2px; 
       }
       h2 {
         @extend .heading-medium;
@@ -60,7 +60,7 @@
     }
   }
 }
-&__time {
+.time {
     font-weight: normal;
     color: $grey-1;
     margin: 0 5px;
