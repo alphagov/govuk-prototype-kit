@@ -1,0 +1,47 @@
+// Pattern: table multi-select
+// Problem: allow users to select multiple rows by clicking anywhere on row
+
+// .table-clickable tr th:first-of-type, .table-clickable tr td:first-of-type {
+//   padding-right: 0;
+// }
+
+// Highlight which row is being hovered
+.table-clickable tbody tr:hover {
+  background-color: $highlight-colour;
+  cursor: pointer;
+}
+
+// Set selected color
+$selected-colour: #FFECC7;
+
+// Highlight which row is selected
+.table-clickable tbody tr.checked {
+  background-color: $selected-colour;
+}
+
+// Highlight which row is hovered when selected
+.table-clickable tbody tr.checked:hover {
+  background-color: darken($selected-colour, 5%);
+}
+
+.table-clickable__checkbox {
+  padding-left: 1.05263em;
+}
+  .table-clickable__checkbox .multiple-choice {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+  }
+  .table-clickable__checkbox .multiple-choice label::before,
+  .table-clickable__checkbox input {
+    width: 20px;
+    height: 20px;
+  }
+  .table-clickable__checkbox .multiple-choice label::after {
+    border-width: 0 0 3px 3px;
+    width: 12px;
+    height: 4px;
+    top: 7px;
+    left: 5px;
+  }

@@ -1,7 +1,7 @@
 // Pattern: tabs
 // Problem: Switching between views of grouped content
 
-&__tab--nav {
+ul.tab--nav {
   @include core-16;
   border-right: 2px solid $border-colour;
 
@@ -42,7 +42,50 @@
 			margin: 0;
 		}
 }
-&__tab--content {
+
+ul.tab--nav-grey {
+  @include core-16;
+  background-color: #F2F2F2;
+
+    li {
+      margin-bottom: 0;
+    }
+    li a {
+      padding: 15px;
+      text-decoration: none;
+      display: block;
+
+      &.active, &:focus.active, &:hover.active {
+        background-color: $govuk-blue;
+        color: $white;
+        outline: 0;
+      }
+    }
+
+    li a:after {
+      // content: "\f054";
+    }
+
+    li a:hover {
+      background-color: $panel-colour;
+      color: $govuk-blue;
+
+			&.locked {
+				color: $black;
+				background-color: transparent;
+				cursor: default;
+			}
+    }
+    li a:focus {
+      background-color: $focus-colour;
+      outline-offset: -3px;
+    }
+    .locked {
+      color: $black;
+    }
+}
+
+.tab--content {
 	float: left;
 	width: 100%;
 }
