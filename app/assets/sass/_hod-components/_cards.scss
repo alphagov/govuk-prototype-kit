@@ -1,0 +1,35 @@
+.card {
+  display: block;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.card__body {
+  display: block;
+  background-color: $panel-colour;
+  padding: 1em;
+  background-color: $panel-colour;
+  color: $text-colour;
+  text-decoration: none;
+
+  span {
+    display: block;
+  }
+}
+
+a.card__body {
+  color: $link-colour;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    background-color: $highlight-colour;
+    color: $link-hover-colour;
+    text-decoration: none;
+  }
+}
+
+.card__footer {
+  display: block;
+  background-color: $highlight-colour;
+  padding: 1em;
+}
