@@ -14,6 +14,105 @@
         The GOV.UK prototype kit
         <span class="heading-secondary">{{releaseVersion}}</span>
       </h1>{{releaseVersion | log }}
+
+      <h2 class="heading-large">Numeric input examples</h2>
+
+      <form novalidate>
+
+      	<h3 class="heading-medium">
+      		type="number"
+      	</h3>
+
+      	<input type="number" name="somenumber" inputmode="numeric" placeholder="DD">
+      	<input type="number" name="somenumber2" inputmode="numeric" placeholder="MM">
+      	<input type="number" name="somenumber3" inputmode="numeric" placeholder="YYYY">
+
+      	<br><br>
+
+      	<label for="householdnumber">Number of people in household</label>
+      	<br>
+
+      	<input type="number" name="householdnumber" inputmode="numeric" placeholder="0">
+
+
+  		<h4 class="bold heading-small">Pros</h4>
+
+  		<ul>
+  			<li>Semantic</li>
+  			<li>Brings up numeric keyboard on Android</li>
+  			<li>In Chrome and Android, non-numeric characters can't be typed in (with exception of e, +, -, .)</li>
+
+  		</ul>
+  		
+
+  		<h4 class="bold heading-small">Cons</h4>
+
+		<ul>
+			<li>Pressing up/down keys increases/decreases number</li>
+  			<li>Only supports floating point numbers so credit cards (with spaces) not supported</li>
+  			<li>Use carefully! Do you really want to user from typing in certain characters (in Chrome/Android)?</li>
+			
+
+  		</ul>
+
+      	<hr>
+
+      	<h3 class="heading-medium">
+      		type="text" with pattern and maxlength
+      	</h3>
+
+      	<input type="text" pattern="[0-9]*" name="sometel" maxlength="4"  inputmode="numeric">
+
+  		<h4 class="bold heading-small">Pros</h4>
+  		<ul>
+
+  			<li>Supports maxlength (and pattern)</li>
+  			<li>Up/down keys don’t increase/decrease number.</li>
+
+  		</ul>
+
+  		<h4 class="bold heading-small">Cons</h4>
+
+		<ul>
+			<li>Doesn’t bring up numeric keypad on Android</li>
+			<li>Less semantic (which could be appropriate)</li>
+  			
+  		</ul>
+
+  		<br>	
+
+		<p>Note: I haven’t been able to reproduce the bug reported some years ago of Chrome removing leading zeros.</p>
+
+      	<hr>
+
+
+
+      	<h3 class="heading-medium">
+      		type="tel" with pattern and maxlength
+      	</h3>
+
+      	<input type="tel" pattern="[0-9]*" name="sometel" maxlength="4" placeholder="Enter phone number" inputmode="numeric">
+
+		<h4 class="bold heading-small">Pros</h4>
+      	<ul>
+      		<li>Brings up numeric keypad on Android</li>
+      		<li>Supports pattern and maxlength</li>
+      		<li>Widely supported (except for Opera Mini)</li>
+  		</ul>
+
+  		<h4 class="bold heading-small">Cons</h4>
+		<ul>
+			<li>Useful only for phone numbers only due to browser weirdness, eg. Safari + MacOS adds a dropdown for contacts</li>	
+  		</ul>
+
+  		<br>
+
+  		<p>Note: Allow users not to add a phone number</p>
+
+	  	<hr>
+      </form>
+
+
       <p>
         This kit lets you rapidly create HTML prototypes of GOV.UK services.
       </p>
