@@ -1,3 +1,13 @@
+# 6.2.0
+
+New features:
+- [#365 Improvements to Check your answers page](https://github.com/alphagov/govuk_prototype_kit/pull/365)
+- [#398 Bump govuk_template_jinja to 0.22.1](https://github.com/alphagov/govuk_prototype_kit/pull/398)
+
+Bug fixes:
+- [#405 Upgrade node.js version for Heroku](https://github.com/alphagov/govuk_prototype_kit/pull/405)
+- [#399 Fix JS error in Safari’s Private Browsing mode](https://github.com/alphagov/govuk_prototype_kit/pull/399)
+
 # 6.1.0
 
 New features:
