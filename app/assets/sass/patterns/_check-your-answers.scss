@@ -1,4 +1,4 @@
-
+// Recommended - Use these styles for the check your answers pattern
 .govuk-check-your-answers {
 
   @include media(desktop) {
@@ -79,4 +79,17 @@
     }
   }
 
+}
+
+// Deprecated - these styles will be removed in a later release
+.check-your-answers {
+  td {
+    @include core-19;
+    vertical-align: top;
+  }
+  .change-answer {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 0;
+  }
 }
