@@ -17,38 +17,33 @@
 
       <h2 class="heading-large">Numeric input examples</h2>
 
+    	<h3 class="heading-medium">
+    		type="number"
+    	</h3>
 
-      	<h3 class="heading-medium">
-      		type="number"
-      	</h3>
+      <form action="http://ip.jsontest.com/" method="post" novalidate>
+        <input type="number" name="somenumber" inputmode="numeric" placeholder="DD" data-number-polyfill maxlength="5">
+        <input type="number" name="somenumber2" inputmode="numeric" placeholder="MM" data-number-polyfill>
+        <input type="number" name="somenumber3" inputmode="numeric" placeholder="YYYY" data-number-polyfill>
 
-        <form action="http://ip.jsontest.com/" method="post" novalidate>
-          <input type="number" name="somenumber" inputmode="numeric" placeholder="DD" data-number-polyfill maxlength="5">
-          <input type="number" name="somenumber2" inputmode="numeric" placeholder="MM">
-          <input type="number" name="somenumber3" inputmode="numeric" placeholder="YYYY">
+      	<br><br>
 
-        	<br><br>
+      	<label for="householdnumber">Number of people in household</label>
+      	<br>
 
-        	<label for="householdnumber">Number of people in household</label>
-        	<br>
+      	<input type="number" name="householdnumber" inputmode="numeric" placeholder="0" data-number-polyfill data-number-arrow-nav="true">
 
-        	<input type="number" name="householdnumber" inputmode="numeric" placeholder="0">
+        <br><br>
 
-          <br><br>
+        <input type="submit" value="Save">
 
-            <input type="submit" value="Save">
+       </form>
 
-
-
-         </form>
-
-         <form action="http://localhost:3000" method="post">
-  <label for="POST-name">Name:</label>
-  <input id="POST-name" type="text" name="name">
-  <input type="submit" value="Save">
-</form>
-
-
+       <form action="http://localhost:3000" method="post">
+        <label for="POST-name">Name:</label>
+        <input id="POST-name" type="text" name="name">
+        <input type="submit" value="Save">
+      </form>
 
   		<h4 class="bold heading-small">Pros</h4>
 

@@ -32,8 +32,6 @@ var numberPolyfill = (function () {
 
   function bindUIElements () {
 
-    var pasted = false;
-
     // config.$numberInputs.keydown(helper.debounce(function(e){
 
     //     e = e || window.event;
@@ -51,32 +49,22 @@ var numberPolyfill = (function () {
     //     }
     // },100));
 
-    // config.$numberInputs.on( "paste", function( event ){
-
-    //   debugger;
-    //   var $input = $(this);
-    //   console.log('test');
-    //   onPaste($input, event );
-
-    //   pasted = true;
-    // });
-
     config.$numberInputs.keydown(function(event) {
 
       if (!pasted) {
-         var $input = $(this);
-          var inputType = getInputType($input);
+        var $input = $(this);
+        var inputType = getInputType($input);
 
-          if (!inputType) {
-            return;
-          }
+        if (!inputType) {
+          return;
+        }
 
-          var e = event || window.event; //To do: cross browser 
+        var e = event || window.event;
 
-          if (inputType === 'number') {
-            checkIfMaxLengthExceeded($input, event)
-            preventUpDownArrows(e);        
-          }
+        if (inputType === 'number') {
+          checkIfMaxLengthExceeded($input, e)
+          preventUpDownArrows($input, e);        
+        }
       }     
     });   
   }
@@ -95,14 +83,10 @@ var numberPolyfill = (function () {
   }
 
   function checkIfMaxLengthExceeded($el, e) {
-
-    debugger;
-
     var maxLength = $el.attr( 'maxlength');
     var value = $el.val();
-    var isAllowed = true;
-    
-    var key = e.keyCode;
+    var isAllowed = true    
+    var key = e.keyCode
     var allowedKeys = [
       8, // Backspace
       9, // Tab
@@ -124,7 +108,6 @@ var numberPolyfill = (function () {
       isAllowed = false;
     }
 
-     // indexOf not supported everywhere for arrays
     $.each(allowedKeys, function(i, e){
       if( e === key ) {
         isAllowed = true;
@@ -136,50 +119,15 @@ var numberPolyfill = (function () {
     }
   }
 
-  function preventUpDownArrows(e) {
-    if (e.keyCode == '38' || e.keyCode == '40') { //Up and down arrow
-      e.preventDefault()
+  function preventUpDownArrows($el, e) {
+
+    if (!$el.data( 'number-arrow-nav')) {
+
+      if (e.keyCode == '38' || e.keyCode == '40') { //Up and down arrow
+        e.preventDefault()
+      }
     }
   }
-
-  // function onPaste($el, e) { https://github.com/filamentgroup/formcore#numeric-input
-  //   var event = e.originalEvent || e;
-  //   var maxLength = $el.attr( 'maxlength');
-
-  //   // http://stackoverflow.com/questions/6035071/intercept-paste-event-in-javascript
-  //   var pastedText;
-
-  //   if (window.clipboardData && window.clipboardData.getData) { // IE
-  //     pastedText = window.clipboardData.getData('Text');
-  //   } else if (event.clipboardData && event.clipboardData.getData) {
-  //     pastedText = event.clipboardData.getData('text/plain');
-  //   }
-
-  //   // if we were unable to get the pasted text avoid doing anything
-  //   if( !pastedText ){
-  //     return;
-  //   }
-
-  //   // otherwise force the text to look right
-  //   var value = pastedText
-  //     // remove signs that appear inside the string
-  //     .replace(/(.+)\-(.+)/g, "$1$2")
-
-  //     // remove all decimals beside the first
-  //     .replace(/(.+[\.,].+)\.(.+)/g, "$1$2")
-
-  //     // remove any non float/integer characters left
-  //     .replace(/[^0-9\.\-,]*/g, "")
-
-  //     // truncate the value to the maxlength
-  //     .slice(0, maxLength);
-
-  //   //$el.value(value)
-  //   debugger;
-
-  //   // prevent the original paste behavior
-  //   event.preventDefault();
-  // } 
 
   return {
     init: init
