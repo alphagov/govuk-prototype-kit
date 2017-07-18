@@ -51,21 +51,20 @@ var numberPolyfill = (function () {
 
     config.$numberInputs.keydown(function(event) {
 
-      if (!pasted) {
-        var $input = $(this);
-        var inputType = getInputType($input);
+      var $input = $(this);
+      var inputType = getInputType($input);
 
-        if (!inputType) {
-          return;
-        }
+      if (!inputType) {
+        return;
+      }
 
-        var e = event || window.event;
+      var e = event || window.event;
 
-        if (inputType === 'number') {
-          checkIfMaxLengthExceeded($input, e)
-          preventUpDownArrows($input, e);        
-        }
-      }     
+      if (inputType === 'number') {
+        checkIfMaxLengthExceeded($input, e)
+        preventUpDownArrows($input, e);        
+      }
+           
     });   
   }
 
