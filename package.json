@@ -39,7 +39,7 @@
     "prompt": "^1.0.0",
     "readdir": "0.0.13",
     "require-dir": "^0.3.0",
-    "run-sequence": "^1.2.2",
+    "run-sequence": "^2.1.0",
     "serve-favicon": "2.4.2",
     "standard": "^10.0.2",
     "supertest": "^3.0.0",
