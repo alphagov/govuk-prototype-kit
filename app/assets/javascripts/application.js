@@ -32,23 +32,6 @@ var numberPolyfill = (function () {
 
   function bindUIElements () {
 
-    // config.$numberInputs.keydown(helper.debounce(function(e){
-
-    //     e = e || window.event;
-
-    //     var allowed = false;
-
-    //     if (e.keyCode == '38' || e.keyCode == '40') { //Up arrow
-
-    //       e.preventDefault();
-
-    //       console.log('test')
-
-    //       return false;
-
-    //     }
-    // },100));
-
     config.$numberInputs.keydown(function(event) {
 
       var $input = $(this);

@@ -18,12 +18,12 @@
       <h2 class="heading-large">Numeric input examples</h2>
 
 
-      <form action="" method="get" novalidate>
+      <form action="" method="get" >
           <h3 class="heading-medium">
               type="tel" with pattern and maxlength
           </h3>
-          <label for="sometel">Enter number</label><br>
-          <input type="tel" pattern="[0-9]*" name="sometel" maxlength="8"  inputmode="numeric">
+          <label for="sometel">Enter number</label>
+          <input type="tel" pattern="[0-9]*" id="sometel" maxlength="8"  inputmode="numeric">
 
           <br><br>
           <input type="submit" value="Submit">
@@ -33,18 +33,20 @@
        <h4 class="bold heading-small">Pros</h4>
               <ul>
                 <li>Brings up numeric keypad on Android</li>
-                <li>Supports pattern and maxlength</li>
+                <li>Supports pattern</li>
+                <li>Supports maxlength (But AT doesn't announce when max length reached)</li>
                 <li>Widely supported (except for Opera Mini)</li>
             </ul>
 
         <h4 class="bold heading-small">Cons</h4>
           <ul>
-            <li>Not semantic for non-telephone numbers</li>  
+            <li>Semantic issues with values that are not telephone numbers?</li> 
+            <li>Browser/device considerations need investigating. Browser specs could change in future</li>   
           </ul>
 
           <br>
 
-          <p>Note: Allow users not to add a phone number</p>
+          <p>Note: You should allow users not to add a phone number</p>
 
         <hr>
 
@@ -54,24 +56,24 @@
 
       <form novalidate method="get">
 
+        <label for="householdnumber">Number of people in household</label>
+        <br>
+        <input type="number" id="householdnumber" inputmode="numeric" placeholder="0" data-number-polyfill data-number-arrow-nav="true">
+
+        <br><br><br><br>
+
         <fieldset>
           <legend>Add date:</legend>
           <br>
           <label for="somenumber">Day</label><br>
-          <input type="number" name="somenumber" inputmode="numeric" data-number-polyfill maxlength="2">
+          <input type="number" id="somenumber" inputmode="numeric" data-number-polyfill maxlength="2">
           <br>
           <label for="somenumber2">Month</label><br>
-          <input type="number" name="somenumber2" inputmode="numeric" data-number-polyfill maxlength="2">
+          <input type="number" id="somenumber2" inputmode="numeric" data-number-polyfill maxlength="2">
           <br>
           <label for="somenumber3">Year</label><br>
-          <input type="number" name="somenumber3" inputmode="numeric" data-number-polyfill maxlength="4">
+          <input type="number" id="somenumber3" inputmode="numeric" data-number-polyfill maxlength="4">
         </fieldset>
-
-      	<br><br>
-
-      	<label for="householdnumber">Number of people in household</label>
-      	<br>
-      	<input type="number" name="householdnumber" inputmode="numeric" placeholder="0" data-number-polyfill data-number-arrow-nav="true">
 
         <br><br>
 
@@ -91,10 +93,10 @@
   		<h4 class="bold heading-small">Cons</h4>
 
 		    <ul>
-    			<li>Pressing up/down keys increases/decreases number</li>
+    			 <li>Pressing up/down keys increases/decreases number (If you remove this with JS, Voiceover still announces the up/down keys)</li>
       			<li>Only supports floating point numbers so credit cards (with spaces) not supported</li>
       			<li>Does not support commas</li>
-      			<li>Use carefully! Do you really want to user from typing in certain characters (in Chrome/Android)?</li>
+      			<li>Use carefully! Do you really want to stop user from typing in non-numeric characterså on the FE (in Chrome/Android)?</li>
     			
       	</ul>
 
@@ -106,7 +108,7 @@
         type="text" with pattern and maxlength
         </h3>
         <label for="sometext">Enter number</label><br>
-        <input type="text" pattern="[0-9]*" name="sometext" maxlength="4"  inputmode="numeric">
+        <input type="text" pattern="[0-9]*" id="sometext" maxlength="4" inputmode="numeric">
 
         <br><br>
 
@@ -117,9 +119,10 @@
   		<h4 class="bold heading-small">Pros</h4>
   		<ul>
 
-  			<li>Supports maxlength (and pattern)</li>
-  			<li>Up/down keys don’t increase/decrease number.</li>
-        <li>No semantic meaning</li>
+  			<li>Supports pattern</li>
+        <li>Supports maxlength (But AT doesn't announce when max length reached)</li>
+  			<li>Up/down keys don’t increase/decrease number</li>
+        <li>No semantic meaning so flexible</li>
 
   		</ul>
 
