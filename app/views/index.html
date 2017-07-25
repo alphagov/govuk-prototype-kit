@@ -23,7 +23,7 @@
               type="tel" with pattern and maxlength
           </h3>
           <label for="sometel">Enter number</label>
-          <input type="tel" pattern="[0-9]*" id="sometel" maxlength="8"  inputmode="numeric">
+          <input type="tel" pattern="[0-9]*" name="sometel" id="sometel" maxlength="8"  inputmode="numeric">
 
           <br><br>
           <input type="submit" value="Submit">
@@ -54,25 +54,25 @@
       		type="number"
       	</h3>
 
-      <form novalidate method="get">
+      <form method="get" novalidate>
 
         <label for="householdnumber">Number of people in household</label>
         <br>
-        <input type="number" id="householdnumber" inputmode="numeric" placeholder="0" data-number-polyfill data-number-arrow-nav="true">
+        <input type="number" id="householdnumber" name="householdnumber" inputmode="numeric" placeholder="0" data-number-polyfill data-number-arrow-nav="true">
 
         <br><br><br><br>
 
         <fieldset>
           <legend>Add date:</legend>
           <br>
-          <label for="somenumber">Day</label><br>
-          <input type="number" id="somenumber" inputmode="numeric" data-number-polyfill maxlength="2">
+          <label for="day">Day</label><br>
+          <input type="number" id="day" name="day" inputmode="numeric" data-number-polyfill maxlength="2">
           <br>
-          <label for="somenumber2">Month</label><br>
-          <input type="number" id="somenumber2" inputmode="numeric" data-number-polyfill maxlength="2">
+          <label for="month">Month</label><br>
+          <input type="number" id="month" name="month" inputmode="numeric" data-number-polyfill maxlength="2">
           <br>
-          <label for="somenumber3">Year</label><br>
-          <input type="number" id="somenumber3" inputmode="numeric" data-number-polyfill maxlength="4">
+          <label for="year">Year</label><br>
+          <input type="number" id="year" name="year" inputmode="numeric" data-number-polyfill maxlength="4">
         </fieldset>
 
         <br><br>
@@ -108,7 +108,7 @@
         type="text" with pattern and maxlength
         </h3>
         <label for="sometext">Enter number</label><br>
-        <input type="text" pattern="[0-9]*" id="sometext" maxlength="4" inputmode="numeric">
+        <input type="text" pattern="[0-9]*" id="sometext" name="sometext" maxlength="4" inputmode="numeric">
 
         <br><br>
 
