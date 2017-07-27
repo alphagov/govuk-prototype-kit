@@ -2,20 +2,19 @@
   <div class="prototype-warning-dialog__inner js-dialog-touch-area">
    <!--  <div class="prototype-warning-dialog__inner__top"><button class="prototype-warning-dialog__inner__top__button js-dialog-close">Close modal</button></div> -->
 	<h1 id="dialog-title" class="heading-large"><span class="visually-hidden">Alert:</span>Your session will soon time out</h1>
-    
-    <div aria-hidden="true">
-        <span class="timer" data-minutes="1"></span>
+
+    <div class="prototype-warning-dialog__inner__text">
+      <div class="timer" data-minutes="1" aria-hidden="true"></div>
+      <div class="at-timer visually-hidden" aria-live="polite"></div>
+      <p id="dialog-help" class="visually-hidden">
+        Useful additional information: you have not left the current page.
+        If you close this modal, you will be able to continue with your current application.
+      </p>
     </div>
-
-    <div id="at-timer" class="visually-hidden at-timer" aria-live="polite" data-text=""></div>
-
-    <p id="dialog-help" class="visually-hidden">Useful additional information: you have not left the current page. If you close this modal, you will be able to continue with your current application.</p>
-
     <div class="prototype-warning-dialog__inner__block">
-        <button class="button dialog-button prototype-warning-dialog__inner__button js-dialog-close js-dialog-first-tabbable">Continue application</button>
+      <button class="button dialog-button prototype-warning-dialog__inner__button js-dialog-close js-dialog-first-tabbable">Continue application</button>
     	<button class="prototype-warning-dialog__inner__link link js-dialog-close js-dialog-last-tabbable" role="link" href="">Clear application</button>
-    </div>   
-    
+    </div>
   </div>
- 
+
 </dialog>

@@ -29,31 +29,32 @@
     },
     startTimer: function () {
       var $element = $('.timer')
-      // var $elementContainer
       var $accessibleElement = $('.at-timer')
       var minutes = $element.data('minutes')
       var seconds = 60 * minutes
 
-      seconds = 5 // debug
+      //seconds = 5 // debugger
 
       $element.text(minutes + ' minute' + (minutes > 1 ? 's' : ''));
 
       (function runTimer () {
         var minutesLeft = parseInt(seconds / 60, 10)
         var secondsLeft = parseInt(seconds % 60, 10)
-        var timerExpired = minutesLeft < 1 && secondsLeft < 0
+        var timerExpired = minutesLeft < 1 && secondsLeft < 1
 
         var minutesText = minutesLeft > 0 ? minutesLeft + ' minute' + (minutesLeft > 1 ? 's' : '') + ' ' : ''
-        var secondsText = secondsLeft > 1 ? secondsLeft + ' seconds' : '' // to do: plural for seconds
+        var secondsText = secondsLeft >= 1 ? secondsLeft + ' second' + (secondsLeft > 1 ? 's' : '') + ' ' : '' // to do: plural for seconds
 
         var text = 'You will be redirected in ' + minutesText + secondsText
 
         if (timerExpired) {
           $element.text('You are about to be redirected')
           $accessibleElement.text('You are about to be redirected')
-          // setTimeout(redirect, 4000)
+          setTimeout(GOVUK.modalDialog.redirect, 4000)
         } else {
           $element.text(text)
+
+          seconds--
 
           if (minutesLeft < 1) {
              // if less than 20 seconds left, make aria-live assertive and update content every 5 secs
@@ -71,7 +72,7 @@
             // update screen reader friendly content every 30 secs
             $accessibleElement.text(text)
           }
-          seconds--
+
           setTimeout(runTimer, 1000)
         }
       })()
@@ -83,7 +84,6 @@
       return GOVUK.modalDialog.dialog['open']
     },
     openDialog: function () {
-      // debugger
       GOVUK.modalDialog.startTimer()
       GOVUK.modalDialog.lastFocusedEl = document.activeElement
 
@@ -131,7 +131,8 @@
         window.dialogPolyfill.registerDialog(GOVUK.modalDialog.dialog)
 
         // if (config.prototype_warning != 'true') { //removed cookie checking for debugging
-        setTimeout(GOVUK.modalDialog.openDialog, 3000)
+        // setTimeout(GOVUK.modalDialog.openDialog, 3000)
+        setTimeout(GOVUK.modalDialog.openDialog, 50) // debugger
         // }
         GOVUK.modalDialog.bindUIElements()
         GOVUK.modalDialog.escClose()

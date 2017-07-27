@@ -32,14 +32,30 @@ $path: "/public/images/";
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 .prototype-warning-dialog {
-  // Don't display warning if user doesn't have js
+  // Don't display warning if user doesn't have js. Can be overriden with .prototype-warning-dialog--no-js-persistent
   display: none;
+
+  &--no-js-persistent {
+    display: inline-block;
+
+    .js-enabled & {
+      display: none;
+
+      &[open] {
+        display: inline-block;
+      }
+    }
+  }
+
+  .js-enabled &[open] {
+    display: inline-block;
+  }
 
   &[open] {
     position: fixed;
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 90vh; //Don't make the dialog quite the viewport height 
+    max-height: 90vh; //Don't make the dialog quite the viewport height
     padding: 0;
     margin-bottom: 0;
     margin-top: 0;
@@ -69,6 +85,11 @@ $path: "/public/images/";
       }
     }
 
+    &__text {
+      @include copy-19;
+      margin-bottom: 20px;      
+    }
+
     &__button {
       font-weight: 700;
       padding: 15px 30px;
@@ -84,14 +105,13 @@ $path: "/public/images/";
       @include media(tablet) {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%); 
-        margin: 0 0 0 30px; 
+        transform: translateY(-50%);
+        margin: 0 0 0 30px;
       }
 
       &:hover {
         cursor: pointer;
       }
-     
     }
 
     &__block {
@@ -103,27 +123,10 @@ $path: "/public/images/";
     margin-top: 0;
   }
 
-  p {
-    @include copy-19;
-  }
+
 }
 
-.prototype-warning-dialog--no-js-persistent {
-  display: inline-block;
-}
 
-// Display if js available
-.js-enabled .prototype-warning-dialog--no-js-persistent {
-  display: none;
-}
-
-.js-enabled .prototype-warning-dialog[open] {
-  display: inline-block;
-}
-
-.js-enabled .dialog-button {
-  display: inline-block;
-}
 
 // Polyfill styles
 
@@ -165,7 +168,7 @@ dialog {
 }
 
 dialog[open] {
-  
+
   // Size and position
 
   box-sizing: border-box;
