@@ -50,7 +50,7 @@
         if (timerExpired) {
           $element.text('You are about to be redirected')
           $accessibleElement.text('You are about to be redirected')
-          setTimeout(GOVUK.modalDialog.redirect, 4000)
+          // setTimeout(GOVUK.modalDialog.redirect, 4000) //debugger
         } else {
           $element.text(text)
 
@@ -131,8 +131,7 @@
         window.dialogPolyfill.registerDialog(GOVUK.modalDialog.dialog)
 
         // if (config.prototype_warning != 'true') { //removed cookie checking for debugging
-        // setTimeout(GOVUK.modalDialog.openDialog, 3000)
-        setTimeout(GOVUK.modalDialog.openDialog, 50) // debugger
+        setTimeout(GOVUK.modalDialog.openDialog, 3000)
         // }
         GOVUK.modalDialog.bindUIElements()
         GOVUK.modalDialog.escClose()

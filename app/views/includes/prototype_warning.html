@@ -1,11 +1,11 @@
-<dialog id="js-prototype-warning-dialog" class="prototype-warning-dialog prototype-warning-dialog--no-js-persistent dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-help" aria-live="polite">
+<dialog id="js-prototype-warning-dialog" class="prototype-warning-dialog prototype-warning-dialog--no-js-persistent dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="at-timer dialog-help" aria-live="polite">
   <div class="prototype-warning-dialog__inner js-dialog-touch-area">
    <!--  <div class="prototype-warning-dialog__inner__top"><button class="prototype-warning-dialog__inner__top__button js-dialog-close">Close modal</button></div> -->
 	<h1 id="dialog-title" class="heading-large"><span class="visually-hidden">Alert:</span>Your session will soon time out</h1>
 
     <div class="prototype-warning-dialog__inner__text">
       <div class="timer" data-minutes="1" aria-hidden="true"></div>
-      <div class="at-timer visually-hidden" aria-live="polite"></div>
+      <div id="at-timer" class="at-timer visually-hidden" role="status" aria-live="polite"></div>
       <p id="dialog-help" class="visually-hidden">
         Useful additional information: you have not left the current page.
         If you close this modal, you will be able to continue with your current application.
