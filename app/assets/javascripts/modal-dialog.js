@@ -33,7 +33,7 @@
       var minutes = $element.data('minutes')
       var seconds = 60 * minutes
 
-      //seconds = 5 // debugger
+      // seconds = 5 // debugger
 
       $element.text(minutes + ' minute' + (minutes > 1 ? 's' : ''));
 
@@ -95,8 +95,8 @@
       console.log('Showing prototype warning')
       $('html, body').addClass('dialog-is-open')
 
-      if ($('#content').length) {
-        $('#content').inert = true
+      if (document.querySelector('#content')) {
+        document.querySelector('#content').inert = true
       }
 
       GOVUK.modalDialog.dialog.showModal()
@@ -113,8 +113,8 @@
             GOVUK.modalDialog.lastFocusedEl.focus()
           }, 0)
         }
-        if ($('#content').length) {
-          $('#content').inert = false
+        if (document.querySelector('#content')) {
+          document.querySelector('#content').inert = false
         }
       }
     },
