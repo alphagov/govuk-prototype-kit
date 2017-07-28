@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Radio buttons
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Radio buttons
+      </h1>
+
+      <form>
+        <div class="form-group">
+          <fieldset>
+
+            <legend>
+              <h1 class="heading-medium">Where do you live?</h1>
+            </legend>
+
+            <div class="multiple-choice">
+              <input id="radio-1" type="radio" name="radio-group" value="Northern Ireland">
+              <label for="radio-1">Northern Ireland</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="radio-2" type="radio" name="radio-group" value="Isle of Man or the Channel Islands">
+              <label for="radio-2">Isle of Man or the Channel Islands</label>
+            </div>
+            <p class="form-block">or</p>
+            <div class="multiple-choice">
+              <input id="radio-3" type="radio" name="radio-group" value="I am a British citizen living abroad">
+              <label for="radio-3">I am a British citizen living abroad</label>
+            </div>
+
+          </fieldset>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
