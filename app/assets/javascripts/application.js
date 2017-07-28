@@ -17,104 +17,104 @@ $(document).ready(function () {
   var showHideContent = new GOVUK.ShowHideContent()
   showHideContent.init()
 
-  numberPolyfill.init()
+  GOVUK.numericInput.init()
 })
 
-// Number input polyfill prototype
-var numberPolyfill = (function () {
-  config = {
-    $numberInputs: $('[data-number-polyfill]')
-  }
-
-  function init () {
-    bindUIElements()
-  }
-
-  function bindUIElements () {
-
-    config.$numberInputs.keydown(function(event) {
-
-      var $input = $(this);
-      var inputType = getInputType($input);
-
-      if (!inputType) {
-        return;
-      }
-
-      var e = event || window.event;
-
-      if (inputType === 'number') {
-        checkIfMaxLengthExceeded($input, e)
-        preventUpDownArrows($input, e);        
-      }
-           
-    });   
-  }
-
-  function getInputType($el) {
-    var inputType;
-
-    if($el.attr( 'type' ) === 'number' ) {
-        inputType = 'number';
-    } else if( $el.attr( 'type' ) === 'text' ) {
-      inputType = 'text';
-    } else {
-      console.log('Use data-number-polyfill on number or text field!')
-    }
-    return inputType;
-  }
-
-  function checkIfMaxLengthExceeded($el, e) {
-    var maxLength = $el.attr( 'maxlength');
-    var value = $el.val();
-    var isAllowed = true    
-    var key = e.keyCode
-    var allowedKeys = [
-      8, // Backspace
-      9, // Tab
-      13, // Enter
-      27, // Escape
-      33, // Pgupå
-      34, // Pgdown
-      35, // End
-      36, // Home
-      37, // ArrowLeft
-      38, // ArrowUp
-      39, // ArrowRight
-      40, // ArrowDown
-      46 // Delete
-    ];
-
-    if (maxLength !== undefined && maxLength > 0 && value && value.length >= maxLength ) {
-      console.log('over!!')
-      isAllowed = false;
-    }
-
-    $.each(allowedKeys, function(i, e){
-      if( e === key ) {
-        isAllowed = true;
-      }
-    });
-
-    if (!isAllowed) {
-      e.preventDefault();
-    }
-  }
-
-  function preventUpDownArrows($el, e) {
-
-    if (!$el.data( 'number-arrow-nav')) {
-
-      if (e.keyCode == '38' || e.keyCode == '40') { //Up and down arrow
-        e.preventDefault()
-      }
-    }
-  }
-
-  return {
-    init: init
-  }
-})()
+// // Number input polyfill prototype
+// var numberPolyfill = (function () {
+//   config = {
+//     $numberInputs: $('[data-number-polyfill]')
+//   }
+//
+//   function init () {
+//     bindUIElements()
+//   }
+//
+//   function bindUIElements () {
+//
+//     config.$numberInputs.keydown(function(event) {
+//
+//       var $input = $(this);
+//       var inputType = getInputType($input);
+//
+//       if (!inputType) {
+//         return;
+//       }
+//
+//       var e = event || window.event;
+//
+//       if (inputType === 'number') {
+//         checkIfMaxLengthExceeded($input, e)
+//         preventUpDownArrows($input, e);
+//       }
+//
+//     });
+//   }
+//
+//   function getInputType($el) {
+//     var inputType;
+//
+//     if($el.attr( 'type' ) === 'number' ) {
+//         inputType = 'number';
+//     } else if( $el.attr( 'type' ) === 'text' ) {
+//       inputType = 'text';
+//     } else {
+//       console.log('Use data-number-polyfill on number or text field!')
+//     }
+//     return inputType;
+//   }
+//
+//   function checkIfMaxLengthExceeded($el, e) {
+//     var maxLength = $el.attr( 'maxlength');
+//     var value = $el.val();
+//     var isAllowed = true
+//     var key = e.keyCode
+//     var allowedKeys = [
+//       8, // Backspace
+//       9, // Tab
+//       13, // Enter
+//       27, // Escape
+//       33, // Pgupå
+//       34, // Pgdown
+//       35, // End
+//       36, // Home
+//       37, // ArrowLeft
+//       38, // ArrowUp
+//       39, // ArrowRight
+//       40, // ArrowDown
+//       46 // Delete
+//     ];
+//
+//     if (maxLength !== undefined && maxLength > 0 && value && value.length >= maxLength ) {
+//       console.log('over!!')
+//       isAllowed = false;
+//     }
+//
+//     $.each(allowedKeys, function(i, e){
+//       if( e === key ) {
+//         isAllowed = true;
+//       }
+//     });
+//
+//     if (!isAllowed) {
+//       e.preventDefault();
+//     }
+//   }
+//
+//   function preventUpDownArrows($el, e) {
+//
+//     if (!$el.data( 'number-arrow-nav')) {
+//
+//       if (e.keyCode == '38' || e.keyCode == '40') { //Up and down arrow
+//         e.preventDefault()
+//       }
+//     }
+//   }
+//
+//   return {
+//     init: init
+//   }
+// })()
 
 //Helpers
 var helper = {
