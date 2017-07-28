@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Example - Checkboxes
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+
+  {% include "includes/breadcrumb_examples.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Checkboxes
+      </h1>
+
+      <!-- Copied from https://govuk-elements.herokuapp.com/form-elements/#form-toggle-content-checkboxes -->
+
+      <form>
+        <div class="form-group">
+          <fieldset>
+
+            <legend>
+              <h1 class="heading-medium">
+                What is your nationality?
+              </h1>
+              <span class="body-text">Select all options that are relevant to you.</span>
+            </legend>
+
+            <div class="multiple-choice">
+              <input id="nationalities-british" name="nationalities" type="checkbox" value="British">
+              <label for="nationalities-british">British (including English, Scottish, Welsh and Northern Irish)</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="nationalities-irish" name="nationalities" type="checkbox" value="Irish">
+              <label for="nationalities-irish">Irish</label>
+            </div>
+            <div class="multiple-choice" data-target="example-different-country">
+              <input id="nationalities-other" name="nationalities" type="checkbox" value="Citizen of a different country">
+              <label for="nationalities-other">Citizen of a different country</label>
+            </div>
+            <div class="panel panel-border-narrow js-hidden" id="example-different-country">
+              <label class="form-label" for="nationalities-other-country">Country name</label>
+              <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
+            </div>
+
+          </fieldset>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</main>
+{% endblock %}
