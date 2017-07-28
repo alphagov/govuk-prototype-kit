@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Question page
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a class="link-back" href="question-1">Back</a>
+
+      <h1 class="heading-large">
+        What's your most impressive juggling feat?
+      </h1>
+
+      <form class="form" action="check-your-answers-page">
+
+        <p>[TEXTFIELD GOES HERE]</p>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
