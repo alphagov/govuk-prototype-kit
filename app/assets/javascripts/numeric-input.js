@@ -4,16 +4,15 @@
   var GOVUK = global.GOVUK || {}
   var $ = global.jQuery
 
-  // Number polyfill
-  //Adds features absent from the browser specs:
-  //1. Stop incrementing number input with up/down keys
-  //2. etc
-  //Guidance in docs on when to use this polyfill
+  // Number polyfill. See guidance in docs when to use this polyfill
+  // 1. Stops incrementing number input with up/down keys
+  // 2. Enforces maxlength
+  // 3. Stops typing of non-numeric characters
   GOVUK.numericInput = {
-    $numberInputs: $('[data-number-polyfill]'),
+    $numberInput: $('[data-number-polyfill]'),
 
-    bindUIElements: function () {
-      GOVUK.numericInput.$numberInputs.keydown(function (event) {
+    bindUIEvents: function () {
+      GOVUK.numericInput.$numberInput.keypress(function (event) {
         var $input = $(this)
         var inputType = GOVUK.numericInput.getInputType($input)
 
@@ -23,11 +22,100 @@
         var e = event || window.event
 
         if (inputType === 'number') {
+          // GOVUK.numericInput.checkIfMaxLengthExceeded($input, e)
+          GOVUK.numericInput.removeNonNumeric($input, e)
+        }
+
+        if (inputType === 'text' || inputType === 'tel') {
+          GOVUK.numericInput.removeNonNumeric($input, e)
+        }
+      })
+
+      GOVUK.numericInput.$numberInput.keydown(function (e) {
+        var $input = $(this)
+        var inputType = GOVUK.numericInput.getInputType($input)
+
+        if (inputType === 'number') {
           GOVUK.numericInput.checkIfMaxLengthExceeded($input, e)
           GOVUK.numericInput.preventUpDownArrows($input, e)
         }
       })
     },
+    removeNonNumeric: function ($el, e) {
+      var numbers = []
+      var key = e.keyCode || e.charCode
+
+      if (!key) {
+        return
+      }
+
+      for (var i = 48; i < 58; i++) {
+        numbers.push(i)
+      }
+
+      var allAllowed = GOVUK.numericInput.allowedKeys.concat(numbers)
+
+      if (!($.inArray(key, allAllowed) >= 0)) {
+        console.log('non numeric')
+        e.preventDefault()
+      }
+    },
+    checkIfMaxLengthExceeded: function ($el, e) {
+      var maxLength = $el.attr('maxlength')
+      var value = $el.val()
+      var isAllowed = true
+      var key = e.keyCode || e.charCode
+
+      if (!key) {
+        return
+      }
+
+      if (maxLength !== undefined && maxLength > 0 && value && value.length >= maxLength) {
+        console.log('over!!')
+        isAllowed = false
+      }
+
+      $.each(GOVUK.numericInput.allowedKeys, function (i, e) {
+        if (e === key) {
+          isAllowed = true
+        }
+      })
+
+      if (!isAllowed) {
+        console.log('max length exceeded')
+        e.preventDefault()
+        return false
+      }
+    },
+    preventUpDownArrows: function ($el, e) {
+      if (!$el.data('number-arrow-nav')) {
+        var key = e.keyCode || e.charCode
+
+        if (!key) {
+          return
+        }
+
+        if (e.keyCode === 38 || e.keyCode === 40) { // Up and down arrow
+          console.log('up down key pressed')
+          e.preventDefault()
+        }
+      }
+    },
+    allowedKeys : [
+      8, // Backspace
+      9, // Tab
+      13, // Enter
+      27, // Escape
+      33, // Pgup
+      34, // Pgdown
+      35, // End
+      36, // Home
+      37, // ArrowLeft
+      38, // ArrowUp
+      39, // ArrowRight
+      40, // ArrowDown
+      46 // Delete
+    ],
     getInputType: function ($el) {
       var inputType
 
@@ -35,57 +123,15 @@
         inputType = 'number'
       } else if ($el.attr('type') === 'text') {
         inputType = 'text'
+      } else if ($el.attr('type') === 'tel') {
+        inputType = 'tel'
       } else {
-        console.log('Use data-number-polyfill on number or text field!')
+        console.log('Use data-number-polyfill on number, text or tel field!')
       }
       return inputType
     },
-    checkIfMaxLengthExceeded: function ($el, e) {
-      var maxLength = $el.attr('maxlength')
-      var value = $el.val()
-      var isAllowed = true
-      var key = e.keyCode
-      var allowedKeys = [
-        8, // Backspace
-        9, // Tab
-        13, // Enter
-        27, // Escape
-        33, // Pgup
-        34, // Pgdown
-        35, // End
-        36, // Home
-        37, // ArrowLeft
-        38, // ArrowUp
-        39, // ArrowRight
-        40, // ArrowDown
-        46 // Delete
-      ]
-
-      if (maxLength !== undefined && maxLength > 0 && value && value.length >= maxLength) {
-        console.log('over!!')
-        isAllowed = false
-      }
-
-      $.each(allowedKeys, function (i, e) {
-        if (e === key) {
-          isAllowed = true
-        }
-      })
-
-      if (!isAllowed) {
-        e.preventDefault()
-      }
-    },
-    preventUpDownArrows: function ($el, e) {
-      if (!$el.data('number-arrow-nav')) {
-        // debugger
-        if (e.keyCode === 38 || e.keyCode === 40) { // Up and down arrow
-          e.preventDefault()
-        }
-      }
-    },
     init: function ($element) {
-      GOVUK.numericInput.bindUIElements()
+      GOVUK.numericInput.bindUIEvents()
     }
   }
   global.GOVUK = GOVUK

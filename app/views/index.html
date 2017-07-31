@@ -23,7 +23,7 @@
               type="tel" with pattern and maxlength
           </h3>
           <label for="sometel">Enter number</label>
-          <input type="tel" pattern="[0-9]*" name="sometel" id="sometel" maxlength="8"  inputmode="numeric">
+          <input type="tel" pattern="[0-9]*" name="sometel" data-number-polyfill id="sometel" maxlength="8"  inputmode="numeric">
 
           <br><br>
           <input type="submit" value="Submit">
@@ -40,8 +40,8 @@
 
         <h4 class="bold heading-small">Cons</h4>
           <ul>
-            <li>Semantic issues with values that are not telephone numbers?</li> 
-            <li>Browser/device considerations need investigating. Browser specs could change in future</li>   
+            <li>Semantic issues with values that are not telephone numbers?</li>
+            <li>Browser/device considerations need investigating. Browser specs could change in future</li>
           </ul>
 
           <br>
@@ -80,7 +80,7 @@
         <input type="submit" value="Submit">
 
        </form>
-      
+
   		  <h4 class="bold heading-small">Pros</h4>
 
     		<ul>
@@ -89,7 +89,7 @@
     			<li>In Chrome and Android, non-numeric characters can't be typed in (with exception of e, +, -, .)</li>
 
     		</ul>
-  		
+
   		<h4 class="bold heading-small">Cons</h4>
 
 		    <ul>
@@ -97,7 +97,7 @@
       			<li>Only supports floating point numbers so credit cards (with spaces) not supported</li>
       			<li>Does not support commas</li>
       			<li>Use carefully! Do you really want to stop user from typing in non-numeric characterså on the FE (in Chrome/Android)?</li>
-    			
+
       	</ul>
 
       	<hr>
@@ -108,7 +108,7 @@
         type="text" with pattern and maxlength
         </h3>
         <label for="sometext">Enter number</label><br>
-        <input type="text" pattern="[0-9]*" id="sometext" name="sometext" maxlength="4" inputmode="numeric">
+        <input type="text" pattern="[0-9]*" data-number-polyfill id="sometext" name="sometext" maxlength="4" inputmode="numeric">
 
         <br><br>
 
@@ -130,7 +130,7 @@
 
 		<ul>
 			<li>Doesn’t bring up numeric keypad on Android</li>
-  			
+
   		</ul>
 
   		<br>
@@ -182,5 +182,3 @@
 </main>
 
 {% endblock %}
-
-
