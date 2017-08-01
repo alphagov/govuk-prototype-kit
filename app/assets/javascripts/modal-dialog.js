@@ -33,8 +33,6 @@
       var minutes = $element.data('minutes')
       var seconds = 60 * minutes
 
-      // seconds = 5 // debugger
-
       $element.text(minutes + ' minute' + (minutes > 1 ? 's' : ''));
 
       (function runTimer () {
@@ -50,7 +48,7 @@
         if (timerExpired) {
           $element.text('You are about to be redirected')
           $accessibleElement.text('You are about to be redirected')
-          // setTimeout(GOVUK.modalDialog.redirect, 4000) //debugger
+          setTimeout(GOVUK.modalDialog.redirect, 4000)
         } else {
           $element.text(text)
 
