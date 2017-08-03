@@ -31,8 +31,8 @@ $path: "/public/images/";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
-.prototype-warning-dialog {
-  // Don't display warning if user doesn't have js. Can be overriden with .prototype-warning-dialog--no-js-persistent
+.modal-dialog {
+  // Don't display warning if user doesn't have js. Can be overriden with .modal-dialog--no-js-persistent
   display: none;
 
   &--no-js-persistent {
@@ -105,6 +105,12 @@ $path: "/public/images/";
       border: none;
       vertical-align: middle;
       margin-top: 20px;
+
+      @include media(mobile) {
+        text-align: center;
+        display: block;
+        margin-top: 25px;
+      }
 
       @include media(tablet) {
         position: absolute;

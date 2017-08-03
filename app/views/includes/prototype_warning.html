@@ -1,20 +1,17 @@
-<dialog id="js-prototype-warning-dialog" class="prototype-warning-dialog prototype-warning-dialog--no-js-persistent dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="at-timer dialog-help" aria-live="polite">
-  <div class="prototype-warning-dialog__inner js-dialog-touch-area">
-   <!--  <div class="prototype-warning-dialog__inner__top"><button class="prototype-warning-dialog__inner__top__button js-dialog-close">Close modal</button></div> -->
-	<h1 id="dialog-title" class="heading-large"><span class="visually-hidden">Alert:</span>Your session will soon time out</h1>
-
-    <div class="prototype-warning-dialog__inner__text">
-      <div class="timer" data-minutes="1" aria-hidden="true"></div>
-      <div id="at-timer" class="at-timer visually-hidden" role="status" aria-live="polite"></div>
+<dialog id="js-modal-dialog" data-minutes-idle-timeout="2" data-minutes-modal-visible="2" data-url-redirect="https://www.gov.uk" class="modal-dialog dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="at-timer dialog-help" aria-live="polite">
+  <div class="modal-dialog__inner">
+	  <h1 id="dialog-title" class="heading-large"><span class="visually-hidden">Alert:</span>Your session will soon time out</h1>
+    <div class="modal-dialog__inner__text">
+      <div class="timer" aria-hidden="true"></div>
+      <div class="at-timer visually-hidden" role="status" aria-live="polite"></div>
       <p id="dialog-help" class="visually-hidden">
         Useful additional information: you have not left the current page.
         If you close this modal, you will be able to continue with your current application.
       </p>
     </div>
-    <div class="prototype-warning-dialog__inner__block">
-      <button class="button dialog-button prototype-warning-dialog__inner__button js-dialog-close js-dialog-first-tabbable">Continue application</button>
-    	<button class="prototype-warning-dialog__inner__link link js-dialog-close js-dialog-last-tabbable" role="link" href="">Clear application</button>
+    <div class="modal-dialog__inner__block">
+      <button class="button dialog-button modal-dialog__inner__button js-dialog-close js-dialog-first-tabbable">Continue application</button>
+    	<a class="modal-dialog__inner__link" href="https://www.gov.uk/">Clear application</a>
     </div>
   </div>
-
 </dialog>
