@@ -32,6 +32,7 @@ $path: "/public/images/";
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 .modal-dialog {
+
   // Don't display warning if user doesn't have js. Can be overriden with .modal-dialog--no-js-persistent
   display: none;
 
@@ -139,65 +140,9 @@ $path: "/public/images/";
   overflow: hidden;
 }
 
-
-
-// Polyfill styles
-
-dialog {
-  position: absolute;
-  left: 0; right: 0;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: -webkit-fit-content;
-  height: fit-content;
-  margin: auto;
-  border: solid;
-  padding: 1em;
-  background: white;
-  color: black;
-  display: block;
-}
-///
-
-// GOV.UK styles
-
+// Modal dialog polyfill styles
 $dialog_backdrop_colour: rgba(0,0,0,0.8);
 $dialog_border: 5px solid black;
-
-
-dialog[open] {
-
-  // Size and position
-
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 15px;
-  width: 90%;
-  @include media(tablet) {
-    padding: 30px;
-    margin: 30px auto;
-    max-width: 500px;
-  }
-
-  // Styling
-
-  border: $dialog_border;
-
-  // Backdrop styles for browsers using polyfil
-  &+ .backdrop {
-    background: $dialog_backdrop_colour;
-  }
-  // Backdrop styles for browsers with native support
-  // NB: keep these two backdrop styles separate - safari didn't work when combined
-  &::backdrop {
-    background: $dialog_backdrop_colour;
-  }
-}
-
-// Polyfil styles
-
 dialog {
   position: absolute;
   left: 0; right: 0;
@@ -213,89 +158,39 @@ dialog {
   background: white;
   color: black;
   display: none;
-}
-
-dialog[open] {
-  display: block;
-}
-
-dialog + .backdrop {
-  position: fixed;
-  top: 0; right: 0; bottom: 0; left: 0;
-  background: rgba(0,0,0,0.1);
-}
-
-/* for small devices, modal dialogs go full-screen */
-@media screen and (max-width: 540px) {
-  dialog[_polyfill_modal] {  /* TODO: implement */
-    top: 0;
-    width: auto;
-    margin: 1em;
-  }
-}
-
-._dialog_overlay {
-  position: fixed;
-  top: 0; right: 0; bottom: 0; left: 0;
-}
-
-
-// GOV.UK styles
-
-$dialog_backdrop_colour: rgba(0,0,0,0.8);
-$dialog_border: 5px solid black;
-
-// Default styles - non-js
-dialog {
-  display:block;
-  position: inherit;
-  margin: 0;
-  padding: 0;
-  border: 0;
-
-  // Typography
-  h1 {
-    @include bold-36;
-  }
-}
-
-dialog[open] {
-
-  // Size and position
-
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 15px;
-  width: 90%;
-  @include media(tablet) {
-    padding: 30px;
-    margin: 30px auto;
-    max-width: 500px;
-  }
-
-  // Styling
-
   border: $dialog_border;
 
-  // Backdrop styles for browsers using polyfil
-  &+ .backdrop {
-    background: $dialog_backdrop_colour;
+  & + .backdrop {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: rgba(0,0,0,0.1);
   }
-  // Backdrop styles for browsers with native support
-  // NB: keep these two backdrop styles separate - safari didn't work when combined
-  &::backdrop {
-    background: $dialog_backdrop_colour;
-  }
-}
 
-// JS Enabled
-.js-enabled {
-
-  dialog {
-    display: none;
-  }
-  dialog[open]{
+  &[open] {
     display: block;
     position: absolute;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 15px;
+    width: 90%;
+    @include media(tablet) {
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 500px;
+    }
+
+    .js-enabled & {
+      position: absolute;
+    }
+
+    // Backdrop styles for browsers using polyfil
+    &+ .backdrop {
+      background: $dialog_backdrop_colour;
+    }
+    // Backdrop styles for browsers with native support
+    // NB: keep these two backdrop styles separate - safari didn't work when combined
+    &::backdrop {
+      background: $dialog_backdrop_colour;
+    }
   }
 }
