@@ -177,7 +177,7 @@
 
       function resetTimer () {
         clearTimeout(timer)
-        timer = setTimeout(GOVUK.modalDialog.openDialog, 3000)
+        timer = setTimeout(GOVUK.modalDialog.openDialog, milliSeconds)
       }
     },
     redirect: function () {
