@@ -22,7 +22,7 @@
     "express-session": "^1.13.0",
     "express-writer": "0.0.4",
     "govuk-elements-sass": "3.0.1",
-    "govuk_frontend_toolkit": "5.1.2",
+    "govuk_frontend_toolkit": "7.0.0",
     "govuk_template_jinja": "0.22.1",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
