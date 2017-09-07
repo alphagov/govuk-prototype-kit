@@ -12,7 +12,7 @@ We recommend keeping all your prototypes in one folder called `projects`.
 
 Create a folder called `projects` in your home folder. You can open your home folder by opening a new finder window, and selecting `go > home` from the top menu.
 
-![Screenshot of a 'projects' folder in the mac home folder](/public/images/docs/mac-home-folder-projects.png)
+![Screenshot of a 'projects' folder in the mac home folder](../../public/images/docs/mac-home-folder-projects.png)
 
 #### Windows users
 
