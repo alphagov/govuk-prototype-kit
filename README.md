@@ -1,5 +1,15 @@
 # GOV.UK Prototype kit · [![Greenkeeper badge](https://badges.greenkeeper.io/alphagov/govuk_prototype_kit.svg)](https://greenkeeper.io/)
 
+## Important - maintainer status
+
+This project is not fully maintained at this time. Government Digital Service plan to maintain this project from October.
+
+Essential fixes are prioritised and you can continue to use the prototype kit. Other issues or pull requests may not be dealt with at this time.
+
+This status will be updated 4/10/17.
+
+## Get the prototype kit
+
 Go to the [GOV.UK Prototype Kit site](https://govuk-prototype-kit.herokuapp.com/docs) to download the latest version and read the documentation.
 
 ## About the prototype kit
