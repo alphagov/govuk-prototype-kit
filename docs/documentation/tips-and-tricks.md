@@ -27,7 +27,7 @@ Remove the comments surrounding the unordered list with an ID of proposition lin
       -->
     </nav>
 
-An example of this can be seen in the [question-page.html](../app/views/examples/question-page.html) template.
+An example of this can be seen in the [blank question page](/docs/examples/template-question-page-blank) template.
 
 ## Add a phase banner
 
