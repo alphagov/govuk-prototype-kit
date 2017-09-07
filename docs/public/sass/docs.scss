@@ -1,0 +1,52 @@
+@import "govuk-elements";
+
+.markdown {
+	h1 {
+		@extend .heading-xlarge;
+	}
+
+	h2 {
+		@extend .heading-large;
+	}
+
+	h3 {
+		@extend .heading-medium;
+	}
+
+	h4 {
+		@extend .heading-small;
+	}
+
+	code {
+		background: $grey-4;
+		padding: 3px;
+		font-size: 1em;
+	}
+
+	pre > code {
+		@extend .code;
+		display: block;
+		@extend .panel;
+		@extend .panel-border-wide;
+		margin-bottom: 15px;
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	ul {
+		@extend .list;
+		@extend .list-bullet;
+	}
+
+	blockquote {
+		@extend .panel;
+		@extend .panel-border-wide;
+	}
+
+	strong {
+		font-weight: 700;
+	}
+}
+
