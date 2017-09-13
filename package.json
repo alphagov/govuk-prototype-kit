@@ -12,7 +12,7 @@
     "test": "gulp test && npm run lint"
   },
   "dependencies": {
-    "basic-auth": "^1.0.3",
+    "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.14.1",
     "browser-sync": "^2.11.1",
