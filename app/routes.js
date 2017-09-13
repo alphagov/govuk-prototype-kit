@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var scrape = require('./scrape')
+var scrape = require('./scraper')
 
 // Route index page
 router.get('/', function (req, res) {
@@ -9,9 +9,10 @@ router.get('/', function (req, res) {
 
 router.get('/scraper', function (req, res) {
   var content = new scrape(req, res);
-
-  content.getContent({});
-  res.render('index');
+  content.getAndRenderContent({
+    uri: req.query.uri,
+    findQuery: req.query.findQuery
+  });
 })
 
 // add your routes here
