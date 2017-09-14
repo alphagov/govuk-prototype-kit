@@ -11,15 +11,10 @@
     $.get('/scraper',{uri:"{{ url }}", findQuery:"{{ findQuery }}"})
     .then(function(result){
       $('#scraperContent').html(result);
-    })
-    .then(function(){
-      scraper_end_scripts();
     });
   })();
 </script>
 
 <div id="scraperContent">
 </div>
-
-{% block scraper_end_scripts %}{% endblock %}
 

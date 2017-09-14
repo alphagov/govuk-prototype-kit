@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var scrape = require('./scraper')
+var scraper = require('./scraper')
 
 // Route index page
 router.get('/', function (req, res) {
@@ -8,10 +8,10 @@ router.get('/', function (req, res) {
 })
 
 router.get('/scraper', function (req, res) {
-  var content = new scrape(req, res);
+  var content = new scraper(req, res);
   content.getAndRenderContent({
-    uri: req.query.uri,
-    findQuery: req.query.findQuery
+    uri: req.query.uri, // eg. https://www.digitalmarketplace.service.gov.uk/g-cloud/search?lot=cloud-software
+    findQuery: req.query.findQuery // query selector ie. ".classname"
   });
 })
 
