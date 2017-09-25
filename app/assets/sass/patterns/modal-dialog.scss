@@ -1,0 +1,149 @@
+.modal-dialog {
+
+  // Don't display modal if user doesn't have js. Can be overriden with .modal-dialog--no-js-persistent
+  display: none;
+
+  &--no-js-persistent {
+    display: inline-block;
+
+    .js-enabled & {
+      display: none;
+
+      &[open] {
+        display: inline-block;
+      }
+
+      .dialog-button {
+        display: inline-block;
+      }
+    }
+  }
+
+  .js-enabled &[open] {
+    display: inline-block;
+  }
+
+  &[open] {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 90vh; //Don't make the dialog quite the viewport height
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    // From https://github.com/GoogleChrome/dialog-polyfill to vertically center dialog
+    position: fixed;
+    top: 50% !important;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    @include media(tablet) {
+      padding: 0;
+    }
+  }
+
+  &__inner {
+    padding: 20px;
+    @include media(tablet) {
+      padding: 30px;
+    }
+
+    &__text {
+      @include copy-19;
+      margin-bottom: 20px;
+    }
+
+    &__button {
+      font-size: 19px;
+    }
+
+    &__link {
+      @include copy-19;
+      background: none;
+      border: none;
+      vertical-align: middle;
+      margin-top: 20px;
+
+      @include media(mobile) {
+        text-align: center;
+        display: block;
+        margin-top: 25px;
+      }
+
+      @include media(tablet) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0;
+        margin: 0 0 0 30px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__block {
+      position: relative;
+    }
+  }
+
+  #dialog-title {
+    margin-top: 0;
+  }
+}
+
+// Stop background scrolling while dialog open.
+.dialog-is-open {
+  overflow: hidden;
+}
+
+// Modal dialog polyfill styles
+$dialog_backdrop_colour: rgba(0,0,0,0.8);
+$dialog_border: 5px solid black;
+dialog {
+  left: 0; right: 0;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  margin: auto;
+  border: solid;
+  padding: 1em;
+  background: white;
+  color: black;
+  display: none;
+  border: $dialog_border;
+
+  & + .backdrop {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: $dialog_backdrop_colour;
+  }
+
+  &[open] {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 15px;
+    width: 90%;
+    @include media(tablet) {
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 500px;
+    }
+
+    // Backdrop styles for browsers using polyfil
+    &+ .backdrop {
+      background: $dialog_backdrop_colour;
+    }
+    // Backdrop styles for browsers with native support
+    // NB: keep these two backdrop styles separate - safari didn't work when combined
+    &::backdrop {
+      background: $dialog_backdrop_colour;
+    }
+  }
+}

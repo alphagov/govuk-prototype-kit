@@ -6,28 +6,49 @@
 
 {% block content %}
 
-<button id="openModal">Open modal</button>
+<dialog id="js-modal-dialog" data-minutes-idle-timeout="{{ data['modalIdleTime'] or '1'}}" data-minutes-modal-visible="{{ data['modalVisibleTime'] or '2'}}"
+data-url-redirect="/timeout" class="modal-dialog dialog" role="dialog" aria-live="polite" aria-labelledby="dialog-title" aria-describedby="at-timer">
+  <div class="modal-dialog__inner">
+	  <h1 id="dialog-title" class="heading-large">
+      Your application will time out soon
+    </h1>
+    <div class="modal-dialog__inner__text">
+      <div class="timer" aria-hidden="true" aria-relevant="additions"></div>
+      <div id="at-timer" class="at-timer visually-hidden" role="status"></div>
+    </div>
+    <div class="modal-dialog__inner__block">
+      <button class="button dialog-button modal-dialog__inner__button js-dialog-close">Continue application</button>
+      <a href="/" class="modal-dialog__inner__link">Save application</a>
+    </div>
+  </div>
+</dialog>
+
+
+<!-- <button id="openModal">Open modal</button> -->
 <main id="content" role="main">
   <div class="grid-row">
     <div class="column-two-thirds">
 
       <h1 class="heading-xlarge">
-        The GOV.UK prototype kit
-        <span class="heading-secondary">{{releaseVersion}}</span>
+        Timeout warning component
       </h1>{{releaseVersion | log }}
       <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quisquam amet sapiente, ipsa reprehenderit neque quaerat provident error dignissimos blanditiis, temporibus architecto magni velit adipisci dolores minus minima et. Repudiandae.
       </p>
 
       <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quisquam amet sapiente, ipsa reprehenderit neque quaerat provident error dignissimos blanditiis, temporibus architecto magni velit adipisci dolores minus minima et. Repudiandae.
       </p>
 
-      <h2 class="heading-medium">About this page</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quisquam amet sapiente, ipsa reprehenderit neque quaerat provident error dignissimos blanditiis, temporibus architecto magni velit adipisci dolores minus minima et. Repudiandae.
+      </p>
 
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quisquam amet sapiente, ipsa reprehenderit neque quaerat provident error dignissimos blanditiis, temporibus architecto magni velit adipisci dolores minus minima et. Repudiandae.
+      </p>
+
+
 
 			<h2 class="heading-medium">Examples and documentation</h2>
 
@@ -60,6 +81,6 @@
   </div>
 </main>
 
+
+
 {% endblock %}
-
-
