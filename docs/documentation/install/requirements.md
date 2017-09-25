@@ -97,7 +97,7 @@ xcode-select --install
 ```
 If you already have command line tools, this will display `xcode-select: error: command line tools are already installed, use "Software Update" to install updates`.
 
-![Screenshot of Command line tools popup message](/public/images/docs/installing-mavericks-popup.png)
+![Screenshot of Command line tools popup message](../../public/images/docs/installing-mavericks-popup.png)
 
 If you don’t have command line tools, it will open an installer. Follow the instructions to install the command line tools.
 

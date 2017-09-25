@@ -3,7 +3,7 @@
 .DS_Store
 .start.pid
 .port.tmp
-public
+/public
 lib/govuk_template.html
 govuk_modules
 node_modules/*
