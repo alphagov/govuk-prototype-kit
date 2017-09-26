@@ -10,11 +10,9 @@ deploy:
 - provider: script    # (If version.txt is updated) - create a new tag and push to Github, update the latest-release branch
   script: ./create-release.sh
   on: master
-- provider: heroku
-  api_key:
-    secure: h/9/Rcd41XVU4VYYeBoKKvG6uShEoDksCGGZ/2dgeY1f3tYnhGzzgL6TIkvhafwDbKk2Y4o6d/MI05K+s7lorf2uTKpr1To2o52hQqmb4YREPWruZtBqoRo5X4nCeN2oEdW+yJRH3jZDNUmwkPzjytqxkcUUUeDPHfz3+xCtSZk=
-  app: govuk-prototype-kit
-  on: master
+  # Automatic deploys are enabled in Heroku for this app
+  # Every push to master will deploy a new version of this app. Deploys happen automatically.
+  # Heroku will wait for CI to pass before deploying.
 notifications:
   email: false
 sudo: false
