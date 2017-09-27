@@ -1,3 +1,21 @@
+# 6.3.0
+
+New features:
+
+- [#430 Recommend Atom over Sublime text](https://github.com/alphagov/govuk_prototype_kit/pull/430)
+- [#415 Update to govuk-elements-sass v3.1.1](https://github.com/alphagov/govuk_prototype_kit/pull/415)
+- [#422 fix(package): update govuk_template_jinja to version 0.22.3](https://github.com/alphagov/govuk_prototype_kit/pull/422)
+- [#401 Update govuk_template_jinja to 0.22.2](https://github.com/alphagov/govuk_prototype_kit/pull/401)
+- [#409 Update govuk_frontend_toolkit to 7.0.0](https://github.com/alphagov/govuk_prototype_kit/pull/409)
+- [#406 Add documentation for creating a release](https://github.com/alphagov/govuk_prototype_kit/pull/406)
+- [#410 Copyright should be Crown Copyright](https://github.com/alphagov/govuk_prototype_kit/pull/410)
+- [#407 Support deprecated check-your-answers table styles](https://github.com/alphagov/govuk_prototype_kit/pull/407)
+
+Bug fixes:
+
+- [#431 Remove the Heroku deploy provider from Travis](https://github.com/alphagov/govuk_prototype_kit/pull/431)
+- [#405 Upgrade node.js version for Heroku](https://github.com/alphagov/govuk_prototype_kit/pull/405)
+
 # 6.2.0
 
 New features:
