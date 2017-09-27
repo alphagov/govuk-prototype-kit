@@ -8,3 +8,4 @@ lib/govuk_template.html
 govuk_modules
 node_modules/*
 .tmuxp.*
+package-lock.json
