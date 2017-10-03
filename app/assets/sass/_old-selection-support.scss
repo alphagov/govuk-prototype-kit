@@ -1,0 +1,145 @@
+// Large hit area
+// Radio buttons & checkboxes
+
+// By default, block labels stack vertically
+.block-label {
+
+display: block;
+float: none;
+clear: left;
+position: relative;
+
+padding: (8px $gutter-one-third 9px 50px);
+margin-bottom: $gutter-one-third;
+
+cursor: pointer; // Encourage clicking on block labels
+
+ // remove 300ms pause on mobile
+-ms-touch-action: manipulation;
+touch-action: manipulation;
+
+@include media(tablet) {
+  float: left;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  // width: 25%; - Test : check that text within labels will wrap
+}
+
+// Absolutely position inputs within label, to allow text to wrap
+input {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  width: 38px;
+  height: 38px;
+
+  // IE8 doesn’t support pseudoelements, so we don’t want to hide native elements there.
+  @if ($is-ie == false) or ($ie-version == 9) {
+    .js-enabled & {
+      margin: 0;
+      @include opacity(0);
+    }
+  }
+}
+
+.js-enabled & {
+  &.selection-button-radio::before {
+    content: "";
+    border: 2px solid;
+    background: transparent;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include border-radius(50%);
+  }
+
+  &.selection-button-radio::after {
+    content: "";
+    border: 10px solid;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    @include border-radius(50%);
+    @include opacity(0);
+  }
+
+  &.selection-button-checkbox::before {
+    content: "";
+    border: 2px solid;
+    background: transparent;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &.selection-button-checkbox::after {
+    content: "";
+    border: solid;
+    border-width: 0 0 5px 5px;
+    background: transparent;
+    width: 17px;
+    height: 7px;
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    -moz-transform: rotate(-45deg); // Firefox 15 compatibility
+    -o-transform: rotate(-45deg); // Opera 12.0 compatibility
+    -webkit-transform: rotate(-45deg); // Safari 8 compatibility
+    -ms-transform: rotate(-45deg); // IE9 compatibility
+    transform: rotate(-45deg);
+    @include opacity(0);
+  }
+
+  // Focused state
+  &.selection-button-checkbox.focused::before {
+    @include box-shadow(0 0 0 3px $focus-colour);
+  }
+
+  &.selection-button-radio.focused::before {
+    @include box-shadow(0 0 0 4px $focus-colour);
+  }
+
+  // IE8 focus outline should stay as a border around the entire label
+  // Lack of padding doesn’t matter as IE8 won’t resize the inputs.
+  @include ie-lte(8) {
+    &.selection-button-radio.focused,
+    &.selection-button-checkbox.focused {
+      outline: 3px solid $focus-colour;
+
+      input:focus {
+        outline: none;
+      }
+    }
+  }
+
+  // Selected state
+  &.selection-button-radio,
+  &.selection-button-checkbox {
+    &.selected::after {
+      @include opacity(1);
+    }
+  }
+}
+
+&:last-child,
+&:last-of-type {
+  margin-bottom: 0;
+}
+}
+
+// To stack horizontally, use .inline on parent, to sit block labels next to each other
+.inline .block-label {
+clear: none;
+
+@include media (tablet) {
+  margin-bottom: 0;
+  margin-right: $gutter;
+}
+}
