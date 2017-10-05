@@ -97,6 +97,8 @@ if (useDocumentation) {
 
   // Set views engine
   documentationApp.set('view engine', 'html')
+
+  app.use('/assets', express.static(path.join(__dirname, '/docs/assets')))
 }
 
 // Support for parsing data in POSTs
