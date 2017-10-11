@@ -3,6 +3,7 @@ var crypto = require('crypto')
 var path = require('path')
 var express = require('express')
 var session = require('express-session')
+var nocache = require('nocache')
 var nunjucks = require('nunjucks')
 var routes = require('./app/routes.js')
 var documentationRoutes = require('./docs/documentation_routes.js')
@@ -50,6 +51,11 @@ if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
+
+// prevent browser from caching responses, so users of the kit always see
+// their latest changes
+
+app.use(nocache())
 
 // Authenticate against the environment-provided credentials, if running
 // the app in production (Heroku, effectively)
