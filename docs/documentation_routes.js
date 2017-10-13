@@ -1,9 +1,14 @@
-var express = require('express')
-var fs = require('fs')
-var marked = require('marked')
-var path = require('path')
-var router = express.Router()
-var utils = require('../lib/utils.js')
+// built in modules
+const fs = require('fs')
+const path = require('path')
+
+// other modules
+const express = require('express')
+const marked = require('marked')
+const router = express.Router()
+
+// prototype kit code
+const utils = require('../lib/utils.js')
 
 // Page routes
 

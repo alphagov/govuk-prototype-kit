@@ -4,8 +4,8 @@
   watches sass/js/images
 */
 
-var gulp = require('gulp')
-var config = require('./config.json')
+const gulp = require('gulp')
+const config = require('./config.json')
 
 gulp.task('watch-sass', function () {
   return gulp.watch(config.paths.assets + 'sass/**', {cwd: './'}, ['sass'])

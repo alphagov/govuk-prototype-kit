@@ -1,19 +1,26 @@
-require('dotenv').config()
-var crypto = require('crypto')
-var path = require('path')
-var express = require('express')
-var session = require('express-session')
-var nunjucks = require('nunjucks')
-var routes = require('./app/routes.js')
-var documentationRoutes = require('./docs/documentation_routes.js')
-var favicon = require('serve-favicon')
-var app = express()
-var documentationApp = express()
-var bodyParser = require('body-parser')
-var browserSync = require('browser-sync')
-var config = require('./app/config.js')
-var utils = require('./lib/utils.js')
-var packageJson = require('./package.json')
+// built in modules
+const crypto = require('crypto')
+const path = require('path')
+
+// other modules
+const bodyParser = require('body-parser')
+const browserSync = require('browser-sync')
+const dotenv = require('dotenv')
+const express = require('express')
+const favicon = require('serve-favicon')
+const nunjucks = require('nunjucks')
+const session = require('express-session')
+
+// prototype kit code
+const config = require('./app/config.js')
+const documentationRoutes = require('./docs/documentation_routes.js')
+const packageJson = require('./package.json')
+const routes = require('./app/routes.js')
+const utils = require('./lib/utils.js')
+
+const app = express()
+const documentationApp = express()
+dotenv.config()
 
 // Grab environment variables specified in Procfile or as Heroku config vars
 var releaseVersion = packageJson.version
