@@ -76,6 +76,23 @@ Check your answers
                 </a>
               </td>
             </tr>
+            <tr>
+              <td>
+                Vehicle extras
+              </td>
+              <td>
+                <ul>
+                  {% for extra, item in data['vehicle-extra'] %}
+                    <li>{{ extra + ': ' + item }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td class="change-answer">
+                <a href="/docs/examples/pass-data/vehicle-extras">
+                  Change <span class="visuallyhidden">vehicle extras</span>
+                </a>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

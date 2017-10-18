@@ -14,6 +14,7 @@ var browserSync = require('browser-sync')
 var config = require('./app/config.js')
 var utils = require('./lib/utils.js')
 var packageJson = require('./package.json')
+var keypath = require('keypather')()
 
 // Grab environment variables specified in Procfile or as Heroku config vars
 var releaseVersion = packageJson.version
@@ -137,7 +138,14 @@ var addCheckedFunction = function (app, nunjucksEnv) {
         return ''
       }
 
-      var storedValue = req.session.data[name]
+      var storedValue
+
+      // if name uses bracket notation infer it's an object path
+      if (name.indexOf('[') !== -1) {
+        storedValue = keypath.get(req.session.data, (name.replace('[', '.').replace(']', '')))
+      } else {
+        storedValue = req.session.data[name]
+      }
 
       // check the requested data exists
       if (storedValue === undefined) {
