@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-full">
+
+      <h1 class="heading-xlarge">
+        Scrape Example
+        <span class="heading-secondary">{{releaseVersion}}</span>
+      </h1>{{releaseVersion | log }}
+      
+      {% set cssFiles = ['https://www.digitalmarketplace.service.gov.uk/static/stylesheets/application.css?b6eec827049a4f673ed32061414b84a9'] %}      
+      {% set jsFiles = ['https://www.digitalmarketplace.service.gov.uk/static/javascripts/application.js?b2964dcd80058315a641694273121e86'] %}      
+      {% set url = "https://www.digitalmarketplace.service.gov.uk/g-cloud/search?lot=cloud-software" %}      
+      {% set findQuery = "#content" %}      
+      {% include "scraper_layout.html" %}
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+

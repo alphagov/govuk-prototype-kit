@@ -1,0 +1,20 @@
+{% for file in jsFiles %}
+  <script src="{{ file }}"></script>
+{% endfor %}
+
+{% for file in cssFiles %}
+  <link rel="stylesheet" href="{{ file }}">
+{% endfor %}
+
+<script>
+  (function(){
+    $.get('/scraper',{uri:"{{ url }}", findQuery:"{{ findQuery }}"})
+    .then(function(result){
+      $('#scraperContent').html(result);
+    });
+  })();
+</script>
+
+<div id="scraperContent">
+</div>
+
