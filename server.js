@@ -136,8 +136,9 @@ app.use(session({
 
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
-  utils.addCheckedFunction(app, nunjucksAppEnv)
-  utils.addCheckedFunction(documentationApp, nunjucksDocumentationEnv)
+
+  app.use(utils.checkedFunction(nunjucksAppEnv))
+  documentationApp.use(utils.checkedFunction(nunjucksDocumentationEnv))
 }
 
 // Disallow search index idexing
