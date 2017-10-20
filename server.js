@@ -7,8 +7,8 @@ const bodyParser = require('body-parser')
 const browserSync = require('browser-sync')
 const dotenv = require('dotenv')
 const express = require('express')
+const expressNunjucks = require('express-nunjucks')
 const favicon = require('serve-favicon')
-const nunjucks = require('nunjucks')
 const session = require('express-session')
 
 // prototype kit code
@@ -64,10 +64,21 @@ if (env === 'production' && useAuth === 'true') {
   app.use(utils.basicAuth(username, password))
 }
 
-// Set up App
+// Set up app
 var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/')]
+app.set('views', appViews)
 
-var nunjucksAppEnv = nunjucks.configure(appViews, {
+var apps = [app]
+
+// Set up documentation app
+if (useDocumentation) {
+  var documentationViews = [path.join(__dirname, '/docs/views/'), path.join(__dirname, '/lib/')]
+  documentationApp.set('views', documentationViews)
+  apps.push(documentationApp)
+}
+
+// Set up nunjucks templating
+const nunjucks = expressNunjucks(apps, {
   autoescape: true,
   express: app,
   noCache: true,
@@ -75,10 +86,7 @@ var nunjucksAppEnv = nunjucks.configure(appViews, {
 })
 
 // Nunjucks filters
-utils.addNunjucksFilters(nunjucksAppEnv)
-
-// Set views engine
-app.set('view engine', 'html')
+utils.addNunjucksFilters(nunjucks.env)
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
@@ -88,23 +96,6 @@ app.use('/public/images/icons', express.static(path.join(__dirname, '/govuk_modu
 
 // Elements refers to icon folder instead of images folder
 app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images', 'favicon.ico')))
-
-// Set up documentation app
-if (useDocumentation) {
-  var documentationViews = [path.join(__dirname, '/docs/views/'), path.join(__dirname, '/lib/')]
-
-  var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
-    autoescape: true,
-    express: documentationApp,
-    noCache: true,
-    watch: true
-  })
-  // Nunjucks filters
-  utils.addNunjucksFilters(nunjucksDocumentationEnv)
-
-  // Set views engine
-  documentationApp.set('view engine', 'html')
-}
 
 // Support for parsing data in POSTs
 app.use(bodyParser.json())
@@ -134,47 +125,10 @@ app.use(session({
   secret: crypto.randomBytes(64).toString('hex')
 }))
 
-// add nunjucks function called 'checked' to populate radios and checkboxes,
-// needs to be here as it needs access to req.session and nunjucks environment
-var addCheckedFunction = function (app, nunjucksEnv) {
-  app.use(function (req, res, next) {
-    nunjucksEnv.addGlobal('checked', function (name, value) {
-      // check session data exists
-      if (req.session.data === undefined) {
-        return ''
-      }
-
-      var storedValue = req.session.data[name]
-
-      // check the requested data exists
-      if (storedValue === undefined) {
-        return ''
-      }
-
-      var checked = ''
-
-      // if data is an array, check it exists in the array
-      if (Array.isArray(storedValue)) {
-        if (storedValue.indexOf(value) !== -1) {
-          checked = 'checked'
-        }
-      } else {
-        // the data is just a simple value, check it matches
-        if (storedValue === value) {
-          checked = 'checked'
-        }
-      }
-      return checked
-    })
-
-    next()
-  })
-}
-
+// automatically store all data entered
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
-  addCheckedFunction(app, nunjucksAppEnv)
-  addCheckedFunction(documentationApp, nunjucksDocumentationEnv)
+  app.use(utils.addCheckedFunction(nunjucks.env))
 }
 
 // Disallow search index idexing
