@@ -134,47 +134,10 @@ app.use(session({
   secret: crypto.randomBytes(64).toString('hex')
 }))
 
-// add nunjucks function called 'checked' to populate radios and checkboxes,
-// needs to be here as it needs access to req.session and nunjucks environment
-var addCheckedFunction = function (app, nunjucksEnv) {
-  app.use(function (req, res, next) {
-    nunjucksEnv.addGlobal('checked', function (name, value) {
-      // check session data exists
-      if (req.session.data === undefined) {
-        return ''
-      }
-
-      var storedValue = req.session.data[name]
-
-      // check the requested data exists
-      if (storedValue === undefined) {
-        return ''
-      }
-
-      var checked = ''
-
-      // if data is an array, check it exists in the array
-      if (Array.isArray(storedValue)) {
-        if (storedValue.indexOf(value) !== -1) {
-          checked = 'checked'
-        }
-      } else {
-        // the data is just a simple value, check it matches
-        if (storedValue === value) {
-          checked = 'checked'
-        }
-      }
-      return checked
-    })
-
-    next()
-  })
-}
-
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
-  addCheckedFunction(app, nunjucksAppEnv)
-  addCheckedFunction(documentationApp, nunjucksDocumentationEnv)
+  utils.addCheckedFunction(nunjucksAppEnv)
+  utils.addCheckedFunction(nunjucksDocumentationEnv)
 }
 
 // Disallow search index idexing
