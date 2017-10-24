@@ -10,6 +10,7 @@ const express = require('express')
 const favicon = require('serve-favicon')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 // prototype kit code
 const config = require('./app/config.js')
@@ -17,6 +18,7 @@ const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
+const successFailUrl = require('./app/middleware/successFailUrl')
 
 const app = express()
 const documentationApp = express()
@@ -32,6 +34,7 @@ var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreDat
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var useBrowserSync = config.useBrowserSync
 var analyticsId = process.env.ANALYTICS_TRACKING_ID
+var randomString = crypto.randomBytes(64).toString('hex')
 
 env = env.toLowerCase()
 useAuth = useAuth.toLowerCase()
@@ -121,6 +124,9 @@ app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
+// Support cookie data
+app.use(cookieParser(randomString))
+
 // Support session data
 app.use(session({
   cookie: {
@@ -128,10 +134,10 @@ app.use(session({
     secure: isSecure
   },
   // use random name to avoid clashes with other prototypes
-  name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
+  name: 'govuk-prototype-kit-' + randomString,
   resave: false,
   saveUninitialized: false,
-  secret: crypto.randomBytes(64).toString('hex')
+  secret: randomString
 }))
 
 if (useAutoStoreData === 'true') {
@@ -183,6 +189,9 @@ if (promoMode === 'true') {
     res.send('User-agent: *\nDisallow: /')
   })
 }
+
+// Global Middleware
+app.use(successFailUrl)
 
 // routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
