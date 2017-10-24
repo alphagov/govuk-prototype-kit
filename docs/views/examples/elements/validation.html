@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main" data-errorHeading="Message to alert the user to a problem goes here" data-errorDescription="Optional description of the errors and how to correct them">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+			<h1 class="heading-xlarge">Validation</h1>
+			
+			<form>
+				<div class="form-group" data-required="Custom error message goes here">
+					<label class="form-label" for="full-name-f1">Full name</label>
+					<input class="form-control" id="full-name-f1" type="text">
+				</div>
+
+				<div class="form-group" data-required>
+					<fieldset>
+						<legend>
+							<span class="form-label-bold">
+								What is your date of birth?
+							</span>
+							<span class="form-hint">For example, 31 3 1980</span>
+						</legend>
+						<div class="form-date">
+							<div class="form-group form-group-day">
+								<label class="form-label" for="dob-day">Day</label>
+								<input class="form-control" id="dob-day" name="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
+							</div>
+							<div class="form-group form-group-month">
+								<label class="form-label" for="dob-month">Month</label>
+								<input class="form-control" id="dob-month" name="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+							</div>
+							<div class="form-group form-group-year">
+								<label class="form-label" for="dob-year">Year</label>
+								<input class="form-control" id="dob-year" name="dob-year" type="number" pattern="[0-9]*" min="0" max="2016">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+
+				<h2 class="heading-medium">Do you already have a personal user account?</h2>
+				<div class="form-group" data-required>
+					<fieldset class="inline">
+						<legend>
+							<span class="visually-hidden">
+								Do you already have a personal user account?
+							</span>
+						</legend>
+						<div class="multiple-choice">
+							<input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+							<label for="radio-inline-1">Yes</label>
+						</div>
+				
+						<div class="multiple-choice">
+							<input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+							<label for="radio-inline-2">No</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<h2 class="heading-medium">Which types of waste do you transport regularly?</h2>
+				<div class="form-group" data-required>
+					<fieldset>
+						<legend>
+							<span class="visually-hidden">
+								Which types of waste do you transport regularly?
+							</span>
+						</legend>
+					
+						<div class="multiple-choice">
+							<input id="waste-type-1" name="waste-types" type="checkbox" value="waste-animal">
+							<label for="waste-type-1">Waste from animal carcasses</label>
+						</div>
+					
+						<div class="multiple-choice">
+							<input id="waste-type-2" name="waste-types" type="checkbox" value="waste-mines">
+							<label for="waste-type-2">Waste from mines or quarries</label>
+						</div>
+					
+						<div class="multiple-choice">
+							<input id="waste-type-3" name="waste-types" type="checkbox" value="waste-farm-agricultural">
+							<label for="waste-type-3">Farm or agricultural waste</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<div class="form-group" data-required>
+					<label class="form-label" for="address">Address</label>
+					<textarea class="form-control" id="address"></textarea>
+				</div>
+
+				<button class="button" type="submit">Submit</button>
+			</form>
+			
+    </div>
+  </div>
+</main>
+
+{% endblock %}

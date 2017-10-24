@@ -45,6 +45,12 @@
     "supertest": "^3.0.0",
     "sync-request": "^4.0.3"
   },
+  "standard": {
+    "globals": [
+      "$",
+      "document"
+    ]
+  },
   "greenkeeper": {
     "ignore": [
       "nunjucks"
