@@ -1,9 +1,8 @@
-// Check for `node_modules` folder and warn if missing
+// Core dependencies
+const path = require('path')
+const fs = require('fs')
 
-var path = require('path')
-var fs = require('fs')
-
-// Check if node_modules folder exists
+// Warn if node_modules folder doesn't exist
 const nodeModulesExists = fs.existsSync(path.join(__dirname, '/node_modules'))
 if (!nodeModulesExists) {
   console.error('ERROR: Node module folder missing. Try running `npm install`')
@@ -18,9 +17,8 @@ if (!envExists) {
   .pipe(fs.createWriteStream(path.join(__dirname, '/.env')))
 }
 
-// run gulp
-
-var spawn = require('cross-spawn')
+// Run gulp
+const spawn = require('cross-spawn')
 
 process.env['FORCE_COLOR'] = 1
 var gulp = spawn('gulp')
