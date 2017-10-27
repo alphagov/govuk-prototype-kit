@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
 <main id="content" role="main">
 
   <div class="breadcrumbs">
     <ol>
-      <li><a href="/docs">GOV.UK prototype kit</a></li>
+      <li>
+        <a href="/docs">GOV.UK prototype kit</a>
+      </li>
     </ol>
   </div>
 
@@ -27,15 +28,26 @@
     <div class="column-third">
       <h3 class="heading-small">Getting started</h3>
       <ul class="list list-bullet">
-        <li><a href="/prototype-admin/download-latest">Download kit (zip)</a></li>
-        <li><a href="/docs/install/introduction">Simple install guide</a>
+        <li>
+          <a href="/prototype-admin/download-latest">Download kit (zip)</a>
+        </li>
+        <li>
+          <a href="/docs/install/introduction">Simple install guide</a>
           <ol class="list list-number">
-            <li><a href="/docs/install/requirements">Kit requirements</a></li>
-            <li><a href="/docs/install/install-the-kit">Install the kit</a></li>
-            <li><a href="/docs/install/run-the-kit">Run the kit</a></li>
+            <li>
+              <a href="/docs/install/requirements">Kit requirements</a>
+            </li>
+            <li>
+              <a href="/docs/install/install-the-kit">Install the kit</a>
+            </li>
+            <li>
+              <a href="/docs/install/run-the-kit">Run the kit</a>
+            </li>
           </ol>
         </li>
-        <li><a href="/docs/install/developer-install-instructions">Advanced install guide</a></li>
+        <li>
+          <a href="/docs/install/developer-install-instructions">Advanced install guide</a>
+        </li>
       </ul>
 
 
@@ -43,13 +55,27 @@
     <div class="column-third">
       <h3 class="heading-small">Basic usage</h3>
       <ul class="list list-bullet">
-        <li><a href="/docs/making-pages">Making pages</a></li>
-        <li><a href="/docs/writing-css">Writing CSS</a></li>
-        <li><a href="/docs/setting-up-git">Setting up Git</a></li>
-        <li><a href="/docs/publishing-on-heroku">Publishing on the web (Heroku)</a></li>
-        <li><a href="/docs/examples/template-data">Passing data into a template</a></li>
-        <li><a href="/docs/tips-and-tricks">Tips and tricks</a></li>
-        <li><a href="/docs/updating-the-kit">Updating the kit</a></li>
+        <li>
+          <a href="/docs/making-pages">Making pages</a>
+        </li>
+        <li>
+          <a href="/docs/writing-css">Writing CSS</a>
+        </li>
+        <li>
+          <a href="/docs/setting-up-git">Setting up Git</a>
+        </li>
+        <li>
+          <a href="/docs/publishing-on-heroku">Publishing on the web (Heroku)</a>
+        </li>
+        <li>
+          <a href="/docs/examples/template-data">Passing data into a template</a>
+        </li>
+        <li>
+          <a href="/docs/tips-and-tricks">Tips and tricks</a>
+        </li>
+        <li>
+          <a href="/docs/updating-the-kit">Updating the kit</a>
+        </li>
       </ul>
     </div>
     <div class="column-third">
@@ -58,14 +84,28 @@
         <li>
           <a href="/docs/examples/pass-data">Passing data from page to page</a>
         </li>
-        <li><a href="/docs/examples/branching">Branching</a>
+        <li>
+          <a href="/docs/examples/branching">Branching</a>
           <p class="font-xsmall">(Showing a different page based on user input)</p>
         </li>
-        <li><a href="/docs/creating-routes">Creating routes (server side programming)</a></li>
-        <li><a href="/docs/examples/override-service-name">Override the service name on one page</a></li>
-        <li><a href="/docs/session">Storing data in session</a></li>
-        <li><a href="/docs/using-verify">Using GOV.UK Verify</a></li>
+        <li>
+          <a href="/docs/creating-routes">Creating routes (server side programming)</a>
+        </li>
+        <li>
+          <a href="/docs/examples/override-service-name">Override the service name on one page</a>
+        </li>
+        <li>
+          <a href="/docs/session">Storing data in session</a>
+        </li>
+        <li>
+          <a href="/docs/using-verify">Using GOV.UK Verify</a>
+        </li>
 
+        <li>
+          <a href="/docs/examples/template-partial-areas">
+            Template partial areas
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -74,66 +114,17 @@
     <div class="column-two-thirds">
       <h2 class="heading-medium">Page templates</h2>
       <p class="text">
-        Use these as the basis for your prototypes.
-        We recommend making copies of the files rather than directly editing them.
+        Use these as the basis for your prototypes. We recommend making copies of the files rather than directly editing them.
+      </p>
+      <p class="text">
+        You can find them in your prototype folder, in /docs/views/examples
       </p>
 
-    </div>
-  </div>
-
-  <div class="grid-row">
-
-
-    <div class="column-third">
-      <h3 class="heading-small">Components</h3>
-      <ul class="list list-bullet">
-        <li>
-          <a href="/docs/examples/elements/grid-layout">
-            Grid layout
-          </a>
-        </li>
-        <li>
-          <a href="/docs/examples/elements/typography">
-            Typography
-          </a>
-        </li>
-        <li>
-          <a href="/docs/examples/elements/forms">
-            Basic form example
-          </a>
-        </li>
-        <li>
-          <a href="/docs/examples/elements/radio-buttons">
-            Radio buttons
-          </a>
-        </li>
-        <li>
-          <a href="/docs/examples/elements/checkboxes">
-            Checkboxes
-          </a>
-        </li>
-        <li>
-          <a href="/docs/examples/elements/toggled-content">
-            Toggling content
-          </a>
-        </li>
-        <li>
-          <a href="/docs/examples/template-partial-areas">
-            Template partial areas
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="column-third">
-
-      <h3 class="heading-small">Entire pages</h3>
       <ul class="list list-bullet">
         <li>
           <a href="/docs/examples/blank-govuk">
             Blank
-          </a>
-          /
+          </a> /
           <a href="/docs/examples/blank-unbranded">
             Blank (non-GOV.UK)
           </a>
@@ -141,6 +132,11 @@
         <li>
           <a href="/docs/examples/start-page">
             Start page
+          </a>
+        </li>
+        <li>
+          <a href="/docs/examples/template-question-page-blank">
+            Question page
           </a>
         </li>
         <li>
@@ -163,22 +159,15 @@
             Confirmation
           </a>
         </li>
-        <li>
-          Question pages
-          <ul class="list list-bullet">
-            <li>
-              <a href="/docs/examples/template-question-page-blank">
-                Blank
-              </a>
-            </li>
-            <li>
-              <a href="/docs/examples/question-page">
-                Date of birth
-              </a>
-            </li>
-          </ul>
-        </li>
       </ul>
+
+      <h2 class="heading-medium">GOV.UK Elements</h2>
+
+      <p class="text">
+        <a href="https://govuk-elements.herokuapp.com/">GOV.UK Elements</a> is a guide to making your prototype look like a GOV.UK
+        service, including typography, forms and more.
+      </p>
+
     </div>
 
   </div>
