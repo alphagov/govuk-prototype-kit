@@ -1,8 +1,8 @@
-// built in modules
+// Core dependencies
 const crypto = require('crypto')
 const path = require('path')
 
-// other modules
+// NPM dependencies
 const bodyParser = require('body-parser')
 const browserSync = require('browser-sync')
 const dotenv = require('dotenv')
@@ -11,7 +11,7 @@ const favicon = require('serve-favicon')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
 
-// prototype kit code
+// Local dependencies
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
@@ -22,7 +22,7 @@ const app = express()
 const documentationApp = express()
 dotenv.config()
 
-// Grab environment variables specified in Procfile or as Heroku config vars
+// Set up configuration variables
 var releaseVersion = packageJson.version
 var username = process.env.USERNAME
 var password = process.env.PASSWORD
@@ -47,19 +47,15 @@ promoMode = promoMode.toLowerCase()
 // Disable promo mode if docs aren't enabled
 if (!useDocumentation) promoMode = 'false'
 
-// Force HTTPs on production connections. Do this before asking for basicAuth to
-// avoid making users fill in the username/password twice (once for `http`, and
-// once for `https`).
-
+// Force HTTPS on production. Do this before using basicAuth to avoid
+// asking for username/password twice (for `http`, then `https`).
 var isSecure = (env === 'production' && useHttps === 'true')
-
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
 
-// Authenticate against the environment-provided credentials, if running
-// the app in production (Heroku, effectively)
+// Ask for username and password on production
 if (env === 'production' && useAuth === 'true') {
   app.use(utils.basicAuth(username, password))
 }
@@ -74,7 +70,7 @@ var nunjucksAppEnv = nunjucks.configure(appViews, {
   watch: true
 })
 
-// Nunjucks filters
+// Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
 
 // Set views engine
@@ -134,12 +130,14 @@ app.use(session({
   secret: crypto.randomBytes(64).toString('hex')
 }))
 
+// Automatically store all data users enter
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
   utils.addCheckedFunction(nunjucksAppEnv)
   utils.addCheckedFunction(nunjucksDocumentationEnv)
 }
 
+// Clear all data in session if you open /prototype-admin/clear-data
 app.get('/prototype-admin/clear-data', function (req, res) {
   req.session.destroy()
   res.render('prototype-admin/clear-data')
@@ -153,13 +151,13 @@ if (promoMode === 'true') {
     res.redirect('/docs')
   })
 
-  // allow search engines to index the prototype kit promo site
+  // Allow search engines to index the prototype kit promo site
   app.get('/robots.txt', function (req, res) {
     res.type('text/plain')
     res.send('User-agent: *\nAllow: /')
   })
 } else {
-  // Disallow search index idexing
+  // Prevent search indexing
   app.use(function (req, res, next) {
     // Setting headers stops pages being indexed even if indexed pages link to them.
     res.setHeader('X-Robots-Tag', 'noindex')
@@ -172,7 +170,7 @@ if (promoMode === 'true') {
   })
 }
 
-// routes (found in app/routes.js)
+// Load routes (found in app/routes.js)
 if (typeof (routes) !== 'function') {
   console.log(routes.bind)
   console.log('Warning: the use of bind in routes is deprecated - please check the prototype kit documentation for writing routes.')
@@ -181,7 +179,7 @@ if (typeof (routes) !== 'function') {
   app.use('/', routes)
 }
 
-// Returns a url to the zip of the latest release on github
+// Redirect to the zip of the latest release of the prototype kit on GitHub
 app.get('/prototype-admin/download-latest', function (req, res) {
   var url = utils.getLatestRelease()
   res.redirect(url)
@@ -223,16 +221,15 @@ if (useDocumentation) {
   })
 }
 
-// redirect all POSTs to GETs - this allows users to use POST for autoStoreData
+// Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, function (req, res) {
   res.redirect('/' + req.params[0])
 })
 
 console.log('\nGOV.UK Prototype kit v' + releaseVersion)
-// Display warning not to use kit for production services.
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.')
 
-// start the app
+// Find a free port and start the server
 utils.findAvailablePort(app, function (port) {
   console.log('Listening on port ' + port + '   url: http://localhost:' + port)
   if (env === 'production' || useBrowserSync === 'false') {

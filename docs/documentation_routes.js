@@ -1,13 +1,13 @@
-// built in modules
+// Core dependencies
 const fs = require('fs')
 const path = require('path')
 
-// other modules
+// NPM dependencies
 const express = require('express')
 const marked = require('marked')
 const router = express.Router()
 
-// prototype kit code
+// Local dependencies
 const utils = require('../lib/utils.js')
 
 // Page routes
@@ -35,7 +35,7 @@ router.get('/install/:page', function (req, res) {
   res.render('install_template', {'document': html})
 })
 
-// Examples - exampes post here
+// Examples - examples post here
 router.post('/tutorials-and-examples', function (req, res) {
   res.redirect('tutorials-and-examples')
 })
@@ -43,22 +43,20 @@ router.post('/tutorials-and-examples', function (req, res) {
 // Example routes
 
 // Passing data into a page
-
 router.get('/examples/template-data', function (req, res) {
   res.render('examples/template-data', { 'name': 'Foo' })
 })
 
 // Branching
-
 router.get('/examples/over-18', function (req, res) {
-  // get the answer from the query string (eg. ?over18=false)
+  // Get the answer from the query string (eg. ?over18=false)
   var over18 = req.query.over18
 
   if (over18 === 'false') {
-    // redirect to the relevant page
+    // Redirect to the relevant page
     res.redirect('/docs/examples/under-18')
   } else {
-    // if over18 is any other value (or is missing) render the page requested
+    // If over18 is any other value (or is missing) render the page requested
     res.render('examples/over-18')
   }
 })
