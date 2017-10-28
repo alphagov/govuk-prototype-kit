@@ -50,16 +50,21 @@ router.get('/examples/template-data', function (req, res) {
 
 // Branching
 
-router.get('/examples/over-18', function (req, res) {
-  // get the answer from the query string (eg. ?over18=false)
-  var over18 = req.query.over18
+router.get('/examples/branch/aliens', function (req, res) {
+  // get the answer from the query string (eg. ?aliens=2)
+  // we convert to a number as data in HTTP is always a string
+  var aliens = Number(req.query.aliens)
 
-  if (over18 === 'false') {
+  if (aliens > 5) {
     // redirect to the relevant page
-    res.redirect('/docs/examples/under-18')
+    res.redirect('/docs/examples/branch/too-many-aliens')
+    return
+  } else if (aliens >= 1 && aliens <= 5) {
+    res.redirect('/docs/examples/branch/some-aliens')
+    return
   } else {
-    // if over18 is any other value (or is missing) render the page requested
-    res.render('examples/over-18')
+    // everything looks ok, render the requested page
+    res.render('examples/branch/aliens')
   }
 })
 

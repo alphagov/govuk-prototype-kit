@@ -12,8 +12,6 @@
   <div class="grid-row">
     <div class="column-two-thirds">
 
-      <form action="/docs/examples/over-18" method="get" class="form">
-
         <h1 class="heading-xlarge">
           Branching
         </h1>
@@ -23,41 +21,83 @@
         </p>
 
         <p>
-          You can see the code for this example here:
+          You can make this happen by including <code class="code">, redirect(&lt;url&gt;)</code> after the data in your radio button values. For example:</URL>
         </p>
 
-        <div class="code">
-          /docs/documentation_routes.js
-          /docs/views/examples/branching.html
+        <div class="code" style="width:150%;overflow:auto;margin-bottom:30px">
+  &#x3C;div class=&#x22;multiple-choice&#x22;&#x3E;
+    &#x3C;input id=&#x22;workStatusEmp&#x22; type=&#x22;radio&#x22; name=&#x22;work_status&#x22; value=&#x22;employed, redirect(branch/employed)&#x22;&#x3E;
+    &#x3C;label for=&#x22;workStatusEmp&#x22;&#x3E;Employed&#x3C;/label&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;div class=&#x22;multiple-choice&#x22;&#x3E;
+    &#x3C;input id=&#x22;workStatusSelf&#x22; type=&#x22;radio&#x22; name=&#x22;work_status&#x22; value=&#x22;selfemployed, redirect(branch/self-employed)&#x22;&#x3E;
+    &#x3C;label for=&#x22;workStatusSelf&#x22;&#x3E;Self-employed&#x3C;/label&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;div class=&#x22;multiple-choice&#x22;&#x3E;
+    &#x3C;input id=&#x22;workStatusDir&#x22; type=&#x22;radio&#x22; name=&#x22;work_status&#x22; value=&#x22;director, redirect(branch/director)&#x22;&#x3E;
+    &#x3C;label for=&#x22;workStatusDir&#x22;&#x3E;Director of a limited company&#x3C;/label&#x3E;
+  &#x3C;/div&#x3E;
         </div>
 
-        <h2 class="heading-medium">
-          Are you 18 or over?
-        </h2>
+        <form action="/docs/examples/branching" method="get" class="form">
 
-        <div class="form-group">
-          <fieldset class="inline">
+          <div class="form-group">
 
-            <legend class="visuallyhidden">Are you 18 or over?</legend>
+            <h2 class="heading-medium">
+              What is your employment status?
+            </h2>
 
-            <div class="multiple-choice">
-              <input id="over18True" type="radio" name="over18" value="true">
-              <label for="over18True">Yes</label>
-            </div>
+            <fieldset class="">
 
-            <div class="multiple-choice">
-              <input id="over18False" type="radio" name="over18" value="false">
-              <label for="over18False">No</label>
-            </div>
+              <legend class="visuallyhidden">What is your employment status?</legend>
 
-          </fieldset>
-        </div>
+              <div class="multiple-choice">
+                <input id="workStatusEmp" type="radio" name="work_status" value="employed, redirect(branch/employed)">
+                <label for="workStatusEmp">Employed</label>
+              </div>
 
-        <div class="form-group">
-          <input type="submit" class="button" value="Continue">
-        </div>
+              <div class="multiple-choice">
+                <input id="workStatusSelf" type="radio" name="work_status" value="selfemployed, redirect(branch/self-employed)">
+                <label for="workStatusSelf">Self-employed</label>
+              </div>
 
-      </form>
+              <div class="multiple-choice">
+                <input id="workStatusDir" type="radio" name="work_status" value="director, redirect(branch/director)">
+                <label for="workStatusDir">Director of a limited company</label>
+              </div>
+
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+
+        </form>
+
+        <p>&nbsp;</p>
+
+        <h2 class="heading-large">Advanced method</h2>
+
+        <p>You can write some 'route' code to branch on any kind of input.</p>
+
+        <p>You can see the code for this in <span class="code">/docs/documentation_routes.js</span></p>
+
+        <p>&nbsp;</p>
+
+        <form action="/docs/examples/branch/aliens" method="get" class="form">
+
+          <div class="form-group">
+            <label class="form-label-bold" for="aliens">How many aliens did you see?</label>
+            <p class="form-hint">Enter 0, 5 or 20 to see the branching pages</p>
+            <input type="text" class="form-control" name="aliens" id="aliens">
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+          </div>
+
+        </form>
 
     </div>
   </div>
