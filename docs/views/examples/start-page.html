@@ -14,7 +14,7 @@
 
 {% block content %}
 
-<main id="content" role="main">
+<main id="content" role="main" class="govuk-o-site-width-container">
 
   <div class="breadcrumbs">
     <ol>
@@ -24,8 +24,8 @@
     </ol>
   </div>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds body-text">
 
       <h1 class="heading-xlarge">
         {% if serviceName %} {{ serviceName }} {% endif %}
@@ -42,7 +42,7 @@
       <p>Registering takes around 5 minutes.</p>
 
       <p>
-        <a class="button button-start" href="#" role="button">Start now</a>
+        <a class="govuk-c-button govuk-c-button--start" href="#" role="button">Start now</a>
       </p>
 
       <h2 class="heading-medium">Before you start</h2>
