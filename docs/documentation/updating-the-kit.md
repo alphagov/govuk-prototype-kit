@@ -14,7 +14,9 @@ In your project, delete everything apart from the `app` and `.git` folder
 
 Copy everything from the latest kit to your project, apart from the `app` folder. 
 
-Copy the config.js file from the `app` folder in the latest kit to the `app` folder of your prototype. If you've made any changes to the config.js file in your prototype then you'll need to re-enter them in the new version of the file e.g. the service name
+Copy the config.js file from the `app` folder in the latest kit to the `app` folder of your prototype. If you've made any changes to the config.js file in your prototype then you'll need to re-enter them in the new version of the file e.g. the service name.
+
+Check '\app\assets\sass\patterns' in the latest kit for any new patterns. Copy the file(s) over to your prototype.
 
 ---
 
