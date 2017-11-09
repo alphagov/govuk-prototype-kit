@@ -18,6 +18,8 @@ Copy the config.js file from the `app` folder in the latest kit to the `app` fol
 
 Check '\app\assets\sass\patterns' in the latest kit for any new patterns. Copy the file(s) over to your prototype.
 
+Check '\app\assets\sass\application.scss' in the latest kit to see if any changes have been made in the top section, above where it says // Add extra styles here. Copy anything new from that file to the version in your prototype, making sure you don't overwrite any extra styles you have added yourself.
+
 ---
 
 ## Updating via the command line (Advanced)
