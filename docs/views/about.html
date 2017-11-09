@@ -6,14 +6,17 @@ About - GOV.UK Prototype kit
 
 {% block content %}
 
-<main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <div class="breadcrumbs">
-        <ol>
-          <li><a href="/docs">GOV.UK Prototype kit</a></li>
-        </ol>
-      </div>
+<main id="content" role="main" class="govuk-o-site-width-container body-text">
+
+  <div class="breadcrumbs">
+    <ol>
+      <li><a href="/docs">GOV.UK prototype kit</a></li>
+    </ol>
+  </div>
+
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      
       <h1 class="heading-xlarge">About</h1>
 
       <p class="lede">
@@ -28,9 +31,9 @@ About - GOV.UK Prototype kit
         <li><a href="https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/">Slack channel for developers of the prototype kit</a></li>
       </ul>
 
-      
+
       <h2 class="heading-medium">Principles</h2>
-      
+
       <p>The prototype kit:</p>
       <ul class="list list-bullet">
         <li>is designed for prototyping, not for production code</li>
@@ -42,15 +45,15 @@ About - GOV.UK Prototype kit
         <li>allows for server-side code</li>
         <li>can be extended - for example using NPM to install a module, access datastores, etc</li>
         <li>makes it easy to share prototypes with others online</li>
-        
+
       </ul>
 
 
       <h2 class="heading-medium">Privacy</h2>
 
-      
+
       <p>You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.</p>
-      
+
 
 
       <h2 class="heading-medium">The kit is not a production framework</h2>
@@ -62,7 +65,7 @@ About - GOV.UK Prototype kit
 
   </div>
 
-  
+
 </main>
 
 {% endblock %}
