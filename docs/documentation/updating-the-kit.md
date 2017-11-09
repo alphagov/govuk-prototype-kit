@@ -12,7 +12,9 @@ Download the latest prototype kit zip file from GitHub
 
 In your project, delete everything apart from the `app` and `.git` folder
 
-Copy everything from the latest kit to your project, apart from the `app` folder
+Copy everything from the latest kit to your project, apart from the `app` folder. 
+
+Copy the config.js file from the `app` folder in the latest kit to the `app` folder of your prototype. If you've made any changes to the config.js file in your prototype then you'll need to re-enter them in the new version of the file e.g. the service name
 
 ---
 
