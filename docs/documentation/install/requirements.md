@@ -55,9 +55,9 @@ node --version
 ```
 If it says `command not found` or `Error 0x2 starting node.exe --version` you don’t have node and will need to download and install it.
 
-If the version number starts with 6 you have the correct version installed.
+If the version number starts with 8 you have the correct version installed.
 
-If it says another number such as `0.12` or `5.x.x`, you need to download and install version 6.
+If it says another number such as `0.12` or `5.x.x`, you need to download and install version 8.
 
 ### Download and install Node.js
 
