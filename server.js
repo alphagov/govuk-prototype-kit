@@ -77,6 +77,7 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
+app.use('/icons', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/icons')))
 app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
 // app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
