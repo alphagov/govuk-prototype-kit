@@ -61,7 +61,7 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/')]
+var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/'), path.join(__dirname, '/node_modules/@govuk-frontend/')]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
