@@ -6,6 +6,10 @@
 public
 lib/govuk_template.html
 govuk_modules
+# keep govuk frontend as it is private for now
+!node_modules/
 node_modules/*
+!node_modules/@govuk-frontend/
+!node_modules/sass-mq/
 .tmuxp.*
 package-lock.json
