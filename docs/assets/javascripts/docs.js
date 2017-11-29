@@ -1,5 +1,4 @@
 /* global $ */
-/* global GOVUK */
 
 // Warn about using the kit in production
 if (
@@ -11,6 +10,5 @@ if (
 }
 
 $(document).ready(function () {
-
 
 })
