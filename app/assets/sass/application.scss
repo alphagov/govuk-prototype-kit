@@ -5,9 +5,9 @@ $path: "/public/images/";
 //Import GOV.UK Frontend
 @import "@govuk-frontend/all/all";
 
-body{
-  @include govuk-core-19;
-}
+// body{
+//   @include govuk-core-19;
+// }
 
 // Take a look at in app/assets/sass/patterns/ to see which files are imported.
 // @import 'patterns/check-your-answers';
