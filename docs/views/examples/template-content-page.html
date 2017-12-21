@@ -6,23 +6,26 @@
 
 {% block content %}
 
-<main id="content" role="main" class="govuk-o-site-width-container">
+<div class="govuk-o-width-container">
 
-  <div class="govuk-o-grid">
-    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+  <main role="main" class="govuk-o-main-wrapper">
 
-      <a class="govuk-c-link govuk-c-link--back" href="/url/of/previous/page">Back</a>
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
-      <h1 class="heading-large">
-        Heading goes here
-      </h1>
+        <a class="govuk-c-link govuk-c-link--back" href="/url/of/previous/page">Back</a>
 
-      <p>This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.</p>
+        <h1 class="heading-large">
+          Heading goes here
+        </h1>
 
-      <p>This paragraph has a link to <a href="/url/of/onward/page">find out more about this subject</a>.</p>
+        <p>This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.</p>
 
+        <p>This paragraph has a link to <a href="/url/of/onward/page">find out more about this subject</a>.</p>
+
+      </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>
 
 {% endblock %}

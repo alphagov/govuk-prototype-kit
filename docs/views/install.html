@@ -6,7 +6,7 @@ Getting started - GOV.UK Prototype kit
 
 {% block content %}
 
-<main id="content" role="main" class="govuk-o-site-width-container">
+<div class="govuk-o-width-container">
 
   <div class="govuk-c-breadcrumb">
     <ol class="govuk-c-breadcrumb__list">
@@ -16,31 +16,30 @@ Getting started - GOV.UK Prototype kit
     </ol>
   </div>
 
-  <div class="govuk-o-grid">
-    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+  <main role="main" class="govuk-o-main-wrapper">
 
-      <h1 class="heading-xlarge">Installing the kit</h1>
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
-      <p class="lede">
-        Get up and running with the kit in 30 minutes.
-      </p>
+        <h1 class="heading-xlarge">Installing the kit</h1>
 
-      <h2 class="heading-medium">1. Download the kit</h2>
-      <a href="{{releaseURL}}" class="">Download (zip)</a>
-      <h2 class="heading-medium">2. Install the kit</h2>
+        <p class="lede">
+          Get up and running with the kit in 30 minutes.
+        </p>
 
-      <p>Choose from:</p>
-      <ul class="list list-bullet">
-        <li><a href="/docs/install/introduction">simple install guide</a><br>for users new to Node.js, Git or the terminal</li>
-        <li><a href="/docs/install/developer-install-instructions">advanced install guide</a><br>for users familiar with Node.js, Git and the terminal</li>
-      </ul>
+        <h2 class="heading-medium">1. Download the kit</h2>
+        <a href="{{releaseURL}}" class="">Download (zip)</a>
+        <h2 class="heading-medium">2. Install the kit</h2>
 
-  </div>
+        <p>Choose from:</p>
+        <ul class="list list-bullet">
+          <li><a href="/docs/install/introduction">simple install guide</a><br>for users new to Node.js, Git or the terminal</li>
+          <li><a href="/docs/install/developer-install-instructions">advanced install guide</a><br>for users familiar with Node.js, Git and the terminal</li>
+        </ul>
 
-
+      </div>
+    </div>
+  </main>
 </div>
-
-
-</main>
 
 {% endblock %}

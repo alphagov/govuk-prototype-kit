@@ -6,27 +6,31 @@
 
 {% block content %}
 
-<main id="content" role="main" class="govuk-o-site-width-container">
+<div class="govuk-o-width-container">
 
   {% include "includes/breadcrumb_examples.html" %}
 
-  <div class="govuk-o-grid">
-    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+  <main role="main" class="govuk-o-main-wrapper">
 
-      <h1 class="heading-xlarge">
-        Passing data into pages
-      </h1>
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
-      <p>
-        The example route defined in <code class="code">/docs/documentation_routes.js</code> is passing the string '{{ name }}' to this page, via the variable called 'name'.
-      </p>
+        <h1 class="heading-xlarge">
+          Passing data into pages
+        </h1>
 
-      <p>
-        Have a look at the source for this page in your text editor to see how it works: <code class="code">/docs/views/examples/template-data.html</code>
-      </p>
+        <p>
+          The example route defined in <code class="code">/docs/documentation_routes.js</code> is passing the string '{{ name }}' to this page, via the variable called 'name'.
+        </p>
 
+        <p>
+          Have a look at the source for this page in your text editor to see how it works: <code class="code">/docs/views/examples/template-data.html</code>
+        </p>
+
+      </div>
     </div>
-  </div>
 
-</main>
+  </main>
+</div>
+
 {% endblock %}

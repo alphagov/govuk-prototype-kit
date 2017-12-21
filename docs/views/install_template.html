@@ -6,7 +6,7 @@ Install - GOV.UK Prototype kit
 
 {% block content %}
 
-<main id="content" role="main" class="govuk-o-site-width-container docs markdown">
+<div class="govuk-o-width-container">
 
   <div class="govuk-c-breadcrumb">
     <ol class="govuk-c-breadcrumb__list">
@@ -19,15 +19,16 @@ Install - GOV.UK Prototype kit
     </ol>
   </div>
 
-  <div class="govuk-o-grid">
-    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+  <main role="main" class="govuk-o-main-wrapper docs markdown">
 
-			{{document | safe}}
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
 
-		</div>
+  			{{document | safe}}
 
-	</div>
-
-</main>
+  		</div>
+  	</div>
+  </main>
+</div>
 
 {% endblock %}
