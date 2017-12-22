@@ -31,6 +31,27 @@ $path: "/public/images/";
   border: 1px solid $govuk-border-colour;
   padding: 4px 4px 2px;
 }
+
+
+// Local fixes to GOV.UK frontend
+
+.markdown hr {
+  @include govuk-responsive-margin($govuk-spacing-responsive-6, "top");
+  @include govuk-responsive-margin($govuk-spacing-responsive-6, "bottom");
+}
+
+.govuk-list + .govuk-heading-l,
+.govuk-list + .govuk-heading-m,
+.govuk-list + .govuk-heading-s,
+.govuk-prose-scope ul + h2,
+.govuk-prose-scope ul + h3,
+.govuk-prose-scope ul + h4,
+.govuk-prose-scope pre + h2,
+.govuk-prose-scope pre + h3,
+.govuk-prose-scope pre + h4 {
+  @include govuk-responsive-padding($govuk-spacing-responsive-4, "top");
+}
+
 // Take a look at in app/assets/sass/patterns/ to see which files are imported.
 // @import 'patterns/check-your-answers';
 // @import 'patterns/task-list';
