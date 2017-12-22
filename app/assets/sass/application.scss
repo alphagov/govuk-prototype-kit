@@ -5,10 +5,6 @@ $path: "/public/images/";
 //Import GOV.UK Frontend
 @import "@govuk-frontend/all/all";
 
-// body{
-//   @include govuk-core-19;
-// }
-
 .code {
   color: $govuk-text-colour;
   background-color: $govuk-highlight-colour;
