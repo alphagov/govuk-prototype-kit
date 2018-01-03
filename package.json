@@ -41,6 +41,7 @@
     "require-dir": "^0.3.0",
     "run-sequence": "^1.2.2",
     "serve-favicon": "2.4.2",
+    "session-file-store": "^1.2.0",
     "standard": "^10.0.2",
     "supertest": "^3.0.0",
     "sync-request": "^4.0.3"

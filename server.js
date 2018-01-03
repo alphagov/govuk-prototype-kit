@@ -120,17 +120,40 @@ app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
 // Support session data
-app.use(session({
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 4, // 4 hours
-    secure: isSecure
-  },
-  // use random name to avoid clashes with other prototypes
-  name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
-  resave: false,
-  saveUninitialized: false,
-  secret: crypto.randomBytes(64).toString('hex')
-}))
+if (config.useFileSessionStore && config.useFileSessionStore === true) {
+  var FileStore = require('session-file-store')(session)
+
+  app.use(session({
+    store: new FileStore({
+      path: './sessions',
+      encrypt: true,
+      reapInterval: 300,
+      secret: 'SuperSecretKey'
+    }),
+    secret: 'SuperSecretKey',
+    name: 'govuk-prototype-kit-session',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 4, // 4 hours
+      secure: isSecure
+    },
+    unset: 'destroy'
+  }))
+} else {
+  app.use(session({
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 4, // 4 hours
+      secure: isSecure
+    },
+    // use random name to avoid clashes with other prototypes
+    name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
+    resave: false,
+    saveUninitialized: false,
+    secret: crypto.randomBytes(64).toString('hex')
+  }))
+}
+
 
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
