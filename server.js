@@ -121,6 +121,17 @@ app.locals.serviceName = config.serviceName
 
 // Support session data
 if (config.useFileSessionStore && config.useFileSessionStore === true) {
+
+  if (!process.env.SESSION_SECRET || process.env.SESSION_SECRET === '') {
+    console.error('[CONFIG ERROR] You must provide SESSION_SECRET in your `.env` to use file-based session storage.')
+    process.exit(1)
+  }
+
+  if (!process.env.SESSION_NAME || process.env.SESSION_NAME === '') {
+    console.error('[CONFIG ERROR] You must provide SESSION_NAME in your `.env` to use file-based session storage.')
+    process.exit(1)
+  }
+
   var FileStore = require('session-file-store')(session)
 
   app.use(session({
@@ -128,10 +139,10 @@ if (config.useFileSessionStore && config.useFileSessionStore === true) {
       path: './sessions',
       encrypt: true,
       reapInterval: 300,
-      secret: 'SuperSecretKey'
+      secret: process.env.SESSION_SECRET
     }),
-    secret: 'SuperSecretKey',
-    name: 'govuk-prototype-kit-session',
+    secret: process.env.SESSION_SECRET,
+    name: process.env.SESSION_NAME,
     resave: false,
     saveUninitialized: false,
     cookie: {
