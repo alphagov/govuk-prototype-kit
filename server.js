@@ -151,10 +151,10 @@ if (config.useFileSessionStore && config.useFileSessionStore === true) {
       path: './sessions',
       encrypt: true,
       reapInterval: 300,
-      secret: process.env.SESSION_SECRET
+      secret: secret
     }),
-    secret: process.env.SESSION_SECRET,
-    name: process.env.SESSION_NAME,
+    secret: secret,
+    name: name,
     resave: false,
     saveUninitialized: false,
     cookie: {
