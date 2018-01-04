@@ -127,8 +127,8 @@ let cookie = {
 }
 
 if (config.useFileSessionStore && config.useFileSessionStore === true) {
-  var name;
-  var secret;
+  var name
+  var secret
 
   try {
     name = String(fs.readFileSync(path.join(__dirname, '/.session.name.tmp')))
@@ -174,7 +174,6 @@ if (config.useFileSessionStore && config.useFileSessionStore === true) {
     secret: crypto.randomBytes(64).toString('hex')
   }))
 }
-
 
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
