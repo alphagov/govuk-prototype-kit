@@ -121,8 +121,12 @@ app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
 // Support session data
-if (config.useFileSessionStore && config.useFileSessionStore === true) {
+let cookie = {
+  maxAge: 1000 * 60 * 60 * 4, // 4 hours
+  secure: isSecure
+}
 
+if (config.useFileSessionStore && config.useFileSessionStore === true) {
   var name;
   var secret;
 
@@ -157,18 +161,12 @@ if (config.useFileSessionStore && config.useFileSessionStore === true) {
     name: name,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 4, // 4 hours
-      secure: isSecure
-    },
+    cookie: cookie,
     unset: 'destroy'
   }))
 } else {
   app.use(session({
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 4, // 4 hours
-      secure: isSecure
-    },
+    cookie: cookie,
     // use random name to avoid clashes with other prototypes
     name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
     resave: false,
