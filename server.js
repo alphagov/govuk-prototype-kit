@@ -1,5 +1,6 @@
 // Core dependencies
 const crypto = require('crypto')
+const fs = require('fs')
 const path = require('path')
 
 // NPM dependencies
@@ -122,14 +123,25 @@ app.locals.serviceName = config.serviceName
 // Support session data
 if (config.useFileSessionStore && config.useFileSessionStore === true) {
 
-  if (!process.env.SESSION_SECRET || process.env.SESSION_SECRET === '') {
-    console.error('[CONFIG ERROR] You must provide SESSION_SECRET in your `.env` to use file-based session storage.')
-    process.exit(1)
+  var name;
+  var secret;
+
+  try {
+    name = String(fs.readFileSync(path.join(__dirname, '/.session.name.tmp')))
+    console.log(`Got session name from file: "${name}"`)
+  } catch (e) {
+    name = 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex')
+    fs.writeFileSync(path.join(__dirname, '/.session.name.tmp'), name)
+    console.log(`Created new session name: "${name}"`)
   }
 
-  if (!process.env.SESSION_NAME || process.env.SESSION_NAME === '') {
-    console.error('[CONFIG ERROR] You must provide SESSION_NAME in your `.env` to use file-based session storage.')
-    process.exit(1)
+  try {
+    secret = String(fs.readFileSync(path.join(__dirname, '/.session.secret.tmp')))
+    console.log(`Got session secret from file: "${secret}"`)
+  } catch (e) {
+    secret = crypto.randomBytes(64).toString('hex')
+    fs.writeFileSync(path.join(__dirname, '/.session.secret.tmp'), secret)
+    console.log(`Created new session secret: "${secret}"`)
   }
 
   var FileStore = require('session-file-store')(session)
