@@ -5,6 +5,9 @@ $path: "/public/images/";
 //Import GOV.UK Frontend
 @import "@govuk-frontend/all/all";
 
+// Patterns that aren't in Frontend
+@import 'patterns/check-your-answers';
+
 .code {
   color: $govuk-text-colour;
   background-color: $govuk-highlight-colour;
