@@ -25,7 +25,7 @@
     "govuk_frontend_toolkit": "7.1.0",
     "govuk_template_jinja": "0.22.3",
     "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
+    "gulp-clean": "^0.4.0",
     "gulp-mocha": "^4.3.1",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "3.1.0",
