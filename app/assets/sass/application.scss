@@ -7,6 +7,7 @@ $path: "/public/images/";
 
 // Patterns that aren't in Frontend
 @import 'patterns/check-your-answers';
+@import 'patterns/related-items';
 
 .code {
   color: $govuk-text-colour;
@@ -53,15 +54,6 @@ $path: "/public/images/";
 .govuk-prose-scope pre + h3,
 .govuk-prose-scope pre + h4 {
   @include govuk-responsive-padding($govuk-spacing-responsive-4, "top");
-}
-
-.app-c-related-items{
-  border-top: 10px solid $govuk-blue;
-  padding-top: $govuk-spacing-scale-2;
-}
-
-.app-c-related-items li{
-  margin-bottom: $govuk-spacing-scale-2;
 }
 
 // Take a look at in app/assets/sass/patterns/ to see which files are imported.
