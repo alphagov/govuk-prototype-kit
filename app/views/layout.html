@@ -1,8 +1,9 @@
 {% extends "govuk_template.html" %}
 
+{% from "back-link/macro.njk"     import govukBackLink %}
 {% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
 {% from "button/macro.njk"        import govukButton %}
-{% from "checkbox/macro.njk"      import govukCheckbox %}
+{% from "checkboxes/macro.njk"    import govukCheckboxes %}
 {% from "cookie-banner/macro.njk" import govukCookieBanner %}
 {% from "date-input/macro.njk"    import govukDateInput %}
 {% from "details/macro.njk"       import govukDetails %}
@@ -12,17 +13,16 @@
 {% from "file-upload/macro.njk"   import govukFileUpload %}
 {% from "input/macro.njk"         import govukInput %}
 {% from "label/macro.njk"         import govukLabel %}
-{% from "legal-text/macro.njk"    import govukLegalText %}
-{% from "link/macro.njk"          import govukLink %}
 {% from "panel/macro.njk"         import govukPanel %}
 {% from "phase-banner/macro.njk"  import govukPhaseBanner %}
 {% from "previous-next/macro.njk" import govukPreviousNext %}
-{% from "radio/macro.njk"         import govukRadio %}
+{% from "radios/macro.njk"        import govukRadios %}
 {% from "select/macro.njk"        import govukSelect %}
 {% from "skip-link/macro.njk"     import govukSkipLink %}
 {% from "table/macro.njk"         import govukTable %}
 {% from "tag/macro.njk"           import govukTag %}
 {% from "textarea/macro.njk"      import govukTextarea %}
+{% from "warning-text/macro.njk"  import govukWarningText %}
 
 {% block head %}
   {% include "includes/head.html" %}
