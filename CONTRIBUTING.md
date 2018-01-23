@@ -56,14 +56,54 @@ which describes how we prefer git history and commit messages to read.
 
 ## To release a new version
 
+Checkout a new branch for the release.
+
 Update [CHANGELOG.md](https://github.com/alphagov/govuk_prototype_kit/blob/master/CHANGELOG.md) to summarise the changes made since the last release.
 
 To see the commits to be summarised in the changelog since the last release, [compare the latest-release branch with master](https://github.com/alphagov/govuk_prototype_kit/compare/latest-release...master).
 
 Propose a new version number in [VERSION.txt](https://github.com/alphagov/govuk_prototype_kit/blob/master/VERSION.txt) and update line 4 in [package.json](https://github.com/alphagov/govuk_prototype_kit/blob/master/package.json#L4) with the new version number.
 
-Open a new pull request with a single commit including the above changes.
+### Create the release zip
 
-[Here is an example for v6.1.0](https://github.com/alphagov/govuk_prototype_kit/commit/53e36d79a994ce3649b53f4008370cd75068c27c).
+_Note - we only need to create a release zip by hand while the project is in private beta._
 
-Once merged into master a new version will be built.
+Git clone to a new folder:
+
+`git clone git@github.com:alphagov/govuk-prototype-kit-private-beta.git govuk-prototype-kit-private-beta-zip`
+
+Change to this directory:
+
+`cd govuk-prototype-kit-private-beta-zip`
+
+Install GOV.UK Frontend:
+
+(you'll need to be signed in to the npm account)
+
+`npm install @govuk-frontend/all`
+
+The `node_modules` folder should now contain `@govuk-frontend` and `sass-mq`
+
+Remove the .git folder and the old zip:
+
+`rm -rf .git`
+
+`rm docs/assets/downloads/govuk-prototype-kit-private-beta.zip `
+
+Make a zip of the `govuk-prototype-kit-private-beta-zip` folder
+
+Rename the zip to `govuk-prototype-kit-private-beta.zip`
+
+### Add the zip to the release
+
+In the main project folder, (not the zip folder created above):
+
+Copy the new zip to `docs/assets/downloads`
+
+### Make the new release
+
+Commit your changes and open a pull request on GitHub
+
+Review and merge pull request
+
+Push the new version to Heroku
