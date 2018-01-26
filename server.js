@@ -17,6 +17,7 @@ const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
+const MarkdownContent = require('./lib/nunjucks_markdown')
 
 const app = express()
 const documentationApp = express()
@@ -70,6 +71,9 @@ var nunjucksAppEnv = nunjucks.configure(appViews, {
   noCache: true,
   watch: true
 })
+
+// add markdown tag to nunjucks
+nunjucksAppEnv.addExtension('markdown', new MarkdownContent())
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
