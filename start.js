@@ -3,7 +3,8 @@ const path = require('path')
 const fs = require('fs')
 
 // Warn if node_modules folder doesn't exist
-const nodeModulesExists = fs.existsSync(path.join(__dirname, '/node_modules'))
+// HACK: Check /express since we are committing in node_modules in this prototype version of the kit
+const nodeModulesExists = fs.existsSync(path.join(__dirname, '/node_modules', '/express'))
 if (!nodeModulesExists) {
   console.error('ERROR: Node module folder missing. Try running `npm install`')
   process.exit(0)

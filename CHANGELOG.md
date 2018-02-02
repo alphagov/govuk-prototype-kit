@@ -1,3 +1,9 @@
+# Unreleased
+
+Bug fixes:
+
+- [#23 Fix npm install warnings](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/23)
+
 # 7.0.0-beta.2
 
 - [#21 Update links to the design system](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/21)
