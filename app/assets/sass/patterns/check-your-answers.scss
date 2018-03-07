@@ -56,13 +56,13 @@
   @include mq($from: desktop) {
     display: table-cell;
     border-bottom: 1px solid $govuk-border-colour;
-    padding: em(12, 19) em(20, 19) em(9, 19) 0; // copied from Elements' td padding
+    padding: govuk-em(12, 19) govuk-em(20, 19) govuk-em(9, 19) 0; // copied from Elements' td padding
   }
 }
 
 .govuk-check-your-answers__question {
   font-weight: bold;
-  margin: em(12, 19) 4em em(4,19) 0;
+  margin: govuk-em(12, 19) 4em govuk-em(4,19) 0;
   // top: from Elements' td
   // right: due to length of "change" link (adjust if you change the link to be much longer)
   // bottom: by eye
@@ -70,7 +70,7 @@
 }
 
 .govuk-check-your-answers__answer {
-  padding-bottom: em(9, 19); // from Elements' td
+  padding-bottom: govuk-em(9, 19); // from Elements' td
 }
 
 .govuk-check-your-answers__change {
