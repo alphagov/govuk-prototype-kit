@@ -1,5 +1,9 @@
 # Unreleased
 
+Breaking changes:
+
+- [#26 Update GOV.UK Frontend to 0.0.25](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/26)
+
 Bug fixes:
 
 - [#23 Fix npm install warnings](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/23)
