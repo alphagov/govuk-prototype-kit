@@ -68,13 +68,21 @@ Propose a new version number in [VERSION.txt](https://github.com/alphagov/govuk_
 
 _Note - we only need to create a release zip by hand while the project is in private beta._
 
-Git clone to a new folder:
+Copy to a new folder:
 
-`git clone git@github.com:alphagov/govuk-prototype-kit-private-beta.git govuk-prototype-kit-private-beta-zip`
+`cp -r  govuk-prototype-kit-private-beta govuk-prototype-kit-private-beta-zip`
 
 Change to this directory:
 
 `cd govuk-prototype-kit-private-beta-zip`
+
+Remove the .git folder, node_modules and the old zip:
+
+`rm -rf .git`
+
+`rm -rf node_modules`
+
+`rm docs/assets/downloads/govuk-prototype-kit-private-beta.zip `
 
 Install GOV.UK Frontend:
 
@@ -83,12 +91,6 @@ Install GOV.UK Frontend:
 `npm install @govuk-frontend/all`
 
 The `node_modules` folder should now contain `@govuk-frontend` and `sass-mq`
-
-Remove the .git folder and the old zip:
-
-`rm -rf .git`
-
-`rm docs/assets/downloads/govuk-prototype-kit-private-beta.zip `
 
 Make a zip of the `govuk-prototype-kit-private-beta-zip` folder
 
