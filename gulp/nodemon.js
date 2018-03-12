@@ -16,6 +16,7 @@ gulp.task('server', function () {
   nodemon({
     script: 'server.js',
     ext: 'js, json',
+    nodeArgs: process.argv.slice(2),
     ignore: [config.paths.public + '*',
       config.paths.assets + '*',
       config.paths.nodeModules + '*']
