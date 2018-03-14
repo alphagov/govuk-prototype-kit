@@ -6,7 +6,7 @@ This is a fork of the https://github.com/alphagov/govuk_prototype_kit Repo with 
 
 - Makefile
   - `make install` to install required node modules
-  - `make public` to make the public assets to be used by sites (for circle)
+  - `make build` to make the public assets to be used by sites (for circle)
   - `make start` to start the local server and generate the public assets
 
 - Ongoing work should be done under the `app` folder
