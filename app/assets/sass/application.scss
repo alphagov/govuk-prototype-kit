@@ -29,3 +29,46 @@ $path: "/public/images/";
 }
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+/* ################################################################################################## */
+/* HEADER OVERIDE */
+/* NOTE: I'm sure there's a nicer way of doing this. But it's working in the short term */
+/* ################################################################################################## */
+
+#global-header {
+  background-color: #FFF;
+  border-bottom: 1px solid #CCCCCC;
+}
+#global-header .header-wrapper {
+  background-color: #FFF;
+}
+#global-header .header-wrapper .header-global .header-logo {
+  margin-top: 7px;
+}
+#global-header #logo {
+  background-image: url("/public/images/logotype-nhs-colour__reverse@2x.png");
+  width: 110px;
+  height: 45px;
+  background-size: 110px 45px;
+}
+#global-header-bar {
+  background-color: #005BBB;
+}
+#global-header .header-proposition #proposition-name {
+  color: #0b0c0c;
+}
+#global-header .header-proposition #proposition-link a.active, #global-header .header-proposition #proposition-links a {
+  color: #005BBB;
+}
+#global-header .header-proposition #proposition-link a.active, #global-header .header-proposition #proposition-links a.active {
+  color: #0b0c0c;
+}
+#global-header .header-proposition #proposition-link, #global-header .header-proposition #proposition-links {
+  list-style: none;
+}
+#global-header .header-proposition #proposition-link li, #global-header .header-proposition #proposition-links li {
+  border-bottom: 0;
+}
+#global-header .header-proposition a.menu {
+  color: #005BBB;
+}
