@@ -10,7 +10,6 @@ jobs:
       - run:
           command: |
             make install
-            npm install -g brunch
       - save_cache:
           key: v1-node_modules-{{ .Branch }}-{{ checksum "package.json" }}
           paths:

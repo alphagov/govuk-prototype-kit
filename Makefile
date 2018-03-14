@@ -1,5 +1,5 @@
 install:
-	node install
+	npm install
 
 start:
 	node start
