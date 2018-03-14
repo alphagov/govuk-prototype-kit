@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Apps Libary
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <p><span style="font-size:12px;">&#9664;</span> <a class="back-to-previous" href="/"> Back <span class="visuallyhidden"> to the previous question</span></a></p>
+
+      <h1 class="heading-xlarge">
+        Apps Library
+      </h1>{{releaseVersion | log }}
+
+
+      <h2 class="heading-medium">Version 1</h2>
+      <p>This is exactly the same as the <a href="https://apps.beta.nhs.uk/" target="_blank">beta apps library</a>, but created with the Gov.uk frontend
+      <ul class="list list-bullet">
+        <li>
+          <a href="/apps_library/home">
+            Homepage
+          </a>
+        </li>
+        <li>
+          <a href="/apps_assessment">
+            App details
+          </a>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
