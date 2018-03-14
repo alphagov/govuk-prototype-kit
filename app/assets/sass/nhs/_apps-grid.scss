@@ -1,0 +1,102 @@
+.apps-grid {
+  //@include clearfix;
+}
+
+.apps-grid__controller {
+  display: inline-block;
+
+  @include media(tablet) {
+    float: left;
+    max-width: 200px;
+    padding: $baseline-grid-unit * 3;
+  }
+  width: 100%;
+  background-color: #e8edee;
+}
+
+.apps-grid__controller__title {
+
+  padding-left: $baseline-grid-unit * 2;
+  padding-right: $baseline-grid-unit * 2;
+  padding-bottom: $baseline-grid-unit * 2;
+  padding-top: $baseline-grid-unit * 2;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+
+  @include media(tablet) {
+
+    cursor: default;
+    font-size: 16px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: $baseline-grid-unit * 3;
+    padding-top: 0;
+
+    border-bottom: 1px solid #CCC;
+    margin-bottom: $baseline-grid-unit * 3;
+  }
+}
+
+
+.apps-grid__controller__list {
+  display: none;
+  padding: $baseline-grid-unit * 3;
+  @include media(tablet) {
+    display: block;
+    padding: 0;
+  }
+  list-style: none;
+  font-size: 16px;
+  margin: 0;
+
+}
+
+.apps-grid__controller__list__item {
+
+}
+
+.apps-grid__controller__list__item__link {
+  display: inline-block;
+  margin-bottom: $baseline-grid-unit;
+}
+
+
+
+.apps-grid__content {
+  margin-top: $baseline-grid-unit * 2;
+  @include media(tablet) {
+    margin-top: 0;
+    padding-left: 265px;
+  }
+  // background-color: rgba(255, 0, 0, 0.2);
+}
+
+
+
+/* FILTER BUTTONS */
+.apps-grid-btns-list__item--title {
+  font-weight: 600;
+  margin-right: $baseline-grid-unit*3;
+}
+.apps-grid-btns-list {
+  list-style: none;
+}
+
+.apps-grid-btns-list__item {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.apps-grid-btns-list__item__link {
+  display: inline-block;
+  padding: $baseline-grid-unit $baseline-grid-unit*3;
+  border-radius: 20px;
+}
+
+.apps-grid-btns-list__item--selected .apps-grid-btns-list__item__link {
+  background-color: #f0f4f5;
+  -webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
