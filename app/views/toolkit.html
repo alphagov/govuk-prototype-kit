@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+
+{% block proposition_links %}
+<ul id="proposition-links">
+  <li><a href="/">Overview</a></li>
+  <li><a href="/toolkit" class="active">Toolkit</a></li>
+</ul>
+{% endblock %}
+
+
+
+{% block content %}
+
+<main id="content" role="main">
+
+      <h1 class="heading-xlarge">
+        Toolkit
+      </h1>{{releaseVersion | log }}
+
+      <p>Use the <a href="https://govuk-elements.herokuapp.com/" target="_blank">Gov.uk page elements</a> to create pages.</p>
+      <p>NHS specific components</p>
+
+      <!-- ################################################################################ -->
+
+      <h2 class="heading-medium">Local header</h2>
+
+      <div class="local-header">
+        <h2 class="local-header__title">Local header</h2>
+        <p class="local-header__para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus lacus et sagittis condimentum. Vivamus quis sollicitudin orci, a pulvinar ante.</p>
+      </div>
+
+      <pre>
+        &lt;code class="language-markup"&gt;
+          &lt;div class="local-header"&gt;
+            &lt;h2 class="local-header__title"&gt;Local header&lt;/h2&gt;
+            &lt;p class="local-header__para"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus lacus et sagittis condimentum. Vivamus quis sollicitudin orci, a pulvinar ante.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/code&gt;
+      </pre>
+
+      <!-- ################################################################################ -->
+
+</main>
+
+{% block page_scripts %}
+<script src="https://govuk-elements.herokuapp.com/public/javascripts/vendor/prism.js"></script>
+{% endblock %}
+
+{% endblock %}
