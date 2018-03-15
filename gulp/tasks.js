@@ -21,6 +21,7 @@ gulp.task('generate-assets', function (done) {
                 'sass-documentation',
                 'copy-assets',
                 'copy-documentation-assets',
+                'copy-gov-assets',
                 'html', done)
 })
 
