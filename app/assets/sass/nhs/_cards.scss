@@ -1,0 +1,133 @@
+.cardapp {
+  border-top: 1px solid #e8edee;
+  border-left: 1px solid #e8edee;
+  border-right: 1px solid #e8edee;
+  border-bottom: 4px solid #e8edee;
+  padding: $baseline-grid-unit * 3;
+  margin-bottom: $baseline-grid-unit * 3;
+}
+
+.cardapp__top {
+  min-height: 65px;
+}
+
+.cardapp__top__img {
+  float: left;
+  border: 1px solid #aaa;
+  border-radius: 17px;
+  width: 100%;
+  max-width: 65px;
+  min-width: 50px;
+  margin-right: $baseline-grid-unit * 2;
+  margin-bottom: 0;
+}
+
+.cardapp__top__title {
+  display: block;
+  font-size:21px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: $baseline-grid-unit * 1.5;
+}
+
+.cardapp__content {
+  margin-top: $baseline-grid-unit * 3;
+  font-size: 16px;
+}
+
+.cardapp__top__subtitle {
+  margin-top: 0;
+}
+.cardapp__content {
+  min-height: 80px;
+}
+
+.cardapp__footer {
+  margin-top: 0;
+  border-top: 1px solid #CCC;
+  padding-top: $baseline-grid-unit * 1;
+  font-size: 16px;
+}
+
+
+
+
+/* Horizontal card */
+.card-h {
+  position: relative;
+  border-top: 1px solid #CAC8CA;
+  //border-bottom: 1px solid #CAC8CA;
+  padding-top: $baseline-grid-unit * 3;
+  padding-bottom: $baseline-grid-unit * 3;
+  margin-top: 0;
+}
+.card-h__img {
+  width: 40px;
+  position: absolute;
+  top: 15px;
+  @include media(tablet) {
+    width: 128px;
+    top: 28px;
+    left: 0px;
+  }
+
+}
+
+.card-h__content {
+  margin-top: 0;
+  padding-left: 60px;
+  @include media(tablet) {
+    padding-left: 150px;
+    padding-right: 250px;
+  }
+}
+
+.card-h__content__title {
+  margin: 0;
+}
+
+.card-h__content__para {
+  margin: 0;
+}
+
+.card-h__content__list {
+  list-style: none;
+  padding: 0;
+  margin-top: $baseline-grid-unit * 1;
+  margin-bottom: $baseline-grid-unit * 2;
+}
+
+.card-h__content__list__item {
+  display: inline-block;
+  margin-right: $baseline-grid-unit;
+  @include media(tablet) {
+    margin-right: $baseline-grid-unit * 1;
+  }
+}
+
+.card-h__content__list__item__link {
+  text-decoration: none;
+  background-color: #E3EEF8;
+  font-size: 12px;
+  padding: $baseline-grid-unit *2 $baseline-grid-unit *3;
+  border-radius: 20px;
+  color: #003B6D;
+  @include media(tablet) {
+    font-size: 14px;
+  }
+}
+
+.card-h__extra {
+  padding-left: 60px;
+  @include media(tablet) {
+    position: absolute;
+    width: 240px;
+    top: 20px;
+    right: 0px;
+    padding-left: 0px;
+  }
+  margin-top: 0;
+}
+.card-h__extra__badge {
+  margin-top: $baseline-grid-unit *2;
+}

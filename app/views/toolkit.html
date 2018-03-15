@@ -51,7 +51,11 @@
     </div>
 
     <div id="global-cookie-message">
-      <p>GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a></p>
+
+
+  <p>GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a></p>
+
+
     </div>
 
 
@@ -72,8 +76,8 @@
               <a href="/" id="proposition-name">NHS Design Library</a>
 
               <ul id="proposition-links">
-                <li><a href="/" class="active">Overview</a></li>
-                <li><a href="/toolkit">Toolkit</a></li>
+                <li><a href="/">Overview</a></li>
+                <li><a href="/toolkit" class="active">Toolkit</a></li>
               </ul>
 
             </nav>
@@ -83,118 +87,47 @@
       </div>
     </header>
 
+
     <div id="global-header-bar"></div>
+
 
     <main id="content" role="main">
 
-      <h1 class="heading-xlarge">
-        NHS design library
-        <span class="heading-secondary">Based on The GOV.UK prototype kit v6.3.0</span>
-      </h1><script>console.log("v6.3.0");</script>
+          <h1 class="heading-xlarge">
+            Toolkit
+          </h1><script>console.log("v6.3.0");</script>
 
-      <p>
-        This website contains pages for NHS projects developed by Infinity Works
-      </p>
+          <p>Use the <a href="https://govuk-elements.herokuapp.com/" target="_blank">Gov.uk page elements</a> to create pages.</p>
+          <p>NHS specific components</p>
 
-      <h2 class="heading-medium">Projects</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="/apps_library">
-            Apps Library
-          </a>
-        </li>
-        <li>
-          <a href="/apps_assessment">
-            Apps Assessment
-          </a>
-        </li>
-        <li>
-          <a href="/apps_assessment">
-            Apps Review
-          </a>
-        </li>
-        <li>
-          <a href="/developer">
-            Developer portal
-          </a>
-        </li>
-      </ul>
+          <!-- ################################################################################ -->
 
-      <hr>
+          <h2 class="heading-medium">Local header</h2>
 
-      <h2 class="heading-medium">Page designs</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://xd.adobe.com/view/c1c684e2-5d68-4c76-95a0-bdb357bdb763">
-            Apps Assessment Application (XD)
-          </a>
-        </li>
-      </ul>
+          <div class="local-header">
+            <h2 class="local-header__title">Local header</h2>
+            <p class="local-header__para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus lacus et sagittis condimentum. Vivamus quis sollicitudin orci, a pulvinar ante.</p>
+          </div>
 
-      <hr>
+          <pre>
+            <code class="language-markup">
+              &lt;div class="local-header"&gt;
+                &lt;h2 class="local-header__title"&gt;Local header&lt;/h2&gt;
+                &lt;p class="local-header__para"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus lacus et sagittis condimentum. Vivamus quis sollicitudin orci, a pulvinar ante.&lt;/p&gt;
+              &lt;/div&gt;
+            </code>
+          </pre>
 
-      <h2 class="heading-medium">Page elements</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-elements.herokuapp.com/snippets/">
-            GOV.UK Elements
-          </a>
-        </li>
-        <li>
-          <a href="/toolkit">
-            NHS.UK Elements
-          </a>
-        </li>
-      </ul>
-
-      <hr>
-
-      <h2 class="heading-medium">NHS resources</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://www.england.nhs.uk/nhsidentity/">
-            NHS identity
-          </a>
-        </li>
-        <li>
-          <a href="https://www.nhs.uk/transformation/manual/">
-            NHS service manual
-          </a>
-        </li>
-      </ul>
-
-      <hr>
-
-      <h2 class="heading-medium">Other resources</h2>
-			<ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-prototype-kit.herokuapp.com/docs">
-            How to use the prototyping kit
-          </a>
-        </li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-			</ul>
-
-
-
+          <!-- ################################################################################ -->
 
     </main>
 
 
+    <script src="https://govuk-elements.herokuapp.com/public/javascripts/vendor/prism.js"></script>
 
     <footer class="group js-footer" id="footer" role="contentinfo">
 
       <div class="footer-wrapper">
-
 
         <div class="footer-meta">
           <div class="footer-meta-inner">
@@ -221,7 +154,6 @@
     <script src="/public/javascripts/govuk-template.js?0.22.3"></script>
 
 
-
     <!-- Javascript -->
     <!--[if lte IE 8]><script src="/public/javascripts/bind.js"></script><![endif]-->
     <script src="/public/javascripts/jquery-1.11.3.js"></script>
@@ -229,12 +161,12 @@
     <script src="/public/javascripts/govuk/shim-links-with-button-role.js"></script>
     <script src="/public/javascripts/govuk/show-hide-content.js"></script>
     <script src="/public/javascripts/application.js"></script>
-
     <script src="/public/javascripts/auto-store-data.js"></script>
+    <script src="https://govuk-elements.herokuapp.com/public/javascripts/vendor/prism.js"></script>
+
 
     <!-- GOV.UK Prototype kit v6.3.0 -->
     <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
 
-
-</body>
+  </body>
 </html>
