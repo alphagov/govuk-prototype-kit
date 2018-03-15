@@ -61,26 +61,19 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/')]
-
-var nunjucksAppEnv = nunjucks.configure(appViews, {
-  autoescape: true,
-  express: app,
-  noCache: true,
-  watch: true
-})
-
-// Add Nunjucks filters
-utils.addNunjucksFilters(nunjucksAppEnv)
-
-// Set views engine
-app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_template/assets')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit')))
-app.use('/public/images/icons', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit/images')))
+app.use('/stylesheets', express.static(path.join(__dirname, '/public/stylesheets')))
+app.use('/images', express.static(path.join(__dirname, '/public/images')))
+app.use('/javascripts', express.static(path.join(__dirname, '/public/javascripts')))
+app.use('/stylesheets', express.static(path.join(__dirname, 'govuk_modules/govuk_template/assets/stylesheets')))
+app.use('/images', express.static(path.join(__dirname, 'govuk_modules/govuk_template/assets/images')))
+app.use('/javascripts', express.static(path.join(__dirname, 'govuk_modules/govuk_template/assets/javascripts')))
+app.use('/stylesheets', express.static(path.join(__dirname, 'govuk_modules/govuk_frontend_toolkit/stylesheets')))
+app.use('/images', express.static(path.join(__dirname, 'govuk_modules/govuk_frontend_toolkit/images')))
+app.use('/javascripts', express.static(path.join(__dirname, 'govuk_modules/govuk_frontend_toolkit/javascripts')))
+app.use('/images/icons', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit/images')))
+app.use('/', express.static(path.join(__dirname, '/app/views')))
 
 // Elements refers to icon folder instead of images folder
 app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images', 'favicon.ico')))
@@ -133,7 +126,6 @@ app.use(session({
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
-  utils.addCheckedFunction(nunjucksAppEnv)
   utils.addCheckedFunction(nunjucksDocumentationEnv)
 }
 
@@ -195,15 +187,6 @@ if (useDocumentation) {
   // Docs under the /docs namespace
   documentationApp.use('/', documentationRoutes)
 }
-
-// Strip .html and .htm if provided
-app.get(/\.html?$/i, function (req, res) {
-  var path = req.path
-  var parts = path.split('.')
-  parts.pop()
-  path = parts.join('.')
-  res.redirect(path)
-})
 
 // Auto render any view that exists
 
