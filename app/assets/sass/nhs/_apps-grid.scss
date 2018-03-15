@@ -16,6 +16,7 @@
 
 .apps-grid__controller__title {
 
+  position: relative;
   padding-left: $baseline-grid-unit * 2;
   padding-right: $baseline-grid-unit * 2;
   padding-bottom: $baseline-grid-unit * 2;
@@ -35,6 +36,16 @@
 
     border-bottom: 1px solid #CCC;
     margin-bottom: $baseline-grid-unit * 3;
+  }
+}
+
+.apps-grid__controller__title__icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 20px;
+  @include media(tablet) {
+    display: none;
   }
 }
 

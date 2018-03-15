@@ -99,20 +99,23 @@
 
       <div class="apps-grid">
         <div class="apps-grid__controller">
-          <div class="apps-grid__controller__title">FILTER BY CATEGORY</div>
+          <div class="apps-grid__controller__title">
+            FILTER BY CATEGORY
+            <span class="apps-grid__controller__title__icon">+</span>
+          </div>
             <ul class="apps-grid__controller__list">
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#!">All</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Cancer">Cancer</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=COPD">COPD</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Dementia">Dementia</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Dental">Dental</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Diabetes">Diabetes</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Healthy%20Living">Healthy Living</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Learning%20Disabilities">Learning Disabilities</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Mental%20Health">Mental Health</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Online%20Community">Online Community</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Other">Other</a></li>
-              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="/?category=Pregnancy%20and%20Baby">Pregnancy and Baby</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">All</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Cancer</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">COPD</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Dementia</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Dental</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Diabetes</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Healthy Living</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Learning Disabilities</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Mental Health</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Online Community</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Other</a></li>
+              <li class="apps-grid__controller__list__item"><a class="apps-grid__controller__list__item__link" href="#">Pregnancy and Baby</a></li>
           </ul>
         </div>
         <div class="apps-grid__content">
@@ -304,6 +307,33 @@
 
     <!-- GOV.UK Prototype kit v6.3.0 -->
     <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
+
+    <!-- Toggle the view on mobile -->
+    <script>
+
+    if ($(window).width() < 641) {
+
+      // Title toggle
+      $( ".apps-grid__controller__title" ).click(function() {
+          $( ".apps-grid__controller__list" ).slideToggle( "fast", function() {
+            // Animation complete.
+          });
+      });
+
+      // Close menu on selecing an item
+      $( ".apps-grid__controller__list__item__link" ).click(function() {
+          $( ".apps-grid__controller__list" ).slideToggle( "fast", function() {
+            // Animation complete.
+          });
+      });
+
+    }
+
+
+
+
+    </script>
+
 
   </body>
 </html>
