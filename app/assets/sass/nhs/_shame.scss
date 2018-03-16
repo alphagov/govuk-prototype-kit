@@ -29,3 +29,11 @@
     background-color: #F8F8F8;
     border-color: #e0e0e0;
 }
+
+/* Task list extra classes */
+.task-list-extra-details {
+  @include media(tablet) {
+    margin-left: 34px;
+  }
+  @extend .font-xsmall
+}
