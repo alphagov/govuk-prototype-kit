@@ -34,6 +34,10 @@ $path: "/public/images/";
 @import 'nhs/global-header-override.scss';
 @import 'nhs/global-variables.scss';
 
+// Taken from the gov uk site. But can't find them on git hub?
+@import 'nhs/app-c-contents-list.scss';
+@import 'nhs/accordion-with-descriptions.scss';
+
 // Code preview used on toolbox
 @import 'nhs/prism.scss';
 

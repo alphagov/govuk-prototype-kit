@@ -1,0 +1,19 @@
+.app-c-contents-list__list {
+
+}
+.app-c-contents-list__list-item--dashed {
+  margin-left: 20px;
+  padding-right: 20px;
+}
+.app-c-contents-list__list-item {
+  padding-top: 7.5px;
+  line-height: 1.3;
+  list-style-type: none;
+}
+.app-c-contents-list__list-item--dashed::before {
+    content: "— ";
+    margin-left: -20px;
+}
+.app-c-contents-list__link {
+    text-decoration: none;
+}

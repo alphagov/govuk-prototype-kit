@@ -4,3 +4,28 @@
 .breadcrumbs li {
   background-image: url("/images/separator-2x.png");
 }
+
+/* Could do with some base font colors */
+.blue {
+  color: #005BBB;
+}
+.green {
+  color: #3E9A57;
+}
+.lightgreen {
+  color: #00BB89;
+}
+.red {
+  color: #D00000;
+}
+.grey {
+  color: #939293;
+}
+
+
+
+/* Field disabled */
+.form-control[type="text"]:disabled {
+    background-color: #F8F8F8;
+    border-color: #e0e0e0;
+}

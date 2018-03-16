@@ -1,0 +1,78 @@
+
+.js-accordion-with-descriptions .subsection-wrapper:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.js-accordion-with-descriptions .subsection__header {
+  cursor: pointer;
+}
+.js-accordion-with-descriptions .subsection__header:hover {
+  background-color: #F8F8F8;
+}
+
+
+.js-accordion-with-descriptions .subsection-controls button {
+  float: right;
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  font-size: 14px;
+  line-height: 1.1428571429;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #005ea5;
+  padding: 0.5em 0;
+
+  font-size: 16px;
+  line-height: 1.25;
+}
+.js-accordion-with-descriptions .subsection {
+  margin-bottom: 0;
+}
+.js-accordion-with-descriptions .subsection--is-open .subsection__icon {
+    background-position: 0 0;
+}
+.js-accordion-with-descriptions .subsection--is-open .subsection__content {
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+.js-accordion-with-descriptions .subsection__header {
+  position: relative;
+  padding-top: 14px;
+  padding-bottom: 12px;
+  border-top: 1px solid #bfc1c3;
+}
+
+.js-accordion-with-descriptions .subsection__title button {
+  color: #005ea5;
+  cursor: pointer;
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 18px;
+  line-height: 1.2;
+  background: none;
+  border: 0;
+  padding-left: 0;
+  text-align: left;
+}
+
+.js-accordion-with-descriptions .subsection__description {
+  margin-bottom: 0;
+  margin-right: 30px;
+}
+
+.js-accordion-with-descriptions .subsection__icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 16px;
+  width: 16px;
+  margin-top: -8px;
+  background-image: url(url(https://assets.publishing.service.gov.uk/service-manual-frontend/icons-plus-minus-1bd32ac92894793f16898334c6a8af216b283adcb4d0a9b8cbe1621509f6b0d5.png));
+  background: url(https://assets.publishing.service.gov.uk/service-manual-frontend/icons-plus-minus-d4de828db60520db2057af7ed3526d770973e70a94c4d8a1ba6cf4a6dcf6490e.svg),linear-gradient(transparent, transparent);
+  background-repeat: no-repeat;
+  background-position: 0 -16px;
+}
