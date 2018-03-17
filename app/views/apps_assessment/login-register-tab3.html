@@ -73,9 +73,9 @@
 
               <ul id="proposition-links">
                 <li><a href="/apps_assessment/home.html">Home</a></li>
-                <li><a href="/apps_assessment/login.html">Login</a></li>
+                <li><a href="/apps_assessment/login.html" class="active">Login</a></li>
                 <li><a href="/apps_assessment/signup.html">Sign Up</a></li>
-                <!-- <li><a href="/apps_assessment/reset-password.html" class="active">Reset Password</a></li> -->
+                <!-- <li><a href="/apps_assessment/reset-password.html">Reset Password</a></li> -->
               </ul>
 
             </nav>
@@ -89,23 +89,38 @@
 
     <main id="content" role="main">
 
-      <div class="breadcrumbs">
-        <ol>
-          <li><a href="/apps_assessment/login.html">Login</a></li>
-          <li aria-current="page">Reset password</li>
-        </ol>
+      <div class="grid-row">
+        <div class="column-two-thirds">
+          <h2 class="heading-xlarge">NHS Apps &amp; Wearables: sign in or register</h2>
+        </div>
       </div>
 
-      <form action="home.html">
-        <h2 class="heading-large">Reset password</h2>
-        <p>
-          <label class="form-label" for="email-f1">E-mail Address</label>
-          <input class="form-control" id="email-f1" type="text" name="email-f1">
-        </p>
-        <p>
-          <input class="button" role="button" type="submit" value="Reset Password">
-        </p>
-      </form>
+      <aside class="part-navigation-container" role="complementary">
+         <nav role="navigation" class="app-c-contents-list" data-module="track-click" aria-label="Pages in this guide">
+           <h2>Contents</h2>
+           <ol class="app-c-contents-list__list">
+             <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed" aria-current="true">
+               <a class="app-c-contents-list__link" href="login-register-tab1.html">Sign in to NHS Apps &amp; Wearables</a>
+             </li>
+             <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+               <a class="app-c-contents-list__link" href="login-register-tab2.html">
+                 Problems signing in
+               </a>
+             </li>
+             <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active">
+               Register for to NHS Apps &amp; Wearables
+             </li>
+           </ol>
+         </nav>
+      </aside>
+
+      <hr>
+
+      <h2 class="heading-large">Register for NHS Apps &amp; Wearables</h2>
+
+      <p>What can we offer here?</p>
+      <p>Take a look here: <a href="https://www.gov.uk/log-in-register-hmrc-online-services/register">https://www.gov.uk/log-in-register-hmrc-online-services/register</a></p>
+      <p><a href="signup.html" class="button button-start">Start now</a> </p>
 
 
     </main>
