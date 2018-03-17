@@ -35,5 +35,12 @@
   @include media(tablet) {
     margin-left: 34px;
   }
-  @extend .font-xsmall
+  @extend .font-xsmall;
+}
+
+/* Extra line on the homepage sidebar */
+.govuk-related-items {
+      margin-top: 40px;
+  border-top: 10px solid #005ea5;
+  padding-top: 5px;
 }
