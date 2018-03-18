@@ -1,6 +1,5 @@
 
 
-
 .breadcrumbs li {
   background-image: url("/images/separator-2x.png");
 }
@@ -24,11 +23,6 @@
 
 
 
-/* Field disabled */
-.form-control[type="text"]:disabled {
-    background-color: #F8F8F8;
-    border-color: #e0e0e0;
-}
 
 /* Task list extra classes */
 .task-list-extra-details {
@@ -40,7 +34,134 @@
 
 /* Extra line on the homepage sidebar */
 .govuk-related-items {
-      margin-top: 40px;
+  margin-top: 40px;
   border-top: 10px solid #005ea5;
   padding-top: 5px;
+}
+
+
+/* Buttons */
+
+.button--red {
+  @include button($nhs-red);
+}
+
+.button--grey {
+  @include button($nhs-grey5);
+}
+
+.button--small {
+  font-size: 16px;
+}
+.button--chevron {
+  background-image: url("../images/icon-chevron.png");
+  background-size: 13px 13px;
+  background-repeat: no-repeat;
+  background-position: 10px;
+  padding-left: 30px;
+}
+.button--chevron.button--grey {
+  background-image: url("../images/icon-grey-chevron.png");
+}
+
+
+/* Form controls */
+.form-label {
+  margin-bottom: 7px;
+}
+
+.form-group {
+  @include media(tablet) {
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+}
+.form-control {
+  @include media(tablet) {
+    width: 57%;
+    padding: 10px 10px 6px;
+    margin-bottom: 4px;
+  }
+}
+
+/* Field disabled */
+.form-control[type="text"]:disabled {
+    background-color: #F8F8F8;
+    border-color: #e0e0e0;
+}
+
+
+/*
+.form-side-note {
+  font-size: 14px;
+  padding-left: 16px;
+  background-size: 13px 13px;
+  background-repeat: no-repeat;
+  background-position: 0px 4px;
+}
+*/
+
+.form-group--approved {
+  .form-control[type="text"] {
+    background-color: #EDFFF2;
+    border: 2px solid #3E9A57;
+    color: #3E9A57;
+  }
+  /*
+  .form-side-note {
+    margin-left: 8px;
+    background-image: url("../images/icon-tick.png");
+    color: #3E9A57;
+    font-weight: bold;
+  }
+  */
+}
+
+.form-group--rejected {
+  .form-control[type="text"] {
+    background-color: #FFF5F5;
+    border: 2px solid #D00000;
+    color: #D00000;
+  }
+}
+
+
+.form-buttons {
+  display: inline-block;
+  margin-bottom: $baseline-grid-unit * 2;
+}
+
+.panel--red {
+  background-color: #FFF5F5;
+  border-color: $nhs-red;
+}
+
+.panel--green {
+  background-color: #EDFFF2;
+  border-color: $nhs-green;
+}
+
+
+
+.panel--header {
+  border: 10px solid #F1F2F4;
+  @include media(tablet) {
+    padding: $baseline-grid-unit * 4;
+  }
+  .panel--header__title {
+    @extend .heading-medium;
+    margin-top: 0;
+  }
+  .panel--header__side {
+    float: right;
+  }
+}
+
+
+/* Pie chart */
+.pie {
+  max-width: 60px;
+}
+.timer {
+  display: none;
 }
