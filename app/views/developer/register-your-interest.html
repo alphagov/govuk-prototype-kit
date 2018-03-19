@@ -3,7 +3,7 @@
 <!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>NHS GOV.UK prototype kit</title>
+    <title>NHS Developer / Home</title>
 
     <!--[if gt IE 8]><!--><link href="/stylesheets/govuk-template.css?0.22.3" media="screen" rel="stylesheet" /><!--<![endif]-->
     <!--[if IE 6]><link href="/stylesheets/govuk-template-ie6.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
@@ -36,7 +36,9 @@
 
   </head>
 
-  <body class="">
+  <body class=""><script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='/browser-sync/browser-sync-client.js?v=2.23.6'><\/script>".replace("HOST", location.hostname));
+//]]></script>
 
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
@@ -67,12 +69,16 @@
           <div class="content">
             <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
             <nav id="proposition-menu">
-              <a href="/" id="proposition-name">NHS Design Library</a>
+              <a href="/developer" id="proposition-name">NHS Developer</a>
 
+              <!--
               <ul id="proposition-links">
-                <li><a href="/" class="active">Overview</a></li>
-                <li><a href="/toolkit.html">Toolkit</a></li>
+                <li><a href="/apps_assessment/home.html" class="active">Home</a></li>
+                <li><a href="/apps_assessment/login.html">Login</a></li>
+                <li><a href="/apps_assessment/signup.html">Sign Up</a></li>
+                <li><a href="/apps_assessment/reset-password.html">Reset Password</a></li>
               </ul>
+              -->
 
             </nav>
           </div>
@@ -85,144 +91,94 @@
 
     <main id="content" role="main">
 
-      <h1 class="heading-xlarge">
-        NHS design library
-        <span class="heading-secondary">Based on The GOV.UK prototype kit v6.3.0</span>
-      </h1><script>console.log("v6.3.0");</script>
+      <div class="breadcrumbs">
+        <ol>
+          <li><a href="home.html">Home</a></li>
+          <li aria-current="page">Register your interest</li>
+        </ol>
+      </div>
 
-      <p>
-        This website contains pages for NHS projects developed by Infinity Works
-      </p>
+      <div class="grid-row">
 
-      <h2 class="heading-medium">Projects</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="/apps_library">
-            Apps Library
-          </a>
-        </li>
-        <li>
-          <a href="/apps_assessment">
-            Apps Assessment
-          </a>
-        </li>
-        <li>
-          <a href="/apps_review">
-            Apps Review
-          </a>
-        </li>
-        <li>
-          <a href="/developer">
-            Developer portal
-          </a>
-        </li>
-      </ul>
+        <div class="column-two-thirds">
+          <h1 class="heading-large">Register Your Interest</h1>
+          <p>If you have an existing app currently in public use and you feel that it is ready to pass through the <a href="daq-read-only.html">Digital Assessment Questions</a> then please <a href="submit-your-app.html">Submit your app</a> to begin the process; otherwise complete the form below.</p>
 
-      <hr>
 
-      <h2 class="heading-medium">Page designs</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://xd.adobe.com/view/c1c684e2-5d68-4c76-95a0-bdb357bdb763">
-            Apps Assessment Application (XD)
-          </a>
-        </li>
-      </ul>
+          <div class="form-group">
+            <label class="form-label" for="full-name-f1"><span class="heading-small">First Name *</span></label>
+            <input class="form-control" id="full-name-f1" type="text" name="full-name-f1">
+          </div>
 
-      <hr>
+          <div class="form-group">
+            <label class="form-label" for="surname-f1"><span class="heading-small">Surname *</span></label>
+            <input class="form-control" id="surname-f1" type="text" name="surname-f1">
+          </div>
 
-      <h2 class="heading-medium">Page elements</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-elements.herokuapp.com/snippets/">
-            GOV.UK Elements
-          </a>
-        </li>
-        <li>
-          <a href="/toolkit.html">
-            NHS.UK Elements
-          </a>
-        </li>
-      </ul>
+          <div class="form-group">
+            <p class="heading-small">Organisation or Member of Public *</p>
+            <p style="clear:left" class="font-xsmall">Are you making a contact on behalf of an organisation? Or are you doing so as a member of the public?</p>
+            <div style="padding: 12px 0">
+              <div class="multiple-choice">
+                <input id="radio-1" type="radio" name="radio-group" value="Organisation">
+                <label for="radio-1">Organisation</label>
+              </div>
+              <div class="multiple-choice">
+                <input id="radio-2" type="radio" name="radio-group" value="Member of Public">
+                <label for="radio-2">Member of Public</label>
+              </div>
+            </div>
 
-      <hr>
+          </div>
 
-      <h2 class="heading-medium">NHS resources</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://www.england.nhs.uk/nhsidentity/">
-            NHS identity
-          </a>
-        </li>
-        <li>
-          <a href="https://www.nhs.uk/transformation/manual/">
-            NHS service manual
-          </a>
-        </li>
-      </ul>
+          <div class="form-group">
+            <label class="form-label" for="email-f1"><span class="heading-small">Email *</span></label>
+            <input class="form-control" id="email-f1" type="text" name="email-f1">
+          </div>
 
-      <hr>
+          <div class="form-group">
+            <label class="form-label" for="phone-f1"><span class="heading-small">Phone Number *</span></label>
+            <input class="form-control" id="phone-f1" type="text" name="phone-f1">
+          </div>
 
-      <h2 class="heading-medium">Other resources</h2>
-			<ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-prototype-kit.herokuapp.com/docs">
-            How to use the prototyping kit
-          </a>
-        </li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-        <li>
-					<a href="https://userresearch.blog.gov.uk/2015/08/13/no-more-accordions-how-to-choose-a-form-structure/">
-						No more accordions: how to choose a form structure (Not read this properly yet)
-					</a>
-				</li>
-        <li>
-          <a href="https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/">
-            How we researched the new nav
-          </a>
-        </li>
-        <li>
-          <a href="https://www.gov.uk/service-manual/design/progress-indicators">
-            Progress indicators
-          </a>
-        </li>
-			</ul>
 
-      <hr>
+          <div class="form-group">
+            <label class="form-label" for="select-box"><span class="heading-small">Reason *</span></label>
+            <select class="form-control" id="select-box" name="select-box">
+              <option value="Please Select" selected="selected">Please Select</option>
+              <option value="General Interest in The Digital Tools Library">General Interest in The Digital Tools Library</option>
+              <option value="Connect an existing App to The Health Service">Connect an existing App to The Health Service</option>
+              <option value="Join a Community for Health">Join a Community for Health</option>
+              <option value="Events, Developer Hack Days">Events, Developer Hack Days</option>
+              <option value="Media Enquiries">Media Enquiries</option>
+            </select>
+          </div>
 
-      <h2 class="heading-medium">To discuss</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="http://apps-prototypes.iw-c.co.uk">
-            New NHS boiler plate? Who owns this?
-          </a>
-        </li>
-        <li>
-          <a href="https://projects.invisionapp.com/freehand/document/mjxe1d0r9">
-            Dave Evans - Freehand file.
-          </a>
-        </li>
-        <li>
-          <a href="https://www.gov.uk/log-in-register-hmrc-online-services">
-            Naming convention for Sign up / register
-          </a>
-        </li>
-
-      </ul>
+          <p><input type="submit" class="button" value="Register"></p>
 
 
 
+
+
+
+        </div>
+
+        <div class="column-one-third">
+          <aside class="govuk-related-items" data-module="track-click" role="complementary">
+            <h3 class="heading-medium">Useful links</h3>
+            <ul class="list">
+              <li><a href="../apps_library/index.html" class="">NHS Apps Library</a></li>
+              <li><a href="the-application-process.html" class="">Assessment Process Explained</a></li>
+              <li><a href="faqs.html" class="">Frequently Asked Questions</a></li>
+              <li><a href="register-your-interest.html" class="">Register Your Interest</a></li>
+            </ul>
+          </aside>
+        </div>
+
+      </div>
 
     </main>
+
 
 
 

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lte-ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>NHS Apps Review / Apps / Question States v1</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/govuk-template.css?0.22.3" media="screen" rel="stylesheet" /><!--<![endif]-->
+    <!--[if IE 6]><link href="/stylesheets/govuk-template-ie6.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 7]><link href="/stylesheets/govuk-template-ie7.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 8]><link href="/stylesheets/govuk-template-ie8.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
+    <link href="/stylesheets/govuk-template-print.css?0.22.3" media="print" rel="stylesheet" />
+
+    <!--[if IE 8]><link href="/stylesheets/fonts-ie8.css?0.22.3" media="all" rel="stylesheet" /><![endif]-->
+    <!--[if gte IE 9]><!--><link href="/stylesheets/fonts.css?0.22.3" media="all" rel="stylesheet" /><!--<![endif]-->
+    <!--[if lt IE 9]><script src="/javascripts/ie.js?0.22.3"></script><![endif]-->
+
+    <link rel="shortcut icon" href="/images/favicon.ico?0.22.3" type="image/x-icon" />
+
+    <link rel="mask-icon" href="/images/gov.uk_logotype_crown.svg?0.22.3" color="#0b0c0c">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png?0.22.3">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/apple-touch-icon-167x167.png?0.22.3">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png?0.22.3">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?0.22.3">
+
+
+    <meta name="theme-color" content="#0b0c0c" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="/images/opengraph-image.png?0.22.3">
+
+
+  <!--[if lte IE 8]><link href="/stylesheets/application-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if gt IE 8]><!--><link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+
+
+  </head>
+
+  <body class=""><script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='/browser-sync/browser-sync-client.js?v=2.23.6'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+
+
+    <div id="skiplink-container">
+      <div>
+        <a href="#content" class="skiplink">Skip to main content</a>
+      </div>
+    </div>
+
+    <div id="global-cookie-message">
+      <p>GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a></p>
+    </div>
+
+
+    <header role="banner" id="global-header" class="with-proposition">
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="/" title="NHS" id="logo" class="content">
+              <img src="/images/logotype-nhs-colour__reverse@2x.png" alt="">
+            </a>
+          </div>
+        </div>
+
+        <div class="header-proposition">
+          <div class="content">
+            <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+            <nav id="proposition-menu">
+              <a href="/apps_review" id="proposition-name">Apps Assessment</a>
+              <strong class="phase-tag" style="position:relative; left:4px; top:-2px;">REVIEWER</strong>
+
+              <ul id="proposition-links">
+                <li><a href="/apps_review/apps.html" class="active">Apps</a></li>
+                <li><a href="/apps_review/profile.html">Profile</a></li>
+                <li><a href="/apps_review/logout.html">Logout</a></li>
+              </ul>
+
+            </nav>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <div id="global-header-bar"></div>
+
+    <main id="content" role="main">
+
+      <div class="breadcrumbs">
+        <ol>
+          <li><a href="/apps_review/apps.html">Apps</a></li>
+          <li><a href="/apps_review/apps-details.html">Pinpoint Tech</a></li>
+          <li aria-current="page">Questions</li>
+        </ol>
+      </div>
+
+
+
+
+
+
+      <h1 class="heading-large">Submit Your App</h1>
+
+
+
+      <!-- ############################################################################################################## -->
+      <!-- Question START -->
+      <!-- ############################################################################################################## -->
+
+      <div class="form-group">
+        <label class="form-label" for="value-1-1"><span class="heading-medium">A.0.1 Is your app currently available and being used by the public?</span></label>
+        <input class="form-control" id="value-1-1" type="text" name="value-1-1" value="Yes" disabled><br>
+
+        <p class="js-button form-buttons">
+          <a href="#" class="js-btn-approve button button--small">Approve</a>
+          <a href="#" class="js-btn-reject button button--small button--chevron button--red">Reject</a>
+          <a href="#" class="js-btn-request button button--small button--chevron button--grey">Request documents</a>
+        </p>
+
+        <!-- Rejected -->
+        <div class="js-rejected" style="display: none">
+          <p class="form-note">You <span class="red">rejected</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+          <div class="panel font-xsmall">
+            <p><span class="red">Rejected</span> - Some sample copy <br>
+            2 hours ago <a href="#">David Sayce</a></p>
+          </div>
+        </div>
+
+        <!-- Reject input -->
+        <div class="js-rejected-input panel panel--red" style="display: none">
+          <label class="form-label" for="value-1-4-1">Reject answer - Information request</label>
+          <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+          <a href="#" class="js-btn-reject-save button button--red">Save</a>
+        </div>
+
+        <!-- Approved -->
+        <div class="js-approved" style="display: none">
+          <p class="form-note">You <span class="green">approved</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+        </div>
+
+        <!-- Document request input -->
+        <div class="js-doc-request-input panel" style="display: none">
+          <label class="form-label" for="value-1-4-1">Document request</label>
+          <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+          <a href="#" class="js-btn-request-save button">Save</a>
+          <div class="form-group" style="padding-top:20px;">
+            <label class="form-label" for="file-input">
+              Upload a file
+            </label>
+            <input type="file" id="file-input">
+          </div>
+        </div>
+
+        <!-- Document request -->
+        <div class="js-doc-request panel font-xsmall" style="display: none">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ante imperdiet, cursus felis sit amet, faucibus leo. Suspendisse facilisis luctus ante, sed pulvinar urna aliquam et. </p>
+          <p>2 hours ago <a href="#">David Sayce</a></p>
+        </div>
+
+        <p class="font-xsmall grey">Updated on Wed Oct 25 2017</p>
+      </div>
+
+      <!-- ############################################################################################################## -->
+      <!-- Question END -->
+      <!-- ############################################################################################################## -->
+
+
+
+
+
+
+      <div class="js-accordion-with-descriptions" data-module="accordion-with-descriptions">
+        <div class="subsection-controls js-subsection-controls">
+          <button aria-expanded="false" aria-controls="subsection_content_0 subsection_content_1 subsection_content_2 subsection_content_3 ">Open all</button>
+        </div>
+        <div class="subsection-wrapper" style="clear: both">
+          <div class="js-subsection subsection">
+            <div class="subsection__header">
+              <h2 class="subsection__title" id="find-patterns"><button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_3">Key Contact Information</button></h2>
+              <span class="subsection__icon"></span>
+            </div>
+            <div class="subsection__content js-subsection-content js-hidden" id="subsection_content_3">
+
+
+              <!-- ############################################################################################################## -->
+              <!-- ACCORDION START -->
+              <!-- ############################################################################################################## -->
+
+
+
+
+                <!-- ############################################################################################################## -->
+                <!-- Question START -->
+                <!-- ############################################################################################################## -->
+
+                <div class="form-group">
+                  <label class="form-label" for="value-1-1"><span class="heading-medium">A.1.1 Vendor Name</span></label>
+                  <input class="form-control" id="value-1-1" type="text" name="value-1-1" value="Take It Studios" disabled><br>
+
+                  <p class="js-button form-buttons">
+                    <a href="#" class="js-btn-approve button button--small">Approve</a>
+                    <a href="#" class="js-btn-reject button button--small button--chevron button--red">Reject</a>
+                    <a href="#" class="js-btn-request button button--small button--chevron button--grey">Request documents</a>
+                  </p>
+
+                  <!-- Rejected -->
+                  <div class="js-rejected" style="display: none">
+                    <p class="form-note">You <span class="red">rejected</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                    <div class="panel font-xsmall">
+                      <p><span class="red">Rejected</span> - Some sample copy <br>
+                      2 hours ago <a href="#">David Sayce</a></p>
+                    </div>
+                  </div>
+
+                  <!-- Reject input -->
+                  <div class="js-rejected-input panel panel--red" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Reject answer - Information request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-reject-save button button--red">Save</a>
+                  </div>
+
+                  <!-- Approved -->
+                  <div class="js-approved" style="display: none">
+                    <p class="form-note">You <span class="green">approved</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                  </div>
+
+                  <!-- Document request input -->
+                  <div class="js-doc-request-input panel" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Document request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-request-save button">Save</a>
+                    <div class="form-group" style="padding-top:20px;">
+                      <label class="form-label" for="file-input">
+                        Upload a file
+                      </label>
+                      <input type="file" id="file-input">
+                    </div>
+                  </div>
+
+                  <!-- Document request -->
+                  <div class="js-doc-request panel font-xsmall" style="display: none">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ante imperdiet, cursus felis sit amet, faucibus leo. Suspendisse facilisis luctus ante, sed pulvinar urna aliquam et. </p>
+                    <p>2 hours ago <a href="#">David Sayce</a></p>
+                  </div>
+
+                  <p class="font-xsmall grey">Updated on Wed Oct 25 2017</p>
+                </div>
+
+                <!-- ############################################################################################################## -->
+                <!-- Question END -->
+                <!-- ############################################################################################################## -->
+
+
+                <hr>
+
+
+                <!-- ############################################################################################################## -->
+                <!-- Question START -->
+                <!-- ############################################################################################################## -->
+
+                <div class="form-group">
+                  <label class="form-label" for="value-1-1"><span class="heading-medium">A.1.2 Full Name</span></label>
+                  <input class="form-control" id="value-1-1" type="text" name="value-1-1" value="Matthew Tasell" disabled><br>
+
+                  <p class="js-button form-buttons">
+                    <a href="#" class="js-btn-approve button button--small">Approve</a>
+                    <a href="#" class="js-btn-reject button button--small button--chevron button--red">Reject</a>
+                    <a href="#" class="js-btn-request button button--small button--chevron button--grey">Request documents</a>
+                  </p>
+
+                  <!-- Rejected -->
+                  <div class="js-rejected" style="display: none">
+                    <p class="form-note">You <span class="red">rejected</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                    <div class="panel font-xsmall">
+                      <p><span class="red">Rejected</span> - Some sample copy <br>
+                      2 hours ago <a href="#">David Sayce</a></p>
+                    </div>
+                  </div>
+
+                  <!-- Reject input -->
+                  <div class="js-rejected-input panel panel--red" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Reject answer - Information request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-reject-save button button--red">Save</a>
+                  </div>
+
+                  <!-- Approved -->
+                  <div class="js-approved" style="display: none">
+                    <p class="form-note">You <span class="green">approved</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                  </div>
+
+                  <!-- Document request input -->
+                  <div class="js-doc-request-input panel" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Document request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-request-save button">Save</a>
+                    <div class="form-group" style="padding-top:20px;">
+                      <label class="form-label" for="file-input">
+                        Upload a file
+                      </label>
+                      <input type="file" id="file-input">
+                    </div>
+                  </div>
+
+                  <!-- Document request -->
+                  <div class="js-doc-request panel font-xsmall" style="display: none">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ante imperdiet, cursus felis sit amet, faucibus leo. Suspendisse facilisis luctus ante, sed pulvinar urna aliquam et. </p>
+                    <p>2 hours ago <a href="#">David Sayce</a></p>
+                  </div>
+
+                  <p class="font-xsmall grey">Updated on Wed Oct 25 2017</p>
+                </div>
+
+                <!-- ############################################################################################################## -->
+                <!-- Question END -->
+                <!-- ############################################################################################################## -->
+
+
+                <hr>
+
+
+                <!-- ############################################################################################################## -->
+                <!-- Question START -->
+                <!-- ############################################################################################################## -->
+
+                <div class="form-group">
+                  <label class="form-label" for="value-1-1"><span class="heading-medium">A.1.3 Email Address</span></label>
+                  <input class="form-control" id="value-1-1" type="text" name="value-1-1" value="matthew.tasell@example.com" disabled><br>
+
+                  <p class="js-button form-buttons">
+                    <a href="#" class="js-btn-approve button button--small">Approve</a>
+                    <a href="#" class="js-btn-reject button button--small button--chevron button--red">Reject</a>
+                    <a href="#" class="js-btn-request button button--small button--chevron button--grey">Request documents</a>
+                  </p>
+
+                  <!-- Rejected -->
+                  <div class="js-rejected" style="display: none">
+                    <p class="form-note">You <span class="red">rejected</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                    <div class="panel font-xsmall">
+                      <p><span class="red">Rejected</span> - Some sample copy <br>
+                      2 hours ago <a href="#">David Sayce</a></p>
+                    </div>
+                  </div>
+
+                  <!-- Reject input -->
+                  <div class="js-rejected-input panel panel--red" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Reject answer - Information request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-reject-save button button--red">Save</a>
+                  </div>
+
+                  <!-- Approved -->
+                  <div class="js-approved" style="display: none">
+                    <p class="form-note">You <span class="green">approved</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                  </div>
+
+                  <!-- Document request input -->
+                  <div class="js-doc-request-input panel" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Document request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-request-save button">Save</a>
+                    <div class="form-group" style="padding-top:20px;">
+                      <label class="form-label" for="file-input">
+                        Upload a file
+                      </label>
+                      <input type="file" id="file-input">
+                    </div>
+                  </div>
+
+                  <!-- Document request -->
+                  <div class="js-doc-request panel font-xsmall" style="display: none">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ante imperdiet, cursus felis sit amet, faucibus leo. Suspendisse facilisis luctus ante, sed pulvinar urna aliquam et. </p>
+                    <p>2 hours ago <a href="#">David Sayce</a></p>
+                  </div>
+
+                  <p class="font-xsmall grey">Updated on Wed Oct 25 2017</p>
+                </div>
+
+                <!-- ############################################################################################################## -->
+                <!-- Question END -->
+                <!-- ############################################################################################################## -->
+
+
+                <hr>
+
+
+                <!-- ############################################################################################################## -->
+                <!-- Question START -->
+                <!-- ############################################################################################################## -->
+
+                <div class="form-group">
+                  <label class="form-label" for="value-1-1"><span class="heading-medium">A.1.4 Phone Number</span></label>
+                  <input class="form-control" id="value-1-1" type="text" name="value-1-1" value="0151 000 0000" disabled><br>
+
+                  <p class="js-button form-buttons">
+                    <a href="#" class="js-btn-approve button button--small">Approve</a>
+                    <a href="#" class="js-btn-reject button button--small button--chevron button--red">Reject</a>
+                    <a href="#" class="js-btn-request button button--small button--chevron button--grey">Request documents</a>
+                  </p>
+
+                  <!-- Rejected -->
+                  <div class="js-rejected" style="display: none">
+                    <p class="form-note">You <span class="red">rejected</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                    <div class="panel font-xsmall">
+                      <p><span class="red">Rejected</span> - Some sample copy <br>
+                      2 hours ago <a href="#">David Sayce</a></p>
+                    </div>
+                  </div>
+
+                  <!-- Reject input -->
+                  <div class="js-rejected-input panel panel--red" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Reject answer - Information request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-reject-save button button--red">Save</a>
+                  </div>
+
+                  <!-- Approved -->
+                  <div class="js-approved" style="display: none">
+                    <p class="form-note">You <span class="green">approved</span> this question &nbsp; <a href="#" class="js-link-change">Change</a></p>
+                  </div>
+
+                  <!-- Document request input -->
+                  <div class="js-doc-request-input panel" style="display: none">
+                    <label class="form-label" for="value-1-4-1">Document request</label>
+                    <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+                    <a href="#" class="js-btn-request-save button">Save</a>
+                    <div class="form-group" style="padding-top:20px;">
+                      <label class="form-label" for="file-input">
+                        Upload a file
+                      </label>
+                      <input type="file" id="file-input">
+                    </div>
+                  </div>
+
+                  <!-- Document request -->
+                  <div class="js-doc-request panel font-xsmall" style="display: none">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ante imperdiet, cursus felis sit amet, faucibus leo. Suspendisse facilisis luctus ante, sed pulvinar urna aliquam et. </p>
+                    <p>2 hours ago <a href="#">David Sayce</a></p>
+                  </div>
+
+                  <p class="font-xsmall grey">Updated on Wed Oct 25 2017</p>
+                </div>
+
+                <!-- ############################################################################################################## -->
+                <!-- Question END -->
+                <!-- ############################################################################################################## -->
+
+
+
+
+
+
+
+              <!-- ############################################################################################################## -->
+              <!-- ACCORDION END -->
+              <!-- ############################################################################################################## -->
+
+            </div>
+          </div>
+
+
+          <!-- THE REST OF THE ACCORIONS -->
+          <div class="js-subsection subsection">
+            <div class="subsection__header">
+              <h2 class="subsection__title" id="find-patterns"><button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_3">Key App Information</button></h2>
+              <span class="subsection__icon"></span>
+            </div>
+            <div class="subsection__content js-subsection-content js-hidden" id="subsection_content_3">
+              CONTENT
+            </div>
+          </div>
+
+          <div class="js-subsection subsection">
+            <div class="subsection__header">
+              <h2 class="subsection__title" id="find-patterns"><button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_3">Detailed App Information</button></h2>
+              <span class="subsection__icon"></span>
+            </div>
+            <div class="subsection__content js-subsection-content js-hidden" id="subsection_content_3">
+              CONTENT
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+
+
+    <footer class="group js-footer" id="footer" role="contentinfo">
+
+      <div class="footer-wrapper">
+
+        <div class="footer-meta">
+          <div class="footer-meta-inner">
+            <ul>
+              <li>
+                <a href="/prototype-admin/clear-data">Clear data</a>
+              </li>
+            </ul>
+            <div class="open-government-licence">
+              <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
+              <p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+            </div>
+          </div>
+
+          <div class="copyright">
+            <a href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">&copy; Crown copyright</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="global-app-error" class="app-error hidden"></div>
+
+    <script src="/javascripts/govuk-template.js?0.22.3"></script>
+
+
+
+    <!-- Javascript -->
+    <!--[if lte IE 8]><script src="/javascripts/bind.js"></script><![endif]-->
+    <script src="/javascripts/jquery-1.11.3.js"></script>
+    <script src="/javascripts/govuk/details.polyfill.js"></script>
+    <script src="/javascripts/govuk/shim-links-with-button-role.js"></script>
+    <script src="/javascripts/govuk/show-hide-content.js"></script>
+    <script src="/javascripts/application.js"></script>
+
+    <script src="/javascripts/auto-store-data.js"></script>
+
+    <!-- GOV.UK Prototype kit v6.3.0 -->
+    <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
+
+    <!-- Pie charts -->
+    <link href="https://rawgit.com/pguso/jquery-plugin-circliful/1.0.2/css/jquery.circliful.css" media="screen" rel="stylesheet" />
+    <script src="https://rawgit.com/pguso/jquery-plugin-circliful/1.0.2/js/jquery.circliful.js"></script>
+
+
+    <!-- Accrodion -->
+    <script>
+      $( ".subsection__header" ).click(function() {
+        $( this ).next().toggleClass( "js-hidden" );
+        $( this ).parent().toggleClass( "subsection--is-open" );
+      });
+    </script>
+
+
+    <script>
+
+      $( document ).ready(function() { // 6,32 5,38 2,34
+
+        /* This is demo purposes only */
+        /* It fakes interactions with the question states */
+
+        /* DIFFERENT VIEWS
+        .js-doc-request
+        .js-doc-request-input
+        .js-approved
+        .js-rejected-input
+        .js-rejected
+        .js-button
+        */
+
+        /* ACTIONS
+        .js-btn-request
+        .js-btn-reject
+        .js-btn-approve
+        .js-btn-request-save
+        .js-btn-reject-save
+        .js-link-change
+        */
+
+        // Reset view
+        function resetViews() {
+          $( ".js-doc-request, .js-doc-request-input, .js-approved, .js-rejected-input, .js-rejected" ).slideUp( "fast", function() {
+
+          });
+        }
+
+        // Request
+        $( ".js-btn-request" ).click(function(e) {
+
+          e.preventDefault();
+          $(this).parent().parent().find( ".js-doc-request, .js-approved, .js-rejected-input, .js-rejected" ).slideUp( "fast", function() {   });
+          $(this).parent().parent().find( ".js-doc-request-input" ).slideDown( "fast", function() {   });
+        });
+
+        // Reject
+        $( ".js-btn-reject" ).click(function(e) {
+
+          e.preventDefault();
+          $(this).parent().parent().find( ".js-doc-request, .js-doc-request-input, .js-approved, .js-rejected" ).slideUp( "fast", function() {   });
+          $(this).parent().parent().find( ".js-rejected-input" ).slideDown( "fast", function() {   });
+
+        });
+
+        // Reject input
+        $( ".js-btn-reject-save" ).click(function(e) {
+
+          e.preventDefault();
+
+          $(this).parent().parent().find( ".js-doc-request, .js-doc-request-input, .js-approved, .js-rejected-input, .js-button" ).slideUp( "fast", function() {   });
+          $(this).parent().parent().find( ".js-rejected" ).slideDown( "fast", function() {    });
+          $(this).parent().parent().addClass("form-group--rejected");
+
+        });
+
+        // Request input
+        $( ".js-btn-request-save" ).click(function(e) {
+
+          e.preventDefault();
+
+          $(this).parent().parent().find( ".js-doc-request-input, .js-approved, .js-rejected-input, .js-rejected" ).slideUp( "fast", function() {   });
+          $(this).parent().parent().find( ".js-doc-request, .js-button" ).slideDown( "fast", function() {   });
+
+
+        });
+
+        // Approve
+        $( ".js-btn-approve" ).click(function(e) {
+
+          e.preventDefault();
+
+          $(this).parent().parent().find( ".js-doc-request, .js-doc-request-input, .js-rejected-input, .js-rejected, .js-button" ).slideUp( "fast", function() {  });
+          $(this).parent().parent().find( ".js-approved" ).slideDown( "fast", function() {  });
+          $(this).parent().parent().addClass("form-group--approved");
+
+        });
+
+        // Change back to button state
+        $( ".js-link-change" ).click(function(e) {
+
+          e.preventDefault();
+
+          $(this).parent().parent().parent().find( ".js-doc-request, .js-doc-request-input, .js-approved, .js-rejected-input, .js-rejected" ).slideUp( "fast", function() {  });
+          $(this).parent().parent().parent().find( ".js-button" ).slideDown( "fast", function() {  });
+          $(this).parent().parent().parent().removeClass("form-group--approved form-group--rejected");
+
+        });
+
+
+
+      });
+    </script>
+
+</body>
+</html>

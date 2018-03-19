@@ -1,0 +1,65 @@
+
+.callout {
+  //@include element-padding;
+  background-color: $white;
+  padding: $baseline-grid-unit * 2;
+  p {
+    margin-bottom: 0;
+  }
+  .callout__title {
+    @extend .heading-medium;
+    margin-top: $baseline-grid-unit;
+  }
+  .callout__para {
+    margin-top: 0;
+  }
+  &:focus {
+    outline: 3px solid $focus-colour;
+  }
+}
+
+.callout--muted {
+  background-color: $grey-4;
+}
+
+.callout--info {
+  background-color: $grey-5;
+  border: solid $grey-2;
+  border-width: 0 0 0 $baseline-grid-unit;
+}
+
+.callout--attention {
+  border: $baseline-grid-unit solid $bright-blue;
+}
+
+.callout--warning {
+  background-color: $yellow-10;
+  border: solid $yellow-50;
+  border-width: $baseline-grid-unit 0;
+}
+
+.callout--alert {
+  background-color: $red-10;
+  border-top: $baseline-grid-unit solid $red;
+}
+
+.callout--severe {
+  background-color: $red;
+  color: $white;
+
+  a {
+    // @include link-reverse-polarity;
+  }
+}
+
+.callout--error {
+  border: $baseline-grid-unit solid $red;
+}
+
+.callout--compact {
+  display: inline-block;
+
+  @include media(desktop) {
+    padding: $baseline-grid-unit * 2 $baseline-grid-unit * 6;
+  }
+}

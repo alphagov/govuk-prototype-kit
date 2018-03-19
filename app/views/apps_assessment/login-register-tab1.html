@@ -3,7 +3,7 @@
 <!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>NHS GOV.UK prototype kit</title>
+    <title>NHS Apps Assessment</title>
 
     <!--[if gt IE 8]><!--><link href="/stylesheets/govuk-template.css?0.22.3" media="screen" rel="stylesheet" /><!--<![endif]-->
     <!--[if IE 6]><link href="/stylesheets/govuk-template-ie6.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
@@ -36,7 +36,9 @@
 
   </head>
 
-  <body class="">
+  <body class=""><script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='/browser-sync/browser-sync-client.js?v=2.23.6'><\/script>".replace("HOST", location.hostname));
+//]]></script>
 
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
@@ -67,11 +69,13 @@
           <div class="content">
             <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
             <nav id="proposition-menu">
-              <a href="/" id="proposition-name">NHS Design Library</a>
+              <a href="/apps_assessment" id="proposition-name">Apps Assessment</a>
 
               <ul id="proposition-links">
-                <li><a href="/" class="active">Overview</a></li>
-                <li><a href="/toolkit.html">Toolkit</a></li>
+                <li><a href="/apps_assessment/home.html">Home</a></li>
+                <li><a href="/apps_assessment/login.html" class="active">Login</a></li>
+                <li><a href="/apps_assessment/signup.html">Sign Up</a></li>
+                <!-- <li><a href="/apps_assessment/reset-password.html">Reset Password</a></li> -->
               </ul>
 
             </nav>
@@ -85,141 +89,37 @@
 
     <main id="content" role="main">
 
-      <h1 class="heading-xlarge">
-        NHS design library
-        <span class="heading-secondary">Based on The GOV.UK prototype kit v6.3.0</span>
-      </h1><script>console.log("v6.3.0");</script>
+      <div class="grid-row">
+        <div class="column-two-thirds">
+          <h2 class="heading-xlarge">NHS Apps &amp; Wearables: sign in or register</h2>
+        </div>
+      </div>
 
-      <p>
-        This website contains pages for NHS projects developed by Infinity Works
-      </p>
-
-      <h2 class="heading-medium">Projects</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="/apps_library">
-            Apps Library
-          </a>
-        </li>
-        <li>
-          <a href="/apps_assessment">
-            Apps Assessment
-          </a>
-        </li>
-        <li>
-          <a href="/apps_review">
-            Apps Review
-          </a>
-        </li>
-        <li>
-          <a href="/developer">
-            Developer portal
-          </a>
-        </li>
-      </ul>
+      <aside class="part-navigation-container" role="complementary">
+         <nav role="navigation" class="app-c-contents-list" data-module="track-click" aria-label="Pages in this guide">
+           <h2>Contents</h2>
+           <ol class="app-c-contents-list__list">
+             <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">
+               Sign in to NHS Apps &amp; Wearables
+             </li>
+             <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+               <a class="app-c-contents-list__link" href="login-register-tab2.html">
+                 Problems signing in
+               </a>
+             </li>
+             <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+               <a class="app-c-contents-list__link" href="login-register-tab3.html">Register for NHS Apps &amp; Wearables</a>
+             </li>
+           </ol>
+         </nav>
+      </aside>
 
       <hr>
 
-      <h2 class="heading-medium">Page designs</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://xd.adobe.com/view/c1c684e2-5d68-4c76-95a0-bdb357bdb763">
-            Apps Assessment Application (XD)
-          </a>
-        </li>
-      </ul>
+      <h2 class="heading-large">Sign in to NHS Apps &amp; Wearables</h2>
 
-      <hr>
-
-      <h2 class="heading-medium">Page elements</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-elements.herokuapp.com/snippets/">
-            GOV.UK Elements
-          </a>
-        </li>
-        <li>
-          <a href="/toolkit.html">
-            NHS.UK Elements
-          </a>
-        </li>
-      </ul>
-
-      <hr>
-
-      <h2 class="heading-medium">NHS resources</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://www.england.nhs.uk/nhsidentity/">
-            NHS identity
-          </a>
-        </li>
-        <li>
-          <a href="https://www.nhs.uk/transformation/manual/">
-            NHS service manual
-          </a>
-        </li>
-      </ul>
-
-      <hr>
-
-      <h2 class="heading-medium">Other resources</h2>
-			<ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-prototype-kit.herokuapp.com/docs">
-            How to use the prototyping kit
-          </a>
-        </li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-        <li>
-					<a href="https://userresearch.blog.gov.uk/2015/08/13/no-more-accordions-how-to-choose-a-form-structure/">
-						No more accordions: how to choose a form structure (Not read this properly yet)
-					</a>
-				</li>
-        <li>
-          <a href="https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/">
-            How we researched the new nav
-          </a>
-        </li>
-        <li>
-          <a href="https://www.gov.uk/service-manual/design/progress-indicators">
-            Progress indicators
-          </a>
-        </li>
-			</ul>
-
-      <hr>
-
-      <h2 class="heading-medium">To discuss</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="http://apps-prototypes.iw-c.co.uk">
-            New NHS boiler plate? Who owns this?
-          </a>
-        </li>
-        <li>
-          <a href="https://projects.invisionapp.com/freehand/document/mjxe1d0r9">
-            Dave Evans - Freehand file.
-          </a>
-        </li>
-        <li>
-          <a href="https://www.gov.uk/log-in-register-hmrc-online-services">
-            Naming convention for Sign up / register
-          </a>
-        </li>
-
-      </ul>
-
-
+      <p>Once you’ve registered, you can ... please complete</p>
+      <p><a href="login.html" class="button button-start">Start now</a> </p>
 
 
     </main>
@@ -229,7 +129,6 @@
     <footer class="group js-footer" id="footer" role="contentinfo">
 
       <div class="footer-wrapper">
-
 
         <div class="footer-meta">
           <div class="footer-meta-inner">

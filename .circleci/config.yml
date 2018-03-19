@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: welldigital/serverless-build:node8
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-node_modules-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          command: |
+            make install
+      - save_cache:
+          key: v1-node_modules-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - src/service/node_modules
+      - deploy:
+          name: Build Assets
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              make build
+            fi
+      - deploy:
+          name: Deploy Assets
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              make deploy
+            fi

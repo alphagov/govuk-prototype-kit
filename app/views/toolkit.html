@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lte-ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <title>NHS GOV.UK prototype kit</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/govuk-template.css?0.22.3" media="screen" rel="stylesheet" /><!--<![endif]-->
+    <!--[if IE 6]><link href="/stylesheets/govuk-template-ie6.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 7]><link href="/stylesheets/govuk-template-ie7.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 8]><link href="/stylesheets/govuk-template-ie8.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
+    <link href="/stylesheets/govuk-template-print.css?0.22.3" media="print" rel="stylesheet" />
+
+    <!--[if IE 8]><link href="/stylesheets/fonts-ie8.css?0.22.3" media="all" rel="stylesheet" /><![endif]-->
+    <!--[if gte IE 9]><!--><link href="/stylesheets/fonts.css?0.22.3" media="all" rel="stylesheet" /><!--<![endif]-->
+    <!--[if lt IE 9]><script src="/javascripts/ie.js?0.22.3"></script><![endif]-->
+
+    <link rel="shortcut icon" href="/images/favicon.ico?0.22.3" type="image/x-icon" />
+
+    <link rel="mask-icon" href="/images/gov.uk_logotype_crown.svg?0.22.3" color="#0b0c0c">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png?0.22.3">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/apple-touch-icon-167x167.png?0.22.3">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png?0.22.3">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?0.22.3">
+
+
+    <meta name="theme-color" content="#0b0c0c" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="/images/opengraph-image.png?0.22.3">
+
+
+  <!--[if lte IE 8]><link href="/stylesheets/application-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if gt IE 8]><!--><link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+
+
+  </head>
+
+  <body class="">
+
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+
+
+    <div id="skiplink-container">
+      <div>
+        <a href="#content" class="skiplink">Skip to main content</a>
+      </div>
+    </div>
+
+    <div id="global-cookie-message">
+
+
+  <p>GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a></p>
+
+
+    </div>
+
+
+    <header role="banner" id="global-header" class="with-proposition">
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="/" title="NHS" id="logo" class="content">
+              <img src="/images/logotype-nhs-colour__reverse@2x.png" alt="">
+            </a>
+          </div>
+        </div>
+
+        <div class="header-proposition">
+          <div class="content">
+            <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+            <nav id="proposition-menu">
+              <a href="/" id="proposition-name">NHS Design Library</a>
+
+              <ul id="proposition-links">
+                <li><a href="/">Overview</a></li>
+                <li><a href="/toolkit.html" class="active">Toolkit</a></li>
+              </ul>
+
+            </nav>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+
+    <div id="global-header-bar"></div>
+
+
+    <main id="content" role="main">
+
+          <h1 class="heading-xlarge">
+            Toolkit
+          </h1><script>console.log("v6.3.0");</script>
+
+          <p>Use the <a href="https://govuk-elements.herokuapp.com/" target="_blank">Gov.uk page elements</a> to create pages.</p>
+          <p>NHS specific components</p>
+
+          <!-- ################################################################################ -->
+
+          <h2 class="heading-medium">Local header</h2>
+
+          <div class="local-header">
+            <h2 class="local-header__title">Local header</h2>
+            <p class="local-header__para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus lacus et sagittis condimentum. Vivamus quis sollicitudin orci, a pulvinar ante.</p>
+          </div>
+
+          <pre>
+            <code class="language-markup">
+              &lt;div class="local-header"&gt;
+                &lt;h2 class="local-header__title"&gt;Local header&lt;/h2&gt;
+                &lt;p class="local-header__para"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempus lacus et sagittis condimentum. Vivamus quis sollicitudin orci, a pulvinar ante.&lt;/p&gt;
+              &lt;/div&gt;
+            </code>
+          </pre>
+
+          <!-- ################################################################################ -->
+
+
+          <h2 class="heading-medium">Tabs</h2>
+
+          <aside class="part-navigation-container" role="complementary">
+            <nav role="navigation" class="app-c-contents-list" data-module="track-click" aria-label="Pages in this guide">
+              <h2>Contents</h2>
+              <ol class="app-c-contents-list__list">
+                <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">Overview</li>
+                <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+                  <a class="app-c-contents-list__link" data-track-category="contentsClicked" data-track-action="content_item 2" data-track-label="/carers-credit/what-youll-get" data-track-options="{&quot;dimension29&quot;:&quot;What you'll get&quot;}" href="/carers-credit/what-youll-get">What you'll get</a>
+                </li>
+                <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed ">
+                  <a class="app-c-contents-list__link" data-track-category="contentsClicked" data-track-action="content_item 3" data-track-label="/carers-credit/eligibility" data-track-options="{&quot;dimension29&quot;:&quot;Eligibility&quot;}" href="/carers-credit/eligibility">Eligibility</a>
+                </li>
+                <li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed ">
+                  <a class="app-c-contents-list__link" data-track-category="contentsClicked" data-track-action="content_item 4" data-track-label="/carers-credit/how-to-claim" data-track-options="{&quot;dimension29&quot;:&quot;How to claim&quot;}" href="/carers-credit/how-to-claim">How to claim</a>
+                </li>
+              </ol>
+            </nav>
+          </aside>
+
+
+          <pre>
+            <code class="language-markup">
+              &lt;aside class="part-navigation-container" role="complementary"&gt;
+                &lt;nav role="navigation" class="app-c-contents-list" data-module="track-click" aria-label="Pages in this guide"&gt;
+                  &lt;h2&gt;Contents&lt;/h2&gt;
+                  &lt;ol class="app-c-contents-list__list"&gt;
+                    &lt;li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true"&gt;Overview&lt;/li&gt;
+                    &lt;li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed"&gt;
+                      &lt;a class="app-c-contents-list__link" data-track-category="contentsClicked" data-track-action="content_item 2" data-track-label="/carers-credit/what-youll-get" data-track-options="{&amp;quot;dimension29&amp;quot;:&amp;quot;What you'll get&amp;quot;}" href="/carers-credit/what-youll-get"&gt;What you'll get&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed "&gt;
+                      &lt;a class="app-c-contents-list__link" data-track-category="contentsClicked" data-track-action="content_item 3" data-track-label="/carers-credit/eligibility" data-track-options="{&amp;quot;dimension29&amp;quot;:&amp;quot;Eligibility&amp;quot;}" href="/carers-credit/eligibility"&gt;Eligibility&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="app-c-contents-list__list-item app-c-contents-list__list-item--dashed "&gt;
+                      &lt;a class="app-c-contents-list__link" data-track-category="contentsClicked" data-track-action="content_item 4" data-track-label="/carers-credit/how-to-claim" data-track-options="{&amp;quot;dimension29&amp;quot;:&amp;quot;How to claim&amp;quot;}" href="/carers-credit/how-to-claim"&gt;How to claim&lt;/a&gt;
+                    &lt;/li&gt;
+                  &lt;/ol&gt;
+                &lt;/nav&gt;
+              &lt;/aside&gt;
+            </code>
+          </pre>
+
+
+          <!-- ################################################################################ -->
+
+          <h2 class="heading-medium">Callout</h2>
+
+          <div class="callout">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.</p>
+          </div>
+
+          <div class="callout callout--info">
+            <h2 class="callout__title">Info</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+          <div class="callout callout--attention">
+            <h2 class="callout__title">Attention</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+          <div class="callout callout--warning">
+            <h2 class="callout__title">Warning</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+          <div class="callout callout--alert">
+            <h2 class="callout__title">Alert</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+          <div class="callout callout--severe">
+            <h2 class="callout__title">Severe</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+          <div class="callout callout--error">
+            <h2 class="callout__title">Error</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+          <div class="callout callout--muted">
+            <h2 class="callout__title">Muted</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+          <div class="callout callout--compact">
+            <h2 class="callout__title">Compact</h2>
+            <p class="callout__para">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda beatae, dolor eaque eos expedita fugiat iure, laborum libero magnam magni natus non quasi quibusdam repellendus saepe sapiente, velit.
+            </p>
+          </div>
+
+
+          <!-- ################################################################################ -->
+
+
+          <h2 class="heading-medium">Accordion with description</h2>
+          <p>Note: have put in a hack to clear the float on the button</p>
+
+
+          <div class="js-accordion-with-descriptions" data-module="accordion-with-descriptions">
+            <div class="subsection-controls js-subsection-controls">
+              <button aria-expanded="false" aria-controls="subsection_content_0 subsection_content_1 subsection_content_2 subsection_content_3 ">Open all</button>
+            </div>
+            <div class="subsection-wrapper" style="clear: both">
+                <div class="js-subsection subsection">
+                  <div class="subsection__header">
+                    <h2 class="subsection__title" id="designing-government-services">
+                      <button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_0">Designing government services</button>
+                    </h2>
+                    <p class="subsection__description">Introduction, scoping, naming and prototyping.</p>
+                  <span class="subsection__icon"></span>
+                </div>
+                <div class="subsection__content js-subsection-content js-hidden" id="subsection_content_0">
+                  <ul class="subsection__list">
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/introduction-designing-government-services">Designing government services: an introduction</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/scoping-your-service">Getting your service scope right</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/naming-your-service">Naming your service</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/making-prototypes">Making prototypes</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/making-your-service-look-like-govuk">Making your service look like GOV.UK</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/sending-emails-and-text-messages">Planning and writing text messages and emails</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/writing-for-user-interfaces">Writing for user interfaces</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/services-for-government-users">Services for government users</a>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="subsection js-subsection">
+                <div class="subsection__header">
+                  <h2 class="subsection__title" id="working-with-frontend"><button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_1">Working with frontend</button></h2>
+                  <p class="subsection__description">GOV.UK template, frontend toolkit, elements. </p>
+                <span class="subsection__icon"></span></div>
+                <div class="subsection__content js-subsection-content js-hidden" id="subsection_content_1">
+                  <ul class="subsection__list">
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/using-the-govuk-template-frontend-toolkit-and-elements">Using the GOV.UK template, frontend toolkit and elements</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/add-the-govuk-header-and-footer">Add the GOV.UK header and footer</a>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="subsection js-subsection">
+                <div class="subsection__header">
+                  <h2 class="subsection__title" id="working-with-patterns"><button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_2">Working with patterns</button></h2>
+                  <p class="subsection__description">Using and adapting design patterns.</p>
+                <span class="subsection__icon"></span></div>
+                <div class="subsection__content js-subsection-content js-hidden" id="subsection_content_2">
+                  <ul class="subsection__list">
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/using-adapting-and-creating-patterns">Using, adapting and creating patterns</a>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="js-subsection subsection">
+                <div class="subsection__header">
+                  <h2 class="subsection__title" id="find-patterns"><button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_3">Find patterns</button></h2>
+                  <p class="subsection__description">Solutions to common design problems.</p>
+                <span class="subsection__icon"></span></div>
+                <div class="subsection__content js-subsection-content js-hidden" id="subsection_content_3">
+                  <ul class="subsection__list">
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/addresses">Addresses</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/alpha-and-beta-phase-banners">Alpha and beta phase banners</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/check-before-you-start">Check before you start</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/check-your-answers-pages">Check your answers pages</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/confirmation-pages">Confirmation pages</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/dates">Dates</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/email-addresses">Email addresses</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/email-confirmation-loops">Email confirmation loops</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/feedback-pages">Feedback pages</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/form-structure">Form structure</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/gender-or-sex">Gender or sex</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/help-text">Help text</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/knowledge-based-authentication">Knowledge-based authentication</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/names">Names</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/national-insurance-numbers">National Insurance numbers</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/passwords">Passwords</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/progress-indicators">Progress indicators</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/question-pages">Question pages</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/start-pages">Start pages</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/task-list-pages-beta">Task list pages (beta)</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/user-accounts">User accounts</a>
+                      </li>
+                      <li class="subsection__list-item">
+                        <a href="/service-manual/design/usernames">Usernames</a>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <pre>
+            <code class="language-markup">
+              &lt;div class="js-accordion-with-descriptions" data-module="accordion-with-descriptions"&gt;
+                &lt;div class="subsection-controls js-subsection-controls"&gt;
+                  &lt;button aria-expanded="false" aria-controls="subsection_content_0 subsection_content_1 subsection_content_2 subsection_content_3 "&gt;Open all&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="subsection-wrapper" style="clear: both"&gt;
+                  &lt;div class="js-subsection subsection"&gt;
+                    &lt;div class="subsection__header"&gt;
+                      &lt;h2 class="subsection__title" id="find-patterns"&gt;&lt;button class="subsection__button js-subsection-button" aria-expanded="false" aria-controls="subsection_content_3"&gt;Title&lt;/button&gt;&lt;/h2&gt;
+                      &lt;p class="subsection__description"&gt;Sub title&lt;/p&gt;
+                      &lt;span class="subsection__icon"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class="subsection__content js-subsection-content js-hidden" id="subsection_content_3"&gt;
+                      CONTENT
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            </code>
+          </pre>
+
+
+
+
+    </main>
+
+
+    <script src="https://govuk-elements.herokuapp.com/javascripts/vendor/prism.js"></script>
+
+    <footer class="group js-footer" id="footer" role="contentinfo">
+
+      <div class="footer-wrapper">
+
+        <div class="footer-meta">
+          <div class="footer-meta-inner">
+            <ul>
+              <li>
+                <a href="/prototype-admin/clear-data">Clear data</a>
+              </li>
+            </ul>
+            <div class="open-government-licence">
+              <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
+              <p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+            </div>
+          </div>
+
+          <div class="copyright">
+            <a href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">&copy; Crown copyright</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="global-app-error" class="app-error hidden"></div>
+
+    <script src="/javascripts/govuk-template.js?0.22.3"></script>
+
+
+    <!-- Javascript -->
+    <!--[if lte IE 8]><script src="/javascripts/bind.js"></script><![endif]-->
+    <script src="/javascripts/jquery-1.11.3.js"></script>
+    <script src="/javascripts/govuk/details.polyfill.js"></script>
+    <script src="/javascripts/govuk/shim-links-with-button-role.js"></script>
+    <script src="/javascripts/govuk/show-hide-content.js"></script>
+    <script src="/javascripts/application.js"></script>
+    <script src="/javascripts/auto-store-data.js"></script>
+    <script src="https://govuk-elements.herokuapp.com/javascripts/vendor/prism.js"></script>
+
+
+    <!-- GOV.UK Prototype kit v6.3.0 -->
+    <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
+
+    <script>
+      $( ".subsection__header" ).click(function() {
+        $( this ).next().toggleClass( "js-hidden" );
+        $( this ).parent().toggleClass( "subsection--is-open" );
+      });
+    </script>
+
+  </body>
+</html>

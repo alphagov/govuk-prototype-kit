@@ -3,7 +3,7 @@
 <!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>NHS GOV.UK prototype kit</title>
+    <title>NHS Developer / Home</title>
 
     <!--[if gt IE 8]><!--><link href="/stylesheets/govuk-template.css?0.22.3" media="screen" rel="stylesheet" /><!--<![endif]-->
     <!--[if IE 6]><link href="/stylesheets/govuk-template-ie6.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
@@ -36,7 +36,9 @@
 
   </head>
 
-  <body class="">
+  <body class=""><script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='/browser-sync/browser-sync-client.js?v=2.23.6'><\/script>".replace("HOST", location.hostname));
+//]]></script>
 
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
@@ -67,12 +69,16 @@
           <div class="content">
             <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
             <nav id="proposition-menu">
-              <a href="/" id="proposition-name">NHS Design Library</a>
+              <a href="/developer" id="proposition-name">NHS Developer</a>
 
+              <!--
               <ul id="proposition-links">
-                <li><a href="/" class="active">Overview</a></li>
-                <li><a href="/toolkit.html">Toolkit</a></li>
+                <li><a href="/apps_assessment/home.html" class="active">Home</a></li>
+                <li><a href="/apps_assessment/login.html">Login</a></li>
+                <li><a href="/apps_assessment/signup.html">Sign Up</a></li>
+                <li><a href="/apps_assessment/reset-password.html">Reset Password</a></li>
               </ul>
+              -->
 
             </nav>
           </div>
@@ -81,148 +87,41 @@
       </div>
     </header>
 
-    <div id="global-header-bar"></div>
+
 
     <main id="content" role="main">
 
-      <h1 class="heading-xlarge">
-        NHS design library
-        <span class="heading-secondary">Based on The GOV.UK prototype kit v6.3.0</span>
-      </h1><script>console.log("v6.3.0");</script>
+      <div class="local-header">
+        <h2 class="local-header__title">Apps</h2>
+        <p class="local-header__para">Information for Developers about the Apps Library (Beta)</p>
+      </div>
 
-      <p>
-        This website contains pages for NHS projects developed by Infinity Works
-      </p>
+      <div class="grid-row">
 
-      <h2 class="heading-medium">Projects</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="/apps_library">
-            Apps Library
-          </a>
-        </li>
-        <li>
-          <a href="/apps_assessment">
-            Apps Assessment
-          </a>
-        </li>
-        <li>
-          <a href="/apps_review">
-            Apps Review
-          </a>
-        </li>
-        <li>
-          <a href="/developer">
-            Developer portal
-          </a>
-        </li>
-      </ul>
+        <div class="column-two-thirds">
+          <h1 class="heading-large">How to get your app on the NHS Apps Library</h1>
+          <p class="lede">These pages provide options to developers who have existing health apps they would like to see on the <a href="../apps_library/index.html" class="">NHS Apps Library</a>. It also provides options for those who are interested in the library or have an idea for a health app that they'd like to develop.</p>
+          <p>All apps must pass the Digital Assessment Questionnaire (DAQs) to ensure that only trusted, high quality apps are available on the Apps Library. They must also be available in either Apple, Google or Microsoft App Stores. The library does not host apps, it provides links to the stores.</p>
+          <p>The NHS is working to update and enhance these pages and the experience for app developers. To do this we are testing concepts, designs and user experience and we are actively seeking feedback from developers.</p>
+          <p><a href="submit-your-app.html" class="button button-start">Start now</a> </p>
+        </div>
 
-      <hr>
+        <div class="column-one-third">
+          <aside class="govuk-related-items" data-module="track-click" role="complementary">
+            <h3 class="heading-medium">Useful links</h3>
+            <ul class="list">
+              <li><a href="../apps_library/index.html" class="">NHS Apps Library</a></li>
+              <li><a href="the-application-process.html" class="">Assessment Process Explained</a></li>
+              <li><a href="faqs.html" class="">Frequently Asked Questions</a></li>
+              <li><a href="register-your-interest.html" class="">Register Your Interest</a></li>
+            </ul>
+          </aside>
+        </div>
 
-      <h2 class="heading-medium">Page designs</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://xd.adobe.com/view/c1c684e2-5d68-4c76-95a0-bdb357bdb763">
-            Apps Assessment Application (XD)
-          </a>
-        </li>
-      </ul>
-
-      <hr>
-
-      <h2 class="heading-medium">Page elements</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-elements.herokuapp.com/snippets/">
-            GOV.UK Elements
-          </a>
-        </li>
-        <li>
-          <a href="/toolkit.html">
-            NHS.UK Elements
-          </a>
-        </li>
-      </ul>
-
-      <hr>
-
-      <h2 class="heading-medium">NHS resources</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="https://www.england.nhs.uk/nhsidentity/">
-            NHS identity
-          </a>
-        </li>
-        <li>
-          <a href="https://www.nhs.uk/transformation/manual/">
-            NHS service manual
-          </a>
-        </li>
-      </ul>
-
-      <hr>
-
-      <h2 class="heading-medium">Other resources</h2>
-			<ul class="list list-bullet">
-        <li>
-          <a href="https://govuk-prototype-kit.herokuapp.com/docs">
-            How to use the prototyping kit
-          </a>
-        </li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-        <li>
-					<a href="https://userresearch.blog.gov.uk/2015/08/13/no-more-accordions-how-to-choose-a-form-structure/">
-						No more accordions: how to choose a form structure (Not read this properly yet)
-					</a>
-				</li>
-        <li>
-          <a href="https://userresearch.blog.gov.uk/2017/06/29/how-we-researched-the-new-navigation-on-gov-uk/">
-            How we researched the new nav
-          </a>
-        </li>
-        <li>
-          <a href="https://www.gov.uk/service-manual/design/progress-indicators">
-            Progress indicators
-          </a>
-        </li>
-			</ul>
-
-      <hr>
-
-      <h2 class="heading-medium">To discuss</h2>
-      <ul class="list list-bullet">
-        <li>
-          <a href="http://apps-prototypes.iw-c.co.uk">
-            New NHS boiler plate? Who owns this?
-          </a>
-        </li>
-        <li>
-          <a href="https://projects.invisionapp.com/freehand/document/mjxe1d0r9">
-            Dave Evans - Freehand file.
-          </a>
-        </li>
-        <li>
-          <a href="https://www.gov.uk/log-in-register-hmrc-online-services">
-            Naming convention for Sign up / register
-          </a>
-        </li>
-
-      </ul>
-
-
-
+      </div>
 
     </main>
+
 
 
 
