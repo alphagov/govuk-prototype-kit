@@ -3,7 +3,7 @@
 <!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    <title>NHS Apps Review / Apps</title>
+    <title>NHS Apps Review / Apps / Question States v1</title>
 
     <!--[if gt IE 8]><!--><link href="/stylesheets/govuk-template.css?0.22.3" media="screen" rel="stylesheet" /><!--<![endif]-->
     <!--[if IE 6]><link href="/stylesheets/govuk-template-ie6.css?0.22.3" media="screen" rel="stylesheet" /><![endif]-->
@@ -77,6 +77,7 @@
                 <li><a href="/apps_review/profile.html">Profile</a></li>
                 <li><a href="/apps_review/logout.html">Logout</a></li>
               </ul>
+
             </nav>
           </div>
         </div>
@@ -88,134 +89,110 @@
 
     <main id="content" role="main">
 
-      <h1 class="heading-large">Your Apps</h1>
+      <div class="breadcrumbs">
+        <ol>
+          <li><a href="/apps_review/apps.html">Apps</a></li>
+          <li><a href="/apps_review/apps-details.html">Pinpoint Tech</a></li>
+          <li aria-current="page">Questions</li>
+        </ol>
+      </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Team Name</th>
-            <th>App Name</th>
-            <th>Assessment</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Pinpoint Tech</td>
-            <td>Mediman</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Powerhouse Productions</td>
-            <td>Powerhouse Pathways</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Cadaemia</td>
-            <td>Pulse</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Bergstrom Research International</td>
-            <td>Basic Time</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Take It Studios</td>
-            <td>Take The Day</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Byrenda</td>
-            <td>Comida</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Infinity Works Test App</td>
-            <td>Infinity Works Test App</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>MyApp</td>
-            <td>MyApp</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Hanif</td>
-            <td>Hanif</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>xzcvzxcvxcvzx</td>
-            <td>zxvxcvxzc</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Infinity Works</td>
-            <td>Meet my Keets</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Infinity Works</td>
-            <td>Sprint Review 3</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Now Healthcare Group</td>
-            <td>Now Patient</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>OurPath Ltd.</td>
-            <td>OurPath</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Brett Prods</td>
-            <td>Broad Bean Protein Blurgh</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Infinity Workings</td>
-            <td>Demo 4</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Infinity Works</td>
-            <td>February Uptake</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Testing Formidable Licence</td>
-            <td>Licence Tester</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-          <tr>
-            <td>Testing Formidable Licence</td>
-            <td>Licence Tester</td>
-            <td>Submit Your App</td>
-            <td><a href="apps-details.html">Manage</a></td>
-          </tr>
-        </tbody>
-      </table>
+
+
+
+
+
+      <h1 class="heading-large">DAQ reviewer question states</h1>
+
+
+      <div class="form-group">
+        <label class="form-label" for="value-1-1"><span class="heading-medium">1.1 &nbsp; Standard view</span></label>
+        <input class="form-control" id="value-1-1" type="text" name="value-1-1" value="Sample" disabled><br>
+        <p class="form-buttons">
+          <a href="#" class="button button--small">Approve</a>
+          <a href="#" class="button button--small button--chevron button--red">Reject</a>
+          <a href="#" class="button button--small button--chevron button--grey">Request documents</a>
+        </p>
+      </div>
+
+
+      <hr>
+
+
+      <div class="form-group form-group--approved">
+        <label class="form-label" for="value-1-2"><span class="heading-medium">1.2 &nbsp; Approved question</span></label>
+        <input class="form-control" id="value-1-2" type="text" name="value-1-2" value="Sample" disabled>
+        <!-- <span class="form-side-note">Approved</span> -->
+        <p class="form-note">You <span class="green">approved</span> this question &nbsp; <a href="#">Change</a></p>
+      </div>
+
+
+      <hr>
+
+
+      <div class="form-group form-group--rejected">
+        <label class="form-label" for="value-1-3"><span class="heading-medium">1.3 &nbsp; Rejected question</span></label>
+        <input class="form-control" id="value-1-3" type="text" name="value-1-3" value="Sample" disabled>
+        <p class="form-note">You <span class="red">rejected</span> this question &nbsp; <a href="#">Change</a></p>
+        <div class="panel font-xsmall">
+          <p><span class="red">Rejected</span> - This is still wrong sunshine <br>
+          2 hours ago <a href="#">David Sayce</a></p>
+        </div>
+      </div>
+
+
+      <hr>
+
+
+      <div class="form-group form-group--rejected">
+        <label class="form-label" for="value-1-4"><span class="heading-medium">1.4 &nbsp; Reject question</span></label>
+        <input class="form-control" id="value-1-4" type="text" name="value-1-4" value="Sample" disabled>
+        <p class="form-buttons">
+          <a href="#" class="button button--small">Approve</a>
+          <a href="#" class="button button--small button--chevron button--red">Reject</a>
+          <a href="#" class="button button--small button--chevron button--grey">Request documents</a>
+        </p>
+        <div class="panel panel--red">
+          <label class="form-label" for="value-1-4-1">Reject answer - Information request</label>
+          <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+          <a href="#" class="button button--red">Save</a>
+        </div>
+      </div>
+
+
+      <hr>
+
+
+      <div class="form-group">
+        <label class="form-label" for="value-1-5"><span class="heading-medium">1.4 &nbsp; Request information</span></label>
+        <input class="form-control" id="value-1-5" type="text" name="value-1-5" value="Sample" disabled>
+        <p class="form-buttons">
+          <a href="#" class="button button--small">Approve</a>
+          <a href="#" class="button button--small button--chevron button--red">Reject</a>
+          <a href="#" class="button button--small button--chevron button--grey">Request documents</a>
+        </p>
+        <div class="panel">
+          <label class="form-label" for="value-1-4-1">Information request</label>
+          <textarea class="form-control form-control-1-4-1" name="textarea" id="textarea" rows="5"></textarea>
+          <a href="#" class="button">Save</a>
+          <div class="form-group" style="padding-top:20px;">
+            <label class="form-label" for="file-input">
+              Upload a file
+            </label>
+            <input type="file" id="file-input">
+          </div>
+        </div>
+        <div class="panel font-xsmall">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ante imperdiet, cursus felis sit amet, faucibus leo. Suspendisse facilisis luctus ante, sed pulvinar urna aliquam et. </p>
+          <p>2 hours ago <a href="#">David Sayce</a></p>
+        </div>
+      </div>
+
+
+
+
+
+
 
 
 
@@ -227,12 +204,11 @@
 
       <div class="footer-wrapper">
 
-
         <div class="footer-meta">
           <div class="footer-meta-inner">
             <ul>
               <li>
-                <a href="/prototype-Submit Your App/clear-data">Clear data</a>
+                <a href="/prototype-admin/clear-data">Clear data</a>
               </li>
             </ul>
             <div class="open-government-licence">
@@ -267,6 +243,41 @@
     <!-- GOV.UK Prototype kit v6.3.0 -->
     <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
 
+    <!-- Pie charts -->
+    <link href="https://rawgit.com/pguso/jquery-plugin-circliful/1.0.2/css/jquery.circliful.css" media="screen" rel="stylesheet" />
+    <script src="https://rawgit.com/pguso/jquery-plugin-circliful/1.0.2/js/jquery.circliful.js"></script>
+
+    <script>
+
+    $( document ).ready(function() { // 6,32 5,38 2,34
+        $("#pie").circliful({
+            animation: 1,
+            animationStep: 5,
+            foregroundBorderWidth: 10,
+            backgroundBorderWidth: 10,
+            percent: 38,
+            textBelow: true,
+            //textSize: 28,
+            backgroundColor: '#DBDBDB',
+            foregroundColor: '#005BBB',
+            textColor: '#FFFFFF',
+            multiPercentage: 1
+        });
+        $("#pie2").circliful({
+            animation: 1,
+            animationStep: 5,
+            foregroundBorderWidth: 10,
+            backgroundBorderWidth: 10,
+            percent: 38,
+            textBelow: true,
+            //textSize: 28,
+            backgroundColor: '#DBDBDB',
+            foregroundColor: '#005BBB',
+            textColor: '#FFFFFF',
+            multiPercentage: 1
+        });
+      });
+    </script>
 
 </body>
 </html>
