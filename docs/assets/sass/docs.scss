@@ -35,10 +35,17 @@
 		max-width: 100%;
 	}
 
-	ul {
+	ul, ol {
 		@extend .list;
-		@extend .list-bullet;
 	}
+
+  ul {
+		@extend .list-bullet;
+  }
+
+  ol {
+		@extend .list-number;
+  }
 
 	blockquote {
 		@extend .panel;
