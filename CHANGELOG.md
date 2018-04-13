@@ -1,4 +1,4 @@
-# Unreleased
+# 7.0.0-beta.5
 - [#33 Update GOV.UK Frontend to 0.0.27](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/33)
 
 # 7.0.0-beta.4
