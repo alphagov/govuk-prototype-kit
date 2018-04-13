@@ -108,4 +108,6 @@ Commit your changes and open a pull request on GitHub
 
 Review and merge pull request
 
-Push the new version to Heroku
+Sign into the Heroku web interface using the design-system-pipeline credentials.
+
+Find the govuk-prototype-kit-beta app, and deploy the version.
