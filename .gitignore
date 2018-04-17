@@ -3,9 +3,12 @@
 .DS_Store
 .start.pid
 .port.tmp
+.session.name.tmp
+.session.secret.tmp
 public
 lib/govuk_template.html
 govuk_modules
 node_modules/*
 .tmuxp.*
 package-lock.json
+sessions

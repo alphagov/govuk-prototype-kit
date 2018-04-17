@@ -1,5 +1,6 @@
 // Core dependencies
 const crypto = require('crypto')
+const fs = require('fs')
 const path = require('path')
 
 // NPM dependencies
@@ -118,17 +119,59 @@ app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
 // Support session data
-app.use(session({
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 4, // 4 hours
-    secure: isSecure
-  },
-  // use random name to avoid clashes with other prototypes
-  name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
-  resave: false,
-  saveUninitialized: false,
-  secret: crypto.randomBytes(64).toString('hex')
-}))
+let cookie = {
+  maxAge: 1000 * 60 * 60 * 4, // 4 hours
+  secure: isSecure
+}
+
+if (config.useFileSessionStore && config.useFileSessionStore === true) {
+  var name
+  var secret
+
+  try {
+    name = String(fs.readFileSync(path.join(__dirname, '/.session.name.tmp')))
+    console.log(`Got session name from file: "${name}"`)
+  } catch (e) {
+    name = 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex')
+    fs.writeFileSync(path.join(__dirname, '/.session.name.tmp'), name)
+    console.log(`Created new session name: "${name}"`)
+  }
+
+  try {
+    secret = String(fs.readFileSync(path.join(__dirname, '/.session.secret.tmp')))
+    console.log(`Got session secret from file: "${secret}"`)
+  } catch (e) {
+    secret = crypto.randomBytes(64).toString('hex')
+    fs.writeFileSync(path.join(__dirname, '/.session.secret.tmp'), secret)
+    console.log(`Created new session secret: "${secret}"`)
+  }
+
+  var FileStore = require('session-file-store')(session)
+
+  app.use(session({
+    store: new FileStore({
+      path: './sessions',
+      encrypt: true,
+      reapInterval: 300,
+      secret: secret
+    }),
+    secret: secret,
+    name: name,
+    resave: false,
+    saveUninitialized: false,
+    cookie: cookie,
+    unset: 'destroy'
+  }))
+} else {
+  app.use(session({
+    cookie: cookie,
+    // use random name to avoid clashes with other prototypes
+    name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
+    resave: false,
+    saveUninitialized: false,
+    secret: crypto.randomBytes(64).toString('hex')
+  }))
+}
 
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
