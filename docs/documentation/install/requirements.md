@@ -4,11 +4,16 @@ The kit runs on Mac, Windows and Linux. At a minimum you’ll need `node.js` (in
 
 This guide recommends additional software which will be used in later guides.
 
-## Admin access
+## Software you need
 
-If you have admin access to your machine, you can follow this guide to install the required software.
+You'll usually need admin access to your machine to install the software.
 
-If you do not have admin access, ask your computer administrator to install:
+If you do not have admin access, ask your IT team to install the software for you.
+
+GDS staff can install the software themselves with Managed Software Centre (MSC).
+
+You'll need:
+
 * Node.js 8.x.x
 * Atom (text editor)
 * Command line tools (Mac)
