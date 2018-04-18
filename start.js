@@ -48,7 +48,6 @@ function checkFiles () {
   // Create template .env file if it doesn't exist
   const envExists = fs.existsSync(path.join(__dirname, '/.env'))
   if (!envExists) {
-    console.log('Creating template .env file')
     fs.createReadStream(path.join(__dirname, '/lib/template.env'))
     .pipe(fs.createWriteStream(path.join(__dirname, '/.env')))
   }
