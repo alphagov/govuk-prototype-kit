@@ -14,6 +14,8 @@ If you say yes, it will store an anonymous, unique ID number in `usage-data-conf
 
 ## Data we collect
 
+The kit will only send data when you run it on your computer. It does not send data when you run it on Heroku.
+
 Whenever you start the Prototype Kit, it will send:
 
  - your anonymous ID number
