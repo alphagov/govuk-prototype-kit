@@ -1,4 +1,11 @@
+# Unreleased
+
+New features:
+
+- [#25 Track app usage](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/25)
+
 # 7.0.0-beta.5
+
 - [#36 Update GOV.UK Frontend to 0.0.28](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/36)
 
 # 7.0.0-beta.4
