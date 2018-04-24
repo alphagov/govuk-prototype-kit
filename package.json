@@ -37,7 +37,7 @@
     "nunjucks": "^2.5.2",
     "portscanner": "^2.1.1",
     "prompt": "^1.0.0",
-    "readdir": "0.0.13",
+    "readdir": "0.1.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.2.2",
     "serve-favicon": "2.4.2",
