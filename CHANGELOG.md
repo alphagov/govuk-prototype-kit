@@ -2,6 +2,8 @@
 
 New features:
 
+- [#38 Add Cookies and Privacy policy usage](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/38)
+
 - [#25 Track app usage](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/25)
 
 # 7.0.0-beta.5

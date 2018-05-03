@@ -35,6 +35,26 @@ router.get('/install/:page', function (req, res) {
   res.render('install_template', {'document': html})
 })
 
+// Cookies and Privacy policy are markdown
+router.get('/cookies', function (req, res) {
+  // render the nunjucks macros first
+  req.app.render('cookies.md', function(error, html){
+    // render the markdown
+    html = marked(html)
+    // add page layout
+    res.render('markdown-docs-layout', {'document': html})
+  })
+})
+router.get('/privacy-policy', function (req, res) {
+  // render the nunjucks macros first
+  req.app.render('privacy-policy.md', function(error, html){
+    // render the markdown
+    html = marked(html)
+    // add page layout
+    res.render('markdown-docs-layout', {'document': html})
+  })
+})
+
 // Examples - examples post here
 router.post('/tutorials-and-examples', function (req, res) {
   res.redirect('tutorials-and-examples')
