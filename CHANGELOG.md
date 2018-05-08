@@ -1,3 +1,9 @@
+# Unreleased
+
+Bug fixes:
+
+- [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
+
 # 6.3.0
 
 New features:

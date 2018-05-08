@@ -31,7 +31,6 @@ var useAuth = process.env.USE_AUTH || config.useAuth
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var useBrowserSync = config.useBrowserSync
-var analyticsId = process.env.ANALYTICS_TRACKING_ID
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
 env = env.toLowerCase()
@@ -110,7 +109,6 @@ app.use(bodyParser.urlencoded({
 }))
 
 // Add variables that are available in all views
-app.locals.analyticsId = analyticsId
 app.locals.gtmId = gtmId
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
