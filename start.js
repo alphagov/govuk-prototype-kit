@@ -17,6 +17,21 @@ if (!envExists) {
   .pipe(fs.createWriteStream(path.join(__dirname, '/.env')))
 }
 
+// Create template session data defaults file if it doesn't exist
+const sessionDefaultsDirectory = path.join(__dirname, '/app/data')
+const sessionDefaultsFile = path.join(sessionDefaultsDirectory, '/session-defaults.js')
+const sessionDefaultsExists = fs.existsSync(sessionDefaultsFile)
+
+if (!sessionDefaultsExists) {
+  console.log('Creating template session data defaults file')
+  if (!fs.existsSync(sessionDefaultsDirectory)) {
+    fs.mkdirSync(sessionDefaultsDirectory)
+  }
+
+  fs.createReadStream(path.join(__dirname, '/lib/template.session-defaults.js'))
+  .pipe(fs.createWriteStream(sessionDefaultsFile))
+}
+
 // Run gulp
 const spawn = require('cross-spawn')
 
