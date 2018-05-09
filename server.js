@@ -90,6 +90,9 @@ app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_temp
 // load govuk-frontend 'all' js
 app.use('/public/javascripts', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/frontend')))
 
+// hightlightJS styles
+app.use('/public/vendor/highlight', express.static(path.join(__dirname, '/node_modules/highlight.js/styles')))
+
 // Elements refers to icon folder instead of images folder
 app.use(favicon(path.join(__dirname, 'node_modules', 'govuk_template_jinja', 'assets', 'images', 'favicon.ico')))
 
