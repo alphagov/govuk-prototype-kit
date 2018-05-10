@@ -1,5 +1,9 @@
 # Unreleased
 
+New features:
+
+- [#501 Add default session data](https://github.com/alphagov/govuk_prototype_kit/pull/501)
+
 Bug fixes:
 
 - [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
