@@ -49,13 +49,19 @@
 {% endblock %}
 
 {% block footer_support_links %}
-  {% if useAutoStoreData %}
-    <ul>
-      <li>
-        <a href="/prototype-admin/clear-data">Clear data</a>
-      </li>
-    </ul>
-  {% endif %}
+  <ul class="app-!-db">
+    <li>
+      <a href="/prototype-admin/clear-data">Clear data</a>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <a href="/docs/cookies">Cookies</a>
+    </li>
+    <li>
+      <a href="/docs/privacy-policy">Privacy policy</a>
+    </li>
+  </ul>
 {% endblock %}
 
 {% block body_end %}
