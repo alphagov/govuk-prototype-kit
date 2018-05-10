@@ -1,3 +1,8 @@
+# Unreleased
+
+New features:
+
+- [#39 Add code highlighting](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/39)
 # 7.0.0-beta.6
 
 Breaking changes:
