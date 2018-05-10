@@ -41,7 +41,6 @@
     "prompt": "^1.0.0",
     "require-dir": "^1.0.0",
     "run-sequence": "^2.2.1",
-    "standard": "^11.0.1",
     "supertest": "^3.0.0",
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.4.16",
@@ -51,5 +50,8 @@
     "ignore": [
       "nunjucks"
     ]
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
   }
 }
