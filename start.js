@@ -17,19 +17,31 @@ if (!envExists) {
   .pipe(fs.createWriteStream(path.join(__dirname, '/.env')))
 }
 
-// Create template session data defaults file if it doesn't exist
+
 const dataDirectory = path.join(__dirname, '/app/data')
+
+// Create template session data defaults file if it doesn't exist
 const sessionDataDefaultsFile = path.join(dataDirectory, '/session-data-defaults.js')
 const sessionDataDefaultsFileExists = fs.existsSync(sessionDataDefaultsFile)
 
+if (!fs.existsSync(dataDirectory)) {
+    fs.mkdirSync(dataDirectory)
+}
+
 if (!sessionDataDefaultsFileExists) {
   console.log('Creating session data defaults file')
-  if (!fs.existsSync(dataDirectory)) {
-    fs.mkdirSync(dataDirectory)
-  }
-
   fs.createReadStream(path.join(__dirname, '/lib/template.session-data-defaults.js'))
   .pipe(fs.createWriteStream(sessionDataDefaultsFile))
+}
+
+// Create global data file if it doesn't exist
+const globalDataFile = path.join(dataDirectory, '/global-data.js')
+const globalDataFileExists = fs.existsSync(globalDataFile)
+
+if (!globalDataFileExists) {
+  console.log('Creating global data file')
+  fs.createReadStream(path.join(__dirname, '/lib/template.global-data.js'))
+  .pipe(fs.createWriteStream(globalDataFile))
 }
 
 // Run gulp
