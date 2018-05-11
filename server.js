@@ -112,10 +112,8 @@ app.use(bodyParser.urlencoded({
 app.locals.gtmId = gtmId
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
-app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
-app.locals.serviceName = config.serviceName
 
 // Support session data
 app.use(session({
@@ -129,6 +127,12 @@ app.use(session({
   saveUninitialized: false,
   secret: crypto.randomBytes(64).toString('hex')
 }))
+
+// Import global data defaults
+utils.importGlobalData(app)
+
+// Import session defaults (needs to be app.use to have access to req.session)
+app.use(utils.importSessionDefaults)
 
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
