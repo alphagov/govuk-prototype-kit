@@ -21,7 +21,7 @@ You will see a message about cookies when you first visit the GOV.UK Prototype K
 
 {{ govukTable({
   "caption": "Dates and amounts",
-  "captionClasses": "govuk-h-visually-hidden",
+  "captionClasses": "govuk-visually-hidden",
   "firstCellIsHeader": false,
   "classes": "app-table--fixed",
   "head": [
@@ -69,7 +69,7 @@ Google Analytics sets the following cookies:
 
 {{ govukTable({
   "caption": "Dates and amounts",
-  "captionClasses": "govuk-h-visually-hidden",
+  "captionClasses": "govuk-visually-hidden",
   "firstCellIsHeader": false,
   "classes": "app-table--fixed",
   "head": [
