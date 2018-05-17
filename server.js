@@ -65,7 +65,7 @@ if (env === 'production' && useAuth === 'true') {
 var appViews = [path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/'),
   path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
-  path.join(__dirname, '/node_modules/@govuk-frontend/')]
+  path.join(__dirname, '/node_modules/@govuk-frontend/frontend/components')]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
@@ -81,14 +81,14 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/icons', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/icons')))
+app.use('/assets', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/frontend/assets')))
 app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
 // app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
 // app.use('/public/images/icons', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/images')))
 
 // load govuk-frontend 'all' js
-app.use('/public/javascripts', express.static(path.join(__dirname, '/node_modules/@govuk-frontend')))
+app.use('/public/javascripts', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/frontend')))
 
 // Elements refers to icon folder instead of images folder
 app.use(favicon(path.join(__dirname, 'node_modules', 'govuk_template_jinja', 'assets', 'images', 'favicon.ico')))
@@ -98,7 +98,7 @@ if (useDocumentation) {
   var documentationViews = [path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/'),
     path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
-    path.join(__dirname, '/node_modules/@govuk-frontend/')]
+    path.join(__dirname, '/node_modules/@govuk-frontend/frontend')]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,
