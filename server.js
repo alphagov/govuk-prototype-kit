@@ -159,7 +159,7 @@ app.get('/prototype-admin/clear-data', function (req, res) {
 if (promoMode === 'true') {
   console.log('Prototype kit running in promo mode')
 
-  app.locals.cookieText = 'GOV.UK uses cookies to make the site simpler. <a class="govuk-link" href="/docs/cookies">Find out more about cookies</a>'
+  app.locals.cookieText = 'GOV.UK uses cookies to make the site simpler. <a href="/docs/cookies">Find out more about cookies</a>'
 
   app.get('/', function (req, res) {
     res.redirect('/docs')
