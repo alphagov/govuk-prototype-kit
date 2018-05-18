@@ -88,9 +88,9 @@ Install GOV.UK Frontend:
 
 (you'll need to be signed in to the npm account)
 
-`npm install @govuk-frontend/all`
+`npm install @govuk-frontend/frontend`
 
-The `node_modules` folder should now contain `@govuk-frontend` and `sass-mq`
+The `node_modules` folder should now contain `@govuk-frontend`
 
 Make a zip of the `govuk-prototype-kit-private-beta-zip` folder
 

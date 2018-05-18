@@ -2,8 +2,11 @@
 // in the govuk frontend toolkit's url-helpers partial
 $path: "/public/images/";
 
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+
 //Import GOV.UK Frontend
-@import "@govuk-frontend/all/all";
+@import "@govuk-frontend/frontend/all";
 
 // Patterns that aren't in Frontend
 @import 'patterns/check-your-answers';

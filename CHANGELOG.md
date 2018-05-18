@@ -1,5 +1,9 @@
 # Unreleased
 
+Breaking changes:
+
+- [#40 Update GOV.UK Frontend to 0.0.29](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/40)
+
 New features:
 
 - [#38 Add Cookies and Privacy policy usage](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/38)

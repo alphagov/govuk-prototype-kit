@@ -14,32 +14,32 @@
 
 {% block content %}
 
-<div class="govuk-o-width-container">
+<div class="govuk-width-container">
 
-  <div class="govuk-c-breadcrumbs">
-    <ol class="govuk-c-breadcrumbs__list">
-      <li class="govuk-c-breadcrumbs__list-item">
-        <a class="govuk-c-breadcrumbs__link" href="#">Home</a>
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Home</a>
       </li>
-      <li class="govuk-c-breadcrumbs__list-item">
-        <a class="govuk-c-breadcrumbs__link" href="#">Section</a>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
       </li>
-      <li class="govuk-c-breadcrumbs__list-item">
-        <a class="govuk-c-breadcrumbs__link" href="#">Subsection</a>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Subsection</a>
       </li>
     </ol>
   </div>
 
-  <main role="main" class="govuk-o-main-wrapper">
+  <main role="main" class="govuk-main-wrapper">
 
-    <div class="govuk-o-grid">
-      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-xl">
           {% if serviceName %} {{ serviceName }} {% endif %}
         </h1>
 
-        <p class="govuk-body">Use this service to:</p>
+        <p>Use this service to:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>do something</li>
@@ -47,21 +47,21 @@
           <li>you need to do this in order to do something else</li>
         </ul>
 
-        <p class="govuk-body">Registering takes around 5 minutes.</p>
+        <p>Registering takes around 5 minutes.</p>
 
-        <a class="govuk-c-button govuk-c-button--start govuk-!-mt-r2 govuk-!-mb-r8" href="#" role="button">Start now</a>
+        <a class="govuk-button govuk-button--start govuk-!-mt-r2 govuk-!-mb-r8" href="#" role="button">Start now</a>
 
         <h2 class="govuk-heading-m">Before you start</h2>
 
-        <p class="govuk-body">You can also <a class="govuk-link" href="#">register by post.</a></p>
+        <p>You can also <a href="#">register by post.</a></p>
 
-        <p class="govuk-body">The online service is also available in <a class="govuk-link" href="#">Welsh (Cymraeg).</a></p>
+        <p>The online service is also available in <a href="#">Welsh (Cymraeg).</a></p>
 
-        <p class="govuk-body">You can’t register for this service if you’re in the UK illegally.</p>
+        <p>You can’t register for this service if you’re in the UK illegally.</p>
 
       </div>
 
-      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+      <div class="govuk-grid-column-one-third">
 
         <aside class="app-related-items" role="complementary">
           <h2 class="govuk-heading-m" id="subsection-title">

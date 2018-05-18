@@ -10,23 +10,23 @@
 
 {% block content %}
 
-<div class="govuk-o-width-container">
+<div class="govuk-width-container">
 
   {% include "includes/breadcrumb_examples.html" %}
 
-  <main role="main" class="govuk-o-main-wrapper">
+  <main role="main" class="govuk-main-wrapper">
 
-    <div class="govuk-o-grid">
-      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-xl">
           Override service name
         </h1>{{releaseVersion | log }}
-        <p class="govuk-body">
+        <p>
           This is an example of overriding the normal service name on one page.
         </p>
 
-        <p class="govuk-body">
+        <p>
           Use this code:
         </p>
 

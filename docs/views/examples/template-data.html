@@ -6,24 +6,24 @@
 
 {% block content %}
 
-<div class="govuk-o-width-container">
+<div class="govuk-width-container">
 
   {% include "includes/breadcrumb_examples.html" %}
 
-  <main role="main" class="govuk-o-main-wrapper">
+  <main role="main" class="govuk-main-wrapper">
 
-    <div class="govuk-o-grid">
-      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-xl">
           Passing data into pages
         </h1>
 
-        <p class="govuk-body">
+        <p>
           The example route defined in <code class="code">/docs/documentation_routes.js</code> is passing the string '{{ name }}' to this page, via the variable called 'name'.
         </p>
 
-        <p class="govuk-body">
+        <p>
           Have a look at the source for this page in your text editor to see how it works: <code class="code">/docs/views/examples/template-data.html</code>
         </p>
 
