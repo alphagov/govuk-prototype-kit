@@ -12,7 +12,7 @@
     "test": "gulp test && npm run lint"
   },
   "dependencies": {
-    "@govuk-frontend/all": "0.0.28-alpha",
+    "@govuk-frontend/frontend": "0.0.29-alpha",
     "basic-auth": "^1.0.3",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.14.1",
