@@ -25,11 +25,6 @@ Please raise feature requests as issues before contributing any code.
 
 This ensures they are discussed properly before any time is spent on them.
 
-## GOV.UK Elements
-
-The project contains code taken from the [GOV.UK Elements](https://github.com/alphagov/govuk_elements/) project.
-Please check that any issues related to that code are raised with that project, not this one.
-
 ## Contributing code
 
 ### Indentation and whitespace
