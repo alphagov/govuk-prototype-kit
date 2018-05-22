@@ -12,7 +12,13 @@ Download the latest prototype kit zip file from GitHub
 
 In your project, delete everything apart from the `app` and `.git` folder
 
-Copy everything from the latest kit to your project, apart from the `app` folder
+Copy everything from the latest kit to your project, apart from the `app` folder. 
+
+Copy the config.js file from the `app` folder in the latest kit to the `app` folder of your prototype. If you've made any changes to the config.js file in your prototype then you'll need to re-enter them in the new version of the file e.g. the service name.
+
+Check `\app\assets\sass\patterns` in the latest kit for any new patterns. Copy the files over to your prototype.
+
+Check `\app\assets\sass\application.scss` in the latest kit to see if any changes have been made in the top section, above where it says `// Add extra styles here`. Copy anything new from that file to the version in your prototype, making sure you don't overwrite any extra styles you have added yourself.
 
 ---
 
