@@ -31,8 +31,7 @@ router.get('/install/:page', function (req, res) {
   }
   redirectMarkdown(req.params.page, res)
   var doc = fs.readFileSync(path.join(__dirname, '/documentation/install/', req.params.page + '.md'), 'utf8')
-  var html = marked(doc)
-  res.render('install_template', {'document': html})
+  res.render('install_template', {'document': utils.markdownToHtml(doc)})
 })
 
 // Cookies and Privacy policy are markdown
