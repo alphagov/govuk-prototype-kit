@@ -3,6 +3,11 @@
 New features:
 
 - [#39 Add code highlighting](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/39)
+
+Bug fixes:
+
+- [#47 Fix and move GitHub links from home page and nav to the About page](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/47)
+
 # 7.0.0-beta.6
 
 Breaking changes:
