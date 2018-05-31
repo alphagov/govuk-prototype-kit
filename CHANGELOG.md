@@ -1,4 +1,7 @@
 # Unreleased
+Breaking change:
+
+- [#49 Update GOV.UK Frontend to 0.0.31](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/49)
 
 New features:
 
