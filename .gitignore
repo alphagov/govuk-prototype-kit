@@ -6,7 +6,6 @@ usage-data-config.json
 .start.pid
 .port.tmp
 public
-lib/govuk_template.html
 govuk_modules
 # keep govuk frontend as it is private for now
 !node_modules/
