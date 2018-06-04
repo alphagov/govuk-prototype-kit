@@ -1,4 +1,5 @@
-# Unreleased
+# 7.0.0-beta.7
+
 Breaking changes:
 
 - [#48 Remove toolkit and template dependency](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/48)
