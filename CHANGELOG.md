@@ -7,6 +7,8 @@ New features:
 
 - [#39 Add code highlighting](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/39)
 
+- [#52 Do not track users who have enabled 'DoNotTrack'](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/52)
+
 Bug fixes:
 
 - [#47 Fix and move GitHub links from home page and nav to the About page](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/47)
