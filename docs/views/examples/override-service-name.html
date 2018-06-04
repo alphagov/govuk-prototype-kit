@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   GOV.UK prototype kit - override service name
 {% endblock %}
 
-{% block service_name %}
+{% set serviceName %}
   Report a smokey vehicle
-{% endblock %}
+{% endset%}
 
-{% block content %}
+{% block main %}
 
 <div class="govuk-width-container">
 
@@ -31,9 +31,9 @@
         </p>
 
         <div class="code">
-  {% raw %}{% block service_name %}
-    Report a smokey vehicle
-  {% endblock %}{% endraw %}
+  {% raw %}{% set serviceName %}
+      Report a smokey vehicle
+  {% endset%}{% endraw %}
         </div>
 
       </div>

@@ -1,4 +1,4 @@
-{% extends "govuk_template.html" %}
+{% extends "template.njk" %}
 
 {% block head %}
   {% include "includes/head.html" %}
@@ -7,63 +7,72 @@
   {% endif %}
 {% endblock %}
 
+{% block pageTitle %}
+  GOV.UK prototype kit
+{% endblock %}
 
-{% block body_start %}
+
+{% block bodyStart %}
   {% if doNotTrackEnabled == false and promoMode == 'true' and gtmId %}
     {% include "includes/tracking_body.html" %}
   {% endif %}
 {% endblock %}
 
 
-{% block cookie_message %}
-  <p>{{cookieText | safe }}</p>
-{% endblock %}
-
-{% block proposition_header %}
-
-  <div class="header-proposition">
-    <div class="content">
-      <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
-      <nav id="proposition-menu">
-        <a href="/docs" id="proposition-name">
-          {% block service_name %}
-            Prototype kit
-          {% endblock %}
-        </a>
-
-        <ul id="proposition-links">
-          <li><a href="/docs/install">Install</a></li>
-          <li><a href="/docs/tutorials-and-examples">Tutorials and examples</a></li>
-          <li><a href="/docs/about">About</a></li>
-        </ul>
-
-      </nav>
-    </div>
+{% block main %}
+  <div class="govuk-width-container">         
+    <p>{{cookieText | safe }}</p>
   </div>
-
+  {{ super() }}
 {% endblock %}
 
-{% block header_class %}
-  with-proposition
+{% block header %}
+
+  {{ govukHeader({
+    "homepageUrl": "/",
+    "serviceName": serviceName,
+    "serviceUrl": "/",
+    "containerClasses": "govuk-width-container",
+    "navigation": [
+    {
+      "href": "/docs/install",
+      "text": "Install"
+    },
+    {
+      "href": "/docs/tutorials-and-examples",
+      "text": "Tutorials and examples"
+    },
+    {
+      "href": "/docs/about",
+      "text": "About"
+    }
+  ]
+  }) }}
 {% endblock %}
 
-{% block footer_support_links %}
-  <ul class="govuk-!-mb-r3 app-!-db">
-    <li>
-      <a href="/prototype-admin/clear-data">Clear data</a>
-    </li>
-  </ul>
-  <ul>
-    <li>
-      <a href="/docs/cookies">Cookies</a>
-    </li>
-    <li>
-      <a href="/docs/privacy-policy">Privacy policy</a>
-    </li>
-  </ul>
+
+{% block footer %}
+  {{ govukFooter({
+  "meta": {
+    "items": [
+      {
+        "href": "/prototype-admin/clear-data",
+        "text": "Clear data"
+      },
+      {
+        "href": "/docs/cookies",
+        "text": "Cookies"
+      },
+      {
+        "href": "/docs/privacy-policy",
+        "text": "Privacy policy"
+      }
+    ]
+  }
+}) }}
 {% endblock %}
 
-{% block body_end %}
+{% block bodyEnd %}
   {% include "includes/scripts.html" %}
   <!-- GOV.UK Prototype kit {{releaseVersion}} -->
 {% endblock %}

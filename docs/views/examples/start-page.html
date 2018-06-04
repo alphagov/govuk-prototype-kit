@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   Start page example
 {% endblock %}
 
-{% block proposition_header %}
-  <!-- blank to remove the proposition header -->
+{% block header %}
+
+  {{ govukHeader({
+    "homepageUrl": "/",
+    "containerClasses": "govuk-width-container"
+  }) }}
 {% endblock %}
 
-{% block header_class %}
-  <!-- blank to remove the proposition header -->
-{% endblock %}
-
-{% block content %}
+{% block main %}
 
 <div class="govuk-width-container">
 

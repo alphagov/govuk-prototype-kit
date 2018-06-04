@@ -1,6 +1,7 @@
 # Unreleased
-Breaking change:
+Breaking changes:
 
+- [#48 Remove toolkit and template dependency](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/48)
 - [#49 Update GOV.UK Frontend to 0.0.31](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/49)
 
 New features:

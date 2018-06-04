@@ -1,0 +1,17 @@
+@import '@govuk-frontend/frontend/all';
+
+// If you need to create a page as part of your journey, but without GOV.UK branding
+// See localhost:3000/docs/examples/blank-unbranded
+
+// Override the govuk-frontend font stack
+$govuk-font-stack: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+
+.unbranded {
+  background: $govuk-body-background-colour;
+
+  // Use the universal selector and !important to *ALWAYS OVERRIDE* GDS Transport
+  * {
+
+    font-family: $govuk-font-stack !important;
+  }
+}
