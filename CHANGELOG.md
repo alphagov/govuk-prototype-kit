@@ -3,10 +3,50 @@
 New features:
 
 - [#501 Add default session data](https://github.com/alphagov/govuk_prototype_kit/pull/501)
+- [#39 Add code highlighting](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/39)
+# 7.0.0-beta.6
+
+Breaking changes:
+
+- [#40 Update GOV.UK Frontend to 0.0.29](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/40)
+
+New features:
+
+- [#38 Add Cookies and Privacy policy usage](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/38)
+
+- [#25 Track app usage](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/25)
+
+# 7.0.0-beta.5
+
+- [#36 Update GOV.UK Frontend to 0.0.28](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/36)
+
+# 7.0.0-beta.4
+
+- [#29 Update GOV.UK Frontend to 0.0.26](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/29)
+
+# 7.0.0-beta.3
+
+Breaking changes:
+
+- [#26 Update GOV.UK Frontend to 0.0.25](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/26)
 
 Bug fixes:
 
-- [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
+- [#23 Fix npm install warnings](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/23)
+
+# 7.0.0-beta.2
+
+- [#21 Update links to the design system](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/21)
+
+# 7.0.0-beta.1
+
+This is the first release of the private beta version of the GOV.UK Prototype Kit.
+
+It uses the new GOV.UK Frontend library instead of GOV.UK Elements and Frontend Toolkit.
+
+It links to the GOV.UK Design System instead of GOV.UK Elements and the GOV.UK Service Manual.
+
+# 6.3.0
 
 New features:
 - [#502 Add Cookies and Privacy policy text](https://github.com/alphagov/govuk_prototype_kit/pull/502)

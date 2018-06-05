@@ -5,35 +5,37 @@
 {% endblock %}
 
 {% block content %}
+<div class="govuk-width-container">
 
-<main id="content" role="main">
+  <main role="main" class="govuk-main-wrapper">
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-      <div class="govuk-box-highlight">
-        <h1 class="heading-xlarge">
-          Application complete
-        </h1>
-        <p class="font-large">
-          Your reference number is <br>
-          <strong class="bold">HDJ2123F</strong>
+        <div class="govuk-panel govuk-panel--confirmation govuk-!-mb-r6">
+          <h2 class="govuk-panel__title">
+            Application complete
+          </h2>
+          <div class="govuk-panel__body">
+            Your reference number<br><strong>HDJ2123F</strong>
+          </div>
+        </div>
+
+        <p>
+          We have sent you a confirmation email.
         </p>
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+        <p>We've sent your application to Hackney Electoral Register Office.</p>
+        <p>They will contact you either to confirm your registration, or to ask for more information.</p>
+        <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this service?</a> (takes 30 seconds)</p>
+
+
       </div>
-
-      <p>
-        We have sent you a confirmation email.
-      </p>
-
-      <h2 class="heading-medium">What happens next</h2>
-      <p>We've sent your application to Hackney Electoral Register Office.</p>
-      <p>They will contact you either to confirm your registration, or to ask for more information.</p>
-      <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this service?</a> (takes 30 seconds)</p>
-
-
     </div>
-  </div>
 
-</main>
+  </main>
+
+</div>
 
 {% endblock %}

@@ -16,19 +16,19 @@ gulp.task('default', function (done) {
 
 gulp.task('generate-assets', function (done) {
   runSequence('clean',
-                'copy-govuk-modules',
+                // 'copy-govuk-modules',
                 'sass',
                 'sass-documentation',
                 'copy-assets',
                 'copy-documentation-assets', done)
 })
 
-gulp.task('copy-govuk-modules', [
-  'copy-toolkit',
-  'copy-template-assets',
-  'copy-elements-sass',
-  'copy-template'
-])
+// gulp.task('copy-govuk-modules', [
+//   // 'copy-toolkit',
+//   'copy-template-assets',
+//   'copy-frontend',
+//   'copy-template'
+// ])
 
 gulp.task('watch', function (done) {
   runSequence('watch-sass',

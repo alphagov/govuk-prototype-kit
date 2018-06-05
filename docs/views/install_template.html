@@ -6,24 +6,29 @@ Install - GOV.UK Prototype kit
 
 {% block content %}
 
-<main id="content" role="main" class="docs markdown">
-	<div class="breadcrumbs">
-	  <ol>
-	    <li><a href="/docs">GOV.UK prototype kit</a></li>
-	    <li><a href="/docs/install">Install</a></li>
-	  </ol>
-	</div>
+<div class="govuk-width-container">
 
-	<div class="grid-row">
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/docs">GOV.UK prototype kit</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/docs/install">Install</a>
+      </li>
+    </ol>
+  </div>
 
-		<div class="column-two-thirds">
+  <main role="main" class="govuk-main-wrapper">
 
-			{{document | safe}}
-
-		</div>
-
-	</div>
-	
-</main>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-prose-scope">
+    			{{document | safe}}
+        </div>
+  		</div>
+  	</div>
+  </main>
+</div>
 
 {% endblock %}

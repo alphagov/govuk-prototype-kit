@@ -1,3 +1,5 @@
+# ignore tracking usage data config - we want a different one for each user
+usage-data-config.json
 .env
 .sass-cache
 .DS_Store
@@ -6,6 +8,6 @@
 public
 lib/govuk_template.html
 govuk_modules
-node_modules/*
+node_modules
 .tmuxp.*
 package-lock.json

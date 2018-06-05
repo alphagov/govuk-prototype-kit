@@ -7,10 +7,10 @@
 const gulp = require('gulp')
 const config = require('./config.json')
 
-gulp.task('copy-toolkit', function () {
-  return gulp.src(['node_modules/govuk_frontend_toolkit/**'])
-  .pipe(gulp.dest(config.paths.govukModules + '/govuk_frontend_toolkit/'))
-})
+// gulp.task('copy-toolkit', function () {
+//   return gulp.src(['node_modules/govuk_frontend_toolkit/**'])
+//   .pipe(gulp.dest(config.paths.govukModules + '/govuk_frontend_toolkit/'))
+// })
 
 gulp.task('copy-template', function () {
   return gulp.src(['node_modules/govuk_template_jinja/views/layouts/**'])
@@ -23,7 +23,7 @@ gulp.task('copy-template-assets', function () {
   .pipe(gulp.dest(config.paths.govukModules + '/govuk_template/assets/'))
 })
 
-gulp.task('copy-elements-sass', function () {
-  return gulp.src(['node_modules/govuk-elements-sass/public/sass/**'])
-  .pipe(gulp.dest(config.paths.govukModules + '/govuk-elements-sass/'))
+gulp.task('copy-frontend', function () {
+  return gulp.src(['node_modules/@govuk-frontend/**'])
+  .pipe(gulp.dest(config.paths.govukModules + '/@govuk-frontend/'))
 })

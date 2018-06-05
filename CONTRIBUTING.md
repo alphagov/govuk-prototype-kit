@@ -25,11 +25,6 @@ Please raise feature requests as issues before contributing any code.
 
 This ensures they are discussed properly before any time is spent on them.
 
-## GOV.UK Elements
-
-The project contains code taken from the [GOV.UK Elements](https://github.com/alphagov/govuk_elements/) project.
-Please check that any issues related to that code are raised with that project, not this one.
-
 ## Contributing code
 
 ### Indentation and whitespace
@@ -56,14 +51,58 @@ which describes how we prefer git history and commit messages to read.
 
 ## To release a new version
 
+Checkout a new branch for the release.
+
 Update [CHANGELOG.md](https://github.com/alphagov/govuk_prototype_kit/blob/master/CHANGELOG.md) to summarise the changes made since the last release.
 
 To see the commits to be summarised in the changelog since the last release, [compare the latest-release branch with master](https://github.com/alphagov/govuk_prototype_kit/compare/latest-release...master).
 
 Propose a new version number in [VERSION.txt](https://github.com/alphagov/govuk_prototype_kit/blob/master/VERSION.txt) and update line 4 in [package.json](https://github.com/alphagov/govuk_prototype_kit/blob/master/package.json#L4) with the new version number.
 
-Open a new pull request with a single commit including the above changes.
+### Create the release zip
 
-[Here is an example for v6.1.0](https://github.com/alphagov/govuk_prototype_kit/commit/53e36d79a994ce3649b53f4008370cd75068c27c).
+_Note - we only need to create a release zip by hand while the project is in private beta._
 
-Once merged into master a new version will be built.
+Copy to a new folder:
+
+`cp -r  govuk-prototype-kit-private-beta govuk-prototype-kit-private-beta-zip`
+
+Change to this directory:
+
+`cd govuk-prototype-kit-private-beta-zip`
+
+Remove the .git folder, node_modules and the old zip:
+
+`rm -rf .git`
+
+`rm -rf node_modules`
+
+`rm docs/assets/downloads/govuk-prototype-kit-private-beta.zip `
+
+Install GOV.UK Frontend:
+
+(you'll need to be signed in to the npm account)
+
+`npm install @govuk-frontend/frontend`
+
+The `node_modules` folder should now contain `@govuk-frontend`
+
+Make a zip of the `govuk-prototype-kit-private-beta-zip` folder
+
+Rename the zip to `govuk-prototype-kit-private-beta.zip`
+
+### Add the zip to the release
+
+In the main project folder, (not the zip folder created above):
+
+Copy the new zip to `docs/assets/downloads`
+
+### Make the new release
+
+Commit your changes and open a pull request on GitHub
+
+Review and merge pull request
+
+Sign into the Heroku web interface using the design-system-pipeline credentials.
+
+Find the govuk-prototype-kit-beta app, and deploy the version.

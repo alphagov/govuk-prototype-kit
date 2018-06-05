@@ -6,29 +6,32 @@
 
 {% block content %}
 
-<main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
+<div class="govuk-width-container">
 
-      <a class="link-back" href="/url/of/previous/page">Back</a>
+  <a class="govuk-back-link" href="/url/of/previous/page">Back</a>
 
-      <h1 class="heading-large">Heading or question goes here
-      </h1>
+  <main role="main" class="govuk-main-wrapper">
 
-      <form class="form" action="/url/of/next/page" method="post">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-        <p>[Insert question content here]</p>
+        <h1 class="govuk-heading-xl">
+          Heading or question goes here
+        </h1>
 
-        <p>[See <a href="https://govuk-elements.herokuapp.com/form-elements/">GOV.UK Elements</a> for examples]</p>
+        <form class="form" action="/url/of/next/page" method="post">
 
-        <div class="form-group">
-          <input class="button" type="submit" value="Continue">
-        </div>
+          <p>[Insert question content here]</p>
 
-      </form>
+          <p>[See <a href="https://govuk-design-system-production.cloudapps.digital">GOV.UK Design System</a> for examples]</p>
 
+          <input class="govuk-button" type="submit" value="Continue">
+
+        </form>
+
+      </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>
 
 {% endblock %}
