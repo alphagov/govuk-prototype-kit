@@ -1,3 +1,9 @@
+# Unreleased
+
+New features:
+
+- [#55 Add GOV.UK Frontend JavaScript to documentation pages](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/55)
+
 # 7.0.0-beta.7
 
 Breaking changes:
