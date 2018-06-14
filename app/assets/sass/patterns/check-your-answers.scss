@@ -1,15 +1,15 @@
 // Recommended - Use these styles for the check your answers pattern
 .govuk-check-your-answers {
 
-  @include govuk-font-regular-19;
+  @include govuk-font(19);
 
-  @include mq($from: desktop) {
+  @include govuk-media-query($from: desktop) {
     display: table;
   }
 }
 
 .govuk-check-your-answers--short {
-  @include mq($from: desktop) {
+  @include govuk-media-query($from: desktop) {
     // to make group of q&a line up horizontally (unless there is just one group)
     width: 100%;
     // recommended for mostly short questions
@@ -20,7 +20,7 @@
 }
 
 .govuk-check-your-answers--long {
-  @include mq($from: desktop) {
+  @include govuk-media-query($from: desktop) {
     // to make group of q&a line up horizontally (unless there is just one group)
     width: 100%;
     // recommended for mostly long questions
@@ -34,7 +34,7 @@
   position: relative;
   border-bottom: 1px solid $govuk-border-colour;
 
-  @include mq($from: desktop) {
+  @include govuk-media-query($from: desktop) {
     display: table-row;
     border-bottom-width: 0;
   }
@@ -43,7 +43,7 @@
 .govuk-check-your-answers__contents:first-child .govuk-check-your-answers__question,
 .govuk-check-your-answers__contents:first-child .govuk-check-your-answers__answer,
 .govuk-check-your-answers__contents:first-child .govuk-check-your-answers__change {
-  @include mq($from: desktop) {
+  @include govuk-media-query($from: desktop) {
     padding-top: 0;
   }
 }
@@ -53,7 +53,7 @@
 .govuk-check-your-answers__change {
   display: block;
   margin: 0;
-  @include mq($from: desktop) {
+  @include govuk-media-query($from: desktop) {
     display: table-cell;
     border-bottom: 1px solid $govuk-border-colour;
     padding: govuk-em(12, 19) govuk-em(20, 19) govuk-em(9, 19) 0; // copied from Elements' td padding
@@ -79,7 +79,7 @@
   top: 0;
   right: 0;
 
-  @include mq($from: desktop) {
+  @include govuk-media-query($from: desktop) {
     position: static;
     padding-right: 0;
   }
