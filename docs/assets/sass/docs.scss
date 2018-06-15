@@ -1,4 +1,5 @@
 // Add Sass specific to /docs here
+@import "govuk-frontend/all";
 
 .app-table--fixed {
   table-layout: fixed;
@@ -12,4 +13,63 @@
 .hljs {
   font-size: 19px;
   line-height: 25px;
+}
+
+.app-prose-scope {
+
+  h1 {
+    @extend %govuk-heading-xl;
+  }
+
+  h2 {
+    @extend %govuk-heading-l;
+  }
+
+  h3 {
+    @extend %govuk-heading-m;
+  }
+
+  h4 {
+    @extend %govuk-heading-s;
+  }
+
+  p {
+    @extend %govuk-body-m;
+  }
+
+  strong,
+  b {
+    @include govuk-typography-weight-bold;
+  }
+
+  ul,
+  ol {
+    @extend %govuk-list;
+  }
+
+  ol {
+    @extend %govuk-list--number;
+  }
+
+  ul {
+    @extend %govuk-list--bullet;
+  }
+
+  a {
+    @extend %govuk-link;
+  }
+
+  hr {
+    @extend %govuk-section-break;
+    @extend %govuk-section-break--visible;
+    @extend %govuk-section-break--xl;
+  }
+}
+.app-prose-scope ul + h2,
+.app-prose-scope ul + h3,
+.app-prose-scope ul + h4,
+.app-prose-scope pre + h2,
+.app-prose-scope pre + h3,
+.app-prose-scope pre + h4 {
+  @include govuk-responsive-margin(4, "top");
 }
