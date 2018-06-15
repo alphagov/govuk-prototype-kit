@@ -1,4 +1,6 @@
 {% extends "template.njk" %}
+{% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
+{% from 'back-link/macro.njk' import govukBackLink %}
 
 {% block head %}
   {% include "includes/head.html" %}
@@ -18,9 +20,8 @@
   {% endif %}
 {% endblock %}
 
-
 {% block main %}
-  <div class="govuk-width-container">         
+  <div class="govuk-width-container">
     <p>{{cookieText | safe }}</p>
   </div>
   {{ super() }}
@@ -49,7 +50,6 @@
   ]
   }) }}
 {% endblock %}
-
 
 {% block footer %}
   {{ govukFooter({

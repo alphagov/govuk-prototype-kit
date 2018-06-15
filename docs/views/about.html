@@ -1,71 +1,66 @@
 {% extends "layout.html" %}
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
 
 {% block pageTitle %}
 About - GOV.UK Prototype kit
 {% endblock %}
 
-{% block main %}
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    "items": [
+      {
+        "text": "GOV.UK prototype kit",
+        "href": "/docs"
+      }
+    ]
+  }) }}
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-<div class="govuk-width-container">
+      <h1 class="govuk-heading-xl">About</h1>
 
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="/docs">GOV.UK prototype kit</a>
-      </li>
-    </ol>
-  </div>
+      <p class="govuk-body-l">
+        The prototype kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research
+      </p>
 
-  <main role="main" class="govuk-main-wrapper">
+      <h2 class="govuk-heading-l">Community</h2>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+      <p>We have two Slack channels for the Prototype kit. You'll need a government email address to join.</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="https://ukgovernmentdigital.slack.com/messages/prototype-kit/">Slack channel for users of the prototype kit</a></li>
+        <li><a href="https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/">Slack channel for developers of the prototype kit</a></li>
+      </ul>
 
-        <h1 class="govuk-heading-xl">About</h1>
+      <p>You can also report issues, or contribute code on <a href="https://github.com/alphagov/govuk-prototype-kit-private-beta">GitHub</a>.</p>
 
-        <p class="govuk-body-l">
-          The prototype kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research
-        </p>
+      <h2 class="govuk-heading-l">Principles</h2>
 
-        <h2 class="govuk-heading-l">Community</h2>
+      <p>The prototype kit:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>is designed for prototyping, not for production code</li>
+        <li>requires minimal skills to get started: HTML, CSS</li>
+        <li>should be fully documented in a way that is accessible to the target audience</li>
+        <li>makes use of <a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a></li>
+        <li>allows for server-side code</li>
+        <li>can be extended - for example using NPM to install a module, access datastores, etc</li>
+        <li>makes it easy to share prototypes with others online</li>
 
-        <p>We have two Slack channels for the Prototype kit. You'll need a government email address to join.</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li><a href="https://ukgovernmentdigital.slack.com/messages/prototype-kit/">Slack channel for users of the prototype kit</a></li>
-          <li><a href="https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/">Slack channel for developers of the prototype kit</a></li>
-        </ul>
-
-        <p>You can also report issues, or contribute code on <a href="https://github.com/alphagov/govuk-prototype-kit-private-beta">GitHub</a>.</p>
-
-        <h2 class="govuk-heading-l">Principles</h2>
-
-        <p>The prototype kit:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>is designed for prototyping, not for production code</li>
-          <li>requires minimal skills to get started: HTML, CSS</li>
-          <li>should be fully documented in a way that is accessible to the target audience</li>
-          <li>makes use of <a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a></li>
-          <li>allows for server-side code</li>
-          <li>can be extended - for example using NPM to install a module, access datastores, etc</li>
-          <li>makes it easy to share prototypes with others online</li>
-
-        </ul>
+      </ul>
 
 
-        <h2 class="govuk-heading-l">Privacy</h2>
+      <h2 class="govuk-heading-l">Privacy</h2>
 
 
-        <p>You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.</p>
+      <p>You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.</p>
 
 
 
-        <h2 class="govuk-heading-l">The kit is not a production framework</h2>
+      <h2 class="govuk-heading-l">The kit is not a production framework</h2>
 
-        <p>Things made with the kit may look like GOV.UK, but do not have production code and likely aren't fully accessible. Don't use the kit as a base for a production service.</p>
+      <p>Things made with the kit may look like GOV.UK, but do not have production code and likely aren't fully accessible. Don't use the kit as a base for a production service.</p>
 
-      </div>
     </div>
-  </main>
-</div>
-
+  </div>
 {% endblock %}
