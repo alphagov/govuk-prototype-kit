@@ -21,6 +21,7 @@
     "express": "4.15.2",
     "express-session": "^1.13.0",
     "express-writer": "0.0.4",
+    "govuk-frontend": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-mocha": "^4.3.1",
