@@ -1,5 +1,7 @@
 # Unreleased
 
+# 7.0.0-beta.8
+
 Breaking changes:
 
 - [#56 GOV.UK Frontend to 0.0.32](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/56)
@@ -24,6 +26,12 @@ New features:
 Bug fixes:
 
 - [#47 Fix and move GitHub links from home page and nav to the About page](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/47)
+
+- [#60 Update margin for cookie message](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
+
+Internal:
+
+- [#60 Uncomment automatic Github release utility](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
 
 # 7.0.0-beta.6
 
