@@ -60,7 +60,11 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/')]
+var appViews = [
+  path.join(__dirname, '/node_modules/govuk-frontend/'),
+  path.join(__dirname, '/app/views/'),
+  path.join(__dirname, '/lib/')
+]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
@@ -81,7 +85,11 @@ app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-fr
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [path.join(__dirname, '/docs/views/'), path.join(__dirname, '/lib/')]
+  var documentationViews = [
+    path.join(__dirname, '/node_modules/govuk-frontend/'),
+    path.join(__dirname, '/docs/views/'),
+    path.join(__dirname, '/lib/')
+  ]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,

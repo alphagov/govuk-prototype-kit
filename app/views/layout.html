@@ -1,52 +1,39 @@
-{% extends "govuk_template.html" %}
+{% extends "template.njk" %}
 
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block cookie_message %}
-  <p>{{cookieText | safe }}</p>
+{% block pageTitle %}
+  GOV.UK prototype kit
 {% endblock %}
 
-{% block proposition_header %}
-
-  <div class="header-proposition">
-    <div class="content">
-      <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
-      <nav id="proposition-menu">
-        <a href="/" id="proposition-name">
-          {# Set serviceName in config.js. Use a block to override on a page. #}
-          {% block service_name %}
-            {% if serviceName %} {{ serviceName }} {% endif %}
-          {% endblock %}
-        </a>
-        <!--
-        <ul id="proposition-links">
-          <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
-          <li><a href="url-to-page-2">Navigation item #2</a></li>
-        </ul>
-        -->
-      </nav>
-    </div>
-  </div>
-
+{% block header %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
 {% endblock %}
 
-{% block header_class %}
-  with-proposition
-{% endblock %}
+{% if useAutoStoreData %}
+  {% block footer %}
+    {{ govukFooter({
+      meta: {
+        items: [
+          {
+            href: "/prototype-admin/clear-data",
+            text: "Clear data"
+          }
+        ]
+      }
+    }) }}
+  {% endblock %}
+{% endif %}
 
-{% block footer_support_links %}
-  {% if useAutoStoreData %}
-    <ul>
-      <li>
-        <a href="/prototype-admin/clear-data">Clear data</a>
-      </li>
-    </ul>
-  {% endif %}
-{% endblock %}
-
-{% block body_end %}
+{% block bodyEnd %}
   {% block scripts %}
     {% include "includes/scripts.html" %}
     {% block page_scripts %}{% endblock %}

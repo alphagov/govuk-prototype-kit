@@ -1,8 +1,11 @@
-{% extends "govuk_template_unbranded.html" %}
+{% extends "template.njk" %}
 
 {% block head %}
   <link href="/public/stylesheets/unbranded.css" media="screen" rel="stylesheet" type="text/css">
 {% endblock %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
 
 {% block body_end %}
   {% include "includes/scripts.html" %}
