@@ -62,6 +62,7 @@ if (env === 'production' && useAuth === 'true') {
 // Set up App
 var appViews = [
   path.join(__dirname, '/node_modules/govuk-frontend/'),
+  path.join(__dirname, '/node_modules/govuk-frontend/components'),
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/')
 ]
@@ -87,6 +88,7 @@ app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-fr
 if (useDocumentation) {
   var documentationViews = [
     path.join(__dirname, '/node_modules/govuk-frontend/'),
+    path.join(__dirname, '/node_modules/govuk-frontend/components'),
     path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/')
   ]
