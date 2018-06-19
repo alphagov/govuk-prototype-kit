@@ -1,17 +1,27 @@
 {% extends "layout.html" %}
+{% from 'breadcrumbs/macro.njk' import govukBreadcrumbs %}
 
 {% block pageTitle %}
   Example - Passing data
 {% endblock %}
 
-{% block main %}
 
-<div class="govuk-width-container">
 
-  {% include "includes/breadcrumb_examples.html" %}
-
-  <main role="main" class="govuk-main-wrapper">
-
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+    "items": [
+      {
+        "text": "GOV.UK prototype kit",
+        "href": "/docs"
+      },
+      {
+        "text": "Examples",
+        "href": "/docs/tutorials-and-examples"
+      }
+    ]
+  }) }}
+{% endblock %}
+{% block content %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
@@ -26,21 +36,6 @@
         <p>
           To clear the data (for example at the end of a user research session) click the "Clear data" link in the footer.
         </p>
-
-        <!-- <p>
-          <a href="/docs/examples/pass-data/vehicle-registration">You can see an example here.</a>
-        </p>
-
-        <p>
-          The code for the example is in this folder in the prototype kit:
-        </p>
-
-        <pre>
-  <div class="code">
-    /docs/views/examples/pass-data
-
-  </div>
-        </pre> -->
 
         <h2 class="govuk-heading-l">How to use</h2>
 
@@ -121,7 +116,5 @@
 
       </div>
     </div>
-  </main>
-</div>
 
 {% endblock %}

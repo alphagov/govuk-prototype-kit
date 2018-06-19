@@ -1,32 +1,28 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Question page
+  Content page
 {% endblock %}
 
-{% block main %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    href: "/url/of/previous/page",
+    text: "Back"
+  }) }}
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-<div class="govuk-width-container">
 
-  <a class="govuk-back-link" href="/url/of/previous/page">Back</a>
+      <h1 class="govuk-heading-xl">
+        Heading goes here
+      </h1>
 
-  <main role="main" class="govuk-main-wrapper">
+      <p>This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.</p>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+      <p>This paragraph has a link to <a href="/url/of/onward/page">find out more about this subject</a>.</p>
 
-
-        <h1 class="govuk-heading-xl">
-          Heading goes here
-        </h1>
-
-        <p>This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.</p>
-
-        <p>This paragraph has a link to <a href="/url/of/onward/page">find out more about this subject</a>.</p>
-
-      </div>
     </div>
-  </main>
-</div>
-
+  </div>
 {% endblock %}

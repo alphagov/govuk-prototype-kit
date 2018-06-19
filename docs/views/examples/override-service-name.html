@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from 'breadcrumbs/macro.njk' import govukBreadcrumbs %}
 
 {% block pageTitle %}
   GOV.UK prototype kit - override service name
@@ -8,37 +9,44 @@
   Report a smokey vehicle
 {% endset%}
 
-{% block main %}
 
-<div class="govuk-width-container">
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    "items": [
+      {
+        "text": "GOV.UK prototype kit",
+        "href": "/docs"
+      },
+      {
+        "text": "Examples",
+        "href": "/docs/tutorials-and-examples"
+      }
+    ]
+  }) }}
+{% endblock %}
 
-  {% include "includes/breadcrumb_examples.html" %}
 
-  <main role="main" class="govuk-main-wrapper">
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Override service name
+      </h1>{{releaseVersion | log }}
+      <p>
+        This is an example of overriding the normal service name on one page.
+      </p>
 
-        <h1 class="govuk-heading-xl">
-          Override service name
-        </h1>{{releaseVersion | log }}
-        <p>
-          This is an example of overriding the normal service name on one page.
-        </p>
+      <p>
+        Use this code:
+      </p>
 
-        <p>
-          Use this code:
-        </p>
-
-        <div class="code">
+      <div class="code">
   {% raw %}{% set serviceName %}
-      Report a smokey vehicle
+    Report a smokey vehicle
   {% endset%}{% endraw %}
-        </div>
-
       </div>
-    </div>
-  </main>
-</div>
 
+    </div>
+  </div>
 {% endblock %}

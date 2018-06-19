@@ -64,8 +64,8 @@ if (env === 'production' && useAuth === 'true') {
 var appViews = [
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/'),
-  path.join(__dirname, '/node_modules/@govuk-frontend/frontend'), // template path
-  path.join(__dirname, '/node_modules/@govuk-frontend/frontend/components')
+  path.join(__dirname, '/node_modules/govuk-frontend'), // template path
+  path.join(__dirname, '/node_modules/govuk-frontend/components')
 ]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
@@ -82,11 +82,11 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/assets', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/frontend/assets')))
+app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/assets')))
 app.use('/public', express.static(path.join(__dirname, '/public')))
 
 // load govuk-frontend 'all' js
-app.use('/public/javascripts', express.static(path.join(__dirname, '/node_modules/@govuk-frontend/frontend')))
+app.use('/public/javascripts', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
 // hightlightJS styles
 app.use('/public/vendor/highlight', express.static(path.join(__dirname, '/node_modules/highlight.js/styles')))
@@ -95,8 +95,8 @@ app.use('/public/vendor/highlight', express.static(path.join(__dirname, '/node_m
 if (useDocumentation) {
   var documentationViews = [path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/'),
-    path.join(__dirname, '/node_modules/@govuk-frontend/frontend'), // template path
-    path.join(__dirname, '/node_modules/@govuk-frontend/frontend/components')]
+    path.join(__dirname, '/node_modules/govuk-frontend'), // template path
+    path.join(__dirname, '/node_modules/govuk-frontend/components')]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,
@@ -207,7 +207,7 @@ app.get('/prototype-admin/download-latest', function (req, res) {
 
 if (useDocumentation) {
   // Copy app locals to documentation app locals
-  documentationApp.locals = app.locals
+  documentationApp.locals = Object.assign({}, app.locals)
   documentationApp.locals.serviceName = 'Prototype kit'
 
   // Create separate router for docs

@@ -18,7 +18,7 @@ Every time a change happens in [application.scss](../app/assets/sass/application
 
 Try starting the app and adding some styles to `application.scss`. If you open `application.css` you should now see the compiled version of those styles.
 
-## Using the govuk_frontend_toolkit
+## Using GOV.UK Frontend
 
 You can use the Sass libraries in the [govuk-frontend](https://github.com/alphagov/govuk-frontend) by importing the files from there directly into `application.scss`.
 

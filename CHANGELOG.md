@@ -1,5 +1,9 @@
 # Unreleased
 
+Breaking changes:
+
+- [#56 GOV.UK Frontend to 0.0.32](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/56)
+
 New features:
 
 - [#55 Add GOV.UK Frontend JavaScript to documentation pages](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/55)

@@ -4,42 +4,37 @@
 Getting started - GOV.UK Prototype kit
 {% endblock %}
 
-{% block main %}
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    "items": [
+      {
+        "text": "GOV.UK prototype kit",
+        "href": "/docs"
+      }
+    ]
+  }) }}
+{% endblock %}
 
-<div class="govuk-width-container">
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="/docs">GOV.UK prototype kit</a>
-      </li>
-    </ol>
-  </div>
+      <h1 class="govuk-heading-xl">Installing the kit</h1>
 
-  <main role="main" class="govuk-main-wrapper">
+      <p class="govuk-body-l">
+        Get up and running with the kit in 30 minutes.
+      </p>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m">1. Download the kit</h2>
+      <p><a href="{{releaseURL}}" data-link="download">Download (zip)</a></p>
+      <h2 class="govuk-heading-m">2. Install the kit</h2>
 
-        <h1 class="govuk-heading-xl">Installing the kit</h1>
+      <p>Choose from:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="/docs/install/introduction">simple install guide</a><br>for users new to Node.js, Git or the terminal</li>
+        <li><a href="/docs/install/developer-install-instructions">advanced install guide</a><br>for users familiar with Node.js, Git and the terminal</li>
+      </ul>
 
-        <p class="govuk-body-l">
-          Get up and running with the kit in 30 minutes.
-        </p>
-
-        <h2 class="govuk-heading-m">1. Download the kit</h2>
-        <p><a href="{{releaseURL}}" data-link="download">Download (zip)</a></p>
-        <h2 class="govuk-heading-m">2. Install the kit</h2>
-
-        <p>Choose from:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li><a href="/docs/install/introduction">simple install guide</a><br>for users new to Node.js, Git or the terminal</li>
-          <li><a href="/docs/install/developer-install-instructions">advanced install guide</a><br>for users familiar with Node.js, Git and the terminal</li>
-        </ul>
-
-      </div>
     </div>
-  </main>
-</div>
-
+  </div>
 {% endblock %}
