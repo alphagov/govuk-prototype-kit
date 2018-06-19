@@ -1,4 +1,4 @@
-## Using GOV.UK Verify
+# Using GOV.UK Verify
 
 [GOV.UK Verify](https://www.gov.uk/government/publications/introducing-govuk-verify/introducing-govuk-verify) is the new way for users to prove who they are whilst using an online service. You can [find out more about using it here](https://www.gov.uk/service-manual/identity-assurance).
 

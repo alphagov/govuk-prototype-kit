@@ -31,8 +31,27 @@ router.get('/install/:page', function (req, res) {
   }
   redirectMarkdown(req.params.page, res)
   var doc = fs.readFileSync(path.join(__dirname, '/documentation/install/', req.params.page + '.md'), 'utf8')
-  var html = marked(doc)
-  res.render('install_template', {'document': html})
+  res.render('install_template', {'document': utils.markdownToHtml(doc)})
+})
+
+// Cookies and Privacy policy are markdown
+router.get('/cookies', function (req, res) {
+  // render the nunjucks macros first
+  req.app.render('cookies.md', function(error, html){
+    // render the markdown
+    html = marked(html)
+    // add page layout
+    res.render('markdown-docs-layout', {'document': html})
+  })
+})
+router.get('/privacy-policy', function (req, res) {
+  // render the nunjucks macros first
+  req.app.render('privacy-policy.md', function(error, html){
+    // render the markdown
+    html = marked(html)
+    // add page layout
+    res.render('markdown-docs-layout', {'document': html})
+  })
 })
 
 // Examples - examples post here

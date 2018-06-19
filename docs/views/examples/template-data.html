@@ -1,31 +1,40 @@
 {% extends "layout.html" %}
+{% from 'breadcrumbs/macro.njk' import govukBreadcrumbs %}
 
-{% block page_title %}
+{% block pageTitle %}
   Example of using variables in pages
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    "items": [
+      {
+        "text": "GOV.UK prototype kit",
+        "href": "/docs"
+      },
+      {
+        "text": "Examples",
+        "href": "/docs/tutorials-and-examples"
+      }
+    ]
+  }) }}
+{% endblock %}
 {% block content %}
-<main id="content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-  {% include "includes/breadcrumb_examples.html" %}
+        <h1 class="govuk-heading-xl">
+          Passing data into pages
+        </h1>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+        <p>
+          The example route defined in <code class="code">/docs/documentation_routes.js</code> is passing the string '{{ name }}' to this page, via the variable called 'name'.
+        </p>
 
-      <h1 class="heading-xlarge">
-        Passing data into pages
-      </h1>
+        <p>
+          Have a look at the source for this page in your text editor to see how it works: <code class="code">/docs/views/examples/template-data.html</code>
+        </p>
 
-      <p>
-        The example route defined in <code class="code">/docs/documentation_routes.js</code> is passing the string '{{ name }}' to this page, via the variable called 'name'.
-      </p>
-
-      <p>
-        Have a look at the source for this page in your text editor to see how it works: <code class="code">/docs/views/examples/template-data.html</code>
-      </p>
-
+      </div>
     </div>
-  </div>
-
-</main>
 {% endblock %}
