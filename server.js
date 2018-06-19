@@ -7,7 +7,6 @@ const bodyParser = require('body-parser')
 const browserSync = require('browser-sync')
 const dotenv = require('dotenv')
 const express = require('express')
-const favicon = require('serve-favicon')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
 
@@ -78,12 +77,7 @@ app.set('view engine', 'html')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_template/assets')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit')))
-app.use('/public/images/icons', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit/images')))
-
-// Elements refers to icon folder instead of images folder
-app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images', 'favicon.ico')))
+app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
 
 // Set up documentation app
 if (useDocumentation) {
