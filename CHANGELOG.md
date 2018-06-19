@@ -29,6 +29,10 @@ Bug fixes:
 
 - [#60 Update margin for cookie message](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
 
+Internal:
+
+- [#60 Uncomment automatic Github release utility](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
+
 # 7.0.0-beta.6
 
 Breaking changes:
