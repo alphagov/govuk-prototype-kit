@@ -4,3 +4,9 @@
 <!--[if gt IE 8]><!--><link href="/public/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
 <!--[if lte IE 8]><link href="/public/stylesheets/docs-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
 <!--[if gt IE 8]><!--><link href="/public/stylesheets/docs.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+
+<link href="/public/vendor/highlight/default.css" media="screen" rel="stylesheet" type="text/css" />
+
+{% if promoMode == 'true' and analyticsId %}
+	{% include "includes/analytics.html" %}
+{% endif %}

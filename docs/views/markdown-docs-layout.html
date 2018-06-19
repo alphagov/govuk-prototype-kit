@@ -1,8 +1,7 @@
 {% extends "layout.html" %}
-{% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
 
 {% block pageTitle %}
-Documentation - GOV.UK Prototype kit
+Install - GOV.UK Prototype kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,13 +14,12 @@ Documentation - GOV.UK Prototype kit
     ]
   }) }}
 {% endblock %}
-
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div class="app-prose-scope">
-        {{document | safe}}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="app-prose-scope">
+          {{document | safe}}
+        </div>
       </div>
     </div>
-  </div>
+
 {% endblock %}

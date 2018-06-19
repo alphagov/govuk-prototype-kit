@@ -7,7 +7,6 @@ const bodyParser = require('body-parser')
 const browserSync = require('browser-sync')
 const dotenv = require('dotenv')
 const express = require('express')
-const favicon = require('serve-favicon')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
 
@@ -31,6 +30,7 @@ var useAuth = process.env.USE_AUTH || config.useAuth
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var useBrowserSync = config.useBrowserSync
+var analyticsId = process.env.ANALYTICS_TRACKING_ID
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
 env = env.toLowerCase()
@@ -61,7 +61,12 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/')]
+var appViews = [
+  path.join(__dirname, '/app/views/'),
+  path.join(__dirname, '/lib/'),
+  path.join(__dirname, '/node_modules/govuk-frontend'), // template path
+  path.join(__dirname, '/node_modules/govuk-frontend/components')
+]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
@@ -77,17 +82,21 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
+app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/assets')))
 app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_template/assets')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit')))
-app.use('/public/images/icons', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit/images')))
 
-// Elements refers to icon folder instead of images folder
-app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images', 'favicon.ico')))
+// load govuk-frontend 'all' js
+app.use('/public/javascripts', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+
+// hightlightJS styles
+app.use('/public/vendor/highlight', express.static(path.join(__dirname, '/node_modules/highlight.js/styles')))
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [path.join(__dirname, '/docs/views/'), path.join(__dirname, '/lib/')]
+  var documentationViews = [path.join(__dirname, '/docs/views/'),
+    path.join(__dirname, '/lib/'),
+    path.join(__dirname, '/node_modules/govuk-frontend'), // template path
+    path.join(__dirname, '/node_modules/govuk-frontend/components')]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,
@@ -109,6 +118,17 @@ app.use(bodyParser.urlencoded({
 }))
 
 // Add variables that are available in all views
+
+// Add global variable to determine if DoNotTrack is enabled.
+// This indicates a user has explicitly opted-out of tracking.
+// Therefore we can avoid injecting third-party scripts that do not respect this decision.
+app.use(function (req, res, next) {
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT
+  app.locals.doNotTrackEnabled = (req.header('DNT') === '1')
+  next()
+})
+
+app.locals.analyticsId = analyticsId
 app.locals.gtmId = gtmId
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
@@ -189,7 +209,8 @@ app.get('/prototype-admin/download-latest', function (req, res) {
 
 if (useDocumentation) {
   // Copy app locals to documentation app locals
-  documentationApp.locals = app.locals
+  documentationApp.locals = Object.assign({}, app.locals)
+  documentationApp.locals.serviceName = 'Prototype kit'
 
   // Create separate router for docs
   app.use('/docs', documentationApp)

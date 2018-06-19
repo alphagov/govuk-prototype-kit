@@ -1,31 +1,56 @@
-// Path to assets for use with the file-url function
-// in the govuk frontend toolkit's url-helpers partial
-$path: "/public/images/";
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
 
-// Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
-// Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
-@import 'govuk-elements';
+//Import GOV.UK Frontend
+@import "govuk-frontend/all";
+
+// Patterns that aren't in Frontend
+@import 'patterns/check-your-answers';
+@import 'patterns/related-items';
+
+.code {
+  color: $govuk-text-colour;
+  background-color: govuk-colour("grey-4");
+
+  text-shadow: 0 1px govuk-colour("white");
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  border: 1px solid $govuk-border-colour;
+  padding: 4px 4px 2px;
+}
+
+
+// Local fixes to GOV.UK frontend
+
+.markdown hr {
+  @include govuk-responsive-margin(6, "top");
+  @include govuk-responsive-margin(6, "bottom");
+}
+
+.govuk-list + .govuk-heading-l,
+.govuk-list + .govuk-heading-m,
+.govuk-list + .govuk-heading-s {
+  @include govuk-responsive-margin(4, "top");
+}
 
 // Take a look at in app/assets/sass/patterns/ to see which files are imported.
-@import 'patterns/check-your-answers';
-@import 'patterns/task-list';
-
-// Related items
-// (These styles will be moved to GOV.UK elements, duplicating here for now.)
-.govuk-related-items {
-  margin-top: $gutter;
-  border-top: 10px solid $govuk-blue;
-  padding-top: 5px;
-
-  .heading-medium {
-    margin-top: 0.3em;
-    margin-bottom: 0.5em;
-  }
-
-  li {
-    margin-bottom: 10px;
-    list-style-type: none;
-  }
-}
+// @import 'patterns/check-your-answers';
+// @import 'patterns/task-list';
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you

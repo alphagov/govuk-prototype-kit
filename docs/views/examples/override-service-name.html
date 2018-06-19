@@ -1,23 +1,36 @@
 {% extends "layout.html" %}
+{% from 'breadcrumbs/macro.njk' import govukBreadcrumbs %}
 
-{% block page_title %}
+{% block pageTitle %}
   GOV.UK prototype kit - override service name
 {% endblock %}
 
-{% block service_name %}
+{% set serviceName %}
   Report a smokey vehicle
+{% endset%}
+
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    "items": [
+      {
+        "text": "GOV.UK prototype kit",
+        "href": "/docs"
+      },
+      {
+        "text": "Examples",
+        "href": "/docs/tutorials-and-examples"
+      }
+    ]
+  }) }}
 {% endblock %}
 
+
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-<main id="content" role="main">
-
-  {% include "includes/breadcrumb_examples.html" %}
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h1 class="heading-xlarge">
+      <h1 class="govuk-heading-xl">
         Override service name
       </h1>{{releaseVersion | log }}
       <p>
@@ -28,16 +41,12 @@
         Use this code:
       </p>
 
-        <div class="code">
-          {% raw %}
-  {% block service_name %}
+      <div class="code">
+  {% raw %}{% set serviceName %}
     Report a smokey vehicle
-  {% endblock %}
-          {% endraw %}
-        </div>
+  {% endset%}{% endraw %}
+      </div>
 
     </div>
   </div>
-</main>
-
 {% endblock %}
