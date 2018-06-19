@@ -10,6 +10,14 @@ New features:
 
 - [#55 Add GOV.UK Frontend JavaScript to documentation pages](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/55)
 
+Bug fixes:
+
+- [#60 Update margin for cookie message](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
+
+Internal:
+
+- [#60 Uncomment automatic Github release utility](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
+
 # 7.0.0-beta.7
 
 Breaking changes:
@@ -26,12 +34,6 @@ New features:
 Bug fixes:
 
 - [#47 Fix and move GitHub links from home page and nav to the About page](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/47)
-
-- [#60 Update margin for cookie message](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
-
-Internal:
-
-- [#60 Uncomment automatic Github release utility](https://github.com/alphagov/govuk-prototype-kit-private-beta/pull/60)
 
 # 7.0.0-beta.6
 
