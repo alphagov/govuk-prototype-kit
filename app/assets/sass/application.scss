@@ -5,7 +5,7 @@ $govuk-global-styles: true;
 @import "node_modules/govuk-frontend/all";
 
 // Patterns that aren't in Frontend
-// @import "patterns/check-your-answers";
+@import "patterns/check-your-answers";
 // @import "patterns/task-list";
 @import "patterns/related-items";
 
