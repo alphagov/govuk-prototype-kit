@@ -72,7 +72,10 @@ var appViews = [
   path.join(__dirname, '/node_modules/govuk-frontend/'),
   path.join(__dirname, '/node_modules/govuk-frontend/components'),
   path.join(__dirname, '/app/views/'),
-  path.join(__dirname, '/lib/')
+  path.join(__dirname, '/lib/'),
+  // Backward compatibility with GOV.UK Elements
+  path.join(__dirname, '/lib/backward-compatibility/views'),
+  path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts')
 ]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
@@ -91,6 +94,9 @@ app.set('view engine', 'html')
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
+
+// Backward compatibility with GOV.UK Elements
+app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
 
 // Serve govuk-frontend in /public
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))

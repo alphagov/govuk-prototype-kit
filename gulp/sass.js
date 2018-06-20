@@ -19,6 +19,20 @@ gulp.task('sass', function () {
   .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
 })
 
+// Sass for backward compatibility with Elements
+gulp.task('sass-legacy', function () {
+  return gulp.src('lib/backward-compatibility/assets/sass/*.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass({outputStyle: 'expanded',
+    includePaths: [
+      'node_modules/govuk_frontend_toolkit/stylesheets',
+      'node_modules/govuk-elements-sass/public/sass',
+      'node_modules/govuk_template_jinja/assets/stylesheets'
+    ]}).on('error', sass.logError))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
+})
+
 gulp.task('sass-documentation', function () {
   return gulp.src(config.paths.docsAssets + '/sass/*.scss')
   .pipe(sourcemaps.init())

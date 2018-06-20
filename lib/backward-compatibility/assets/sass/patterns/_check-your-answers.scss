@@ -1,0 +1,95 @@
+// Recommended - Use these styles for the check your answers pattern
+.govuk-check-your-answers {
+
+  @include media(desktop) {
+    display: table;
+  }
+
+  > * {
+    position: relative;
+    border-bottom: 1px solid $border-colour;
+
+    @include media(desktop) {
+      display: table-row;
+      border-bottom-width: 0;
+    }
+
+    > * {
+      display: block;
+
+      @include media(desktop) {
+        display: table-cell;
+        border-bottom: 1px solid $border-colour;
+        padding: em(12, 19) em(20, 19) em(9, 19) 0; // copied from Elements' td padding
+        margin: 0;
+      }
+    }
+
+    @include media(desktop) {
+      &:first-child > * {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .cya-question {
+    font-weight: bold;
+    margin: em(12, 19) 4em em(4,19) 0;
+    // top: from Elements' td
+    // right: due to length of "change" link (adjust if you change the link to be much longer)
+    // bottom: by eye
+    // using margin instead of padding because of easier absolutely positioning of .change
+  }
+
+  > *:first-child .cya-question {
+    margin-top: 0;
+  }
+
+  @include media(desktop) {
+    // to make group of q&a line up horizontally (unless there is just one group)
+    &.cya-questions-short,
+    &.cya-questions-long {
+      width: 100%;
+    }
+
+    // recommended for mostly short questions
+    &.cya-questions-short .cya-question {
+      width: 30%;
+    }
+
+    // recommended for mostly long questions
+    &.cya-questions-long .cya-question {
+      width: 50%;
+    }
+  }
+
+  .cya-answer {
+    padding-bottom: em(9, 19); // from Elements' td
+  }
+
+  .cya-change {
+    text-align: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @include media(desktop) {
+      position: static;
+      padding-right: 0;
+    }
+  }
+
+}
+
+// Deprecated - these styles will be removed in a later release
+.check-your-answers {
+  td {
+    @include core-19;
+    vertical-align: top;
+  }
+  .change-answer {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 0;
+  }
+}
