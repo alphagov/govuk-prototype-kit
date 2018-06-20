@@ -4,17 +4,22 @@
 Getting started - GOV.UK Prototype kit
 {% endblock %}
 
+{% block beforeContent %}
+	{{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK prototype kit",
+	      href: "/docs"
+	    }
+	  ]
+	}) }}
+{% endblock %}
+
 {% block content %}
 
 <main id="content" role="main">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <div class="breadcrumbs">
-        <ol>
-          <li><a href="/docs">GOV.UK prototype kit</a></li>
-        </ol>
-      </div>
 
       <h1 class="govuk-heading-xl">Installing the kit</h1>
 

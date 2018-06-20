@@ -4,16 +4,22 @@
 About - GOV.UK Prototype kit
 {% endblock %}
 
+{% block beforeContent %}
+	{{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK Prototype kit",
+	      href: "/docs"
+	    }
+	  ]
+	}) }}
+{% endblock %}
+
 {% block content %}
 
 <main id="content" role="main">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <div class="breadcrumbs">
-        <ol>
-          <li><a href="/docs">GOV.UK Prototype kit</a></li>
-        </ol>
-      </div>
       <h1 class="govuk-heading-xl">About</h1>
 
       <p class="govuk-body-l">
@@ -28,9 +34,9 @@ About - GOV.UK Prototype kit
         <li><a href="https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/">Slack channel for developers of the prototype kit</a></li>
       </ul>
 
-      
+
       <h2 class="govuk-heading-m">Principles</h2>
-      
+
       <p>The prototype kit:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>is designed for prototyping, not for production code</li>
@@ -42,15 +48,15 @@ About - GOV.UK Prototype kit
         <li>allows for server-side code</li>
         <li>can be extended - for example using NPM to install a module, access datastores, etc</li>
         <li>makes it easy to share prototypes with others online</li>
-        
+
       </ul>
 
 
       <h2 class="govuk-heading-m">Privacy</h2>
 
-      
+
       <p>You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.</p>
-      
+
 
 
       <h2 class="govuk-heading-m">The kit is not a production framework</h2>
@@ -62,7 +68,7 @@ About - GOV.UK Prototype kit
 
   </div>
 
-  
+
 </main>
 
 {% endblock %}

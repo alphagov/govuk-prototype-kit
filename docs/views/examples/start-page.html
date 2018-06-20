@@ -12,18 +12,25 @@
   <!-- blank to remove the proposition header -->
 {% endblock %}
 
+{% block beforeContent %}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
 {% block content %}
 
 <main id="content" role="main">
-
-  <div class="breadcrumbs">
-    <ol>
-      <li><a href="https://www.gov.uk">Home</a></li>
-      <li><a href="">Section</a></li>
-      <li>Subsection</li>
-    </ol>
-  </div>
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
