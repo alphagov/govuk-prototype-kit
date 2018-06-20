@@ -20,18 +20,11 @@ Documentation - GOV.UK Prototype kit
 {% endblock %}
 
 {% block content %}
-
-<main id="content" role="main" class="docs markdown">
-	<div class="govuk-grid-row">
-
-		<div class="govuk-grid-column-two-thirds">
-
-			{{document | safe}}
-
-		</div>
-
-	</div>
-
-</main>
-
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="app-prose-scope">
+        {{document | safe}}
+      </div>
+    </div>
+  </div>
 {% endblock %}
