@@ -152,7 +152,7 @@ Becomes…
 
 Becomes…
 
-    {% block page_title %}
+    {% block pageTitle %}
         GOV.UK prototype kit
     {% endblock %}
 
