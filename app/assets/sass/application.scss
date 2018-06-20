@@ -6,7 +6,7 @@ $govuk-global-styles: true;
 
 // Patterns that aren't in Frontend
 @import "patterns/check-your-answers";
-// @import "patterns/task-list";
+@import "patterns/task-list";
 @import "patterns/related-items";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
