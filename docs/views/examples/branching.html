@@ -32,25 +32,27 @@
           /docs/views/examples/branching.html
         </div>
 
-        <h2 class="govuk-heading-m">
-          Are you 18 or over?
-        </h2>
-
-        <div class="form-group">
-          <fieldset class="inline">
-
-            <legend class="visuallyhidden">Are you 18 or over?</legend>
-
-            <div class="multiple-choice">
-              <input id="over18True" type="radio" name="over18" value="true">
-              <label for="over18True">Yes</label>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Are you 18 or over?
+            </h2>
+          </legend>
+          <div class="govuk-radios govuk-radios--inline">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="over18-1" name="over18" type="radio" value="true">
+              <label class="govuk-label govuk-radios__label" for="over18-1">
+                Yes
+              </label>
             </div>
-
-            <div class="multiple-choice">
-              <input id="over18False" type="radio" name="over18" value="false">
-              <label for="over18False">No</label>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="over18-2" name="over18" type="radio" value="false">
+              <label class="govuk-label govuk-radios__label" for="over18-2">
+                No
+              </label>
             </div>
-
+          </div>
           </fieldset>
         </div>
 
