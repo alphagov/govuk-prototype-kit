@@ -192,8 +192,11 @@ app.get('/prototype-admin/download-latest', function (req, res) {
 })
 
 if (useDocumentation) {
-  // Copy app locals to documentation app locals
-  documentationApp.locals = app.locals
+  // Clone app locals to documentation app locals
+  // Use Object.assign to ensure app.locals is cloned to prevent additions from
+  // updating the original app.locals
+  documentationApp.locals = Object.assign({}, app.locals)
+  documentationApp.locals.serviceName = 'Prototype Kit'
 
   // Create separate router for docs
   app.use('/docs', documentationApp)

@@ -4,9 +4,9 @@
   GOV.UK prototype kit - override service name
 {% endblock %}
 
-{% block service_name %}
+{% set serviceName %}
   Report a smokey vehicle
-{% endblock %}
+{% endset %}
 
 {% block beforeContent %}
   {% include "includes/breadcrumb_examples.html" %}
@@ -28,13 +28,9 @@
         Use this code:
       </p>
 
-        <div class="code">
-          {% raw %}
-  {% block service_name %}
-    Report a smokey vehicle
-  {% endblock %}
-          {% endraw %}
-        </div>
+      <pre class="app-code"><code>{% raw %}{% set serviceName %}
+  Report a smokey vehicle
+{% endset%}{% endraw %}</code></pre>
 
     </div>
   </div>

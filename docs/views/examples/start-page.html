@@ -4,12 +4,11 @@
   Start page example
 {% endblock %}
 
-{% block proposition_header %}
-  <!-- blank to remove the proposition header -->
-{% endblock %}
-
-{% block header_class %}
-  <!-- blank to remove the proposition header -->
+{% block header %}
+  {{ govukHeader({
+    "homepageUrl": "/",
+    "containerClasses": "govuk-width-container"
+  }) }}
 {% endblock %}
 
 {% block beforeContent %}

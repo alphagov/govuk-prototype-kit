@@ -36,6 +36,30 @@
   {% endif %}
 {% endblock %}
 
+{% block header %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    "homepageUrl": "/",
+    "serviceName": serviceName,
+    "serviceUrl": "/",
+    "containerClasses": "govuk-width-container",
+    "navigation": [
+      {
+        "href": "/docs/install",
+        "text": "Install"
+      },
+      {
+        "href": "/docs/tutorials-and-examples",
+        "text": "Tutorials and examples"
+      },
+      {
+        "href": "/docs/about",
+        "text": "About"
+      }
+    ]
+  }) }}
+{% endblock %}
+
 {% block footer %}
   {{ govukFooter({
     meta: {
