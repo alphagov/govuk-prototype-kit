@@ -4,10 +4,11 @@
   Example - Branching
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main">
-
+{% block beforeContent %}
   {% include "includes/breadcrumb_examples.html" %}
+{% endblock %}
+
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -59,5 +60,4 @@
 
     </div>
   </div>
-</main>
 {% endblock %}
