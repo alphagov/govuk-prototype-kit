@@ -51,6 +51,8 @@ which describes how we prefer git history and commit messages to read.
 
 ## To release a new version
 
+Checkout a new branch for the release.
+
 Update [CHANGELOG.md](https://github.com/alphagov/govuk_prototype_kit/blob/master/CHANGELOG.md) to summarise the changes made since the last release.
 
 To see the commits to be summarised in the changelog since the last release, [compare the latest-release branch with master](https://github.com/alphagov/govuk_prototype_kit/compare/latest-release...master).
