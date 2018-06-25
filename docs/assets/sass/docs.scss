@@ -87,7 +87,13 @@
   }
 
   pre {
-    @extend .app-code
+    @extend .app-code;
+  }
+
+  // TODO: Blockquotes are likely the most semantic element to be using, update to use the inset component directly.
+  blockquote {
+    margin-left: 0;
+    @extend .govuk-inset-text;
   }
 }
 
