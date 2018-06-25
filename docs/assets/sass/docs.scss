@@ -24,6 +24,18 @@
   display: block !important;
 }
 
+.app-code {
+  font-size: 16px;
+  position: relative;
+  margin: 0;
+  padding: govuk-spacing(3);
+  overflow: auto;
+  border: 1px solid $govuk-border-colour;
+  background-color: govuk-colour("grey-4");
+  max-width: 38em;
+  @include govuk-responsive-margin(5, "bottom");
+}
+
 .app-prose-scope {
 
   h1 {
@@ -75,15 +87,7 @@
   }
 
   pre {
-    font-size: 16px;
-    position: relative;
-    margin: 0;
-    padding: govuk-spacing(3);
-    overflow: auto;
-    border: 1px solid $govuk-border-colour;
-    background-color: govuk-colour("grey-4");
-    max-width: 38em;
-    @include govuk-responsive-margin(5, "bottom");
+    @extend .app-code
   }
 }
 
