@@ -33,12 +33,7 @@
         The code for the example is in this folder in the prototype kit:
       </p>
 
-      <pre>
-<div class="code">
-  /docs/views/examples/pass-data
-
-</div>
-      </pre>
+      <pre class="app-code"><code>/docs/views/examples/pass-data</code></pre>
 
       <h2 class="govuk-heading-m">How to use</h2>
 
@@ -46,22 +41,11 @@
 
       <p>For example, if you have this input:</p>
 
-      <pre>
-<div class="code">
-  &lt;input name="first-name"&gt;
-
-</div>
-      </pre>
+      <pre class="app-code"><code>&lt;input name="first-name"&gt;</code></pre>
 
       <p>You can show what the user entered later on like this:</p>
 
-      <pre>
-<div class="code">
-  &lt;p&gt;{%raw%}{{ data['first-name'] }}{%endraw%}&lt;/p&gt;
-
-</div>
-      </pre>
-
+      <pre class="app-code"><code>&lt;p&gt;{%raw%}{{ data['first-name'] }}{%endraw%}&lt;/p&gt;</code></pre>
 
       <h3 class="govuk-heading-s">
         Clearing data
@@ -80,32 +64,20 @@
       </p>
 
       <p>For a text input:</p>
-      <pre>
-<div class="code">
-  &lt;input name="first-name" value="{%raw%}{{ data['first-name'] }}{%endraw%}"&gt;
 
-</div>
-      </pre>
+      <pre class="app-code"><code>&lt;input name="first-name" value="{%raw%}{{ data['first-name'] }}{%endraw%}"&gt;</code></pre>
 
       <p>For a radio or checkbox input you need to use the 'checked' function:</p>
-      <pre>
-<div class="code">
-  &lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked('over-18','yes') }}{%endraw%}&gt;
 
-</div>
-      </pre>
+      <pre class="app-code"><code>&lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked('over-18','yes') }}{%endraw%}&gt;</code></pre>
 
       <h3 class="govuk-heading-s">
         Setting default data
       </h3>
 
       <p>You can set default values in this file in your prototype folder:
-      <pre>
-<div class="code">
-  app/data/session-data-defaults.js
 
-</div>
-      </pre>
+      <pre class="app-code"><code>app/data/session-data-defaults.js</code></pre>
 
       <h2 class="govuk-heading-m">Advanced features</h2>
 
@@ -115,12 +87,7 @@
 
       <p>You can access the data on the server in a route, for example for an input with name="first-name":</p>
 
-      <pre>
-<div class="code">
-  var firstName = req.session.data['first-name']
-
-</div>
-      </pre>
+      <pre class="app-code"><code>var firstName = req.session.data['first-name']</code></pre>
 
       <h3 class="govuk-heading-s">
         Ignoring inputs
@@ -128,12 +95,7 @@
 
       <p>To prevent an input being stored, use an underscore at the start of the name.</p>
 
-      <pre>
-<div class="code">
-  &lt;input name="_secret"&gt;
-
-</div>
-      </pre>
+      <pre class="app-code"><code>&lt;input name="_secret"&gt;</code></pre>
 
     </div>
   </div>
