@@ -4,7 +4,6 @@
 .start.pid
 .port.tmp
 public
-lib/govuk_template.html
 node_modules/*
 .tmuxp.*
 package-lock.json
