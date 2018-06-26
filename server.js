@@ -84,6 +84,9 @@ app.set('view engine', 'html')
 app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
 
+// Serve govuk-frontend in /public
+app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+
 // Set up documentation app
 if (useDocumentation) {
   var documentationViews = [
