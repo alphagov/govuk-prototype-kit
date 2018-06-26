@@ -65,13 +65,22 @@ Warning: This is an experimental feature and could change at any time.
 To start debugging, open the following URL in Chrome:
     chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws=127.0.0.1:9229/2fd0465b-2248-414e-9df6-67fc033c9d9c
 </code></pre>
-You should also see a NodeJS icon in your developer tools:
 
-![Chrome developer tools with NodeJS debugger icon](/public/images/docs/nodejs-debugger-in-devtools.png)
+If you go to `chrome://inspect` in your browser you should see an entry under
+'Remote Target' for your prototype with a number next to it for the version of Node you're running:
 
-If you click it Chrome will open a new developer tools window you can use for debugging.
+![Chrome inspect page](/public/images/docs/chrome_inspect_page.png)
 
-If you don’t have the icon, opening a new tab and copying the URL given when you start the kit will have the same effect.
+If you click the blue 'inspect' link Chrome will open a new developer tools window you can use for
+debugging.
+
+Errors in server side JavaScript will appear directly in your browser instead of the page you're
+trying to load.
+
+They follow the same format as those in developer tools so should give you details of the error 
+and the file it happened in:
+
+![A server side JavaScript error](/public/images/docs/server-side_js_error.png)
 
 ## More information
 
