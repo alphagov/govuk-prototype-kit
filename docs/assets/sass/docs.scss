@@ -87,6 +87,12 @@
   pre {
     @extend .app-code;
   }
+  
+  p code {
+    border: 1px solid $govuk-border-colour;
+    background-color: govuk-colour("grey-4");
+    padding: 0 govuk-spacing(2);
+  }
 
   // TODO: Blockquotes are likely the most semantic element to be using, update to use the inset component directly.
   blockquote {
