@@ -6,6 +6,7 @@ New features:
 - [#502 Add Cookies and Privacy policy text](https://github.com/alphagov/govuk_prototype_kit/pull/502)
 - [#521 Do not track users who have enabled 'DoNotTrack'](https://github.com/alphagov/govuk_prototype_kit/pull/521)
 - [#522 Add inline-code block styles](https://github.com/alphagov/govuk_prototype_kit/pull/522)
+- [#523 Track app usage](https://github.com/alphagov/govuk_prototype_kit/pull/523)
 
 Bug fixes:
 
