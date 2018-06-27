@@ -1,0 +1,9 @@
+
+Help us improve the GOV.UK Prototype Kit
+────────────────────────────────────────
+
+With your permission, the kit can send useful anonymous usage data
+for analysis to help the team improve the service. Read more here:
+https://govuk-prototype-kit.herokuapp.com/docs/usage-data
+
+Do you give permission for the kit to send anonymous usage data? (y/n)

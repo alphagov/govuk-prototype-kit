@@ -41,7 +41,9 @@
     "run-sequence": "^1.2.2",
     "standard": "^10.0.2",
     "supertest": "^3.0.0",
-    "sync-request": "^4.0.3"
+    "sync-request": "^4.0.3",
+    "universal-analytics": "^0.4.16",
+    "uuid": "^3.2.1"
   },
   "greenkeeper": {
     "ignore": [
