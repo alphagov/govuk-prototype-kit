@@ -1,6 +1,6 @@
 # Writing CSS
 
-CSS used in the prototype kit is written in the SCSS syntax of [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#syntax).
+CSS used in the Prototype Kit is written in the SCSS syntax of [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#syntax).
 
 ## Sass
 
@@ -10,7 +10,7 @@ SCSS was chosen because you can paste CSS into it without breaking it which is u
 
 ## Writing code
 
-You write your Sass in [app/assets/sass](../app/assets/sass) and the prototype kit will compile it into the CSS used in your page (found in /public/stylesheets). The app watches your files so this will happen automatically.
+You write your Sass in [app/assets/sass](../app/assets/sass) and the Prototype Kit will compile it into the CSS used in your page (found in /public/stylesheets). The app watches your files so this will happen automatically.
 
 There is already a CSS file included to use called [application.scss](../app/assets/sass/application.scss) which compiles into [application.css](../public/stylesheets/application.css). Note that Sass files are identified by the `.scss` extension.
 

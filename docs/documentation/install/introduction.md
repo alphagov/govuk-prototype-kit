@@ -10,7 +10,7 @@ If you’re comfortable using git and the terminal, you may prefer the [develope
 
 ## Introduction
 
-The prototype kit provides a simple way to make interactive prototypes that look and feel like pages on GOV.UK. These prototypes can be used to design and lay out pages, and to use in user research.
+The GOV.UK Prototype Kit provides a simple way to make interactive prototypes that look and feel like pages on GOV.UK. These prototypes can be used to design and lay out pages, and to use in user research.
 
 
 
