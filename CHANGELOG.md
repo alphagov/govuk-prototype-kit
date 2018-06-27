@@ -1,5 +1,9 @@
 # Unreleased
 
+Breaking changes:
+
+- [#512 Update to GOV.UK Frontend](https://github.com/alphagov/govuk_prototype_kit/pull/512)
+
 New features:
 
 - [#501 Add default session data](https://github.com/alphagov/govuk_prototype_kit/pull/501)
