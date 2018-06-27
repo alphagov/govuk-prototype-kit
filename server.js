@@ -123,6 +123,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+// Add global variable to determine if DoNotTrack is enabled.
+// This indicates a user has explicitly opted-out of tracking.
+// Therefore we can avoid injecting third-party scripts that do not respect this decision.
+app.use(function (req, res, next) {
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT
+  app.locals.doNotTrackEnabled = (req.header('DNT') === '1')
+  next()
+})
+
 // Add variables that are available in all views
 app.locals.gtmId = gtmId
 app.locals.asset_path = '/public/'

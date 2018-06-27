@@ -3,13 +3,12 @@
 New features:
 
 - [#501 Add default session data](https://github.com/alphagov/govuk_prototype_kit/pull/501)
+- [#502 Add Cookies and Privacy policy text](https://github.com/alphagov/govuk_prototype_kit/pull/502)
+- [#521 Do not track users who have enabled 'DoNotTrack'](https://github.com/alphagov/govuk_prototype_kit/pull/521)
 
 Bug fixes:
 
 - [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
-
-New features:
-- [#502 Add Cookies and Privacy policy text](https://github.com/alphagov/govuk_prototype_kit/pull/502)
 
 # 6.3.0
 
