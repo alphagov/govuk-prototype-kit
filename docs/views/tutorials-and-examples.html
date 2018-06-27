@@ -1,39 +1,41 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   GOV.UK prototype kit
 {% endblock %}
 
+{% block beforeContent %}
+	{{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK Prototype kit",
+	      href: "/docs"
+	    }
+	  ]
+	}) }}
+{% endblock %}
+
 {% block content %}
-<main id="content" role="main">
 
-  <div class="breadcrumbs">
-    <ol>
-      <li>
-        <a href="/docs">GOV.UK prototype kit</a>
-      </li>
-    </ol>
-  </div>
+  <h1 class="govuk-heading-xl">Tutorials and examples</h1>
 
-  <h1 class="heading-xlarge">Tutorials and examples</h1>
+  <div class="govuk-grid-row">
 
-  <div class="grid-row">
-
-    <div class="column-two-thirds">
-      <h2 class="heading-medium">Tutorials</h2>
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m">Tutorials</h2>
       <p>These tutorials are being actively developed. If you have suggestions for improvements, we'd love to hear from you.</p>
     </div>
   </div>
-  <div class="grid-row">
-    <div class="column-third">
-      <h3 class="heading-small">Getting started</h3>
-      <ul class="list list-bullet">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <h3 class="govuk-heading-s">Getting started</h3>
+      <ul class="govuk-list govuk-list--bullet">
         <li>
           <a href="/prototype-admin/download-latest" data-link="download">Download kit (zip)</a>
         </li>
         <li>
           <a href="/docs/install/introduction">Simple install guide</a>
-          <ol class="list list-number">
+          <ol class="govuk-list govuk-list--number">
             <li>
               <a href="/docs/install/requirements">Kit requirements</a>
             </li>
@@ -52,9 +54,9 @@
 
 
     </div>
-    <div class="column-third">
-      <h3 class="heading-small">Basic usage</h3>
-      <ul class="list list-bullet">
+    <div class="govuk-grid-column-one-third">
+      <h3 class="govuk-heading-s">Basic usage</h3>
+      <ul class="govuk-list govuk-list--bullet">
         <li>
           <a href="/docs/making-pages">Making pages</a>
         </li>
@@ -78,9 +80,9 @@
         </li>
       </ul>
     </div>
-    <div class="column-third">
-      <h3 class="heading-small">Advanced usage</h3>
-      <ul class="list list-bullet">
+    <div class="govuk-grid-column-one-third">
+      <h3 class="govuk-heading-s">Advanced usage</h3>
+      <ul class="govuk-list govuk-list--bullet">
         <li>
           <a href="/docs/examples/pass-data">Passing data from page to page</a>
         </li>
@@ -102,7 +104,7 @@
         </li>
 
         <li>
-          <a href="/docs/examples/template-partial-areas">
+          <a href="https://design-system.service.gov.uk/styles/page-template/#changing-template-content">
             Template partial areas
           </a>
         </li>
@@ -110,9 +112,9 @@
     </div>
   </div>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <h2 class="heading-medium">Page templates</h2>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m">Page templates</h2>
       <p class="text">
         Use these as the basis for your prototypes. We recommend making copies of the files rather than directly editing them.
       </p>
@@ -120,7 +122,7 @@
         You can find them in your prototype folder, in /docs/views/examples
       </p>
 
-      <ul class="list list-bullet">
+      <ul class="govuk-list govuk-list--bullet">
         <li>
           <a href="/docs/examples/blank-govuk">
             Blank
@@ -161,17 +163,15 @@
         </li>
       </ul>
 
-      <h2 class="heading-medium">GOV.UK Elements</h2>
+      <h2 class="govuk-heading-m">GOV.UK Design System</h2>
 
-      <p class="text">
-        <a href="https://govuk-elements.herokuapp.com/">GOV.UK Elements</a> is a guide to making your prototype look like a GOV.UK
+      <p>
+        <a href="https://design-system.service.gov.uk">GOV.UK Design System</a> is a guide to making your prototype look like a GOV.UK
         service, including typography, forms and more.
       </p>
 
     </div>
 
   </div>
-
-</main>
 
 {% endblock %}

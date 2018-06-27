@@ -1,39 +1,44 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   Start page example
 {% endblock %}
 
-{% block proposition_header %}
-  <!-- blank to remove the proposition header -->
+{% block header %}
+  {{ govukHeader({
+    "homepageUrl": "/",
+    "containerClasses": "govuk-width-container"
+  }) }}
 {% endblock %}
 
-{% block header_class %}
-  <!-- blank to remove the proposition header -->
+{% block beforeContent %}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-  <div class="breadcrumbs">
-    <ol>
-      <li><a href="https://www.gov.uk">Home</a></li>
-      <li><a href="">Section</a></li>
-      <li>Subsection</li>
-    </ol>
-  </div>
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h1 class="heading-xlarge">
+      <h1 class="govuk-heading-xl">
         {% if serviceName %} {{ serviceName }} {% endif %}
       </h1>
 
       <p>Use this service to:</p>
 
-      <ul class="list list-bullet">
+      <ul class="govuk-list govuk-list--bullet">
         <li>do something</li>
         <li>update your name, address or other details</li>
         <li>you need to do this in order to do something else</li>
@@ -42,10 +47,10 @@
       <p>Registering takes around 5 minutes.</p>
 
       <p>
-        <a class="button button-start" href="#" role="button">Start now</a>
+        <a href="#" class="govuk-button govuk-button--start" role="button">Start now</a>
       </p>
 
-      <h2 class="heading-medium">Before you start</h2>
+      <h2 class="govuk-heading-m">Before you start</h2>
 
       <p>You can also <a href="#">register by post.</a></p>
 
@@ -54,22 +59,24 @@
       <p>You can’t register for this service if you’re in the UK illegally.</p>
 
     </div>
-    <div class="column-third">
+    <div class="govuk-grid-column-one-third">
 
-      <aside class="govuk-related-items" role="complementary">
-        <h2 class="heading-medium" id="subsection-title">Subsection</h2>
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">Subsection</h2>
         <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="font-xsmall">
+          <ul class="govuk-list govuk-body-s">
             <li><a href="#">Related link</a></li>
             <li><a href="#">Related link</a></li>
-            <li><a href="#" class="bold-xsmall">More <span class="visuallyhidden">in Subsection</span></a></li>
+            <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </aside>
 
     </div>
   </div>
-
-</main>
 
 {% endblock %}

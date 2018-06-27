@@ -1,18 +1,17 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
 GOV.UK prototype kit
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="heading-xlarge">GOV.UK prototype kit</h1>
+      <h1 class="govuk-heading-xl">GOV.UK prototype kit</h1>
 
-      <p class="lede">
+      <p class="govuk-body-l">
         Rapidly create HTML prototypes of GOV.UK services.
       </p>
 {{releaseVersion | log }}
@@ -21,27 +20,27 @@ GOV.UK prototype kit
 
   </div>
 
-  <div class="grid-row">
+  <div class="govuk-grid-row">
 
-        <div class="column-third">
+        <div class="govuk-grid-column-one-third">
 
-          <h2 class="heading-medium"><a href="/docs/install">Install</a></h2>
+          <h2 class="govuk-heading-m"><a href="/docs/install">Install</a></h2>
           <p>
             Download and installation instructions.
           </p>
 
         </div>
-        <div class="column-third">
+        <div class="govuk-grid-column-one-third">
 
-          <h2 class="heading-medium"><a href="/docs/tutorials-and-examples">Tutorials and examples</a></h2>
+          <h2 class="govuk-heading-m"><a href="/docs/tutorials-and-examples">Tutorials and examples</a></h2>
           <p>
             Tutorials, examples and templates.
           </p>
 
         </div>
-        <div class="column-third">
+        <div class="govuk-grid-column-one-third">
 
-          <h2 class="heading-medium"><a href="/docs/about">About</a></h2>
+          <h2 class="govuk-heading-m"><a href="/docs/about">About</a></h2>
           <p>
             About the kit, principles, privacy.
           </p>
@@ -49,11 +48,11 @@ GOV.UK prototype kit
         </div>
 
       </div>
-      <div class="grid-row">
+      <div class="govuk-grid-row">
 
-        <div class="column-third">
+        <div class="govuk-grid-column-one-third">
 
-          <h2 class="heading-medium"><a href="https://github.com/alphagov/govuk_prototype_kit">GitHub</a></h2>
+          <h2 class="govuk-heading-m"><a href="https://github.com/alphagov/govuk_prototype_kit">GitHub</a></h2>
           <p>
             Source code, contributing, bugs.
           </p>
@@ -62,6 +61,5 @@ GOV.UK prototype kit
 
 
       </div>
-</main>
 
 {% endblock %}

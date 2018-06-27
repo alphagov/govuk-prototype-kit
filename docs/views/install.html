@@ -1,33 +1,39 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
 Getting started - GOV.UK Prototype kit
+{% endblock %}
+
+{% block beforeContent %}
+	{{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK prototype kit",
+	      href: "/docs"
+	    }
+	  ]
+	}) }}
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-      <div class="breadcrumbs">
-        <ol>
-          <li><a href="/docs">GOV.UK prototype kit</a></li>
-        </ol>
-      </div>
+      <h1 class="govuk-heading-xl">Installing the kit</h1>
 
-      <h1 class="heading-xlarge">Installing the kit</h1>
-
-      <p class="lede">
+      <p class="govuk-body-l">
         Get up and running with the kit in 30 minutes.
       </p>
 
-      <h2 class="heading-medium">1. Download the kit</h2>
-      <a href="{{releaseURL}}" data-link="download">Download (zip)</a>
-      <h2 class="heading-medium">2. Install the kit</h2>
+      <h2 class="govuk-heading-m">1. Download the kit</h2>
+			<p>
+	      <a href="{{releaseURL}}" data-link="download">Download (zip)</a>
+			</p>
+      <h2 class="govuk-heading-m">2. Install the kit</h2>
 
       <p>Choose from:</p>
-      <ul class="list list-bullet">
+      <ul class="govuk-list govuk-list--bullet">
         <li><a href="/docs/install/introduction">simple install guide</a><br>for users new to Node.js, Git or the terminal</li>
         <li><a href="/docs/install/developer-install-instructions">advanced install guide</a><br>for users familiar with Node.js, Git and the terminal</li>
       </ul>
@@ -37,7 +43,5 @@ Getting started - GOV.UK Prototype kit
 
 </div>
 
-
-</main>
 
 {% endblock %}

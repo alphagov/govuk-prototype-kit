@@ -7,9 +7,9 @@ const bodyParser = require('body-parser')
 const browserSync = require('browser-sync')
 const dotenv = require('dotenv')
 const express = require('express')
-const favicon = require('serve-favicon')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 // Local dependencies
 const config = require('./app/config.js')
@@ -21,6 +21,13 @@ const utils = require('./lib/utils.js')
 const app = express()
 const documentationApp = express()
 dotenv.config()
+
+// Set cookies for use in cookie banner.
+app.use(cookieParser())
+documentationApp.use(cookieParser())
+const handleCookies = utils.handleCookies(app)
+app.use(handleCookies)
+documentationApp.use(handleCookies)
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
@@ -61,7 +68,12 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [path.join(__dirname, '/app/views/'), path.join(__dirname, '/lib/')]
+var appViews = [
+  path.join(__dirname, '/node_modules/govuk-frontend/'),
+  path.join(__dirname, '/node_modules/govuk-frontend/components'),
+  path.join(__dirname, '/app/views/'),
+  path.join(__dirname, '/lib/')
+]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
@@ -78,16 +90,19 @@ app.set('view engine', 'html')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_template/assets')))
-app.use('/public', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit')))
-app.use('/public/images/icons', express.static(path.join(__dirname, '/govuk_modules/govuk_frontend_toolkit/images')))
+app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
 
-// Elements refers to icon folder instead of images folder
-app.use(favicon(path.join(__dirname, 'govuk_modules', 'govuk_template', 'assets', 'images', 'favicon.ico')))
+// Serve govuk-frontend in /public
+app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [path.join(__dirname, '/docs/views/'), path.join(__dirname, '/lib/')]
+  var documentationViews = [
+    path.join(__dirname, '/node_modules/govuk-frontend/'),
+    path.join(__dirname, '/node_modules/govuk-frontend/components'),
+    path.join(__dirname, '/docs/views/'),
+    path.join(__dirname, '/lib/')
+  ]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,
@@ -188,8 +203,11 @@ app.get('/prototype-admin/download-latest', function (req, res) {
 })
 
 if (useDocumentation) {
-  // Copy app locals to documentation app locals
-  documentationApp.locals = app.locals
+  // Clone app locals to documentation app locals
+  // Use Object.assign to ensure app.locals is cloned to prevent additions from
+  // updating the original app.locals
+  documentationApp.locals = Object.assign({}, app.locals)
+  documentationApp.locals.serviceName = 'Prototype Kit'
 
   // Create separate router for docs
   app.use('/docs', documentationApp)

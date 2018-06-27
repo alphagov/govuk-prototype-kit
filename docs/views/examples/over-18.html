@@ -1,18 +1,19 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   Example - Branching - Over 18
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main">
-
+{% block beforeContent %}
   {% include "includes/breadcrumb_examples.html" %}
+{% endblock %}
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+{% block content %}
 
-        <h1 class="heading-xlarge">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">
           Over 18
         </h1>
 
@@ -26,5 +27,4 @@
 
     </div>
   </div>
-</main>
 {% endblock %}

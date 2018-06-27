@@ -1,43 +1,33 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   Example - Passing data
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main">
-
+{% block beforeContent %}
   {% include "includes/breadcrumb_examples.html" %}
+{% endblock %}
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <form action="/docs/examples/pass-data/vehicle-type" method="post" class="form">
 
-        <h1 class="heading-medium">
-          What is your vehicle registration number?
-        </h1>
-
-        <div class="form-group">
-          <fieldset>
-
-            <legend class="visuallyhidden">
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--m" for="registration-number">
               What is your vehicle registration number?
-            </legend>
-
-            <label class="visually-hidden" for="registration-number">Vehicle registration number</label>
-            <input class="form-control" id="registration-number" name="vehicle-registration" type="text" value="{{data['vehicle-registration']}}">
-
-          </fieldset>
+            </label>
+          </h1>
+          <input class="govuk-input" id="registration-number" name="vehicle-registration" type="text">
         </div>
 
-        <div class="form-group">
-          <input type="submit" class="button" value="Continue">
-        </div>
+        <button class="govuk-button">Continue</button>
 
       </form>
 
     </div>
   </div>
-</main>
 {% endblock %}

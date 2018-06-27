@@ -1,20 +1,21 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   Example - Branching
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main">
-
+{% block beforeContent %}
   {% include "includes/breadcrumb_examples.html" %}
+{% endblock %}
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <form action="/docs/examples/over-18" method="get" class="form">
 
-        <h1 class="heading-xlarge">
+        <h1 class="govuk-heading-xl">
           Branching
         </h1>
 
@@ -26,40 +27,37 @@
           You can see the code for this example here:
         </p>
 
-        <div class="code">
-          /docs/documentation_routes.js
-          /docs/views/examples/branching.html
-        </div>
+        <pre class="app-code"><code>/docs/documentation_routes.js
+/docs/views/examples/branching.html</code></pre>
 
-        <h2 class="heading-medium">
-          Are you 18 or over?
-        </h2>
-
-        <div class="form-group">
-          <fieldset class="inline">
-
-            <legend class="visuallyhidden">Are you 18 or over?</legend>
-
-            <div class="multiple-choice">
-              <input id="over18True" type="radio" name="over18" value="true">
-              <label for="over18True">Yes</label>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Are you 18 or over?
+            </h2>
+          </legend>
+          <div class="govuk-radios govuk-radios--inline">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="over18-1" name="over18" type="radio" value="true">
+              <label class="govuk-label govuk-radios__label" for="over18-1">
+                Yes
+              </label>
             </div>
-
-            <div class="multiple-choice">
-              <input id="over18False" type="radio" name="over18" value="false">
-              <label for="over18False">No</label>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="over18-2" name="over18" type="radio" value="false">
+              <label class="govuk-label govuk-radios__label" for="over18-2">
+                No
+              </label>
             </div>
-
+          </div>
           </fieldset>
         </div>
 
-        <div class="form-group">
-          <input type="submit" class="button" value="Continue">
-        </div>
+        <button class="govuk-button">Continue</button>
 
       </form>
 
     </div>
   </div>
-</main>
 {% endblock %}

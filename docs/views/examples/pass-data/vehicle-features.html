@@ -1,59 +1,57 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
   Example - Passing data
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main">
-
+{% block beforeContent %}
   {% include "includes/breadcrumb_examples.html" %}
+{% endblock %}
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <form action="/docs/examples/pass-data/vehicle-check-answers" method="post" class="form">
 
-        <h1 class="heading-medium">
-          Which of these applies to your vehicle?
-        </h1>
-
-        <div class="form-group">
-          <fieldset>
-
-            <legend class="visuallyhidden">
-              Which of these applies to your vehicle?
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="vehicle-features-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h1 class="govuk-fieldset__heading">
+                Which of these applies to your vehicle?
+              </h1>
             </legend>
-
-            <p>
+            <span id="vehicle-features-hint" class="govuk-hint">
               Select all that apply
-            </p>
-
-            <div class="multiple-choice">
-              <input id="vehicle-feature-heated-seats" name="vehicle-features" type="checkbox" value="Heated seats" {{ checked("vehicle-features", "Heated seats") }}>
-              <label for="vehicle-feature-heated-seats">Heated seats</label>
+            </span>
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="vehicle-features-heated-seats" name="vehicle-features" type="checkbox" value="Heated seats" {{ checked("vehicle-features", "Heated seats") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="vehicle-features-heated-seats">
+                  Heated seats
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="vehicle-features-gps" name="vehicle-features" type="checkbox" value="GPS" {{ checked("vehicle-features", "GPS") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="vehicle-features-gps">
+                  GPS
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="vehicle-features-radio" name="vehicle-features" type="checkbox" value="Radio" {{ checked("vehicle-features", "Radio") }}>
+                <label class="govuk-label govuk-checkboxes__label" for="vehicle-features-radio">
+                  Radio
+                </label>
+              </div>
             </div>
-
-            <div class="multiple-choice">
-              <input id="vehicle-feature-gps" name="vehicle-features" type="checkbox" value="GPS" {{ checked("vehicle-features", "GPS") }}>
-              <label for="vehicle-feature-gps">GPS</label>
-            </div>
-
-            <div class="multiple-choice">
-              <input id="vehicle-feature-radio" name="vehicle-features" type="checkbox" value="Radio" {{ checked("vehicle-features", "Radio") }}>
-              <label for="vehicle-feature-radio">Radio</label>
-            </div>
-
           </fieldset>
         </div>
 
-        <div class="form-group">
-          <input type="submit" class="button" value="Continue">
-        </div>
+        <button class="govuk-button">Continue</button>
 
       </form>
 
     </div>
   </div>
-</main>
 {% endblock %}

@@ -25,11 +25,6 @@ Please raise feature requests as issues before contributing any code.
 
 This ensures they are discussed properly before any time is spent on them.
 
-## GOV.UK Elements
-
-The project contains code taken from the [GOV.UK Elements](https://github.com/alphagov/govuk_elements/) project.
-Please check that any issues related to that code are raised with that project, not this one.
-
 ## Contributing code
 
 ### Indentation and whitespace
@@ -55,6 +50,8 @@ Please see our [git style guide](https://github.com/alphagov/styleguides/blob/ma
 which describes how we prefer git history and commit messages to read.
 
 ## To release a new version
+
+Checkout a new branch for the release.
 
 Update [CHANGELOG.md](https://github.com/alphagov/govuk_prototype_kit/blob/master/CHANGELOG.md) to summarise the changes made since the last release.
 

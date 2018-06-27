@@ -1,8 +1,8 @@
 // Task list pattern
 
 // Override column width for tablet and up
-.column-minimum {
-  @include media(tablet) {
+.app-column-minimum {
+  @include govuk-media-query($from: tablet) {
     min-width: 600px;
   }
 }
@@ -10,64 +10,63 @@
 // Spacing to the left of the task list
 $task-list-indent: 35px;
 
-.task-list {
-  margin-top: $gutter;
-  @include media(tablet) {
-    margin-top: ($gutter * 2);
+.app-task-list {
+  list-style: none;
+  padding: 0;
+  margin-top: $govuk-gutter;
+  @include govuk-media-query($from: tablet) {
+    margin-top: ($govuk-gutter * 2);
   }
 }
 
-
-.task-list-section {
+.app-task-list__section {
   display: table;
 
-  @include bold-24;
-  padding-bottom: ($gutter / 6);
+  @include govuk-font(24, $weight: bold);
+  margin: 0;
+  padding-bottom: ($govuk-gutter / 6);
 }
 
-.task-list-section-number {
+.app-task-list__section-number {
   display: table-cell;
-  padding-right: ($gutter / 6);
+  padding-right: ($govuk-gutter / 6);
 
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     min-width: $task-list-indent;
     padding-right: 0;
   }
 }
 
 
-.task-list-items {
-  margin-bottom: $gutter;
-  @include media(tablet) {
-    margin-bottom: ($gutter * 2);
+.app-task-list__items {
+  list-style: none;
+  padding: 0;
+  margin-bottom: $govuk-gutter;
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: ($govuk-gutter * 2);
   }
 
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     padding-left: $task-list-indent;
   }
 }
 
-.task-list-item {
-  border-bottom: 1px solid $border-colour;
-  padding-top: $gutter-one-third;
-  padding-bottom: $gutter-one-third;
-  @extend %contain-floats;
+.app-task-list__item {
+  border-bottom: 1px solid $govuk-border-colour;
+  padding-top: govuk-spacing(2);
+  padding-bottom: govuk-spacing(2);
+  @include govuk-clearfix
 }
 
-.task-list-item:first-child {
-  border-top: 1px solid $border-colour;
+.app-task-list__item:first-child {
+  border-top: 1px solid $govuk-border-colour;
 }
 
-
-.task-name {
-  width: $two-thirds;
+.app-task-list__task-name {
+  width: 33.3%;
   float: left;
 }
 
-.task-completed {
-  @include phase-tag;
-
+.app-task-list__task-completed {
   float: right;
-  margin-right: 0;
-  padding-top: 3px;
 }
