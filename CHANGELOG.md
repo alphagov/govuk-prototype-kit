@@ -14,7 +14,7 @@ New features:
 - [#525 Add design system message to home page](https://github.com/alphagov/govuk_prototype_kit/pull/525)
 
 Bug fixes:
-
+- [#530 Update elements class to frontend on examples page](https://github.com/alphagov/govuk_prototype_kit/pull/530)
 - [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
 - [#524 Make "Prototype Kit" casing consistent](https://github.com/alphagov/govuk_prototype_kit/pull/524)
 - [#527 Update docs/index page to include same information as private beta](https://github.com/alphagov/govuk_prototype_kit/pull/527)
