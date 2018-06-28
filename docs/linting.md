@@ -1,6 +1,6 @@
 # Linting
 
-The prototype kit uses [standardjs](http://standardjs.com/), an opinionated JavaScript linter. All JavaScript files follow its conventions, and it runs on CI to ensure that new pull requests are in line with them.
+The GOV.UK Prototype Kit uses [standardjs](http://standardjs.com/), an opinionated JavaScript linter. All JavaScript files follow its conventions, and it runs on CI to ensure that new pull requests are in line with them.
 
 ## Running standard manually
 
@@ -32,9 +32,9 @@ There are [official guides for most of the popular editors](http://standardjs.co
 
 ## Do I need to respect this?
 
-If you want to submit a pull request to the prototype kit, your code will need to pass the linter.
+If you want to submit a pull request to the GOV.UK Prototype Kit, your code will need to pass the linter.
 
-If you're just using the prototype kit in a separate project, then no, you aren't forced to use standard, or any other linter for that matter. Just write code as you would normally.
+If you're just using the GOV.UK Prototype Kit in a separate project, then no, you aren't forced to use standard, or any other linter for that matter. Just write code as you would normally.
 
 ## Why lint?
 

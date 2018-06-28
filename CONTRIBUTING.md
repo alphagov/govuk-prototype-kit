@@ -5,10 +5,10 @@ We do have a few guidelines to bear in mind.
 
 ## Community
 
-We have two Slack channels for the Prototype kit. You'll need a government email address to join them.
+We have two Slack channels for the Prototype Kit. You'll need a government email address to join them.
 
-* [Slack channel for users of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
-* [Slack channel for developers of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/)
+* [Slack channel for users of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
+* [Slack channel for developers of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/)
 
 ## Raising bugs
 
