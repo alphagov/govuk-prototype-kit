@@ -17,6 +17,7 @@ Bug fixes:
 
 - [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
 - [#524 Make "Prototype Kit" casing consistent](https://github.com/alphagov/govuk_prototype_kit/pull/524)
+- [#527 Update docs/index page to include same information as private beta](https://github.com/alphagov/govuk_prototype_kit/pull/527)
 
 # 6.3.0
 
