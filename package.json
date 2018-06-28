@@ -19,7 +19,7 @@
     "cookie-parser": "^1.4.3",
     "cross-spawn": "^5.0.0",
     "dotenv": "^4.0.0",
-    "express": "4.15.2",
+    "express": "5.0.0-alpha.6",
     "express-session": "^1.13.0",
     "express-writer": "0.0.4",
     "govuk-frontend": "^1.0.0",
