@@ -20,8 +20,8 @@ gulp.task('sass', function () {
 })
 
 // Sass for backward compatibility with Elements
-gulp.task('sass-legacy', function () {
-  return gulp.src('lib/backward-compatibility/assets/sass/*.scss')
+gulp.task('sass-govuk-elements', function () {
+  return gulp.src('lib/backwards-compatibility/govuk-elements/assets/sass/*.scss')
   .pipe(sourcemaps.init())
   .pipe(sass({outputStyle: 'expanded',
     includePaths: [

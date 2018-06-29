@@ -74,7 +74,7 @@ var appViews = [
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/'),
   // Backward compatibility with GOV.UK Elements
-  path.join(__dirname, '/lib/backward-compatibility/views'),
+  path.join(__dirname, '/lib/backwards-compatibility/govuk-elements/views'),
   path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts')
 ]
 
