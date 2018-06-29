@@ -20,7 +20,7 @@ Create a folder called `projects` in your `Documents` or `My Documents` folder.
 
 ### Unzip the kit
 
-Unzip the kit you downloaded - you should end up with a folder called `govuk_prototype_kit-3.0.0`
+Unzip the kit you downloaded - you should end up with a folder called `govuk-prototype-kit-3.0.0`
 
 ### Rename the kit
 

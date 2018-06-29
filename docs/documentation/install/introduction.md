@@ -6,7 +6,7 @@ Installation takes up to 30 minutes depending on how much you need to install.
 
 If you’re comfortable using git and the terminal, you may prefer the [developer friendly instructions](developer-install-instructions).
 
-> This guide is a work in progress. Please help [contribute](https://github.com/alphagov/govuk_prototype_kit/blob/master/CONTRIBUTING.md) to make it even better.
+> This guide is a work in progress. Please help [contribute](https://github.com/alphagov/govuk-prototype-kit/blob/master/CONTRIBUTING.md) to make it even better.
 
 ## Introduction
 

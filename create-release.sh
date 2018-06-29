@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPO_PATH='alphagov/govuk_prototype_kit'
+REPO_PATH='alphagov/govuk-prototype-kit'
 
 echo "Add config for alphagov/$REPO_PATH"
 

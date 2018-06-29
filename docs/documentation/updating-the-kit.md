@@ -41,7 +41,7 @@ Updating via the command line involves fetching the latest code from the 'upstre
 Firstly change to the base directory of your prototyping kit in terminal, for example:
 
 ```
-cd ~/sites/govuk_prototype_kit
+cd ~/sites/govuk-prototype-kit
 ```
 
 Once in the directory start by listing the git remote(s) you have referenced from your machine. To do this you type:
@@ -51,8 +51,8 @@ Once in the directory start by listing the git remote(s) you have referenced fro
 This will typically output a list of all the remote git repositories that have the prototype code, for example:
 
 ```
-origin  https://github.com/paulmsmith/govuk_prototype_kit.git (fetch)
-origin  https://github.com/paulmsmith/govuk_prototype_kit.git (push)
+origin  https://github.com/paulmsmith/govuk-prototype-kit.git (fetch)
+origin  https://github.com/paulmsmith/govuk-prototype-kit.git (push)
 ```
 
 So long as you can see a list of repositories as above, we can move on to adding a reference to the original 'alphagov' repository which we will need in order to update.
@@ -62,7 +62,7 @@ So long as you can see a list of repositories as above, we can move on to adding
 To add the alphagov remote repository, type the following command and hit enter:
 
 ```
-git remote add upstream https://github.com/alphagov/govuk_prototype_kit.git
+git remote add upstream https://github.com/alphagov/govuk-prototype-kit.git
 ```
 
 All being well, you will just return to a command prompt, now if you type:
@@ -71,10 +71,10 @@ All being well, you will just return to a command prompt, now if you type:
 You should see an 'upstream' in your list, for example:
 
 ```
-origin	https://github.com/paulmsmith/govuk_prototype_kit.git (fetch)
-origin	https://github.com/paulmsmith/govuk_prototype_kit.git (push)
-upstream	https://github.com/alphagov/govuk_prototype_kit.git (fetch)
-upstream	https://github.com/alphagov/govuk_prototype_kit.git (push)
+origin	https://github.com/paulmsmith/govuk-prototype-kit.git (fetch)
+origin	https://github.com/paulmsmith/govuk-prototype-kit.git (push)
+upstream	https://github.com/alphagov/govuk-prototype-kit.git (fetch)
+upstream	https://github.com/alphagov/govuk-prototype-kit.git (push)
 ```
 
 #### Merging from upstream
@@ -90,7 +90,7 @@ git fetch upstream latest-release
 You will see it output a few lines telling you that was successful, for example:
 
 ```
-From https://github.com/alphagov/govuk_prototype_kit
+From https://github.com/alphagov/govuk-prototype-kit
  * branch            latest-release    -> FETCH_HEAD
 ```
 
@@ -130,4 +130,4 @@ In terminal:
 npm start
 ```
 
-If you still have an error, you can [raise an issue within github](https://github.com/alphagov/govuk_prototype_kit/issues) or ask in the [Slack channel for users of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/) by providing as much information as you can about the error and the computer you are attempting to run the prototyping kit on.
+If you still have an error, you can [raise an issue within github](https://github.com/alphagov/govuk-prototype-kit/issues) or ask in the [Slack channel for users of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/) by providing as much information as you can about the error and the computer you are attempting to run the prototyping kit on.
