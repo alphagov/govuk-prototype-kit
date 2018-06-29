@@ -20,6 +20,7 @@ gulp.task('generate-assets', function (done) {
                 'sass-govuk-elements',
                 'sass-documentation',
                 'copy-assets',
+                'copy-govuk-elements-assets',
                 'copy-documentation-assets', done)
 })
 

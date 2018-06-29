@@ -30,7 +30,7 @@ gulp.task('sass-govuk-elements', function () {
       'node_modules/govuk_template_jinja/assets/stylesheets'
     ]}).on('error', sass.logError))
   .pipe(sourcemaps.write())
-  .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
+  .pipe(gulp.dest(config.paths.public + '/backwards-compatibility/govuk-elements/stylesheets/'))
 })
 
 gulp.task('sass-documentation', function () {

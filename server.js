@@ -96,7 +96,12 @@ app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
 
 // Backward compatibility with GOV.UK Elements
-app.use('/public', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
+app.use('/public/backwards-compatibility/govuk-elements/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
+app.use('/public/backwards-compatibility/govuk-elements/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
+app.use(
+  '/public/backwards-compatibility/govuk-elements/javascripts/govuk/',
+  express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/'
+)))
 
 // Serve govuk-frontend in /public
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
