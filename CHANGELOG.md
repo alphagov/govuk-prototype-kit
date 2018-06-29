@@ -1,5 +1,8 @@
 # Unreleased
 
+Bug fixes:
+- [#532 Update repo links from govuk_prototype_kit to govuk-prototype-kit](https://github.com/alphagov/govuk_prototype_kit/pull/532)
+
 # 7.0.0-beta.10
 
 Breaking changes:
