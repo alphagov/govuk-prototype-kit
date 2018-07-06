@@ -44,7 +44,6 @@ window.GOVUK.getCurrentLocation = function(){
       var $showOrHideAllButton;
 
       var uniqueId = $element.data('id') || false;
-      var stepNavTracker = new StepNavTracker(totalSteps, totalLinks, uniqueId);
 
       getTextForInsertedElements();
       addButtonstoSteps();
@@ -56,9 +55,9 @@ window.GOVUK.getCurrentLocation = function(){
       showLinkedStep();
       ensureOnlyOneActiveLink();
 
-      bindToggleForSteps(stepNavTracker);
-      bindToggleShowHideAllButton(stepNavTracker);
-      bindComponentLinkClicks(stepNavTracker);
+      bindToggleForSteps();
+      bindToggleShowHideAllButton();
+      bindComponentLinkClicks();
 
       function getTextForInsertedElements() {
         actions.showText = $element.attr('data-show-text');
@@ -170,7 +169,7 @@ window.GOVUK.getCurrentLocation = function(){
         });
       }
 
-      function bindToggleForSteps(stepNavTracker) {
+      function bindToggleForSteps() {
         $element.find('.js-toggle-panel').click(function (event) {
           var $step = $(this).closest('.js-step');
 
@@ -178,18 +177,15 @@ window.GOVUK.getCurrentLocation = function(){
           stepView.toggle();
 
           var stepIsOptional = typeof $step.data('optional') !== 'undefined' ? true : false;
-          var toggleClick = new StepToggleClick(event, stepView, $steps, stepNavTracker, stepIsOptional);
-          toggleClick.track();
 
           setShowHideAllText();
         });
       }
 
       // tracking click events on links in step content
-      function bindComponentLinkClicks(stepNavTracker) {
+      function bindComponentLinkClicks() {
         $element.find('.js-link').click(function (event) {
-          var linkClick = new componentLinkClick(event, stepNavTracker, $(this).attr('data-position'));
-          linkClick.track();
+
           var thisLinkHref = $(this).attr('href');
 
           if ($(this).attr('rel') !== 'external') {
@@ -251,7 +247,7 @@ window.GOVUK.getCurrentLocation = function(){
         });
       }
 
-      function bindToggleShowHideAllButton(stepNavTracker) {
+      function bindToggleShowHideAllButton() {
         $showOrHideAllButton = $element.find('.js-step-controls-button');
         $showOrHideAllButton.on('click', function () {
           var shouldshowAll;
@@ -260,18 +256,10 @@ window.GOVUK.getCurrentLocation = function(){
             $showOrHideAllButton.text(actions.hideAllText);
             $element.find('.js-toggle-link').text(actions.hideText)
             shouldshowAll = true;
-
-            stepNavTracker.track('pageElementInteraction', 'stepNavAllShown', {
-              label: actions.showAllText + ": " + stepNavSize
-            });
           } else {
             $showOrHideAllButton.text(actions.showAllText);
             $element.find('.js-toggle-link').text(actions.showText);
             shouldshowAll = false;
-
-            stepNavTracker.track('pageElementInteraction', 'stepNavAllHidden', {
-              label: actions.hideAllText + ": " + stepNavSize
-            });
           }
 
           setAllStepsShownState(shouldshowAll);
@@ -374,85 +362,5 @@ window.GOVUK.getCurrentLocation = function(){
       history.replaceState({}, '', newLocation);
     }
 
-    function StepToggleClick(event, stepView, $steps, stepNavTracker, stepIsOptional) {
-      this.track = trackClick;
-      var $target = $(event.target);
-
-      function trackClick() {
-        var tracking_options = {label: trackingLabel(), dimension28: stepView.numberOfContentItems().toString()}
-        stepNavTracker.track('pageElementInteraction', trackingAction(), tracking_options);
-      }
-
-      function trackingLabel() {
-        return $target.closest('.js-toggle-panel').attr('data-position') + ' - ' + stepView.title + ' - ' + locateClickElement() + ": " + stepNavSize + isOptional();
-      }
-
-      // returns index of the clicked step in the overall number of steps
-      function stepIndex() {
-        return $steps.index(stepView.element) + 1;
-      }
-
-      function trackingAction() {
-        return (stepView.isHidden() ? 'stepNavHidden' : 'stepNavShown');
-      }
-
-      function locateClickElement() {
-        if (clickedOnIcon()) {
-          return iconType() + ' click';
-        } else if (clickedOnHeading()) {
-          return 'Heading click';
-        } else {
-          return 'Elsewhere click';
-        }
-      }
-
-      function clickedOnIcon() {
-        return $target.hasClass('js-toggle-link');
-      }
-
-      function clickedOnHeading() {
-        return $target.hasClass('js-step-title-text');
-      }
-
-      function iconType() {
-        return (stepView.isHidden() ? 'Minus' : 'Plus');
-      }
-
-      function isOptional() {
-        return (stepIsOptional ? ' ; optional' : '');
-      }
-    }
-
-    function componentLinkClick(event, stepNavTracker, linkPosition) {
-      this.track = trackClick;
-
-      function trackClick() {
-        var tracking_options = {label: $(event.target).attr('href') + " : " + stepNavSize};
-        var dimension28 = $(event.target).closest('.app-step-nav__list').attr('data-length');
-
-        if (dimension28) {
-          tracking_options['dimension28'] = dimension28;
-        }
-
-        stepNavTracker.track('stepNavLinkClicked', linkPosition, tracking_options);
-      }
-    }
-
-    // A helper that sends a custom event request to Google Analytics if
-    // the GOVUK module is setup
-    function StepNavTracker(totalSteps, totalLinks, uniqueId) {
-      this.track = function(category, action, options) {
-        // dimension26 records the total number of expand/collapse steps in this step nav
-        // dimension27 records the total number of links in this step nav
-        // dimension28 records the number of links in the step that was shown/hidden (handled in click event)
-        if (GOVUK.analytics && GOVUK.analytics.trackEvent) {
-          options = options || {};
-          options["dimension26"] = options["dimension26"] || totalSteps.toString();
-          options["dimension27"] = options["dimension27"] || totalLinks.toString();
-          options["dimension96"] = options["dimension96"] || uniqueId;
-          GOVUK.analytics.trackEvent(category, action, options);
-        }
-      }
-    }
   };
 })(window.GOVUK.Modules);
