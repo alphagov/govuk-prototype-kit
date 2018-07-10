@@ -128,7 +128,7 @@ app.use(bodyParser.urlencoded({
 // Therefore we can avoid injecting third-party scripts that do not respect this decision.
 app.use(function (req, res, next) {
   // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT
-  app.locals.doNotTrackEnabled = (req.header('DNT') === '1')
+  res.locals.doNotTrackEnabled = (req.header('DNT') === '1')
   next()
 })
 
