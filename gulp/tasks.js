@@ -17,8 +17,10 @@ gulp.task('default', function (done) {
 gulp.task('generate-assets', function (done) {
   runSequence('clean',
                 'sass',
+                'sass-govuk-elements',
                 'sass-documentation',
                 'copy-assets',
+                'copy-govuk-elements-assets',
                 'copy-documentation-assets', done)
 })
 
