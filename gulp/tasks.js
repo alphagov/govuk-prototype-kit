@@ -17,14 +17,18 @@ gulp.task('default', function (done) {
 gulp.task('generate-assets', function (done) {
   runSequence('clean',
     'sass',
-    'sass-documentation',
     'copy-assets',
-    'copy-documentation-assets', done)
+    'sass-documentation',
+    'copy-assets-documentation',
+    'sass-v6',
+    'copy-assets-v6', done)
 })
 
 gulp.task('watch', function (done) {
   runSequence('watch-sass',
-    'watch-assets', done)
+    'watch-assets',
+    'watch-sass-v6',
+    'watch-assets-v6', done)
 })
 
 gulp.task('test', function () {
