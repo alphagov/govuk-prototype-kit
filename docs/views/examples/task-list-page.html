@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
 {% block pageTitle %}
   Task list
 {% endblock %}
@@ -7,9 +10,8 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds app-column-minimum">
-
-      <h1 class="govuk-heading-l">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
         Service name goes here
       </h1>
 
@@ -23,17 +25,13 @@
               <a class="app-task-list__task-name" href="#" aria-describedby="eligibility-completed">
                 Check eligibility
               </a>
-              <strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">
-                Completed
-              </strong>
+              <strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">Completed</strong>
             </li>
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="#" aria-describedby="read-declaration-completed">
                 Read declaration
               </a>
-              <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">
-                Completed
-              </strong>
+              <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">Completed</strong>
             </li>
           </ul>
         </li>
@@ -46,17 +44,13 @@
               <a class="app-task-list__task-name" href="#" aria-describedby="company-information-completed">
                 Company information
               </a>
-              <strong class="govuk-tag app-task-list__task-completed" id="company-information-completed">
-                Completed
-              </strong>
+              <strong class="govuk-tag app-task-list__task-completed" id="company-information-completed">Completed</strong>
             </li>
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="#" aria-describedby="contact-details-completed">
                 Your contact details
               </a>
-              <strong class="govuk-tag app-task-list__task-completed" id="contact-details-completed">
-                Completed
-              </strong>
+              <strong class="govuk-tag app-task-list__task-completed" id="contact-details-completed">Completed</strong>
             </li>
             <li class="app-task-list__item">
               <a class="app-task-list__task-name" href="#">
@@ -72,9 +66,7 @@
               <a class="app-task-list__task-name" href="#" aria-describedby="medical-information-completed">
                 Give medical information
               </a>
-              <strong class="govuk-tag app-task-list__task-completed" id="medical-information-completed">
-                Completed
-              </strong>
+              <strong class="govuk-tag app-task-list__task-completed" id="medical-information-completed">Completed</strong>
             </li>
           </ul>
         </li>

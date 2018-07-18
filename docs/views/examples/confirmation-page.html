@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
 {% block pageTitle %}
   Confirmation page example
 {% endblock %}
@@ -10,7 +13,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-panel govuk-panel--confirmation">
-        <h2 class="govuk-panel__title">Application complete</h2>
+        <h1 class="govuk-panel__title">Application complete</h1>
         <div class="govuk-panel__body">
           Your reference number<br><strong>HDJ2123F</strong>
         </div>
