@@ -1,9 +1,9 @@
 # Unreleased
 
 Bug fixes:
+- [#556 Update branching example](https://github.com/alphagov/govuk-prototype-kit/pull/556)
 - [#536 Import missing component macros](https://github.com/alphagov/govuk_prototype_kit/pull/536)
 - [#532 Update repo links from govuk_prototype_kit to govuk-prototype-kit](https://github.com/alphagov/govuk_prototype_kit/pull/532)
-
 - [#540 Fix grid css classes on check-your-answers page](https://github.com/alphagov/govuk-prototype-kit/pull/540)
 
 # 7.0.0-beta.10
