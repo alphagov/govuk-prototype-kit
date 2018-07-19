@@ -37,7 +37,7 @@
     "portscanner": "^2.1.1",
     "prompt": "^1.0.0",
     "require-dir": "^1.0.0",
-    "run-sequence": "^1.2.2",
+    "run-sequence": "^2.2.1",
     "standard": "^10.0.2",
     "supertest": "^3.0.0",
     "sync-request": "^4.0.3",
