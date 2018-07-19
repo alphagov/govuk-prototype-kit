@@ -205,12 +205,6 @@ if (typeof (routes) !== 'function') {
   app.use('/', routes)
 }
 
-// Redirect to the zip of the latest release of the Prototype Kit on GitHub
-app.get('/prototype-admin/download-latest', function (req, res) {
-  var url = utils.getLatestRelease()
-  res.redirect(url)
-})
-
 if (useDocumentation) {
   // Clone app locals to documentation app locals
   // Use Object.assign to ensure app.locals is cloned to prevent additions from

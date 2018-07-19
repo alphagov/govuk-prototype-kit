@@ -18,8 +18,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/install', function (req, res) {
-  var url = utils.getLatestRelease()
-  res.render('install', { 'releaseURL': url })
+  res.render('install')
 })
 
 // Pages in install folder are markdown
@@ -33,6 +32,12 @@ router.get('/install/:page', function (req, res) {
   var doc = fs.readFileSync(path.join(__dirname, '/documentation/install/', req.params.page + '.md'), 'utf8')
   var html = marked(doc)
   res.render('install_template', {'document': html})
+})
+
+// Redirect to the zip of the latest release of the Prototype Kit on GitHub
+router.get('/download', function (req, res) {
+  var url = utils.getLatestRelease()
+  res.redirect(url)
 })
 
 // Examples - examples post here
