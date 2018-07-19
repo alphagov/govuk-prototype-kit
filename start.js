@@ -47,7 +47,7 @@ function checkFiles () {
   const envExists = fs.existsSync(path.join(__dirname, '/.env'))
   if (!envExists) {
     fs.createReadStream(path.join(__dirname, '/lib/template.env'))
-    .pipe(fs.createWriteStream(path.join(__dirname, '/.env')))
+      .pipe(fs.createWriteStream(path.join(__dirname, '/.env')))
   }
 }
 
@@ -63,7 +63,7 @@ if (!sessionDataDefaultsFileExists) {
   }
 
   fs.createReadStream(path.join(__dirname, '/lib/template.session-data-defaults.js'))
-  .pipe(fs.createWriteStream(sessionDataDefaultsFile))
+    .pipe(fs.createWriteStream(sessionDataDefaultsFile))
 }
 
 // Run gulp

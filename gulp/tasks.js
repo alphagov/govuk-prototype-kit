@@ -10,35 +10,30 @@ const runSequence = require('run-sequence')
 
 gulp.task('default', function (done) {
   runSequence('generate-assets',
-                'watch',
-                'server', done)
+    'watch',
+    'server', done)
 })
 
 gulp.task('generate-assets', function (done) {
   runSequence('clean',
-                'sass',
-                'sass-documentation',
-                'copy-assets',
-                'copy-documentation-assets', done)
+    'sass',
+    'sass-documentation',
+    'copy-assets',
+    'copy-documentation-assets', done)
 })
 
 gulp.task('watch', function (done) {
   runSequence('watch-sass',
-               'watch-assets', done)
+    'watch-assets', done)
 })
 
 gulp.task('test', function () {
   runSequence('generate-assets',
-              'mocha')
+    'mocha')
 })
 
 gulp.task('mocha', function () {
   return gulp.src(['test/**/*.js'], { read: false })
-        .pipe(mocha({ reporter: 'spec' }))
-        .once('error', () => {
-          process.exit(1)
-        })
-        .once('end', () => {
-          process.exit()
-        })
+    .pipe(mocha({ reporter: 'spec', exit: true }))
+    .on('error', console.error)
 })

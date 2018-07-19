@@ -1,5 +1,23 @@
 # Unreleased
 
+New features:
+
+- [#557 Bump outdated dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/557):
+  - Update standard from 10.0.2 to 11.0.1 and fix violations
+  - Update run-sequence from 1.2.2 to 2.2.1
+  - Update require-dir from 0.3.2 to 1.0.0
+  - Update notifications-node-client from 3.0.0 to 4.1.0
+  - Update marked from 0.3.6 to 0.4.0
+  - Update gulp-sass from 3.1.0 to 4.0.1
+  - Update gulp-mocha from v4.3.1 to v6.0.0
+  - Update gulp-clean from 0.3.2 to 0.4.0
+  - Update express from 4.15.2 to 4.16.3
+  - Update dotenv from 4.0.0 to 6.0.0
+  - Update cross-spawn from 5.0.0 to 6.0.5
+  - Update basic-auth from 1.0.3 to 2.0.0
+- [#557 Remove unused readdir dependency](https://github.com/alphagov/govuk-prototype-kit/pull/557)
+- [#557 Fix a broken link in an error message](https://github.com/alphagov/govuk-prototype-kit/pull/557)
+
 Bug fixes:
 - [#556 Update branching example](https://github.com/alphagov/govuk-prototype-kit/pull/556)
 - [#536 Import missing component macros](https://github.com/alphagov/govuk_prototype_kit/pull/536)
