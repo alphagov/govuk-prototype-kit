@@ -48,16 +48,17 @@ router.get('/examples/template-data', function (req, res) {
 })
 
 // Branching
-router.get('/examples/over-18', function (req, res) {
-  // Get the answer from the query string (eg. ?over18=false)
-  var over18 = req.query.over18
+router.post('/examples/branching/over-18-answer', function (req, res) {
+  // Get the answer from session data
+  // The name between the quotes is the same as the 'name' attribute on the input elements
+  // However in JavaScript we can't use hyphens in variable names
+
+  let over18 = req.session.data['over-18']
 
   if (over18 === 'false') {
-    // Redirect to the relevant page
-    res.redirect('/docs/examples/under-18')
+    res.redirect('/docs/examples/branching/under-18')
   } else {
-    // If over18 is any other value (or is missing) render the page requested
-    res.render('examples/over-18')
+    res.redirect('/docs/examples/branching/over-18')
   }
 })
 
