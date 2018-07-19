@@ -38,7 +38,7 @@
     "prompt": "^1.0.0",
     "require-dir": "^1.0.0",
     "run-sequence": "^2.2.1",
-    "standard": "^10.0.2",
+    "standard": "^11.0.1",
     "supertest": "^3.0.0",
     "sync-request": "^4.0.3",
     "universal-analytics": "^0.4.16",
