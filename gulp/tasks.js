@@ -34,11 +34,6 @@ gulp.task('test', function () {
 
 gulp.task('mocha', function () {
   return gulp.src(['test/**/*.js'], { read: false })
-        .pipe(mocha({ reporter: 'spec' }))
-        .once('error', () => {
-          process.exit(1)
-        })
-        .once('end', () => {
-          process.exit()
-        })
+        .pipe(mocha({ reporter: 'spec', exit: true }))
+        .on('error', console.error)
 })

@@ -25,7 +25,7 @@
     "govuk-frontend": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
-    "gulp-mocha": "^4.3.1",
+    "gulp-mocha": "^6.0.0",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "3.1.0",
     "gulp-sourcemaps": "^2.6.0",
