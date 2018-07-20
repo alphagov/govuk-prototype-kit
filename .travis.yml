@@ -5,6 +5,8 @@ before_deploy:
 - test $TRAVIS_TEST_RESULT = 0
 before_install:
 - npm install -g mocha
+install:
+- npm install --no-optional
 deploy:
 - provider: script    # (If version.txt is updated) - create a new tag and push to Github, update the latest-release branch
   script: ./create-release.sh
