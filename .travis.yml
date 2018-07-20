@@ -5,6 +5,16 @@ before_deploy:
 - test $TRAVIS_TEST_RESULT = 0
 before_install:
 - npm install -g mocha
+install:
+- npm install --no-optional
+script:
+# Ensure Travis aborts without running tests if the package-lock.json file
+# needs updating
+- set -e
+# Check for package-lock file being out of sync
+- ./.travis/scripts/check-package-lock.sh
+# Run the actual tests
+- npm test
 deploy:
 - provider: script    # (If version.txt is updated) - create a new tag and push to Github, update the latest-release branch
   script: ./create-release.sh
