@@ -1,5 +1,9 @@
 @import "node_modules/govuk-frontend/all";
 
+img{
+  max-width: 100%;
+}
+
 // adjust code block font-size to 19px
 .hljs {
   font-size: 19px;
@@ -87,7 +91,7 @@
   pre {
     @extend .app-code;
   }
-  
+
   p code {
     border: 1px solid $govuk-border-colour;
     background-color: govuk-colour("grey-4");
