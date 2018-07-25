@@ -231,15 +231,15 @@ app.get(/\.html?$/i, function (req, res) {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^\/([^.]+)$/, function (req, res) {
-  utils.matchRoutes(req, res)
+app.get(/^([^.]+)$/, function (req, res, next) {
+  utils.matchRoutes(req, res, next)
 })
 
 if (useDocumentation) {
   // Documentation  routes
-  documentationApp.get(/^\/([^.]+)$/, function (req, res) {
+  documentationApp.get(/^([^.]+)$/, function (req, res, next) {
     if (!utils.matchMdRoutes(req, res)) {
-      utils.matchRoutes(req, res)
+      utils.matchRoutes(req, res, next)
     }
   })
 }
@@ -247,6 +247,20 @@ if (useDocumentation) {
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, function (req, res) {
   res.redirect('/' + req.params[0])
+})
+
+// Catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  var err = new Error(`Page not found: ${req.path}`)
+  err.status = 404
+  next(err)
+})
+
+// Display error
+app.use(function (err, req, res, next) {
+  console.error(err.message)
+  res.status(err.status || 500)
+  res.send(err.message)
 })
 
 console.log('\nGOV.UK Prototype Kit v' + releaseVersion)
