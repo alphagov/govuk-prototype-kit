@@ -5,10 +5,8 @@
 {% endblock %}
 
 {% block header %}
-  {{ govukHeader({
-    "homepageUrl": "/",
-    "containerClasses": "govuk-width-container"
-  }) }}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
 {% endblock %}
 
 {% block beforeContent %}
