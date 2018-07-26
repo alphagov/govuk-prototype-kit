@@ -82,6 +82,46 @@
       <h2 class="govuk-heading-m">Advanced features</h2>
 
       <h3 class="govuk-heading-s">
+        Using the data in Nunjucks macros
+      </h3>
+
+      <p>Example using the 'checked' function in a checkbox component macro:</p>
+
+<pre class="app-code"><code>{% raw %}
+{{ govukCheckboxes({
+  name: "vehicle-features",
+  fieldset: {
+    legend: {
+      text: "Which of these applies to your vehicle?"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "Heated seats",
+      text: "Heated seats",
+      id: "vehicle-features-heated-seats",
+      checked: checked("vehicle-features", "Heated seats")
+    },
+    {
+      value: "GPS",
+      text: "GPS",
+      id: "vehicle-features-gps",
+      checked: checked("vehicle-features", "GPS")
+    },
+    {
+      value: "Radio",
+      text: "Radio",
+      id: "vehicle-features-radio",
+      checked: checked("vehicle-features", "Radio")
+    }
+  ]
+}) }}
+{% endraw %}<code></pre>
+
+      <h3 class="govuk-heading-s">
         Using the data on the server
       </h3>
 
