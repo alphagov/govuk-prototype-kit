@@ -19,6 +19,7 @@ New features:
 - [#557 Fix a broken link in an error message](https://github.com/alphagov/govuk-prototype-kit/pull/557)
 
 Bug fixes:
+- [#566 Improve error handling](https://github.com/alphagov/govuk-prototype-kit/pull/566)
 - [#556 Update branching example](https://github.com/alphagov/govuk-prototype-kit/pull/556)
 - [#536 Import missing component macros](https://github.com/alphagov/govuk_prototype_kit/pull/536)
 - [#532 Update repo links from govuk_prototype_kit to govuk-prototype-kit](https://github.com/alphagov/govuk_prototype_kit/pull/532)
