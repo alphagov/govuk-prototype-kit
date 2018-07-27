@@ -1,6 +1,7 @@
 # Unreleased
 
 New features:
+- [#568 Update GOV.UK Frontend to 1.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/568)
 - [#563 Add Nunjucks macro example to 'passing data' guidance](https://github.com/alphagov/govuk-prototype-kit/pull/563)
 - [#557 Bump outdated dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/557):
   - Update standard from 10.0.2 to 11.0.1 and fix violations
