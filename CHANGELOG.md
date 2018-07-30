@@ -32,6 +32,19 @@ Breaking changes:
 
 - [#512 Update to GOV.UK Frontend](https://github.com/alphagov/govuk_prototype_kit/pull/512)
 
+You will need to:
+
+- update `app/views/includes/scripts.html` file and add the following line to include the JavaScript file
+```
+<script src="/node_modules/govuk-frontend/all.js"></script>
+```
+- modify `app/assets/javascripts/application.js` file to initialise the JavaScript
+```
+$(document).ready(function () {
+   window.GOVUKFrontend.initAll()
+})
+```
+
 New features:
 
 - [#501 Add default session data](https://github.com/alphagov/govuk_prototype_kit/pull/501)
