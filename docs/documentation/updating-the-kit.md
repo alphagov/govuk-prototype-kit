@@ -4,11 +4,11 @@
 
 If you have made any changes outside the `app` folder, this process will destroy those changes. We will try and improve the update process to avoid this, but in the meantime you will need to make a note of your changes outside `app`, and add them back after updating.
 
-## Version 7
+## Updating from version 6 to version 7
 
-Version 7 of the GOV.UK Prototype Kit is a large change from previous versions. Updating an old prototype will mean re-writing most of the code.
+Version 7 of the GOV.UK Prototype Kit is a large change from previous versions.
 
-We are working on ways to make updating easier, so if you have a large prototype it may be worth waiting for that.
+If you have a large old prototype, follow this [guide to backward compatibility](/docs/backwards-compatibility) which lets you update the Prototype Kit without having to rewrite all your pages at once.
 
 There is a [guide to updating your code](https://design-system.service.gov.uk/get-started/updating-your-code/) on the GOV.UK Design System.
 
