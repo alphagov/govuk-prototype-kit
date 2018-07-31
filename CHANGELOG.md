@@ -1,4 +1,9 @@
-# Unreleased
+# 7.0.0
+
+This release adds backwards compatibility, so you can use old prototypes
+made in v6 of the Prototype Kit in v7.
+
+[Read the guidance on using backwards compatibility](https://govuk-prototype-kit.herokuapp.com/docs/backwards-compatibility)
 
 New features:
 - [#568 Update GOV.UK Frontend to 1.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/568)
