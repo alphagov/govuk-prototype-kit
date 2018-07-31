@@ -147,7 +147,7 @@ if (useV6) {
   var v6Views = [
     path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
     path.join(__dirname, '/app/v6/views/'),
-    path.join(__dirname, '/lib/')
+    path.join(__dirname, '/lib/v6') // for old unbranded template
   ]
 
   var nunjucksV6Env = nunjucks.configure(v6Views, {
