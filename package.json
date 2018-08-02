@@ -33,6 +33,7 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-util": "^3.0.7",
+    "keypather": "^3.0.0",
     "marked": "^0.4.0",
     "minimist": "1.2.0",
     "notifications-node-client": "^4.1.0",

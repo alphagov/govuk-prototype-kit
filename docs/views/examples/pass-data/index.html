@@ -47,6 +47,10 @@
 
       <pre class="app-code"><code>&lt;p&gt;{%raw%}{{ data['first-name'] }}{%endraw%}&lt;/p&gt;</code></pre>
 
+      <p>Or with nested fields:</p>
+
+      <pre class="app-code"><code>&lt;p&gt;{%raw%}{{ data['claimant']['first-name'] }}{%endraw%}&lt;/p&gt;</code></pre>
+
       <h3 class="govuk-heading-s">
         Clearing data
       </h3>
@@ -69,7 +73,11 @@
 
       <p>For a radio or checkbox input you need to use the 'checked' function:</p>
 
-      <pre class="app-code"><code>&lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked('over-18','yes') }}{%endraw%}&gt;</code></pre>
+      <pre class="app-code"><code>&lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked("over-18", "yes") }}{%endraw%}&gt;</code></pre>
+
+      <p>Or with nested fields:</p>
+
+      <pre class="app-code"><code>&lt;input type="radio" name="claimant[over-18]" value="yes" {%raw%}{{ checked("['claimant']['over-18']", "yes") }}{%endraw%}&gt;</code></pre>
 
       <h3 class="govuk-heading-s">
         Setting default data
@@ -122,12 +130,62 @@
 {% endraw %}<code></pre>
 
       <h3 class="govuk-heading-s">
+        Using the data in Nunjucks macros (nested fields)
+      </h3>
+
+      <p>Example using the 'checked' function in a checkbox component macro (nested fields for multiple vehicles):</p>
+
+<pre class="app-code"><code>{% raw %}
+{{ govukCheckboxes({
+  name: "vehicle1[vehicle-features]"
+  fieldset: {
+    legend: {
+      text: "Which of these applies to your vehicle?"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "Heated seats",
+      text: "Heated seats",
+      id: "vehicle1-vehicle-features-heated-seats",
+      checked: checked("['vehicle1']['vehicle-features']", "Heated seats")
+    },
+    {
+      value: "GPS",
+      text: "GPS",
+      id: "vehicle1-vehicle-features-gps",
+      checked: checked("['vehicle1']['vehicle-features']", "GPS")
+    },
+    {
+      value: "Radio",
+      text: "Radio",
+      id: "vehicle1-vehicle-features-radio",
+      checked: checked("['vehicle1']['vehicle-features']", "Radio")
+    }
+  ]
+}) }}
+{% endraw %}<code></pre>
+
+      <h3 class="govuk-heading-s">
         Using the data on the server
       </h3>
 
-      <p>You can access the data on the server in a route, for example for an input with name="first-name":</p>
+      <p>You can access the data on the server in a route function</p>
+
+      <p>For example for an input with name="first-name":</p>
 
       <pre class="app-code"><code>var firstName = req.session.data['first-name']</code></pre>
+
+      <h3 class="govuk-heading-s">
+        Using the data on the server (nested fields)
+      </h3>
+
+      <p>For example for an input with name="claimant[first-name]":</p>
+
+      <pre class="app-code"><code>var firstName = req.session.data['claimant']['first-name']</code></pre>
 
       <h3 class="govuk-heading-s">
         Ignoring inputs
