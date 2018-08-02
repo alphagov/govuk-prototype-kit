@@ -1,3 +1,9 @@
+# Unreleased
+
+Bug fixes:
+
+- [Update link from question page template to design system](https://github.com/alphagov/govuk-prototype-kit/pull/575)
+
 # 7.0.0
 
 This release adds backwards compatibility, so you can use old prototypes
