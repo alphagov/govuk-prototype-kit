@@ -47,6 +47,9 @@
     "universal-analytics": "^0.4.16",
     "uuid": "^3.2.1"
   },
+  "govukPluginFrameworks": [
+    "govuk-frontend"
+  ],
   "greenkeeper": {
     "ignore": [
       "nunjucks"

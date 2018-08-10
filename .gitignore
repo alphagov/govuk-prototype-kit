@@ -1,5 +1,7 @@
 # ignore tracking usage data config - we want a different one for each user
 usage-data-config.json
+# ignore plugin include SCSS because it's dynamically generated
+app/assets/sass/allPluginIncludes-generated.scss
 .env
 .sass-cache
 .DS_Store

@@ -17,6 +17,7 @@ const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
+const pluginDetection = require('./lib/plugin-detection.js')
 
 // Variables for v6 backwards compatibility
 // Set false by default, then turn on if we find /app/v6/routes.js
@@ -87,12 +88,10 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = [
-  path.join(__dirname, '/node_modules/govuk-frontend/'),
-  path.join(__dirname, '/node_modules/govuk-frontend/components'),
+var appViews = pluginDetection.getList('nunjucksDirs', pluginDetection.transform.scopeFilePathsToModule).reverse().concat([
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/')
-]
+])
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
   autoescape: true,
@@ -109,19 +108,33 @@ app.set('view engine', 'html')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
+
+app.use((req, res, next) => {
+  res.locals = res.locals || {}
+  Object.assign(res.locals, {
+    pluginConfig: {
+      scripts: pluginDetection.getList('scripts', pluginDetection.transform.publicAssetPaths),
+      stylesheets: pluginDetection.getList('stylesheets', pluginDetection.transform.publicAssetPaths)
+    }
+  })
+  next()
+})
 
 // Serve govuk-frontend in /public
-app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+pluginDetection.getList('scripts', pluginDetection.transform.filesystemPathAndPublicAssetPaths)
+  .concat(pluginDetection.getList('stylesheets', pluginDetection.transform.filesystemPathAndPublicAssetPaths))
+  .concat(pluginDetection.getList('assets', pluginDetection.transform.filesystemPathAndPublicAssetPaths).reverse())
+  .concat(pluginDetection.getList('globalAssets', pluginDetection.transform.filesystemPathAndGlobalAssetPaths).reverse())
+  .forEach(paths => {
+    app.use(paths.publicPath, express.static(paths.filesystemPath))
+  })
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [
-    path.join(__dirname, '/node_modules/govuk-frontend/'),
-    path.join(__dirname, '/node_modules/govuk-frontend/components'),
+  var documentationViews = pluginDetection.getList('nunjucksDirs', pluginDetection.transform.scopeFilePathsToModule).concat([
     path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/')
-  ]
+  ])
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
     autoescape: true,
