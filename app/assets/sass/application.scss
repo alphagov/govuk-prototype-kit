@@ -1,8 +1,8 @@
 // global styles for <a> and <p> tags
 $govuk-global-styles: true;
 
-// Import GOV.UK Frontend
-@import "node_modules/govuk-frontend/all";
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import "lib/extensions/extensions";
 
 // Patterns that aren't in Frontend
 @import "patterns/step-by-step-navigation";
