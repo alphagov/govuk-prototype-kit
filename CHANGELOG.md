@@ -1,5 +1,9 @@
 # Unreleased
 
+New Features:
+
+- [Rename and reorganise template pages to be easier to use](https://github.com/alphagov/govuk-prototype-kit/pull/578)
+
 Bug fixes:
 
 - [Update link from question page template to design system](https://github.com/alphagov/govuk-prototype-kit/pull/575)
