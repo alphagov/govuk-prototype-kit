@@ -11,7 +11,7 @@ const nunjucks = require('nunjucks')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 
-// Environment variables
+// Run before other code to make sure variables from .env are available
 dotenv.config()
 
 // Local dependencies
