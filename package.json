@@ -1,7 +1,7 @@
 {
   "name": "express-prototype",
   "description": "GOVUK prototyping app in Express",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "private": true,
   "engines": {
     "node": "^8.9.1"
