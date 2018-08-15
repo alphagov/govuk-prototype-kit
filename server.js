@@ -11,6 +11,9 @@ const nunjucks = require('nunjucks')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 
+// Run before other code to make sure variables from .env are available
+dotenv.config()
+
 // Local dependencies
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
@@ -38,8 +41,6 @@ if (useV6) {
   console.log('/app/v6/routes.js detected - using v6 compatibility mode')
   v6App = express()
 }
-
-dotenv.config()
 
 // Set cookies for use in cookie banner.
 app.use(cookieParser())

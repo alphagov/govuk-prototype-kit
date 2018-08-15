@@ -8,6 +8,7 @@ New Features:
 
 Bug fixes:
 
+- [Fix loading variables from .env](https://github.com/alphagov/govuk-prototype-kit/pull/583)
 - [Update link from question page template to design system](https://github.com/alphagov/govuk-prototype-kit/pull/575)
 - [Changed block name to bodyEnd to fix scripts in unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/580)
 
