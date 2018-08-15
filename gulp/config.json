@@ -5,6 +5,7 @@
     "docsAssets" : "docs/assets/",
     "v6Assets": "app/v6/assets/",
     "nodeModules": "node_modules/",
-    "lib": "lib/"
+    "lib": "lib/",
+    "components" : "app/components/"
   }
 }

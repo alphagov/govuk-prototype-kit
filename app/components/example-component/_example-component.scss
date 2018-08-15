@@ -1,0 +1,9 @@
+.app-example-component {
+  @include govuk-font(
+    $size: 24,
+    $weight: bold
+  );
+  background-color: govuk-colour('pink');
+  color: govuk-colour('white');
+  padding: govuk-spacing(6);
+}

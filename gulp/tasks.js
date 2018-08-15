@@ -18,6 +18,7 @@ gulp.task('generate-assets', function (done) {
   runSequence('clean',
     'sass',
     'copy-assets',
+    'copy-component-js',
     'sass-documentation',
     'copy-assets-documentation',
     'sass-v6',

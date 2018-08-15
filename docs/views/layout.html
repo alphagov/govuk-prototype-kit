@@ -23,6 +23,8 @@
 {% from "textarea/macro.njk"      import govukTextarea %}
 {% from "warning-text/macro.njk"  import govukWarningText %}
 
+{% from "example-component/macro.njk"  import appExampleComponent %}
+
 {% block head %}
   {% include "includes/head.html" %}
   {% if doNotTrackEnabled == false and promoMode == 'true' and gtmId %}
@@ -108,5 +110,6 @@
 
 {% block bodyEnd %}
   {% include "includes/scripts.html" %}
+  {% block pageScripts %}{% endblock %}
   <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
 {% endblock %}

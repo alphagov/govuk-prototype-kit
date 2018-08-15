@@ -91,7 +91,8 @@ var appViews = [
   path.join(__dirname, '/node_modules/govuk-frontend/'),
   path.join(__dirname, '/node_modules/govuk-frontend/components'),
   path.join(__dirname, '/app/views/'),
-  path.join(__dirname, '/lib/')
+  path.join(__dirname, '/lib/'),
+  path.join(__dirname, '/app/components/')
 ]
 
 var nunjucksAppEnv = nunjucks.configure(appViews, {
@@ -120,7 +121,8 @@ if (useDocumentation) {
     path.join(__dirname, '/node_modules/govuk-frontend/'),
     path.join(__dirname, '/node_modules/govuk-frontend/components'),
     path.join(__dirname, '/docs/views/'),
-    path.join(__dirname, '/lib/')
+    path.join(__dirname, '/lib/'),
+    path.join(__dirname, '/app/components/')
   ]
 
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, {
