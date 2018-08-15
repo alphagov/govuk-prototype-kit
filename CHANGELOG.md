@@ -3,6 +3,7 @@
 New Features:
 
 - [Rename and reorganise template pages to be easier to use](https://github.com/alphagov/govuk-prototype-kit/pull/578)
+- [Add kit version and link to footer](https://github.com/alphagov/govuk-prototype-kit/pull/476)
 
 Bug fixes:
 
