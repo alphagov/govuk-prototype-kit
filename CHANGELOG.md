@@ -1,8 +1,16 @@
-# Unreleased
+# 7.1.0
+
+New Features:
+
+- [Update GOV.UK Frontend to v1.3.0](https://github.com/alphagov/govuk-prototype-kit/pull/581)
+- [Rename and reorganise template pages to be easier to use](https://github.com/alphagov/govuk-prototype-kit/pull/578)
+- [Add kit version and link to footer](https://github.com/alphagov/govuk-prototype-kit/pull/476)
 
 Bug fixes:
 
+- [Fix loading variables from .env](https://github.com/alphagov/govuk-prototype-kit/pull/583)
 - [Update link from question page template to design system](https://github.com/alphagov/govuk-prototype-kit/pull/575)
+- [Changed block name to bodyEnd to fix scripts in unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/580)
 
 # 7.0.0
 
