@@ -5,18 +5,20 @@
   Clear data? | GOV.UK Prototype Kit
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ govukBackLink({
-          "text": "Back",
-          "href": "javascript: window.history.go(-1)"
-        }) 
-      }}
-
       <h1 class="govuk-heading-xl">
-        Are you sure?
+        Clear data?
       </h1>
       {{ govukWarningText({
         text: "This will clear all of the data entered in this session",
@@ -25,7 +27,7 @@
 
 
       {{ govukButton({
-        text: "Clear data",
+        text: "Clear the data",
         href: "/prototype-admin/clear-data"
       }) }}
     </div>
