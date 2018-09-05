@@ -1,3 +1,9 @@
+# Unreleased
+
+New features:
+
+- [Restart the app if environment variables change](https://github.com/alphagov/govuk-prototype-kit/pull/389)
+
 # 7.1.0
 
 New Features:
