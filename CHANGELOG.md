@@ -3,6 +3,7 @@
 New features:
 
 - [Restart the app if environment variables change](https://github.com/alphagov/govuk-prototype-kit/pull/389)
+- [Make it more difficult to accidentally clear the session data](https://github.com/alphagov/govuk-prototype-kit/pull/588)
 
 # 7.1.0
 
