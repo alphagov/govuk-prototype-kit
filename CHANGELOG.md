@@ -2,6 +2,7 @@
 
 New features:
 
+- [Add config to allow permanent session in cookie](https://github.com/alphagov/govuk-prototype-kit/pull/593)
 - [Allow nested field values in session](https://github.com/alphagov/govuk-prototype-kit/pull/573)
 - [Restart the app if environment variables change](https://github.com/alphagov/govuk-prototype-kit/pull/389)
 - [Make it more difficult to accidentally clear the session data](https://github.com/alphagov/govuk-prototype-kit/pull/588)
