@@ -1,4 +1,4 @@
-# Unreleased
+# 8.0.0
 
 Breaking changes:
 
