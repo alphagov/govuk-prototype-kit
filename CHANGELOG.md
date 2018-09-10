@@ -1,6 +1,10 @@
 # Unreleased
 
+New features: 
+
 - [#574 Add Notify integration guidance](https://github.com/alphagov/govuk-prototype-kit/pull/574)
+
+- [Add npm install reminder when prototype crashes](https://github.com/alphagov/govuk-prototype-kit/pull/598)
 
 # 8.2.0
 
