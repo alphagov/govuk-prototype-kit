@@ -1,5 +1,9 @@
 # Unreleased
 
+Breaking changes:
+
+- [#595 Update GOV.UK Frontend to v2.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/595)
+
 New features:
 
 - [Add config to allow permanent session in cookie](https://github.com/alphagov/govuk-prototype-kit/pull/593)
