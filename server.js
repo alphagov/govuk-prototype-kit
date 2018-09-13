@@ -132,10 +132,6 @@ app.use((req, res, next) => {
   .map(extensions.mappers.publicUrlAndFileSystemPath)
   .concat(extensions.getList('globalAssets').map(extensions.mappers.globalAssetUrlAndFileSystemPath))
   .reverse()
-  .map(x => {
-    console.log(x)
-    return x
-  })
   .forEach(paths => {
     app.use(paths.publicUrl, express.static(paths.filesystemPath))
   })
