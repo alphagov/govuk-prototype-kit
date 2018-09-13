@@ -11,14 +11,14 @@ const sourcemaps = require('gulp-sourcemaps')
 const path = require('path')
 const fs = require('fs')
 
-const pluginDetection = require('../lib/plugin-detection')
+const extensions = require('../lib/extensions')
 const config = require('./config.json')
 
 gulp.task('sass-plugins', function (done) {
-  const fileContents = pluginDetection.getList('sassIncludes', pluginDetection.transform.scopeFilePathsToModule)
+  const fileContents = extensions.getList('sass').map(extensions.mappers.fileSystemPath)
     .map(filePath => `@import "${filePath}";`)
     .join('\n')
-  fs.writeFile(path.join(config.paths.assets, 'sass', 'allPluginIncludes-generated.scss'), fileContents, done)
+  fs.writeFile(path.join(config.paths.assets, 'sass', '_extensions.scss'), fileContents, done)
 })
 
 gulp.task('sass', function () {

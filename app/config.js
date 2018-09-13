@@ -25,6 +25,21 @@ module.exports = {
   cookieText: 'GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a>',
 
   // Enable or disable Browser Sync
-  useBrowserSync: 'true'
+  useBrowserSync: 'true',
+
+  // These extensions will be included before others
+  // This is where you can deal with extensions which conflict or rely on each other
+  topPriorityExtensions: ['govuk-frontend', 'z-govuk-plugin-example'],
+
+  // If a node_module doesn't have a config file but can be used as an extension you can write your own config here
+  // if the module has an extension config included this will be ignored
+  additionalExtensionConfigs: {
+    'govuk-frontend': {
+      nunjucksPaths: ['/', '/components'],
+      scripts: ['/all.js'],
+      globalAssets: ['/assets'],
+      sass: ['/all.scss']
+    }
+  }
 
 }

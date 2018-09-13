@@ -20,7 +20,7 @@ const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
-const pluginDetection = require('./lib/plugin-detection.js')
+const extensions = require('./lib/extensions.js')
 
 // Variables for v6 backwards compatibility
 // Set false by default, then turn on if we find /app/v6/routes.js
@@ -89,7 +89,7 @@ if (env === 'production' && useAuth === 'true') {
 }
 
 // Set up App
-var appViews = pluginDetection.getList('nunjucksDirs', pluginDetection.transform.scopeFilePathsToModule).reverse().concat([
+var appViews = extensions.getList('nunjucksPaths').map(extensions.mappers.fileSystemPath).reverse().concat([
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/')
 ])
@@ -114,25 +114,34 @@ app.use((req, res, next) => {
   res.locals = res.locals || {}
   Object.assign(res.locals, {
     pluginConfig: {
-      scripts: pluginDetection.getList('scripts', pluginDetection.transform.publicAssetPaths),
-      stylesheets: pluginDetection.getList('stylesheets', pluginDetection.transform.publicAssetPaths)
+      scripts: extensions.getList('scripts').map(extensions.mappers.publicUrl),
+      stylesheets: extensions.getList('stylesheets').map(extensions.mappers.publicUrl)
     }
   })
   next()
 })
 
-// Serve govuk-frontend in /public
-pluginDetection.getList('scripts', pluginDetection.transform.filesystemPathAndPublicAssetPaths)
-  .concat(pluginDetection.getList('stylesheets', pluginDetection.transform.filesystemPathAndPublicAssetPaths))
-  .concat(pluginDetection.getList('assets', pluginDetection.transform.filesystemPathAndPublicAssetPaths).reverse())
-  .concat(pluginDetection.getList('globalAssets', pluginDetection.transform.filesystemPathAndGlobalAssetPaths).reverse())
+// Serve assets from extensions
+;[]
+  .concat(
+    extensions.getList('scripts'),
+    extensions.getList('stylesheets'),
+    extensions.getList('assets')
+  )
+  .map(extensions.mappers.publicUrlAndFileSystemPath)
+  .concat(extensions.getList('globalAssets').map(extensions.mappers.globalAssetUrlAndFileSystemPath))
+  .reverse()
+  .map(x => {
+    console.log(x)
+    return x
+  })
   .forEach(paths => {
-    app.use(paths.publicPath, express.static(paths.filesystemPath))
+    app.use(paths.publicUrl, express.static(paths.filesystemPath))
   })
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = pluginDetection.getList('nunjucksDirs', pluginDetection.transform.scopeFilePathsToModule).concat([
+  var documentationViews = extensions.getList('nunjucksPaths').map(extensions.mappers.fileSystemPath).concat([
     path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/')
   ])

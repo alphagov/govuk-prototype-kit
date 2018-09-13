@@ -2,7 +2,7 @@
 $govuk-global-styles: true;
 
 // Import GOV.UK Frontend
-@import "allPluginIncludes-generated";
+@import "extensions";
 
 // Patterns that aren't in Frontend
 @import "patterns/check-your-answers";
