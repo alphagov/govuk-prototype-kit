@@ -14,8 +14,8 @@ const config = require('./config.json')
 
 gulp.task('server', function () {
   nodemon({
+    watch: ['.env', '**/*.js', '**/*.json'],
     script: 'server.js',
-    ext: 'js, json',
     ignore: [config.paths.public + '*',
       config.paths.assets + '*',
       config.paths.nodeModules + '*']

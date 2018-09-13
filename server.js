@@ -1,5 +1,4 @@
 // Core dependencies
-const crypto = require('crypto')
 const path = require('path')
 
 // NPM dependencies
@@ -8,7 +7,8 @@ const browserSync = require('browser-sync')
 const dotenv = require('dotenv')
 const express = require('express')
 const nunjucks = require('nunjucks')
-const session = require('express-session')
+const sessionInCookie = require('client-sessions')
+const sessionInMemory = require('express-session')
 const cookieParser = require('cookie-parser')
 
 // Run before other code to make sure variables from .env are available
@@ -57,6 +57,7 @@ var password = process.env.PASSWORD
 var env = process.env.NODE_ENV || 'development'
 var useAuth = process.env.USE_AUTH || config.useAuth
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
+var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var useBrowserSync = config.useBrowserSync
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
@@ -204,23 +205,36 @@ app.use(function (req, res, next) {
 app.locals.gtmId = gtmId
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
+app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
 app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 
-// Support session data
-app.use(session({
+// Session uses service name to avoid clashes with other prototypes
+const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
+let sessionOptions = {
+  secret: sessionName,
   cookie: {
     maxAge: 1000 * 60 * 60 * 4, // 4 hours
     secure: isSecure
-  },
-  // use random name to avoid clashes with other prototypes
-  name: 'govuk-prototype-kit-' + crypto.randomBytes(64).toString('hex'),
-  resave: false,
-  saveUninitialized: false,
-  secret: crypto.randomBytes(64).toString('hex')
-}))
+  }
+}
+
+// Support session data in cookie or memory
+if (useCookieSessionStore === 'true') {
+  app.use(sessionInCookie(Object.assign(sessionOptions, {
+    cookieName: sessionName,
+    proxy: true,
+    requestKey: 'session'
+  })))
+} else {
+  app.use(sessionInMemory(Object.assign(sessionOptions, {
+    name: sessionName,
+    resave: false,
+    saveUninitialized: false
+  })))
+}
 
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
@@ -236,7 +250,7 @@ if (useAutoStoreData === 'true') {
 
 // Clear all data in session if you open /prototype-admin/clear-data
 app.get('/prototype-admin/clear-data', function (req, res) {
-  req.session.destroy()
+  req.session.data = {}
   res.render('prototype-admin/clear-data')
 })
 
