@@ -44,4 +44,31 @@ describe('The Prototype Kit', function () {
         }
       })
   })
+
+  it('should allow known assets to be loaded from node_modules', function (done) {
+    request(app)
+      .get('/extension-assets/govuk-frontend/all.js')
+      .expect('Content-Type', /application\/javascript; charset=UTF-8/)
+      .expect(200)
+      .end(function (err, res) {
+        if (err) {
+          done(err)
+        } else {
+          done()
+        }
+      })
+  })
+
+  it('should send with a well formed response for the docs page', function (done) {
+    request(app)
+      .get('/extension-assets/govuk-frontend/common.js')
+      .expect(404)
+      .end(function (err, res) {
+        if (err) {
+          done(err)
+        } else {
+          done()
+        }
+      })
+  })
 })
