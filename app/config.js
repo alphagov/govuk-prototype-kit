@@ -33,7 +33,7 @@ module.exports = {
 
   // These extensions will be included before others
   // This is where you can deal with extensions which conflict or rely on each other
-  topPriorityExtensions: ['govuk-frontend'],
+  foundationExtensions: ['govuk-frontend'],
 
   // If a node_module doesn't have a config file but can be used as an extension you can write your own config here
   // if the module has an extension config included this will be ignored
