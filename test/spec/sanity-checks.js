@@ -4,6 +4,7 @@ var app = require('../../server.js')
 var path = require('path')
 var fs = require('fs')
 var assert = require('assert')
+var extensions = require('../../lib/extensions')
 
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
@@ -90,5 +91,9 @@ describe('The Prototype Kit', function () {
           done()
         }
       })
+  })
+
+  it('should not break when asking for an extension key which isn\'t used', function () {
+    assert.deepEqual(extensions.getList('thisListDoesNotExist'), [])
   })
 })

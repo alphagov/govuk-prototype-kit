@@ -41,7 +41,7 @@ module.exports = {
     'govuk-frontend': {
       nunjucksPaths: ['/', '/components'],
       scripts: ['/all.js'],
-      globalAssets: ['/assets'],
+      assets: [{global: true, src: '/assets'}],
       sass: ['/all.scss']
     }
   }
