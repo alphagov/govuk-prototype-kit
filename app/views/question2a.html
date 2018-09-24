@@ -1,0 +1,45 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<form action="/question3a" method="post">
+
+			<div class="govuk-form-group">
+			  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+				  <h1 class="govuk-fieldset__heading">
+					Does the client or client's partner receive benefits?
+				  </h1>
+				</legend>
+				<div class="govuk-radios" data-module="radios">
+				  <div class="govuk-radios__item">
+					<input class="govuk-radios__input" id="benefits-1" name="benefits" type="radio" value="yes" data-aria-controls="conditional-how-contacted-conditional-1">
+					<label class="govuk-label govuk-radios__label" for="benefits-1">
+					  Yes
+					</label>
+				  </div>
+				  <div class="govuk-radios__item">
+					<input class="govuk-radios__input" id="benefits-2" name="benefits" type="radio" value="no" data-aria-controls="conditional-how-contacted-conditional-2">
+					<label class="govuk-label govuk-radios__label" for="benefits-2">
+					  No
+					</label>
+				  </div>
+				  
+				</div>
+			  </fieldset>
+			</div>
+			<button type="submit" class="govuk-button" >
+				Next
+			</button>
+ 		</form>
+    </div>
+</div>
+
+{% endblock %}
