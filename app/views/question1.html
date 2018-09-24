@@ -1,0 +1,64 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK - Civil Eligibility Calculator
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form action="question1.html" method="post">
+
+          <main class="govuk-main-wrapper " id="main-content" role="main">
+
+
+              {{ govukRadios({
+                classes: "govuk-radios--inline",
+                idPrefix: "case-start",
+                name: "case-start",
+                fieldset: {
+                  legend: {
+                    text: "Are you assessing your clients means for a case started before 1st April 2013?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--xl"
+                  }
+                },
+                hint: {
+                  text: "Check start date of case."
+                },
+                items: [
+                  {
+                    value: "yes",
+                    text: "Yes"
+                  },
+                  {
+                    value: "no",
+                    text: "No"
+                  }
+                ]
+              }) }}
+
+
+
+            {{ govukButton({
+              text: "Next question",
+              href: "question1.html",
+              classes: "govuk-button--start"
+            }) }}
+
+
+
+
+          </main>
+
+      </form>
+
+
+    </div>
+</div>
+
+{% endblock %}
