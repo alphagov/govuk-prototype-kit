@@ -1,0 +1,71 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<form action="/question3" method="post">
+
+		<div class="govuk-form-group">
+		  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+			<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+			  <h1 class="govuk-fieldset__heading">
+				Does the client or client's partner receive benefits?
+			  </h1>
+			</legend>
+			<div class="govuk-radios" data-module="radios">
+			  <div class="govuk-radios__item">
+				<input class="govuk-radios__input" id="benefits-1" name="benefits" type="radio" value="yes" data-aria-controls="conditional-how-contacted-conditional-1">
+				<label class="govuk-label govuk-radios__label" for="benefits-1">
+				  Yes
+				</label>
+			  </div>
+			  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
+				<div class="govuk-form-group">
+				    <label class="govuk-label" for="contact-by-email">
+					Which ones?
+				  </label>
+					<div class="govuk-form-group">
+						 <div class="govuk-radios">
+						  <div class="govuk-radios__item">
+							<input class="govuk-radios__input" id="benefit-type-1" name="NI-benefits" type="radio" value="true">
+							<label class="govuk-label govuk-radios__label" for="benefit-type-1">
+							  Income Support, Income Based Jobseeker's Allowance, Income Based Employment and Support Allowance, or Guarantee Credit
+							</label>
+						  </div>
+						  <div class="govuk-radios__item">
+							<input class="govuk-radios__input" id="benefit-type-2" name="NI-benefits" type="radio" value="false">
+							<label class="govuk-label govuk-radios__label" for="benefit-type-2">
+							  NASS payments (Immigration and Asylum category work only)
+							</label>
+						  </div>
+						</div>
+					</div>
+			
+				</div>
+
+			  </div>
+			  <div class="govuk-radios__item">
+				<input class="govuk-radios__input" id="benefits-2" name="benefits" type="radio" value="no" data-aria-controls="conditional-how-contacted-conditional-2">
+				<label class="govuk-label govuk-radios__label" for="benefits-2">
+				  No
+				</label>
+			  </div>
+			  
+			</div>
+		  </fieldset>
+		</div>
+		<!-- <button> changed to <a>-->
+		<button type="submit" class="govuk-button" >
+			Next
+		</button>
+ 		</form>
+    </div>
+</div>
+
+{% endblock %}

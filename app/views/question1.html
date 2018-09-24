@@ -1,0 +1,44 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<form action="/question2" method="post">
+			<div class="govuk-form-group">
+				<fieldset class="govuk-fieldset">
+					<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+					  <h1 class="govuk-fieldset__heading">
+						When was the case started?
+					  </h1>
+					</legend>
+					<div class="govuk-radios">
+					  <div class="govuk-radios__item">
+						<input class="govuk-radios__input" id="date-started-after" name="date-started" type="radio" value="afterLAR">
+						<label class="govuk-label govuk-radios__label" for="date-started-after">
+						  On or after 1 April 2013
+						</label>
+					  </div>
+					  <div class="govuk-radios__item">
+						<input class="govuk-radios__input" id="date-started-before" name="date-started" type="radio" value="beforeLAR">
+						<label class="govuk-label govuk-radios__label" for="date-started-before">
+						  Before 1 April 2013
+						</label>
+					  </div>
+					</div>
+				</fieldset>
+			</div>
+			<!-- <button> changed to <a>-->
+			<button type="submit" class="govuk-button" >
+				Next
+			</button>
+ 		</form>
+    </div>
+</div>
+
+{% endblock %}

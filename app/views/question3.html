@@ -1,0 +1,69 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<form action="/form6a" method="post">
+
+		<div class="govuk-form-group">
+		  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+			<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+			  <h1 class="govuk-fieldset__heading">
+				What level of legal help does the client require?
+			  </h1>
+			</legend>
+			<span id="waste-hint" class="govuk-hint">
+			  Select all that apply.
+			</span>
+			<div class="govuk-checkboxes">
+			  <div class="govuk-checkboxes__item">
+				<input class="govuk-checkboxes__input" id="legal-help-1" name="legal-help" type="checkbox" value="carcasses">
+				<label class="govuk-label govuk-checkboxes__label" for="legal-help-1">
+					Immigration matters only
+				</label>
+				<span id="legal-help-1-hint" class="govuk-hint govuk-checkboxes__hint">
+					Legal Representation before the Asylum and Immigration Tribunal; and the 
+					High Court in respect of an application under section 103A of the Nationality, 
+					Immigration and Asylum Act 2002 (Controlled Legal Representation)
+				</span>
+			  </div>
+			  <div class="govuk-checkboxes__item">
+				<input class="govuk-checkboxes__input" id="legal-help-2" name="legal-help" type="checkbox" value="mines">
+				<label class="govuk-label govuk-checkboxes__label" for="legal-help-2">
+				  Domestic abuse
+				</label>
+				<span id="legal-help-2-hint" class="govuk-hint govuk-checkboxes__hint">
+					Legal Representation for proceedings where the client seeks an injunction or 
+					other order for protection from harm to the person, or committal for breach of
+					any such order
+				</span>
+			  </div>
+			  <div class="govuk-checkboxes__item">
+				<input class="govuk-checkboxes__input" id="legal-help-3" name="legal-help" type="checkbox" value="farm">
+				<label class="govuk-label govuk-checkboxes__label" for="legal-help-3">
+					Other
+				</label>
+				<span id="legal-help-3-hint" class="govuk-hint govuk-checkboxes__hint">
+					e.g. Legal Help, Help at Court, Family Mediation, Family Help (Lower), Family 
+					Help (Higher), Controlled Legal Representation (Asylum matters only)
+				</span>
+			  </div>
+			</div>
+		  </fieldset>
+		</div>
+		<!-- <button> changed to <a>-->
+		<a type="submit" class="govuk-button" href="form4.html">
+			Next
+		</a>
+	
+ 		</form>
+    </div>
+</div>
+
+{% endblock %}
