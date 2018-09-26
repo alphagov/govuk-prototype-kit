@@ -1,3 +1,9 @@
+# Unreleased
+
+New features:
+
+- [#600 Update GOV.UK Frontend to v2.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/600)
+
 # 8.0.0
 
 Breaking changes:
