@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+{% from "panel/macro.njk" import govukPanel %}
+<style>
+	.govuk-panel.govuk-panel--confirmation {
+		background-color:#ae2931;
+	}
+</style>
+
+
+{{ govukPanel({
+  titleText: "Calculation complete",
+  html: "✗ You are not eligible for legal aid<br><strong>HDJ2123F</strong>"
+}) }}
+
+{% endblock %}
