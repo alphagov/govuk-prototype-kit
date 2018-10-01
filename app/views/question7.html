@@ -1,0 +1,74 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<form action="/form6a" method="post">
+		<div class="govuk-form-group">
+		  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+			<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+			  <h1 class="govuk-fieldset__heading">
+				Does the client have any dependants?
+			  </h1>
+			</legend>
+			<div class="govuk-radios" data-module="radios">
+			  <div class="govuk-radios__item">
+				<input class="govuk-radios__input" id="dependant-1" name="dependant" type="radio" value="email" data-aria-controls="conditional-how-contacted-conditional-1">
+				<label class="govuk-label govuk-radios__label" for="dependant-1">
+				  Yes
+				</label>
+			  </div>
+			  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
+				<div class="govuk-form-group">
+					<div class="govuk-checkboxes govuk-!-padding-bottom-4">
+					  <div class="govuk-checkboxes__item">
+						<input class="govuk-checkboxes__input" id="dependant-partner" name="dependant-partner" type="checkbox" value="carcasses">
+						<label class="govuk-label govuk-checkboxes__label" for="dependant-partner">
+						  The client's partner is a dependant.
+						</label>
+					  </div>
+					</div>
+					<label class="govuk-label" for="contact-by-email">
+					Number of dependants
+					</label>
+					<div class="govuk-form-group">
+					  <label class="govuk-label" for="dependant-child">
+						Aged 15 and younger
+					  </label>
+					  <input class="govuk-input govuk-input--width-5" id="dependant-child" name="dependant-child" type="text">
+					</div>
+					<div class="govuk-form-group">
+					  <label class="govuk-label" for="dependant-adult">
+						Aged 16 and older
+					  </label>
+					  <input class="govuk-input govuk-input--width-5" id="dependant-adult" name="dependant-adult" type="text">
+					</div>
+				</div>
+
+			  </div>
+			  <div class="govuk-radios__item">
+				<input class="govuk-radios__input" id="dependant-2" name="dependant" type="radio" value="phone" data-aria-controls="conditional-how-contacted-conditional-2">
+				<label class="govuk-label govuk-radios__label" for="dependant-2">
+				  No
+				</label>
+			  </div>
+			  
+			</div>
+		  </fieldset>
+		</div>
+		
+		<button type="submit" class="govuk-button">
+			Next
+		</button>
+	
+   		</form>
+    </div>
+</div>
+
+{% endblock %}

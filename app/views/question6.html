@@ -1,0 +1,152 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+		<form action="/form6a" method="post">
+	<h1 class="govuk-heading-xl">Give details about the client's income</h1>
+		<table class="govuk-table">
+		  <thead class="govuk-table__head">
+			<tr class="govuk-table__row">
+			  <th class="govuk-table__header" scope="col">Income</th>
+			  <th class="govuk-table__header" scope="col">Amount for client</th>
+			  <th class="govuk-table__header" scope="col">Amount for partner</th>
+			</tr>
+		  </thead>
+		  <tbody class="govuk-table__body">
+			<tr class="govuk-table__row">
+				<div class="govuk-form-group">
+					<th class="govuk-table__header" scope="row">
+						<label class="govuk-label" for="client-gorss-income">
+							Gross Earnings
+						</label>
+					</th>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="client-gorss-income" name="client-gorss-income" type="text">
+						<div class="govuk-form-group"style="display:inline-block">
+						  <label class="govuk-label" for="client-frequency" style="display: inline;">
+							Per
+						  </label>
+						  <select class="govuk-select" id="client-frequency" name="client-frequency" style="display: inline;">
+							<option value="published">month</option>
+							<option value="updated" selected>4 weeks</option>
+							<option value="views">week</option>
+						  </select>
+						</div>
+					</td>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="partner-gorss-income" name="partner-gorss-income" type="text">
+						<div class="govuk-form-group" style="display:inline-block">
+						  <label class="govuk-label" for="partner-frequency" style="display: inline;">
+							Per
+						  </label>
+						  <select class="govuk-select" id="partner-frequency" name="partner-frequency" style="display: inline;">
+							<option value="published">month</option>
+							<option value="updated" selected>4 weeks</option>
+							<option value="views">week</option>
+						  </select>
+						</div>
+					</td>
+				</div>
+			</tr>
+		  </tbody>
+		</table>
+		
+		<details class="govuk-details">
+		  <summary class="govuk-details__summary">
+			<span class="govuk-details__summary-text">
+			  What is included in other income.
+			</span>
+		  </summary>
+		  <div class="govuk-details__text">
+			Please enter other income except that which counts as disregarded state benefits 
+			e.g. disability living allowance, attendance allowance. If you enter each source 
+			separately, the calculator will add up totals for you.
+		  </div>
+		</details>
+		<table class="govuk-table">
+		  <thead class="govuk-table__head">
+			<tr class="govuk-table__row">
+			  <th class="govuk-table__header" scope="col">Other income</th>
+			  <th class="govuk-table__header" scope="col">Amount for client</th>
+			  <th class="govuk-table__header" scope="col">Amount for partner</th>
+			</tr>
+		  </thead>
+		  <tbody class="govuk-table__body">
+			<tr class="govuk-table__row">
+				<div class="govuk-form-group">
+					<th class="govuk-table__header" scope="row">
+						<label class="govuk-label" for="other-income-client-1">
+							Other income 1
+						</label>
+					</th>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-client-1" name="other-income-client-1" type="text">
+					</td>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-partner-1" name="other-income-partner-1" type="text">
+					</td>
+				</div>
+			</tr>
+			<tr class="govuk-table__row">
+				<div class="govuk-form-group">
+					<th class="govuk-table__header" scope="row">
+						<label class="govuk-label" for="other-income-client-2">
+							Other income 2
+						</label>
+					</th>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-client-2" name="other-income-client-2" type="text">
+					</td>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-partner-2" name="other-income-partner-2" type="text">
+					</td>
+				</div>
+			</tr>
+			<tr class="govuk-table__row">
+				<div class="govuk-form-group">
+					<th class="govuk-table__header" scope="row">
+						<label class="govuk-label" for="other-income-client-3">
+							Other income 3
+						</label>
+					</th>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-client-3" name="other-income-client-3" type="text">
+					</td>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-partner-3" name="other-income-partner-3" type="text">
+					</td>
+				</div>
+			</tr>
+			<tr class="govuk-table__row">
+				<div class="govuk-form-group">
+					<th class="govuk-table__header" scope="row">
+						<label class="govuk-label" for="other-income-client-4">
+							Other income 4
+						</label>
+					</th>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-client-4" name="other-income-client-4" type="text">
+					</td>
+					<td class="govuk-table__cell ">
+						<input class="govuk-input govuk-input--width-4" id="other-income-partner-4" name="other-income-partner-4" type="text">
+					</td>
+				</div>
+			</tr>
+		  </tbody>
+		</table>
+		<button type="submit" class="govuk-button">
+			Next
+		</button>
+	
+   		</form>
+    </div>
+</div>
+
+{% endblock %}
