@@ -1,3 +1,9 @@
+# Unreleased
+
+Bug fixes:
+
+- [#605 Set stylesheet media to "all" to allow print styles](https://github.com/alphagov/govuk-prototype-kit/pull/605)
+
 # 8.1.0
 
 New features:
