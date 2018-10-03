@@ -78,5 +78,6 @@ function runGulp () {
 
   gulp.on('exit', function (code) {
     console.log('gulp exited with code ' + code.toString())
+    process.exit(1)
   })
 }
