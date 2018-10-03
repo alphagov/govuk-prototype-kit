@@ -1,5 +1,9 @@
 # Unreleased
 
+New features:
+
+- [#606 Exit on sass compilation error](https://github.com/alphagov/govuk-prototype-kit/pull/606)
+
 Bug fixes:
 
 - [#605 Set stylesheet media to "all" to allow print styles](https://github.com/alphagov/govuk-prototype-kit/pull/605)
