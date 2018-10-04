@@ -30,14 +30,15 @@ To get a key:
 This will let your prototype talk to Notify while it’s running on your
 computer.
 
-To save the key on your computer, run this command in your Terminal, in
-the root folder of your prototype (where xxxxxxx is a key you’ve copied
-from Notify):
+To save the key on your computer, add this line to the end of the `.env`
+file in your prototype (where `xxxxxxx` is the key you’ve copied from
+Notify):
 ```shell
-   echo NOTIFYAPIKEY=xxxxxxx >> .env
+  NOTIFYAPIKEY=xxxxxxx
 ````   
-This adds the API key to the end of your `.env` file. Your prototype
-will load the key from your `.env` file.
+Your prototype will load the key from your `.env` file. If you don’t
+have a `.env` file then run your prototype (with the `npm start`
+command) and it will create one for you.
 
 ### Saving the key on Heroku
 
