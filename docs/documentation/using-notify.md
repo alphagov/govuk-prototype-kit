@@ -69,9 +69,6 @@ var NotifyClient = require('notifications-node-client').NotifyClient,
     notify = new NotifyClient(process.env.NOTIFYAPIKEY);
 ```
 
-`process.env.NOTIFYAPIKEY` is a special kind of variable that Node
-pulls from the environment your prototype is running in.
-
 ## Sending your first email
 
 Make a page with a form to collect the user’s email address. For
