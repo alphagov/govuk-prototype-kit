@@ -2,7 +2,7 @@
 
 You can use GOV.UK Notify to send text messages or emails when users
 interact with your prototype. For example you could send users a
-confirmation email sent at the end of a journey.
+confirmation email at the end of a journey.
 
 ## Sign up for a GOV.UK Notify account
 
