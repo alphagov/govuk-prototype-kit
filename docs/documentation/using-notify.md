@@ -99,7 +99,8 @@ example:
 
 Save this page as `email-address-page.html`.
 
-Then add this code at the bottom of routes.js:
+Then add this code to `routes.js`, above the line that says
+`module.exports = router`:
 
 ```javascript
 // The URL here needs to match the URL of the page that the user is on
