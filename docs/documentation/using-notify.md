@@ -74,21 +74,27 @@ var NotifyClient = require('notifications-node-client').NotifyClient,
 Make a page with a form to collect the user’s email address. For
 example:
 ```
-{% from "input/macro.njk" import govukInput %}
+{% extends "layout.html" %}
 
-<form class="form" method="post">
+{% block content %}
 
-  {{ govukInput({
-    label: {
-      text: "Email address"
-    },
-    id: "emailAddress",
-    name: "emailAddress"
-  }) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" method="post">
 
-  <button class="govuk-button">Continue</button>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="email-address">
+            Email address
+          </label>
+          <input class="govuk-input" id="email-address" name="emailAddress" type="text">
+        </div>
 
-</form>
+        <button class="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
 ```
 
 Save this page as `email-address-page.html`.
