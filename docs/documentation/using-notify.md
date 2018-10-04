@@ -56,7 +56,7 @@ KEY            | VALUE
 ### Keeping your key safe
 
 It’s really important that you keep your key secret. If you put it in
-the `.env` file it’s safe – that file isn’t published on Github. If you
+the `.env` file it’s safe – that file isn’t published on GitHub. If you
 do accidentally publish your key somewhere you must sign into Notify and
 revoke it.
 
