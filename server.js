@@ -227,9 +227,9 @@ if (useAutoStoreData === 'true') {
 }
 
 // Clear all data in session if you open /prototype-admin/clear-data
-app.get('/prototype-admin/clear-data', function (req, res) {
+app.post('/prototype-admin/clear-data', function (req, res) {
   req.session.data = {}
-  res.render('prototype-admin/clear-data')
+  res.render('prototype-admin/clear-data-success')
 })
 
 // Redirect root to /docs when in promo mode.
