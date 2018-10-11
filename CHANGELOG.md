@@ -1,4 +1,4 @@
-# Unreleased
+# 8.2.0
 
 New Features:
 
