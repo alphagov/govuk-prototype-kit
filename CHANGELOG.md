@@ -1,3 +1,23 @@
+# 8.2.0
+
+New Features:
+
+- [#609 Update GOV.UK Frontend to v2.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/609)
+
+Also includes a new character-count component
+
+Bug fixes:
+
+- [#605 Set stylesheet media to "all" to allow print styles](https://github.com/alphagov/govuk-prototype-kit/pull/605)
+
+- [#608 Clearing session data now uses a POST request rather than a destructive GET request](https://github.com/alphagov/govuk-prototype-kit/pull/608)
+
+# 8.1.0
+
+New features:
+
+- [#600 Update GOV.UK Frontend to v2.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/600)
+
 # 8.0.0
 
 Breaking changes:

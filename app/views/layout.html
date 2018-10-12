@@ -3,6 +3,7 @@
 {% from "back-link/macro.njk"     import govukBackLink %}
 {% from "breadcrumbs/macro.njk"   import govukBreadcrumbs %}
 {% from "button/macro.njk"        import govukButton %}
+{% from "character-count/macro.njk"  import govukCharacterCount %}
 {% from "checkboxes/macro.njk"    import govukCheckboxes %}
 {% from "date-input/macro.njk"    import govukDateInput %}
 {% from "details/macro.njk"       import govukDetails %}
@@ -52,7 +53,7 @@
             text: "GOV.UK Prototype Kit " + releaseVersion
           },
           {
-            href: "/prototype-admin/clears-data",
+            href: "/prototype-admin/clear-data",
             text: "Clear data"
           }
         ]
