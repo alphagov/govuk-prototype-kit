@@ -30,7 +30,7 @@ module.exports = {
 
   // Enable or disable Browser Sync
   useBrowserSync: 'true',
-  
+
   // Set a value (in milliseconds) for the max age of all static assets in cache
   assetsMaxAge: 0
 
