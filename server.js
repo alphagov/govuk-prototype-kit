@@ -115,7 +115,7 @@ app.use('/public', express.static(path.join(__dirname, '/public'), { maxAge: sta
 app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets'), { maxAge: staticAssetsMaxAge || 0 }))
 
 // Serve govuk-frontend in /public
-app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend'), { maxAge: staticAssetsMaxAge || 0 }))
 
 // Set up documentation app
 if (useDocumentation) {
@@ -166,9 +166,9 @@ if (useV6) {
   v6App.set('view engine', 'html')
 
   // Backward compatibility with GOV.UK Elements
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
-  app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/')))
+  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets'), { maxAge: staticAssetsMaxAge || 0 }))
+  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit'), { maxAge: staticAssetsMaxAge || 0 }))
+  app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/'), { maxAge: staticAssetsMaxAge || 0 }))
 }
 
 // Add global variable to determine if DoNotTrack is enabled.
