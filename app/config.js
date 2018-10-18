@@ -29,6 +29,9 @@ module.exports = {
   cookieText: 'GOV.UK uses cookies to make the site simpler. <a href="#">Find out more about cookies</a>',
 
   // Enable or disable Browser Sync
-  useBrowserSync: 'true'
+  useBrowserSync: 'true',
+  
+  // Set a value for the max age of all static assets in cache
+  assetsMaxAge: 0
 
 }
