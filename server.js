@@ -60,6 +60,7 @@ var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCo
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var useBrowserSync = config.useBrowserSync
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
+var staticAssetsMaxAge = process.env.ASSETS_MAX_AGE || config.assetsMaxAge;
 
 env = env.toLowerCase()
 useAuth = useAuth.toLowerCase()
@@ -110,8 +111,8 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
+app.use('/public', express.static(path.join(__dirname, '/public'), { maxAge: staticAssetsMaxAge || 0 }))
+app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets'), { maxAge: staticAssetsMaxAge || 0 }))
 
 // Serve govuk-frontend in /public
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
