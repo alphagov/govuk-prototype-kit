@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - "lts/*"
+os:
+  - windows
+  - linux
 before_deploy:
 - test $TRAVIS_TEST_RESULT = 0
 before_install:
