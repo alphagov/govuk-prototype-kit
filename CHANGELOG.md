@@ -1,3 +1,7 @@
+# Unreleased
+
+- [#574 Add Notify integration guidance](https://github.com/alphagov/govuk-prototype-kit/pull/574)
+
 # 8.2.0
 
 New Features:
