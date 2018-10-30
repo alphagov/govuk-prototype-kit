@@ -34,8 +34,8 @@ To save the key on your computer, add this line to the end of the `.env`
 file in your prototype (where `xxxxxxx` is the key you’ve copied from
 Notify):
 ```shell
-  NOTIFYAPIKEY=xxxxxxx
-````   
+NOTIFYAPIKEY=xxxxxxx
+```   
 Your prototype will load the key from your `.env` file. If you don’t
 have a `.env` file then run your prototype (with the `npm start`
 command) and it will create one for you.
@@ -48,10 +48,11 @@ Heroku.
 To save the key on Heroku, go to the settings page of your app, click
 ‘Reveal config vars’ and fill in the two textboxes like this (where
 xxxxxxx is the key you’ve copied from Notify):
-
-KEY            | VALUE
----------------|----------
-`NOTIFYAPIKEY` | `xxxxxxx`
+```
+KEY          | VALUE
+-------------|----------
+NOTIFYAPIKEY | xxxxxxx
+```
 
 ### Keeping your key safe
 
