@@ -1,5 +1,9 @@
 # Unreleased
 
+Breaking changes: 
+
+- [#626 Update jQuery to version 3.3.1](https://github.com/alphagov/govuk-prototype-kit/pull/626)
+
 New features: 
 
 - [#574 Add Notify integration guidance](https://github.com/alphagov/govuk-prototype-kit/pull/574)
