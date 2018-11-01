@@ -2,7 +2,7 @@
 .gitattributes export-ignore
 README.md export-ignore
 CHANGELOG.md export-ignore
-CONTRIBUTING.MD export-ignore
+CONTRIBUTING.md export-ignore
 create-release.sh export-ignore
 travis.yml export-ignore
 .travis export-ignore
