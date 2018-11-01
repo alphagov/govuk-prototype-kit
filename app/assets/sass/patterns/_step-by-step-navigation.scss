@@ -1,0 +1,568 @@
+// Based on https://github.com/alphagov/govuk_publishing_components/blob/v9.3.6/app/assets/stylesheets/govuk_publishing_components/components/_step-by-step-nav.scss
+// Note - this code for prototype purposes only. It is not production code,
+// nor an example of the best way to use GOV.UK Frontend
+
+.app-step-nav-header {
+  position: relative;
+  padding: 10px;
+  background: govuk-colour("grey-4");
+  border-top: solid 1px $govuk-border-colour;
+  border-bottom: solid 1px $govuk-border-colour;
+  @include govuk-media-query($from: tablet) {
+    padding: 15px;
+  }
+}
+
+.app-step-nav-header__part-of {
+  @include govuk-font(16, $weight: bold)
+  display: block;
+  padding-bottom: 0.2em;
+}
+
+.app-step-nav-header__title {
+  @include govuk-font(24, $weight: bold)
+}
+
+.app-step-nav-related {
+  border-top: 2px solid $govuk-link-colour;
+  margin-bottom: 30px;
+}
+
+.app-step-nav-related__heading {
+  @include govuk-font(19, $weight: bold)
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.app-step-nav-related__links {
+  @include govuk-font(16, $weight: bold)
+  margin: 0;
+  padding: 0;
+}
+
+.app-step-nav-related--singular {
+  margin-bottom: 13px;
+
+  .app-step-nav-related__heading {
+    @include govuk-font(19, $weight: bold)
+    margin-top: 20px;
+  }
+
+  .app-step-nav-related__pretitle {
+    margin-bottom: 5px;
+  }
+}
+
+.app-step-nav-related__pretitle {
+  display: block;
+  margin-bottom: 15px;
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: 5px;
+  }
+}
+
+.app-step-nav-related__links {
+  list-style: none;
+}
+
+.app-step-nav-related__link-item {
+  margin-top: 15px;
+  @include govuk-media-query($from: tablet) {
+    margin-top: 5px;
+  }
+}
+
+.app-step-nav {
+  @include govuk-font(19);
+  margin-bottom: 30px;
+  &.app-step-nav--large {
+    @include govuk-media-query($from: tablet) {
+      margin-bottom: 60px;
+    }
+  }
+}
+
+.app-step-nav__controls {
+  padding: 3px 3px 0 0;
+  text-align: right;
+}
+
+.app-step-nav__button {
+  color: $govuk-link-colour;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  margin: 0;
+}
+
+// removes extra dotted outline from buttons in Firefox
+// on focus (standard yellow outline unaffected)
+.app-step-nav__button::-moz-focus-inner {
+  border: 0;
+}
+
+.app-step-nav__button--title {
+  @include govuk-font(19, $weight: bold)
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+  color: govuk-colour("black");
+
+  .app-step-nav--large & {
+    @include govuk-font(24, $weight: bold)
+  }
+
+}
+
+.app-step-nav__button--controls {
+  @include govuk-font(14)
+  position: relative;
+  z-index: 1; // this and relative position stops focus outline underlap with border of accordion
+  padding: 0.5em 0;
+  text-decoration: underline;
+
+  &:hover {
+    color: $govuk-link-hover-colour;
+  }
+
+  .app-step-nav--large & {
+    @include govuk-font(16)
+  }
+}
+
+.app-step-nav__steps {
+  padding: 0;
+  margin: 0;
+}
+
+.app-step-nav__step {
+  position: relative;
+  padding-left: 45px;
+  list-style: none;
+}
+
+.app-step-nav__step:after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 100%;
+  border-left: solid 2px $govuk-border-colour;
+  background: #fff;
+  left: 0;
+  margin-left: 12px;
+  top: 15px;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__step {
+    padding-left: 60px;
+  }
+
+  .app-step-nav--large .app-step-nav__step:after {
+    left: 0;
+    margin-left: 16px;
+    border-width: 3px;
+    top: 30px;
+  }
+}
+
+.app-step-nav__step:last-child:before {
+  content: "";
+  position: absolute;
+  z-index: 6;
+  bottom: 0;
+  left: 0;
+  margin-left: 6.5px;
+  width: 13px;
+  height: 0;
+  border-bottom: solid 2px $govuk-border-colour;
+}
+
+.app-step-nav__step:last-child:after {
+  height: -webkit-calc(100% - 15px);
+  height: calc(100% - 15px);
+}
+
+.app-step-nav__step:last-child .app-step-nav__help:after {
+  height: 100%;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__step:last-child:before {
+    margin-left: 8.75px;
+    width: 17.5px;
+    border-width: 3px;
+  }
+
+  .app-step-nav--large .app-step-nav__step:last-child:after {
+    height: calc(100% - 30px);
+  }
+}
+
+.app-step-nav__step--active .app-step-nav__circle--number,
+.app-step-nav__step--active .app-step-nav__help:after,
+.app-step-nav__step--active .app-step-nav__substep:after,
+.app-step-nav__step--active:after,
+.app-step-nav__step--active:last-child:before {
+  border-color: govuk-colour("black");
+}
+
+.app-step-nav__circle {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 5;
+  top: 15px;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  color: govuk-colour("black");
+  background: #fff;
+  border-radius: 100px;
+  text-align: center;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__circle {
+    top: 30px;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.app-step-nav__circle--number {
+  @include govuk-font(16, $weight: bold)
+  line-height: 23px;
+  border: solid 2px $govuk-border-colour;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav__circle--number {
+    font-size: 16px;
+    line-height: 23px;
+  }
+}
+
+.app-step-nav--large .app-step-nav__circle--number {
+  @include govuk-font(16, $weight: bold)
+  line-height: 23px;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__circle--number {
+    font-size: 19px;
+    line-height: 30px;
+  }
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__circle--number {
+    border-width: 3px;
+  }
+}
+
+.app-step-nav__circle--logic {
+  @include govuk-font(16, $weight: bold)
+  line-height: 28px;
+}
+@include govuk-media-query($from: tablet) {
+  .app-step-nav__circle--logic {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+
+.app-step-nav--large .app-step-nav__circle--logic {
+  @include govuk-font(16, $weight: bold)
+  line-height: 28px;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__circle--logic {
+    font-size: 19px;
+    line-height: 34px;
+  }
+}
+
+.app-step-nav__circle-inner {
+  float: right;
+  min-width: 100%;
+}
+
+.app-step-nav__circle-background {
+  text-shadow: 0 -0.1em 0 #fff, 0.1em 0 0 #fff, 0 0.1em 0 #fff, -0.1em 0 0 #fff;
+}
+
+.app-step-nav__header {
+  padding: 15px 0;
+  border-top: solid 2px govuk-colour("grey-3");
+}
+
+.app-step-nav--active .app-step-nav__header {
+  cursor: pointer;
+}
+
+.app-step-nav__header:hover .app-step-nav__button,
+.app-step-nav__header:hover .app-step-nav__circle {
+  color: $govuk-link-colour;
+}
+
+.app-step-nav__header:hover .app-step-nav__toggle-link {
+  text-decoration: underline;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__header {
+    padding: 30px 0;
+  }
+}
+
+.app-step-nav__title {
+  @include govuk-font(19, $weight: bold)
+  line-height: 1.4;
+  margin: 0;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav__title {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+}
+
+.app-step-nav--large .app-step-nav__title {
+  @include govuk-font(19, $weight: bold)
+  line-height: 1.4;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__title {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+}
+
+.app-step-nav__toggle-link {
+  @include govuk-font(16)
+  line-height: 1.2;
+  display: block;
+  color: $govuk-link-colour;
+}
+
+.app-step-nav--large .app-step-nav__toggle-link {
+  @include govuk-font(16)
+  line-height: 1.2;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__toggle-link {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
+
+.app-step-nav__panel {
+  @include govuk-font(16)
+  line-height: 1.25;
+  .js-enabled &.js-hidden {
+    display: none;
+  }
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav__panel {
+    font-size: 16px;
+  }
+}
+
+.app-step-nav--large .app-step-nav__panel {
+  @include govuk-font(19)
+}
+
+.app-step-nav__heading,
+.app-step-nav__paragraph {
+  padding-bottom: 15px;
+  margin: 0;
+  font-size: inherit;
+}
+
+.app-step-nav__heading + .app-step-nav__list,
+.app-step-nav__paragraph + .app-step-nav__list {
+  margin-top: -5px;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__heading + .app-step-nav__list,
+  .app-step-nav--large .app-step-nav__paragraph + .app-step-nav__list {
+    margin-top: -15px;
+  }
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__heading,
+  .app-step-nav--large .app-step-nav__paragraph {
+    padding-bottom: 30px;
+  }
+}
+
+.app-step-nav__heading {
+  font-weight: bold;
+}
+
+.app-step-nav__list {
+  padding: 0 0 10px;
+}
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__list {
+    padding-bottom: 20px;
+  }
+}
+
+.app-step-nav__list--choice {
+  margin-left: 20px;
+  list-style: disc;
+}
+
+.app-step-nav__list--choice .app-step-nav__list-item--active:before {
+  left: -45px;
+}
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__list--choice .app-step-nav__list-item--active:before {
+    left: -80px;
+  }
+}
+
+.app-step-nav__list-item {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.app-step-nav__list-item--active {
+  position: relative;
+}
+
+.app-step-nav__list-item--active:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  z-index: 5;
+  top: 0.6em;
+  left: -45px;
+  margin-left: 5px;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  background: govuk-colour("black");
+  border: solid 2px #fff;
+  border-radius: 100px;
+}
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__list-item--active:before {
+    left: -60px;
+    margin-left: 9.5px;
+  }
+}
+
+.app-step-nav__list-item--active .app-step-nav__link {
+  color: govuk-colour("black");
+  text-decoration: none;
+}
+
+.app-step-nav__list-item--active .app-step-nav__link:active,
+.app-step-nav__list-item--active .app-step-nav__link:link,
+.app-step-nav__list-item--active .app-step-nav__link:visited {
+  color: govuk-colour("black");
+}
+
+.app-step-nav__context {
+  display: inline-block;
+  font-weight: normal;
+  color: $govuk-secondary-text-colour;
+}
+
+.app-step-nav__context:before {
+  content: " \2013\00a0";
+}
+
+.app-step-nav__help {
+  position: relative;
+  padding: 15px 0;
+  border-top: solid 2px govuk-colour("grey-3");
+}
+
+.app-step-nav__help:after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 100%;
+  border-left: dotted 2px $govuk-border-colour;
+  background: #fff;
+  left: 0;
+  margin-left: 12px;
+  z-index: 3;
+  top: 0;
+  left: -45px;
+  height: calc(100% + 30px);
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__help:after {
+    left: 0;
+    margin-left: 16px;
+    border-width: 3px;
+    left: -60px;
+    height: calc(100% + 30px + 15px);
+  }
+}
+
+.app-step-nav__help-link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.app-step-nav__help-link:hover {
+  text-decoration: underline;
+}
+
+.app-step-nav__substep {
+  position: relative;
+  padding-top: 15px;
+  border-top: solid 2px govuk-colour("grey-3");
+}
+
+.app-step-nav__substep:after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 100%;
+  border-left: solid 2px $govuk-border-colour;
+  background: #fff;
+  left: 0;
+  margin-left: 12px;
+  z-index: 3;
+  top: 0;
+  left: -45px;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-step-nav--large .app-step-nav__substep {
+    padding-top: 30px;
+  }
+
+  .app-step-nav--large .app-step-nav__substep:after {
+    left: 0;
+    margin-left: 16px;
+    border-width: 3px;
+    left: -60px;
+  }
+}
+
+.app-step-nav__substep--optional:after {
+  border-left-style: dotted;
+}
