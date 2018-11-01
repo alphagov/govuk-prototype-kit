@@ -34,6 +34,7 @@
     "gulp": "^4.0.0",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^4.0.1",
+    "gulp-sass-variables": "^1.2.0",
     "gulp-sourcemaps": "^2.6.0",
     "keypather": "^3.0.0",
     "marked": "^0.4.0",

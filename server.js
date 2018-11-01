@@ -1,4 +1,5 @@
 // Core dependencies
+const fs = require('fs')
 const path = require('path')
 
 // NPM dependencies
@@ -72,6 +73,12 @@ promoMode = promoMode.toLowerCase()
 // Disable promo mode if docs aren't enabled
 if (!useDocumentation) promoMode = 'false'
 
+// Optional cache directory
+var cacheId = ''
+try {
+  cacheId = fs.readFileSync(`${__dirname}/app/version.txt`, 'utf-8').trim()
+} catch (e) {}
+
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
 var isSecure = (env === 'production' && useHttps === 'true')
@@ -108,11 +115,16 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 // Set views engine
 app.set('view engine', 'html')
 
+// Cache assets for one year per deployment
+const maxAge = 60 * 1000 * 60 * 24 * 365
+app.use(utils.removeCacheId)
+
 // Middleware to serve static assets
-app.use('/public', express.static(path.join(__dirname, '/public')))
+app.use('/public', express.static(path.join(__dirname, '/public'), { maxAge }))
+app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets'), { maxAge }))
 
 // Serve govuk-frontend in from node_modules (so not to break pre-extenstions prototype kits)
-app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend'), { maxAge }))
 
 // Set up documentation app
 if (useDocumentation) {
@@ -155,9 +167,9 @@ if (useV6) {
   v6App.set('view engine', 'html')
 
   // Backward compatibility with GOV.UK Elements
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
-  app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/')))
+  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets'), { maxAge }))
+  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit'), { maxAge }))
+  app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/'), { maxAge }))
 }
 
 // Add global variable to determine if DoNotTrack is enabled.
@@ -171,7 +183,9 @@ app.use(function (req, res, next) {
 
 // Add variables that are available in all views
 app.locals.gtmId = gtmId
-app.locals.asset_path = '/public/'
+app.locals.cacheId = cacheId
+app.locals.publicUrl = app.locals.publicPath = '/public'
+app.locals.assetUrl = app.locals.assetPath = '/assets'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
 app.locals.cookieText = config.cookieText
@@ -180,6 +194,15 @@ app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig()
+
+// Add cache directory
+if (cacheId) {
+  app.locals.publicUrl = app.locals.publicPath = `/public/${cacheId}`
+  app.locals.assetUrl = app.locals.assetPath = `/assets/${cacheId}`
+}
+
+// Legacy asset_path for compatibility
+app.locals.asset_path = `${app.locals.publicPath}/`
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
@@ -279,7 +302,7 @@ if (useDocumentation) {
 if (useV6) {
   // Clone app locals to v6 app locals
   v6App.locals = Object.assign({}, app.locals)
-  v6App.locals.asset_path = '/public/v6/'
+  v6App.locals.asset_path = `${app.locals.asset_path}v6/`
 
   // Create separate router for v6
   app.use('/', v6App)

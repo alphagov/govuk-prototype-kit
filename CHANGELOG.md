@@ -42,6 +42,7 @@ Features:
 # 8.5.0
 
 Features:
+- [#627 Add static asset caching (with cache busting)](https://github.com/alphagov/govuk-prototype-kit/pull/627)
 - [#672 Replace ‘check answers’ pattern with updated code](https://github.com/alphagov/govuk-prototype-kit/pull/672)
 - [#671 Update to GOV.UK Frontend version 2.5.0](https://github.com/alphagov/govuk-prototype-kit/pull/671)
    Allows use of new components Accordion and Summary List
