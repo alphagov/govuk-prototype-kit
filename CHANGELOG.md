@@ -2,6 +2,8 @@
 
 New features: 
 
+- [#628 Update GOV.UK Frontend to v2.3.0](https://github.com/alphagov/govuk-prototype-kit/pull/628)
+
 - [#574 Add Notify integration guidance](https://github.com/alphagov/govuk-prototype-kit/pull/574)
 
 - [Add npm install reminder when prototype crashes](https://github.com/alphagov/govuk-prototype-kit/pull/598)
