@@ -4,6 +4,8 @@ Bug fixes:
 
 - [#634 Avoid double-nested buttons in step-by-step navigation](https://github.com/alphagov/govuk-prototype-kit/pull/634)
 
+- [#638 Make unbranded template available for use in app/views](https://github.com/alphagov/govuk-prototype-kit/pull/638)
+
 # 8.3.0
 
 New features:
