@@ -1,29 +1,30 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Install - GOV.UK Prototype kit
+Install - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+	{{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK Prototype Kit",
+	      href: "/docs"
+	    },
+	    {
+	      text: "Install",
+	      href: "/docs/install"
+	    }
+	  ]
+	}) }}
 {% endblock %}
 
 {% block content %}
-
-<main id="content" role="main" class="docs markdown">
-	<div class="breadcrumbs">
-	  <ol>
-	    <li><a href="/docs">GOV.UK prototype kit</a></li>
-	    <li><a href="/docs/install">Install</a></li>
-	  </ol>
-	</div>
-
-	<div class="grid-row">
-
-		<div class="column-two-thirds">
-
-			{{document | safe}}
-
-		</div>
-
-	</div>
-	
-</main>
-
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="app-prose-scope">
+        {{document | safe}}
+      </div>
+    </div>
+  </div>
 {% endblock %}

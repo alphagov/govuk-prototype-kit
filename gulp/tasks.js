@@ -4,49 +4,40 @@
   defaults wraps generate-assets, watch and server
 */
 
-var gulp = require('gulp')
-var mocha = require('gulp-mocha')
-var runSequence = require('run-sequence')
+const gulp = require('gulp')
+const mocha = require('gulp-mocha')
+const runSequence = require('run-sequence')
 
 gulp.task('default', function (done) {
   runSequence('generate-assets',
-                'watch',
-                'server', done)
+    'watch',
+    'server', done)
 })
 
 gulp.task('generate-assets', function (done) {
   runSequence('clean',
-                'copy-govuk-modules',
-                'sass',
-                'sass-documentation',
-                'copy-assets',
-                'copy-documentation-assets', done)
+    'sass',
+    'copy-assets',
+    'sass-documentation',
+    'copy-assets-documentation',
+    'sass-v6',
+    'copy-assets-v6', done)
 })
-
-gulp.task('copy-govuk-modules', [
-  'copy-toolkit',
-  'copy-template-assets',
-  'copy-elements-sass',
-  'copy-template'
-])
 
 gulp.task('watch', function (done) {
   runSequence('watch-sass',
-               'watch-assets', done)
+    'watch-assets',
+    'watch-sass-v6',
+    'watch-assets-v6', done)
 })
 
 gulp.task('test', function () {
   runSequence('generate-assets',
-              'mocha')
+    'mocha')
 })
 
 gulp.task('mocha', function () {
   return gulp.src(['test/**/*.js'], { read: false })
-        .pipe(mocha({ reporter: 'spec' }))
-        .once('error', () => {
-          process.exit(1)
-        })
-        .once('end', () => {
-          process.exit()
-        })
+    .pipe(mocha({ reporter: 'spec', exit: true }))
+    .on('error', console.error)
 })

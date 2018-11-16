@@ -1,97 +1,77 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
 Check your answers
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <h1 class="heading-large">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
         Check your answers before sending your application
       </h1>
 
-      <div class="form-group">
+      <h2 class="govuk-heading-m">
+        Vehicle details
+      </h2>
 
-        <table class="check-your-answers">
+      <dl class="app-check-your-answers app-check-your-answers--long">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Registration number
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data['vehicle-registration'] }}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/docs/examples/pass-data/vehicle-registration">
+              Change <span class="govuk-visually-hidden">registration number</span>
+            </a>
+          </dd>
+        </div>
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Vehicle type
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data['vehicle-type'] }}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/docs/examples/pass-data/vehicle-type">
+              Change <span class="govuk-visually-hidden">vehicle type</span>
+            </a>
+          </dd>
+        </div>
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Vehicle features
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for feature in data['vehicle-features'] %}
+                <li>{{ feature }}</li>
+              {% else %}
+                <li>No features selected</li>
+              {% endfor %}
+            </ul>
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/docs/examples/pass-data/vehicle-features">
+              Change <span class="govuk-visually-hidden">vehicle features</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
 
-          <thead>
-            <tr>
-              <th colspan="2">
-                <h2 class="heading-medium">
-                  Vehicle details
-                </h2>
-              </th>
-              <th>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>
-                Registration number
-              </td>
-              <td>
-                {{data['vehicle-registration']}}
-              </td>
-              <td class="change-answer">
-                <a href="/docs/examples/pass-data/vehicle-registration">
-                  Change <span class="visuallyhidden">registration number</span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Vehicle type
-              </td>
-              <td>
-                {{data['vehicle-type']}}
-              </td>
-              <td class="change-answer">
-                <a href="/docs/examples/pass-data/vehicle-type">
-                  Change <span class="visuallyhidden">vehicle type</span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Vehicle features
-              </td>
-              <td>
-                <ul>
-                  {% for feature in data['vehicle-features'] %}
-                    <li>{{ feature }}</li>
-                  {% else %}
-                    <li>No features selected</li>
-                  {% endfor %}
-                </ul>
-              </td>
-              <td class="change-answer">
-                <a href="/docs/examples/pass-data/vehicle-features">
-                  Change <span class="visuallyhidden">vehicle features</span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="form-group">
-        <p>
-          <a href="/docs/tutorials-and-examples">
-            Return to prototype kit examples
-          </a>
-        </p>
-      </div>
+      <p>
+        <a href="/docs/tutorials-and-examples">
+          Return to Prototype Kit examples
+        </a>
+      </p>
 
     </div>
 
   </div>
-
-</main>
 
 {% endblock %}

@@ -24,7 +24,7 @@ In your web browser, visit <a href="http://localhost:3000" target="_blank">http:
 
 You should see the prototype welcome page.
 
-![Screenshot of the prototype kit homepage](/public/images/docs/prototype-kit-homepage.png)
+![Screenshot of the Prototype Kit homepage](/public/images/docs/prototype-kit-homepage.png)
 
 ## Quitting the kit
 

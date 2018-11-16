@@ -1,3 +1,163 @@
+# Unreleased
+
+Bug fixes:
+
+- [#634 Avoid double-nested buttons in step-by-step navigation](https://github.com/alphagov/govuk-prototype-kit/pull/634)
+
+- [#638 Make unbranded template available for use in app/views](https://github.com/alphagov/govuk-prototype-kit/pull/638)
+
+# 8.3.0
+
+New features:
+
+- [#628 Update GOV.UK Frontend to v2.3.0](https://github.com/alphagov/govuk-prototype-kit/pull/628)
+
+- [#574 Add Notify integration guidance](https://github.com/alphagov/govuk-prototype-kit/pull/574)
+
+- [Add npm install reminder when prototype crashes](https://github.com/alphagov/govuk-prototype-kit/pull/598)
+
+- [#539 Add step by step navigation](https://github.com/alphagov/govuk-prototype-kit/pull/539)
+
+# 8.2.0
+
+New Features:
+
+- [#609 Update GOV.UK Frontend to v2.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/609)
+
+Also includes a new character-count component
+
+Bug fixes:
+
+- [#605 Set stylesheet media to "all" to allow print styles](https://github.com/alphagov/govuk-prototype-kit/pull/605)
+
+- [#608 Clearing session data now uses a POST request rather than a destructive GET request](https://github.com/alphagov/govuk-prototype-kit/pull/608)
+
+# 8.1.0
+
+New features:
+
+- [#600 Update GOV.UK Frontend to v2.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/600)
+
+# 8.0.0
+
+Breaking changes:
+
+- [#595 Update GOV.UK Frontend to v2.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/595)
+
+New features:
+
+- [Add config to allow permanent session in cookie](https://github.com/alphagov/govuk-prototype-kit/pull/593)
+- [Allow nested field values in session](https://github.com/alphagov/govuk-prototype-kit/pull/573)
+- [Restart the app if environment variables change](https://github.com/alphagov/govuk-prototype-kit/pull/389)
+- [Make it more difficult to accidentally clear the session data](https://github.com/alphagov/govuk-prototype-kit/pull/588)
+
+
+Bug fixes:
+
+- [Use path to gulp executable for spawn](https://github.com/alphagov/govuk-prototype-kit/pull/479)
+
+# 7.1.0
+
+New Features:
+
+- [Update GOV.UK Frontend to v1.3.0](https://github.com/alphagov/govuk-prototype-kit/pull/581)
+- [Rename and reorganise template pages to be easier to use](https://github.com/alphagov/govuk-prototype-kit/pull/578)
+- [Add kit version and link to footer](https://github.com/alphagov/govuk-prototype-kit/pull/476)
+
+Bug fixes:
+
+- [Fix loading variables from .env](https://github.com/alphagov/govuk-prototype-kit/pull/583)
+- [Update link from question page template to design system](https://github.com/alphagov/govuk-prototype-kit/pull/575)
+- [Changed block name to bodyEnd to fix scripts in unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/580)
+
+# 7.0.0
+
+This release adds backwards compatibility, so you can use old prototypes
+made in v6 of the Prototype Kit in v7.
+
+[Read the guidance on using backwards compatibility](https://govuk-prototype-kit.herokuapp.com/docs/backwards-compatibility)
+
+New features:
+- [#568 Update GOV.UK Frontend to 1.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/568)
+- [#563 Add Nunjucks macro example to 'passing data' guidance](https://github.com/alphagov/govuk-prototype-kit/pull/563)
+- [#553 Add backwards compatibility - support for prototypes made in Version 6 of the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/pull/553)
+- [#557 Bump outdated dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/557):
+  - Update standard from 10.0.2 to 11.0.1 and fix violations
+  - Update run-sequence from 1.2.2 to 2.2.1
+  - Update require-dir from 0.3.2 to 1.0.0
+  - Update notifications-node-client from 3.0.0 to 4.1.0
+  - Update marked from 0.3.6 to 0.4.0
+  - Update gulp-sass from 3.1.0 to 4.0.1
+  - Update gulp-mocha from v4.3.1 to v6.0.0
+  - Update gulp-clean from 0.3.2 to 0.4.0
+  - Update express from 4.15.2 to 4.16.3
+  - Update dotenv from 4.0.0 to 6.0.0
+  - Update cross-spawn from 5.0.0 to 6.0.5
+  - Update basic-auth from 1.0.3 to 2.0.0
+- [#557 Remove unused readdir dependency](https://github.com/alphagov/govuk-prototype-kit/pull/557)
+- [#557 Fix a broken link in an error message](https://github.com/alphagov/govuk-prototype-kit/pull/557)
+
+Bug fixes:
+- [#566 Improve error handling](https://github.com/alphagov/govuk-prototype-kit/pull/566)
+- [#556 Update branching example](https://github.com/alphagov/govuk-prototype-kit/pull/556)
+- [#536 Import missing component macros](https://github.com/alphagov/govuk_prototype_kit/pull/536)
+- [#532 Update repo links from govuk_prototype_kit to govuk-prototype-kit](https://github.com/alphagov/govuk_prototype_kit/pull/532)
+- [#540 Fix grid css classes on check-your-answers page](https://github.com/alphagov/govuk-prototype-kit/pull/540)
+- [#562 Change the syntax used to specify node engine versions to fix a bug that prevented prototypes from being deployed to a CloudFoundry instance, by ](https://github.com/alphagov/govuk-prototype-kit/pull/562)
+
+# 7.0.0-beta.10
+
+Breaking changes:
+
+- [#512 Update to GOV.UK Frontend](https://github.com/alphagov/govuk_prototype_kit/pull/512)
+
+You will need to:
+
+- update `app/views/includes/scripts.html` file and add the following line to include the JavaScript file
+```
+<script src="/node_modules/govuk-frontend/all.js"></script>
+```
+- modify `app/assets/javascripts/application.js` file to initialise the JavaScript
+```
+$(document).ready(function () {
+   window.GOVUKFrontend.initAll()
+})
+```
+
+New features:
+
+- [#501 Add default session data](https://github.com/alphagov/govuk_prototype_kit/pull/501)
+- [#502 Add Cookies and Privacy policy text](https://github.com/alphagov/govuk_prototype_kit/pull/502)
+- [#521 Do not track users who have enabled 'DoNotTrack'](https://github.com/alphagov/govuk_prototype_kit/pull/521)
+- [#522 Add inline-code block styles](https://github.com/alphagov/govuk_prototype_kit/pull/522)
+- [#523 Track app usage](https://github.com/alphagov/govuk_prototype_kit/pull/523)
+- [#525 Add design system message to home page](https://github.com/alphagov/govuk_prototype_kit/pull/525)
+
+Bug fixes:
+- [#530 Update elements class to frontend on examples page](https://github.com/alphagov/govuk_prototype_kit/pull/530)
+- [#491 Remove redundant Google Analytics](https://github.com/alphagov/govuk_prototype_kit/pull/491)
+- [#524 Make "Prototype Kit" casing consistent](https://github.com/alphagov/govuk_prototype_kit/pull/524)
+- [#527 Update docs/index page to include same information as private beta](https://github.com/alphagov/govuk_prototype_kit/pull/527)
+
+To see the previous private beta releases see the archived [private beta repository](https://github.com/alphagov/govuk-prototype-kit-private-beta/blob/master/CHANGELOG.md#700-beta9).
+
+# 6.3.0
+
+New features:
+- [#430 Recommend Atom over Sublime text](https://github.com/alphagov/govuk_prototype_kit/pull/430)
+- [#415 Update to govuk-elements-sass v3.1.1](https://github.com/alphagov/govuk_prototype_kit/pull/415)
+- [#422 fix(package): update govuk_template_jinja to version 0.22.3](https://github.com/alphagov/govuk_prototype_kit/pull/422)
+- [#401 Update govuk_template_jinja to 0.22.2](https://github.com/alphagov/govuk_prototype_kit/pull/401)
+- [#409 Update govuk_frontend_toolkit to 7.0.0](https://github.com/alphagov/govuk_prototype_kit/pull/409)
+- [#406 Add documentation for creating a release](https://github.com/alphagov/govuk_prototype_kit/pull/406)
+- [#410 Copyright should be Crown Copyright](https://github.com/alphagov/govuk_prototype_kit/pull/410)
+- [#407 Support deprecated check-your-answers table styles](https://github.com/alphagov/govuk_prototype_kit/pull/407)
+
+Bug fixes:
+
+- [#431 Remove the Heroku deploy provider from Travis](https://github.com/alphagov/govuk_prototype_kit/pull/431)
+- [#405 Upgrade node.js version for Heroku](https://github.com/alphagov/govuk_prototype_kit/pull/405)
+
 # 6.2.0
 
 New features:

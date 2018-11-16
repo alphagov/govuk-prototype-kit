@@ -1,0 +1,168 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/url/of/previous/page">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers before sending your application
+      </h1>
+
+      <!-- only add a heading for a list if there is more than one list -->
+      <h2 class="govuk-heading-m">
+        Personal details
+      </h2>
+
+      <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+      <!--   * `app-check-your-answers--short` for short questions -->
+      <!--   * `app-check-your-answers__questions-long` for long questions -->
+      <!--   * none for single group of q&a -->
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Name
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            Sarah Philips
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Date of birth
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            5 January 1978
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> date of birth</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Home address
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            72 Guild Street<br />
+            London<br />
+            SE23 6FH
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> home address</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Contact details
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            07700 900457<br />
+            sarah.phillips@example.com
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> contact details</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="govuk-heading-m">
+        Application details
+      </h2>
+
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Previous application number
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            502135326
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> previous application number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Licence type
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            For personal use
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> licence type</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Home address
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            72 Guild Street<br />
+            London<br />
+            SE23 6FH
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> home address</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Licence period
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            This is a longer paragraph of text provided by the user to provide additional information.<br /><br />
+            This is a second paragraph of text provided by the user.
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="#">
+              Change<span class="govuk-visually-hidden"> licence period</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="govuk-heading-m">Now send your application</h2>
+
+      <p>
+        By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <a class="govuk-button" href="confirmation-page" role="button">
+        Accept and send application
+      </a>
+
+    </div>
+  </div>
+{% endblock %}

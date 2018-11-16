@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Example - Branching
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/breadcrumb_examples.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/docs/examples/branching/over-18-answer" method="post" class="form">
+
+        <h1 class="govuk-heading-xl">
+          Branching
+        </h1>
+
+        <p>
+          You can show a user different pages, depending on how they've answered a question.
+        </p>
+
+        <p>
+          The code for this example is in your prototype folder:
+        </p>
+
+        <pre class="app-code"><code>/docs/documentation_routes.js
+/docs/views/examples/branching</code></pre>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Are you 18 or over?
+            </h2>
+          </legend>
+          <div class="govuk-radios govuk-radios--inline">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="over-18-yes" name="over-18" type="radio" value="true">
+              <label class="govuk-label govuk-radios__label" for="over-18-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="over18-no" name="over-18" type="radio" value="false">
+              <label class="govuk-label govuk-radios__label" for="over-18-no">
+                No
+              </label>
+            </div>
+          </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

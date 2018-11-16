@@ -5,10 +5,10 @@ We do have a few guidelines to bear in mind.
 
 ## Community
 
-We have two Slack channels for the Prototype kit. You'll need a government email address to join them.
+We have two Slack channels for the Prototype Kit. You'll need a government email address to join them.
 
-* [Slack channel for users of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
-* [Slack channel for developers of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/)
+* [Slack channel for users of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
+* [Slack channel for developers of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/)
 
 ## Raising bugs
 
@@ -24,11 +24,6 @@ When describing the bug it's useful to follow the format:
 Please raise feature requests as issues before contributing any code.
 
 This ensures they are discussed properly before any time is spent on them.
-
-## GOV.UK Elements
-
-The project contains code taken from the [GOV.UK Elements](https://github.com/alphagov/govuk_elements/) project.
-Please check that any issues related to that code are raised with that project, not this one.
 
 ## Contributing code
 
@@ -56,14 +51,16 @@ which describes how we prefer git history and commit messages to read.
 
 ## To release a new version
 
-Update [CHANGELOG.md](https://github.com/alphagov/govuk_prototype_kit/blob/master/CHANGELOG.md) to summarise the changes made since the last release.
+Checkout a new branch for the release.
 
-To see the commits to be summarised in the changelog since the last release, [compare the latest-release branch with master](https://github.com/alphagov/govuk_prototype_kit/compare/latest-release...master).
+Update [CHANGELOG.md](https://github.com/alphagov/govuk-prototype-kit/blob/master/CHANGELOG.md) to summarise the changes made since the last release.
 
-Propose a new version number in [VERSION.txt](https://github.com/alphagov/govuk_prototype_kit/blob/master/VERSION.txt) and update line 4 in [package.json](https://github.com/alphagov/govuk_prototype_kit/blob/master/package.json#L4) with the new version number.
+To see the commits to be summarised in the changelog since the last release, [compare the latest-release branch with master](https://github.com/alphagov/govuk-prototype-kit/compare/latest-release...master).
+
+Propose a new version number in [VERSION.txt](https://github.com/alphagov/govuk-prototype-kit/blob/master/VERSION.txt) and update line 4 in [package.json](https://github.com/alphagov/govuk-prototype-kit/blob/master/package.json#L4) with the new version number.
 
 Open a new pull request with a single commit including the above changes.
 
-[Here is an example for v6.1.0](https://github.com/alphagov/govuk_prototype_kit/commit/53e36d79a994ce3649b53f4008370cd75068c27c).
+[Here is an example for v6.1.0](https://github.com/alphagov/govuk-prototype-kit/commit/53e36d79a994ce3649b53f4008370cd75068c27c).
 
 Once merged into master a new version will be built.
