@@ -1,0 +1,72 @@
+{#  set result = "#" #}
+
+{% extends "layout_unbranded.html" %}
+
+{% block page_title %}
+  Search page
+{% endblock %}
+
+{% block head %}
+  <link href="/public/stylesheets/unbranded.css" media="screen" rel="stylesheet" type="text/css">
+  <style>
+
+#content {height:100vh; padding-bottom: 0; position: relative;}
+
+form { margin: 100px auto 0 ; width: auto; max-width: 640px;}
+
+.button, .button:hover, .button:visited { background-color: rgb(242, 242, 242) ; color: rgb(117, 117, 117) !important; box-shadow: none !important; }
+
+  </style>
+
+{% endblock %}
+
+{% block content %}
+
+<div id='vertical-fix'></div>
+
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-full">
+
+      <form action="{% if result %}{{result}}{% else %}_GOOGLERESULTS{% endif %}" method="post" class="form" s>
+
+        <h1 class="heading-medium" style="display: none;" >
+         Google
+        </h1>
+
+<img src="{{asset_path}}images/google.png" style="margin: 0 auto; display: block;" alt="Google" />
+
+        <div class="form-group">
+          <fieldset>
+
+            <legend class="visuallyhidden">
+             Search for a result
+            </legend>
+
+            <label class="visually-hidden" for="google-search">Search for a result</label>
+            <input style="width: 100%; max-width: 632px; margin: 10px auto;" class="form-control" id="google-search" name="google-search" type="text" value="{{data['google-search']}}">
+
+          </fieldset>
+        </div>
+
+        <div class="form-group" style="width: 100%; max-width: 342px; margin: 0 auto; ">
+          <input type="submit" class="button" value="Google Search">
+          <a href="#" class="button">I'm Feeling Lucky</a>
+        </div>
+
+      </form>
+
+
+
+
+    </div>
+  </div>
+  <ul style="position: absolute; bottom: 10px; font-size: 14px">
+    <li>
+      <a href="/prototype-admin/clear-data">Clear data</a>
+    </li>
+  </ul>
+</main>
+
+{% endblock %}

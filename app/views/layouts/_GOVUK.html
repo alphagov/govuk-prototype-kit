@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+   {{title}} - GOV.UK
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+  <!--[if gt IE 8]><!--><link href="/public/stylesheets/govuk.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main" class="guide">
+
+  <div class="breadcrumbs">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="">Section</a></li>
+      <li>Subsection</li>
+    </ol>
+  </div>
+
+  <div class="grid-row">
+
+    <div class="column-two-thirds">
+        <div class="pub-c-title
+
+      pub-c-title--bottom-margin">
+      <h1 class="heading-xlarge">
+        Tax and customs for goods sent from abroad
+      </h1>
+    </div>
+
+          <aside class="part-navigation-container" role="complementary">
+              <nav role="navigation" class="grid-row part-navigation" aria-label="Pages in this guide">
+          <ol class="column-half">
+              <li>
+                Overview
+              </li>
+              <li>
+                <a href="/goods-sent-from-abroad/tax-and-duty">Tax and duty</a>
+              </li>
+          </ol>
+          <ol class="column-half" start="3">
+              <li>
+                <a href="/goods-sent-from-abroad/documents">Documents</a>
+              </li>
+              <li>
+                <a href="/goods-sent-from-abroad/gifts">Gifts</a>
+              </li>
+          </ol>
+      </nav>
+
+          </aside>
+      </div>
+
+    <div class="column-two-thirds">
+
+{% block main %}
+      <h1 class="heading-xlarge">
+        {% if serviceName %} {{ serviceName }} {% endif %}
+      </h1>
+
+
+
+
+{% endblock  %}
+    </div>
+    <div class="column-third">
+
+{% block sidebar %}
+<aside class="app-c-related-navigation" role="complementary">
+<h2 id="related-nav-related_items" class="app-c-related-navigation__main-heading" data-track-count="sidebarRelatedItemSection">
+  Related content
+</h2>
+      <nav role="navigation" class="app-c-related-navigation__nav-section" aria-labelledby="related-nav-related_items" data-module="toggle">
+        <ul class="app-c-related-navigation_link-list" data-module="track-click">
+              <li class="app-c-related-navigation__link"><a class="app-c-related-navigation__section-link--other" data-track-category="relatedLinkClicked" data-track-action="1.1 Related content" data-track-label="/starting-to-import" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Starting to import&quot;}" href="/starting-to-import">Starting to import</a></li>
+              <li class="app-c-related-navigation__link"><a class="app-c-related-navigation__section-link--other" data-track-category="relatedLinkClicked" data-track-action="1.2 Related content" data-track-label="/duty-relief-for-imports-and-exports" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Duty relief for imports and exports&quot;}" href="/duty-relief-for-imports-and-exports">Duty relief for imports and exports</a></li>
+              <li class="app-c-related-navigation__link"><a class="app-c-related-navigation__section-link--other" data-track-category="relatedLinkClicked" data-track-action="1.3 Related content" data-track-label="/uk-border-control" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Entering the UK&quot;}" href="/uk-border-control">Entering the UK</a></li>
+        </ul>
+      </nav>
+        <h3 id="related-nav-topics" data-track-count="sidebarRelatedItemSection" class="app-c-related-navigation__sub-heading">
+          Explore the topic
+        </h3>
+      <nav role="navigation" class="app-c-related-navigation__nav-section" aria-labelledby="related-nav-topics" data-module="toggle">
+        <ul class="app-c-related-navigation_link-list" data-module="track-click">
+              <li class="app-c-related-navigation__link"><a class="app-c-related-navigation__section-link" data-track-category="relatedLinkClicked" data-track-action="2.1 Explore the topic" data-track-label="/topic/business-tax/import-export" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Import and export: customs declarations, duties and tariffs&quot;}" href="/topic/business-tax/import-export">Import and export: customs declarations, duties and tariffs</a></li>
+              <li class="app-c-related-navigation__link"><a class="app-c-related-navigation__section-link" data-track-category="relatedLinkClicked" data-track-action="2.2 Explore the topic" data-track-label="/browse/business/imports" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Importing&quot;}" href="/browse/business/imports">Importing</a></li>
+        </ul>
+      </nav>
+</aside>
+{% endblock %}
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends "layouts/base.html" %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+{% endblock %}
+
+{% block page_title %}
+
+{% if title %}{{title}} - {% endif %} {% if serviceName %} {{ serviceName }}{% else %}Parcels{% endif %} - GOV.UK
+
+{% endblock %}
+
+{% block cookie_message %}
+  <p>{{cookieText | safe }}</p>
+{% endblock %}
+
+{% block proposition_header %}
+
+  <div class="header-proposition">
+    <div class="content">
+      <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+      <nav id="proposition-menu">
+        <ul class="service-info">
+          <li>
+        <a href="/" id="proposition-name">
+          {# Set serviceName in config.js. Use a block to override on a page. #}
+          {% block service_name %}
+            {% if serviceName %} {{ serviceName }}{% else %}Parcels{% endif %}
+          {% endblock %}
+        </a>
+        </li>
+        <li class="signout-link"><a href="{{signout}}">Sign out</a>
+        </li>
+
+                  </ul>
+      </nav>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block header_class %}
+  with-proposition
+{% endblock %}
+
+
+{% block content %}
+
+<main id="content" role="main" >
+
+
+  <div class="grid-row">
+      <div class="column-full">
+{% include "layouts/_SIGNEDIN.html" %}
+</div>
+    <div class="column-two-thirds">
+
+{% if back %}
+
+      <div class="u-fl">
+                <a href="javascript:history.back()" rel="prev" class="link-back">Back</a>
+
+              </div>
+{% endif %}
+      <h1 class="heading-{% if not smalltitle %}x{% endif %}large" style="margin-bottom: 0;">
+        {{title | safe }}
+      </h1>
+
+      {% if form %}
+        <form action="{{page}}" method="post" class="form">
+      {% endif %}
+      {% block parcels %}
+      {% endblock %}
+      {% if form %}
+
+{% if not nosave %}
+   {{ govButton("Save and continue") }}
+{% else %}
+ {{ govButton("Continue") }}
+{% endif %}
+<!--
+      <div class="form-group">
+        <input type="submit" class="button" value="{% if not nosave %}Save and continue{% else %}Continue{% endif %}">
+      </div>
+-->
+
+      </form>
+
+      {% endif %}
+
+
+
+    </div>
+    <div class="column-third">
+{% if sidebar %}
+
+      <aside class="govuk-related-items" role="complementary">
+        {% block sidebar %}
+
+
+{% endblock %}
+
+      </aside>
+{% endif %}
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}
+
+
+{% block footer_support_links %}
+  {% if useAutoStoreData %}
+    <ul>
+      <li>
+        <a href="/prototype-admin/clear-data">Clear data</a>
+      </li>
+    </ul>
+  {% endif %}
+{% endblock %}
+
+{% block body_end %}
+  {% block scripts %}
+    {% include "includes/scripts.html" %}
+    {% block page_scripts %}{% endblock %}
+  {% endblock %}
+  <!-- GOV.UK Prototype kit {{releaseVersion}} -->
+{% endblock %}

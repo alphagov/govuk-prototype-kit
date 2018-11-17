@@ -1,0 +1,264 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+   Welcome to GOV.UK
+{% endblock %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+  <!--[if gt IE 8]><!--><link href="/public/stylesheets/home.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+{% endblock %}
+
+{% block body_classes %}homepage{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block content %}
+
+<main id="content" class="root-index" role="main">
+  <header class="homepage-top">
+    <div class="homepage-top-inner">
+
+      <div class="welcome-block">
+        <div class="inner-block floated-children">
+          <div class="welcome-text">
+            <div class="floated-inner-block">
+              <h1>Welcome to GOV.UK</h1>
+              <p>The best place to find government services and information</p>
+              <p class="simpler">Simpler, clearer, faster</p>
+
+              <form action="{{search}}" method="get" role="search">
+
+<div class="govuk-search on-govuk-blue" data-module="toggle-input-class-on-focus">
+  <label for="search-main-9ca55ef7" class="search-label">
+    Search GOV.UK
+  </label>
+  <div class="search-wrapper">
+    <input type="search" value="" id="search-main-9ca55ef7" name="q" title="Search" class="search-element search-input js-class-toggle">
+    <div class="search-element search-submit-wrapper">
+      <button type="submit" class="search-submit">Search</button>
+    </div>
+  </div>
+</div>
+
+              </form>
+            </div>
+          </div>
+          <div class="content-links">
+            <div class="floated-inner-block content-links-inner">
+              <h2>Popular on GOV.UK</h2>
+              <ul>
+                <li><a href="#">Universal Jobmatch job search</a></li>
+                <li><a href="#">Renew vehicle tax</a></li>
+                <li><a href="#">Log in to student finance</a></li>
+                <li><a href="#">Book your theory test</a></li>
+                <li><a href="#">Personal tax account</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="homepage" class="homepage-content">
+    <div class="homepage-content-inner">
+
+      <section class="services-block" aria-labelledby="services-and-information-label" id="services-and-information">
+        <div class="inner-block floated-children">
+          <div class="two-column-heading">
+            <h2 id="services-and-information-label" class="visuallyhidden">Services and information</h2>
+          </div>
+
+<div class="categories-lists">
+  <ol class="categories-list">
+    <li>
+      <h3><a href="#">Benefits</a></h3>
+      <p>Includes tax credits, eligibility and appeals</p>
+    </li>
+    <li>
+      <h3><a href="#">Births, deaths, marriages and care</a></h3>
+      <p>Parenting, civil partnerships, divorce and Lasting Power of Attorney</p>
+    </li>
+    <li>
+      <h3><a href="#">Business and self-employed</a></h3>
+      <p>Tools and guidance for businesses</p>
+    </li>
+    <li>
+      <h3><a href="#">Childcare and parenting</a></h3>
+      <p>Financial support, childcare, pregnancy and birth, adoption and fostering, looked-after children, safeguarding</p>
+    </li>
+    <li>
+      <h3><a href="#">Citizenship and living in the UK</a></h3>
+      <p>Voting, community participation, life in the UK, international projects</p>
+    </li>
+    <li>
+      <h3><a href="#">Crime, justice and the law</a></h3>
+      <p>Legal processes, courts and the police</p>
+    </li>
+  </ol>
+
+  <ol class="categories-list">
+    <li>
+      <h3><a href="#">Disabled people</a></h3>
+      <p>Includes carers, your rights, benefits and the Equality Act</p>
+    </li>
+    <li>
+      <h3><a href="#">Driving and transport</a></h3>
+      <p>Includes vehicle tax, MOT and driving licences</p>
+    </li>
+    <li>
+      <h3><a href="#">Education, training and skills</a></h3>
+      <p>Early years learning, schools and academies, further and higher education, skills and vocational training, student funding</p>
+    </li>
+    <li>
+      <h3><a href="#">Employing people</a></h3>
+      <p>Includes pay, contracts and hiring</p>
+    </li>
+    <li>
+      <h3><a href="#">Environment and countryside</a></h3>
+      <p>Includes flooding, recycling and wildlife</p>
+    </li>
+  </ol>
+  <ol class="categories-list">
+    <li>
+      <h3><a href="#">Housing and local services</a></h3>
+      <p>Owning or renting and council services</p>
+    </li>
+    <li>
+      <h3><a href="#">Money and tax</a></h3>
+      <p>Includes debt and Self Assessment</p>
+    </li>
+    <li>
+      <h3><a href="#">Passports, travel and living abroad</a></h3>
+      <p>Includes renewing passports and travel advice by country</p>
+    </li>
+    <li>
+      <h3><a href="#">Visas and immigration</a></h3>
+      <p>Visas, asylum and sponsorship</p>
+    </li>
+    <li>
+      <h3><a href="#">Working, jobs and pensions</a></h3>
+      <p>Includes holidays and finding a job</p>
+    </li>
+  </ol>
+</div>
+
+        </div>
+      </section>
+
+      <hr id="departments-and-policy" aria-hidden="true">
+
+      <section class="departments-and-policy" aria-labelledby="departments-and-policy-label">
+        <div class="inner-block floated-children">
+            <h2 id="departments-and-policy-label" class="visuallyhidden">Departments and&nbsp;policy</h2>
+          <div class="large-numbers">
+            <ol>
+              <li><a href="#"><strong>25</strong> Ministerial departments</a></li>
+              <li><a href="#"><strong>376</strong> Other agencies and public&nbsp;bodies</a></li>
+            </ol>
+          </div>
+          <div class="departments-intro">
+            <div class="floated-inner-block">
+              <p>
+                The websites of all <a href="#">government
+                departments</a> and many other agencies and public bodies have
+                been merged into GOV.UK.
+              </p>
+              <p>
+                Here you can see all <a href="#">policies</a>,
+                <a href="#">announcements</a>,
+                <a href="#">publications</a>,
+                <a href="#">statistics</a>
+                and <a href="#">consultations</a>.
+              </p>
+              <p>
+                Find out <a href="#">how government services are performing</a>
+                and how satisfied users are.
+              </p>
+            </div>
+          </div>
+
+          <div class="departments-promo-sections">
+            <div class="promo-image">
+              <div class="promo-content">
+                <a href="#">
+                  <img alt="Find a job" src="/public/images/home1.jpg"></a>
+                <h3>Find a job</h3>
+                <p>
+                  Use <a href="#">Universal Jobmatch</a> to find full or part-time work in Great Britain and abroad.
+                </p>
+              </div>
+            </div>
+            <div class="promo-image">
+              <div class="promo-content">
+                <a href="#">
+                  <img alt="Grenfell Tower support" src="/public/images/home2.png"></a>
+                <h3>Grenfell Tower fire</h3>
+                <p>Find out about the <a href="#">support available</a>.</p>
+              </div>
+            </div>
+            <div class="promo-image">
+              <div class="promo-content">
+                <a href="#">
+                  <img alt="The UK and the EU" src="/public/images/home3.jpg"></a>
+                <h3>The UK and the EU</h3>
+                <p>
+                  Read the <a href="#">latest updates and information</a> as the UK prepares to leave the EU.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr id="more-on-govuk" aria-hidden="true">
+
+      <section class="popular-content" aria-labelledby="more-on-govuk-label">
+        <div class="inner-block floated-children">
+          <div class="single-column-heading">
+            <h2 id="more-on-govuk-label">More on GOV.UK</h2>
+          </div>
+          <div class="most-active">
+            <div class="floated-inner-block">
+              <h3>Most active</h3>
+              <ul class="most-active-content">
+                <li><a href="#">Universal Jobmatch job search</a></li>
+                <li><a href="#">Log in to student finance</a></li>
+                <li><a href="#">Passport fees</a></li>
+                <li><a href="#">Jobseeker's Allowance</a></li>
+                <li><a href="#">Council Tax bands</a></li>
+                <li><a href="#">Running a limited company</a></li>
+                <li><a href="#">Driving theory test</a></li>
+                <li><a href="#">Vehicle tax rates</a></li>
+                <li><a href="#">Renew vehicle tax</a></li>
+                <li><a href="#">VAT rates</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="promo-image" id="promo">
+            <div class="promo-content">
+              <h3 class="promo-text-cta">
+                <a href="#">
+                <span class="main-text">UK bank holidays</span>
+                </a>
+              </h3>
+              <p>Check the dates for <a href="#">bank holidays</a> in England, Wales, Scotland and Northern Ireland.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+{% block page_scripts %}
+<script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+{% endblock %}

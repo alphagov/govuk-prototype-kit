@@ -1,0 +1,841 @@
+<!-- variables = pay and info -->
+
+{% extends "layout.html" %}
+
+{% block page_title %}
+   {{data['q']}} - search - GOV.UK
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+  <!--[if gt IE 8]><!--><link href="/public/stylesheets/search.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main" class="group search">
+  <form action="" method="post" accept-charset="utf-8" role="search" class="js-live-search-form">
+    <div class="search-header">
+      <div class="searchfield">
+  <fieldset class="search-input">
+    <label for="search-main">
+        <h1>Search results for <span class="visuallyhidden">“{{data['q']}}”</span>
+</h1>
+    </label>
+
+    <input type="search" name="q" value="{{data['q']}}" id="search-main">
+
+
+
+
+
+  </fieldset>
+
+  <fieldset class="search-submit">
+    <button type="submit" class="button">Search</button>
+  </fieldset>
+</div>
+
+
+    </div>
+
+    <div id="results" class="js-live-search-results-block">
+      <div aria-live="assertive" class="js-aria-live-count visuallyhidden">30144 found</div>
+        <div class="filter-form">
+    <div class="inner-block">
+      <p class="info">Filter by:</p>
+
+        <div class="filter checkbox-filter js-openable-filter closed" tabindex="0">
+          <div class="head">
+            <span class="legend">Organisations</span>
+            <div class="controls">
+              <a class="clear-selected  js-hidden">Remove filters</a>
+              <div class="toggle"></div>
+            </div>
+          </div>
+          <div class="checkbox-container" id="organisations-filter">
+            <ul>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="hm-revenue-customs" id="hm-revenue-customs">
+                  <label for="hm-revenue-customs">HM Revenue &amp; Customs (27,796)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="ministry-of-justice" id="ministry-of-justice">
+                  <label for="ministry-of-justice">Ministry of Justice (3,183)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="hm-courts-and-tribunals-service" id="hm-courts-and-tribunals-service">
+                  <label for="hm-courts-and-tribunals-service">HM Courts &amp; Tribunals Service (3,055)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="foreign-commonwealth-office" id="foreign-commonwealth-office">
+                  <label for="foreign-commonwealth-office">Foreign &amp; Commonwealth Office (2,678)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="employment-tribunal" id="employment-tribunal">
+                  <label for="employment-tribunal">Employment Tribunal (1,689)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-international-development" id="department-for-international-development">
+                  <label for="department-for-international-development">Department for International Development (1,632)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="prime-ministers-office-10-downing-street" id="prime-ministers-office-10-downing-street">
+                  <label for="prime-ministers-office-10-downing-street">Prime Minister's Office, 10 Downing Street (959)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="natural-england" id="natural-england">
+                  <label for="natural-england">Natural England (765)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="employment-appeal-tribunal" id="employment-appeal-tribunal">
+                  <label for="employment-appeal-tribunal">Employment Appeal Tribunal (672)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-communities-and-local-government" id="department-for-communities-and-local-government">
+                  <label for="department-for-communities-and-local-government">Department for Communities and Local Government (661)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-business-innovation-skills" id="department-for-business-innovation-skills">
+                  <label for="department-for-business-innovation-skills">Closed organisation: Department for Business, Innovation &amp; Skills (588)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="hm-treasury" id="hm-treasury">
+                  <label for="hm-treasury">HM Treasury (578)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="home-office" id="home-office">
+                  <label for="home-office">Home Office (545)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-environment-food-rural-affairs" id="department-for-environment-food-rural-affairs">
+                  <label for="department-for-environment-food-rural-affairs">Department for Environment, Food &amp; Rural Affairs (524)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="upper-tribunal-tax-and-chancery-chamber" id="upper-tribunal-tax-and-chancery-chamber">
+                  <label for="upper-tribunal-tax-and-chancery-chamber">Upper Tribunal (Tax and Chancery Chamber) (479)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="valuation-office-agency" id="valuation-office-agency">
+                  <label for="valuation-office-agency">Valuation Office Agency (462)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="cabinet-office" id="cabinet-office">
+                  <label for="cabinet-office">Cabinet Office (443)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-of-energy-climate-change" id="department-of-energy-climate-change">
+                  <label for="department-of-energy-climate-change">Closed organisation: Department of Energy &amp; Climate Change (415)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="competition-and-markets-authority" id="competition-and-markets-authority">
+                  <label for="competition-and-markets-authority">Competition and Markets Authority (406)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-transport" id="department-for-transport">
+                  <label for="department-for-transport">Department for Transport (406)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="ministry-of-defence" id="ministry-of-defence">
+                  <label for="ministry-of-defence">Ministry of Defence (402)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-digital-culture-media-sport" id="department-for-digital-culture-media-sport">
+                  <label for="department-for-digital-culture-media-sport">Department for Digital, Culture, Media &amp; Sport (347)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="intellectual-property-office" id="intellectual-property-office">
+                  <label for="intellectual-property-office">Intellectual Property Office (304)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="northern-ireland-office" id="northern-ireland-office">
+                  <label for="northern-ireland-office">Northern Ireland Office (267)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-education" id="department-for-education">
+                  <label for="department-for-education">Department for Education (236)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-of-health" id="department-of-health">
+                  <label for="department-of-health">Department of Health (235)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="office-of-the-secretary-of-state-for-scotland" id="office-of-the-secretary-of-state-for-scotland">
+                  <label for="office-of-the-secretary-of-state-for-scotland">Office of the Secretary of State for Scotland (212)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-work-pensions" id="department-for-work-pensions">
+                  <label for="department-for-work-pensions">Department for Work and Pensions (211)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="forestry-commission" id="forestry-commission">
+                  <label for="forestry-commission">Forestry Commission (199)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="insolvency-service" id="insolvency-service">
+                  <label for="insolvency-service">The Insolvency Service (164)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="uk-visas-and-immigration" id="uk-visas-and-immigration">
+                  <label for="uk-visas-and-immigration">UK Visas and Immigration (164)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="crown-commercial-service" id="crown-commercial-service">
+                  <label for="crown-commercial-service">Crown Commercial Service (162)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="office-of-the-secretary-of-state-for-wales" id="office-of-the-secretary-of-state-for-wales">
+                  <label for="office-of-the-secretary-of-state-for-wales">Office of the Secretary of State for Wales (158)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-international-trade" id="department-for-international-trade">
+                  <label for="department-for-international-trade">Department for International Trade (144)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="environment-agency" id="environment-agency">
+                  <label for="environment-agency">Environment Agency (143)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="upper-tribunal-administrative-appeals-chamber" id="upper-tribunal-administrative-appeals-chamber">
+                  <label for="upper-tribunal-administrative-appeals-chamber">Upper Tribunal (Administrative Appeals Chamber) (142)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-business-energy-and-industrial-strategy" id="department-for-business-energy-and-industrial-strategy">
+                  <label for="department-for-business-energy-and-industrial-strategy">Department for Business, Energy &amp; Industrial Strategy (118)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="deputy-prime-ministers-office" id="deputy-prime-ministers-office">
+                  <label for="deputy-prime-ministers-office">Closed organisation: Deputy Prime Minister's Office (101)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="uk-trade-investment" id="uk-trade-investment">
+                  <label for="uk-trade-investment">Closed organisation: UK Trade &amp; Investment (99)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="homes-and-communities-agency" id="homes-and-communities-agency">
+                  <label for="homes-and-communities-agency">Homes and Communities Agency (91)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-for-exiting-the-european-union" id="department-for-exiting-the-european-union">
+                  <label for="department-for-exiting-the-european-union">Department for Exiting the European Union (86)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="rural-payments-agency" id="rural-payments-agency">
+                  <label for="rural-payments-agency">Rural Payments Agency (83)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="maritime-and-coastguard-agency" id="maritime-and-coastguard-agency">
+                  <label for="maritime-and-coastguard-agency">Maritime and Coastguard Agency (76)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="charity-commission" id="charity-commission">
+                  <label for="charity-commission">The Charity Commission (72)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="government-digital-service" id="government-digital-service">
+                  <label for="government-digital-service">Government Digital Service (69)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="land-registry" id="land-registry">
+                  <label for="land-registry">HM Land Registry (60)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="uk-export-finance" id="uk-export-finance">
+                  <label for="uk-export-finance">UK Export Finance (59)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="highways-england" id="highways-england">
+                  <label for="highways-england">Highways England (55)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="driver-and-vehicle-standards-agency" id="driver-and-vehicle-standards-agency">
+                  <label for="driver-and-vehicle-standards-agency">Driver and Vehicle Standards Agency (54)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="attorney-generals-office" id="attorney-generals-office">
+                  <label for="attorney-generals-office">Attorney General's Office (51)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="education-funding-agency" id="education-funding-agency">
+                  <label for="education-funding-agency">Closed organisation: Education Funding Agency (47)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="education-and-skills-funding-agency" id="education-and-skills-funding-agency">
+                  <label for="education-and-skills-funding-agency">Education and Skills Funding Agency (45)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="public-health-england" id="public-health-england">
+                  <label for="public-health-england">Public Health England (44)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="office-of-the-advocate-general-for-scotland" id="office-of-the-advocate-general-for-scotland">
+                  <label for="office-of-the-advocate-general-for-scotland">Office of the Advocate General for Scotland (43)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="highways-agency" id="highways-agency">
+                  <label for="highways-agency">Closed organisation: Highways Agency (40)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="defence-equipment-and-support" id="defence-equipment-and-support">
+                  <label for="defence-equipment-and-support">Defence Equipment and Support (35)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="skills-funding-agency" id="skills-funding-agency">
+                  <label for="skills-funding-agency">Closed organisation: Skills Funding Agency (32)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="central-arbitration-committee" id="central-arbitration-committee">
+                  <label for="central-arbitration-committee">Central Arbitration Committee (29)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="monitor" id="monitor">
+                  <label for="monitor">Closed organisation: Monitor (26)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="high-speed-two-limited" id="high-speed-two-limited">
+                  <label for="high-speed-two-limited">High Speed Two (HS2) Limited (25)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="nuclear-decommissioning-authority" id="nuclear-decommissioning-authority">
+                  <label for="nuclear-decommissioning-authority">Nuclear Decommissioning Authority (25)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="ofsted" id="ofsted">
+                  <label for="ofsted">Ofsted (24)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="marine-management-organisation" id="marine-management-organisation">
+                  <label for="marine-management-organisation">Marine Management Organisation (23)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="first-tier-tribunal-asylum-support" id="first-tier-tribunal-asylum-support">
+                  <label for="first-tier-tribunal-asylum-support">First-tier Tribunal (Asylum Support) (22)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="immigration-enforcement" id="immigration-enforcement">
+                  <label for="immigration-enforcement">Immigration Enforcement (22)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="standards-and-testing-agency" id="standards-and-testing-agency">
+                  <label for="standards-and-testing-agency">Standards and Testing Agency (19)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="regulatory-policy-committee" id="regulatory-policy-committee">
+                  <label for="regulatory-policy-committee">Regulatory Policy Committee (18)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="uk-space-agency" id="uk-space-agency">
+                  <label for="uk-space-agency">UK Space Agency (18)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="defence-infrastructure-organisation" id="defence-infrastructure-organisation">
+                  <label for="defence-infrastructure-organisation">Defence Infrastructure Organisation (17)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="medicines-and-healthcare-products-regulatory-agency" id="medicines-and-healthcare-products-regulatory-agency">
+                  <label for="medicines-and-healthcare-products-regulatory-agency">Medicines and Healthcare products Regulatory Agency (17)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="national-college-for-teaching-and-leadership" id="national-college-for-teaching-and-leadership">
+                  <label for="national-college-for-teaching-and-leadership">National College for Teaching and Leadership (17)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="ofqual" id="ofqual">
+                  <label for="ofqual">Ofqual (17)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="companies-house" id="companies-house">
+                  <label for="companies-house">Companies House  (16)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="the-coal-authority" id="the-coal-authority">
+                  <label for="the-coal-authority">Coal Authority (15)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="defence-science-and-technology-laboratory" id="defence-science-and-technology-laboratory">
+                  <label for="defence-science-and-technology-laboratory">Defence Science and Technology Laboratory (14)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="legal-aid-agency" id="legal-aid-agency">
+                  <label for="legal-aid-agency">Legal Aid Agency (14)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="the-scottish-government" id="the-scottish-government">
+                  <label for="the-scottish-government">The Scottish Government (14)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="certification-officer" id="certification-officer">
+                  <label for="certification-officer">Certification Officer (13)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="efficiency-and-reform-group" id="efficiency-and-reform-group">
+                  <label for="efficiency-and-reform-group">Closed organisation: Efficiency and Reform Group (13)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="innovate-uk" id="innovate-uk">
+                  <label for="innovate-uk">Innovate UK (13)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="animal-and-plant-health-agency" id="animal-and-plant-health-agency">
+                  <label for="animal-and-plant-health-agency">Animal and Plant Health Agency (12)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="border-force" id="border-force">
+                  <label for="border-force">Border Force (12)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="single-source-regulations-office" id="single-source-regulations-office">
+                  <label for="single-source-regulations-office">Single Source Regulations Office (12)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="export-control-organisation" id="export-control-organisation">
+                  <label for="export-control-organisation">Export Control Organisation (11)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="regulatory-delivery" id="regulatory-delivery">
+                  <label for="regulatory-delivery">Regulatory Delivery (11)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="uk-atomic-energy-authority" id="uk-atomic-energy-authority">
+                  <label for="uk-atomic-energy-authority">UK Atomic Energy Authority (11)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="disclosure-and-barring-service" id="disclosure-and-barring-service">
+                  <label for="disclosure-and-barring-service">Disclosure and Barring Service (10)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="hm-passport-office" id="hm-passport-office">
+                  <label for="hm-passport-office">HM Passport Office (10)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="office-of-tax-simplification" id="office-of-tax-simplification">
+                  <label for="office-of-tax-simplification">Office of Tax Simplification (10)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="welsh-government" id="welsh-government">
+                  <label for="welsh-government">Welsh Government (9)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="civil-service" id="civil-service">
+                  <label for="civil-service">Civil Service (8)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="driver-and-vehicle-licensing-agency" id="driver-and-vehicle-licensing-agency">
+                  <label for="driver-and-vehicle-licensing-agency">Driver and Vehicle Licensing Agency (8)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="government-equalities-office" id="government-equalities-office">
+                  <label for="government-equalities-office">Government Equalities Office   (8)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="independent-chief-inspector-of-borders-and-immigration" id="independent-chief-inspector-of-borders-and-immigration">
+                  <label for="independent-chief-inspector-of-borders-and-immigration">Independent Chief Inspector of Borders and Immigration  (8)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="national-offender-management-service" id="national-offender-management-service">
+                  <label for="national-offender-management-service">Closed organisation: National Offender Management Service (8)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="planning-inspectorate" id="planning-inspectorate">
+                  <label for="planning-inspectorate">Planning Inspectorate (8)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="air-accidents-investigation-branch" id="air-accidents-investigation-branch">
+                  <label for="air-accidents-investigation-branch">Air Accidents Investigation Branch (7)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="department-of-the-environment" id="department-of-the-environment">
+                  <label for="department-of-the-environment">Closed organisation: Department of the Environment (Northern Ireland) (7)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="healthcare-uk" id="healthcare-uk">
+                  <label for="healthcare-uk">Healthcare UK (7)</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="filter_organisations[]" value="northern-ireland-statistics-and-research-agency" id="northern-ireland-statistics-and-research-agency">
+                  <label for="northern-ireland-statistics-and-research-agency">Northern Ireland Statistics and Research Agency (7)</label>
+                </li>
+            </ul>
+          </div>
+        </div>
+
+      <div class="submit js-live-search-fallback">
+        <input type="submit" class="button" value="Submit filters">
+      </div>
+    </div>
+  </div>
+
+<div class="results-block">
+  <div class="inner-block js-live-search-results-list">
+    <div class="result-count " id="js-live-search-result-count" aria-hidden="true">
+        30,144 results found
+    </div>
+
+
+
+<ol class="results-list" id="js-live-search-results" start="1" data-search-query="parcels" data-analytics-ecommerce="" data-ecommerce-start-index="1">
+  {% block results %}
+
+  <li>
+    <h3><a href="{{parcels}}" >Sign in or register for the small parcels service</a></h3>
+
+
+
+      <ul class="attributes">
+          <li> 16 September 2018 </li>
+          <li> Guidance </li>
+          <li> <abbr title="HM Revenue and Customs">HMRC</abbr> </li>
+      </ul>
+
+
+    <p>Poster providing guidance on Christmas <mark>parcels</mark> and donations for the armed forces.</p>
+
+
+
+
+  </li>
+{% endblock %}
+
+          <li>
+            <h3><a href="#">Organic Entry Level Stewardship: Field <mark>parcel</mark> reconciliation</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 22 January 2009 </li>
+                  <li> Form </li>
+                  <li> Natural England </li>
+              </ul>
+
+
+            <p>Use this form to tell Natural England of a change in field <mark>parcels</mark> registered in your OELS agreement (form NE-FPR).</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/guidance/international-trade-fast-parcel-operators" data-ecommerce-row="" data-ecommerce-path="/guidance/international-trade-fast-parcel-operators" data-ecommerce-content-id="5c71a603-7631-11e4-a3cb-005056011aef">Using a Fast <mark>Parcel</mark> Operator to import and export</a></h3>
+
+
+
+
+
+            <p>How to use a Fast <mark>Parcel</mark> Operator and the rules they must follow when making customs declarations.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="#">Countryside Stewardship: update land <mark>parcel</mark> records before applying</a></h3>
+
+
+
+
+
+            <p>How to update the records the Rural Payments Agency (RPA) holds about your land <mark>parcels</mark>, before submitting an application for Countryside Stewardship.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/publications/parcel-deliveries-best-practice-guide" data-ecommerce-row="" data-ecommerce-path="/government/publications/parcel-deliveries-best-practice-guide" data-ecommerce-content-id="5fde4945-7631-11e4-a3cb-005056011aef"><mark>Parcel</mark> deliveries: best practice guide</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 31 July 2014 </li>
+                  <li> Guidance </li>
+                  <li> <abbr title="Department for Business, Energy &amp; Industrial Strategy">BEIS</abbr> </li>
+              </ul>
+
+
+            <p>This sets out best practice principles to ensure retailers' delivery services meet the needs of customers who live in remote communities.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/publications/cross-border-parcel-delivery-in-the-eu" data-ecommerce-row="" data-ecommerce-path="/government/publications/cross-border-parcel-delivery-in-the-eu" data-ecommerce-content-id="4a71886f-12d1-4ee2-b182-bdf2abfcd927">Cross-border <mark>parcel</mark> delivery in the EU</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 27 January 2016 </li>
+                  <li> Policy paper </li>
+                  <li> <abbr title="Closed organisation: Department for Business, Innovation &amp; Skills">BIS</abbr> </li>
+              </ul>
+
+
+            <p>Explains the UK’s position on cross-border <mark>parcel</mark> delivery within Europe.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/guidance/fpos-reclaiming-import-vat-on-returned-goods-cip2" data-ecommerce-row="" data-ecommerce-path="/guidance/fpos-reclaiming-import-vat-on-returned-goods-cip2" data-ecommerce-content-id="527619f4-70fa-4729-a86c-737808eff60f">FPOs reclaiming import VAT on returned goods (CIP2)</a></h3>
+
+
+
+
+
+            <p>Claim repayment of import VAT on goods returned under a distance selling contract if you're a Fast <mark>Parcel</mark> Operator (FPO).</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/employment-tribunal-decisions/mr-c-johnson-v-nationwide-express-parcels-2405277-2017" data-ecommerce-row="" data-ecommerce-path="/employment-tribunal-decisions/mr-c-johnson-v-nationwide-express-parcels-2405277-2017" data-ecommerce-content-id="aa6be4a2-8c8d-4c0a-9cdb-45eb5d26a032">Mr C Johnson v Nationwide Express <mark>Parcels</mark>: 2405277/2017</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 24 January 2018 </li>
+                  <li> Employment tribunal decision </li>
+                  <li> <abbr title="Ministry of Justice">MOJ</abbr>, <abbr title="HM Courts &amp; Tribunals Service">HMCTS</abbr>, Employment Tribunal </li>
+              </ul>
+
+
+            <p>Employment Tribunal decision.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/employment-tribunal-decisions/mr-k-wilson-v-united-parcel-services-ltd-1600559-2016" data-ecommerce-row="" data-ecommerce-path="/employment-tribunal-decisions/mr-k-wilson-v-united-parcel-services-ltd-1600559-2016" data-ecommerce-content-id="bea67e34-ac9d-40ff-9546-c1eecb7b46c3">Mr K Wilson v United <mark>Parcel</mark> Services Ltd: 1600559/2016</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 26 May 2017 </li>
+                  <li> Employment tribunal decision </li>
+                  <li> <abbr title="Ministry of Justice">MOJ</abbr>, <abbr title="HM Courts &amp; Tribunals Service">HMCTS</abbr>, Employment Tribunal </li>
+              </ul>
+
+
+            <p>Employment Tribunal decision.
+</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/employment-tribunal-decisions/miss-d-docherty-v-hermes-parcel-net-2302053-2017" data-ecommerce-row="" data-ecommerce-path="/employment-tribunal-decisions/miss-d-docherty-v-hermes-parcel-net-2302053-2017" data-ecommerce-content-id="420c62b7-7c2a-4a4d-ab27-60ca89519faa">Miss D Docherty v Hermes <mark>Parcel</mark> Net: 2302053/2017</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 28 September 2017 </li>
+                  <li> Employment tribunal decision </li>
+                  <li> <abbr title="Ministry of Justice">MOJ</abbr>, <abbr title="HM Courts &amp; Tribunals Service">HMCTS</abbr>, Employment Tribunal </li>
+              </ul>
+
+
+            <p>Employment Tribunal decision.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/employment-tribunal-decisions/mr-a-macphee-v-menzies-distribution-ltd-oban-express-parcel-service-ltd-4102652-2016" data-ecommerce-row="" data-ecommerce-path="/employment-tribunal-decisions/mr-a-macphee-v-menzies-distribution-ltd-oban-express-parcel-service-ltd-4102652-2016" data-ecommerce-content-id="e08c9040-441b-4d7e-a37d-78f52e4f1e98">Mr A MacPhee v Menzies Distribution Ltd (Oban Express <mark>Parcel</mark> Service Ltd): 4102652/2016</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 10 April 2017 </li>
+                  <li> Employment tribunal decision </li>
+                  <li> <abbr title="Ministry of Justice">MOJ</abbr>, <abbr title="HM Courts &amp; Tribunals Service">HMCTS</abbr>, Employment Tribunal </li>
+              </ul>
+
+
+            <p>Employment Tribunal decision.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/publications/parcel-deliveries" data-ecommerce-row="" data-ecommerce-path="/government/publications/parcel-deliveries" data-ecommerce-content-id="adb362ed-369f-4e04-a804-fe0b64a50058"><mark>Parcel</mark>  Deliveries</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 22 April 2016 </li>
+                  <li> FOI release </li>
+                  <li> <abbr title="Office of the Advocate General for Scotland">OAG</abbr> </li>
+              </ul>
+
+
+            <p>Are employees allowed to have personal <mark>parcels</mark> delivered to the workplace from external sources? </p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/publications/vat-customs-dutyimport-vat-relating-to-imports-by-post-bor286" data-ecommerce-row="" data-ecommerce-path="/government/publications/vat-customs-dutyimport-vat-relating-to-imports-by-post-bor286" data-ecommerce-content-id="602dde2d-7631-11e4-a3cb-005056011aef">Report incorrect Customs Duty or VAT on items imported by post (BOR286)</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li>  5 January 2017 </li>
+                  <li> Form </li>
+                  <li> <abbr title="HM Revenue &amp; Customs">HMRC</abbr>, <abbr title="Border Force">BF</abbr> </li>
+              </ul>
+
+
+            <p>Use form BOR286 if you believe the Customs Duty or import VAT was wrongly calculated on an item you imported by post using Royal Mail or Parcelforce.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/goods-sent-from-abroad" data-ecommerce-row="" data-ecommerce-path="/goods-sent-from-abroad" data-ecommerce-content-id="6e154f73-ee13-42bc-a7b7-aa9c3384a386">Tax and customs for goods sent from abroad</a></h3>
+
+
+
+
+
+            <p>VAT, duty and customs declarations for goods received by post or courier - paying, collecting your goods, getting a refund and documents</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/publications/british-forces-post-office-last-dates-of-posting" data-ecommerce-row="" data-ecommerce-path="/government/publications/british-forces-post-office-last-dates-of-posting" data-ecommerce-content-id="5e970b04-7631-11e4-a3cb-005056011aef">British Forces Post Office: last dates of posting</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li>  6 November 2017 </li>
+                  <li> Guidance </li>
+                  <li> <abbr title="Ministry of Defence">MOD</abbr>, <abbr title="Defence Equipment and Support">DE&amp;S</abbr> </li>
+              </ul>
+
+
+            <p>A list of dates for friends and family of service personnel wishing to send British Forces Post Office mail in time for Christmas. </p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/publications/recovered-appeal-land-parcel-at-london-road-hassocks-west-sussex-ref-2226987-16-march-2017" data-ecommerce-row="" data-ecommerce-path="/government/publications/recovered-appeal-land-parcel-at-london-road-hassocks-west-sussex-ref-2226987-16-march-2017" data-ecommerce-content-id="9d0bd544-19df-453c-bc0c-a0f465773fa6">Recovered appeal: land <mark>parcel</mark> at London Road, Hassocks, West Sussex ( Ref 2226987 - 16 March 2017)</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 17 March 2017 </li>
+                  <li> Correspondence </li>
+                  <li> <abbr title="Ministry of Housing, Communities &amp; Local Government">MHCLG</abbr> </li>
+              </ul>
+
+
+            <p>Decision letter and Inspector’s Report for a recovered appeal. </p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/cma-cases/home-delivery-network-ltd-dhl-express" data-ecommerce-row="" data-ecommerce-path="/cma-cases/home-delivery-network-ltd-dhl-express" data-ecommerce-content-id="d309d511-dc83-4567-8efa-e93ee58aa27a">Home Delivery Network Ltd / DHL Express</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 15 February 2010 </li>
+                  <li> CMA case </li>
+                  <li> <abbr title="Competition and Markets Authority">CMA</abbr> </li>
+              </ul>
+
+
+            <p>OFT closed case: Anticipated acquisition by Home Delivery Network Limited (indirectly via its wholly-owned subsidiary, Parcelpoint Limited) of DHL Express (UK) Limited's UK domestic 'business-to-business' and 'business-to-consumer' packet and <mark>parcel</mark> delivery business.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/publications/tell-the-rural-payments-agency-about-land-changes-and-entitlement-transfers" data-ecommerce-row="" data-ecommerce-path="/government/publications/tell-the-rural-payments-agency-about-land-changes-and-entitlement-transfers" data-ecommerce-content-id="4e42ed96-4606-4606-9251-ee1dd37c9ccb">RLE1 form and guidance</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> 14 August 2017 </li>
+                  <li> Statutory guidance </li>
+                  <li> <abbr title="Department for Environment, Food &amp; Rural Affairs">Defra</abbr>, <abbr title="Rural Payments Agency">RPA</abbr>, <abbr title="Forestry Commission">Forestry</abbr>, Natural England </li>
+              </ul>
+
+
+            <p>Use the RLE1 form to make changes to your digital maps, register new land and transfer entitlements by sub-lease or inheritance.</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/bfpo" data-ecommerce-row="" data-ecommerce-path="/bfpo" data-ecommerce-content-id="2f6bba97-3ccc-4b19-87b8-195fb60b67e7">Send mail with the British Forces Post Office (BFPO)</a></h3>
+
+
+
+
+
+            <p>Find a BFPO number, send mail to and from British forces personnel and their families</p>
+
+
+
+
+          </li>
+          <li>
+            <h3><a href="/government/organisations/rural-payments-agency" data-ecommerce-row="" data-ecommerce-path="/government/organisations/rural-payments-agency" data-ecommerce-content-id="e8fae147-6232-4163-a3f1-1c15b755a8a4">Rural Payments Agency</a></h3>
+
+
+
+              <ul class="attributes">
+                  <li> <abbr title="Rural Payments Agency">RPA</abbr> </li>
+              </ul>
+
+
+            <p>The home of Rural Payments Agency on GOV.UK. We pay out over £2 billion each year to support a thriving farming and food sector.</p>
+
+
+
+
+          </li>
+    </ol>
+
+      <ul class="previous-next-navigation">
+
+          <li class="next">
+            <a href="#">
+              Next <span class="visuallyhidden">page</span>
+              <span class="page-numbers">2 of 1508</span>
+            </a>
+          </li>
+      </ul>
+  </div>
+</div>
+
+    </div>
+  </form>
+</main>
+
+{% endblock %}

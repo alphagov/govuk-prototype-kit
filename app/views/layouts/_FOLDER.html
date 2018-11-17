@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{title }} - GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+{% if subtitle %}<span class="heading-secondary">{{subtitle}}</span>{% endif %}
+{% if title %}{{title}}{% else %}
+        {{folder | sprint | title }} prototype
+        {% endif %}
+      </h1>
+      <p class="lede">
+      {{byline | safe }}
+       </p>
+
+{% block details %}
+
+{% endblock %}
+
+
+<div id="guidnav">
+
+
+<nav class="pagination" role="navigation" aria-label="Pagination">
+<ul style="float:left; " class="group">
+<li class="previous">
+  {% if not first %}
+ <a title="Navigate to previous part" rel="prev" href="/{% if customPrev %}{{customPrev}}{% else %}sprint-{{ current - 1 }}{% endif %}/index">
+   <span class="pagination-label">Previous </span> <span class="pagination-part-title">{% if customPrevName  %}{{customPrevName}}{% else %}Sprint {{ current - 1 }}{% endif %}</span>
+</a>
+{% endif %}
+</li>
+</ul>
+<ul  class="group">
+
+<li class="next">
+  {% if not last %}
+ <a title="Navigate to next part" rel="next" href="/{% if customNext %}{{customNext}}{% else %}sprint-{{ current + 1 }}{% endif %}/index">
+   <span class="pagination-label">Next</span> <span class="pagination-part-title">{% if customNextName  %}{{customNextName}}{% else %}Sprint {{ current + 1 }}{% endif %}</span>
+</a>
+{% endif %}
+</li>
+</ul>
+</nav>
+
+</div>
+
+
+</div>
+  </div>
+</main>
+
+{% endblock %}

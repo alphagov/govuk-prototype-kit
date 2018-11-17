@@ -1,0 +1,30 @@
+.guide .part-navigation li {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.guide .part-navigation li a {
+  display: inline;
+}
+
+.app-c-contents-list__list-item--dashed {
+    margin-left: 25px;
+    padding-right: 25px;
+}
+
+.app-c-contents-list__list-item--dashed::before {
+    content: "— ";
+    margin-left: -25px;
+    padding-right: 5px;
+}
+
+
+@media (min-width: 641px) {
+.app-c-contents-list__list-item {
+    padding-top: 7.5px;
+} }
+.app-c-contents-list__list-item {
+    padding-top: 10px;
+    line-height: 1.3;
+    list-style-type: none;
+}

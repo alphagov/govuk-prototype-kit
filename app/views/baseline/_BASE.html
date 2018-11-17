@@ -1,0 +1,75 @@
+{% set serviceName = "[test]" %}
+
+{% if not checktitle %}{% set checktitle = "[checktitle variable] " %}{% endif %}
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{checktitle}} - {{serviceName}} - GOV.UK
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+{% if not backHidden %}
+
+  {{ govukBackLink({
+    href: prevURL,
+    text: "Back"
+  }) }}
+
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% if errors %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Date of birth must be in the past",
+            href: "#dob-error"
+          },
+          {
+            text: "Enter a postcode, like AA1 1AA",
+            href: "#postcode-error"
+          }
+        ]
+      }) }}
+
+{% endif %}
+
+{% if not hidecheck %}
+      <h1 class="govuk-heading-xl">
+        {{checktitle}}
+      </h1>
+{% endif %}
+
+{% if form %}
+  <form action="{% if page %}{{page}}{% else %}{{currentURL}}{% endif %}" method="post">
+{% endif %}
+{% block check %}
+
+
+{% endblock %}
+
+{% if form %}
+{{ govukButton({
+  text: "Continue"
+}) }}
+{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

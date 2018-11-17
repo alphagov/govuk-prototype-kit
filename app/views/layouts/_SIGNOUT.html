@@ -1,0 +1,63 @@
+{% set serviceName = " " %}
+{% extends "layouts/base.html" %}
+{% block page_title %}
+ GOV.UK
+{% endblock %}
+{% block content %}
+  <main id="content" role="main">
+    <div class="phase-banner">
+      <p><strong class="phase-tag">PROTOTYPE</strong> <span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div class="grid-row">
+      <div class="column-two-thirds">
+
+        <h1 class="heading-xlarge">You’re signed out</h1>
+
+          <h2 class="heading-medium">Satisfaction survey</h2>
+       <form>
+  <div class="form-group">
+    <fieldset>
+
+
+
+      {{ govRadios(name="_easy", id="easy"
+      , legend="How easy was the service to use?"
+      , radioButtons=
+      [{id: 'very-easy', value: 'Very easy', label: 'Very easy'}
+      , {id: 'easy', value: 'Easy', label: 'Easy'}
+      , {id: 'neither', value: 'Neither easy or difficult', label: 'Neither easy or difficult'}
+      , {id: 'difficult', value: 'Difficult', label: 'Difficult'}
+      , {id: 'very-difficult', value: 'Very difficult', label: 'Very difficult'}]
+       )}}
+
+
+      {{ govRadios(name="_satisfied", id="satisfied"
+      , legend="How satisfied were you with the service?"
+      , radioButtons=
+      [{id: 'very-satisfied', value: 'Very satisfied', label: 'Very satisfied'}
+      , {id: 'satisfied', value: 'Satisfied', label: 'Satisfied'}
+      , {id: 'neither', value: 'Neither satisfied or dissatisfied', label: 'Neither satisfied or dissatisfied'}
+      , {id: 'dissatisfied', value: 'Dissatisfied', label: 'Dissatisfied'}
+      , {id: 'very-dissatisfied', value: 'Very dissatisfied', label: 'Very dissatisfied'}]
+     )}}
+
+  <fieldset>
+
+   <label class="form-label" for="textarea">
+ <h3 class="heading-medium"> Why did you give this rating?</h3>
+</label>
+<span class="form-hint">
+    Do not include any personal or financial information like your National Insurance number or bank details.</span>
+<textarea class="form-control form-control-3-4" name="textarea" id="textarea" rows="9" ></textarea>
+<br>
+            <div class="form-group">
+              <a class="button" href="{{next}}">Send feedback</a>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    </div>
+
+  </main>
+{% endblock %}

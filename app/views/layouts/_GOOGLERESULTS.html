@@ -1,0 +1,170 @@
+{#  set result = "#" #}
+{#  set google = "#" #}
+
+{% extends "layout_unbranded.html" %}
+
+{% block page_title %}
+  Search page
+{% endblock %}
+
+{% block head %}
+<link href="/public/stylesheets/unbranded.css" media="screen" rel="stylesheet" type="text/css">
+
+<style>
+
+#content {
+  font-size: 13px;
+}
+
+#content h3 {
+  font-size: 18px;
+}
+
+#global-header, #global-header .header-wrapper {
+      background-color: #fafafa;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+#global-header .header-proposition #proposition-links a{
+  color: black;
+  font-weight: normal;
+}
+
+@media (min-width: 769px) {
+#global-header.with-proposition .header-wrapper .header-global {
+    width: 25%;
+}}
+
+.ads-visurl, .visurl {
+    color: #006621 !important;
+    white-space: nowrap;
+    font-size: 14px !important;
+}
+
+
+.ads-visurl .ad {
+  margin-left: 0px;
+  background-color: #fff;
+  border-radius: 3px;
+  color: #006621;
+  display: inline-block;
+  font-size: 11px;
+  border: 1px solid #006621 ;
+  padding: 1px 3px 0 2px;
+  line-height: 11px;
+  vertical-align: baseline;
+}
+
+.hint {
+      color: #808080;
+}
+
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+
+<header role="banner" id="global-header" class="with-proposition">
+
+  <div class="header-wrapper">
+
+    <div class="header-global">
+
+      <div class="header-logo">
+        <a href="{% if google %}{{google}}{% else %}_GOOGLE{% endif %}"><img src="{{asset_path}}images/google-small.png"  height="44" width="120"  style="display: block; margin: 10px auto;" alt="Google" /></a>
+      </div>
+
+    </div>
+    <div class="header-proposition">
+
+      <div class="content">
+        <nav id="proposition-menu">
+
+          <form action="{% if result %}{{result}}{% else %}_GOOGLERESULTS{% endif %}" method="post" class="form" >
+            <div class="form-group" style="margin-bottom: 0;">
+              <fieldset>
+                <legend class="visuallyhidden">Search for a result</legend>
+                <label class="visually-hidden" for="google-search">Search for a result</label>
+                <input style="width: 100%; max-width: 632px; margin: 10px auto;" class="form-control" id="google-search" name="google-search" type="text" value="{{data['google-search']}}">
+              </fieldset>
+            </div>
+          </form>
+
+          <ul id="proposition-links">
+            <li><a href="#" style="font-weight: bold;">All</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Images</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="#">More</a></li>
+          </ul>
+
+        </nav>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main id="content" role="main">
+
+  <div class="grid-row">
+
+    <div class="column-one-quarter">
+      <p>&nbsp;</p>
+    </div>
+
+    <div class="column-two-thirds">
+      <p class="hint"> About 11,900,000 results (0.56 seconds)</p>
+      {% macro result(header, url, link, ad) %}
+
+      <div class="result" >
+        <h3><a href="{% if link %}{{link}}{% else %}#{% endif %}">{{header}}</a></h3>
+        <p class="{% if ad %}ads-{% endif %}visurl">{% if ad %}<span class="ad">Ad</span> {% endif %}{{url}}</p>
+        <p>{{ caller() }}</p>
+      </div>
+
+      {% endmacro %}
+
+      <!--   {% call result(header="BPS 2017 - GOV.UK", url="https://www.gov.uk/guidance/bps-2017") %}
+        23 Aug 2016 - Register for rural payments; View your BPS 2017 application summary; Update your personal and business details; Give someone else (like an agent) permission to act on your behalf; View your BPS entitlements; See and print digital maps of your land parcels. Now the 2017 application period is over, you ...
+        {%- endcall %}
+ -->
+
+      {% block results %}
+
+      {% endblock %}
+
+      <!--
+
+      {% call result(header="BPS 2017 - GOV.UK", url="https://www.gov.uk/guidance/bps-2017") %}
+      23 Aug 2016 - Register for rural payments; View your BPS 2017 application summary; Update your personal and business details; Give someone else (like an agent) permission to act on your behalf; View your BPS entitlements; See and print digital maps of your land parcels. Now the 2017 application period is over, you ...
+      {%- endcall %}
+
+      {% call result(header="BPS 2018 - GOV.UK", url="https://www.gov.uk/guidance/bps-2018") %}
+      Find out more about the Arable Offer or request a pre-application pack on GOV.UK; Change your land use information – from the 'Business overview' screen click 'Land', then 'Land use'. For more information about how make changes click the 'Help' link in the screens; Transfer entitlements and land parcels for BPS 2018 ...
+      {%- endcall %}
+
+   -->
+
+
+      {# call result(header="#", url="#") #}
+      {#- endcall #}
+
+      <img src="{{asset_path}}images/google-results.png"  height="100"   style="display: block; margin: 10px auto;" alt="Google" />
+    </div>
+  </div>
+  <ul>
+    <li>
+      <a href="/prototype-admin/clear-data">Clear data</a>
+    </li>
+  </ul>
+</main>
+
+
+
+{% endblock %}

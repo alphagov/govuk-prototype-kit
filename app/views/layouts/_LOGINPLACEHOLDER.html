@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Sign in - Government Gateway
+{% endblock %}
+
+<!-- hiding service name as it shouldn't be here -->
+{% block service_name %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<main id="content" role="main">
+
+      <div style="display: block;
+      max-width: 960px;
+      margin: .78947em auto .52632em;
+
+      line-height: 1.5;
+      font-family: nta,Arial,sans-serif;
+      font-size: 19px;
+      line-height: 1.31579;
+      font-weight: 400;
+      text-transform: none;"
+  <div class="service-info "  >
+
+  <div class="logo">
+      <span class="organisation-logo organisation-logo-medium">HM Revenue &amp; Customs</span>
+  </div>
+
+</div></div>
+
+
+
+
+<div class="grid-row">
+  <div class="column-two-thirds" style="">
+
+
+
+
+<header>
+    <h1 class="heading-large" style='margin-top: 0;'>Sign in</h1>
+</header>
+
+<p>
+Enter your Government Gateway credentials to sign in. You received these when you created your HMRC online account.
+</p>
+
+<div id="script" class="">
+
+
+
+
+
+<form action="{{next}}" method="POST" id="loginForm" novalidate="novalidate">
+    <fieldset>
+        <div class="form-field-group" style="margin-bottom: 0.75em; line-height: 1.6em; clear: both;">
+
+
+
+            <div class="form-field" style="float: left; margin-bottom: 0.75em; margin-top: 0; width: 100%;">
+                <label class="label--inline" for="userId" style="display: inline-block; margin-top: 0.2em; min-width: 130px;">User ID</label>
+                <input  style="width:200px;" class="form-control" type="text" value="49 21 78 79 24 95" id="userId" name="userId" required="true">
+            </div>
+
+
+            <div class="form-field" style="float: left; margin-bottom: 0.75em; margin-top: 0; width: 100%;">
+                <label class="label--inline" for="password" style="display: inline-block; margin-top: 0.2em; min-width: 130px;">Password</label>
+                <input  style="width:200px;" class="form-control"  type="password" value="password" id="password" name="password" required="true">
+            </div>
+
+            <div class="form-field">
+                <button class="button" type="submit" id="signin">Sign in</button>
+            </div>
+        </div>
+    </fieldset>
+
+</form>
+
+
+
+
+    <h2 class="heading-medium">Problems signing in</h2>
+    <ul>
+        <li><a id="verify-user" href="https://www.tax.service.gov.uk/ida/sa/login" target="_self" data-sso="false">Trying to file Self Assessment using GOV.UK Verify?</a></li>
+        <li><a id="registration" href="/government-gateway-registration-frontend/route?continue=%2Ftrusts-forms%2Fform%2Fregistration-of-a-trust%2Fnew&amp;origin=unknown" target="_self" data-sso="false" data-journey-click="sos_gg_login:gg_login_end:exit_create_new_gg_account">Don’t have a Government Gateway account</a></li>
+        <li><a id="forgotten-user-id" href="/government-gateway-lost-credentials-frontend/choose-your-account?continue=%2Ftrusts-forms%2Fform%2Fregistration-of-a-trust%2Fnew&amp;origin=unknown&amp;forgottenOption=userId" target="_self" data-sso="false" data-journey-click="sos_gg_login:gg_login_end:forgotten_user_id">Forgotten user ID</a></li>
+        <li><a id="forgotten-password" href="/government-gateway-lost-credentials-frontend/choose-your-account?continue=%2Ftrusts-forms%2Fform%2Fregistration-of-a-trust%2Fnew&amp;origin=unknown&amp;forgottenOption=password" target="_self" data-sso="false" data-journey-click="sos_gg_login:gg_login_end:forgotten_password">Forgotten password</a></li>
+        <li><a id="forgotten-user-id-and-password" href="/government-gateway-lost-credentials-frontend/choose-password-saved?continue=%2Ftrusts-forms%2Fform%2Fregistration-of-a-trust%2Fnew&amp;origin=unknown&amp;forgottenOption=userIdAndPassword" target="_self" data-sso="false" data-journey-click="sos_gg_login:gg_login_end:forgotten_user_id_and_password">Forgotten user ID and password</a></li>
+    </ul>
+</div>
+
+
+
+<p id="c2c">
+    <a href="https://online.hmrc.gov.uk/webchatprod/assistant/bot/Ruth" id="webchatlink" target="_blank" rel="external">Get help from HMRC’s automated assistant <span class="visuallyhidden">These links will open in a new window.</span></a>
+</p>
+
+
+
+
+</article>
+
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="report-error" style="">
+    <script type="text/javascript">var reportProblemAjaxUrl = "/contact/problem_reports_ajax";</script>
+    <a class="report-error__toggle js-visible" id="get-help-action" href="form-label" style="font-family: nta,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 300;
+    text-transform: none;
+    color: #454a4c;">Get help with this page.</a>
+    <a class="report-error__toggle js-hidden" href="/contact/problem_reports_nonjs">Get help with this page.</a>
+    <div id="report-error-partial-form" class="report-error__content hidden">
+        <div class="report-error__loading"></div>
+    </div>
+</div>
+
+
+
+    </div>
+</main>
+
+{% endblock %}

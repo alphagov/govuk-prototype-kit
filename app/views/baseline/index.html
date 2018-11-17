@@ -1,0 +1,48 @@
+{% extends "layouts/base.html" %}
+
+{% block page_title %}
+	Baseline
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<main id="content" role="main">
+	<div class="grid-row">
+    	<div class="column-two-thirds">
+
+			<h1 class="heading-xlarge">Baseline</h1>
+
+
+<p class="lede">Pages as currently on GOV.UK for set up with future sessions.</p>
+
+
+  <ul class="list list-bullet">
+		<li><a href="google">Search from Google</a></li>
+		<li><a href="results">Google results</a></li>
+
+  <li><a href="home">Search from GOV.UK</a></li>
+	<li><a href="search">Search results</a></li>
+	<li><a href="topics/import-export">Import and export guide</a></li>
+    <li><a href="goods-sent-from-abroad" >Goods sent from abroad guide</a></li>
+    <li><a href="gg-signin" >Government Gateway page</a></li>
+    <li>2FA process:
+			<ul class="list list-bullet">
+				<li><a href="auth/splash" >Splash page</a></li>
+				<li><a href="auth/access" >Access options</a></li>
+				<li>Text: <a href="auth/text" >details</a> and <a href="auth/text-code">code</a></li>
+				<li>Phone: <a href="auth/phone" >details</a> and <a href="auth/phone-code">code</a></li>
+				<li>App: <a href="auth/app" >details</a> and <a href="auth/app-code">code</a></li>
+				<li><a href="auth/success">success</a> page with {% raw %} {{ journey }} {% endraw %} variable to direct to start of service</li>
+			</ul>
+
+		</li>
+</ul>
+
+    	</div>
+	</div>
+</main>
+
+{% endblock %}

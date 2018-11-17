@@ -1,0 +1,198 @@
+{% set serviceName = "" %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{checktitle}} - {{serviceName}} - GOV.UK
+{% endblock %}
+
+
+{% block head %}
+  {% include "includes/head.html" %}
+  <!--[if gt IE 8]><!--> <link href="/public/stylesheets/govuk.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+  <!--[if gt IE 8]><!--><link href="/public/stylesheets/guidance-refresh.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+
+{% block beforeContent %}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="breadcrumbs">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="">Business tax</a></li>
+          <li>VAT</li>
+        </ol>
+      </div>
+
+{% if errors %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Date of birth must be in the past",
+            href: "#dob-error"
+          },
+          {
+            text: "Enter a postcode, like AA1 1AA",
+            href: "#postcode-error"
+          }
+        ]
+      }) }}
+
+{% endif %}
+
+{% if not hidecheck %}
+      <h1 class="govuk-heading-xl">
+        {{checktitle}}
+      </h1>
+{% endif %}
+
+
+
+<div class="grid-row">
+  <div class="metadata-logo-wrapper">
+    <div class="column-two-thirds metadata-column">
+        <div class="app-c-publisher-metadata">
+    <div class="app-c-published-dates ">
+    Published 10 December 2018
+     <!--  — <a href="#history">see all updates</a> -->
+</div>
+
+      <div class="app-c-publisher-metadata__other">
+        <dl data-module="track-click">
+            <dt class="app-c-publisher-metadata__term">From: </dt>
+            <dd class="app-c-publisher-metadata__definition"><a href="/government/organisations/hm-revenue-customs">HM Revenue &amp; Customs</a></dd>
+        </dl>
+      </div>
+  </div>
+
+
+<div class="column-third">
+
+  {% block sidebar %}
+
+
+  <aside class="app-c-related-navigation" role="complementary">
+    <h2 id="related-nav-related_items" class="app-c-related-navigation__main-heading" data-track-count="sidebarRelatedItemSection">Related content</h2>
+
+    {% set sidelinks = {
+    }
+
+    %}
+
+    <nav role="navigation" class="app-c-related-navigation__nav-section" aria-labelledby="related-nav-related_items" data-module="toggle">
+      <ul class="app-c-related-navigation_link-list" data-module="track-click">
+        {% set sidelinks = {
+        }
+
+        %}
+
+        <nav role="navigation" class="app-c-related-navigation__nav-section" aria-labelledby="related-nav-related_items" data-module="toggle">
+          <ul class="app-c-related-navigation_link-list" data-module="track-click">
+            {% for name, link in sidelinks %}
+            <li class="app-c-related-navigation__link"><a class="app-c-related-navigation__section-link--other"  href="{{link}}">{{name}}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+
+        <h3 id="related-nav-topics" data-track-count="sidebarRelatedItemSection" class="app-c-related-navigation__sub-heading">Explore the topic</h3>
+
+        <nav role="navigation" class="app-c-related-navigation__nav-section" aria-labelledby="related-nav-topics" data-module="toggle">
+          <ul class="app-c-related-navigation_link-list" data-module="track-click">
+            <li class="app-c-related-navigation__link"><a class="app-c-related-navigation__section-link" data-track-category="relatedLinkClicked" data-track-action="2.1 Explore the topic" data-track-label="/topic/business-tax/import-export" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Import and export: customs declarations, duties and tariffs&quot;}" href="#">VAT</a></li>
+            <li class="app-c-related-navigation__link" ><a class="app-c-related-navigation__section-link" data-track-category="relatedLinkClicked" data-track-action="1.2 Explore the topic" data-track-label="/topic/dealing-with-hmrc/tax-agent-guidance" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Tax agent and adviser guidance&quot;}" href="#">Tax agent and adviser guidance</a></li>
+          </ul>
+        </nav>
+
+  </aside>
+
+          {% endblock %}
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+{% block page_scripts %}
+<style>
+
+.call-to-action p {
+    padding: 0;
+    margin: 0;
+    }
+
+
+.gem-c-translation-nav {
+      margin-top: 15px;
+      font-family: "nta", Arial, sans-serif;
+      font-weight: 400;
+      text-transform: none;
+      font-size: 14px;
+      line-height: 1.1428571429;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #bfc1c3;
+}
+
+@media (min-width: 641px) {
+.gem-c-translation-nav {
+  margin-top: 45px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.25;
+}
+}
+
+.gem-c-translation-nav__list {
+    list-style: none;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.gem-c-translation-nav__list-item {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    border-right: 1px solid #bfc1c3;
+    height: 16px;
+}
+
+.gem-c-translation-nav__list:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.metadata-logo-wrapper {
+    border-top: 1px solid #bfc1c3;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.guide .part-navigation-container {
+  border: 0;
+}
+
+</style>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% set currentpage = "Documents" %}
+{% extends folder + "/" + subfolder + "/_BASE.html" %}
+
+{% block main %}
+
+<div class="govuk-govspeak direction-ltr rich-govspeak disable-youtube">
+  <p>Check that goods sent to you from outside the <a href="/eu-eea">European Union</a> (<abbr title="European Union">EU</abbr>) are declared to customs correctly.</p>
+
+<p>If they’re not declared correctly, your goods may be <a href="/customs-seizures">seized</a>.</p>
+
+<p>You must either:</p>
+
+<ul class="list list-bullet">
+  <li>check that the sender fills in the customs declaration form correctly</li>
+  <li>fill in the customs declaration yourself - this can delay getting your goods by at least 4 weeks</li>
+</ul>
+
+<h2 id="filling-in-the-customs-declaration-yourself">Filling in the customs declaration yourself</h2>
+<p>The sender must write ‘goods to be declared by importer’ on the customs declaration form.</p>
+
+<p>Before you can collect your goods, you’ll be sent:</p>
+
+<ul class="list list-bullet">
+  <li>a full customs declaration form to fill in</li>
+  <li>a letter explaining how to pay any <a href="tax-and-duty">tax or duty</a> you owe</li>
+</ul>
+
+
+</div>
+
+{% endblock %}
