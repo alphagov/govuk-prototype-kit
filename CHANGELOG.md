@@ -1,5 +1,9 @@
 # Unreleased
 
+New features:
+
+- [#642 Update GOV.UK Frontend to v2.4.0](https://github.com/alphagov/govuk-prototype-kit/pull/642)
+
 Bug fixes:
 
 - [#634 Avoid double-nested buttons in step-by-step navigation](https://github.com/alphagov/govuk-prototype-kit/pull/634)
