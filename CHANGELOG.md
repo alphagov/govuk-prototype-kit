@@ -1,9 +1,3 @@
-# Unreleased
-
-Internal:
-
-- [#640 Replace Mocha with Jest](https://github.com/alphagov/govuk-prototype-kit/pull/640)
-
 # 8.4.0
 
 New features:

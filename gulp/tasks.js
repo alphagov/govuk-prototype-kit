@@ -5,6 +5,7 @@
 */
 
 const gulp = require('gulp')
+const mocha = require('gulp-mocha')
 const runSequence = require('run-sequence')
 
 gulp.task('default', function (done) {
@@ -28,4 +29,15 @@ gulp.task('watch', function (done) {
     'watch-assets',
     'watch-sass-v6',
     'watch-assets-v6', done)
+})
+
+gulp.task('test', function () {
+  runSequence('generate-assets',
+    'mocha')
+})
+
+gulp.task('mocha', function () {
+  return gulp.src(['test/**/*.js'], { read: false })
+    .pipe(mocha({ reporter: 'spec', exit: true }))
+    .on('error', console.error)
 })
