@@ -1,0 +1,44 @@
+<div id="step-by-step-navigation" class="app-step-nav app-step-nav--active {%- if params.large %} app-step-nav--large {% endif -%}" data-show-text="Show" data-hide-text="Hide" data-show-all-text="Show all" data-hide-all-text="Hide all">
+  <ol class="app-step-nav__steps">
+    {% for step in params.steps %}
+      {% set stepLoopNumber = loop.index %}
+      {% set isActive = false %}
+      {% for link in step.links %}
+        {% set isActive = true if link.active %}
+      {% endfor %}
+      <li class="app-step-nav__step js-step{%- if isActive %} app-step-nav__step--active {% endif -%}" {%- if isActive %} data-show {% endif -%} id="{{step.title}}" >
+        <div class="app-step-nav__header js-toggle-panel" data-position="{{stepLoopNumber}}">
+          <h2 class="app-step-nav__title">
+            <span class="app-step-nav__circle app-step-nav__circle--number">
+              <span class="app-step-nav__circle-inner">
+                <span class="app-step-nav__circle-background">
+                  <span class="govuk-visually-hidden">Krok</span> {{step.number}}
+                </span>
+              </span>
+            </span>
+
+            <span class="js-step-title">
+              {{step.title}}
+            </span>
+          </h2>
+        </div>
+
+        <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-{{step.title}}-{{stepLoopNumber}}">
+          <p class="app-step-nav__paragraph">{{step.description}}</p>
+
+          <ol class="app-step-nav__list " data-length="{{step.links | length }}">
+            {% for link in step.links %}
+              <li class="app-step-nav__list-item js-list-item {%- if link.active %} app-step-nav__list-item--active {% endif -%}">
+                <a data-position="{{stepLoopNumber}}.{{loop.index}}" class="app-step-nav__link js-link" href="{{"#content" if link.active else link.href}}">
+                  {%- if link.active %}<span class="app-step-nav__link-active-context govuk-visually-hidden">You are currently viewing: </span>{% endif %}
+                  {{link.text}}
+                </a>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+
+      </li>
+    {% endfor %}
+  </ol>
+</div>
