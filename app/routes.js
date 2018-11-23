@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const zivnostRouter = require('./zalozenie_zivnosti_routes')
 
 // Add your routes here - above the module.exports line
-router.get('/zalozenie-zivnosti/:pageUrl', function (req, res) {
-  if (req.params.pageUrl == null) return res.render('zalozenie-zivnosti/index.html')
-})
+router.use('/zalozenie-zivnosti', zivnostRouter)
 
 module.exports = router

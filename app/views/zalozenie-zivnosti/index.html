@@ -1,5 +1,5 @@
-
 {% extends "layout.html" %}
+{% from "templates/step-by-step/macro.njk"  import govukStepByStep %}
 
 {% block pageTitle %}
   Založenie živnosti
@@ -39,60 +39,11 @@
     <p>
       Zistite, čo treba vybaviť na založenie živnosti.
     </p>
-
+  {{ pageUrl }}
     {{
       govukStepByStep({
         large: true,
-        steps: [
-          {
-            number: '1',
-            title: 'Založte si bankový účet',
-            description: 'Nepovinné, ale užitočné. Postačí vám aj bežný účet.',
-            links: [
-              {
-                text: 'Aký bankový účet je potrebný pre živnosť',
-                href: '#'
-              }
-            ]
-          },
-          {
-            number: '2',
-            title: 'Ohláste svoju živnosť',
-            description: 'Zaregistrujte vašu živnosť a dostanete IČO.',
-            links: [
-              {
-                text: 'Ohlásenie živnosti na Ministerstve Vnútra',
-                href: '#'
-              }
-            ]
-          },
-          {
-            number: '3',
-            title: 'Zaregistrujte sa na DPH',
-            description: 'Ak budete pracovať pre zahraničných zákazníkov alebo obracať veľké peniaze.',
-            links: [
-              {
-                text: 'Zistite, či sa potrebujete zaregistrovať na DPH',
-                href: '#'
-              }
-            ]
-          },
-          {
-            number: '4',
-            title: 'Dane a odvody: čo treba platiť',
-            description: 'Kedy a či začať platiť zdravotné a sociálne poistenie.',
-            links: [
-              {
-                text: 'Zistite, aké odvody musíte platiť',
-                href: '#'
-              },
-              {
-                text: 'Dôležité termíny pre platenie daní',
-                href: '#'
-              }
-            ]
-          }
-        ]
+        steps: navigationSteps
       })
     }}
   </div>

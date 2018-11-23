@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% from "templates/step-by-step/macro.njk"  import govukStepByStep %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }} {% endblock %} {% block pageScripts %}
+<script src="/public/javascripts/step-by-step-navigation.js"></script>
+<script type="text/javascript">
+  var $element = $('#step-by-step-navigation')
+  var stepByStepNavigation = new GOVUK.Modules.StepByStepNavigation()
+  stepByStepNavigation.start($element)
+</script>
+{% endblock %} {% block beforeContent %}
+<div class="app-step-nav-header">
+  <span class="app-step-nav-header__part-of">Súčasť</span>
+  <a class="app-stepW-nav-header__title" href="{{serviceUrl}}">
+    {{ serviceName }}
+  </a>
+</div>
+{% endblock %} {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% block mainContent %}
+    <h1 class="govuk-heading-xl">
+      Sem ide nadpis
+    </h1>
+
+    <p>
+      A tu je nejaky odstavec
+    </p>
+    {% endblock %}
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    <div class="app-step-nav-related app-step-nav-related--singular">
+      <h2 class="app-step-nav-related__heading">
+        <span class="app-step-nav-related__pretitle">Súčasť</span>
+        <a href="{{ serviceUrl }}">{{ serviceName }}</a>
+      </h2>
+    </div>
+
+    {{
+      govukStepByStep({
+        activeHref: activeHref,
+        steps: navigationSteps
+      })
+    }}
+  </div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

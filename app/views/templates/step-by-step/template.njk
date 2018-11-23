@@ -2,11 +2,11 @@
   <ol class="app-step-nav__steps">
     {% for step in params.steps %}
       {% set stepLoopNumber = loop.index %}
-      {% set isActive = false %}
+      {% set isStepActive = false %}
       {% for link in step.links %}
-        {% set isActive = true if link.active %}
+        {% set isStepActive = true if link.href == params.activeHref %}
       {% endfor %}
-      <li class="app-step-nav__step js-step{%- if isActive %} app-step-nav__step--active {% endif -%}" {%- if isActive %} data-show {% endif -%} id="{{step.title}}" >
+      <li class="app-step-nav__step js-step{%- if isStepActive %} app-step-nav__step--active {% endif -%}" {%- if isStepActive %} data-show {% endif -%} id="{{step.title}}" >
         <div class="app-step-nav__header js-toggle-panel" data-position="{{stepLoopNumber}}">
           <h2 class="app-step-nav__title">
             <span class="app-step-nav__circle app-step-nav__circle--number">
@@ -28,9 +28,10 @@
 
           <ol class="app-step-nav__list " data-length="{{step.links | length }}">
             {% for link in step.links %}
-              <li class="app-step-nav__list-item js-list-item {%- if link.active %} app-step-nav__list-item--active {% endif -%}">
-                <a data-position="{{stepLoopNumber}}.{{loop.index}}" class="app-step-nav__link js-link" href="{{"#content" if link.active else link.href}}">
-                  {%- if link.active %}<span class="app-step-nav__link-active-context govuk-visually-hidden">You are currently viewing: </span>{% endif %}
+              {% set isLinkActive = link.href == params.activeHref  %}
+              <li class="app-step-nav__list-item js-list-item {%- if isLinkActive %} app-step-nav__list-item--active {% endif -%}">
+                <a data-position="{{stepLoopNumber}}.{{loop.index}}" class="app-step-nav__link js-link" href="{{"#main-content" if isLinkActive else link.href}}">
+                  {%- if isLinkActive %}<span class="app-step-nav__link-active-context govuk-visually-hidden">You are currently viewing: </span>{% endif %}
                   {{link.text}}
                 </a>
               </li>
