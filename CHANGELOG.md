@@ -1,8 +1,24 @@
 # Unreleased
 
+Fixes:
+
+- [#647 Fix link context in step-by-step templates](https://github.com/alphagov/govuk-prototype-kit/pull/647)
+
+Internal:
+
+- [#640 Replace Mocha with Jest](https://github.com/alphagov/govuk-prototype-kit/pull/640)
+
+# 8.4.0
+
+New features:
+
+- [#642 Update GOV.UK Frontend to v2.4.0](https://github.com/alphagov/govuk-prototype-kit/pull/642)
+
 Bug fixes:
 
 - [#634 Avoid double-nested buttons in step-by-step navigation](https://github.com/alphagov/govuk-prototype-kit/pull/634)
+
+- [#638 Make unbranded template available for use in app/views](https://github.com/alphagov/govuk-prototype-kit/pull/638)
 
 # 8.3.0
 

@@ -139,4 +139,4 @@ get consent to use them before doing your research.
 
 ## More things you can do with GOV.UK Notify
 
-The complete documentation for using the GOV.UK Notify API is here: https://github.com/alphagov/notifications-node-client#govuk-notify-nodejs-client
+The complete documentation for using the GOV.UK Notify API is here: https://docs.notifications.service.gov.uk/node.html

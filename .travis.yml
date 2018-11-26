@@ -3,8 +3,6 @@ node_js:
 - "lts/*"
 before_deploy:
 - test $TRAVIS_TEST_RESULT = 0
-before_install:
-- npm install -g mocha
 deploy:
 - provider: script    # (If version.txt is updated) - create a new tag and push to Github, update the latest-release branch
   script: ./create-release.sh

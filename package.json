@@ -1,7 +1,7 @@
 {
   "name": "express-prototype",
   "description": "GOVUK prototyping app in Express",
-  "version": "8.3.0",
+  "version": "8.4.0",
   "private": true,
   "engines": {
     "node": "^8.9.1"
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node start.js",
     "lint": "standard",
-    "test": "gulp test && npm run lint"
+    "test": "npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
     "basic-auth": "^2.0.0",
@@ -24,12 +24,11 @@
     "express-session": "^1.13.0",
     "express-writer": "0.0.4",
     "govuk-elements-sass": "^3.1.3",
-    "govuk-frontend": "^2.3.0",
+    "govuk-frontend": "^2.4.0",
     "govuk_frontend_toolkit": "^7.5.0",
     "govuk_template_jinja": "^0.24.1",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
-    "gulp-mocha": "^6.0.0",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
@@ -52,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "jest": "^23.6.0",
     "standard": "^11.0.1",
     "supertest": "^3.0.0"
   }
