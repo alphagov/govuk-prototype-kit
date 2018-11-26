@@ -1,5 +1,9 @@
 # Unreleased
 
+Fixes:
+
+- [#647 Fix link context in step-by-step templates](https://github.com/alphagov/govuk-prototype-kit/pull/647)
+
 Internal:
 
 - [#640 Replace Mocha with Jest](https://github.com/alphagov/govuk-prototype-kit/pull/640)
