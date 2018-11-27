@@ -9,7 +9,7 @@ const path = require('path')
 
 const gulp = require('gulp')
 const gutil = require('gulp-util')
-const nodemon = require('gulp-nodemon')
+const nodemon = require('nodemon')
 
 const config = require('./config.json')
 
@@ -28,7 +28,7 @@ const onQuit = () => {
 }
 
 gulp.task('server', function () {
-  nodemon({
+  return nodemon({
     watch: ['.env', '**/*.js', '**/*.json'],
     script: 'listen-on-port.js',
     ignore: [
