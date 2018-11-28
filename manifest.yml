@@ -1,0 +1,26 @@
+---
+# Manifest for GOV.UK PaaS. See:
+#
+# * https://www.cloud.service.gov.uk/
+# * https://docs.cloud.service.gov.uk/
+# * https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
+#
+# Usage:
+#
+# $ cf push your-prototype-name --var username=myusername --var password=mysecretpassword
+# ...
+# ...
+# requested state:   started
+# routes:            your-prototype-name.london.cloudapps.digital
+#
+#                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#                    Your app will be running on this route
+#
+
+applications:
+- name: govuk-prototype-kit
+  memory: 512M
+  env:
+    USERNAME: ((username))
+    PASSWORD: ((password))
+
