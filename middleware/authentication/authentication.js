@@ -16,7 +16,7 @@ const basicAuth = require('basic-auth')
 module.exports = function (username, password) {
   return function (req, res, next) {
     if (!username || !password) {
-      console.log('Username or password is not set.')
+      console.error('Username or password is not set.')
       return res.send('<h1>Error:</h1><p>Username or password not set. <a href="https://govuk-prototype-kit.herokuapp.com/docs/publishing-on-heroku#6-set-a-username-and-password">See guidance for setting these</a>.</p>')
     }
 

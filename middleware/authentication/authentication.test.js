@@ -15,22 +15,24 @@ const res = {send: jest.fn(),
 }
 
 // Mock console.log so we can check any output
-console.log = jest.fn()
+console.error = jest.fn()
 
 describe('authentication', () => {
   it('should be a function', () => {
     expect(authentication).toBeInstanceOf(Function)
   })
 
-  describe('misconfigured server', () => {
+  describe('server with no username/password set', () => {
     beforeEach(() => {
-      console.log.mockClear()
+      // Jest mocks stores each call to the mocked function
+      // so we want to clear them before running the authentication again.
+      console.error.mockClear()
       let middleware = authentication(undefined, undefined)
       middleware({}, res, next)
     })
 
-    it('should return a console log with an error', () => {
-      expect(console.log.mock.calls[0][0]).toBe('Username or password is not set.')
+    it('should return a console error', () => {
+      expect(console.error.mock.calls[0][0]).toBe('Username or password is not set.')
     })
 
     it('should send marked up error message', () => {
@@ -40,14 +42,16 @@ describe('authentication', () => {
 
   describe('server with username/password set', () => {
     beforeEach(() => {
-      console.log.mockClear()
+      // Jest mocks stores each call to the mocked function
+      // so we want to clear them before running the authentication again.
+      console.error.mockClear()
       let middleware = authentication('secret-username', 'secure-password')
       middleware({}, res, next)
       basicAuth.mockReturnValue(userDetails)
     })
 
-    it('should not console log', () => {
-      expect(console.log).not.toBeCalled()
+    it('should not return a console error', () => {
+      expect(console.error).not.toBeCalled()
     })
 
     it('should call basic-auth and return username/password', () => {
