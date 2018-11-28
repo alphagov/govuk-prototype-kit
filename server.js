@@ -14,6 +14,7 @@ const cookieParser = require('cookie-parser')
 dotenv.config()
 
 // Local dependencies
+const auth = require('./middleware/authentication/authentication.js')
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
@@ -53,14 +54,13 @@ var releaseVersion = packageJson.version
 var username = process.env.USERNAME
 var password = process.env.PASSWORD
 var env = process.env.NODE_ENV || 'development'
-var useAuth = process.env.USE_AUTH || config.useAuth
+var useAuth = (process.env.USE_AUTH || config.useAuth).toLowerCase()
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
 env = env.toLowerCase()
-useAuth = useAuth.toLowerCase()
 useHttps = useHttps.toLowerCase()
 
 var useDocumentation = (config.useDocumentation === 'true')
@@ -82,7 +82,7 @@ if (isSecure) {
 
 // Ask for username and password on production
 if (env === 'production' && useAuth === 'true') {
-  app.use(utils.basicAuth(username, password))
+  app.use(auth(username, password))
 }
 
 // Set up App
