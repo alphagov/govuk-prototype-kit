@@ -1,0 +1,20 @@
+// Based on https://github.com/alphagov/govuk_publishing_components/blob/v9.3.6/app/assets/stylesheets/govuk_publishing_components/components/_step-by-step-nav.scss
+// Note - this code for prototype purposes only. It is not production code,
+// nor an example of the best way to use GOV.UK Frontend
+
+.app-step-nav__controls {
+  display: none;
+}
+
+.app-step-nav__toggle-link {
+  display: none;
+}
+
+.app-step-nav__paragraph {
+  display: none;
+}
+
+.app-step-nav__step--active .js-step-title-text > a {
+  color: govuk-colour("black");
+  text-decoration: none;
+}

@@ -2,10 +2,10 @@
   <ol class="app-step-nav__steps">
     {% for step in params.steps %}
       {% set stepLoopNumber = loop.index %}
-      {% set isStepActive = false %}
-      {% for link in step.links %}
-        {% set isStepActive = true if link.href == params.activeHref %}
-      {% endfor %}
+      {% set isStepActive = true if step.href == params.activeHref %}
+      {# {% for link in step.links %} #}
+        {# {% set isStepActive = true if link.href == params.activeHref %} #}
+      {# {% endfor %} #}
       <li class="app-step-nav__step js-step{%- if isStepActive %} app-step-nav__step--active {% endif -%}" {%- if isStepActive %} data-show {% endif -%} id="{{step.title}}" >
         <div class="app-step-nav__header js-toggle-panel" data-position="{{stepLoopNumber}}">
           <h2 class="app-step-nav__title">
@@ -18,7 +18,7 @@
             </span>
 
             <span class="js-step-title">
-              {{step.title}}
+              <a href="{{"#main-content" if isStepActive else step.href}}">{{step.title}}</a>
             </span>
           </h2>
         </div>

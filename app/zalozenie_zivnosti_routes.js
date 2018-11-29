@@ -24,31 +24,28 @@ function buildRequestData (request) {
     'activeHref': request.baseUrl + request.url,
     'navigationSteps': [
       {
+        number: '0',
+        title: 'Úvod',
+        description: 'Nepovinné, ale užitočné. Postačí vám aj bežný účet.',
+        href: urlTo('')
+      },
+      {
         number: '1',
         title: 'Založte si bankový účet',
         description: 'Nepovinné, ale užitočné. Postačí vám aj bežný účet.',
-        links: [
-          {
-            text: 'Aký bankový účet je potrebný pre živnosť',
-            href: urlTo('bankovy-ucet')
-          }
-        ]
+        href: urlTo('bankovy-ucet')
       },
       {
         number: '2',
         title: 'Ohláste svoju živnosť',
-        description: 'Zaregistrujte vašu živnosť a dostanete IČO.',
-        links: [
-          {
-            text: 'Ohlásenie živnosti na Ministerstve Vnútra',
-            href: urlTo('ohlasenie')
-          }
-        ]
+        description: 'Zaregistrujte vašu živnosť a získajte IČO.',
+        href: urlTo('ohlasenie')
       },
       {
         number: '3',
         title: 'Zaregistrujte sa na DPH',
         description: 'Ak budete pracovať pre zahraničných zákazníkov alebo obracať veľké peniaze.',
+        href: 'dph',
         links: [
           {
             text: 'Zistite, či sa potrebujete zaregistrovať na DPH',

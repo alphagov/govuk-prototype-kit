@@ -50,8 +50,9 @@ window.GOVUK.getCurrentLocation = function () {
       showLinkedStep()
       ensureOnlyOneActiveLink()
 
-      bindToggleForSteps()
-      bindToggleShowHideAllButton()
+      // Disabled for navody.digital
+      // bindToggleForSteps()
+      // bindToggleShowHideAllButton()
       bindComponentLinkClicks()
 
       function getTextForInsertedElements () {
