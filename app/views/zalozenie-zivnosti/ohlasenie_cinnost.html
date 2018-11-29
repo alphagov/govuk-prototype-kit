@@ -3,55 +3,36 @@
 {% block mainContent %}
 {% call govukFieldset({
   legend: {
-    text: "Predmet činnosti",
+    text: "Čo budete robiť?",
     classes: "govuk-fieldset__legend--xl",
     isPageHeading: true
   }
 }) %}
 {{ govukHint({
-  text: 'Popíšte, čím sa bude vaša živnosť zaoberať.'
+  text: 'Popíšte, čím sa budete ako živnostník zaoberať. Treba zadať aspoň jednu činnosť.'
 })}}
-<form action="cinnost" method="post" class="form">
-  {{ govukRadios({
-    idPrefix: "activity-section",
-    name: "activity-section",
-    fieldset: {
-      legend: {
-        text: "Odvetvie",
-        classes: "govuk-fieldset__legend--m"
-      }
-    },
-    items: [
-      {
-        value: "polnohospodarstvo",
-        text: "Poľnohospodárstvo, lesníctvo a rybolov",
-        hint: {
-          text: "Pestovanie rastlín a plodín, záhradníctvo, chov a starostlivosť o zvieratá."
-        }
-      },
-      {
-        value: "vyroba",
-        text: "Priemyselná výroba",
-        hint: {
-          text: "Výroba všetkého od potravín, odevov, po elektronické súčiastky"
-        }
-      },
-      {
-        value: "tazba",
-        text: "Ťažba a dobývanie",
-        hint: {
-          text: "Úprava nerastov, čistenie brehov, dobývanie rašeliny a bahna."
-        }
-      },
-      {
-        value: "voda-odpad",
-        text: "Voda a odpad",
-        hint: {
-          text: "Úprava nerastov, čistenie brehov, dobývanie rašeliny a bahna."
-        }
-      }
-    ]
+{{ govukDetails({
+  summaryText: "Ako správne pomenovať činnosť živnosti",
+  html: "
+    <h3 class='govuk-heading-m'>Príklady</h3>
+    <ul class='govuk-list govuk-list--bullet'>
+      <li>Počítačové služby a služby súvisiace s počítačovým spracovaním údajov</li>
+      <li>Reklamné a marketingové služby, prieskum trhu a verejnej mienky</li>
+      <li>Dizajnérske činnosti</li>
+    </ul>
+    <p>
+      Môžete využiť aj tento <a href='http://www.minv.sk/?zivnostenske-podnikanie&subor=40259'>zoznam odporúčaných pomenovaní</a> (PDF).
+    </p>
+    "
+}) }}
+
+<form action="zhrnutie" method="post" class="form">
+  {{ govukInput({
+    value: data['activity'],
+    id: "activity",
+    name: "activity"
   }) }}
+  <p><a href="#" class="govuk-link">Pridať ďalšiu činnosť</a></p>
   {{ govukButton({
       text: "Pokračovať",
       attributes: {

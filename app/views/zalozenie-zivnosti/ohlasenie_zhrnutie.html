@@ -1,0 +1,159 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+<h1 class="govuk-heading-xl">
+  Skontrolujte vaše odpovede
+</h1>
+
+<!-- only add a heading for a list if there is more than one list -->
+<h2 class="govuk-heading-m">
+  Vaše údaje
+</h2>
+
+<!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+<!--   * `app-check-your-answers--short` for short questions -->
+<!--   * `app-check-your-answers__questions-long` for long questions -->
+<!--   * none for single group of q&a -->
+<dl class="app-check-your-answers app-check-your-answers--short">
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Meno
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Ján Novák
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="osobne-udaje">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Rodné číslo
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      890923/1234
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="osobne-udaje">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Adresa trvalého pobytu
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Bajkalská 13/6<br />
+      Bratislava<br />
+      821 05
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="adresa-psc">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      E-mail
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      novak.jan28324565@gmail.com
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="osobne-udaje">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Matka
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Mariana Nováková (Slováková)
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="register-trestov">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Otec
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Jozef Novák
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="register-trestov">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Miesto narodenia
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Bratislava
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="register-trestov">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Zdravotná poisťovňa
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Dôvera
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="zdravotna-poistovna">Zmeniť</a>
+    </dd>
+  </div>
+</dl>
+
+
+<h2 class="govuk-heading-m">
+  Vaša živnosť
+</h2>
+
+<dl class="app-check-your-answers app-check-your-answers--short">
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Názov
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Ján Novák – programovanie
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="nazov">Zmeniť</a>
+    </dd>
+  </div>
+
+    <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Činnosti
+    </dt>
+    <dd class="app-check-your-answers__answer">
+      Počítačové služby a služby súvisiace s počítačovým spracovaním údajov<br/>
+      Reklamné a marketingové služby, prieskum trhu a verejnej mienky
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="cinnosti">Zmeniť</a>
+    </dd>
+  </div>
+</dl>
+
+
+<h2 class="govuk-heading-m">Teraz vygenerujte formulár</h2>
+
+<p>
+  Po potvrdení vašich odpovedí pre vás bude vygenerovaný formulár vo formáte XML, ktorý môžete použiť.
+</p>
+  {{ govukButton({
+      text: "Potvrdiť a vygenerovať formulár",
+      href: "/zalozenie-zivnosti/ohlasenie"
+  }) }}
+{% endblock %}

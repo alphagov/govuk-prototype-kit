@@ -1,0 +1,29 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+{% call govukFieldset({
+  legend: {
+    text: "Názov živnosti",
+    classes: "govuk-fieldset__legend--xl",
+    isPageHeading: true
+  }
+}) %}
+{{ govukHint({
+  text: 'Napríklad „Ján Novák – programovanie“'
+})}}
+<form action="cinnosti" method="post" class="form">
+  {% set defaultName = [data['first-name'], " ", data['surname']] | join %}
+  {{ govukInput({
+    value: data['business-name'] if data['business-name'] else defaultName,
+    id: "business-name",
+    name: "business-name"
+  }) }}
+  {{ govukButton({
+      text: "Pokračovať",
+      attributes: {
+        type: 'submit'
+      }
+  }) }}
+</form>
+{% endcall %}
+{% endblock %}

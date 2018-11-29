@@ -20,8 +20,16 @@ ohlasenieRouter.get('/start', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie_start.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/adresa-psc', function (req, res) {
+ohlasenieRouter.get('/osobne-udaje', function (req, res) {
+  res.render('zalozenie-zivnosti/ohlasenie_start.html', buildRequestData(req))
+})
+
+ohlasenieRouter.get('/adresa', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie_adresa_psc.html', buildRequestData(req))
+})
+
+ohlasenieRouter.get('/register-trestov', function (req, res) {
+  res.render('zalozenie-zivnosti/ohlasenie_register_trestov.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/adresa-ulica', function (req, res) {
@@ -32,8 +40,16 @@ ohlasenieRouter.get('/zdravotna-poistovna', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie_zdravotka.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/cinnost', function (req, res) {
+ohlasenieRouter.get('/nazov', function (req, res) {
+  res.render('zalozenie-zivnosti/ohlasenie_nazov.html', buildRequestData(req))
+})
+
+ohlasenieRouter.get('/cinnosti', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie_cinnost.html', buildRequestData(req))
+})
+
+ohlasenieRouter.get('/zhrnutie', function (req, res) {
+  res.render('zalozenie-zivnosti/ohlasenie_zhrnutie.html', buildRequestData(req))
 })
 
 function buildRequestData (request) {
