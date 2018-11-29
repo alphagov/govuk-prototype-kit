@@ -1,0 +1,63 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+{% call govukFieldset({
+  legend: {
+    text: "Predmet činnosti",
+    classes: "govuk-fieldset__legend--xl",
+    isPageHeading: true
+  }
+}) %}
+{{ govukHint({
+  text: 'Popíšte, čím sa bude vaša živnosť zaoberať.'
+})}}
+<form action="cinnost" method="post" class="form">
+  {{ govukRadios({
+    idPrefix: "activity-section",
+    name: "activity-section",
+    fieldset: {
+      legend: {
+        text: "Odvetvie",
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+    items: [
+      {
+        value: "polnohospodarstvo",
+        text: "Poľnohospodárstvo, lesníctvo a rybolov",
+        hint: {
+          text: "Pestovanie rastlín a plodín, záhradníctvo, chov a starostlivosť o zvieratá."
+        }
+      },
+      {
+        value: "vyroba",
+        text: "Priemyselná výroba",
+        hint: {
+          text: "Výroba všetkého od potravín, odevov, po elektronické súčiastky"
+        }
+      },
+      {
+        value: "tazba",
+        text: "Ťažba a dobývanie",
+        hint: {
+          text: "Úprava nerastov, čistenie brehov, dobývanie rašeliny a bahna."
+        }
+      },
+      {
+        value: "voda-odpad",
+        text: "Voda a odpad",
+        hint: {
+          text: "Úprava nerastov, čistenie brehov, dobývanie rašeliny a bahna."
+        }
+      }
+    ]
+  }) }}
+  {{ govukButton({
+      text: "Pokračovať",
+      attributes: {
+        type: 'submit'
+      }
+  }) }}
+</form>
+{% endcall %}
+{% endblock %}

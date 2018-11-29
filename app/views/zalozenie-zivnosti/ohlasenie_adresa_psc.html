@@ -1,0 +1,34 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+<form action="adresa-ulica" method="post" class="form">
+  {% call govukFieldset({
+    legend: {
+      text: "Kde je váš trvalý pobyt?",
+      classes: "govuk-fieldset__legend--xl",
+      isPageHeading: true
+    }
+  }) %}
+    <p>Vaša živnosť bude zaregistrovaná na túto adresu</p>
+
+    {{ govukInput({
+      label: {
+        html: 'PSČ',
+        classes: 'govuk-label--m'
+      },
+      value: data['postcode'],
+      classes: "govuk-input--width-5",
+      id: "postcode",
+      name: "postcode"
+    }) }}
+
+  {% endcall %}
+  {{ govukButton({
+      text: "Nájsť adresu",
+      attributes: {
+        type: 'submit'
+      }
+  }) }}
+</form>
+
+{% endblock %}

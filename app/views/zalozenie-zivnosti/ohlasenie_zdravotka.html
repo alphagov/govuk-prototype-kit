@@ -1,0 +1,41 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+<form action="cinnost" method="post" class="form">
+  {{ govukRadios({
+    idPrefix: "health-insurance",
+    name: "health-insurance",
+    fieldset: {
+      legend: {
+        text: "Zdravotná poisťovňa",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--xl"
+      }
+    },
+    hint: {
+      text: "Vyberte poisťovňu, v ktorej máte uzatvorené zdravotné poistenie."
+    },
+    items: [
+      {
+        value: "dovera",
+        text: "Dôvera"
+      },
+      {
+        value: "vszp",
+        text: "Všeobecná zdravotná poisťovňa"
+      },
+      {
+        value: "union",
+        text: "Union"
+      }
+    ]
+  }) }}
+  {{ govukButton({
+      text: "Pokračovať",
+      attributes: {
+        type: 'submit'
+      }
+  }) }}
+</form>
+
+{% endblock %}

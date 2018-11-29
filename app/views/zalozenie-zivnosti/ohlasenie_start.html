@@ -1,0 +1,49 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+{% call govukFieldset({
+  legend: {
+    text: "Vaše údaje",
+    classes: "govuk-fieldset__legend--xl",
+    isPageHeading: true
+  }
+}) %}
+
+  {{ govukInput({
+    label: {
+      html: 'Krstné meno'
+    },
+    classes: "govuk-!-width-one-third",
+    id: "first-name",
+    name: "first-name"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      html: 'Priezvisko'
+    },
+    classes: "govuk-!-width-one-third",
+    id: "surname",
+    name: "surname"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Rodné číslo"
+    },
+    hint: {
+      text: "Napríklad ‘8909231234’."
+    },
+    classes: "govuk-input--width-10",
+    id: "birth-number",
+    name: "birth-number"
+  }) }}
+
+{% endcall %}
+{{ govukButton({
+    text: "Pokračovať",
+    href: "adresa-psc",
+    classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+  }) }}
+
+{% endblock %}

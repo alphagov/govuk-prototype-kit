@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% from "label/macro.njk" import govukLabel %}
+{% from "hint/macro.njk" import govukHint %}
+
+{% block header %}
+{{ govukHeader() }} {% endblock %} {% block beforeContent %}
+<div class="app-step-nav-header">
+  <span class="app-step-nav-header__part-of">Súčasť</span>
+  <a class="app-stepW-nav-header__title" href="{{serviceUrl}}">
+    {{ serviceName }}
+  </a><br/>
+
+</div>
+{{ govukBackLink({
+      "text": "Späť",
+      "href": "javascript: window.history.go(-1)"
+    })
+  }}
+
+{% endblock %} {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% block mainContent %}
+    <h1 class="govuk-heading-xl">
+      Sem ide nadpis
+    </h1>
+
+    <p>
+      A tu je nejaky odstavec
+    </p>
+    {% endblock %}
+  </div>
+</div>
+
+{% endblock %}

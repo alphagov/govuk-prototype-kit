@@ -1,0 +1,64 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+<form action="zdravotna-poistovna" method="post" class="form">
+  {% call govukFieldset({
+    legend: {
+      text: "Kde je váš trvalý pobyt?",
+      classes: "govuk-fieldset__legend--xl",
+      isPageHeading: true
+    }
+  }) %}
+    <p>Vaša živnosť bude zaregistrovaná na túto adresu</p>
+
+    {{ govukLabel({
+      text: 'PSČ',
+      classes: 'govuk-label--m'
+    }) }}
+    <p>{{data['postcode']}}  <a href="adresa-psc" class="govuk-link govuk-!-margin-left-5">Zmeniť</a></p>
+
+  {{ govukSelect({
+    id: "street",
+    name: "street",
+    label: {
+      text: "Ulica a obec",
+      classes: 'govuk-label--m'
+    },
+    items: [
+      {
+        text: "Nájdené 2 adresy",
+        disabled: true,
+        selected: true
+      },
+      {
+        value: "Vysoká cesta, Horné Orešany",
+        text: "Vysoká cesta, Horné Orešany"
+      },
+      {
+        value: "Nízka cesta, Horné Orešany",
+        text: "Nízka cesta, Horné Orešany"
+      }
+    ]
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: 'Číslo',
+      classes: 'govuk-label--m'
+    },
+    value: data['street-number'],
+    classes: "govuk-input--width-5",
+    id: "street-number",
+    name: "street-number"
+  }) }}
+
+  {% endcall %}
+  {{ govukButton({
+      text: "Pokračovať",
+      attributes: {
+        type: 'submit'
+      }
+  }) }}
+</form>
+
+{% endblock %}
