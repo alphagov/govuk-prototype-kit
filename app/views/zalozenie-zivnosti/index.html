@@ -1,52 +1,22 @@
-{% extends "layout.html" %}
-{% from "templates/step-by-step/macro.njk"  import govukStepByStep %}
+{% extends "zalozenie-zivnosti/layout_step_by_step_nav.html" %}
+{% block pageTitle %} {{serviceName}} {% endblock %}
 
-{% block pageTitle %}
-  Založenie živnosti
-{% endblock %}
+{% block mainContent %}
+  <h1 class="govuk-heading-l">
+    {{serviceName}}
+  </h1>
 
-{% block pageScripts %}
-  <script src="/public/javascripts/step-by-step-navigation.js"></script>
-  <script type="text/javascript">
-    var $element = $('#step-by-step-navigation')
-    var stepByStepNavigation = new GOVUK.Modules.StepByStepNavigation()
-    stepByStepNavigation.start($element)
-  </script>
-{% endblock %}
+  <p>
+    Zistite, čo treba vybaviť na založenie živnosti.
+  </p>
 
-{% block beforeContent %}
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="/">Domov</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Podnikanie</a>
-      </li>
-    </ol>
-  </div>
-{% endblock %}
+  <p>
+    Založenie živnosti zvyčajne trvá 5 až 10 pracovných dní.
+  </p>
 
-{% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    <h1 class="govuk-heading-l">
-      Založenie živnosti: krok za krokom
-    </h1>
-
-    <p>
-      Zistite, čo treba vybaviť na založenie živnosti.
-    </p>
-  {{ pageUrl }}
-    {{
-      govukStepByStep({
-        large: true,
-        steps: navigationSteps
-      })
-    }}
-  </div>
-</div>
-
+  {{ govukButton({
+    text: "Začať",
+    href: "bankovy-ucet",
+    classes: "govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+  }) }}
 {% endblock %}

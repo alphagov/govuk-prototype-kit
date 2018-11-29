@@ -1,0 +1,32 @@
+{% extends "zalozenie-zivnosti/layout_step_by_step_nav.html" %}
+{% block pageTitle %} Ohlásenie živnosti {% endblock %}
+
+{% block mainContent %}
+  <h1 class="govuk-heading-xl">
+    Ohlásenie živnosti
+  </h1>
+
+  <p>
+    Vaše živnostenské podnikanie je treba ohlásiť Ministerstvu vnútra.
+  </p>
+  <p>Po úspešnom ohlásení Vám bude pridelené IČO (identifikačné číslo organizácie).</p>
+
+  <p>Vyplnenie formulára Vám zaberie asi 10 minút.</p>
+
+  {{ govukButton({
+    text: "Začať",
+    href: "#",
+    classes: "govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+  }) }}
+
+  <h2 class="govuk-heading-m">
+    Predtým, než začnete
+  </h2>
+
+  <p>Budete potrebovať:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li><a href="#" class="govuk-link">Čipový preukaz (eID) a obslužný softvér</a></li>
+    <li>Webový prehliadač Internet Explorer</li>
+  </ul>
+{% endblock %}
