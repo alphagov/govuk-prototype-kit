@@ -1,0 +1,49 @@
+{% extends "zalozenie-zivnosti/layout_step_by_step_nav.html" %}
+
+{% block mainContent %}
+  <h1 class="govuk-heading-xl">
+    Zaregistrujte sa na DPH
+  </h1>
+
+  <p>
+    Registrácia na daň z pridanej hodnoty (DPH) je povinná len v niektorých prípadoch. Využite našu službu a zistite, či sa potebujete registrovať na DPH.
+  </p>
+
+  <p>
+    Po registrácií na DPH vám budú udelené čísla DIČ a IČ DPH.
+  </p>
+
+  <ol class="app-task-list govuk-!-margin-top-10">
+    <li>
+      <h2 class="app-task-list__section">
+        Zoznam podúloh
+      </h2>
+      <ul class="app-task-list__items">
+        <li class="app-task-list__item">
+          <span class="app-task-list__task-name" href="#" aria-describedby="eligibility-completed">
+            Zistite, či sa potrebujete zaregistrovať na DPH
+          </span>
+          <span class="app-task-list__task-completed" id="read-declaration-completed">
+            {{ govukButton({
+              text: "Začať",
+              href: "#",
+              classes: "govuk-!-margin-bottom-0"
+            }) }}
+          </span>
+        </li>
+        <li class="app-task-list__item">
+          <span class="app-task-list__task-name" href="#" aria-describedby="read-declaration-completed">
+            Zaregistrujte sa na DPH
+          </span>
+          <span class="app-task-list__task-completed" id="read-declaration-completed">
+            {{ govukButton({
+              text: "Začať",
+              href: "#",
+              classes: "govuk-!-margin-bottom-0"
+            }) }}
+          </span>
+        </li>
+      </ul>
+    </li>
+  </ol>
+{% endblock %}

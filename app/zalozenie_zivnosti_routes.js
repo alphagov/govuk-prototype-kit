@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const ohlasenieRouter = express.Router()
 
 router.get('/', function (req, res) {
   res.render('zalozenie-zivnosti/index.html', buildRequestData(req))
@@ -14,41 +13,44 @@ router.get('/ohlasenie', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie.html', buildRequestData(req))
 })
 
+router.get('/dph', function (req, res) {
+  res.render('zalozenie-zivnosti/dph.html', buildRequestData(req))
+})
+
 // Ohlasenie
-router.use('/ohlasenie/?', ohlasenieRouter)
-ohlasenieRouter.get('/start', function (req, res) {
+router.get('/ohlasenie/start', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/osobne_udaje.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/osobne-udaje', function (req, res) {
+router.get('/ohlasenie/osobne-udaje', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/osobne_udaje.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/adresa', function (req, res) {
+router.get('/ohlasenie/adresa', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/adresa.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/register-trestov', function (req, res) {
+router.get('/ohlasenie/register-trestov', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/register_trestov.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/adresa-ulica', function (req, res) {
+router.get('/ohlasenie/adresa-ulica', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/adresa_ulica.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/zdravotna-poistovna', function (req, res) {
+router.get('/ohlasenie/zdravotna-poistovna', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/zdravotka.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/nazov', function (req, res) {
+router.get('/ohlasenie/nazov', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/nazov.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/cinnosti', function (req, res) {
+router.get('/ohlasenie/cinnosti', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/cinnost.html', buildRequestData(req))
 })
 
-ohlasenieRouter.get('/zhrnutie', function (req, res) {
+router.get('/ohlasenie/zhrnutie', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/zhrnutie.html', buildRequestData(req))
 })
 
@@ -57,7 +59,6 @@ function buildRequestData (request) {
     return '/zalozenie-zivnosti' + path
   }
 
-  console.log(request.path, request.originalUrl, request.baseUrl + request.path)
   return {
     'serviceName': 'Založenie živnosti: krok po kroku',
     'serviceUrl': '/zalozenie-zivnosti',
