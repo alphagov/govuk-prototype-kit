@@ -17,50 +17,50 @@ ohlasenieRouter.get('/', function (req, res) {
 })
 
 ohlasenieRouter.get('/start', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_start.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/osobne_udaje.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/osobne-udaje', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_start.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/osobne_udaje.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/adresa', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_adresa_psc.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/adresa.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/register-trestov', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_register_trestov.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/register_trestov.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/adresa-ulica', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_adresa_ulica.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/adresa_ulica.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/zdravotna-poistovna', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_zdravotka.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/zdravotka.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/nazov', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_nazov.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/nazov.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/cinnosti', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_cinnost.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/cinnost.html', buildRequestData(req))
 })
 
 ohlasenieRouter.get('/zhrnutie', function (req, res) {
-  res.render('zalozenie-zivnosti/ohlasenie_zhrnutie.html', buildRequestData(req))
+  res.render('zalozenie-zivnosti/ohlasenie/zhrnutie.html', buildRequestData(req))
 })
 
 function buildRequestData (request) {
   function urlTo (path) {
-    return request.baseUrl + '/' + path
+    return '/zalozenie-zivnosti' + '/' + path
   }
 
   return {
     'serviceName': 'Založenie živnosti: krok po kroku',
     'serviceUrl': '/zalozenie-zivnosti',
-    'activeHref': request.baseUrl + request.url,
+    'activeHref': request.baseUrl + request.path.slice(0, -2),
     'navigationSteps': [
       {
         number: '0',
