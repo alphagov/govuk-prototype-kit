@@ -1,0 +1,30 @@
+{% extends "zalozenie-zivnosti/layout_form.html" %}
+
+{% block mainContent %}
+{{ govukPanel({
+  titleText: "Váš formulár je pripravený"
+}) }}
+
+<p>
+  Formulár na ohlásenie živnosti Ján Novák – programovanie je pripravený na použitie.
+<p>
+
+{{ govukButton({
+      text: "Stiahnuť formulár",
+      href: "#"
+  }) }}
+
+<h2 class="govuk-heading-l">Ďalšie kroky</h2>
+<ol class="govuk-list govuk-list--number">
+  <li>Stiahnite si vygenerovaný formulár</li>
+  <li>Prejdite na stránku Ministerstva vnútra: <a href="https://www.slovensko.sk/Services/Ives/RedirectToZrFormulars.aspx" class="govuk-link" >Ohlásenie voľnej, remeselnej a viazanej živnosti – fyzická osoba</a>.</li>
+  <li>V hornej časti formulára nájdite tlačidlo s nápisom <strong>Nahrať súbor</strong></li>
+  <li>Skontrolujte údaje vo formulári</li>
+  <li>Formulár podpíšte a odošlite</li>
+  <li>Hotovo!</li>
+</ol>
+<br>
+<p>
+  Vrátiť sa k návodu <a href="{{serviceUrl}}" class="govuk-link"> {{serviceName}}</a>
+</p>
+{% endblock %}

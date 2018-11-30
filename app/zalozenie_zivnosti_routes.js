@@ -54,6 +54,10 @@ router.get('/ohlasenie/zhrnutie', function (req, res) {
   res.render('zalozenie-zivnosti/ohlasenie/zhrnutie.html', buildRequestData(req))
 })
 
+router.get('/ohlasenie/podpis', function (req, res) {
+  res.render('zalozenie-zivnosti/ohlasenie/podpis.html', buildRequestData(req))
+})
+
 function buildRequestData (request) {
   function urlTo (path) {
     return '/zalozenie-zivnosti' + path
