@@ -11,14 +11,16 @@
 {{ govukHint({
   text: 'Tieto údaje sú potrebné, aby bolo možné vyhľadať Váš register trestov.'
 })}}
-<form action="zdravotna-poistovna" method="post" class="form">
+<form action="{{ activeHref }}" method="post" class="form">
   {{ govukInput({
     label: {
       text: 'Vaše miesto narodenia'
     },
     classes: "govuk-!-width-two-thirds",
     id: "birthplace ",
-    name: "birthplace"
+    name: "birthplace",
+    value: data["birthplace"],
+    errorMessage: errors["birthplace"]
   }) }}
   <h3 class="govuk-heading-l">Údaje o vašom otcovi</h3>
   {{ govukInput({
@@ -27,7 +29,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "father-first-name",
-    name: "father-first-name"
+    name: "father-first-name",
+    value: data["father-first-name"],
+    errorMessage: errors["father-first-name"]
   }) }}
   {{ govukInput({
     label: {
@@ -35,7 +39,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "father-surname",
-    name: "father-surname"
+    name: "father-surname",
+    value: data["father-surname"],
+    errorMessage: errors["father-surname"]
   }) }}
 
   <h3 class="govuk-heading-l">Údaje o vašej matke</h3>
@@ -45,7 +51,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "mother-first-name",
-    name: "mother-first-name"
+    name: "mother-first-name",
+    value: data["mother-first-name"],
+    errorMessage: errors["mother-first-name"]
   }) }}
   {{ govukInput({
     label: {
@@ -53,7 +61,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "mother-surname",
-    name: "mother-surname"
+    name: "mother-surname",
+    value: data["mother-surname"],
+    errorMessage: errors["mother-surname"]
   }) }}
   {{ govukInput({
     label: {
@@ -61,7 +71,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "mother-maiden-surname",
-    name: "mother-maiden-surname"
+    name: "mother-maiden-surname",
+    value: data["mother-maiden-surname"],
+    errorMessage: errors["mother-maiden-surname"]
   }) }}
 
   {{ govukButton({

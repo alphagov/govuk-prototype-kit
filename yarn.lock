@@ -2367,6 +2367,14 @@ express-session@^1.13.0:
     uid-safe "~2.1.5"
     utils-merge "1.0.1"
 
+express-validator@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-5.3.0.tgz#18a4e4a6e6410e3b9d492fb4ffcb4556fec51806"
+  integrity sha512-HYVtPt21zp2bHS4+xwxYNF63dlq/23kh+ZRVfyo7SBObhOpRyZ0vWolm/v9KPUfCyLqX8j7ZP42dbB0MWjCCcA==
+  dependencies:
+    lodash "^4.17.10"
+    validator "^10.4.0"
+
 express-writer@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/express-writer/-/express-writer-0.0.4.tgz#8ddc14a2609bede51338563376e2f45e3b822c79"
@@ -8168,6 +8176,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+validator@^10.4.0:
+  version "10.9.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-10.9.0.tgz#d10c11673b5061fb7ccf4c1114412411b2bac2a8"
+  integrity sha512-hZJcZSWz9poXBlAkjjcsNAdrZ6JbjD3kWlNjq/+vE7RLLS/+8PAj3qVVwrwsOz/WL8jPmZ1hYkRvtlUeZAm4ug==
 
 value-or-function@^3.0.0:
   version "3.0.0"

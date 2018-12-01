@@ -1,7 +1,7 @@
 {% extends "zalozenie-zivnosti/layout_form.html" %}
 
 {% block mainContent %}
-<form action="adresa" method="post" class="form">
+<form action="{{ activeHref }}" method="post" class="form">
 {% call govukFieldset({
   legend: {
     text: "Vaše údaje",
@@ -16,7 +16,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "first-name",
-    name: "first-name"
+    name: "first-name",
+    value: data['first-name'],
+    errorMessage: errors['first-name']
   }) }}
 
   {{ govukInput({
@@ -25,7 +27,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "surname",
-    name: "surname"
+    name: "surname",
+    value: data['surname'],
+    errorMessage: errors['surname']
   }) }}
 
   {{ govukInput({
@@ -34,7 +38,9 @@
     },
     classes: "govuk-input--width-10",
     id: "birth-number",
-    name: "birth-number"
+    name: "birth-number",
+    value: data['birth-number'],
+    errorMessage: errors['birth-number']
   }) }}
 
   {{ govukInput({
@@ -43,7 +49,9 @@
     },
     classes: "govuk-input--width-10",
     id: "email",
-    name: "email"
+    name: "email",
+    value: data['email'],
+    errorMessage: errors['email']
   }) }}
 
 {% endcall %}

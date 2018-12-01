@@ -13,12 +13,14 @@
   text: 'Napríklad „Ján Novák – programovanie“'
 })}}
 
-<form action="cinnosti" method="post" class="form">
+<form action="{{ activeHref }}" method="post" class="form">
   {% set defaultName = [data['first-name'], " ", data['surname']] | join %}
   {{ govukInput({
     value: data['business-name'] if data['business-name'] else defaultName,
     id: "business-name",
-    name: "business-name"
+    name: "business-name",
+    value: data["business-name"],
+    errorMessage: errors["business-name"]
   }) }}
   {{ govukButton({
       text: "Pokračovať",

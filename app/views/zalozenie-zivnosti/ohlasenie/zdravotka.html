@@ -1,7 +1,7 @@
 {% extends "zalozenie-zivnosti/layout_form.html" %}
 
 {% block mainContent %}
-<form action="nazov" method="post" class="form">
+<form action="{{ activeHref }}" method="post" class="form">
   {{ govukRadios({
     idPrefix: "health-insurance",
     name: "health-insurance",
@@ -12,6 +12,7 @@
         classes: "govuk-fieldset__legend--xl"
       }
     },
+    errorMessage: errors["health-insurance"],
     hint: {
       text: "Vyberte poisťovňu, v ktorej máte uzatvorené zdravotné poistenie."
     },

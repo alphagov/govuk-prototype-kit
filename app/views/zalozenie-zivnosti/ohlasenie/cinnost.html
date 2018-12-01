@@ -26,11 +26,12 @@
     "
 }) }}
 
-<form action="zhrnutie" method="post" class="form">
+<form action="{{ activeHref }}" method="post" class="form">
   {{ govukInput({
-    value: data['activity'],
     id: "activity",
-    name: "activity"
+    name: "activity",
+    value: data["activity"],
+    errorMessage: errors["activity"]
   }) }}
   <p><a href="#" class="govuk-link">Pridať ďalšiu činnosť</a></p>
   {{ govukButton({

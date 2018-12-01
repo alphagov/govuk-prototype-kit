@@ -1,7 +1,7 @@
 {% extends "zalozenie-zivnosti/layout_form.html" %}
 
 {% block mainContent %}
-<form action="register-trestov" method="post" class="form">
+<form action="{{ activeHref }}" method="post" class="form">
   {% call govukFieldset({
     legend: {
       text: "Kde je váš trvalý pobyt?",
@@ -17,7 +17,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "street",
-    name: "street"
+    name: "street",
+    value: data['street'],
+    errorMessage: errors['street']
   }) }}
 
   {{ govukInput({
@@ -26,7 +28,9 @@
     },
     classes: "govuk-input--width-5",
     id: "street-number",
-    name: "street-number"
+    name: "street-number",
+    value: data['street-number'],
+    errorMessage: errors['street-number']
   }) }}
 
     {{ govukInput({
@@ -35,7 +39,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "town",
-    name: "town"
+    name: "town",
+    value: data['town'],
+    errorMessage: errors['town']
   }) }}
 
   {{ govukInput({
@@ -44,7 +50,9 @@
     },
     classes: "govuk-input--width-5",
     id: "zip-code",
-    name: "zip-code"
+    name: "zip-code",
+    value: data['zip-code'],
+    errorMessage: errors['zip-code']
   }) }}
 
   {% endcall %}
