@@ -64,7 +64,6 @@ function buildRequestData (request) {
   }
 
   return {
-    'data': request.session.data,
     'serviceName': 'Založenie živnosti: krok po kroku',
     'serviceUrl': '/zalozenie-zivnosti',
     'navigationSteps': [
