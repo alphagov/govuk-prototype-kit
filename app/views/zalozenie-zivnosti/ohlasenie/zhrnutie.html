@@ -19,8 +19,20 @@
     <dt class="app-check-your-answers__question">
       Meno
     </dt>
+    {{ data['first-name'] }}
     <dd class="app-check-your-answers__answer">
-      Ján Novák
+    </dd>
+    <dd class="app-check-your-answers__change">
+      <a href="osobne-udaje">Zmeniť</a>
+    </dd>
+  </div>
+
+  <div class="app-check-your-answers__contents">
+    <dt class="app-check-your-answers__question">
+      Priezvisko
+    </dt>
+    {{ data['surname'] }}
+    <dd class="app-check-your-answers__answer">
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="osobne-udaje">Zmeniť</a>
@@ -32,7 +44,7 @@
       Rodné číslo
     </dt>
     <dd class="app-check-your-answers__answer">
-      890923/1234
+      {{ data['birth-number'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="osobne-udaje">Zmeniť</a>
@@ -44,9 +56,9 @@
       Adresa trvalého pobytu
     </dt>
     <dd class="app-check-your-answers__answer">
-      Bajkalská 13/6<br />
-      Bratislava<br />
-      821 05
+      {{ data['street'] }} {{ data['street-number'] }}<br />
+      {{ data['town'] }}<br />
+      {{ data['zip-code'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="adresa-psc">Zmeniť</a>
@@ -58,7 +70,7 @@
       E-mail
     </dt>
     <dd class="app-check-your-answers__answer">
-      novak.jan28324565@gmail.com
+      {{ data['email'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="osobne-udaje">Zmeniť</a>
@@ -70,7 +82,7 @@
       Matka
     </dt>
     <dd class="app-check-your-answers__answer">
-      Mariana Nováková (Slováková)
+      {{ data['mother-first-name'] }} {{ data['mother-surname'] }} ({{ data['mother-maiden-surname'] }})
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="register-trestov">Zmeniť</a>
@@ -82,7 +94,7 @@
       Otec
     </dt>
     <dd class="app-check-your-answers__answer">
-      Jozef Novák
+      {{ data['father-first-name'] }} {{ data['father-surname'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="register-trestov">Zmeniť</a>
@@ -94,7 +106,7 @@
       Miesto narodenia
     </dt>
     <dd class="app-check-your-answers__answer">
-      Bratislava
+      {{ data['birthplace'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="register-trestov">Zmeniť</a>
@@ -106,7 +118,7 @@
       Zdravotná poisťovňa
     </dt>
     <dd class="app-check-your-answers__answer">
-      Dôvera
+      {{ data['health-insurance'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="zdravotna-poistovna">Zmeniť</a>
@@ -125,7 +137,7 @@
       Názov
     </dt>
     <dd class="app-check-your-answers__answer">
-      Ján Novák – programovanie
+      {{ data['business-name'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="nazov">Zmeniť</a>
@@ -137,8 +149,7 @@
       Činnosti
     </dt>
     <dd class="app-check-your-answers__answer">
-      Počítačové služby a služby súvisiace s počítačovým spracovaním údajov<br/>
-      Reklamné a marketingové služby, prieskum trhu a verejnej mienky
+      {{ data['activity'] }}
     </dd>
     <dd class="app-check-your-answers__change">
       <a href="cinnosti">Zmeniť</a>
