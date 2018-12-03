@@ -1,17 +1,5 @@
 # GOV.UK Prototype Kit · [![Greenkeeper badge](https://badges.greenkeeper.io/alphagov/govuk-prototype-kit.svg)](https://greenkeeper.io/)
 
----
-
-## Government Frontend Survey 2018 📝
-
-We're looking to find out more about which frontend technologies and resources you use to support your project.
-
-[Fill in the frontend survey](https://goo.gl/forms/nxoSd4iZ3yQpY4Er2)
-
-This survey is a re-run of a 2016 survey, we plan to publish an anonymised comparison between this year's results and 2016's results.
-
----
-
 Go to the [GOV.UK Prototype Kit site](https://govuk-prototype-kit.herokuapp.com/docs) to download the latest version and read the documentation.
 
 ## About the Prototype Kit
