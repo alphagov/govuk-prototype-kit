@@ -15,7 +15,7 @@ gulp.task('default', function (done) {
 
 gulp.task('generate-assets', function (done) {
   runSequence('clean',
-    'sass-plugins',
+    'sass-extensions',
     'sass',
     'copy-assets',
     'sass-documentation',

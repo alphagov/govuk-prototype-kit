@@ -118,7 +118,7 @@ app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use((req, res, next) => {
   res.locals = res.locals || {}
   Object.assign(res.locals, {
-    pluginConfig: {
+    extensionsConfig: {
       scripts: extensions.getList('scripts').map(extensions.mappers.publicUrl),
       stylesheets: extensions.getList('stylesheets').map(extensions.mappers.publicUrl)
     }
