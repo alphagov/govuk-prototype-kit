@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node start.js",
     "lint": "standard",
-    "test": "npm run lint && gulp generate-assets && jest"
+    "test": "danger ci && npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
     "basic-auth": "^2.0.0",
@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "danger": "^6.1.10",
     "jest": "^23.6.0",
     "standard": "^11.0.1",
     "supertest": "^3.0.0"
