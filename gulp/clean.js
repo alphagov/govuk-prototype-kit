@@ -5,9 +5,10 @@
     - public
 */
 
-const config = require('./config.json')
 const del = require('del')
 const gulp = require('gulp')
+
+const config = require('./config.json')
 
 gulp.task('clean', function (done) {
   return del([config.paths.public + '*',
