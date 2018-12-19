@@ -4,8 +4,8 @@
   copies images and javascript folders to public
 */
 
-const gulp = require('gulp')
 const config = require('./config.json')
+const gulp = require('gulp')
 
 gulp.task('copy-assets', function () {
   return gulp.src(['!' + config.paths.assets + 'sass{,/**/*}',

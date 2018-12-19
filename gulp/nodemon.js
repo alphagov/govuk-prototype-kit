@@ -4,14 +4,12 @@
   uses nodemon to run a server, watches for javascript and json changes
 */
 
-const fs = require('fs')
-const path = require('path')
-
+const config = require('./config.json')
 const gulp = require('gulp')
 const gutil = require('gulp-util')
+const fs = require('fs')
+const path = require('path')
 const nodemon = require('gulp-nodemon')
-
-const config = require('./config.json')
 
 // Warn about npm install on crash
 const onCrash = () => {

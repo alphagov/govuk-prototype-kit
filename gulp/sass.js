@@ -5,11 +5,10 @@
   also includes sourcemaps
 */
 
+const config = require('./config.json')
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
-
-const config = require('./config.json')
 
 gulp.task('sass', function () {
   return gulp.src(config.paths.assets + '/sass/*.scss')
