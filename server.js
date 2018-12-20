@@ -14,7 +14,10 @@ const cookieParser = require('cookie-parser')
 dotenv.config()
 
 // Local dependencies
-const authentication = require('./lib/middleware/authentication/authentication.js')
+const middleware = [
+  require('./lib/middleware/authentication/authentication.js'),
+  require('./lib/middleware/extensions/extensions.js')
+]
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
@@ -77,11 +80,10 @@ if (isSecure) {
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
 
-// Authentication middleware
-app.use(authentication)
+middleware.forEach(func => app.use(func))
 
 // Set up App
-var appViews = extensions.getList('nunjucksPaths').map(extensions.mappers.fileSystemPath).reverse().concat([
+var appViews = extensions.getFileSystemPaths('nunjucksPaths').reverse().concat([
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/')
 ])
@@ -109,36 +111,14 @@ app.set('view engine', 'html')
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
 
-app.use((req, res, next) => {
-  res.locals = res.locals || {}
-  Object.assign(res.locals, {
-    extensionsConfig: {
-      scripts: extensions.getList('scripts').map(extensions.mappers.publicUrl),
-      stylesheets: extensions.getList('stylesheets').map(extensions.mappers.publicUrl)
-    }
-  })
-  next()
-})
-
-// Serve assets from extensions
-;[]
-  .concat(
-    extensions.getList('scripts'),
-    extensions.getList('stylesheets'),
-    extensions.getList('assets')
-  )
-  .map(extensions.mappers.publicUrlAndFileSystemPath)
-  .reverse()
-  .forEach(paths => {
-    app.use(paths.publicUrl, express.static(paths.filesystemPath))
-  })
-
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = extensions.getList('nunjucksPaths').map(extensions.mappers.fileSystemPath).concat([
+  var documentationViews = [
+    path.join(__dirname, '/node_modules/govuk-frontend/'),
+    path.join(__dirname, '/node_modules/govuk-frontend/components'),
     path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/')
-  ])
+  ]
 
   nunjucksConfig.express = documentationApp
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, nunjucksConfig)
@@ -195,6 +175,7 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+app.locals.extensionConfig = extensions.getAppConfig()
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
