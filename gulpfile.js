@@ -16,14 +16,16 @@ requireDir('./gulp', { recurse: true })
 
 // gulp 4 requires dependency tasks to be defined before they are called.
 // We'll keep our top-level tasks in this file so that they are defined at the end of the chain, after their dependencies.
-gulp.task('generate-assets', gulp.parallel(
+gulp.task('generate-assets', gulp.series(
   'clean',
-  'sass',
-  'copy-assets',
-  'sass-documentation',
-  'copy-assets-documentation',
-  'sass-v6',
-  'copy-assets-v6'
+  gulp.parallel(
+    'sass',
+    'copy-assets',
+    'sass-documentation',
+    'copy-assets-documentation',
+    'sass-v6',
+    'copy-assets-v6'
+  )
 ))
 gulp.task('watch', gulp.parallel(
   'watch-sass',
