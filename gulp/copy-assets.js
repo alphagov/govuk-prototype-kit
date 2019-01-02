@@ -5,6 +5,7 @@
 */
 
 const gulp = require('gulp')
+
 const config = require('./config.json')
 
 gulp.task('copy-assets', function () {
