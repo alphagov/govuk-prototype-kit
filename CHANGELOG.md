@@ -6,6 +6,7 @@ Fixes:
 
 Internal:
 
+- [#663 update Standard to 12.0.1](https://github.com/alphagov/govuk-prototype-kit/pull/663)
 - [#640 Replace Mocha with Jest](https://github.com/alphagov/govuk-prototype-kit/pull/640)
 - [#659 Upgrade kit to use Gulp 4](https://github.com/alphagov/govuk-prototype-kit/pull/659)
 
