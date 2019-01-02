@@ -10,13 +10,14 @@ const path = require('path')
 const gulp = require('gulp')
 const gutil = require('gulp-util')
 const colour = require('ansi-colors')
+const log = require('fancy-log')
 const nodemon = require('gulp-nodemon')
 
 const config = require('./config.json')
 
 // Warn about npm install on crash
 const onCrash = () => {
-  gutil.log(colour.cyan('[nodemon] For missing modules try running `npm install`'))
+  log(colour.cyan('[nodemon] For missing modules try running `npm install`'))
 }
 
 // Remove .port.tmp if it exists
