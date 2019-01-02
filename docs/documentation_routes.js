@@ -31,7 +31,7 @@ router.get('/install/:page', function (req, res) {
   redirectMarkdown(req.params.page, res)
   var doc = fs.readFileSync(path.join(__dirname, '/documentation/install/', req.params.page + '.md'), 'utf8')
   var html = marked(doc)
-  res.render('install_template', {'document': html})
+  res.render('install_template', { 'document': html })
 })
 
 // Redirect to the zip of the latest release of the Prototype Kit on GitHub
