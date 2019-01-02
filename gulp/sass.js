@@ -8,8 +8,18 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
+const path = require('path')
+const fs = require('fs')
 
+const extensions = require('../lib/extensions')
 const config = require('./config.json')
+
+gulp.task('sass-extensions', function (done) {
+  const fileContents = extensions.getFileSystemPaths('sass')
+    .map(filePath => `@import "${filePath}";`)
+    .join('\n')
+  fs.writeFile(path.join(config.paths.assets, 'sass', '_extensions.scss'), fileContents, done)
+})
 
 gulp.task('sass', function () {
   return gulp.src(config.paths.assets + '/sass/*.scss')

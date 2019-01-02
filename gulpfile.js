@@ -19,6 +19,7 @@ requireDir('./gulp', { recurse: true })
 gulp.task('generate-assets', gulp.series(
   'clean',
   gulp.parallel(
+    'sass-extensions',
     'sass',
     'copy-assets',
     'sass-documentation',

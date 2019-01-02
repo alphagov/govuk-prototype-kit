@@ -14,12 +14,16 @@ const cookieParser = require('cookie-parser')
 dotenv.config()
 
 // Local dependencies
-const authentication = require('./lib/middleware/authentication/authentication.js')
+const middleware = [
+  require('./lib/middleware/authentication/authentication.js'),
+  require('./lib/middleware/extensions/extensions.js')
+]
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
+const extensions = require('./lib/extensions.js')
 
 // Variables for v6 backwards compatibility
 // Set false by default, then turn on if we find /app/v6/routes.js
@@ -76,16 +80,13 @@ if (isSecure) {
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
 
-// Authentication middleware
-app.use(authentication)
+middleware.forEach(func => app.use(func))
 
 // Set up App
-var appViews = [
-  path.join(__dirname, '/node_modules/govuk-frontend/'),
-  path.join(__dirname, '/node_modules/govuk-frontend/components'),
+var appViews = extensions.getFileSystemPaths('nunjucksPaths').reverse().concat([
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/')
-]
+])
 
 var nunjucksConfig = {
   autoescape: true,
@@ -109,10 +110,6 @@ app.set('view engine', 'html')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
-app.use('/assets', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
-
-// Serve govuk-frontend in /public
-app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
 // Set up documentation app
 if (useDocumentation) {
@@ -178,6 +175,7 @@ app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+app.locals.extensionConfig = extensions.getAppConfig()
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
