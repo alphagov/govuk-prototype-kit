@@ -8,7 +8,6 @@ const fs = require('fs')
 const path = require('path')
 
 const gulp = require('gulp')
-const gutil = require('gulp-util')
 const colour = require('ansi-colors')
 const log = require('fancy-log')
 const nodemon = require('gulp-nodemon')
