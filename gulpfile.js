@@ -18,8 +18,8 @@ requireDir('./gulp', { recurse: true })
 // We'll keep our top-level tasks in this file so that they are defined at the end of the chain, after their dependencies.
 gulp.task('generate-assets', gulp.series(
   'clean',
+  'sass-extensions',
   gulp.parallel(
-    'sass-extensions',
     'sass',
     'copy-assets',
     'sass-documentation',

@@ -18,7 +18,7 @@ gulp.task('sass-extensions', function (done) {
   const fileContents = extensions.getFileSystemPaths('sass')
     .map(filePath => `@import "${filePath}";`)
     .join('\n')
-  fs.writeFile(path.join(config.paths.assets, 'sass', '_extensions.scss'), fileContents, done)
+  fs.writeFile(path.join(config.paths.lib + '/sass', '_extensions.scss'), fileContents, done)
 })
 
 gulp.task('sass', function () {
