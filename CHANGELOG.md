@@ -2,7 +2,7 @@
 
 Fixes:
 
-- [#666 Add acorn dependency to fix npm warning](https://github.com/alphagov/govuk-prototype-kit/pull/666)
+- [#667 Add acorn dependency to fix npm warning](https://github.com/alphagov/govuk-prototype-kit/pull/667)
 - [#647 Fix link context in step-by-step templates](https://github.com/alphagov/govuk-prototype-kit/pull/647)
 
 Internal:
