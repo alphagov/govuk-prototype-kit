@@ -1,5 +1,10 @@
 # Unreleased
 
+Features:
+- [#671 Update to GOV.UK Frontend version 2.5.0](https://github.com/alphagov/govuk-prototype-kit/pull/671)
+   Allows use of new components Accordion and Summary List
+
+
 Fixes:
 
 - [#667 Add acorn dependency to fix npm warning](https://github.com/alphagov/govuk-prototype-kit/pull/667)
