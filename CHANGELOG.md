@@ -1,9 +1,9 @@
 # Unreleased
 
 Features:
+- [#672 Replace ‘check answers’ pattern with updated code](https://github.com/alphagov/govuk-prototype-kit/pull/672)
 - [#671 Update to GOV.UK Frontend version 2.5.0](https://github.com/alphagov/govuk-prototype-kit/pull/671)
    Allows use of new components Accordion and Summary List
-
 
 Fixes:
 
