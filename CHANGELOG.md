@@ -1,4 +1,4 @@
-# Unreleased
+# 8.5.0
 
 Features:
 - [#672 Replace ‘check answers’ pattern with updated code](https://github.com/alphagov/govuk-prototype-kit/pull/672)
