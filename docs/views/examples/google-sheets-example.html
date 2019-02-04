@@ -1,0 +1,48 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Google Sheets example
+    </h1>
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption">Tunbridge Wells Open Data - Polling Districts</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col">OBJECTID</th>
+          <th class="govuk-table__header" scope="col">Letter</th>
+          <th class="govuk-table__header" scope="col">Polling_Di</th>
+          <th class="govuk-table__header" scope="col">Ward</th>
+          <th class="govuk-table__header" scope="col">Parliament</th>
+          <th class="govuk-table__header" scope="col">ADDRESS</th>
+          <th class="govuk-table__header" scope="col">County_Div</th>
+          <th class="govuk-table__header" scope="col">ShapeSTArea</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for item in googleSheetsData %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ item["OBJECTID"] }}</td>
+          <td class="govuk-table__cell">{{ item['Letter'] }}</td>
+          <td class="govuk-table__cell">{{ item['Polling_Di'] }}</td>
+          <td class="govuk-table__cell">{{ item['Ward'] }}</td>
+          <td class="govuk-table__cell">{{ item['Parliament'] }}</td>
+          <td class="govuk-table__cell">{{ item['ADDRESS'] }}</td>
+          <td class="govuk-table__cell">{{ item['County_Div'] }}</td>
+          <td class="govuk-table__cell">{{ item['ShapeSTArea'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

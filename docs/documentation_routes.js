@@ -6,6 +6,8 @@ const path = require('path')
 const express = require('express')
 const marked = require('marked')
 const router = express.Router()
+const request = require('request')
+const csv = require('csvtojson')
 
 // Local dependencies
 const utils = require('../lib/utils.js')
@@ -65,6 +67,18 @@ router.post('/examples/branching/over-18-answer', function (req, res) {
   } else {
     res.redirect('/docs/examples/branching/over-18')
   }
+})
+
+// Example - Google Sheets integration
+router.get('/examples/google-sheets', function (req, res) {
+  var googleSheetsUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8oXOIqewtlNTyJvplT-QYSlX9UoB8XlV0gSTYBFHxtlF3HwdkVp-vJP7FIVgHhTheL8nKYxcaNu2t/pub?output=csv";
+  
+  csv()
+  .fromStream(request.get(googleSheetsUrl))
+  .then((googleSheetsData)=>{
+    res.render('examples/google-sheets-example', { googleSheetsData: googleSheetsData } )
+  });
+
 })
 
 module.exports = router
