@@ -4,7 +4,7 @@ It's built on the [Express](http://expressjs.com/) framework, and uses [GOV.UK F
 
 ## Requirements
 
-node.js - version 8.x.x
+node.js - version 10.x.x
 
 ## Install dependencies
 
