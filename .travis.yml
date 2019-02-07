@@ -9,9 +9,6 @@ os:
   - osx
   - windows
 
-before_deploy:
-  - test $TRAVIS_TEST_RESULT = 0
-
 jobs:
   include:
     # If version.txt is updated on the master branch:
