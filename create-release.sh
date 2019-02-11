@@ -3,7 +3,7 @@ set -e
 
 REPO_PATH='alphagov/govuk-prototype-kit'
 
-echo "Add config for alphagov/$REPO_PATH"
+echo "Adding config for $REPO_PATH"
 
 git config --global user.name "Travis CI"
 git config --global user.email "travis@travis-ci.org"
@@ -16,7 +16,10 @@ openssl aes-256-cbc -d -k $DEPLOY_KEY \
 
 chmod 600 ~/.ssh/id_rsa
 
-echo "Check to see if the version file has been updated"
+# Verify that we can authenticate with GitHub
+ssh -T git@github.com
+
+echo "Checking to see if the version file has been updated"
 
 # Get the version from the version file
 VERSION_TAG="v`cat VERSION.txt`"

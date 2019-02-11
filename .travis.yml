@@ -21,7 +21,8 @@ jobs:
       deploy:
       - provider: script
         script: ./create-release.sh
-        on: master
+        on:
+          branch: master
       env:
       # DEPLOY_KEY
       - secure: qpuH/3v+wsMLy9C3bGjallB6KxFQAtDlyZf3jmX8UQ0703tIvBnZoC1h9EJXOqxZbirLPHon7g902nOuhqUfrsPQgV7XEmXMGZsp31PuK/1lkyTCG3fAdeg8wcghwZn10Gw8jYZpOfWIf2GPDL+6utIU6Aog+odcls7tHWLVT80=
