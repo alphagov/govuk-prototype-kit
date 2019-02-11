@@ -21,15 +21,6 @@ openssl aes-256-cbc -d -k $DEPLOY_KEY \
 
 chmod 600 ~/.ssh/id_rsa
 
-# Verify that we can authenticate with GitHub
-#
-# If this is working correctly, you should see this in the build output:
-#
-# "Hi alphagov/govuk-prototype-kit! You've successfully authenticated, but
-# GitHub does not provide shell access."
-echo "👋 Testing that we can authenticate with GitHub..."
-ssh -T git@github.com
-
 # Get the version from the version file
 VERSION_TAG="v`cat VERSION.txt`"
 
