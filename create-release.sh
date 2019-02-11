@@ -9,8 +9,11 @@ git config --global user.name "Travis CI"
 git config --global user.email "travis@travis-ci.org"
 git remote add origin_ssh git@github.com:$REPO_PATH.git
 
-# This openssl command was generated automatically by `travis encrypt-file`, see `.travis/README.md` for more details
-openssl aes-256-cbc -K $encrypted_a0ab9bc5246b_key -iv $encrypted_a0ab9bc5246b_iv -in .travis/govuk_prototype_kit.enc -out ~/.ssh/id_rsa -d
+# See `.travis/README.md` for more details
+openssl aes-256-cbc -d -k $DEPLOY_KEY \
+  -in .travis/prototype-kit-deploy-key.enc \
+  -out ~/.ssh/id_rsa
+
 chmod 600 ~/.ssh/id_rsa
 
 echo "Check to see if the version file has been updated"

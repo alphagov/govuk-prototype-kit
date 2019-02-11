@@ -23,7 +23,8 @@ jobs:
         script: ./create-release.sh
         on: master
       env:
-        - secure: esj3ut+TwKX25QzU1koJyTVIX+x1V55graI65X8LiYXKcOP040VPJ9lIC0HeRs5UViBM0Ur1F93rGdgW2zYVzu5MLZoH7KjpzMcG30x+FDqLChT0JfNcLLtLm/wIhx/OAAmsBxXlvjPp092BeEKd3Jug8d329TxwwK5G5XxAatg=
+      # DEPLOY_KEY
+      - secure: qpuH/3v+wsMLy9C3bGjallB6KxFQAtDlyZf3jmX8UQ0703tIvBnZoC1h9EJXOqxZbirLPHon7g902nOuhqUfrsPQgV7XEmXMGZsp31PuK/1lkyTCG3fAdeg8wcghwZn10Gw8jYZpOfWIf2GPDL+6utIU6Aog+odcls7tHWLVT80=
 
 # Automatic deploys are also enabled in Heroku for this app
 # Every push to master will automatically deploy a new version of this app.
