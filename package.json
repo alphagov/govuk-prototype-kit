@@ -4,7 +4,7 @@
   "version": "8.6.0",
   "private": true,
   "engines": {
-    "node": "^8.9.1"
+    "node": "^10.0.0"
   },
   "scripts": {
     "start": "node start.js",

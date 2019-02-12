@@ -14,7 +14,7 @@ GDS staff can install the software themselves with Managed Software Centre (MSC)
 
 You'll need:
 
-* Node.js 8.x.x
+* Node.js 10.x.x
 * Atom (text editor)
 * Command line tools (Mac)
 * Git bash (Windows)
@@ -48,9 +48,9 @@ command to be typed in to terminal
 Once you’ve typed the command, press enter to send it.
 
 
-## Node.js version 8 LTS
+## Node.js version 10 LTS
 
-The kit is designed to work with Node.js version 8 LTS. The kit works with any 8.x.x version.
+The kit is designed to work with Node.js version 10 LTS. The kit works with any 10.x.x version.
 
 ### Check if you have Node.js
 
@@ -60,22 +60,22 @@ node --version
 ```
 If it says `command not found` or `Error 0x2 starting node.exe --version` you don’t have node and will need to download and install it.
 
-If the version number starts with 8 you have the correct version installed.
+If the version number starts with 10 you have the correct version installed.
 
-If it says another number such as `0.12` or `5.x.x`, you need to download and install version 8.
+If it says another number such as `0.12` or `5.x.x`, you need to download and install version 10.
 
 ### Download and install Node.js
 
 #### Mac / Windows users
 
-Download version 8 from [nodejs.org](https://nodejs.org/en/).
+Download version 10 from [nodejs.org](https://nodejs.org/en/).
 
 Run the installer with all default options.
 
 #### Linux users
 
 Follow the instructions on the [Node.js](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-) site. Make sure you get version 8, not 9.
+) site. Make sure you get version 10.
 
 ### Once Node is installed
 
@@ -86,7 +86,7 @@ To check it is installed correctly you can again run:
 node --version
 ```
 
-If it’s installed correctly it should show a number starting with 8.
+If it’s installed correctly it should show a number starting with 10.
 
 ## Atom (text editor)
 
