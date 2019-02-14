@@ -1,3 +1,13 @@
+# 8.7.0
+
+Features:
+- [#613 Update to GOV.UK Frontend version 2.7.0 and adds experimental extensions feature](https://github.com/alphagov/govuk-prototype-kit/pull/613) (See GOV.UK Frontend 2.7.0 [release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v2.7.0)). Big thanks @matcarey (https://github.com/matcarey)
+  As this is an **experimental** feature it should be used at your own risk, and is likely to change. Please contact us if you're interested in trying it out.
+
+- [#687 Update docs and package.json to Node 10 LTS](https://github.com/alphagov/govuk-prototype-kit/pull/687)
+
+- [#683 add guidance for CSS, JavaScript and images](https://github.com/alphagov/govuk-prototype-kit/pull/683)
+
 # 8.6.0
 
 Features:
