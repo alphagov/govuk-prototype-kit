@@ -1,6 +1,10 @@
 <!-- Javascript -->
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
-<script src="/node_modules/govuk-frontend/all.js"></script>
+
+{% for scriptUrl in extensionConfig.scripts %}
+  <script src="{{scriptUrl}}"></script>
+{% endfor %}
+
 <script src="/public/javascripts/application.js"></script>
 
 {% if useAutoStoreData %}

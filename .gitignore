@@ -1,5 +1,7 @@
 # ignore tracking usage data config - we want a different one for each user
 usage-data-config.json
+# ignore extension SCSS because it's dynamically generated
+lib/extensions/_extensions.scss
 .env
 .sass-cache
 .DS_Store
