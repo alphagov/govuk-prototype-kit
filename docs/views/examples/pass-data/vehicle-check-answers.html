@@ -15,39 +15,39 @@ Check your answers
       <h2 class="govuk-heading-m">
         Vehicle details
       </h2>
-
-      <dl class="app-check-your-answers app-check-your-answers--long">
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
+      
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
             Registration number
           </dt>
-          <dd class="app-check-your-answers__answer">
+          <dd class="govuk-summary-list__value">
             {{ data['vehicle-registration'] }}
           </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="/docs/examples/pass-data/vehicle-registration">
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/docs/examples/pass-data/vehicle-registration">
               Change <span class="govuk-visually-hidden">registration number</span>
             </a>
-          </dd>
+          </dd> 
         </div>
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Vehicle type
           </dt>
-          <dd class="app-check-your-answers__answer">
+          <dd class="govuk-summary-list__value">
             {{ data['vehicle-type'] }}
           </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="/docs/examples/pass-data/vehicle-type">
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/docs/examples/pass-data/vehicle-type">
               Change <span class="govuk-visually-hidden">vehicle type</span>
             </a>
           </dd>
         </div>
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Vehicle features
           </dt>
-          <dd class="app-check-your-answers__answer">
+          <dd class="govuk-summary-list__value">
             <ul class="govuk-list govuk-list--bullet">
               {% for feature in data['vehicle-features'] %}
                 <li>{{ feature }}</li>
@@ -56,8 +56,8 @@ Check your answers
               {% endfor %}
             </ul>
           </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="/docs/examples/pass-data/vehicle-features">
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/docs/examples/pass-data/vehicle-features">
               Change <span class="govuk-visually-hidden">vehicle features</span>
             </a>
           </dd>
