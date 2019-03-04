@@ -1,6 +1,6 @@
 # Installation guide for new users
 
-This guide will walk you through installing and getting started with the kit. You don’t need any technical knowledge to follow along. If you get stuck, post a message on Slack, or if you have a developer on your team, they should be able to help.
+This guide will walk you through installing and getting started with the kit. You don’t need any technical knowledge to follow along. If you get stuck, contact us using the [#prototype-kit Slack channel](https://ukgovernmentdigital.slack.com/messages/C0647LW4R/), or if you have a developer on your team, they should be able to help.
 
 Installation takes up to 30 minutes depending on how much you need to install.
 
