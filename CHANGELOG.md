@@ -1,4 +1,4 @@
-# Unreleased
+# 8.8.0
 
 Features:
 - [#701 Update to GOV.UK Frontend version 2.8.0](https://github.com/alphagov/govuk-prototype-kit/pull/701) (See GOV.UK Frontend 2.7.0 [release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v2.8.0)).
