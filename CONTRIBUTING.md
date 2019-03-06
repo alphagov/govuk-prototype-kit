@@ -92,3 +92,13 @@ v8.0.0 // After implementing backwards incompatible changes
 8. In description, paste the relevant section from the Changelog.
 
 9. Click 'Publish release'.
+
+10. Let the community know about the release
+
+Write a brief summary with highlights from the release then send it to the following slack channels:
+
+- X-GOV #govuk-design-system
+- X-GOV #prototype-kit
+- GDS #govuk-design-system
+
+Make sure to send a link to the install page rather than the GitHub release page: https://govuk-prototype-kit.herokuapp.com/docs/install.
