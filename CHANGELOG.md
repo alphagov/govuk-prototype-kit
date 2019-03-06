@@ -1,3 +1,9 @@
+# Unreleased
+
+Fixes:
+
+- [#697 Only ask for usage permission if TTY](https://github.com/alphagov/govuk-prototype-kit/pull/697). Thanks [zuzak](https://github.com/zuzak) for this contribution.
+
 # 8.8.0
 
 Features:
