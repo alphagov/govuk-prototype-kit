@@ -1,3 +1,4 @@
+var dateFilter = require('nunjucks-date-filter')
 module.exports = function (env) {
   /**
    * Instantiate object used to store the methods registered as a
@@ -41,5 +42,6 @@ module.exports = function (env) {
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
+  filters.date = dateFilter
   return filters
 }
