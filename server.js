@@ -218,6 +218,13 @@ if (useAutoStoreData === 'true') {
   }
 }
 
+// Clear session object without confirmation and redirect to prototype index page.
+// Session defaults will reload automatically in subsequent GET request
+app.get('/prototype-admin/clear-data-without-confirmation', function (req, res, next) {
+  req.session.data = {}
+  res.redirect('/')
+})
+
 // Clear all data in session if you open /prototype-admin/clear-data
 app.post('/prototype-admin/clear-data', function (req, res) {
   req.session.data = {}
