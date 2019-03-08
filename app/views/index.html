@@ -6,39 +6,71 @@
 {% endblock %}
 
 {% block content %}
+<div class="app-pane__content">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        The GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
-
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
-
-      <h2 class="govuk-heading-m">About this page</h2>
-
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
-
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li><a href="/docs/tutorials-and-examples">Example pages and documentation</a></li>
-        <li>
-          <a href="https://design-system.service.gov.uk">
-            GOV.UK Design System
-          </a>
-        </li>
-      </ul>
+<div class="app-masthead">
+  <div class="govuk-width-container app-site-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl app-masthead__title">Rapidly create HTML prototypes of GOV.UK services.
+</h1>
+            <p class="app-masthead__description">The GOV.UK Prototype Kit provides a simple way to make interactive prototypes that look like pages on GOV.UK.</p>
+            <a href="/docs/install" role="button" draggable="false" class="govuk-button govuk-button--start app-button--inverted govuk-!-margin-top-6 govuk-!-margin-bottom-0">
+  Get started
+</a>
+        </div>
     </div>
+  </div>
 </div>
+
+<div class="govuk-width-container app-site-width-container">
+  <div class="govuk-main-wrapper govuk-main-wrapper--l">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+        <h2 class="govuk-heading-l govuk-!-font-weight-bold">How to guides</h2>
+        <p class="govuk-body">Infomation on what the guides are for and examples of the types of guides included.</p>
+        <p class="govuk-body govuk-!-margin-bottom-0"><a href="/styles/" class="govuk-link govuk-!-font-weight-bold">View guides</a></p>
+      </div>
+      <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+        <h2 class="govuk-heading-l">Tutorial</h2>
+        <p class="govuk-body">Infomation on what the tutorial is for and what’s covered by it.</p>
+        <p class="govuk-body govuk-!-margin-bottom-0"><a href="/components/" class="govuk-link govuk-!-font-weight-bold">View Tutorial</a></p>
+      </div>
+
+
+      <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl govuk-!-margin-top-0">
+      </div>
+
+      <div class="govuk-grid-column-two-thirds">
+        <h2 id="about" class="govuk-heading-l">About</h2>
+        <p class="govuk-body">
+         The GOV.UK Prototype Kit:
+</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+             <a href=""> <li>makes use of GOV.UK Design System
+</li></a>  
+          <li>is designed for prototyping, not for production code
+</li>
+          <li>requires minimal skills to get started: HTML, CSS
+</li>
+          <li>should be fully documented in a way that is accessible to 
+	the target audience
+</li>
+<li>makes it easy to share prototypes with others online</li>
+        </ul> 
+
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+</div>
+  
 
 {% endblock %}

@@ -13,3 +13,72 @@ $govuk-global-styles: true;
 @import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+.app-masthead {
+    @include govuk-responsive-padding(6, "top");
+    @include govuk-responsive-padding(6, "bottom");
+    color: govuk-colour("white");
+    background-color: govuk-colour("blue");
+  }
+  
+  .app-masthead__title {
+    color: govuk-colour("white");
+    @include govuk-responsive-margin(6, "bottom");
+  }
+  
+  .app-masthead__description {
+    @include govuk-font(24);
+    margin-bottom: 0;
+    color: govuk-colour("white");
+
+  }
+
+  .app-pane__content {
+      display: flex;
+      min-width: 0;
+      flex: 1 1 100%;
+      flex-direction: column;
+  }
+
+  .govuk-width-container {
+      padding: 10px 20px;
+  }
+
+  @function shade(
+    $color,
+    $percent
+  ) {
+    @if not _is-color($color) {
+      @error "`#{$color}` is not a valid color for the `$color` argument in " +
+      "the `tint` mixin.";
+    } @else {
+      @return mix(#000000, $color, $percent);
+    }
+  }
+  
+$button-shadow-size: $govuk-border-width-form-element;
+$app-button-inverted-background-colour: govuk-colour("white");
+$app-button-inverted-foreground-colour: govuk-colour("blue");
+$app-button-inverted-shadow-colour: shade($app-button-inverted-foreground-colour, 30%);
+
+.app-button--inverted,
+.app-button--inverted:link,
+.app-button--inverted:visited {
+  color: $app-button-inverted-foreground-colour;
+  background-color: $app-button-inverted-background-colour;
+  box-shadow: 0 $button-shadow-size 0 $app-button-inverted-shadow-colour;
+}
+
+.app-button--inverted:hover,
+.app-button--inverted:focus {
+  color: $app-button-inverted-foreground-colour !important;
+  background-color: tint($app-button-inverted-foreground-colour, 90%);
+}
+
+.govuk-button--start.app-button--inverted {
+  background-image: url("/images/components/icon-pointer--blue.png");
+
+  @include govuk-device-pixel-ratio {
+    background-image: url("/images/components/icon-pointer--blue-2x.png");
+  }
+}
