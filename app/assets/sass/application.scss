@@ -38,6 +38,7 @@ $govuk-global-styles: true;
       min-width: 0;
       flex: 1 1 100%;
       flex-direction: column;
+      margin-top: -10px;
   }
 
   .govuk-width-container {
@@ -76,9 +77,6 @@ $app-button-inverted-shadow-colour: shade($app-button-inverted-foreground-colour
 }
 
 .govuk-button--start.app-button--inverted {
-  background-image: url("/images/components/icon-pointer--blue.png");
+  background-image: url("../images/icon-pointer--blue.png");
 
-  @include govuk-device-pixel-ratio {
-    background-image: url("/images/components/icon-pointer--blue-2x.png");
-  }
 }

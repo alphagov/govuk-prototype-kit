@@ -35,14 +35,32 @@
 {% endblock %}
 
 {% block header %}
-  {% include "includes/cookie-banner.html" %}
-  {# Set serviceName in config.js. #}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
-  }) }}
+{% from "header/macro.njk" import govukHeader %}
+
+{{ govukHeader({
+  homepageUrl: "#",
+  serviceName: "Prototype Kit",
+  serviceUrl: "#",
+  navigation: [
+    {
+      href: "#1",
+      text: "Get started",
+      active: false
+    },
+    {
+      href: "#2",
+      text: "How to guides"
+    },
+    {
+      href: "#3",
+      text: "Tutorial"
+    },
+    {
+      href: "#4",
+      text: "About"
+    }
+  ]
+}) }}
 {% endblock %}
 
 {% if useAutoStoreData %}
