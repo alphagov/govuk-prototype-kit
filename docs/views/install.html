@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Getting started - GOV.UK Prototype Kit
+  Getting started - GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-	{{ govukBreadcrumbs({
+  {{ govukBreadcrumbs({
 	  items: [
 	    {
 	      text: "GOV.UK Prototype Kit",
@@ -18,26 +18,45 @@ Getting started - GOV.UK Prototype Kit
 {% block content %}
 
   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <nav class="app-subnav">
+
+        <ul class="app-subnav__section">
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="">Install the kit</a>
+
+          </li>
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="">Mac installation guide</a>
+
+          </li>
+
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="">Windows installation guide</a>
+
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">Install the Prototype Kit</h1>
-<h2 class="govuk-heading-l">Introduction</h2>
+      <h2 class="govuk-heading-l">Introduction</h2>
       <p class="govuk-body-l">
-This guide will take you through the steps to install the Prototype Kit. Installation usually takes about 15 minutes depending on how much you need to download.
+        This guide will take you through the steps to install the Prototype Kit. Installation usually takes about 15 minutes depending on how much you need to download.
       </p>
 
       <p>
-      If you get stuck, you can ask for help on the [#prototype-kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit) channel on cross-government Slack or email govuk-design-system-support@digital.cabinet-office.gov.uk.</p>
+        If you get stuck, you can ask for help on the [#prototype-kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit) channel on cross-government Slack or email govuk-design-system-support@digital.cabinet-office.gov.uk.</p>
 
-<p>The Prototype Kit works on Mac, Windows and Linux. Depending on which department you work for, you might need admin access on your computer to install it yourself.</p>
+      <p>The Prototype Kit works on Mac, Windows and Linux. Depending on which department you work for, you might need admin access on your computer to install it yourself.</p>
 
-<p>If you do not have admin access, you can ask your IT team to install it for you. </p>
+      <p>If you do not have admin access, you can ask your IT team to install it for you.
+      </p>
 
-
+    </div>
   </div>
-
-
-</div>
-
 
 {% endblock %}
