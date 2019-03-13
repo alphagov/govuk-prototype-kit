@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Getting started - GOV.UK Prototype Kit
+{% endblock %}
+
+{# {% block beforeContent %}
+  {{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK Prototype Kit",
+	      href: "/docs"
+	    }
+	  ]
+	}) }}
+{% endblock %} #}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <nav class="app-subnav">
+
+        <h3 class="govuk-heading-s">Guide section header</h3>
+
+        <ul class="app-subnav__section">
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="#">How to do a thing 1</a>
+
+          </li>
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="#">How to do a thing 2</a>
+
+          </li>
+
+          <li class="app-subnav__section-item">
+              <a class="app-subnav__link govuk-link" href="#">How to do a thing 3</a>
+
+        </ul>
+      
+      </nav>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">How to guides</h1>
+
+      <p>The GOV.UK Prototype Kit lets you build interactive, realistic prototypes using code.</p>
+
+      <p>It helps to know some HTML basics when you start using the Prototype Kit.
+the Prototype Kit before, or are comfortable using Git and a terminal, you might prefer the [quick start guide](link).</p>
+    </div>
+  </div>
+
+{% endblock %}

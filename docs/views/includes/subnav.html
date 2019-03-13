@@ -1,0 +1,53 @@
+<nav class="app-subnav">
+{% if slug and 'mac-installation-guide' in slug %}
+
+        <h3 class="govuk-heading-s">Mac installation guide</h3>
+{% else %}
+      <a class="govuk-link" href="/docs/get-started/mac-installation-guide/before-you-install">  <h3 class="govuk-heading-s">Mac installation guide</h3></a>
+{% endif %}
+
+
+{% if slug and 'mac-installation-guide' in slug %}
+
+        <ul class="app-subnav__section">
+          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/before-you-install' in slug}}">
+            <a class="app-subnav__link govuk-link" href="/docs/get-started/mac-installation-guide/before-you-install">Before you install</a>
+
+          </li>
+          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if 'install-the-kit' in slug }}">
+            <a class="app-subnav__link govuk-link" href="/docs/get-started/mac-installation-guide/install-the-kit">Install the Prototype Kit</a>
+
+          </li>
+
+          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if 'start-and-stop-the-kit' in slug }}">
+              <a class="app-subnav__link govuk-link" href="/docs/get-started/mac-installation-guide/start-and-stop-the-kit">Start and stop the Prototype Kit</a>
+
+        </ul>
+{% endif %}
+
+{% if slug and 'windows-installation-guide' in slug %}
+        <h3 class="govuk-heading-s ">Windows installation guide</h3>
+{% else %}
+
+      <a class="govuk-link" href="/docs/get-started/windows-installation-guide/before-you-install">  <h3 class="govuk-heading-s">Windows installation guide</h3></a>
+
+
+{% endif %}
+
+{% if slug and 'windows-installation-guide' in slug %}
+        <ul class="app-subnav__section">
+        
+            <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/before-you-install' in slug}}">
+              <a class="app-subnav__link govuk-link" href="/docs/get-started/windows-installation-guide/before-you-install">Before you install</a>
+  
+            </li>
+            <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if 'install-the-kit' in slug }}">
+              <a class="app-subnav__link govuk-link" href="/docs/get-started/windows-installation-guide/install-the-kit">Install the Prototype Kit</a>
+  
+            </li>
+  
+            <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if 'start-and-stop-the-kit' in slug }}">
+              <a class="app-subnav__link govuk-link" href="/docs/get-started/windows-installation-guide/start-and-stop-the-kit">Start and stop the Prototype Kit</a>
+</ul>
+{% endif %}
+      </nav>

@@ -79,17 +79,123 @@ $app-button-inverted-shadow-colour: shade(
   background-image: url("../images/icon-pointer--blue.png");
 }
 
-.app-subnav__link {
-  display: block;
-  text-decoration: none;
-  list-style-type: none;
-  padding: 8px 30px 8px 10px;
+.app-subnav {
+  padding: 30px 15px 0 0;
+  font-family: "nta", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.14286;
 }
+
+@media print {
+  .app-subnav {
+    font-family: sans-serif;
+  }
+}
+
+@media (min-width: 40.0625em) {
+  .app-subnav {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+}
+
+@media print {
+  .app-subnav {
+    font-size: 14pt;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 40.0625em) {
+  .app-subnav {
+    margin-left: -15px;
+  }
+}
+
 .app-subnav__section {
-  list-style-type: none !important;
   margin: 0 0 20px;
   padding: 0;
+  list-style-type: none;
 }
-.app-subnav__link govuk-link {
+
+.app-subnav__link {
+  display: block;
+  padding: 8px 30px 8px 10px;
+  border-left: 4px solid transparent;
   text-decoration: none;
+}
+
+.app-subnav__link:focus {
+  background: inherit;
+}
+
+.app-subnav__link:hover,
+.app-subnav__link:active,
+.app-subnav__link:visited {
+  color: #005ea5 !important;
+  text-decoration: none !important;
+}
+
+.app-subnav .govuk-heading-s,
+.govuk-link {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.app-subnav__link:hover {
+  border-left-color: #2b8cc4;
+}
+
+.app-subnav__section-item--current .app-subnav__link {
+  border-left-color: #005ea5;
+  background: #f8f8f8;
+  font-weight: bold;
+}
+
+.app-subnav__section--nested {
+  margin-bottom: 0;
+}
+
+.app-subnav__section--nested .app-subnav__link {
+  padding-left: 20px;
+  font-weight: 400;
+}
+
+.app-subnav__theme {
+  margin: 0;
+  padding: 10px 15px;
+  color: #6f777b;
+  font-family: "nta", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+@media print {
+  .app-subnav__theme {
+    font-family: sans-serif;
+  }
+}
+
+@media (min-width: 40.0625em) {
+  .app-subnav__theme {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.31579;
+  }
+}
+
+@media print {
+  .app-subnav__theme {
+    font-size: 14pt;
+    line-height: 1.15;
+  }
 }
