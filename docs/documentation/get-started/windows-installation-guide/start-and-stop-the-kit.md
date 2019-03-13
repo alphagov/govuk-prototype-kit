@@ -1,8 +1,8 @@
 # Start and stop the Prototype Kit
 
-This guide explains how to start and stop the Prototype Kit on Windows, after you’ve installed it. 
+This guide explains how to start and stop the Prototype Kit on Windows, after you’ve installed it.
 
-If you have not already installed the Prototype Kit, [start at the beginning of the installation guide](/docs/get-started/windows-installation-guide/before-you-install). 
+If you have not already installed the Prototype Kit, [start at the beginning of the installation guide](/docs/get-started/windows-installation-guide/before-you-install).
 
 Open Git Bash and go to your prototype folder by entering `cd ~/Documents/projects/` followed by the name of your prototype, like this.
 
@@ -18,7 +18,7 @@ You should see the index page for your prototype.
 
 **[ADD SCREENSHOT OF NEW INDEX PAGE]**
 
-This means your prototype is successfully running. 
+This means your prototype is successfully running.
 
 ## Stop the Prototype Kit
 
