@@ -10,7 +10,7 @@ Do not open it straight away, as you need to create a folder to put it in.
 
 Go to your Home folder by opening Finder, and selecting “Go” and then “Home” from the menu at the top of your screen.
 
-![Screenshot of the Go menu on Mac, including the Home option](/public/images/docs/go-home-menu-screenshot.png)
+**[ADD GO HOME MENU IMAGE]**
 
 Create a folder called “projects” in your Home folder.
 
@@ -32,7 +32,7 @@ The install can take up to a minute. Whilst it’s installing, you may see some 
 
 This is OK, and you do not need to do anything unless you also get an error, which looks something like this.
 
-**[ADD SCREENSHOT OF ERRORS]**
+![npm install errors in the terminal](/public/images/docs/npm-install-terminal-error.png)
 
 If you do get an error, you can ask for help on the [#prototype-kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit) channel on cross-government Slack or email govuk-design-system-support@digital.cabinet-office.gov.uk.
 
