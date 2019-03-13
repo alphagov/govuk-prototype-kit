@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Getting started - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK Prototype Kit",
+	      href: "/docs"
+	    }
+	  ]
+	}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <nav class="app-subnav">
+
+        <h3 class="govuk-heading-s">Mac installation guide</h3>
+
+        <ul class="app-subnav__section">
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="/docs/get-started/mac-installation-guide/before-you-install">1. Before you install</a>
+
+          </li>
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="/docs/get-started/mac-installation-guide/install-the-kit">2. Install the Prototype Kit</a>
+
+          </li>
+
+          <li class="app-subnav__section-item">
+              <a class="app-subnav__link govuk-link" href="/docs/get-started/mac-installation-guide/start-and-stop-the-kit">3. Start and stop the Prototype Kit</a>
+
+        </ul>
+
+        <h3 class="govuk-heading-s">Windows installation guide</h3>
+
+        <ul class="app-subnav__section">
+            <li class="app-subnav__section-item">
+              <a class="app-subnav__link govuk-link" href="/docs/get-started/windows-installation-guide/before-you-install">1. Before you install</a>
+  
+            </li>
+            <li class="app-subnav__section-item">
+              <a class="app-subnav__link govuk-link" href="/docs/get-started/windows-installation-guide/install-the-kit">2. Install the Prototype Kit</a>
+  
+            </li>
+  
+            <li class="app-subnav__section-item">
+              <a class="app-subnav__link govuk-link" href="/docs/get-startedwindows-installation-guide/start-and-stop-the-kit">3. Start and stop the Prototype Kit</a>
+
+      </nav>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Get started</h1>
+
+      <p>The GOV.UK Prototype Kit lets you build interactive, realistic prototypes using code.</p>
+
+      <p>It helps to know some HTML basics when you start using the Prototype Kit.</p>
+
+      <h2 class="govuk-heading-l">Install the Prototype Kit</h2>
+
+      <p>The Prototype Kit works on Mac, Windows and Linux.</p> 
+        
+      <p>The installation steps vary slightly depending on which operating system you are using.</p>
+        
+        <p>Choose between the:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>
+                <a href="/docs/get-started/mac-installation-guide/before-you-install">Mac installation guide</a>
+              </li>
+          <li>
+            <a href="/docs/get-started/windows-installation-guide/before-you-install">Windows installation guide</a>
+          </li>
+        </ul>
+        
+        <p>If you’ve installed the Prototype Kit before, or are comfortable using Git and a terminal, you might prefer the [quick start guide](link).</p>
+
+    </div>
+  </div>
+
+{% endblock %}
