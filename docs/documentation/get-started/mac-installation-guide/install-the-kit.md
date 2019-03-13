@@ -10,7 +10,7 @@ Do not open it straight away, as you need to create a folder to put it in.
 
 Go to your Home folder by opening Finder, and selecting “Go” and then “Home” from the menu at the top of your screen.
 
-**[ADD GO HOME MENU IMAGE]**
+![The Go menu on Mac including the Home folder](/public/images/docs/mac-go-home-menu.png)
 
 Create a folder called “projects” in your Home folder.
 
@@ -28,7 +28,7 @@ Now, enter the following command to install the Prototype Kit.
 
 The install can take up to a minute. Whilst it’s installing, you may see some warnings.
 
-**[ADD SCREENSHOT OF WARNINGS]**
+![npm install warnings in the terminal](/public/images/docs/npm-install-warnings-terminal.png)
 
 This is OK, and you do not need to do anything unless you also get an error, which looks something like this.
 
