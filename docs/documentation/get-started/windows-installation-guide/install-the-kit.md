@@ -32,6 +32,4 @@ This is OK, and you do not need to do anything unless you also get an error, whi
 
 If you do get an error, you can ask for help on the [#prototype-kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit) channel on cross-government Slack or email govuk-design-system-support@digital.cabinet-office.gov.uk.
 
-If you get an error ...
-
-[Next (start running the Prototype Kit)](/docs/get-started/windows-installation-guide/start-and-stop-the-kit).
+**[Next start running the Prototype Kit](/docs/get-started/windows-installation-guide/start-and-stop-the-kit)**

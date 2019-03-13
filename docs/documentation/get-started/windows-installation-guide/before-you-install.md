@@ -1,5 +1,7 @@
 # Before you install the Prototype Kit
 
+In some departments, you need admin access on your computer to install the Prototype Kit. If you do not have admin access, you can ask your IT team to install it for you. 
+
 To use the Prototype Kit on Windows, you will need:
 
 - [an application called Git Bash](#git-bash)
@@ -10,7 +12,7 @@ This guide explains how to get these set up so you can install and use the Proto
 
 ## Git Bash
 
-You need to use a free application called Git Bash to install and use the Prototype Kit.
+You need to use a free application called Git Bash.
 
 To get Git Bash, you need to [download Git for Windows (the download will start straight away when you select this link)](https://git-scm.com/download/win) and follow the installation instructions.
 
@@ -21,7 +23,11 @@ Then, to open Git Bash:
 3. Open the Git folder.
 4. Select the option for Git Bash.
 
-This guide will ask you to enter some commands into Git Bash, for example, `Here is an example command`. When it does, you will need to type or paste the command into Git Bash and press enter.
+This guide will give you some commands to enter into Git Bash, like this. 
+
+`Here is an example command` 
+
+When it does, either type or paste the command into Git Bash and press enter.
 
 ## Node.js
 
@@ -37,17 +43,17 @@ If you have Node.js already, Git Bash will give you a version number, like v10.1
 
 If the version number starts with 10, you have the correct version installed.
 
-If the version number is lower than 10, like v.0.12.0 or v.5.0.0, you need to [install a newer version of Node.js](anchor link to heading below).
+If the version number is lower than 10, like v.0.12.0 or v.5.0.0, you need to install a newer version of Node.js.
 
-If you do not have Node.js installed at all, it will say Error 0x2 starting node.exe --version.
-
-In this case, you need to install Node.js.
+If you do not have Node.js installed at all, it will say 'Error 0x2 starting node.exe --version' and you need to install Node.js.
 
 ### If you need to install Node.js
 
-If you need to install Node.js or update your version, download and install Node.js from the [Node.js website](https://nodejs.org/en/). Choose the version marked as LTS, which stands for long term support, and follow the installation instructions.
+You can download and install Node.js from the [Node.js website](https://nodejs.org/en/). 
 
-Once you have installed Node.js, quit and restart Git Bash. To check it is installed correctly, enter the following command again.
+Choose the version marked LTS, which stands for long term support, and follow the installation instructions.
+
+Once you have installed Node.js, quit and restart Git Bash. To check it's installed correctly, enter the following command again.
 
 `node --version`
 
@@ -55,6 +61,8 @@ If it’s installed correctly, Git Bash will now show a version number starting 
 
 ## HTML text editor
 
-You will need an HTML text editor to work on your prototype. There are a number of free HTML text editors to choose from, like [Atom](https://atom.io/) or [Visual studio code](https://code.visualstudio.com/).
+You will need to download an HTML text editor to work on your prototype. 
 
-[Next (install the Prototype Kit)](/docs/get-started/windows-installation-guide/install-the-kit).
+There are a number of free HTML text editors to choose from, like [Atom](https://atom.io/) or [Visual studio code](https://code.visualstudio.com/).
+
+**[Next install the Prototype Kit](/docs/get-started/windows-installation-guide/install-the-kit)**

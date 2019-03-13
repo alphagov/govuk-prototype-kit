@@ -2,7 +2,7 @@
 
 This guide explains how to start and stop the Prototype Kit on Mac, after you’ve installed it.
 
-If you have not already installed the Prototype Kit, [go to the beginning of the installation guide](/docs/get-started/mac-installation-guide/before-you-install) 
+If you have not already installed the Prototype Kit, [go to the beginning of the installation guide](/docs/get-started/mac-installation-guide/before-you-install). 
 
 Open Terminal and go to your prototype folder by entering `cd ~/projects/` followed by the name of your prototype, like this.
 
@@ -28,6 +28,6 @@ It’s fine to leave the Prototype Kit running for days or while your computer i
 
 Once you have successfully installed and run the Prototype Kit, you are ready to start prototyping. To help with this you can:
 
-- [read guidance about how to make a prototype](Link to section)
-- [follow a step by step tutorial on making your first prototype](Link to tutorial)
-- [Terminal basics]
+- read guides about [how to make a prototype]()
+- take a [step by step tutorial to learn how to make a prototype]()
+- find coded examples to use in your prototype in the <br>[GOV.UK Design System](https://kit_docs_prototype--govuk-design-system-preview.netlify.com/)
