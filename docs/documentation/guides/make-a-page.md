@@ -8,7 +8,9 @@ Make sure you can preview your prototype at http://localhost:3000 and have your 
 
 ## Where to save your pages
 
-You’ll need to save all new pages in the /app/views folder. This will add them to your prototype and let you preview them. 
+You can see all the files in the Prototype Kit in your code editor.
+
+You should save new pages in the /app/views folder. This will add them to your prototype and let you preview them. 
 
 The quickest way to create a new page is to start with one of the templates which live in docs/views/templates. 
 
