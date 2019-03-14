@@ -24,11 +24,11 @@ Now, enter the following command to install the Prototype Kit.
 
 The install can take up to a minute. Whilst it’s installing, you may see some warnings.
 
-[Screenshot showing warning]
+![npm install warnings in the terminal](/public/images/docs/npm-install-warn-git-bash-windows.png)
 
 This is OK, and you do not need to do anything unless you also get an error, which looks something like this.
 
-[Screenshot showing error].
+![npm install errors in the terminal](/public/images/docs/npm-install-error-git-bash-windows.png)
 
 If you do get an error, you can ask for help on the [#prototype-kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit) channel on cross-government Slack or email govuk-design-system-support@digital.cabinet-office.gov.uk.
 
