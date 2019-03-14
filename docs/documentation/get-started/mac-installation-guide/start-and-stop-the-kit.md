@@ -28,6 +28,6 @@ It’s fine to leave the Prototype Kit running for days or while your computer i
 
 Once you have successfully installed and run the Prototype Kit, you are ready to start prototyping. To help with this you can:
 
-- read guides about [how to make a prototype]()
+- read guides about [how to make a prototype](/docs/guides)
 - take a [step by step tutorial to learn how to make a prototype]()
 - find coded examples to use in your prototype in the <br>[GOV.UK Design System](https://kit_docs_prototype--govuk-design-system-preview.netlify.com/)
