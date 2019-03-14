@@ -1,0 +1,29 @@
+
+
+     <nav class="app-subnav">
+
+        <h3 class="govuk-heading-s">Guide section header</h3>
+                {% if slug  and 'guides' in slug %}
+
+        <ul class="app-subnav__section">
+
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="guides/make-a-page">Make a page</a>
+
+          </li>
+          <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link" href="#">How to do a thing 2</a>
+
+          </li>
+
+          <li class="app-subnav__section-item">
+              <a class="app-subnav__link govuk-link" href="#">How to do a thing 3</a>
+              </li>
+
+        </ul>
+
+
+            {% endif %}
+
+      </nav>
+
