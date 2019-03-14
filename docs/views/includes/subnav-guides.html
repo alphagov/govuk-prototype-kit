@@ -10,14 +10,20 @@
             <a class="app-subnav__link govuk-link" href="guides/make-a-page">Make a page</a>
 
           </li>
-          <li class="app-subnav__section-item ">
-            <a class="app-subnav__link govuk-link" href="#">How to do a thing 2</a>
+          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/adding-css-javascript-and-images' in slug}}">
+            <a class="app-subnav__link govuk-link" href="guides/adding-css-javascript-and-images">Adding CSS JavaScript and images</a>
 
           </li>
+          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/backwards-compatibility' in slug}}">
+            <a class="app-subnav__link govuk-link" href="guides/backwards-compatibility">Backwards compatibility</a>
+          </li>
 
-          <li class="app-subnav__section-item">
-              <a class="app-subnav__link govuk-link" href="#">How to do a thing 3</a>
-              </li>
+          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/creating-routes' in slug}}">
+            <a class="app-subnav__link govuk-link" href="guides/creating-routes">Creating routes</a>
+          </li>
+          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/creating-routes' in slug}}">
+            <a class="app-subnav__link govuk-link" href="guides/Extension systems">Extension system</a>
+          </li>
 
         </ul>
 
