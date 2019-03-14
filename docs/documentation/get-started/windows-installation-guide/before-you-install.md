@@ -6,7 +6,7 @@ To use the Prototype Kit on Windows, you will need:
 
 - [an application called Git Bash](#git-bash)
 - [some software called Node.js](#Node.js)
-- [an HTML text editor like Atom or Visual Studio Code](#html-text-editor)
+- [an code editor like Atom or Visual Studio Code](#html-text-editor)
 
 This guide explains how to get these set up so you can install and use the Prototype Kit.
 
@@ -59,10 +59,10 @@ Once you have installed Node.js, quit and restart Git Bash. To check it's instal
 
 If it’s installed correctly, Git Bash will now show a version number starting with 10.
 
-## HTML text editor
+## Code editor
 
-You will need to download an HTML text editor to work on your prototype. 
+You will need to download an code editor to work on your prototype. 
 
-There are a number of free HTML text editors to choose from, like [Atom](https://atom.io/) or [Visual studio code](https://code.visualstudio.com/).
+There are a number of free code editors to choose from, like [Atom](https://atom.io/) or [Visual studio code](https://code.visualstudio.com/).
 
 **[Next install the Prototype Kit](/docs/get-started/windows-installation-guide/install-the-kit)**

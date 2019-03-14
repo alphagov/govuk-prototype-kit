@@ -16,7 +16,7 @@ Go to [http://localhost:3000](http://localhost:3000) (opens in a new tab) in you
 
 You should see the index page for your prototype.
 
-**[ADD SCREENSHOT OF NEW INDEX PAGE]**
+![the index page for the Prototype Kit](/public/images/docs/index-page.png)
 
 This means your prototype is successfully running. 
 

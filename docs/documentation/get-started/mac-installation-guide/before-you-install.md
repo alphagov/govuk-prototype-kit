@@ -6,7 +6,7 @@ Before you install the Prototype Kit, you will need:
 
 - [an application called Terminal](#terminal)
 - [some free software called Node.js](#node.js)
-- [an HTML text editor like Atom or Visual Studio Code](#html-text-editor)
+- [an code editor like Atom or Visual Studio Code](#html-text-editor)
 - [command line tools](command-line-tools)
 
 This guide explains how to get these set up so you can install and use the Prototype Kit.
@@ -55,11 +55,11 @@ Once you have installed Node.js, quit and restart Terminal. To check it's instal
 
 If it’s installed correctly, Terminal will now show a version number starting with 10.
 
-## HTML text editor
+## Code editor
 
-You will need to download an HTML text editor to work on your prototype. 
+You will need to download an code editor to work on your prototype. 
 
-There are a number of free HTML text editors to choose from, like [Atom](https://atom.io/) or [Visual Studio Code](https://code.visualstudio.com/).
+There are a number of free code editors to choose from, like [Atom](https://atom.io/) or [Visual Studio Code](https://code.visualstudio.com/).
 
 ## Command line tools
 

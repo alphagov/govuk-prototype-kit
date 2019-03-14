@@ -30,6 +30,4 @@ This is OK, and you do not need to do anything unless you also get an error, whi
 
 ![npm install errors in the terminal](/public/images/docs/npm-install-error-git-bash-windows.png)
 
-If you do get an error, you can ask for help on the [#prototype-kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit) channel on cross-government Slack or email govuk-design-system-support@digital.cabinet-office.gov.uk.
-
 **[Next start running the Prototype Kit](/docs/get-started/windows-installation-guide/start-and-stop-the-kit)**
