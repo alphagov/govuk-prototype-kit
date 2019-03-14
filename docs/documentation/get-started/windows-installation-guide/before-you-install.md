@@ -1,6 +1,6 @@
 # Before you install the Prototype Kit
 
-In some departments, you need admin access on your computer to install the Prototype Kit. If you do not have admin access, you can ask your IT team to install it for you. 
+In some departments, you need admin access on your computer to install the Prototype Kit. If you do not have admin access, you can ask your IT team to install it for you.
 
 To use the Prototype Kit on Windows, you will need:
 
@@ -23,9 +23,9 @@ Then, to open Git Bash:
 3. Open the Git folder.
 4. Select the option for Git Bash.
 
-This guide will give you some commands to enter into Git Bash, like this. 
+This guide will give you some commands to enter into Git Bash, like this.
 
-`Here is an example command` 
+`Here is an example command`
 
 When it does, either type or paste the command into Git Bash and press enter.
 
@@ -49,7 +49,7 @@ If you do not have Node.js installed at all, it will say 'Error 0x2 starting nod
 
 ### If you need to install Node.js
 
-You can download and install Node.js from the [Node.js website](https://nodejs.org/en/). 
+You can download and install Node.js from the [Node.js website](https://nodejs.org/en/).
 
 Choose the version marked LTS, which stands for long term support, and follow the installation instructions.
 
@@ -61,8 +61,8 @@ If it’s installed correctly, Git Bash will now show a version number starting 
 
 ## Code editor
 
-You will need to download an code editor to work on your prototype. 
+You will need to download an code editor to work on your prototype.
 
-There are a number of free code editors to choose from, like [Atom](https://atom.io/) or [Visual studio code](https://code.visualstudio.com/).
+There are a number of free code editors to choose from, like [Atom](https://atom.io/)&nbsp;or&nbsp;[Visual studio code](https://code.visualstudio.com/).
 
 **[Next install the Prototype Kit](/docs/get-started/windows-installation-guide/install-the-kit)**
