@@ -2,7 +2,7 @@
 
 This guide explains how to download and install the Prototype Kit on Windows.
 
-You need a few things set up before you can install the Prototype Kit, like Git Bash and Node.js. If you haven’t already, start by reading [what to do before installing the Prototype Kit](/docs/install/windows-installation-guide/before-you-install).
+> You need a few things set up before you can install the Prototype Kit, like Git Bash and Node.js. If you haven’t already, start by reading [what to do before installing the Prototype Kit](/docs/install/windows-installation-guide/before-you-install).
 
 When you are ready to install it, [download the Prototype Kit as a zip (the download will start straight away when you select this link)](/docs/download).
 

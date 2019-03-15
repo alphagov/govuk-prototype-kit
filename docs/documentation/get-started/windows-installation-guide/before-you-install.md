@@ -1,6 +1,6 @@
 # Before you install the Prototype Kit
 
-In some departments, you need admin access on your computer to install the Prototype Kit. If you do not have admin access, you can ask your IT team to install it for you.
+> In some departments, you need admin access on your computer to install the Prototype Kit. If you do not have admin access, you can ask your IT team to install it for you.
 
 To use the Prototype Kit on Windows, you will need:
 

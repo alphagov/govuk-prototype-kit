@@ -2,7 +2,7 @@
 
 This guide explains how to start and stop the Prototype Kit on Mac, after you’ve installed it.
 
-If you have not already installed the Prototype Kit, [go to the beginning of the installation guide](/docs/get-started/mac-installation-guide/before-you-install). 
+> If you have not already installed the Prototype Kit, [go to the beginning of the installation guide](/docs/get-started/mac-installation-guide/before-you-install).
 
 Open Terminal and go to your prototype folder by entering `cd ~/projects/` followed by the name of your prototype, like this.
 
@@ -18,7 +18,7 @@ You should see the index page for your prototype.
 
 ![the index page for the Prototype Kit](/public/images/docs/index-page.png)
 
-This means your prototype is successfully running. 
+This means your prototype is successfully running.
 
 ## Stop the Prototype Kit
 

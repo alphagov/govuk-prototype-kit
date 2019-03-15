@@ -1,6 +1,6 @@
 # Before you install the Prototype Kit
 
-In some departments, you need admin access on your computer to install the Prototype Kit. If you do not have admin access, you can ask your IT team to install it for you. 
+> In some departments, you need admin access on your computer to install the Prototype Kit. If you do not have admin access, you can ask your IT team to install it for you.
 
 Before you install the Prototype Kit, you will need:
 
@@ -45,7 +45,7 @@ If you do not have Node.js installed at all, it will say 'command not found' and
 
 ### If you need to install Node.js
 
-You can download and install Node.js from the [Node.js website](https://nodejs.org/en/). 
+You can download and install Node.js from the [Node.js website](https://nodejs.org/en/).
 
 Choose the version marked LTS, which stands for long term support, and follow the installation instructions.
 
@@ -57,7 +57,7 @@ If it’s installed correctly, Terminal will now show a version number starting 
 
 ## Code editor
 
-You will need to download an code editor to work on your prototype. 
+You will need to download an code editor to work on your prototype.
 
 There are a number of free code editors to choose from, like [Atom](https://atom.io/) or [Visual Studio Code](https://code.visualstudio.com/).
 

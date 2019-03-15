@@ -2,9 +2,9 @@
 
 This guide explains how to download and install the Prototype Kit.
 
-You need a few things set up before you can install the Prototype Kit, like Terminal and Node.js. 
+You need a few things set up before you can install the Prototype Kit, like Terminal and Node.js.
 
-If you haven’t already, start by reading [what to do before installing the Prototype Kit](/docs/get-started/mac-installation-guide/before-you-start).
+> If you haven’t already, start by reading [what to do before installing the Prototype Kit](/docs/get-started/mac-installation-guide/before-you-start).
 
 When you are ready to install it, [download the Prototype Kit as a zip (the download will start straight away when you select this link)](/docs/download).
 
