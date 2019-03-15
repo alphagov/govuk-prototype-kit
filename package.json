@@ -35,6 +35,7 @@
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
+    "jshint": "^2.10.2",
     "keypather": "^3.0.0",
     "marked": "^0.4.0",
     "notifications-node-client": "^4.1.0",

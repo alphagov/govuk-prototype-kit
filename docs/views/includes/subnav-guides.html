@@ -1,36 +1,56 @@
+<nav class="app-subnav">
+  {% if slug and 'guides' in slug %}
+    <h3 class="govuk-heading-s">How to guides</h3>
 
+    <ul class="app-subnav__section">
 
-     <nav class="app-subnav">
-        <h3 class="govuk-heading-s">How to guides</h3>
-                {% if slug  and 'guides' in slug %}
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/make-a-page' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/make-a-page">Make a page</a>
 
-        <ul class="app-subnav__section">
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/adding-css-javascript-and-images' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/adding-css-javascript-and-images">Adding CSS JavaScript and images</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/principles' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/principles">Principles</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/backwards-compatibility' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/backwards-compatibility">Backwards compatibility</a>
+      </li>
 
-          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/make-a-page' in slug}}">
-            <a class="app-subnav__link govuk-link" href="guides/make-a-page">Make a page</a>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/extension-system' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/extension-system">Extension system</a>
+      </li>
 
-          </li>
-          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/adding-css-javascript-and-images' in slug}}">
-            <a class="app-subnav__link govuk-link" href="guides/adding-css-javascript-and-images">Adding CSS JavaScript and images</a>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/creating-routes' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/creating-routes">Creating routes</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/usage-data' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/usage-data">Collecting usage data</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/publishing-on-heroku' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/publishing-on-heroku">Publishing on Heroku</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/session' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/session">Session</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/setting-up-git' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/setting-up-git">Setting up git</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/tips-and-tricks' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/tips-and-tricks">Tips and tricks</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/updating-the-kit' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/updating-the-kit">Updating the kit</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/using-notify' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/using-notify">Using Notify</a>
+      </li>
+      <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/using-verify' in slug}}">
+        <a class="app-subnav__link govuk-link" href="/docs/guides/using-verify">Using Verify</a>
+      </li>
+    </ul>
 
-          </li>
-          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/backwards-compatibility' in slug}}">
-            <a class="app-subnav__link govuk-link" href="guides/backwards-compatibility">Backwards compatibility</a>
-          </li>
+  {% endif %}
 
-          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/creating-routes' in slug}}">
-            <a class="app-subnav__link govuk-link" href="/creating-routes">Creating routes</a>
-          </li>
-
-          <li class="app-subnav__section-item {{ 'app-subnav__section-item--current' if '/extension-system' in slug}}">
-            <a class="app-subnav__link govuk-link" href="guides/extension-system">Extension system</a>
-          </li>
-
-        </ul>
-
-
-
-            {% endif %}
-
-      </nav>
-
+</nav>
