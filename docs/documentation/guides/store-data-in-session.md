@@ -1,4 +1,4 @@
-# Storing data in session
+# Store data in session
 
 **Advanced topic**
 

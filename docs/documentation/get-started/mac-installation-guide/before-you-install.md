@@ -71,7 +71,7 @@ If you already have command line tools, Terminal will say `xcode-select: error: 
 
 If you do not have command line tools, an installer will open. 
 
-![Command line tools installation pop up](/public/images/docs/command-line-tools-installer.png)
+<img class="bordered" src="/public/images/docs/command-line-tools-installer.png" alt="Command line tools installation pop up">
 
 Select the install option and follow the instructions.
 

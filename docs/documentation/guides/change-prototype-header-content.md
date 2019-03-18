@@ -1,6 +1,6 @@
-# Tips and tricks
+# Change prototype header content
 
-A few useful things to help you get started.
+This guide explains how to change your prototype's global header content like the service name, navigation and phase banner. 
 
 ## Update the Service name
 

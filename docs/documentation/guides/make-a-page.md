@@ -59,7 +59,7 @@ You’ll find lots of useful things to add to your page, like [buttons](https://
 
 You can copy the code for examples in the Design System by selecting the tabs at the bottom of each example. 
 
-![a button example in the design system with code underneath and a copy button](/public/images/docs/button-example-design-system.png)
+<img class="bordered" src="/public/images/docs/button-example-design-system.png" alt="a button example in the design system with code underneath and a copy button">
 
 Code for the examples is provided in both HTML, and in a coding language called Nunjucks.
 Nunjucks is a kind of shorthand, which generates HTML, using fewer lines of code. 

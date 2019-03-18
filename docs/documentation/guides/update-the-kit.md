@@ -1,4 +1,4 @@
-# Updating the kit
+# Update the kit
 
 **Important note**
 
@@ -8,7 +8,7 @@ If you have made any changes outside the `app` folder, this process will destroy
 
 Version 7 of the GOV.UK Prototype Kit is a large change from previous versions.
 
-If you have a large old prototype, follow this [guide to backward compatibility](/docs/backwards-compatibility) which lets you update the Prototype Kit without having to rewrite all your pages at once.
+If you have a large old prototype, follow this [guide to backward compatibility](/docs/guides/backwards-compatibility) which lets you update the Prototype Kit without having to rewrite all your pages at once.
 
 There is a [guide to updating your code](https://design-system.service.gov.uk/get-started/updating-your-code/) on the GOV.UK Design System.
 

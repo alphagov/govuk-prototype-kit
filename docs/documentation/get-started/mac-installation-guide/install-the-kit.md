@@ -12,7 +12,7 @@ Do not open it straight away, as you need to create a folder to put it in.
 
 Go to your Home folder by opening Finder, and selecting “Go” and then “Home” from the menu at the top of your screen.
 
-![The Go menu on Mac including the Home folder](/public/images/docs/mac-go-home-menu.png)
+<img class="bordered" src="/public/images/docs/mac-go-home-menu.png" alt="The Go menu on Mac including the Home folder">
 
 Create a folder called “projects” in your Home folder.
 

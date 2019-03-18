@@ -14,6 +14,10 @@ $govuk-global-styles: true;
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
+img.bordered {
+  border: 1px solid $govuk-border-colour;
+}
+
 .app-masthead {
   @include govuk-responsive-padding(6, "top");
   @include govuk-responsive-padding(6, "bottom");

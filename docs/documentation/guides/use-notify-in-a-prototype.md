@@ -1,4 +1,4 @@
-# Using GOV.UK Notify to prototype emails and text messages
+# Use GOV.UK Notify in a prototype
 
 You can use GOV.UK Notify to send text messages or emails when users
 interact with your prototype. For example you could send users a
