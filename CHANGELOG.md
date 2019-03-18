@@ -3,6 +3,7 @@
 Fixes:
 
 - [#697 Only ask for usage permission if TTY](https://github.com/alphagov/govuk-prototype-kit/pull/697). Thanks [zuzak](https://github.com/zuzak) for this contribution.
+- [#712 Turn off npm default auditing](https://github.com/alphagov/govuk-prototype-kit/pull/712).
 
 # 8.8.0
 
