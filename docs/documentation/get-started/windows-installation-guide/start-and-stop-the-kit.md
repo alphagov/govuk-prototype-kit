@@ -8,17 +8,31 @@ Open Git Bash and go to your prototype folder by entering `cd ~/Documents/projec
 
 `cd ~/Documents/projects/name-of-your-prototype`.
 
-To start running the Prototype Kit, enter `npm start`. After a few seconds, Git Bash should show a message that says “Listening on port 3000 url: http://localhost:3000”. This tells you the Prototype Kit is running successfully.
+To start running the Prototype Kit, enter `npm start`. 
+
+Git Bash will show you a message asking if you give permission to share anonymous data about how you use the Prototype Kit, to help the team improve it. 
+
+Enter `y` for yes or `n` for no.
+
+After a few seconds, Git Bash should show a message that says “Listening on port 3000 url: <span>ht</span>tp://localhost:3000”. This tells you the Prototype Kit is running successfully.
 
 ## Preview your prototype
 
-Go to [http://localhost:3000](http://localhost:3000) (opens in a new tab) in your web browser.
+Go to <a href="http://localhost:3000" target="_blank">http://localhost:3000 (opens in a new tab)</a> in your web browser. 
 
 You should see the index page for your prototype.
 
 ![the index page for the Prototype Kit](/public/images/docs/index-page.png)
 
 This means your prototype is successfully running.
+
+## Edit your prototype
+
+You need to open your prototype in your code editor to be able to make changes to it.
+
+Open up your code editor, select the option to open a project or file and navigate to your prototype folder to open it. 
+
+Once you've opened your prototype folder you should be able to see a list of all the folders and files it contains.
 
 ## Stop the Prototype Kit
 

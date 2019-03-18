@@ -49,7 +49,9 @@ Check your new page is working.
 
 You can edit, remove or add content to your page in your code editor. Your preview will automatically refresh in the browser when you make a change. This can take a few seconds.
 
-To check if this is working, make a small change to your page, like changing the page heading, and then go back and look at your preview. It should show your update. 
+To check if this is working, make a small change to your page, like changing the page heading and save it. Do this by pressing the `cmd` and `s` keys at the same time on a Mac, or `ctrl` and `c` on Windows.
+
+Go back and look at your preview. It should show your update. 
 
 Preview your changes regularly when you’re prototyping, to make sure it’s working. If your preview stops updating, it might be because you haven’t saved your changes, or are working in the wrong file.
 

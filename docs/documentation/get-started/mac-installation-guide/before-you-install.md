@@ -68,6 +68,11 @@ The last thing you’ll need before you can install the kit is command line tool
 `xcode-select --install`
 
 If you already have command line tools, Terminal will say `xcode-select: error: command line tools are already installed use "Software Update" to install updates.`
-If you do not have command line tools, an installer will open. Follow the instructions.
+
+If you do not have command line tools, an installer will open. 
+
+![Command line tools installation pop up](/public/images/docs/command-line-tools-installer.png)
+
+Select the install option and follow the instructions.
 
 **[Next install the Prototype Kit](/docs/get-started/mac-installation-guide/install-the-kit)**
