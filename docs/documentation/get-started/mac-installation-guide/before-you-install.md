@@ -35,13 +35,13 @@ To find out if you already have Node.js installed, enter this command into Termi
 
 `node --version`
 
+If you do not have Node.js installed at all, it will say 'command not found' and you need to install Node.js.
+
 If you have Node.js already, Terminal will give you a version number, like v10.15.1.
 
 If the version number starts with 10, you have the correct version installed.
 
 If the version number is lower than 10, like v.0.12.0 or v.5.0.0, you need to install a newer version of Node.js.
-
-If you do not have Node.js installed at all, it will say 'command not found' and you need to install Node.js.
 
 ### If you need to install Node.js
 

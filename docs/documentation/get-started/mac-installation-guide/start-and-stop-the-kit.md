@@ -10,7 +10,7 @@ Open Terminal and go to your prototype folder by entering `cd ~/projects/` follo
 
 To start running the Prototype Kit, enter `npm start`. 
 
-Terminal will show a message asking if you give permission to share anonymous data about how you use the Prototype Kit, to help the team improve it. 
+At this point, you might see a message asking if you give permission to share anonymous data about how you use the Prototype Kit, to help the team improve it. 
 
 ![Terminal showing a message asking for permission to share anonymous usage data to help the team improve the service.](/public/images/docs/share-usage-data.png)
 

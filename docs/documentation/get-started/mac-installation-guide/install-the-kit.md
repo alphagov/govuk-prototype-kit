@@ -16,7 +16,7 @@ Go to your Home folder by opening Finder, and selecting “Go” and then “Hom
 
 Create a folder called “projects” in your Home folder.
 
-You can now open the Prototype Kit zip file you downloaded. When you’ve done this, you should see a folder called govuk-prototype-kit followed by the version number.
+You can now open the Prototype Kit zip file you downloaded. When you’ve done this, you should see a folder called govuk-prototype-kit-for-upload.
 
 Rename the folder to something that describes your prototype and then move it into your projects folder.
 

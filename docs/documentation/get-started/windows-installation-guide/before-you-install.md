@@ -5,8 +5,8 @@
 To use the Prototype Kit on Windows, you will need:
 
 - [an application called Git Bash](#git-bash)
-- [some software called Node.js](#Node.js)
-- [an code editor like Atom or Visual Studio Code](#html-text-editor)
+- [some software called Node.js](#node.js)
+- [an code editor like Atom or Visual Studio Code](#code-editor)
 
 This guide explains how to get these set up so you can install and use the Prototype Kit.
 

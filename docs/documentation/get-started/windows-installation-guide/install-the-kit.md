@@ -10,13 +10,13 @@ Do not open it straight away, as you need to create a folder to put it in.
 
 Go to your Documents folder and create a folder called “projects”.
 
-You can now open the Prototype Kit zip file you downloaded. When you’ve done this, you should see a folder called govuk-prototype-kit followed by the version number.
+You can now open the Prototype Kit zip file you downloaded. When you’ve done this, you should see a folder called govuk-prototype-kit-for-upload.
 
 Rename the folder to something that describes your prototype and then move it into your projects folder.
 
 Open Git Bash and go to your prototype folder by entering `cd ~/Documents/projects/` followed by the name of your prototype, like this.
 
-`cd ~/Documents/projects/juggling-licence-prototype`
+`cd ~/Documents/projects/name-of-your-prototype`
 
 Now, enter the following command to install the Prototype Kit.
 

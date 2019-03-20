@@ -10,7 +10,7 @@ Open Git Bash and go to your prototype folder by entering `cd ~/Documents/projec
 
 To start running the Prototype Kit, enter `npm start`. 
 
-Git Bash will show you a message asking if you give permission to share anonymous data about how you use the Prototype Kit, to help the team improve it. 
+At this point, you might see a message asking if you give permission to share anonymous data about how you use the Prototype Kit, to help the team improve it. 
 
 Enter `y` for yes or `n` for no.
 
