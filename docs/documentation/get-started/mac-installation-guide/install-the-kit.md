@@ -18,7 +18,7 @@ Create a folder called “projects” in your Home folder.
 
 You can now open the Prototype Kit zip file you downloaded. When you’ve done this, you should see a folder called govuk-prototype-kit-for-upload.
 
-Rename the folder to something that describes your prototype and then move it into your projects folder.
+Rename the folder to something that describes your prototype. If your name consists of more than one word, separate words with hyphens. Move it into your projects folder.
 
 Open Terminal and go to your prototype folder by entering `cd ~/projects/` followed by the name of your prototype, like this.
 
