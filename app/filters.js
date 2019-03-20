@@ -7,6 +7,11 @@ module.exports = function (env) {
    */
   var filters = {}
 
+  // Format a number according to GOV.UK content guidelines
+  filters.formatNumber = function (x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:
