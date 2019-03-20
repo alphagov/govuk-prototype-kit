@@ -7,6 +7,23 @@ module.exports = function (env) {
    */
   var filters = {}
 
+  // Filter an array of data depending on the values of properties within it.
+  // Examples of usage:
+  // {% for tx in data.transactions | filterObjects('type', 'is not', 'submission') | sort(true, false, 'lastUpdated') %}
+  // {% for tx in data.users | filterObjects('role', 'is', 'admin') %}
+  filters.filterObjects = function (array, property, check, value) {
+    var output
+    switch (check) {
+      case 'is':
+        output = array.filter(object => object[property].toLowerCase() === value.toLowerCase())
+        break
+      case 'is not':
+        output = array.filter(object => object[property].toLowerCase() !== value.toLowerCase())
+        break
+    }
+    return output
+  }
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:
