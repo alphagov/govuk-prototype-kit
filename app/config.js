@@ -9,6 +9,10 @@ module.exports = {
   // Default port that prototype runs on
   port: '3000',
 
+  // Ask to try another port if the default is unavailable
+  // or automatically use the next available port without prompting
+  promptWhenDefaultPortIsUnavailable: 'true',
+
   // Enable or disable password protection on production
   useAuth: 'true',
 
