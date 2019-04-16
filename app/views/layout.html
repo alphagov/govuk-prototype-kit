@@ -35,32 +35,43 @@
 {% endblock %}
 
 {% block header %}
-{% from "header/macro.njk" import govukHeader %}
 
-{{ govukHeader({
-  homepageUrl: "#",
-  serviceName: "Prototype Kit",
-  serviceUrl: "#",
-  navigation: [
-    {
-      href: "/docs/get-started",
-      text: "Get started",
-      active: false
-    },
-    {
-      href: "/docs/guides",
-      text: "Guides"
-    },
-    {
-      href: "#3",
-      text: "Tutorial"
-    },
-    {
-      href: "#4",
-      text: "About"
-    }
-  ]
-}) }}
+  {% from "header/macro.njk" import govukHeader %}
+
+  {{ govukHeader({
+    homepageUrl: "#",
+    serviceName: "Prototype Kit",
+    serviceUrl: "#"
+  }) }}
+
+  <div class="app-pane__nav">
+    <nav class="app-navigation govuk-clearfix">
+      <ul class="app-navigation__list govuk-width-container">
+
+        <li>
+          <a class="govuk-link" href="/get-started" data-topnav="Get started">Get started</a>
+        </li>
+
+        <li>
+          <a class="govuk-link" href="/styles" data-topnav="Styles">Styles</a>
+        </li>
+
+        <li>
+          <a class="govuk-link" href="/components" data-topnav="Components">Components</a>
+        </li>
+
+        <li>
+          <a class="govuk-link" href="/patterns" data-topnav="Patterns">Patterns</a>
+        </li>
+
+        <li>
+          <a class="govuk-link" href="/community" data-topnav="Community">Community</a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+
 {% endblock %}
 
 {% if useAutoStoreData %}

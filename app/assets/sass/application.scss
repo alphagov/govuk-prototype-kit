@@ -1,6 +1,10 @@
 // global styles for <a> and <p> tags
 $govuk-global-styles: true;
 
+// App-specific variables
+$app-light-grey: #f8f8f8;
+$app-code-color: #dd1144;
+
 // Import GOV.UK Frontend and any extension styles if extensions have been configured
 @import "lib/extensions/extensions";
 
@@ -9,197 +13,15 @@ $govuk-global-styles: true;
 @import "patterns/task-list";
 @import "patterns/related-items";
 
-// Components that aren't in Frontend
+// Components from the Design System
 @import "components/cookie-banner";
+@import "components/inverted-button";
+@import "components/pane";
+@import "components/masthead";
+@import "components/navigation";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 img.bordered {
   border: 1px solid $govuk-border-colour;
-}
-
-.app-masthead {
-  @include govuk-responsive-padding(6, "top");
-  @include govuk-responsive-padding(6, "bottom");
-  color: govuk-colour("white");
-  background-color: govuk-colour("blue");
-}
-
-.app-masthead__title {
-  color: govuk-colour("white");
-  @include govuk-responsive-margin(6, "bottom");
-}
-
-.app-masthead__description {
-  @include govuk-font(24);
-  margin-bottom: 0;
-  color: govuk-colour("white");
-}
-
-.app-pane__content {
-  display: flex;
-  min-width: 0;
-  flex: 1 1 100%;
-  flex-direction: column;
-  margin-top: -10px;
-}
-
-.govuk-width-container {
-  padding: 10px 20px;
-}
-
-@function shade($color, $percent) {
-  @if not _is-color($color) {
-    @error "`#{$color}` is not a valid color for the `$color` argument in " +
-      "the `tint` mixin.";
-  } @else {
-    @return mix(#000000, $color, $percent);
-  }
-}
-
-$button-shadow-size: $govuk-border-width-form-element;
-$app-button-inverted-background-colour: govuk-colour("white");
-$app-button-inverted-foreground-colour: govuk-colour("blue");
-$app-button-inverted-shadow-colour: shade(
-  $app-button-inverted-foreground-colour,
-  30%
-);
-
-.app-button--inverted,
-.app-button--inverted:link,
-.app-button--inverted:visited {
-  color: $app-button-inverted-foreground-colour;
-  background-color: $app-button-inverted-background-colour;
-  box-shadow: 0 $button-shadow-size 0 $app-button-inverted-shadow-colour;
-}
-
-.app-button--inverted:hover,
-.app-button--inverted:focus {
-  color: $app-button-inverted-foreground-colour !important;
-  background-color: tint($app-button-inverted-foreground-colour, 90%);
-}
-
-.govuk-button--start.app-button--inverted {
-  background-image: url("../images/icon-pointer--blue.png");
-}
-
-.app-subnav {
-  padding: 0 15px 0 0;
-  font-family: "nta", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  font-size: 14px;
-  font-size: 0.875rem;
-  line-height: 1.14286;
-}
-
-@media print {
-  .app-subnav {
-    font-family: sans-serif;
-  }
-}
-
-@media (min-width: 40.0625em) {
-  .app-subnav {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.25;
-  }
-}
-
-@media print {
-  .app-subnav {
-    font-size: 14pt;
-    line-height: 1.2;
-  }
-}
-
-@media (min-width: 40.0625em) {
-  .app-subnav {
-    margin-left: -15px;
-  }
-}
-
-.app-subnav__section {
-  margin: 0 0 20px;
-  padding: 0;
-  list-style-type: none;
-}
-
-.app-subnav__link {
-  display: block;
-  padding: 8px 30px 8px 10px;
-  border-left: 4px solid transparent;
-  text-decoration: none;
-}
-
-.app-subnav__link:focus {
-  background: inherit;
-}
-
-.app-subnav__link:hover,
-.app-subnav__link:active,
-.app-subnav__link:visited {
-  color: #005ea5 !important;
-  text-decoration: none !important;
-}
-
-.app-subnav .govuk-heading-s,
-.govuk-link {
-  text-decoration: none !important;
-  color: inherit;
-}
-
-.app-subnav__link:hover {
-  border-left-color: #2b8cc4;
-}
-
-.app-subnav__section-item--current .app-subnav__link {
-  border-left-color: #005ea5;
-  background: #f8f8f8;
-  font-weight: bold;
-}
-
-.app-subnav__section--nested {
-  margin-bottom: 0;
-}
-
-.app-subnav__section--nested .app-subnav__link {
-  padding-left: 20px;
-  font-weight: 400;
-}
-
-.app-subnav__theme {
-  margin: 0;
-  padding: 10px 15px;
-  color: #6f777b;
-  font-family: "nta", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.25;
-}
-
-@media print {
-  .app-subnav__theme {
-    font-family: sans-serif;
-  }
-}
-
-@media (min-width: 40.0625em) {
-  .app-subnav__theme {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.31579;
-  }
-}
-
-@media print {
-  .app-subnav__theme {
-    font-size: 14pt;
-    line-height: 1.15;
-  }
 }
