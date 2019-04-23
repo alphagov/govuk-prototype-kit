@@ -9,13 +9,13 @@ const universalAnalytics = require('universal-analytics')
 const uuidv4 = require('uuid/v4')
 
 // Local dependencies
-const packageJson = require('../package.json')
+const packageJson = require('../../package.json')
 
 exports.getUsageDataConfig = function () {
   // Try to read config file to see if usage data is opted in
   let usageDataConfig = {}
   try {
-    usageDataConfig = require(path.join(__dirname, '../usage-data-config.json'))
+    usageDataConfig = require(path.join(__dirname, '../../usage-data-config.json'))
   } catch (e) {
     // do nothing - we will make a config
   }
@@ -25,7 +25,7 @@ exports.getUsageDataConfig = function () {
 exports.setUsageDataConfig = function (usageDataConfig) {
   const usageDataConfigJSON = JSON.stringify(usageDataConfig, null, '  ')
   try {
-    fs.writeFileSync(path.join(__dirname, '../usage-data-config.json'), usageDataConfigJSON)
+    fs.writeFileSync(path.join(__dirname, '../../usage-data-config.json'), usageDataConfigJSON)
     return true
   } catch (error) {
     console.error(error)

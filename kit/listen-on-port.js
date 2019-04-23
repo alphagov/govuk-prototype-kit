@@ -4,7 +4,7 @@ const browserSync = require('browser-sync')
 
 // Local dependencies
 const server = require('./server.js')
-const config = require('./app/config.js')
+const config = require('../app/config.js')
 const utils = require('./lib/utils.js')
 
 // Set up configuration variables

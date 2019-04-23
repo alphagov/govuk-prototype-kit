@@ -39,7 +39,7 @@ const fs = require('fs')
 const path = require('path')
 
 // Local dependencies
-const appConfig = require('../../app/config')
+const appConfig = require('../../../app/config')
 
 // Generic utilities
 const removeDuplicates = arr => [...new Set(arr)]
@@ -51,7 +51,7 @@ const objectMap = (object, mapFn) => Object.keys(object).reduce((result, key) =>
 
 // File utilities
 const getPathFromProjectRoot = (...all) => {
-  return path.join.apply(null, [__dirname, '..', '..'].concat(all))
+  return path.join.apply(null, [__dirname, '..', '..', '..'].concat(all))
 }
 const pathToPackageConfigFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'govuk-prototype-kit.config.json')
 

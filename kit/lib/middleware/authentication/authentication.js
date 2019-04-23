@@ -17,7 +17,7 @@ module.exports = function (req, res, next) {
   const basicAuth = require('basic-auth')
 
   // Local dependencies
-  const config = require('../../../app/config.js')
+  const config = require('../../../../app/config.js')
 
   // Local Variables
   const env = (process.env.NODE_ENV || 'development').toLowerCase()

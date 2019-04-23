@@ -18,10 +18,10 @@ const middleware = [
   require('./lib/middleware/authentication/authentication.js'),
   require('./lib/middleware/extensions/extensions.js')
 ]
-const config = require('./app/config.js')
-const documentationRoutes = require('./docs/documentation_routes.js')
-const packageJson = require('./package.json')
-const routes = require('./app/routes.js')
+const config = require('./../app/config.js')
+const documentationRoutes = require('../docs/documentation_routes.js')
+const packageJson = require('./../package.json')
+const routes = require('./../app/routes.js')
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 
@@ -32,7 +32,7 @@ var v6App
 var v6Routes
 
 try {
-  v6Routes = require('./app/v6/routes.js')
+  v6Routes = require('./../app/v6/routes.js')
   useV6 = true
 } catch (e) {
   // No routes.js in app/v6 so we can continue with useV6 false
@@ -84,7 +84,7 @@ middleware.forEach(func => app.use(func))
 
 // Set up App
 var appViews = extensions.getAppViews([
-  path.join(__dirname, '/app/views/'),
+  path.join(__dirname, '/../app/views/'),
   path.join(__dirname, '/lib/')
 ])
 
@@ -117,9 +117,9 @@ app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/no
 // Set up documentation app
 if (useDocumentation) {
   var documentationViews = [
-    path.join(__dirname, '/node_modules/govuk-frontend/'),
-    path.join(__dirname, '/node_modules/govuk-frontend/components'),
-    path.join(__dirname, '/docs/views/'),
+    path.join(__dirname, '/../node_modules/govuk-frontend/'),
+    path.join(__dirname, '/../node_modules/govuk-frontend/components'),
+    path.join(__dirname, '/../docs/views/'),
     path.join(__dirname, '/lib/')
   ]
 
@@ -334,7 +334,7 @@ app.use(function (req, res, next) {
 
 // Display error
 app.use(function (err, req, res, next) {
-  console.error(err.message)
+  console.error(err)
   res.status(err.status || 500)
   res.send(err.message)
 })

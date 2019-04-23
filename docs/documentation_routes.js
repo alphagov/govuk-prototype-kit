@@ -8,7 +8,7 @@ const marked = require('marked')
 const router = express.Router()
 
 // Local dependencies
-const utils = require('../lib/utils.js')
+const utils = require('../kit/lib/utils.js')
 
 // Page routes
 

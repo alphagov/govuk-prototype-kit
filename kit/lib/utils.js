@@ -10,7 +10,7 @@ const prompt = require('prompt')
 const request = require('sync-request')
 
 // Local dependencies
-const config = require('../app/config.js')
+const config = require('../../app/config.js')
 
 // Variables
 var releaseUrl = null
@@ -19,7 +19,7 @@ var releaseUrl = null
 // and then add the methods to Nunjucks environment
 exports.addNunjucksFilters = function (env) {
   var coreFilters = require('./core_filters.js')(env)
-  var customFilters = require('../app/filters.js')(env)
+  var customFilters = require('../../app/filters.js')(env)
   var filters = Object.assign(coreFilters, customFilters)
   Object.keys(filters).forEach(function (filterName) {
     env.addFilter(filterName, filters[filterName])
@@ -259,7 +259,7 @@ var storeData = function (input, data) {
 // Get session default data from file
 let sessionDataDefaults = {}
 
-const sessionDataDefaultsFile = path.join(__dirname, '/../app/data/session-data-defaults.js')
+const sessionDataDefaultsFile = path.join(__dirname, '/../../app/data/session-data-defaults.js')
 
 try {
   sessionDataDefaults = require(sessionDataDefaultsFile)
