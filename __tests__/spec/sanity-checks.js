@@ -32,18 +32,6 @@ describe('The Prototype Kit', () => {
     })
   })
 
-  describe('docs index page', () => {
-    it('should send a well formed response', async () => {
-      const response = await request(app).get('/docs')
-      expect(response.statusCode).toBe(200)
-    })
-
-    it('should return html file', async () => {
-      const response = await request(app).get('/docs')
-      expect(response.type).toBe('text/html')
-    })
-  })
-
   describe('extensions', () => {
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)

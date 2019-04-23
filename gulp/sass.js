@@ -29,14 +29,6 @@ gulp.task('sass', function () {
     .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
 })
 
-gulp.task('sass-documentation', function () {
-  return gulp.src(config.paths.docsAssets + '/sass/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
-})
-
 // Backward compatibility with Elements
 
 gulp.task('sass-v6', function () {
