@@ -1,3 +1,8 @@
+# 8.11.0
+
+Features:
+- [#741 Update to GOV.UK Frontend version 2.11.0](https://github.com/alphagov/govuk-prototype-kit/pull/741) (See GOV.UK Frontend 2.11.0 [release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v2.11.0))
+
 # 8.10.0
 
 Features:
