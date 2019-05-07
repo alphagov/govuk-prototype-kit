@@ -1,0 +1,299 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Step by step navigation
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/step-by-step-navigation.js"></script>
+  <script type="text/javascript">
+    var $element = $('#step-by-step-navigation')
+    var stepByStepNavigation = new GOVUK.Modules.StepByStepNavigation()
+    stepByStepNavigation.start($element)
+  </script>
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Learn to drive a car: step by step
+    </h1>
+
+    <p>
+      Check what you need to do to learn to drive.
+    </p>
+
+    <div id="step-by-step-navigation" class="app-step-nav app-step-nav--large app-step-nav--active" data-show-text="Show" data-hide-text="Hide" data-show-all-text="Show all" data-hide-all-text="Hide all">
+      <ol class="app-step-nav__steps">
+        <li class="app-step-nav__step js-step" id="check-youre-allowed-to-drive" >
+          <div class="app-step-nav__header js-toggle-panel" data-position="1">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden">Step</span> 1
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Check you're allowed to drive
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-check-youre-allowed-to-drive-1">
+            <p class="app-step-nav__paragraph">Most people can start learning to drive when they’re 17.</p>
+
+            <ol class="app-step-nav__list " data-length="3">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="1.1" class="app-step-nav__link js-link" href="#">Check what age you can drive </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="1.2" class="app-step-nav__link js-link" href="#">Requirements for driving legally </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="1.3" class="app-step-nav__link js-link" href="#">Driving eyesight rules </a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+
+        <li class="app-step-nav__step js-step" id="get-a-provisional-licence" >
+          <div class="app-step-nav__header js-toggle-panel" data-position="2">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden">Step</span> 2
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Get a provisional licence
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-get-a-provisional-licence-2">
+            <ol class="app-step-nav__list " data-length="1">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="2.1" class="app-step-nav__link js-link" href="#">Apply for your first provisional driving licence <span class="app-step-nav__context">£34 to £43</span></a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+
+        <li class="app-step-nav__step js-step" id="driving-lessons-and-practice" >
+          <div class="app-step-nav__header js-toggle-panel" data-position="3">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden">Step</span> 3
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Driving lessons and practice
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-driving-lessons-and-practice-3">
+            <p class="app-step-nav__paragraph">You need a provisional driving licence to take lessons or practice.</p>
+
+            <ol class="app-step-nav__list " data-length="4">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="3.1" class="app-step-nav__link js-link" href="#">The Highway Code </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="3.2" class="app-step-nav__link js-link" href="#">Taking driving lessons </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="3.3" class="app-step-nav__link js-link" href="#">Find driving schools, lessons and instructors </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="3.4" class="app-step-nav__link js-link" href="#">Practise vehicle safety questions </a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+
+        <li class="app-step-nav__step js-step" id="prepare-for-your-theory-test" >
+          <div class="app-step-nav__header js-toggle-panel" data-position="4">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--logic">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    and
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Prepare for your theory test
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-prepare-for-your-theory-test-4">
+            <ol class="app-step-nav__list " data-length="3">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="4.1" class="app-step-nav__link js-link" href="#">Theory test revision and practice </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="4.2" class="app-step-nav__link js-link" href="#">Take a practice theory test </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a rel="external" data-position="4.3" class="app-step-nav__link js-link" href="#">Theory and hazard perception test app </a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+
+        <li class="app-step-nav__step js-step" id="book-and-manage-your-theory-test" >
+          <div class="app-step-nav__header js-toggle-panel" data-position="5">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden">Step</span> 4
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Book and manage your theory test
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-book-and-manage-your-theory-test-5">
+            <p class="app-step-nav__paragraph">You need a provisional driving licence to book your theory test.</p>
+
+            <ol class="app-step-nav__list " data-length="5">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.1" class="app-step-nav__link js-link" href="#">Book your theory test <span class="app-step-nav__context">£23</span></a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.2" class="app-step-nav__link js-link" href="#">What to take to your test </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.3" class="app-step-nav__link js-link" href="#">Change your theory test appointment </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.4" class="app-step-nav__link js-link" href="#">Check your theory test appointment details </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.5" class="app-step-nav__link js-link" href="#">Cancel your theory test </a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+
+        <li class="app-step-nav__step js-step" id="book-and-manage-your-driving-test" >
+          <div class="app-step-nav__header js-toggle-panel" data-position="6">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden">Step</span> 5
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Book and manage your driving test
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-book-and-manage-your-driving-test-6">
+            <p class="app-step-nav__paragraph">You must pass your theory test before you can book your driving test.</p>
+
+            <ol class="app-step-nav__list " data-length="5">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="6.1" class="app-step-nav__link js-link" href="#">Book your driving test <span class="app-step-nav__context">£62 to £75</span></a>
+                </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="6.2" class="app-step-nav__link js-link" href="#">What to take to your test </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="6.3" class="app-step-nav__link js-link" href="#">Change your driving test appointment </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="6.4" class="app-step-nav__link js-link" href="#">Check your driving test appointment details </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="6.5" class="app-step-nav__link js-link" href="#">Cancel your driving test </a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+
+        <li class="app-step-nav__step js-step" id="when-you-pass" >
+          <div class="app-step-nav__header js-toggle-panel" data-position="7">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden">Step</span> 6
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                When you pass
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel js-hidden" id="step-panel-when-you-pass-7">
+            <p class="app-step-nav__paragraph">You can start driving as soon as you pass your driving test.</p>
+
+            <p class="app-step-nav__paragraph">You must have an insurance policy that allows you to drive without supervision.</p>
+
+            <ol class="app-step-nav__list " data-length="1">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="7.1" class="app-step-nav__link js-link" href="#">Find out about Pass Plus training courses </a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
