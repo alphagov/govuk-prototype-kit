@@ -172,22 +172,17 @@ if (useAutoStoreData === 'true') {
   }
 }
 
-// Clear all data in session if you open /prototype-admin/clear-data
-app.post('/prototype-admin/clear-data', function (req, res) {
-  req.session.data = {}
-  res.render('prototype-admin/clear-data-success')
-})
-
-// Prevent search indexing
+// Prevent search indexing (set headers before app routes so they can be overridden)
 app.use(function (req, res, next) {
   // Setting headers stops pages being indexed even if indexed pages link to them.
   res.setHeader('X-Robots-Tag', 'noindex')
   next()
 })
 
-app.get('/robots.txt', function (req, res) {
-  res.type('text/plain')
-  res.send('User-agent: *\nDisallow: /')
+// Clear all data in session if you open /prototype-admin/clear-data
+app.post('/prototype-admin/clear-data', function (req, res) {
+  req.session.data = {}
+  res.render('prototype-admin/clear-data-success')
 })
 
 // Load routes (found in app/routes.js)
@@ -233,6 +228,13 @@ if (useV6) {
     utils.matchRoutes(req, res, next)
   })
 }
+
+// Prevent search indexing (set robots after app routes so it can be overridden)
+
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain')
+  res.send('User-agent: *\nDisallow: /')
+})
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, function (req, res) {
