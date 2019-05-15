@@ -1,4 +1,4 @@
-# Adding CSS, JavaScript and Images
+# Adding CSS, JavaScript, Images and downloadable files
 
 The Prototype Kit comes with standard GOV.UK Frontend styles and components for you to use in your prototypes. However if you need to add your own CSS (Cascading Style Sheets), JavaScript or images, use the `/app/assets` folder.
 
@@ -66,7 +66,7 @@ Use ‘alt’ text to describe the image for screen readers.
 
 Do not put files directly in `/public` because it’s deleted and rebuilt every time you make a change to your prototype.
 
-## Other files
+## Downloadable files
 
 If you need to use other files in your prototype, you can add them to `/app/assets` and the Prototype Kit will copy them to `/public`. You can use sub-folders in the assets folder.
 
