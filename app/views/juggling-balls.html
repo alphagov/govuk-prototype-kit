@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/start">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+          <form class="form" action="/juggling-balls-answer" method="post">
+      <h1 class="govuk-heading-xl">How many balls can you juggle?</h1>
+      <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+        <h1 class="govuk-fieldset__heading">
+        </h1>
+      </legend>
+      <div class="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="juggling-balls-1" name="juggling-balls" type="radio" value="3 or more" {{ checked("juggling-balls","3 or more")}}>
+          <label class="govuk-label govuk-radios__label" for="juggling-balls-1">
+            3 or more
+          </label> </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="juggling-balls-2" name="juggling-balls" type="radio" value="1 or 2" {{ checked("juggling-balls","1 or 2")}}>
+          <label class="govuk-label govuk-radios__label" for="juggling-balls-2">
+            1 or 2
+          </label> </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="juggling-balls-3" name="juggling-balls" type="radio" value="none - I cannot juggle" {{ checked("juggling-balls","none - I cannot juggle")}}>
+          <label class="govuk-label govuk-radios__label" for="juggling-balls-3">
+            none - I cannot juggle
+          </label> </div>
+
+      </div>
+    </fieldset>
+  </div>
+
+
+
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
