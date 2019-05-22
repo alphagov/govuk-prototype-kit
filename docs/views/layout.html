@@ -38,36 +38,43 @@
 {% endblock %}
 
 {% block header %}
+
   {% include "includes/cookie-banner.html" %}
-  {# Set serviceName in config.js. #}
+
+  {% from "header/macro.njk" import govukHeader %}
+
   {{ govukHeader({
-    serviceName: serviceName,
-    serviceUrl: "/",
-    navigation: [
-      {
-        href: "/docs/install",
-        text: "Install",
-        attributes: {
-          "data-install": "Install"
-        }
-      },
-      {
-        href: "/docs/tutorials-and-examples",
-        text: "Tutorials and examples",
-        attributes: {
-          "data-tutorials": "Tutorials and examples"
-        }
-      },
-      {
-        href: "/docs/about",
-        text: "About",
-        attributes: {
-          "data-about": "About"
-        }
-      }
-    ]
+    homepageUrl: "#",
+    serviceName: "Prototype Kit",
+    serviceUrl: "#"
   }) }}
+
+  <div class="app-pane__nav">
+    <nav class="app-navigation govuk-clearfix">
+      <ul class="app-navigation__list govuk-width-container">
+
+        <li>
+          <a class="govuk-link" href="/get-started" data-topnav="Get started">Get started</a>
+        </li>
+
+        <li>
+          <a class="govuk-link" href="/guides" data-topnav="Guides">Guides</a>
+        </li>
+
+        <li>
+          <a class="govuk-link" href="/tutorial" data-topnav="Tutorial">Tutorial</a>
+        </li>
+
+        <li>
+          <a class="govuk-link" href="/about" data-topnav="About">About</a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+
 {% endblock %}
+
 
 {% block footer %}
   {{ govukFooter({

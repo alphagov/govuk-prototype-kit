@@ -1,5 +1,8 @@
 @import "node_modules/govuk-frontend/all";
 
+// Components from the Design System
+@import "components/navigation";
+
 img{
   max-width: 100%;
 }
