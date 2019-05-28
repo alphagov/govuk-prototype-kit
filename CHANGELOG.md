@@ -1,3 +1,9 @@
+# Unreleased
+
+Fixes:
+
+- [#751 Remove unnecessary settings import from the 'unbranded' stylesheet](https://github.com/alphagov/govuk-prototype-kit/pull/752)
+
 # 8.11.0
 
 Features:
