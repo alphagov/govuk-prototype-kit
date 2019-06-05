@@ -38,30 +38,29 @@
           </a>
         </li>
       </ul>
+      {% from "hmcts/components/progress-bar/macro.njk" import hmctsProgressBar %}
 
-      {% from "hmcts-progress-bar/macro.njk" import hmctsProgressBar %}
-
-{{ hmctsProgressBar({
-items: [{
-label: {
-  text: 'You apply'
-},
-complete: true
-}, {
-label: {
-  text: 'Your husband/wife responds'
-},
-active: true
-}, {
-label: {
-  text: 'The court decides'
-}
-}, {
-label: {
-  text: 'Divorce finalised'
-}
-}]
-}) }}
+      {{ hmctsProgressBar({
+      items: [{
+      label: {
+        text: 'You apply'
+      },
+      complete: true
+      }, {
+      label: {
+        text: 'Your husband/wife responds'
+      },
+      active: true
+      }, {
+      label: {
+        text: 'The court decides'
+      }
+      }, {
+      label: {
+        text: 'Divorce finalised'
+      }
+      }]
+      }) }}
     </div>
 </div>
 
