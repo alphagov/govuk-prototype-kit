@@ -1,69 +1,102 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-GOV.UK Prototype Kit
+  GOV.UK Prototype Kit
 {% endblock %}
 
-{% block content %}
+{% block main %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="app-pane__content">
 
-      <h1 class="govuk-heading-xl">GOV.UK Prototype Kit</h1>
-
-      <p class="govuk-body-l">
-        Rapidly create HTML prototypes of GOV.UK services.
-      </p>
-{{releaseVersion | log }}
-    </div>
-
-
-  </div>
-
-  <hr class="govuk-section-break govuk-section-break--visible">
-
-  <div class="govuk-grid-row govuk-!-margin-top-6 govuk-!-margin-bottom-4">
-    <div class="govuk-grid-column-two-thirds">
-
-      <h2 class="govuk-heading-m">What’s new</h2>
-      <p>
-        From version 7 the GOV.UK Prototype Kit uses the new GOV.UK Design System which replaces GOV.UK Elements.
-      </p>
-
-      <p>
-        Visit the <a href="https://design-system.service.gov.uk">GOV.UK Design System</a> for guidance and examples.
-      </p>
-
+  <div class="app-masthead">
+    <div class="govuk-width-container app-site-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl app-masthead__title">
+            Make realistic prototypes of GOV.UK services
+          </h1>
+          <p class="app-masthead__description">
+            Use the GOV.UK Prototype Kit to make interactive prototypes that look
+            and feel like GOV.UK. Make prototypes using code to create realistic
+            journeys for research.
+          </p>
+          <a href="/docs/get-started" role="button" draggable="false" class="govuk-button govuk-button--start app-button--inverted govuk-!-margin-top-6 govuk-!-margin-bottom-0">
+            Get started
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <hr class="govuk-section-break govuk-section-break--visible">
+  <div class="govuk-width-container app-site-width-container">
+    <div class="govuk-main-wrapper govuk-main-wrapper--l">
+      <div class="govuk-grid-row">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third govuk-!-margin-top-6">
+        <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+          <h2 class="govuk-heading-l govuk-!-font-weight-bold">
+            Guides
+          </h2>
+          <p class="govuk-body">
+            How to guides for common prototyping tasks like making pages, adding images, and publishing prototypes.
+          </p>
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            <a href="/docs/guides" class="govuk-link govuk-!-font-weight-bold">
+              See all how to guides
+            </a>
+          </p>
+        </div>
 
-      <h2 class="govuk-heading-m"><a href="/docs/install" data-hinstall="Install">Install</a></h2>
-      <p>
-        Download and installation instructions.
-      </p>
+        <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+          <h2 id="about" class="govuk-heading-l">
+            Examples
+          </h2>
+          <p class="govuk-body">
+            Get guidance and examples that you can paste straight into your
+            prototypes in the GOV.UK Design System.
+          </p>
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            <a href="https://kit_docs_prototype--govuk-design-system-preview.netlify.com/" class="govuk-link govuk-!-font-weight-bold">
+              Visit the GOV.UK Design System
+            </a>
+          </p>
+        </div>
 
+        <div class="govuk-grid-column-one-third govuk-!-margin-bottom-8">
+          <h2 class="govuk-heading-l">Tutorial</h2>
+          <p class="govuk-body"> If you’re new to the Prototype Kit or need a
+            reminder of how it works, take the step-by-step tutorial on how to
+            make a prototype.
+          </p>
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            <a href="#" class="govuk-link govuk-!-font-weight-bold">
+              Take the tutorial
+            </a>
+          </p>
+        </div>
+
+        <div class="govuk-grid-column-full">
+          <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl govuk-!-margin-top-0">
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+          <h2 id="about" class="govuk-heading-l">Support</h2>
+          <p class="govuk-body">
+            The Prototype Kit is maintained and supported by the GOV.UK Design
+            System team at the Government Digtial Service (GDS).
+          </p>
+          <p class="govuk-body">If you need help using the, you can ask on the
+            <a href="https://ukgovernmentdigital.slack.com/messages/prototype-kit">
+              #prototype-kit</a> channel on cross-government Slack or email the
+              team directly at <br>
+            <a href="mailto:govuk-design-system-support@digital.cabinet-office.gov.uk">
+              govuk-design-system-support@digital.cabinet-office.gov.uk
+            </a>.
+          </p>
+        </div>
+
+      </div>
     </div>
-    <div class="govuk-grid-column-one-third govuk-!-margin-top-6">
-
-      <h2 class="govuk-heading-m"><a href="/docs/tutorials-and-examples" data-htutorials="Tutorials and examples">Tutorials and examples</a></h2>
-      <p>
-        Tutorials, examples and templates.
-      </p>
-
-    </div>
-    <div class="govuk-grid-column-one-third govuk-!-margin-top-6">
-
-      <h2 class="govuk-heading-m"><a href="/docs/about" data-habout="About">About</a></h2>
-      <p>
-        Get support, Prototype Kit principles, privacy.
-      </p>
-
-    </div>
-
   </div>
+</div>
+
 {% endblock %}
