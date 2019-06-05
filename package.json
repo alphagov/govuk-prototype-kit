@@ -12,6 +12,7 @@
     "test": "npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
+    "@hmcts/frontend": "0.0.34-alpha",
     "acorn": "^6.0.5",
     "ansi-colors": "^3.2.3",
     "basic-auth": "^2.0.0",
