@@ -1,5 +1,9 @@
 # Unreleased
 
+Fixes:
+
+- [#763 Fix a Sass compilation error in the unbranded stylesheet](https://github.com/alphagov/govuk-prototype-kit/pull/763), which was introduced in 8.12.0.
+
 # 8.12.0
 
 Features:
