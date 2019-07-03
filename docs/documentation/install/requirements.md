@@ -16,7 +16,6 @@ You'll need:
 
 * Node.js 10.x.x
 * Atom (text editor)
-* Command line tools (Mac)
 * Git bash (Windows)
 
 ## Terminal
@@ -91,19 +90,5 @@ If it’s installed correctly it should show a number starting with 10.
 ## Atom (text editor)
 
 You’ll need a text editor to edit and make changes to your prototype. We recommend [Atom](https://atom.io/) - which is free and has lots of useful features.
-
-## Command line tools (mac)
-
-Mac users will need the OSx Command line tools.
-
-In terminal:
-```
-xcode-select --install
-```
-If you already have command line tools, this will display `xcode-select: error: command line tools are already installed, use "Software Update" to install updates`.
-
-![Screenshot of Command line tools popup message](/public/images/docs/installing-mavericks-popup.png)
-
-If you don’t have command line tools, it will open an installer. Follow the instructions to install the command line tools.
 
 <a href="install-the-kit.md" class="button">Next (install the kit)</a>
