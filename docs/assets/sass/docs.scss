@@ -1,4 +1,4 @@
-@import "node_modules/govuk-frontend/all";
+@import "node_modules/govuk-frontend/govuk/all";
 
 img{
   max-width: 100%;
@@ -33,7 +33,7 @@ img{
   padding: govuk-spacing(3);
   overflow: auto;
   border: 1px solid $govuk-border-colour;
-  background-color: govuk-colour("grey-4");
+  background-color: govuk-colour("light-grey");
   max-width: 38em;
   @include govuk-responsive-margin(5, "bottom");
 }
@@ -94,7 +94,7 @@ img{
 
   p code {
     border: 1px solid $govuk-border-colour;
-    background-color: govuk-colour("grey-4");
+    background-color: govuk-colour("light-grey");
     padding: 0 govuk-spacing(2);
   }
 
