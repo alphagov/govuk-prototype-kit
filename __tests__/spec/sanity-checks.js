@@ -85,7 +85,7 @@ describe('The Prototype Kit', () => {
 
     it('should not expose everything', function (done) {
       request(app)
-        .get('/common.js')
+        .get('/govuk/assets/common.js')
         .expect(404)
         .end(function (err, res) {
           if (err) {
