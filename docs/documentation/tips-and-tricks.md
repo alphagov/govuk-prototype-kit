@@ -17,7 +17,7 @@ You can change the service name by editing the file '/app/config.js'.
 
 Import the header component macro place it in the `{% block header %}`and provide `navigation` items as shown below.
 
-    {% from 'header/macro.njk' import govukHeader %}
+    {% from 'govuk/components/header/macro.njk' import govukHeader %}
 
     {% block header %}
       {{ govukHeader({
@@ -47,7 +47,7 @@ Import the phase-banner component and supply tag and feedback text. The phase ba
 
 ### How to include an Alpha banner
 
-    {% from 'phase-banner/macro.njk' import govukPhaseBanner %}
+    {% from 'govuk/components/phase-banner/macro.njk' import govukPhaseBanner %}
 
     {{ govukPhaseBanner({
       tag: {
@@ -58,7 +58,7 @@ Import the phase-banner component and supply tag and feedback text. The phase ba
 
 ### How to include a Beta banner
 
-    {% from 'phase-banner/macro.njk' import govukPhaseBanner %}
+    {% from 'govuk/components/phase-banner/macro.njk' import govukPhaseBanner %}
 
     {{ govukPhaseBanner({
       tag: {
