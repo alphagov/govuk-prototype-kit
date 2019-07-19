@@ -5,7 +5,7 @@
 .app-step-nav-header {
   position: relative;
   padding: 10px;
-  background: govuk-colour("grey-4");
+  background: govuk-colour("light-grey", $legacy: "grey-4");
   border-top: solid 1px $govuk-border-colour;
   border-bottom: solid 1px $govuk-border-colour;
   @include govuk-media-query($from: tablet) {
@@ -297,7 +297,7 @@
 
 .app-step-nav__header {
   padding: 15px 0;
-  border-top: solid 2px govuk-colour("grey-3");
+  border-top: solid 2px govuk-colour("light-grey", $legacy: "grey-3");
 }
 
 .app-step-nav--active .app-step-nav__header {
@@ -491,7 +491,7 @@
 .app-step-nav__help {
   position: relative;
   padding: 15px 0;
-  border-top: solid 2px govuk-colour("grey-3");
+  border-top: solid 2px govuk-colour("light-grey", $legacy: "grey-3");
 }
 
 .app-step-nav__help:after {
@@ -532,7 +532,7 @@
 .app-step-nav__substep {
   position: relative;
   padding-top: 15px;
-  border-top: solid 2px govuk-colour("grey-3");
+  border-top: solid 2px govuk-colour("light-grey", $legacy: "grey-3");
 }
 
 .app-step-nav__substep:after {
