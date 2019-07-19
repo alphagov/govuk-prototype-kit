@@ -70,14 +70,14 @@ describe('The Prototype Kit', () => {
 
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
-        .get('/assets/images/favicon.ico')
+        .get('/govuk/assets/images/favicon.ico')
         .expect('Content-Type', /image\/x-icon/)
         .expect(200)
         .end(function (err, res) {
           if (err) {
             done(err)
           } else {
-            assert.strictEqual('' + res.body, readFile('node_modules/govuk-frontend/assets/images/favicon.ico'))
+            assert.strictEqual('' + res.body, readFile('node_modules/govuk-frontend/govuk/assets/images/favicon.ico'))
             done()
           }
         })
@@ -85,7 +85,7 @@ describe('The Prototype Kit', () => {
 
     it('should not expose everything', function (done) {
       request(app)
-        .get('/assets/common.js')
+        .get('/common.js')
         .expect(404)
         .end(function (err, res) {
           if (err) {
