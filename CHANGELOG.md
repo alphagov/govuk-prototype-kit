@@ -1,5 +1,27 @@
 # Unreleased
 
+## Breaking changes
+
+You must make the following changes when you migrate to this release, or your prototype may break.
+
+### Update the markup for task list
+
+Update every item in your task list, removing the `app-task-list__task-name` class from the link and wrapping the link in a new `<span class="app-task-list__task-name">`.
+
+```html
+[...]
+<li class="app-task-list__item">
+  <span class="app-task-list__task-name">
+    <a href="#" aria-describedby="eligibility-completed">
+      Check eligibility
+    </a>
+  </span>
+</li>
+[...]
+```
+
+[Pull request #770: Update the task list focus state](https://github.com/alphagov/govuk-prototype-kit/pull/770)
+
 # 8.12.1
 
 Fixes:
