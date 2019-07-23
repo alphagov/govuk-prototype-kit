@@ -17,6 +17,6 @@
         "url": "heroku/nodejs"
       }
     ],
-    "stack": "heroku-18"
+    "stack": "cellar-14"
   }
   
