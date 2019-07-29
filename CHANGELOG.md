@@ -52,7 +52,7 @@ In the `app/assets/sass/patterns/_step-by-step-navigation.scss` file, replace:
 
 You must make this change even if you are not using the step by step navigation pattern in your prototype.
 
-Read our [blog post about why we changed the colour palette](https://designnotes.blog.gov.uk/2019/07/29/were-updating-the-gov-uk-colours-and-font).
+Read our [blog post about why we changed the colour palette](https://designnotes.blog.gov.uk/2019/07/29/weve-updated-the-gov-uk-colours-and-font/).
 
 #### Update asset paths
 
