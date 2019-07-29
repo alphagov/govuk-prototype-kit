@@ -1,4 +1,203 @@
-# Unreleased
+# Unreleased 9.0.0 (Breaking release)
+
+This release updates GOV.UK Prototype Kit to v3.0.0 of GOV.UK Frontend.
+
+In v3.0.0 of GOV.UK Frontend, we’ve made some important changes to [improve the accessibility of pages](https://designnotes.blog.gov.uk/2019/07/29/weve-made-the-gov-uk-design-system-more-accessible). This includes making sure that the styles, components and patterns in GOV.UK Frontend meet [WCAG 2.1 level AA](https://www.w3.org/TR/WCAG21/).
+
+You must follow our [guidance on updating your version of the Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit).
+
+If you need help updating or installing the Prototype Kit, you can:
+
+- [contact the GOV.UK Design System team](https://design-system.service.gov.uk/get-in-touch/)
+- talk to a developer on your team
+
+## Breaking changes
+
+You must make the following changes when you migrate to this release, or your prototype may break.
+
+1. Update files in the `/app` folder - unless you [updated via the command line](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit#updating-via-the-command-line-advanced-).
+2. Update HTML in GOV.UK Frontend components.
+
+If you’ve created custom code or components, read the [release notes for GOV.UK Frontend v3.0.0](https://github.com/alphagov/govuk-frontend/releases/tag/v3.0.0) for more changes you may need to make.
+
+### Update files in the app folder
+
+To make sure GOV.UK Frontend's files do not conflict with your code, we've moved our package files into a directory called `govuk`.
+
+If you [downloaded this version of the Prototype Kit as a zip file](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit#steps), you must:
+
+- add an assets path in the Sass file
+- replace old colours
+- update asset paths
+- update the layout file
+- update the layout_unbranded file
+
+Pull requests:
+
+- [#1458: Namespace nunjucks and components](https://github.com/alphagov/govuk-frontend/pull/1458)
+- [#1467: Update the main entry point in package.json](https://github.com/alphagov/govuk-frontend/pull/1467)
+
+#### Add an assets path in the Sass file
+
+In the `app/assets/sass/application.scss` file, add `$govuk-assets-path: '/govuk/assets/';` at the top.
+
+#### Replace old colours
+
+In the `app/assets/sass/patterns/_step-by-step-navigation.scss` file, replace:
+
+- `“grey-4”` with `"light-grey", $legacy: "grey-4"`
+- `“grey-3”` with `"light-grey", $legacy: "grey-3"`
+
+You must make this change even if you are not using the step by step navigation pattern in your prototype.
+
+Read our [blog post about why we changed the colour palette](https://designnotes.blog.gov.uk/2019/07/29/were-updating-the-gov-uk-colours-and-font).
+
+#### Update asset paths
+
+In the `app/assets/sass/unbranded.scss` file, add `govuk/` after `govuk-frontend/` in the 3 `@import` paths. For example:
+
+```scss
+@import "node_modules/govuk-frontend/govuk/settings/colours-palette";
+```
+
+#### Update the layout file
+
+1. Go to the `app/views/layout.html` file.
+2. Add `{%- set assetPath = '/govuk/assets' -%}` at the top.
+3. Replace `{% extends "template.njk" %}` with `{% extends "govuk/template.njk" %}`.
+4. In each import line that starts `{% from`, add `govuk/components/` to the start of the file path. For example:
+
+```javascript
+{% from "govuk/components/accordion/macro.njk"        import govukAccordion %}
+```
+
+5. Add `{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}` before `{% if useAutoStoreData %}`
+
+#### Update the layout_unbranded file
+
+In the `app/views/layout_unbranded.html` file:
+
+1. Add `{%- set assetPath = '/govuk/assets' -%}` at the top.
+2. Replace `{% extends "template.njk" %}` with `{% extends "govuk/template.njk" %}`.
+
+[Pull request #769: Update to GOV.UK Frontend 3.0.0.](https://github.com/alphagov/govuk-prototype-kit/pull/769/files)
+
+### Update HTML in GOV.UK Frontend components
+
+#### Update and add data-module attributes
+
+If you’re using HTML versions of GOV.UK Frontend components, add a `govuk-` prefix to `data-module` attribute values. For example:
+
+```html
+<div class="govuk-accordion" data-module="govuk-accordion">
+...
+</div>
+```
+
+If you’re using HTML versions of the button or details component, add:
+
+- `data-module="govuk-button"` to each `<button>` HTML tag
+- `data-module="govuk-details"` to each `<details>` HTML tag
+
+[Pull request #1443: Ensure GOV.UK Frontend component selectors cannot conflict when initialised.](https://github.com/alphagov/govuk-frontend/pull/1443)
+
+#### Update the character count CSS class name
+
+If you're using the HTML version of the character count component, change `js-character-count` to `govuk-js-character-count`.
+
+[Pull request #1444: Renames `js-` css prefix to `govuk-js-`.](https://github.com/alphagov/govuk-frontend/pull/1444)
+
+#### Update links from error summary components to radios and checkboxes
+
+If you've linked from an error summary component to the first input in a [radios](https://design-system.service.gov.uk/components/radios/) or [checkboxes](https://design-system.service.gov.uk/components/checkboxes/) component, the link will no longer work.
+
+This is because the `id` of the first input no longer has the suffix `-1`.
+
+If there are links back to radios or checkboxes components in your error summary component, remove `-1` from the end of the `href` attribute.
+
+[Pull request #1426: Make radios and checkboxes components easier to link to from error summary.](https://github.com/alphagov/govuk-frontend/pull/1426)
+
+#### Update markup if you’re using the tab component
+
+If you’re using the HTML version of the tabs component, remove the `govuk-tabs__tab--selected` class from the first tab's link, then add the `govuk-tabs__list-item--selected` class to the link's parent list item.
+
+For example:
+
+```html
+<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+  <a class="govuk-tabs__tab" href="#tab1">
+    Tab 1
+  </a>
+</li>
+```
+
+[Pull request #1496: Update the focus state for tabs.](https://github.com/alphagov/govuk-frontend/pull/1443)
+
+#### Update markup if you’re using the task list component
+
+Update every item in your task list, removing the `app-task-list__task-name` class from the link and wrapping the link in a new `<span class="app-task-list__task-name">`.
+
+
+For example:
+
+ ```html
+<li class="app-task-list__item">
+  <span class="app-task-list__task-name">
+    <a href="#" aria-describedby="eligibility-completed">
+      Check eligibility
+    </a>
+  </span>
+</li>
+```
+
+[Pull request #770: Update the task list focus state.](https://github.com/alphagov/govuk-prototype-kit/pull/770)
+
+#### Update start button icon
+
+[Start buttons](https://design-system.service.gov.uk/components/button/#start-buttons) have a new icon. Your start buttons will lose their current icons unless you replace the old icon with the new one.
+
+If you're using Nunjucks:
+
+- set the `isStartButton` option to `true`
+- remove the `.govuk-button--start` class
+
+For example:
+
+```javascript
+govukButton({
+  text: "Start now",
+  href: "#",
+  isStartButton: true
+})
+```
+
+If you're using HTML, add the SVG code from the [start button example in the Design System](https://design-system.service.gov.uk/components/button/#start-buttons).
+
+[Pull request #1341: Add new start button icon.](https://github.com/alphagov/govuk-frontend/pull/1341)
+
+## New features
+
+### Page wrappers now use auto spacing
+
+The `<main>` element in layouts now has a `.govuk-main-wrapper--auto-spacing` class by default.
+
+This will add the correct amount of padding above the content, depending on whether there are elements above the `<main>` element inside the `govuk-width-container` wrapper. Elements above the `<main>` element could include a back link or breadcrumb component.
+
+If `govuk-main-wrapper--auto-spacing` does not work for your service, you can set the correct amount of padding by adding the `.govuk-main-wrapper--l` class to your page or layout by using:
+
+ ```js
+{% set mainClasses = "govuk-main-wrapper--l" %}
+```
+
+You can also turn off the `.govuk-main-wrapper--auto-spacing` class by using:
+
+ ```js
+{% set mainClasses = "" %}
+```
+
+### Continue to use the old colours
+
+If you want to continue using old colours in your prototype, you can [turn on compatibility mode](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/compatibility.md).
 
 # 8.12.1
 

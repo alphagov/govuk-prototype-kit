@@ -90,7 +90,7 @@ example:
           <input class="govuk-input" id="email-address" name="emailAddress" type="text">
         </div>
 
-        <button class="govuk-button">Continue</button>
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
     </div>

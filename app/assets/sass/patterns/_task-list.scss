@@ -50,7 +50,6 @@
   display: block;
   @include govuk-media-query($from: 450px) {
     float: left;
-    width: 75%;
   }
 }
 
