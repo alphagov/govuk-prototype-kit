@@ -22,6 +22,27 @@ Update every item in your task list, removing the `app-task-list__task-name` cla
 
 [Pull request #770: Update the task list focus state](https://github.com/alphagov/govuk-prototype-kit/pull/770)
 
+
+## New features
+
+### Layouts now have automatic vertical spacing on the main wrapper of the page by default
+
+The `<main>` element in layouts now has a `.govuk-main-wrapper--auto-spacing` class by default.
+
+This will add the correct amount of padding above the content, depending on whether there are elements above the `<main>` element inside the `govuk-width-container` wrapper. Elements above the `<main>` element could include a back link or breadcrumb component.
+
+If `govuk-main-wrapper--auto-spacing` does not work for your service, you can set the correct amount of padding by adding the `.govuk-main-wrapper--l` class to your page or layout by using:
+
+ ```js
+{% set mainClasses = "govuk-main-wrapper--l" %}
+```
+
+You can also turn off the `.govuk-main-wrapper--auto-spacing` class by using:
+
+ ```js
+{% set mainClasses = "" %}
+```
+
 # 8.12.1
 
 Fixes:
