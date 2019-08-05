@@ -1,6 +1,6 @@
 {
-  "name": "express-prototype",
-  "description": "GOVUK prototyping app in Express",
+  "name": "govuk-prototype-kit",
+  "description": "Rapidly create HTML prototypes of GOV.UK services",
   "version": "9.0.0",
   "private": true,
   "engines": {
