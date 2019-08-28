@@ -128,7 +128,7 @@
   padding: 0.5em 0;
   text-decoration: underline;
 
-  &:hover {
+  &:hover:not(:focus) {
     color: $govuk-link-hover-colour;
   }
 
