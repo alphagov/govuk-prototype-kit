@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #796: Update focus states on step-by-step navigation](https://github.com/alphagov/govuk-prototype-kit/pull/796).
+
 # 9.0.0 (Breaking release)
 
 This release updates GOV.UK Prototype Kit to v3.0.0 of GOV.UK Frontend.
