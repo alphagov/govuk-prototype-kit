@@ -93,6 +93,14 @@
   background: none;
   border: 0;
   margin: 0;
+
+  &:focus {
+    @include govuk-focused-text;
+  }
+}
+
+.app-step-nav__header:hover .app-step-nav__button:not(:focus) {
+  color: $govuk-link-colour;
 }
 
 // removes extra dotted outline from buttons in Firefox
@@ -111,7 +119,6 @@
   .app-step-nav--large & {
     @include govuk-font(24, $weight: bold)
   }
-
 }
 
 .app-step-nav__button--controls {
@@ -121,7 +128,7 @@
   padding: 0.5em 0;
   text-decoration: underline;
 
-  &:hover {
+  &:hover:not(:focus) {
     color: $govuk-link-hover-colour;
   }
 
@@ -232,6 +239,10 @@
   }
 }
 
+.app-step-nav__header:hover .app-step-nav__circle {
+  color: $govuk-link-colour;
+}
+
 .app-step-nav__circle--number {
   @include govuk-font(16, $weight: bold)
   line-height: 23px;
@@ -304,15 +315,6 @@
   cursor: pointer;
 }
 
-.app-step-nav__header:hover .app-step-nav__button,
-.app-step-nav__header:hover .app-step-nav__circle {
-  color: $govuk-link-colour;
-}
-
-.app-step-nav__header:hover .app-step-nav__toggle-link {
-  text-decoration: underline;
-}
-
 @include govuk-media-query($from: tablet) {
   .app-step-nav--large .app-step-nav__header {
     padding: 30px 0;
@@ -351,6 +353,10 @@
   color: $govuk-link-colour;
 }
 
+.app-step-nav__header:hover .app-step-nav__button:not(:focus) .app-step-nav__toggle-link {
+  text-decoration: underline;
+}
+
 .app-step-nav--large .app-step-nav__toggle-link {
   @include govuk-font(16)
   line-height: 1.2;
@@ -361,6 +367,10 @@
     font-size: 16px;
     line-height: 1.2;
   }
+}
+
+.app-step-nav__button:focus .app-step-nav__toggle-link {
+  color: inherit;
 }
 
 .app-step-nav__panel {
