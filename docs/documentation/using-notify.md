@@ -33,6 +33,7 @@ computer.
 To save the key on your computer, add this line to the end of the `.env`
 file in your prototype (where `xxxxxxx` is the key you’ve copied from
 Notify):
+
 ```shell
 NOTIFYAPIKEY=xxxxxxx
 ```   
@@ -48,10 +49,21 @@ Heroku.
 To save the key on Heroku, go to the settings page of your app, click
 ‘Reveal config vars’ and fill in the two textboxes like this (where
 xxxxxxx is the key you’ve copied from Notify):
+
 ```
 KEY          | VALUE
 -------------|----------
 NOTIFYAPIKEY | xxxxxxx
+```
+
+### Saving the key on GOV.UK PaaS
+
+This will let your prototype talk to Notify while it’s running on GOV.UK PaaS.
+
+After you've pushed your application run:
+
+```shell
+cf set-env your-app-name NOTIFYAPIKEY 'xxxxxxx'
 ```
 
 ### Keeping your key safe

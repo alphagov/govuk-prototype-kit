@@ -33,13 +33,3 @@ If you’ve got an idea or suggestion you can:
 
 * [get in touch on the developer Slack channel](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev)([open in app](slack://channel?team=T04V6EBTR&amp;id=C0E1063DW))
 * [create a GitHub issue](https://github.com/alphagov/govuk-prototype-kit/issues)
-
-## Deploying to GOV.UK PaaS
-
-If you want to deploy your prototype to [GOV.UK PaaS](https://www.cloud.service.gov.uk) you can use the existing [application manifest](manifest.yml) and push using the following command:
-
-```
-cf push --var username=myusername --var password=secret --var prototype-name=my-new-service
-```
-
-The [application manifest](manifest.yml) has more information and guidance inside the file.
