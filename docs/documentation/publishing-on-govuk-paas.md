@@ -20,12 +20,10 @@ You can have multiple apps running on GOV.UK PaaS - projects often have several 
 
 ## 1) Get started with GOV.UK PaaS
 
-The GOV.UK PaaS documentation has [a guide](https://docs.cloud.service.gov.uk/get_started.html#get-started) on how to get started.
+Follow the [GOV.UK PaaS get started guide](https://docs.cloud.service.gov.uk/get_started.html#get-started) to:
 
-You should follow the guide so that you:
-
-- have downloaded and installed the CF CLI
-- have used the CF CLI to log in to GOV.UK PaaS
+- download and install the Cloud Foundry CLI
+- log in to GOV.UK PaaS using the Cloud Foundry CLI
 
 ## 2) Choose a name for your app
 
@@ -53,7 +51,7 @@ cf push --var prototype-name=name-of-your-app \
         --var password=secret
 ```
 
-Replace `name-of-your-app` with your app name from step 4.
+Replace `name-of-your-app` with your app name from step 2.
 
 ## 4) View your prototype on the web
 
@@ -77,3 +75,19 @@ You can customise it, for instance if you want to disable authentication and mak
 
 Guidance on how to do this in the file itself (`manifest.yml`) or in the
 [GOV.UK PaaS documentation](https://docs.cloud.service.gov.uk/deploying_apps.html#deploying-public-apps).
+
+---
+
+If your prototype repo is public but you need the password to be secret, and you're using a continuous deployment tool, you can use environment variables when pushing your app:
+
+```
+cf push --var prototype-name=my-new-service \
+        --var username=hello \
+        --var "password=$PASSWORD"
+```
+
+You should configure this `cf push` command in the system you've set up to do the
+deployment, for example: [how Travis CI works with encrypted
+variables](https://docs.travis-ci.com/user/environment-variables/#defining-encrypted-variables-in-travisyml)
+or [how to create and use secrets with GitHub
+Actions](https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
