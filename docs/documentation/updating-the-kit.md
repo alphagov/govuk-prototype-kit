@@ -6,7 +6,7 @@ If you have made any changes outside the `app` folder, this process will destroy
 
 ## Steps
 
-Download the latest Prototype Kit.
+[Download the latest Prototype Kit](/docs/download) and unzip it.
 
 In your project, delete everything apart from the `app` and `.git` folder.
 
@@ -17,6 +17,8 @@ Copy the config.js file from the `app` folder in the latest kit to the `app` fol
 Check `\app\assets\sass\patterns` in the latest kit for any new patterns. Copy the files over to your prototype.
 
 Check `\app\assets\sass\application.scss` in the latest kit to see if any changes have been made in the top section, above where it says `// Add extra styles here`. Copy anything new from that file to the version in your prototype, making sure you don't overwrite any extra styles you have added yourself.
+
+Check the [release notes for the latest release](https://github.com/alphagov/govuk-prototype-kit/releases/latest), for any additional changes you need to make to your prototype.
 
 ---
 
@@ -121,5 +123,7 @@ In terminal:
 ```
 npm start
 ```
+
+Check the [release notes for the latest release](https://github.com/alphagov/govuk-prototype-kit/releases/latest), for any additional changes you need to make to your prototype.
 
 If you still have an error, you can [raise an issue within github](https://github.com/alphagov/govuk-prototype-kit/issues) or ask in the [Slack channel for users of the Prototype Kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/) by providing as much information as you can about the error and the computer you are attempting to run the prototyping kit on.
