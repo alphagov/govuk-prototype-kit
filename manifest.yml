@@ -4,23 +4,32 @@
 # * https://www.cloud.service.gov.uk/
 # * https://docs.cloud.service.gov.uk/
 # * https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
-#
 # Usage:
 #
-# $ cf push your-prototype-name --var username=myusername --var password=mysecretpassword
+# $ cf push --var username=myusername --var password=secret --var prototype-name=my-new-service
 # ...
 # ...
 # requested state:   started
-# routes:            your-prototype-name.london.cloudapps.digital
+# routes:            my-new-service.cloudapps.digital
 #
-#                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 #                    Your app will be running on this route
+#
+#                    This URL may contain london.cloudapps.digital
+#                    if you are deploying to GOV.UK PaaS London
 #
 
 applications:
-- name: govuk-prototype-kit
-  memory: 512M
-  env:
-    USERNAME: ((username))
-    PASSWORD: ((password))
+  - name: ((prototype-name))
+    memory: 512M
 
+    buildpacks:
+      - nodejs_buildpack
+
+    env:
+      USERNAME: ((username))
+      PASSWORD: ((password))
+      # If you do not want authentication
+      # then remove the USERNAME and PASSWORD lines above
+      # and uncomment the line below
+      # USE_AUTH: no
