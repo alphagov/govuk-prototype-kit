@@ -2,6 +2,7 @@
 
 ## Fixes
 
+- [Pull request #797: Update GOV.UK Frontend to version 3.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/797).
 - [Pull request #796: Update focus states on step-by-step navigation](https://github.com/alphagov/govuk-prototype-kit/pull/796).
 
 # 9.0.0 (Breaking release)
