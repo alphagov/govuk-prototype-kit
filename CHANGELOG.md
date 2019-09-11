@@ -1,5 +1,11 @@
 # Unreleased
 
+# 9.2.0 (Feature release)
+
+## New features
+
+- [Pull request #800: Update GOV.UK Frontend to version 3.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/800).
+
 # 9.1.0 (Feature release)
 
 ## New features
