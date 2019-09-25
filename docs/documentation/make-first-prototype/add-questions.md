@@ -29,7 +29,7 @@ Change all instances of `where-do-you-live` to `how-many-balls`.
 
 Your page should now look like this:
 
-[image]
+![The 'How many balls you can juggle?' question with 4 answers: '5 or more', '3 or 4', '1 or 2' and 'None - I cannot juggle'](/public/images/docs/prototype-kit-tutorial-question-1.png)
 
 ## Add a text input to question 2
 
@@ -47,6 +47,6 @@ The label is important for accessibility in a live service. You must test your p
 
 Your page should now look like this:
 
-[image]
+![The 'What is your most impressive juggling trick?' question with a textarea](/public/images/docs/prototype-kit-tutorial-question-2.png)
 
 <a href="show-users-answers" class="button">Next (Show the user's answers on your 'Check your answers' page)</a>
