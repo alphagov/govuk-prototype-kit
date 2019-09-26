@@ -2,7 +2,7 @@
 
 Copy the code from the [GOV.UK Design System](https://design-system.service.gov.uk/) to add page elements like radios and text inputs.
 
-### Add radios to question 1
+## Add radios to question 1
 
 1. Go to the [stacked radios section of the Design System](https://design-system.service.gov.uk/components/radios/#stacked-radios).
 2. Select **HTML**, then select **Copy code**.

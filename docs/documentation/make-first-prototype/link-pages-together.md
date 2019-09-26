@@ -5,7 +5,7 @@ To take users from one page to another, either:
 - add HTML links to content
 - change the `action` attribute inside a form
 
-### Link your start page to question 1
+## Link your start page to question 1
 
 1. Open `start.html` in your `app/views` folder.
 2. Find the `<a>` tag with `Start now` inside.

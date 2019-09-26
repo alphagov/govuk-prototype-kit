@@ -1,6 +1,6 @@
 # Build a basic prototype using the Prototype Kit
 
-This tutorial shows you how to prototype a basic service that will:
+This tutorial shows you how to prototype a fictional 'Apply for a juggling licence' service that will:
 
 - ask 2 questions
 - show the user's answers
