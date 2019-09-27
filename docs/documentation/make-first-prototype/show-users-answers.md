@@ -41,4 +41,4 @@ You must also change `<span class="govuk-visually-hidden"> date of birth</span>`
 
 Go to http://localhost:3000/start and answer the questions to check the answer to question 2 works.
 
-<a href="let-user-change-answers" class="button">Next (Let the user change their answers)</a>
+[Next (Let the user change their answers)](let-user-change-answers)

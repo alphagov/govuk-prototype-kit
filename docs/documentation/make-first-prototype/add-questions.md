@@ -9,7 +9,7 @@ Copy the code from the [GOV.UK Design System](https://design-system.service.gov.
 3. Open `juggling-balls.html` in your `app/views` folder.
 4. Replace the 2 example `<p>...</p>` paragraphs with the HTML code you copied.
 5. Delete the whole `<h1>` tag that has the text “Heading or question goes here” - it should be line 16.
-5. In your copied code, change the text in the `<h1>` tag from `Where do you live?` to `How many balls can you juggle?`.
+6. In your copied code, change the text in the `<h1>` tag from `Where do you live?` to `How many balls can you juggle?`.
 
 Replace the text in the 4 `<label>` tags with:
 
@@ -38,15 +38,16 @@ Your page should now look like this:
 3. Open `juggling-trick.html` in your `app/views` folder.
 4. Replace the 2 example `<p>...</p>` paragraphs with the HTML code you copied.
 5. Change the value of the `name` attribute from `"more-detail"` to `"most-impressive-trick"`.
-6. Delete the `label` and `span` sections above the `textarea` section.
+6. Copy the `h1` line you edited when you [created the page](create-pages#question-pages) and paste it inside the `label` tags, so it replaces the `Can you provide more detail?` text.
+7. Delete the `span` section above the `textarea` section.
 
-The label is important for accessibility in a live service. You must test your prototype with users who have access needs by:
+The label is important for accessibility in a live service. You should test your prototype with users who have access needs by:
 
 - talking to a developer on your team
-- asking for advice on the [#govuk-design-system channel on cross-government Slack](https://ukgovernmentdigital.slack.com/app_redirect?channel=govuk-design-system)
+- asking for advice on the [#prototype-kit channel on cross-government Slack](https://ukgovernmentdigital.slack.com/app_redirect?channel=prototype-kit)
 
 Your page should now look like this:
 
 ![The 'What is your most impressive juggling trick?' question with a textarea](/public/images/docs/prototype-kit-tutorial-question-2.png)
 
-<a href="show-users-answers" class="button">Next (Show the user's answers on your 'Check your answers' page)</a>
+[Next (Show the user's answers on your 'Check your answers' page)](show-users-answers)

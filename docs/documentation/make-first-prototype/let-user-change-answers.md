@@ -4,8 +4,8 @@
 
 Make the **Change** links on the ‘Confirmation’ page work by adding the right links.
 
-1. In the the <a> tag under `{{ data['how-many-balls'] }}`, change the href attribute from `#` to ‘/juggling-balls’
-2. In the the <a> tag under `{{ data['most-impressive-trick'] }}`, change the href attribute from `#` to ‘/juggling-trick’
+1. In the the `<a>` tag under `{{ data['how-many-balls'] }}`, change the href attribute from `#` to `/juggling-balls`
+2. In the the `<a>` tag under `{{ data['most-impressive-trick'] }}`, change the href attribute from `#` to `/juggling-trick`
 
 If you select a **Change** link, you’ll go back to the right question page, but your answer will not appear.
 
@@ -16,9 +16,9 @@ Add Nunjucks code to show the user's answer in a radios or checkbox component.
 Open the `juggling-balls.html` file in your `app/views` folder, and add:
 
 - `{{ checked("how-many-balls", "5 or more") }}` inside the first `<input>` tag
-- `{{ checked("how-many-balls", "3 or 4") }}` inside the first `<input>` tag
-- `{{ checked("how-many-balls", "1 or 2") }}` inside the second `<input>` tag
-- `{{ checked("how-many-balls", "None - I cannot juggle") }}` inside the third `<input>` tag
+- `{{ checked("how-many-balls", "3 or 4") }}` inside the second `<input>` tag
+- `{{ checked("how-many-balls", "1 or 2") }}` inside the third `<input>` tag
+- `{{ checked("how-many-balls", "None - I cannot juggle") }}` inside the fourth `<input>` tag
 
 For example your first input tag should now be:
 
@@ -40,4 +40,4 @@ To show the user's answer in a `textarea`, add the same Nunjucks code you [added
 
 Go to [http://localhost:3000/juggling-trick](http://localhost:3000/juggling-trick) and check it works by filling in an answer, continuing to the next page, going back, then refreshing your browser.
 
-<a href="link-index-page-start-page" class="button">Next (Link your index page to your start page)</a>
+[Next (Link your index page to your start page)](link-index-page-start-page)

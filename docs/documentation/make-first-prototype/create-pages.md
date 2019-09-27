@@ -61,4 +61,4 @@ Copy the `check-your-answers.html` file from `docs/views/templates` to `app/view
 
 Copy the `confirmation.html` file from `docs/views/templates` to `app/views`.
 
-<a href="link-pages-together" class="button">Next (link your pages together)</a>
+[Next (link your pages together)](link-pages-together)

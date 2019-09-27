@@ -31,4 +31,4 @@ Go to [http://localhost:3000/juggling-trick](http://localhost:3000/juggling-tric
 
 The 'Check your answers' page links to the ‘Confirmation’ page by default. So you do not need to change the ‘Check your answers’ page.
 
-<a href="add-questions" class="button">Next (add questions to your question pages)</a>
+[Next (add questions to your question pages)](add-questions)
