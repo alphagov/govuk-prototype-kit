@@ -38,7 +38,7 @@ Your page should now look like this:
 3. Open `juggling-trick.html` in your `app/views` folder.
 4. Replace the 2 example `<p>...</p>` paragraphs with the HTML code you copied.
 5. Change the value of the `name` attribute from `"more-detail"` to `"most-impressive-trick"`.
-6. Copy the `h1` line you edited when you [created the page](create-pages#question-pages) and paste it inside the `label` tags, so it replaces the `Can you provide more detail?` text.
+6. Select the `h1` line you edited when you [created the page](create-pages#question-pages), and cut and paste it inside the `label` tags so it replaces the `Can you provide more detail?` text.
 7. Delete the `span` section above the `textarea` section.
 
 The label is important for accessibility in a live service. You should test your prototype with users who have access needs by:
