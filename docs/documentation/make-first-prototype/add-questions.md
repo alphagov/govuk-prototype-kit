@@ -8,8 +8,7 @@ Copy the code from the [GOV.UK Design System](https://design-system.service.gov.
 2. Select **HTML**, then select **Copy code**.
 3. Open `juggling-balls.html` in your `app/views` folder.
 4. Replace the 2 example `<p>...</p>` paragraphs with the HTML code you copied.
-5. Delete the whole `<h1>` tag that has the text “Heading or question goes here” - it should be line 16.
-6. In your copied code, change the text in the `<h1>` tag from `Where do you live?` to `How many balls can you juggle?`.
+5. Select the `<h1>` line you edited when you [created the page](create-pages#question-pages), then cut and paste it so it replaces the `<h1>` line in the copied code.
 
 Replace the text in the 4 `<label>` tags with:
 
