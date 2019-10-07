@@ -1,7 +1,7 @@
 {
   "name": "govuk-prototype-kit",
   "description": "Rapidly create HTML prototypes of GOV.UK services",
-  "version": "9.2.0",
+  "version": "9.3.0",
   "private": true,
   "engines": {
     "node": "^10.0.0"
@@ -28,7 +28,7 @@
     "express-writer": "0.0.4",
     "fancy-log": "^1.3.3",
     "govuk-elements-sass": "^3.1.3",
-    "govuk-frontend": "^3.2.0",
+    "govuk-frontend": "^3.3.0",
     "govuk_frontend_toolkit": "^7.5.0",
     "govuk_template_jinja": "^0.24.1",
     "gulp": "^4.0.0",
