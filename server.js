@@ -1,4 +1,5 @@
 // Core dependencies
+const fs = require('fs')
 const path = require('path')
 
 // NPM dependencies
@@ -31,11 +32,9 @@ var useV6 = false
 var v6App
 var v6Routes
 
-try {
+if (fs.existsSync('./app/v6/routes.js')) {
   v6Routes = require('./app/v6/routes.js')
   useV6 = true
-} catch (e) {
-  // No routes.js in app/v6 so we can continue with useV6 false
 }
 
 const app = express()
