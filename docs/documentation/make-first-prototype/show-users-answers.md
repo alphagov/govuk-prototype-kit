@@ -25,7 +25,7 @@ Change `INPUT-ATTRIBUTE-NAME` to the value you used in the [`name` attribute on 
 1. Open the `check-your-answers.html` file in your `app/views` folder.
 2. Find the `<dt>` tag that contains the text `Name`.
 3. Change `Name` to `Number of balls you can juggle`.
-4. In the `<dd>` tag on the next line, change `Sarah Philips` to `{{ data['how-many-balls’] }}`.
+4. In the `<dd>` tag on the next line, change `Sarah Philips` to `{{ data['how-many-balls'] }}`.
 
 You must also change `<span class="govuk-visually-hidden"> name</span>` to `<span class="govuk-visually-hidden"> number of balls you can juggle</span>`.
 
