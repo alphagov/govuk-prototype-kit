@@ -15,18 +15,17 @@ Add Nunjucks code to show the user's answer in a radios or checkbox component.
 
 Open the `juggling-balls.html` file in your `app/views` folder, and add:
 
-- `{{ checked("how-many-balls", "5 or more") }}` inside the first `<input>` tag
-- `{{ checked("how-many-balls", "3 or 4") }}` inside the second `<input>` tag
-- `{{ checked("how-many-balls", "1 or 2") }}` inside the third `<input>` tag
-- `{{ checked("how-many-balls", "None - I cannot juggle") }}` inside the fourth `<input>` tag
+- `{{ checked("how-many-balls", "3 or more") }}` inside the first `<input>` tag
+- `{{ checked("how-many-balls", "1 or 2") }}` inside the second `<input>` tag
+- `{{ checked("how-many-balls", "None - I cannot juggle") }}` inside the third `<input>` tag
 
 For example your first input tag should now be:
 
 ```html
-<input id="radio-1" type="radio" name="juggling-balls" value="5 or more” {{ checked("juggling-balls", "3 or more") }} >
+<input id="radio-1" type="radio" name="juggling-balls" value="3 or more” {{ checked("juggling-balls", "3 or more") }} >
 ```
 
-Make sure the spelling is exactly the same as the 4 `value` attributes you added when you [created your question pages](create-pages).
+Make sure the spelling is exactly the same as the 3 `value` attributes you added when you [created your question pages](create-pages).
 
 Go to [http://localhost:3000/juggling-balls](http://localhost:3000/juggling-balls) and check the journey works by selecting an answer, continuing to the next page, then going back.
 

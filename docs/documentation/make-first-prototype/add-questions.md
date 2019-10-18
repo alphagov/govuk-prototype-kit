@@ -8,16 +8,16 @@ Copy the code from the [GOV.UK Design System](https://design-system.service.gov.
 2. Select **HTML**, then select **Copy code**.
 3. Open `juggling-balls.html` in your `app/views` folder.
 4. Replace the 2 example `<p>...</p>` paragraphs with the HTML code you copied.
-5. Select the `<h1>` line you edited when you [created the page](create-pages#question-pages), then cut and paste it so it replaces the `<h1>` line in the copied code.
+5. Remove the fourth radio option `<div>...</div>` block, because we only need 3 radio options.
+6. Select the `<h1>` line you edited when you [created the page](create-pages#question-pages), then cut and paste it so it replaces the `<h1>` line in the copied code.
 
-Replace the text in the 4 `<label>` tags with:
+Replace the text in the 3 `<label>` tags with:
 
-- `5 or more`
-- `3 or 4`
+- `3 or more`
 - `1 or 2`
 - `None - I cannot juggle`
 
-Change the value of the 4 `value` attributes so they match the text in the `label` tags.
+Change the value of the 3 `value` attributes so they match the text in the `label` tags.
 
 Change all instances of `where-do-you-live` to `how-many-balls`.
 
