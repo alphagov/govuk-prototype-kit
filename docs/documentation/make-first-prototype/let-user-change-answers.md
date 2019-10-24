@@ -35,7 +35,7 @@ To show the user's answer in a `textarea`, add the same Nunjucks code you [added
 
 1. Open the `juggling-trick.html` file in your `app/views` folder.
 2. Find the `<textarea>` you added earlier.
-3. Add `{{ data['name-of-trick'] }}` between the `<textarea>` and `</textarea>` tags. Do not add any space or line breaks.
+3. Add `{{ data['most-impressive-trick'] }}` between the `<textarea>` and `</textarea>` tags. Do not add any space or line breaks.
 
 Go to [http://localhost:3000/juggling-trick](http://localhost:3000/juggling-trick) and check it works by filling in an answer, continuing to the next page, going back, then refreshing your browser.
 
