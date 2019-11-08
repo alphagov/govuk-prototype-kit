@@ -2,7 +2,7 @@
 
 If you do research with real user data, you must [open a new incognito window](https://support.google.com/chrome/answer/95464) for each research session, and close all windows before the next session.
 
-After the session is over, select the **Clear data** link at the bottom of the prototype to clear the user’s data.
+Another way to clear a user's data once the session is over, is to select the **Clear data** link at the bottom of the prototype.
 
 Check you’ve cleared the data by returning to a previously-loaded page and making sure the data is gone.
 
