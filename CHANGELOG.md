@@ -1,4 +1,4 @@
-# Unreleased
+# 9.4.0 (Feature release)
 
 ## New features
 
@@ -6,7 +6,7 @@
 
 ## Fixes
 
-- [Pull request #815: Prevent exceptions thrown from 'compatibility mode' routes from being silently caught, disabling compatibility mode](https://github.com/alphagov/govuk-prototype-kit/pull/815)
+- [Pull request #815: Prevent exceptions thrown from 'compatibility mode' routes from being silently caught, disabling compatibility mode](https://github.com/alphagov/govuk-prototype-kit/pull/815).
 
 # 9.3.0 (Feature release)
 
