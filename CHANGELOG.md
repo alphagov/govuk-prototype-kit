@@ -1,5 +1,9 @@
 # Unreleased
 
+## New features
+
+- [Pull request #837: Update GOV.UK Frontend to version 3.4.0](https://github.com/alphagov/govuk-prototype-kit/pull/837).
+
 ## Fixes
 
 - [Pull request #815: Prevent exceptions thrown from 'compatibility mode' routes from being silently caught, disabling compatibility mode](https://github.com/alphagov/govuk-prototype-kit/pull/815)
