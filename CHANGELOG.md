@@ -1,3 +1,9 @@
+# Unreleased
+
+## Fixes
+
+- [Pull request #840: Update Kit to use latest active LTS Node.js version 12.x](https://github.com/alphagov/govuk-prototype-kit/pull/840).
+
 # 9.4.0 (Feature release)
 
 ## New features
