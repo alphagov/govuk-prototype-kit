@@ -1,8 +1,8 @@
 language: node_js
 
 node_js:
-  - "10.15.1"
-  - "8"
+  - "lts/dubnium"
+  - "lts/erbium"
 
 os:
   - linux
