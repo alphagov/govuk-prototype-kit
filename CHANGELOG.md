@@ -2,6 +2,19 @@
 
 ## Fixes
 
+### Allow Kit specific patterns to be used with the unbranded template
+
+Patterns like [step by step](https://govuk-prototype-kit.herokuapp.com/docs/templates/step-by-step-navigation) and [task list](https://govuk-prototype-kit.herokuapp.com/docs/templates/task-list) now work with the [unbranded template](https://govuk-prototype-kit.herokuapp.com/docs/templates/blank-unbranded).
+
+If do not need to do anything if you're installing this version for the first time.
+
+If you're upgrading from an older version of the Kit you will need to:
+
+1. update the `app/assets/sass/unbranded.scss` Sass `@import` value from `node_modules/govuk-frontend/govuk/all` to `application`
+2. update the `app/views/layout_unbranded.html` template `extends` path from `govuk/template.njk` to `layout.html`
+
+- [#842: Allow Kit specific patterns to be used with the unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/842).
+
 - [Pull request #840: Update Kit to use latest active LTS Node.js version 12.x](https://github.com/alphagov/govuk-prototype-kit/pull/840).
 
 # 9.4.0 (Feature release)
