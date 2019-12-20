@@ -26,25 +26,24 @@ About - GOV.UK Prototype Kit
       <p>The GOV.UK Prototype Kit puts small files (known as ‘cookies’) on to your computer.</p>
 
       <p>We use cookies to:</p>
-
-      <ul class="govuk-list govuk-list--bullet">
+			<ul class="govuk-list govuk-list--bullet">
         <li>record the notifications you&#39;ve seen so we don&#39;t show them again</li>
-        <li>measure how you use the website so it can be updated and improved based on your activity</li>
+        <li>make prototypes work as well as possible</li>
       </ul>
 
       <p>These cookies aren’t used to identify you personally.</p>
 
       <p>You’ll see a message on the site before we store a cookie on your computer.</p>
 
-      <p><a href="https://ico.org.uk/for-the-public/online/cookies/">Find out how to manage cookies.</a></p>
+      <p><a href="https://ico.org.uk/for-the-public/online/cookies/">Find out how to manage cookies</a>.</p>
 
       <h2 class="govuk-heading-l">Our cookie message</h2>
 
-      <p>You will see a message about cookies when you first visit the GOV.UK Prototype Kit. We’ll store a cookie so that your computer knows you’ve seen it and knows not to show it again.</p>
+      <p>You'll see a message about cookies when you first visit the GOV.UK Prototype Kit. We’ll store a cookie so that your computer knows you’ve seen it and knows not to show it again.</p>
 
 			{{ govukTable({
 				classes: "app-table--fixed",
-			  caption: "Dates and amounts",
+			  caption: "Cookies relating to our cookies message",
 			  captionClasses: "govuk-visually-hidden",
 			  head: [
           { text: "Name" },
@@ -54,34 +53,19 @@ About - GOV.UK Prototype Kit
 			  rows: [
 			    [
             { text: "seen_cookie_message" },
-            { text: "Saves a message to let us know that you have seen our cookie message" },
+            { text: "Saves a message to let us know that you've seen our cookie message" },
             { text: "28 days" }
 			    ]
 			  ]
 			}) }}
 
-      <h2 class="govuk-heading-l">Measuring website usage with Google Analytics</h2>
+			<h2 class="govuk-heading-l">Storing users' answers within prototypes</h2>
 
-      <p>We use Google Analytics software to collect information about how you use the GOV.UK Prototype Kit. We do this to help make sure the site is meeting the needs of its users and to help us make improvements.</p>
-
-      <p>Google Analytics stores information about:</p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>the pages you visit</li>
-        <li>how long you spend on each page</li>
-        <li>how you got to the site</li>
-        <li>what you click on while you’re visiting the site.</li>
-      </ul>
-
-      <p>We don’t collect or store your personal information, so this data can’t be used to identify who you are. For more information visit our <a href="/docs/privacy-policy">privacy policy</a> page.</p>
-
-      <p>We don’t allow Google to use or share our analytics data.</p>
-
-      <p>Google Analytics sets the following cookies:</p>
+      <p>To help prototypes work as well as possible, each prototype stores a cookie to remember what users select on question pages. This allows prototypes to have branching pages and show users' answers on pages like the 'Check your answers' summary page.</p>
 
 			{{ govukTable({
 				classes: "app-table--fixed",
-			  caption: "Dates and amounts",
+			  caption: "Cookies relating to storing users' answers within prototypes",
 			  captionClasses: "govuk-visually-hidden",
 			  head: [
           { text: "Name" },
@@ -90,22 +74,13 @@ About - GOV.UK Prototype Kit
 			  ],
 			  rows: [
 					[
-						{ text: "_ga" },
-						{ text: "This helps us count how many people visit the GOV.UK Prototype Kit site by tracking if you’ve visited before" },
-						{ text: "2 years" }
-					],
-					[
-						{ text: "_gid" },
-						{ text: "This helps us count how many people visit the GOV.UK Prototype Kit site by tracking if you’ve visited before" },
-						{ text: "24 hours" }
-					],
-					[
-						{ text: "_gat" },
-						{ text: "This is used to limit the rate at which page view requests are recorded by Google" },
-						{ text: "1 minute" }
+						{ text: "govuk-prototype-kit-\<UNIQUE-ID\>" },
+						{ text: "Storing users' answers from question pages" },
+						{ text: "4 hours" }
 					]
 			  ]
 			}) }}
+
     </div>
   </div>
 
