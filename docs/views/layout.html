@@ -28,16 +28,6 @@
 
 {% block head %}
   {% include "includes/head.html" %}
-  {% if doNotTrackEnabled == false and promoMode == 'true' and gtmId %}
-    {% include "includes/tracking_head.html" %}
-  {% endif %}
-{% endblock %}
-
-
-{% block bodyStart %}
-  {% if doNotTrackEnabled == false and promoMode == 'true' and gtmId %}
-    {% include "includes/tracking_body.html" %}
-  {% endif %}
 {% endblock %}
 
 {% block header %}
