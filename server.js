@@ -48,9 +48,8 @@ if (useV6) {
 // Set cookies for use in cookie banner.
 app.use(cookieParser())
 documentationApp.use(cookieParser())
-const handleCookies = utils.handleCookies(app)
-app.use(handleCookies)
-documentationApp.use(handleCookies)
+app.use(utils.handleCookies(app))
+documentationApp.use(utils.handleCookies(documentationApp))
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
