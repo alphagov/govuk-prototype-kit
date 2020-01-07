@@ -1,8 +1,9 @@
 # Show the user's answers on your 'Check your answers' page
 
-If you do research with real user data, you must [open a new incognito window](https://support.google.com/chrome/answer/95464) for each research session, and close all windows before the next session.
+If you do research with real user data, you must clear a user's data before each session by either:
 
-After the session is over, select the **Clear data** link at the bottom of the prototype to clear the user’s data.
+- closing all browser windows and [opening a new incognito window](https://support.google.com/chrome/answer/95464)
+- selecting the **Clear data** link at the bottom of the prototype
 
 Check you’ve cleared the data by returning to a previously-loaded page and making sure the data is gone.
 
