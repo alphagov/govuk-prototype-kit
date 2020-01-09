@@ -8,7 +8,9 @@ $govuk-assets-path: '/govuk/assets/';
 @import "lib/extensions/extensions";
 
 // Patterns that aren't in Frontend
-@import "patterns/step-by-step-navigation";
+@import "patterns/step-by-step-header";
+@import "patterns/step-by-step-nav";
+@import "patterns/step-by-step-related";
 @import "patterns/task-list";
 @import "patterns/related-items";
 
