@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/public/javascripts/step-by-step-navigation.js"></script>
+  <script src="/public/javascripts/step-by-step-nav.js"></script>
   <script type="text/javascript">
     var $element = $('#step-by-step-navigation')
-    var stepByStepNavigation = new GOVUK.Modules.StepByStepNavigation()
+    var stepByStepNavigation = new GOVUK.Modules.AppStepNav()
     stepByStepNavigation.start($element)
   </script>
 {% endblock %}

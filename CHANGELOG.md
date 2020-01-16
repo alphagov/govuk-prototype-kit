@@ -15,7 +15,10 @@ If you're upgrading from an older version of the Kit you will need to:
 
 - [#842: Allow Kit specific patterns to be used with the unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/842).
 
+### Additional fixes
+
 - [Pull request #840: Update Kit to use latest active LTS Node.js version 12.x](https://github.com/alphagov/govuk-prototype-kit/pull/840).
+- [Pull request #847: Update step by step patterns to latest](https://github.com/alphagov/govuk-prototype-kit/pull/847).
 
 # 9.4.0 (Feature release)
 
