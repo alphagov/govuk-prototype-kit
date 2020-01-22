@@ -1,5 +1,9 @@
 # Unreleased
 
+## New features
+
+- [Pull request #852: Update to GOV.UK Frontend v3.5.0](https://github.com/alphagov/govuk-prototype-kit/pull/852).
+
 ## Fixes
 
 ### Use Prototype Kit-specific patterns in the unbranded template
@@ -19,7 +23,6 @@ If you're upgrading from an older version, make the following changes.
 
 - [Pull request #840: Update Kit to use latest active LTS Node.js version 12.x](https://github.com/alphagov/govuk-prototype-kit/pull/840).
 - [Pull request #847: Update step by step patterns to latest](https://github.com/alphagov/govuk-prototype-kit/pull/847).
-- [Pull request #852: Update to GOV.UK Frontend v3.5.0](https://github.com/alphagov/govuk-prototype-kit/pull/852).
 
 # 9.4.0 (Feature release)
 
