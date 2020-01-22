@@ -13,7 +13,7 @@ If you're upgrading from an older version, make the following changes.
 1. In the `app/assets/sass/unbranded.scss` file, change `@import "node_modules/govuk-frontend/govuk/all";` to `@import "application";`.
 2. In the `app/views/layout_unbranded.html` file, change `{% extends "govuk/template.njk" %}` to `{% extends "layout.html" %}`.
 
-- [#842: Allow Kit specific patterns to be used with the unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/842).
+[#842: Allow Kit specific patterns to be used with the unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/842).
 
 ### Other fixes
 
