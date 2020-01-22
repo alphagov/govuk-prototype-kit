@@ -1,21 +1,25 @@
 # Unreleased
 
+## New features
+
+- [Pull request #852: Update to GOV.UK Frontend v3.5.0](https://github.com/alphagov/govuk-prototype-kit/pull/852).
+
 ## Fixes
 
-### Allow Kit specific patterns to be used with the unbranded template
+### Use Prototype Kit-specific patterns in the unbranded template
 
-Patterns like [step by step](https://govuk-prototype-kit.herokuapp.com/docs/templates/step-by-step-navigation) and [task list](https://govuk-prototype-kit.herokuapp.com/docs/templates/task-list) now work with the [unbranded template](https://govuk-prototype-kit.herokuapp.com/docs/templates/blank-unbranded).
+You can now use patterns like [step by step navigation](https://govuk-prototype-kit.herokuapp.com/docs/templates/step-by-step-navigation) and [task lists](https://govuk-prototype-kit.herokuapp.com/docs/templates/task-list) in the [unbranded template](https://govuk-prototype-kit.herokuapp.com/docs/templates/blank-unbranded).
 
-If do not need to do anything if you're installing this version for the first time.
+You do not need to do anything if you're installing this version for the first time.
 
-If you're upgrading from an older version of the Kit you will need to:
+If you're upgrading from an older version, make the following changes.
 
-1. update the `app/assets/sass/unbranded.scss` Sass `@import` value from `node_modules/govuk-frontend/govuk/all` to `application`
-2. update the `app/views/layout_unbranded.html` template `extends` path from `govuk/template.njk` to `layout.html`
+1. In the `app/assets/sass/unbranded.scss` file, change `@import "node_modules/govuk-frontend/govuk/all";` to `@import "application";`.
+2. In the `app/views/layout_unbranded.html` file, change `{% extends "govuk/template.njk" %}` to `{% extends "layout.html" %}`.
 
-- [#842: Allow Kit specific patterns to be used with the unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/842).
+[#842: Allow Kit specific patterns to be used with the unbranded template](https://github.com/alphagov/govuk-prototype-kit/pull/842).
 
-### Additional fixes
+### Other fixes
 
 - [Pull request #840: Update Kit to use latest active LTS Node.js version 12.x](https://github.com/alphagov/govuk-prototype-kit/pull/840).
 - [Pull request #847: Update step by step patterns to latest](https://github.com/alphagov/govuk-prototype-kit/pull/847).
