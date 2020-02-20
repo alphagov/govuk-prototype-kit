@@ -18,7 +18,7 @@ To display user data on a different page, use this [Nunjucks](https://mozilla.gi
 Change `INPUT-ATTRIBUTE-NAME` to the value you used in the [`name` attribute on the question page](/docs/make-first-prototype/add-questions#add-a-text-input-to-question-2). For example:
 
 ```
-{{ data['number-of-balls'] }}
+{{ data['how-many-balls'] }}
 ```
 
 ### Show the answer to question 1
