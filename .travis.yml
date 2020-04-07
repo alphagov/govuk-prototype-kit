@@ -33,5 +33,3 @@ jobs:
 
 notifications:
   email: false
-
-sudo: false
