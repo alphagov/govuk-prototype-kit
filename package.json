@@ -12,7 +12,7 @@
     "test": "npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
-    "acorn": "^6.0.5",
+    "acorn": "^7.1.1",
     "ansi-colors": "^3.2.3",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
