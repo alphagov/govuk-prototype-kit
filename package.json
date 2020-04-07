@@ -36,7 +36,7 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
     "keypather": "^3.0.0",
-    "marked": "^0.4.0",
+    "marked": "^0.8.2",
     "notifications-node-client": "^4.1.0",
     "nunjucks": "^3.2.1",
     "portscanner": "^2.1.1",
