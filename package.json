@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "acorn": "^7.1.1",
-    "ansi-colors": "^3.2.3",
+    "ansi-colors": "^4.1.1",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.14.1",
