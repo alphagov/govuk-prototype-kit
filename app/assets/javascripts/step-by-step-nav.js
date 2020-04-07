@@ -407,7 +407,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
         var dimension28 = $(event.target).closest('.app-step-nav__list').attr('data-length')
 
         if (dimension28) {
-          trackingOptions['dimension28'] = dimension28
+          trackingOptions.dimension28 = dimension28
         }
 
         stepNavTracker.track('stepNavLinkClicked', linkPosition, trackingOptions)

@@ -12,7 +12,7 @@ const usageDataConfig = usageData.getUsageDataConfig()
 
 if (usageDataConfig.collectUsageData === undefined) {
   // No recorded answer, so ask for permission
-  let promptPromise = usageData.askForUsageDataPermission()
+  const promptPromise = usageData.askForUsageDataPermission()
   promptPromise.then(function (answer) {
     if (answer === 'yes') {
       usageDataConfig.collectUsageData = true
@@ -70,7 +70,7 @@ if (!sessionDataDefaultsFileExists) {
 function runGulp () {
   const spawn = require('cross-spawn')
 
-  process.env['FORCE_COLOR'] = 1
+  process.env.FORCE_COLOR = 1
   var gulp = spawn('./node_modules/.bin/gulp')
   gulp.stdout.pipe(process.stdout)
   gulp.stderr.pipe(process.stderr)

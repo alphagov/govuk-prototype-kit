@@ -31,7 +31,7 @@ router.get('/install/:page', function (req, res) {
   redirectMarkdown(req.params.page, res)
   var doc = fs.readFileSync(path.join(__dirname, '/documentation/install/', req.params.page + '.md'), 'utf8')
   var html = marked(doc)
-  res.render('install_template', { 'document': html })
+  res.render('install_template', { document: html })
 })
 
 // Redirect to the zip of the latest release of the Prototype Kit on GitHub
@@ -49,7 +49,7 @@ router.post('/tutorials-and-examples', function (req, res) {
 
 // Passing data into a page
 router.get('/examples/template-data', function (req, res) {
-  res.render('examples/template-data', { 'name': 'Foo' })
+  res.render('examples/template-data', { name: 'Foo' })
 })
 
 // Branching
@@ -58,7 +58,7 @@ router.post('/examples/branching/over-18-answer', function (req, res) {
   // The name between the quotes is the same as the 'name' attribute on the input elements
   // However in JavaScript we can't use hyphens in variable names
 
-  let over18 = req.session.data['over-18']
+  const over18 = req.session.data['over-18']
 
   if (over18 === 'false') {
     res.redirect('/docs/examples/branching/under-18')
