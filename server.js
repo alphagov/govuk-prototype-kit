@@ -170,7 +170,7 @@ app.locals.extensionConfig = extensions.getAppConfig()
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
-let sessionOptions = {
+const sessionOptions = {
   secret: sessionName,
   cookie: {
     maxAge: 1000 * 60 * 60 * 4, // 4 hours

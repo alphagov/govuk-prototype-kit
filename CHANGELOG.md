@@ -1,3 +1,8 @@
+# Unreleased
+
+- [Pull request #884: Bump nunjucks from v3.1.3 to v3.2.1](https://github.com/alphagov/govuk-prototype-kit/pull/884)
+- [Pull request #885: Update various dependencies and fix linting offences](https://github.com/alphagov/govuk-prototype-kit/pull/885)
+
 # 9.6.0 (Feature release)
 
 ## New features
