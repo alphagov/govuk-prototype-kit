@@ -39,14 +39,22 @@ Learning a few basic terminal commands can make using the kit much easier.
 
 You need to navigate to your prototype in the terminal. Most commands for the kit need to be run in the prototype folder.
 
-#### Mac users:
+If you're using a Mac, enter:
+
 ```
 cd ~/projects/juggling-licence-prototype
 ```
 
-#### Windows users:
+If you're using Windows, enter:
+
 ```
 cd ~/Documents/projects/juggling-licence-prototype
+```
+
+You must add quotation marks around everything after `~/` if any of your folder names contain spaces. For example:
+
+```
+cd ~/"a folder name with spaces/Documents/projects/juggling-licence-prototype"
 ```
 
 ## Install the kit
