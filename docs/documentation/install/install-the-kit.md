@@ -51,7 +51,7 @@ If you're using Windows, enter:
 cd ~/Documents/projects/juggling-licence-prototype
 ```
 
-You must add quotation marks around everything after `~/` if any of your folder names contain spaces. For example:
+If any of your folder names contain spaces, you must add quotation marks around everything after `~/`. For example:
 
 ```
 cd ~/"a folder name with spaces/Documents/projects/juggling-licence-prototype"
