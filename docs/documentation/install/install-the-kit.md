@@ -28,12 +28,9 @@ Move the folder into your `projects` folder.
 
 ## Terminal basics
 
-The terminal (on mac and linux, git bash on windows) lets you type in commands and run programs on your computer. You can also use it to browse your file system - to open folders, etc.
+The terminal (on Mac and Linux, git bash on Windows) lets you type in commands and run programs on your computer. You can also use it to browse your file system, for example to open folders.
 
-Learning a few basic terminal commands can make using the kit much easier.
-
-* [Tutorial on using terminal (mac)](http://mac.appstorm.net/how-to/utilities-how-to/how-to-use-terminal-the-basics/)
-* [Tutorial on using git bash (windows)](https://openhatch.org/missions/windows-setup/open-git-bash-prompt)
+You can follow a [tutorial on basic terminal commands](https://tutorials.codebar.io/command-line/introduction/tutorial.html) on the codebar website.
 
 ### Navigating to your prototype
 
