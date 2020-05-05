@@ -44,13 +44,10 @@ Go to http://localhost:3000/start and answer the questions to check the answer t
 
 ### Delete the remaining example answers
 
-You can delete the remaining example answers from the `check-your-answers.html` file.
+There are example answers on the ‘Check your answers’ template page that you do not need. You can delete these example answers from the `check-your-answers.html` file.
 
-1. Find and delete the 2 sections that start with `<div class="govuk-summary-list__row">` and contain:
+1. Find and delete the section that starts with `<div class="govuk-summary-list__row">` and contains `Contact information`.
 
-    - `Contact information`
-    - `Contact details`
+2. Find and delete the section that starts with `<div class="govuk-summary-list__row">` and contains `Contact details`.
 
-2. Delete everything from the line that contains `Application details` down to the line that contains `Now send your application`.
-
-[Next (Let the user change their answers)](let-user-change-answers)
+3. Delete everything from the line that contains `Application details` down to the line that contains `Now send your application`.
