@@ -51,3 +51,5 @@ There are example answers on the ‘Check your answers’ template page that you
 2. Find and delete the section that starts with `<div class="govuk-summary-list__row">` and contains `Contact details`.
 
 3. Delete everything from the line that contains `Application details` down to the line that contains `Now send your application`.
+
+[Next (Let the user change their answers)](let-user-change-answers)
