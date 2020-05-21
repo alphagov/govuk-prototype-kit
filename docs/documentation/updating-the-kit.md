@@ -1,6 +1,6 @@
 # Updating to the latest version
 
-1. Make a backup copy of all your prototype's folders.
+1. Make a backup copy of your prototype folder.
 
 2. In your prototype, delete everything except the `app` and `.git` folders.
 
