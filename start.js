@@ -13,17 +13,14 @@ const usageDataConfig = usageData.getUsageDataConfig()
 if (usageDataConfig.collectUsageData === undefined) {
   // No recorded answer, so ask for permission
   const promptPromise = usageData.askForUsageDataPermission()
-  promptPromise.then(function (answer) {
-    if (answer === 'yes') {
-      usageDataConfig.collectUsageData = true
-      usageData.setUsageDataConfig(usageDataConfig)
+  promptPromise.then(function (permissionGranted) {
+    usageDataConfig.collectUsageData = permissionGranted
+    usageData.setUsageDataConfig(usageDataConfig)
+
+    if (permissionGranted) {
       usageData.startTracking(usageDataConfig)
-    } else if (answer === 'no') {
-      usageDataConfig.collectUsageData = false
-      usageData.setUsageDataConfig(usageDataConfig)
-    } else {
-      console.error(answer)
     }
+
     runGulp()
   })
 } else if (usageDataConfig.collectUsageData === true) {
