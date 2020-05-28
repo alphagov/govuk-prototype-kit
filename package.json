@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node start.js",
     "lint": "standard",
-    "test": "npm run lint && gulp generate-assets && jest"
+    "test": "npm run lint && gulp generate-assets && jest",
+    "postinstall": "node-sass --version > /dev/null 2>&1 || (echo 'Rebuilding node-sass...' && npm rebuild node-sass)"
   },
   "dependencies": {
     "acorn": "^7.1.1",
