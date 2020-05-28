@@ -35,12 +35,12 @@
     "gulp-nodemon": "^2.5.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
+    "inquirer": "^7.1.0",
     "keypather": "^3.0.0",
     "marked": "^0.8.2",
     "notifications-node-client": "^4.7.2",
     "nunjucks": "^3.2.1",
     "portscanner": "^2.1.1",
-    "prompt": "^1.0.0",
     "require-dir": "^1.0.0",
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.4.16",
@@ -54,7 +54,7 @@
   "devDependencies": {
     "glob": "^7.1.4",
     "jest": "^25.2.7",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "standard": "^14.3.3",
     "supertest": "^4.0.2"
   }
