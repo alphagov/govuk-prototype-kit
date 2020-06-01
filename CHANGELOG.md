@@ -1,8 +1,15 @@
 # Unreleased
 
+# 9.7.0 (Feature release)
+
+## New features
+
 - [Pull request #901: Add support for Node v14](https://github.com/alphagov/govuk-prototype-kit/pull/901)
+- [Pull request #908: Update to GOV.UK Frontend v3.7.0](https://github.com/alphagov/govuk-prototype-kit/pull/908)
 
 # 9.6.1 (Patch release)
+
+## Fixes
 
 - [Pull request #884: Bump nunjucks from v3.1.3 to v3.2.1](https://github.com/alphagov/govuk-prototype-kit/pull/884)
 - [Pull request #885: Update various dependencies and fix linting offences](https://github.com/alphagov/govuk-prototype-kit/pull/885)
