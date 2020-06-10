@@ -12,15 +12,15 @@
  
 5. Copy all the folders except the `app` folder to your prototype.
 
-6. Copy the `app/config.js` file to the `app` folder of your prototype.
+6. Replace the `app/config.js` file in your prototype with the `app/config.js` file from the unzipped folder.
 
 7. Compare your new `config.js` file to the `config.js` file in the backup you made in step 1, and copy over anything you need to - for example your service name.
 
-8. Copy the `app/assets/sass/patterns` folder to your prototype.
+8. Copy the `app/assets/sass/patterns` from the unzipped folder to your prototype.
 
-9. Copy the `app/assets/sass/components` folder to your prototype.
+9. Copy the `app/assets/sass/components` from the unzipped folder to your prototype.
 
-10. Open the `app/assets/sass/application.scss` file in the unzipped folder.
+10. Open the `app/assets/sass/application.scss` from the unzipped folder in the unzipped folder.
 
 10. Copy everything down to `// Add extra styles here`, then paste it above `// Add extra styles here` in the `app/assets/sass/application.scss` file in your prototype.
 
