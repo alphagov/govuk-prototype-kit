@@ -20,13 +20,13 @@
 
 9. Copy the `app/assets/sass/components` from the unzipped folder to your prototype.
 
-10. Open the `app/assets/sass/application.scss` from the unzipped folder in the unzipped folder.
+10. Open the `app/assets/sass/application.scss` file in the unzipped folder.
 
 10. Copy everything down to `// Add extra styles here`, then paste it above `// Add extra styles here` in the `app/assets/sass/application.scss` file in your prototype.
 
 11. Check the [latest Prototype Kit release note](https://github.com/alphagov/govuk-prototype-kit/releases/latest) and follow any guidance on updating your prototype.
 
-    If your prototype has not been updated for a long time, you should also follow any guidance in release notes between the version you're updating from and the latest version. You can find out the version you're updating from in the `VERSION.txt` file in your prototype folder.
+    If your prototype has not been updated for a long time, you should also follow any guidance in [release notes](https://github.com/alphagov/govuk-prototype-kit/releases) between the version you're updating from and the latest version. You can find out the version you're updating from in the `VERSION.txt` file in your backup folder.
 
 12. In your [terminal](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#terminal), `cd` to your prototype folder.
 
