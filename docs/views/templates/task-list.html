@@ -12,6 +12,9 @@
         Service name goes here
       </h1>
 
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application incomplete</h2>
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 3 of 8 sections.</p>
+
       <ol class="app-task-list">
         <li>
           <h2 class="app-task-list__section">
@@ -20,22 +23,23 @@
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#" aria-describedby="eligibility-completed">
+                <a href="#" aria-describedby="eligibility-status">
                   Check eligibility
                 </a>
               </span>
-              <strong class="govuk-tag app-task-list__task-completed" id="eligibility-completed">Completed</strong>
+              <strong class="govuk-tag app-task-list__tag" id="eligibility-status">Completed</strong>
             </li>
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#" aria-describedby="read-declaration-completed">
+                <a href="#" aria-describedby="read-declaration-status">
                   Read declaration
                 </a>
               </span>
-              <strong class="govuk-tag app-task-list__task-completed" id="read-declaration-completed">Completed</strong>
+              <strong class="govuk-tag app-task-list__tag" id="read-declaration-status">Completed</strong>
             </li>
           </ul>
         </li>
+
         <li>
           <h2 class="app-task-list__section">
             <span class="app-task-list__section-number">2. </span> Prepare application
@@ -43,44 +47,43 @@
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#" aria-describedby="company-information-completed">
+                <a href="#" aria-describedby="company-information-status">
                   Company information
                 </a>
               </span>
-              <strong class="govuk-tag app-task-list__task-completed" id="company-information-completed">Completed</strong>
+              <strong class="govuk-tag app-task-list__tag" id="company-information-status">Completed</strong>
             </li>
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#" aria-describedby="contact-details-completed">
+                <a href="#" aria-describedby="contact-details-status">
                   Your contact details
                 </a>
               </span>
-              <strong class="govuk-tag app-task-list__task-completed" id="contact-details-completed">Completed</strong>
+              <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="contact-details-status">In progress</strong>
             </li>
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#">
+                <a href="#" aria-describedby="list-convictions-status">
                   List convictions
                 </a>
               </span>
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="list-convictions-status">Not started</strong>
             </li>
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#">
-                  Provide financial evidence
-                </a>
+                Provide financial evidence
               </span>
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="financial-evidence-status">Cannot start yet</strong>
             </li>
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#" aria-describedby="medical-information-completed">
-                  Give medical information
-                </a>
+                Give medical information
               </span>
-              <strong class="govuk-tag app-task-list__task-completed" id="medical-information-completed">Completed</strong>
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="medical-information-status">Cannot start yet</strong>
             </li>
           </ul>
         </li>
+
         <li>
           <h2 class="app-task-list__section">
             <span class="app-task-list__section-number">3. </span> Apply
@@ -88,15 +91,13 @@
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a href="#">
-                  Submit and pay
-                </a>
+                Submit and pay
               </span>
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="submit-pay-status">Cannot start yet</strong>
             </li>
           </ul>
         </li>
       </ol>
-
     </div>
   </div>
 

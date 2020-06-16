@@ -53,6 +53,10 @@
   }
 }
 
+// The `app-task-list__task-completed` class was previously used on the task
+// list for the completed tag (changed in 86c90ec) – it's still included here to
+// avoid breaking task lists in existing prototypes.
+.app-task-list__tag,
 .app-task-list__task-completed {
   margin-top: govuk-spacing(2);
   margin-bottom: govuk-spacing(1);
