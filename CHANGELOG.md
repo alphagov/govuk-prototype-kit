@@ -6,7 +6,7 @@
 
 ### Updated task list template
 
-The task list pattern has been updated to make incomplete tasks clearer to users. This change [has also been made to the pattern in the Design System]((https://design-system.service.gov.uk/patterns/task-list-pages/).
+The task list pattern has been updated to make incomplete tasks clearer to users. This change [has also been made to the pattern in the Design System](https://design-system.service.gov.uk/patterns/task-list-pages/).
 
 If you're updating from an older version, in your `app/assets/sass/patterns/task-list.scss` file add the line `.app-task-list__tag,` before `.app-task-list__task-completed {`:
 
