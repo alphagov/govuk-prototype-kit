@@ -1,5 +1,7 @@
 # Unreleased
 
+# 9.8.0 (Feature release)
+
 ## New features
 
 ### Updated task list template
