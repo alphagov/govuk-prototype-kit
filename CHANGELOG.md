@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #913: Fix security issue when running on Glitch](https://github.com/alphagov/govuk-prototype-kit/pull/913)
+
 # 9.8.0 (Feature release)
 
 ## New features
