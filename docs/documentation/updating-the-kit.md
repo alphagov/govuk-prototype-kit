@@ -38,7 +38,7 @@
 
 16. [Run the kit and check it works](/docs/install/run-the-kit).
 
-## Get help
+## Get help
 
 You can:
 
