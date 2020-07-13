@@ -38,6 +38,8 @@
 
 16. [Run the kit and check it works](/docs/install/run-the-kit).
 
+If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 1. Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
+
 ## Get help
 
 You can:
