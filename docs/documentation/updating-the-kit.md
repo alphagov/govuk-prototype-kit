@@ -14,7 +14,7 @@
 
 6. Replace the `app/config.js` file in your prototype with the `app/config.js` file from the unzipped folder.
 
-7. Compare your new `config.js` file to the `config.js` file in the backup you made in step 1, and copy over anything you need to from the backup - for example your service name.
+7. Compare your new `config.js` file to the `config.js` file in the backup you made in step 3, and copy over anything you need to from the backup - for example your service name.
 
 8. Copy `app/assets/sass/patterns` from the unzipped folder to your prototype.
 
@@ -38,7 +38,7 @@
 
 16. [Run the kit and check it works](/docs/install/run-the-kit).
 
-If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 1. Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
+If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 3. Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
 
 ## Get help
 
