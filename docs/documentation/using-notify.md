@@ -22,7 +22,7 @@ To get a key:
 - go to the ‘API integration’ page
 - click ‘API keys’
 - click the ‘Create an API’ button
-- choose the ‘Team and whitelist’ option
+- choose the ‘Team and guest list’ option
 - copy the key to your clipboard
 
 ### Saving your key on your computer
@@ -133,7 +133,7 @@ you’ve sent on the GOV.UK Notify dashboard.
 
 Because your account is in trial mode you’ll only be able to send emails
 to yourself. If you’re doing user research you can add the participants
-email addresses to the ‘whitelist’ in GOV.UK Notify. This will let you
+email addresses to the ‘guest list’ in GOV.UK Notify. This will let you
 send them emails too. You’ll need to collect their email addresses and
 get consent to use them before doing your research.
 
