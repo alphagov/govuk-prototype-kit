@@ -54,7 +54,7 @@ which describes how we prefer git history and commit messages to read.
 
 1. Checkout master and pull latest changes.
 
-2. Decide on a new version number. Do this by looking at the [current "Unreleased" CHANGELOG](../../CHANGELOG.md) changes and updating the previous release number depending on the kind of entries:
+2. Decide on a new version number. Do this by looking at the [current "Unreleased" CHANGELOG](CHANGELOG.md) changes and updating the previous release number depending on the kind of entries:
 
 When you fix a bug and your code stays backwards compatible, increase the patch component:
 
