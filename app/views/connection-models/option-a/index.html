@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Add School | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "/" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Add School
+		</h1>
+		<form action="/connection-models/option-a/confirm" class="form" method="POST">
+			{{ govukInput({
+			  label: {
+				text: "School URN"
+			  },
+			  hint: {
+				text: "For example, ‘123456’."
+			  },
+			  classes: "govuk-input--width-10",
+			  id: "uniqueReferenceNumber",
+			  name: "uniqueReferenceNumber",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukInput({
+			  label: {
+				text: "School name"
+			  },
+			  classes: "govuk-input",
+			  id: "schoolName",
+			  name: "schoolName",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukInput({
+			  label: {
+				text: "Induction coordinator name"
+			  },
+			  classes: "govuk-input",
+			  id: "schoolCoordinatorName",
+			  name: "schoolCoordinatorName",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukInput({
+			  label: {
+				text: "Induction coordinator email address"
+			  },
+			  classes: "govuk-input",
+			  id: "schoolCoordinatorEmail",
+			  name: "schoolCoordinatorEmail",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukRadios({
+			  idPrefix: "deliveryPartner",
+			  name: "deliveryPartner",
+			  fieldset: {
+				legend: {
+				  text: "Which delivery partner would you like to assign to?",
+				  isPageHeading: true,
+				  classes: "govuk-fieldset__legend--s"
+				}
+			  },
+			  items: [
+				{
+				  value: "delivery-partner-a",
+				  text: "Delivery partner A"
+				},
+				{
+				  value: "delivery-partner-b",
+				  text: "Delivery partner B"
+				},
+				{
+				  value: "delivery-partner-c",
+				  text: "Delivery partner C"
+				},
+				{
+				  divider: "or"
+				},
+				{
+				  value: "",
+				  text: "Leave unassigned for now",
+				  label: {
+					classes: 'govuk-label'
+				  }
+				}
+			  ]
+			}) }}
+			
+			{{ govukCheckboxes({
+			  name: "declaration",
+			  fieldset: {
+				legend: {
+				  text: "Declaration",
+				  isPageHeading: true,
+				  classes: "govuk-fieldset__legend--m"
+				}
+			  },
+			  items: [
+				{
+				  value: "have-spoken-to-school",
+				  text: "I have spoken to this school and they are happy for me to add their details to the system"
+				}
+			  ]
+			}) }}
+			
+			{{ govukButton({
+			  text: "Save and continue"
+			}) }}
+		</form>
+	</div>
+</div>
+
+{% endblock %}

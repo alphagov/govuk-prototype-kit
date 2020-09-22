@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Add School | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "./" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Check your details before sending an invitation.
+    </h1>
+
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-9',
+      rows: [
+        {
+          key: {
+            text: "School URN"
+          },
+          value: {
+            text: data['uniqueReferenceNumber']
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "School Name"
+          },
+          value: {
+            text: data['schoolName']
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Induction coordinator name"
+          },
+          value: {
+            text: data['schoolCoordinatorName']
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Induction coordinator email address"
+          },
+          value: {
+            text: data['schoolCoordinatorEmail']
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Partner Assignment"
+          },
+          value: {
+            text: data['deliveryPartner']
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Declaration"
+          },
+          value: {
+            text: "I confirm I have spoken to the school and they are happy for me to add their details to the system"
+          }
+        }
+      ]
+    }) }}
+    <form
+      action="/connection-models/option-a/confirmed"
+      class="form"
+      method="post"
+    >
+      {{ govukButton({ text: "Accept and send" }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}
