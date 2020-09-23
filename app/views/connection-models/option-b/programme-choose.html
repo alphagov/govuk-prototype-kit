@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Choose programme | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "/" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-l">Which induction programme are you planning on delivering?</h1>
+		<form action="/connection-models/option-b/supplier-choose" class="form" method="POST">
+			{{ govukRadios({
+			  idPrefix: "programme",
+			  name: "programme",
+			  items: [
+				{
+				  value: "In-house Programme",
+				  text: "We are delivering our own",
+				  hint: {
+				    text: "Short descriptor about own approach"
+				  }
+				},
+				{
+				  value: "Core Programme",
+				  text: "Core Induction Programme",
+				  hint: {
+				  	text: "Short descriptor about the Core Induction Programme"
+				  }
+				},
+				{
+				  value: "Full Programme",
+				  text: "Full Induction Programme",
+				  hint: {
+					text: "Short descriptor about the Core Induction Programme"
+				  }
+				}
+			  ]
+			}) }}
+			
+			{{ govukButton({
+			  text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

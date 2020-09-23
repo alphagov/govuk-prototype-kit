@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirm your school’s Early Career Framework selection | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "./" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	<h1 class="govuk-heading-l">
+	  Confirm your school’s Early Career Framework selection
+	</h1>
+
+	<h2 class="govuk-heading-m">School details</h2>
+
+	{{ govukSummaryList({
+	  classes: 'govuk-!-margin-bottom-9',
+	  rows: [
+		{
+		  key: {
+			text: "School URN"
+		  },
+		  value: {
+			text: data['uniqueReferenceNumber']
+		  },
+		  actions: {
+			items: [
+			  {
+				href: "/connection-models/option-b/school-lookup",
+				text: "Change",
+				visuallyHiddenText: "school URN"
+			  }
+			]
+		  }
+		},
+		{
+		  key: {
+			text: "School Name"
+		  },
+		  value: {
+			text: data['schoolName']
+		  },
+		  actions: {
+			items: [
+			  {
+				href: "/connection-models/option-b/school-lookup",
+				text: "Change",
+				visuallyHiddenText: "school name"
+			  }
+			]
+		  }
+		}
+	  ]
+	}) }}
+	<h2 class="govuk-heading-m">Delivery of the Early Career Framework</h2>
+	{{ govukSummaryList({
+	  classes: 'govuk-!-margin-bottom-9',
+	  rows: [
+		{
+		  key: {
+			text: "Programme"
+		  },
+		  value: {
+			text: data['programme']
+		  },
+		  actions: {
+			items: [
+			  {
+				href: "/connection-models/option-b/programme-choose",
+				text: "Change",
+				visuallyHiddenText: "programme"
+			  }
+			]
+		  }
+		},
+		{
+		  key: {
+			text: "Supplier"
+		  },
+		  value: {
+			text: data['supplier']
+		  },
+		  actions: {
+			items: [
+			  {
+				href: "/connection-models/option-b/supplier-choose",
+				text: "Change",
+				visuallyHiddenText: "supplier"
+			  }
+			]
+		  }
+		}
+	  ]
+	}) }}
+	<h2 class="govuk-heading-m">Induction coordinator details</h2>
+
+	{{ govukSummaryList({
+		  classes: 'govuk-!-margin-bottom-9',
+		  rows: [
+			{
+			  key: {
+				text: "Name"
+			  },
+			  value: {
+				text: data['schoolCoordinatorName']
+			  },
+			  actions: {
+				items: [
+				  {
+					href: "/connection-models/option-b/create-user",
+					text: "Change",
+					visuallyHiddenText: "induction coordinator name"
+				  }
+				]
+			  }
+			},
+			{
+			  key: {
+				text: "Email address"
+			  },
+			  value: {
+				text: data['schoolCoordinatorEmail']
+			  },
+			  actions: {
+				items: [
+				  {
+					href: "/connection-models/option-b/create-user",
+					text: "Change",
+					visuallyHiddenText: "induction coordinator email"
+				  }
+				]
+			  }
+			}
+		  ]
+		}) }}
+		
+	{{ govukButton({ text: "Accept and send", href: "/connection-models/option-b/confirmed" }) }}
+  </div>
+</div>
+{% endblock %}

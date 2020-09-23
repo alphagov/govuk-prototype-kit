@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Partnership applications | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [
+	{
+	  text: "Home",
+	  href: "/"
+	},
+	{
+	  text: "Partnerships",
+	  href: "/"
+	}
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-l">Partnership applications</h1>
+		<form action="/connection-models/option-b/supplier-choose" class="form" method="POST">
+			{{ govukTable({
+			  caption: "School partnership applications",
+			  firstCellIsHeader: true,
+			  head: [
+				{
+				  text: "Date"
+				},
+				{
+				  text: "School"
+				},
+				{
+				  text: "Status"
+				},
+				{
+				  text: "Action"
+				}
+			  ],
+			  rows: [
+			  	[
+				  {text: "23 September 2020"},
+				  {text: "Lockyers Middle School"},
+				  {text: govukTag({text:"Pending", classes: "govuk-tag--yellow"})},
+				  {html: '<a href="#" class="govuk-link">Confirm</a>'}
+				],
+				
+				[
+				  {text: "22 September 2020"},
+				  {text: "Springdale First"},
+				  {text: govukTag({text:"Confirmed", classes: "govuk-tag--green"})},
+				  {}
+				],
+				
+				[
+				  {text: "12 September 2020"},
+				  {text: "Olney First School"},
+				  {text: govukTag({text:"Rejected", classes: "govuk-tag--red"})},
+				  {}
+				]
+			  ]
+			})
+		}}
+			
+			{{ govukButton({
+			  href: "/connection-models/option-a",
+			  text: "Add School"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

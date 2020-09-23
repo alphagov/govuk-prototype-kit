@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Induction Coordinators details | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "/" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-l">Induction Coordinators details</h1>
+		<p class="govuk-body">Explaination of what a Induction Coordinators is and why we need the details.</p>
+		<form action="/connection-models/option-b/confirm" class="form" method="POST">
+			{{ govukInput({
+			  label: {
+				text: "Name"
+			  },
+			  classes: "govuk-input",
+			  id: "schoolCoordinatorName",
+			  name: "schoolCoordinatorName",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukInput({
+			  label: {
+				text: "Email address"
+			  },
+			  classes: "govuk-input",
+			  id: "schoolCoordinatorEmail",
+			  name: "schoolCoordinatorEmail",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukButton({
+			  text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

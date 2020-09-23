@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Find school | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "/" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-l">Which school do you work at?</h1>
+		<form action="/connection-models/option-b/programme-choose" class="form" method="POST">
+			{{ govukInput({
+			  label: {
+				text: "School URN"
+			  },
+			  hint: {
+				text: "For example, ‘123456’."
+			  },
+			  classes: "govuk-input--width-10",
+			  id: "uniqueReferenceNumber",
+			  name: "uniqueReferenceNumber",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukInput({
+			  label: {
+				text: "School name"
+			  },
+			  classes: "govuk-input",
+			  id: "schoolName",
+			  name: "schoolName",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukButton({
+			  text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

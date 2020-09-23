@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Choose supplier | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "/" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-l">Which supplier have you agreed to work with? </h1>
+		<p class="govuk-body">Here are the list of the Full Induction Suppliers. You should have spoken to a supplier so that they know to expect your account request. If you have not spoken to a supplier you can still request an account from them, however it may not be accepted or the process might take longer.</p>
+		<form action="/connection-models/option-b/create-user" class="form" method="POST">
+			{{ govukRadios({
+			  idPrefix: "supplier",
+			  name: "supplier",
+			  items: [
+				{
+				  value: "Supplier A",
+				  text: "Supplier A"
+				},
+				{
+				  value: "Supplier B",
+				  text: "Supplier B"
+				},
+				{
+				  value: "Supplier C",
+				  text: "Supplier C"
+				},
+				{
+				  value: "Supplier D",
+				  text: "Supplier D"
+				}
+			  ]
+			}) }}
+			
+			{{ govukButton({
+			  text: "Continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}

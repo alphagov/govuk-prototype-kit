@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Add School | Early Career Framework
+  Submit school's Early Career Framework appraoch | Early Career Framework
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,7 +11,24 @@
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-    TODO
+    <h1 class="govuk-heading-l">Submit your school's Early Career Framework approach</h1>
+    <p class="govuk-body">Use this service to submit your school’s Early Career Framework delivery approach. Once these details have been verified, you will be able to create your school’s log in details and access the Early Career Framework where you can add Early Career Teachers, Mentors and other members of the induction team.</p>
+    <p class="govuk-body">You should still use this service if your school is planning on delivering their own approach for the Early Career Framework.</p>
+    
+    {{ govukButton({
+      text: "Start now",
+      href: "/connection-models/option-b/school-lookup",
+      classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+      isStartButton: true
+    }) }}
+    
+    <h2 class="govuk-heading-s">Already created an account?</h2>
+    <p class="govuk-body"><a href="#" class="govuk-link">Sign in</a></p>
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <p class="govuk-body">You should only use this service, if your school is sure of what approach they are taking and which supplier they are using (where relevant)</p>
+      
+    <p class="govuk-body">If you are still unsure, please visit the <a href="#" class="govuk-link">Early Career Framework guidance pages</a>.</p>
   </div>
 </div>
 {% endblock %}
