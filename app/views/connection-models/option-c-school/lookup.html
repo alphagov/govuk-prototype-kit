@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School Lookup | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+	  <div class="govuk-grid-column-two-thirds">
+		  <h1 class="govuk-heading-l">What is the name of your school?</h1>
+      <p class="govuk-body">Search for your school  and select from the search results.</p>
+      <form action="./results" class="form" method="POST">
+      {{ govukInput({
+          label: {
+            text: "School name, URN, LASTAB, or UKPRN"
+          },
+          classes: "govuk-input",
+          id: "search",
+          name: "search",
+          spellcheck: false
+        }) }}
+      {{ govukButton({
+          text: "Find school"
+        }) }}
+      </form>
+	  </div>
+</div>
+{% endblock %}

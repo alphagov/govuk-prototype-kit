@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Create Account | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "/" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-l">Create your admin account</h1>
+
+		<p class="govuk-body">Create your admin account to:</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>Access and review invites from lead providers</li>
+			<li>Confirm your school’s approach</li>
+			<li>Sign in to the Early Career Framework once your school’s approach is confirmed</li>
+		</ul>
+		
+		<p class="govuk-body">Once you have access to the Early Career Framework you can add mentors, early career teachers and other induction colleagues to your school’s platform. </p>
+		
+		<p class="govuk-body">We recommend that this be a staff member in school who is in charge of inductions. You can change the admin details at any time.</p>
+		
+		<h4 class="govuk-heading-s">DfE Sign-in</h4>
+		<p class="govuk-body">Sign in via <a href="#">DfE Sign-in</a></p>
+
+		<h4 class="govuk-heading-s">Magic Link</h4>
+		<p class="govuk-body">Enter your email to sign-in or create an account.</p>
+		<form action="./check-email" class="form" method="POST">
+			
+			{{ govukInput({
+			  label: {
+				text: "Email address"
+			  },
+			  classes: "govuk-input",
+			  id: "email",
+			  name: "email",
+			  spellcheck: false
+			}) }}
+			
+			{{ govukButton({
+			  text: "Save and Sign in"
+			}) }}
+			
+			<p class="govuk-body-s">We will save your current progress and send you a link via email you will need to click to verify yourself.</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Dashboard | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  <h1 class="govuk-heading-l">Supplier invitations</h1>
+<p class="govuk-body">The following induction suppliers have invited you to join their induction training programme.</p>
+<p class="govuk-body">You do not need to accept the first invitation you get, as you may get multiple invitations.</p>
+
+{{ govukInsetText({
+  text: "If there is a particular supplier you want to work with, you should contact them directly, so that they can create an invitation for you."
+}) }}
+
+<h4 class="govuk-heading-s">Current invitations</h4>
+<form action="./confirm-supplier" class="form" method="POST">
+
+{{ govukRadios({
+  idPrefix: "supplier",
+  name: "supplier",
+  items: [
+	{
+	value: "Supplier A",
+	  text: "Supplier A",
+	  hint: {
+		text: "early career framework induction training programme"
+	  }
+	},
+	{
+	value: "Supplier B",
+	  text: "Supplier B",
+	  hint: {
+		text: "early career framework induction training programme"
+	  }
+	},
+	{
+	value: "Supplier C",
+	  text: "Supplier C",
+	  hint: {
+		text: "early career framework induction training programme"
+	  }
+	}
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+  </div>
+</div>
+{% endblock %}

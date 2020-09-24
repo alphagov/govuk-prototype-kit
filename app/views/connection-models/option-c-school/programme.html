@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Programmes | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+	  <div class="govuk-grid-column-two-thirds">
+		  <h1 class="govuk-heading-l">How would you like to run the induction programme in {{ data['schoolName'] }}?</h1>
+	  <form action="./create-user" class="form" method="POST">
+	  	{{ govukRadios({
+		idPrefix: "programme",
+		name: "programme",
+		items: [
+			{
+			value: "Full Programme",
+			text: "Full Induction Programme",
+			hint: {
+			  text: "Short descriptor about the Core Induction Programme"
+			}
+		  },
+		  
+		  {
+			value: "Core Programme",
+			text: "Core Induction Programme",
+			hint: {
+				text: "Short descriptor about the Core Induction Programme"
+			}
+		  },
+		  {
+			  value: "In-house Programme",
+			  text: "Delivering school based programme",
+			  hint: {
+				text: "Short descriptor about own approach"
+			  }
+			},
+		  {
+			divider: "or"
+		  },
+		  {
+		    value: 'Undecided',
+			text: "Yet to decide"
+		  }
+		]
+	  }) }}
+	  {{ govukButton({
+		  text: "Continue"
+		}) }}
+	  </form>
+	  </div>
+</div>
+{% endblock %}
