@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Partnership applications | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text:"Back", href: "./" }) }} 
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h1 class="govuk-heading-l">Partnership applications</h1>
+		{{ govukAccordion({
+		  id: "accordion-default",
+		  items: [
+			  { 
+				  expanded: true,
+				  heading: {
+				  	text: "Schools registered for the Full Induction Programme"
+				  },
+				  content: {
+					  html: govukTable({
+						firstCellIsHeader: true,
+						head: [
+						  {
+							text: "School"
+						  },
+						  {
+							text: "Status"
+						  },
+						  {
+							text: "Action"
+						  }
+						],
+						rows: [
+							[
+							{text: "Lockyers Middle School"},
+							{text: govukTag({text:"No invites", classes: "govuk-tag--green"})},
+							{html: '<a href="#" class="govuk-link">Invite school</a>'}
+						  ],
+						  
+						  [
+							{text: "Springdale First"},
+							{text: govukTag({text:"Supplier confirmed", classes: "govuk-tag--red"})},
+							{}
+						  ],
+						  
+						  [
+							{text: "Olney First School"},
+							{text: govukTag({text:"Some invites", classes: "govuk-tag--yellow"})},
+							{html: '<a href="#" class="govuk-link">Invite school</a>'}
+						  ],
+						  [
+							{text: "Parkstone Grammer"},
+							{text: govukTag({text:"No invites", classes: "govuk-tag--green"})},
+							{html: '<a href="#" class="govuk-link">Invite school</a>'}
+						  ],
+						  [
+							{text: "Poole Grammer"},
+							{text: govukTag({text:"Some invites", classes: "govuk-tag--yellow"})},
+							{html: '<a href="#" class="govuk-link">Invite school</a>'}
+						  ]
+						]
+					  })
+					}
+			  },
+			  {
+			  	heading: {
+					text: "Schools registered for the Core Induction Programme"
+				}
+			  },
+			  {
+				heading: {
+				  text: "Schools registered to do own approach"
+			  }
+			}
+		  ]
+		  })
+		}}
+
+		</div>
+
+		
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

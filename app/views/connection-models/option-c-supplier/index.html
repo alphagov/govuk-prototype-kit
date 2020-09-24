@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Partnership applications | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-l">Early Career Framework partnerships</h1>
+		<h2 class="govuk-heading-m">Inviting schools to partner</h2>
+		<p class="govuk-body">Before inviting schools to partner please read the guidance on Acceptable behaviours for <a href="#">recruiting schools onto the Early Career Framework</a>.</p>
+		
+		{{ govukButton({text: "Add school", href: "./lookup"}) }} {{ govukButton({href: "./database",text: "Search database", classes: "govuk-button--secondary"}) }}
+		
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<h2 class="govuk-heading-m">School partnerships</h2>
+		
+	
+		{{ govukTable({
+		  caption: "Corfe Hills School",
+		  captionClasses: "govuk-heading-m",
+		  firstCellIsHeader: true,
+		  rows: [
+			[
+			  {
+				text: "Phase / Type",
+				classes: 'govuk-!-width-one-half'
+			  },
+			  {
+				text: "Middle"
+			  }
+			],
+			[
+			  {
+				text: "URN"
+			  },
+			  {
+				text: "000000"
+			  }
+			],
+			[
+			  {
+				text: "Local authority"
+			  },
+			  {
+				text: "Dorset"
+			  }
+			],
+			[
+			  {
+				text: "Partnership status"
+			  },
+			  {
+				html: govukTag({text: "confirmed", classes: "govuk-tag--green"})
+			  }
+			]
+		  ]
+		}) }}
+		
+		{{ govukTable({
+		  caption: "Lockyers Middle School",
+		  captionClasses: "govuk-heading-m",
+		  firstCellIsHeader: true,
+		  rows: [
+			[
+			  {
+				text: "Phase / Type",
+				classes: 'govuk-!-width-one-half'
+			  },
+			  {
+				text: "Middle"
+			  }
+			],
+			[
+			  {
+				text: "URN"
+			  },
+			  {
+				text: "000000"
+			  }
+			],
+			[
+			  {
+				text: "Local authority"
+			  },
+			  {
+				text: "Dorset"
+			  }
+			],
+			[
+			  {
+				text: "Partnership status"
+			  },
+			  {
+				html: govukTag({text: "pending", classes: "govuk-tag--yellow"})
+			  }
+			]
+		  ]
+		}) }}
+		
+		{{ govukTable({
+		  caption: "Olney First School",
+		  captionClasses: "govuk-heading-m",
+		  firstCellIsHeader: true,
+		  rows: [
+			[
+			  {
+				text: "Phase / Type",
+				classes: 'govuk-!-width-one-half'
+			  },
+			  {
+				text: "Middle"
+			  }
+			],
+			[
+			  {
+				text: "URN"
+			  },
+			  {
+				text: "000000"
+			  }
+			],
+			[
+			  {
+				text: "Local authority"
+			  },
+			  {
+				text: "Dorset"
+			  }
+			],
+			[
+			  {
+				text: "Partnership status"
+			  },
+			  {
+				html: govukTag({text: "confirmed", classes: "govuk-tag--green"})
+			  }
+			]
+		  ]
+		}) }}
+	</div>
+</div>
+{% endblock %}

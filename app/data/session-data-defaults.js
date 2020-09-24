@@ -18,7 +18,7 @@ Example usage:
 */
 
 module.exports = {
-
+ programme: 'Full'
   // Insert values here
 
 }

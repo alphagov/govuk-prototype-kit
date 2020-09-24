@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Add School | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Add School
+		</h1>
+		<form action="./confirm" class="form" method="POST">
+			{{ govukRadios({
+			  idPrefix: "partner",
+			  name: "partner",
+			  fieldset: {
+				legend: {
+				  text: "Which delivery partner would you like to assign to?",
+				  isPageHeading: true,
+				  classes: "govuk-fieldset__legend--s"
+				}
+			  },
+			  items: [
+				{
+				  value: "delivery-partner-a",
+				  text: "Delivery partner A"
+				},
+				{
+				  value: "delivery-partner-b",
+				  text: "Delivery partner B"
+				},
+				{
+				  value: "delivery-partner-c",
+				  text: "Delivery partner C"
+				},
+				{
+				  divider: "or"
+				},
+				{
+				  value: "",
+				  text: "Leave unassigned for now",
+				  label: {
+					classes: 'govuk-label'
+				  }
+				}
+			  ]
+			}) }}
+			{{ govukButton({
+			  text: "Save and continue"
+			}) }}
+		</form>
+	</div>
+</div>
+{% endblock %}
