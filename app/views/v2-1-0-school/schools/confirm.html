@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirm school registration | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  <h1 class="govuk-heading-l">Confirm your school’s registration details</h1>
+  
+	  <h2 class="govuk-heading-m">School details</h2>
+			
+		{{ govukSummaryList({
+		  classes: 'govuk-!-margin-bottom-9',
+		  rows: [
+			{
+			  key: {
+				text: "School details"
+			  },
+			  value: {
+				html: data['schoolName'] + "<br>" + "URN: 00000000"
+			  },
+			  actions: {
+				items: [
+				  {
+					href: "./lookup",
+					text: "Change",
+					visuallyHiddenText: "school"
+				  }
+				]
+			  }
+			},
+			{
+			  key: {
+				text: "Programme"
+			  },
+			  value: {
+				text: data['programme']
+			  },
+			  actions: {
+				items: [
+				  {
+					href: "./programme",
+					text: "Change",
+					visuallyHiddenText: "programme"
+				  }
+				]
+			  }
+			}
+		  ]
+		}) }}
+	  
+	    {{ govukButton({ text: "Confirm and save", href: "./confirmed" }) }}
+  </div>
+</div>
+{% endblock %}

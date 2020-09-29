@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirm school registration | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Confirm your school’s supplier details</h1>
+  
+    {{govukWarningText({iconFallbackText: "Warning", text: "Once you've confirmed your supplier it's it non reversable."})}}
+      
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-9',
+      rows: [
+      {
+        key: {
+        text: "School details"
+        },
+        value: {
+        html: data['schoolName'] + "<br>" + "URN: 00000000"
+        },
+        actions: {
+        items: [
+          {
+          href: "./lookup",
+          text: "Change",
+          visuallyHiddenText: "school"
+          }
+        ]
+        }
+      },
+      {
+        key: {
+        text: "Induction Programme"
+        },
+        value: {
+        text: data['programme']
+        },
+        actions: {
+        items: [
+          {
+          href: "./programme",
+          text: "Change",
+          visuallyHiddenText: "programme"
+          }
+        ]
+        }
+      },
+      {
+        key: {
+        text: "Induction Supplier"
+        },
+        value: {
+        text: data['supplier']
+        },
+        actions: {                 
+        items: [ 
+          {
+          href: "./invitations",
+          text: "Change",
+          visuallyHiddenText: "supplier"
+          }
+        ]
+        }
+      }
+      ]
+    }) }}
+    
+      {{ govukButton({ text: "Confirm and connect", href: "./confirmed" }) }}
+  </div>
+</div>
+{% endblock %}

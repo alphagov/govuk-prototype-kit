@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check email | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  {{ govukPanel({
+		titleText: "Check your email"
+	  }) }}
+	  
+	  <p class="govuk-body">We have sent you a verification email.</p>
+	  <h2 class="govuk-heading-m">What happens next</h2>
+	  <p class="govuk-body">
+		You’ll receive a verification email in the next few minutes.
+	  </p>
+	  
+	  <p class="govuk-body">
+		You will need to click the link within the email to verify your account.
+	  </p>
+
+	  <p class="govuk-body">
+		  Not received your verification email?
+		  <a href="#" class="govuk-link">Resend email</a> or use <a href="">DfE Sign-in</a>
+	  </p>
+	  
+	  {{ govukInsetText({
+		html: '
+    <strong class="govuk-tag govuk-tag--grey">PROTOTYPE</strong> 
+    The email will contain a link to verify authentication, bringing the visitor back. 
+    From the previous START pages, we will save a return-to reference to quickly get the user back
+    onto the correct track. 
+    <ul>
+    <li><a href="./dashboard">Skip to Dashboard</a></li>
+    <li><a href="./schools/search">Skip to School Registration</a></li>
+    </ul>
+    '
+	  }) }}
+  </div>
+</div>
+{% endblock %}

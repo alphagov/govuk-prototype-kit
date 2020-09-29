@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Sign-in | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h4 class="govuk-heading-l">DfE Sign-in</h4>
+      <p class="govuk-body">
+      Sign in via <a href="#">DfE Sign-in</a>
+      </p>
+
+      <h4 class="govuk-heading-s">Magic Link</h4>
+      <p class="govuk-body">Enter your email to sign-in or create an account.</p>
+      <form action="./check-email" class="form" method="POST">
+        {{ govukInput({
+          label: {
+          text: "Email address"
+          },
+          classes: "govuk-input",
+          id: "email",
+          name: "email",
+          spellcheck: false,
+          required: true
+        }) }}
+
+        {{ govukButton({
+          text: "Sign in via email"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

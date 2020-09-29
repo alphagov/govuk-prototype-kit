@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Dashboard | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+    {
+      text: "Dashboard",
+      href: "../dashboard"
+    },
+    {
+      text: "Teachers",
+      href: "./"
+    }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Teachers</h1>
+      <p class="govuk-body">Todo</p>
+    </div>
+  </div>
+{% endblock %}

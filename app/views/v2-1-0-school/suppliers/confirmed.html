@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School registered | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: "Thank you for submitting school’s approach"
+        }) }}
+
+      <p class="govuk-body">We have sent you a confirmation email.</p>
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">
+        You can now access to the Early Career Framework with {{data['supplier']}}.</p>
+
+      {{ govukButton({ text: "Continue", href: "../dashboard",  classes: "govuk-button--secondary" }) }}
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+    </p>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Sign-in | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h4 class="govuk-heading-l">Dashboard</h4>
+      <p class="govuk-body">
+        You've gotten <strong>3</strong> supplier invitations to connect with a Framework Supplier. 
+      </p>
+      {{ govukButton({text: "View Supplier Invitations", href:"./suppliers/"}) }}
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      {{ govukButton({text: "Switch School", href:"./schools/", classes: "govuk-button--secondary"}) }}
+    </div>
+  </div>
+{% endblock %}
