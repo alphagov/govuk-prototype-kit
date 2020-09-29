@@ -24,7 +24,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Your Schools</h1>
       <p class="govuk-body">You can switch which school you're managing below. </p>
-
+      {{ govukButton({text: "Add school", href: "./search"}) }}
       <div>
         {{ govukSummaryList({
            classes: 'govuk-summary-list--no-border',
