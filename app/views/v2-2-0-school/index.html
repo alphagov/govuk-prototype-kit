@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Registration | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Register your school for the Early Career Framework</h1>
+      <p class="govuk-body">The Early Career Framework induction programme is the new statutory requirement for the induction of early career teachers that applies from September 2021 to all maintained schools in England.</p>
+      <p class="govuk-body">There is no cost to schools for this training, it is funded by the Department for Education.</p>
+      <p class="govuk-body">If you already have an induction training provider that works with your school, you may need to contact them to get information about your options for meeting the new statutory requirements. If you already know which provider you will work with in 2021 to 2022 you will be able to confirm that on this service and set up your programme.</p>
+      {{ govukWarningText({text: "You need to be authorised by a senior leader to register your school."}) }}
+
+      {{ govukButton({
+        text: "Start registration",
+        href: "./schools/search",
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+        isStartButton: true
+        }) }}
+
+      <p class="govuk-body">If your school is already registered and you have an account, you can sign in to your Early Career Framework induction programme</p>
+      <h2 class="govuk-heading-m">Before you start</h2>
+      <p class="govuk-body">This task is well suited to the induction coordinator or induction tutor in the school. Alternatively the registration can be carried out by a more senior leader who can then set up the induction coordinator to manage the programme through the school year.</p>
+      <p class="govuk-body">You will need access to your school-based email address in order to pass authentication.</p>
+      <p class="govuk-body">Once you have registered, you will be able to add your first-year newly qualified teachers (NQTs) and their mentors to this service.</p>
+      <p class="govuk-body">To do this you will need their:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Full name</li>
+        <li>School-based email address</li>
+        <li>Teacher reference number (<abbr title="Teacher Reference Number">TRN</abbr>)</li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}

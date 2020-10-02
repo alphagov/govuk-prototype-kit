@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Verify email | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h4 class="govuk-heading-l">Email sign-in</h4>
+      <p class="govuk-body">Enter a school-based email address so we will be able to authenticate you.</p>
+      <form action="./send-email" class="form" method="POST">
+        {{ govukInput({
+          label: {
+          text: "Email address"
+          },
+          classes: "govuk-input",
+          id: "email",
+          name: "email",
+          hint: {text:"School-based email should be in the format yourname@schoolname.county.sch.uk"},
+          spellcheck: false,
+          required: true
+        }) }}
+
+        {{ govukButton({
+          text: "Sign confirmation email"
+        }) }}
+      </form>
+      {{ govukInsetText({
+		    html: '<strong class="govuk-tag govuk-tag--grey">PROTOTYPE</strong> 
+        This will actually send a email using Gov.uk notify for invited team members contact <a href="mailto:kyle.welsby@digital.education.gov.uk?subject=ECF-Prototype%20Notify">kyle.welsby@digital.education.gov.uk</a> for access.'
+      }) }}
+    </div>
+  </div>
+{% endblock %}

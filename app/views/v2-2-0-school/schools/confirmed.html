@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School registered | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+    titleText: "Registration Complete"
+    }) }}
+
+      <p class="govuk-body">You have registered {{ data['schoolName'] }} on the Early Career Framework induction programme.</p>
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">2 versions of this WHN text</p>
+      <p class="govuk-body">Version 1 - with invites</p>
+      <p class="govuk-body">You can now view invitations to {{ data['schoolName'] }} from providers who have said they are available to deliver the induction programme for your school.</p>
+
+      {{ govukButton({ text: "Continue", href: "../dashboard",  classes: "govuk-button--secondary" }) }}
+
+      <p>Exit</p>
+      <p>To sign back into this service go to <a href="https://www.education.services.gov.uk/early-career-framework-induction/home">https://www.education.services.gov.uk/early-career-framework-induction/home</a> (save this link).</p>
+
+    </div>
+  </div>
+{% endblock %}

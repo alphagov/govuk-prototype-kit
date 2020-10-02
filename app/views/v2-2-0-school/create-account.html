@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Create Account | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h4 class="govuk-heading-l">Enter your details</h4>
+      <form action="./schools/confirmed" class="form" method="POST">
+        {{ govukInput({
+          label: {text: "First name"},
+          classes: "govuk-input",
+          id: "firstName",
+          name: "firstName",
+          spellcheck: false,
+          required: true
+        }) }}
+
+        {{ govukInput({
+          label: {text: "Last name"},
+          classes: "govuk-input",
+          id: "lastName",
+          name: "lastName",
+          spellcheck: false,
+          required: true
+        }) }}
+
+        {{
+          govukRadios({
+            idPrefix: "userRole",
+            name: "userRole",
+            items: [
+              {
+                value: "Headteacher or executive lead",
+                text: "Headteacher or executive lead"
+              },
+              {
+                value: "Other senior lead",
+                text: "Other senior lead"
+              },
+              {
+                value: "Induction coordinator, Induction tutor, Senior mentor",
+                text: "Induction coordinator, Induction tutor, Senior mentor"
+              },
+              {
+			          divider: "or"
+		          },
+              {
+                value: "Other",
+                text: "Other",
+                hint: {
+                  text: "You must authorised by a senior leader to register the school"
+                }
+              }
+            ]
+          })
+        }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

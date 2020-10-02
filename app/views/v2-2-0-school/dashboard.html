@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Sign-in | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ data["schoolName"] }}'s Early Career Framework programme</h1>
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">Registration details</a>
+      </p>
+      <h2 class="govuk-heading-m">Full indunction programe invitations</h2>
+      <p class="govuk-body">
+        You have <strong>3</strong> supplier invitations to connect with a Framework Supplier. 
+      </p>
+      {{ govukButton({text: "View Supplier Invitations", href:"./suppliers"}) }}
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h3 class="govuk-heading-s">Other programme options</h3>
+      <p class="govuk-body">You may also be interested in the <a href="#" class="govuk-link">Core Induction Programme</a> or a <a href="#" class="govuk-link">School-based approach</a>.</p>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Dashboard | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+    {
+      text: "Dashboard",
+      href: "../dashboard"
+    },
+    {
+      text: "Suppliers",
+      href: "./"
+    }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Invitations from providers</h1>
+      <p class="govuk-body">The following DfE induction partners have invited you to join their induction training programme.
+      You can see the organisation that is managing the programme, and you will see the training provider if one has been suggested.
+      </p>
+
+      <h3 class="govuk-heading-s"><a herf="mailto:gov@example.com">Saffron Walden Country High School and Saffron Academy Trust</a></h3>
+      <p class="govuk-body">Using training and self-study resources authored by Ambition Institute</p>
+      <p class="govuk-body">Number of schools linked in Hampshire: 87</p>
+      <p class="govuk-body">Number of schools linked in Hampshire Learn Fast MAT: 55</p>
+      {{ govukButton({text: "View invite"}) }}
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h3 class="govuk-heading-s"><a herf="mailto:gov@example.com">Harris Academy Chafford Hundred and Harris Federation</a></h3>
+      <p class="govuk-body">Using training and self-study resources authored by Teach First</p>
+      <p class="govuk-body">Number of schools linked in Hampshire: 87</p>
+      <p class="govuk-body">Number of schools linked in Hampshire Learn Fast MAT: 55</p>
+      <a href="#" class="govuk-link">Accept and set up link</a>
+      {{ govukButton({text: "View invite"}) }}
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    </div>
+  </div>
+{% endblock %}

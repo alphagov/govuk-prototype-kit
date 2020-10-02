@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School Lookup | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+    {
+      text: "Dashboard",
+      href: "../dashboard"
+    },
+    {
+      text: "Schools",
+      href: "./"
+    }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Your Schools</h1>
+      <p class="govuk-body">You can switch which school you're managing below. </p>
+      {{ govukButton({text: "Add school", href: "./search"}) }}
+      <div>
+        {{ govukSummaryList({
+           classes: 'govuk-summary-list--no-border',
+           rows: [
+              {
+                key: {text: "Name"},
+                value: {text: "The Verdin High School"}
+              },
+              {
+                key: {text: "Address"},
+                value: {text: "Grange Lane, Winsford, Cheshire, CW7 2BT"}
+              },
+              {
+                key: {text: "Local authority"},
+                value: {text: "Cheshire West and Chester (896)"}
+              },
+              {
+                key: {text: "ID"},
+                value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 111412, DfE number: 896/4130<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10006843"}
+              }
+           ]
+           }) }}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+
+      <div>
+        {{ govukSummaryList({
+           classes: 'govuk-summary-list--no-border',
+           rows: [
+              {
+                key: {text: "Name"},
+                value: {text: "Brent Knoll School"},
+                actions: {
+                  items: [
+                    {href: "#", text: "Switch", visuallyHiddenText: "school"}
+                  ]
+                }
+              },
+              {
+                key: {text: "Address"},
+                value: {text: "Perry Rise, London, SE23 2QU"}
+              },
+              {
+                key: {text: "Local authority"},
+                value: {text: "Lewisham (209)"}
+              },
+              {
+                key: {text: "ID"},
+                value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 100760, DfE number: 209/7038<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10015159"}
+              }
+           ]
+           }) }}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+    </div>
+  </div>
+{% endblock %}

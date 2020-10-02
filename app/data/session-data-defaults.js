@@ -18,7 +18,10 @@ Example usage:
 */
 
 module.exports = {
- programme: 'Full'
+ programme: 'Full',
+ schoolName: 'Crofe Hills School',
+ schoolAddress: 'Higher Blandford Rd, Broadstone, BH18 9BG',
+ schoolURN: '136574'
   // Insert values here
 
 }

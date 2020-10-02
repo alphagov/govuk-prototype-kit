@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School results | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+	  <div class="govuk-grid-column-two-thirds">
+		  <h1 class="govuk-heading-l">Find your school</h1>
+	  <form action="./confirm" class="form" method="POST">
+	  {{ govukSelect({
+		id: "schoolName",
+		name: "schoolName",
+		label: {
+		  text: "Select a school"
+		},
+		items: [
+		  {
+			text: "2 schools found",
+			disabled: true,
+			selected: true
+		  },
+		  {
+		  value: "Corfe Hills School",
+			text: "Corfe Hills School"
+		  },
+		  {
+		  value: "Verdin High School",
+
+			text: "Verdin High School"
+		  }
+		]
+	  }) }}
+	  <p class="govuk-body"><a href="#" class="govuk-link">I can't find my school in the list</a></p>
+	  
+	  {{ govukButton({
+		text: "Continue"
+	  }) }}
+	  
+	  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirm school | Early Career Framework
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Confirm your school</h1>
+
+      <h2 class="govuk-heading-m">{{ data['schoolName'] }}</h2>
+
+      {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-9',
+      rows: [
+      {
+        key: {
+          text: "Address"
+        },
+        value: {
+          html: data['schoolAddress']
+        }
+      },
+      {
+        key: {
+          text: "URN"
+        },
+        value: {
+          html: data['schoolURN']
+        }
+      }
+      ]
+    }) }}
+
+      {{ govukButton({ text: "Confirm", href: "../create-account" }) }}
+      <p class="govuk-body"><a href="./results" class="govuk-link">Go back to school results</a></p>
+    </div>
+  </div>
+{% endblock %}
