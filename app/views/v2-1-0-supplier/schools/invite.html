@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School results | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back to results",
+    href: "./results"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Corfe Hills School</h1>
+
+      {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border',
+          rows: [
+            {
+              key: {text: "Address"},
+              value: {html: "Higher Blandford Road, Broadstone, Dorset, <br/>BH18 9BG"}
+            },
+            {
+              key: {text: "Local authority"},
+              value: {text: "Bournemouth, Christchurch and Poole (839)"}
+            },
+            {
+              key: {text: "ID"},
+              value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 136574, DfE number: 839/5410<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10033260"}
+            },
+            {
+              key: {text: "Phase of education"},
+              value: {text: "Secondary"}
+            },
+            {
+              key: {text: "Disadvantaged"},
+              value: {text: "Yes"}
+            },
+            {
+              key: {text: "Age range"},
+              value: {text: "13 to 18"}
+            },
+            {
+              key: {text: "Type of school"},
+              value: {text: "Academy converter"}
+            },
+            {
+              key: {text: "Network"},
+              value: {text: "CORFE HILLS SCHOOL ACADEMY TRUST"}
+            }
+          ]
+          }) }}
+      <h2 class="govuk-heading-m">Early Careers Framework registration details</h2>
+      {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border',
+          rows: [
+            {
+              key: {text: "Status"},
+              value: {html: govukTag({text: "Awaiting invitations", classes: "govuk-tag--green"})}
+            },
+            {
+              key: {text: "Registers role"},
+              value: {text: "Other senior lead"}
+            }
+          ]
+          }) }}
+
+      {{ govukWarningText({
+        text: "When you have sent the invite, you will not be able to send another invite to this school.",
+        iconFallbackText: "Warning"
+      }) }}
+      {{ govukButton({text: "Continue", href: "./assign"}) }}
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <img src="/public/images/map.png" alt="Map" width="100%">
+    </div>
+  </div>
+{% endblock %}

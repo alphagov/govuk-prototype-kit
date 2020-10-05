@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Dashboard | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Admin dashboard for {{ data["supplierName"] }}</h1>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#past-day">Schools</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#past-week">Delivery Partners</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#past-month">Manage Account</a>
+        </li>
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--right govuk-tabs__list-item--transparent">
+          <a class="govuk-tabs__tab" href="#past-year">Sign-out</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Invite Schools</h2>
+      <p class="govuk-body">Before inviting schools read the <a href="#">acceptable behaviours for recruiting schools on to the Early Career Framework induction programme</a>.</p>
+      {{ govukButton({text: "Invite Schools", href: "./schools/new"}) }}
+
+      <h2 class="govuk-heading-m">Pending invites sent to schools</h2>
+      <p class="govuk-body">View schools you have invited to join your programme.</p>
+      {{ govukButton({text: "View invited schools", href: "./schools/pending"}) }}
+
+
+      <h2 class="govuk-heading-m">Our confirmed schools</h2>
+      <p class="govuk-body">List of schools that have confirmed they are joining your programme.</p>
+      {{ govukButton({text: "View confirmed schools", href: "./schools"}) }}
+
+    </div>
+  </div>
+{% endblock %}

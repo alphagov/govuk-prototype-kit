@@ -21,7 +21,7 @@ module.exports = {
  programme: 'Full',
  schoolName: 'Crofe Hills School',
  schoolAddress: 'Higher Blandford Rd, Broadstone, BH18 9BG',
- schoolURN: '136574'
-  // Insert values here
-
+ schoolURN: '136574',
+ supplierName: 'Ambition',
+ deliveryPartnerName: 'Saffron Walden County High School and Saffron Academy Trust'
 }

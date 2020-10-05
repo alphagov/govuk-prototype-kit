@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School invited | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  {{ govukPanel({
+		titleText: "Invitation sent"
+	  }) }}
+
+    <p class="govuk-body">{{data['schoolName']}}</p>
+    <p class="govuk-body">{{data['schoolAddress']}}</p>
+	  
+	  <p class="govuk-body">Return to your search results on the <a href="./new">Invite schools</a> page.</p>
+
+    {{ govukButton({text: "Back to results", href:"./results"}) }}
+  </div>
+</div>
+{% endblock %}

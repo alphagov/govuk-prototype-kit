@@ -1,0 +1,120 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Invite School | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back to Dashboard",
+    href: "../dashboard"
+  }) }}
+{% endblock %}
+
+{% set schoolNameHTML %}
+  {{ govukInput({
+    id: "schoolName",
+    name: "schoolName",
+    type: "text",
+    spellcheck: false,
+    hint: {
+      html: "For example, <strong>Aston Academy</strong>"
+    }
+  }) }}
+{% endset -%}
+
+{% set localAuthorityHTML %}
+  {{ govukInput({
+    id: "schoolLocalAuthority",
+    name: "schoolLocalAuthority",
+    type: "text",
+    spellcheck: false,
+    hint: {
+      text: "Enter the name of the local authority"
+    }
+  }) }}
+{% endset -%}
+
+{% set typeOfSchoolHTML %}
+  {{ govukCheckboxes({
+    id: "schoolType",
+    name: "schoolType",
+    type: "text",
+    spellcheck: false,
+    items: [
+      {
+        value: "Disadvantaged community",
+        text: "Disadvantaged community"
+      },
+      {
+        value: "Primary",
+        text: "Primary"
+      },
+      {
+        value: "Secondary",
+        text: "Secondary"
+      },
+      {
+        value: "Middle",
+        text: "Middle"
+      },
+      {
+        value: "Local authroity maintained",
+        text: "Local authroity maintained"
+      }
+    ]
+  }) }}
+{% endset -%}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Invite schools</h1>
+      <p class="govuk-body">Find schools to invite to join {{ data['supplierName'] }}.</p>
+      <form action="./results" method="POST">
+      {{ govukRadios({
+        idPrefix: "how-contacted-conditional",
+        name: "how-contacted",
+        hint: {
+          text: "Search by:"
+        },
+        items: [
+          {
+            value: "school",
+            text: "School name",
+            conditional: {
+              html: schoolNameHTML
+            }
+          },
+          {
+            value: "localAuthority",
+            text: "Local authority",
+            conditional: {
+              html: localAuthorityHTML
+            }
+          },
+          {
+            value: "type",
+            text: "Type of school",
+            conditional: {
+              html: typeOfSchoolHTML
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({text: "Search"}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

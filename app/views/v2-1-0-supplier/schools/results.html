@@ -1,0 +1,295 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School results | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back to Dashboard",
+    href: "../dashboard"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-2">Search results</h1>
+      <h3 class="govuk-heading-s">We've found 85 schools</h3>
+    </div>
+    <div class="govuk-grid-column-one-third">
+        <h4 class="govuk-heading-s">Filter results</h4>
+        {{ govukCheckboxes({
+          fieldset: {
+            legend: {
+              text: "Type of school",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          classes: "govuk-checkboxes--small",
+          items: [
+            {
+              value: "Disadvantaged community",
+              text: "Disadvantaged community"
+            },
+            {
+              value: "Primary",
+              text: "Primary"
+            },
+            {
+              value: "Secondary",
+              text: "Secondary"
+            },
+            {
+              value: "Middle",
+              text: "Middle"
+            },
+            {
+              value: "Local authroity maintained",
+              text: "Local authroity maintained"
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          fieldset: {
+            legend: {
+              text: "Registration status",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          classes: "govuk-checkboxes--small",
+          items: [
+            {
+              value: "Not yet registered",
+              text: "Not yet registered"
+            },
+            {
+              value: "School not responded to any providers",
+              text: "School not responded to any providers"
+            },
+            {
+              value: "School has responded to other providers",
+              text: "School has responded to other providers"
+            }
+          ]
+        }) }}
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+      <div>
+        <h4 class="govuk-heading-m">
+          <a href="https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/136574" target="_blank">Corfe Hills School</a>
+        </h4>
+
+        {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border',
+          rows: [
+            {
+              key: {text: "Address"},
+              value: {html: "Higher Blandford Road, Broadstone, Dorset, <br/>BH18 9BG"}
+            },
+            {
+              key: {text: "Local authority"},
+              value: {text: "Bournemouth, Christchurch and Poole (839)"}
+            },
+            {
+              key: {text: "ID"},
+              value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 136574, DfE number: 839/5410<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10033260"}
+            },
+            {
+              key: {text: "Phase of education"},
+              value: {text: "Secondary"}
+            },
+            {
+              key: {text: "Disadvantaged"},
+              value: {text: "Yes"}
+            },
+            {
+              key: {text: "Type of school"},
+              value: {text: "Academy converter"}
+            },
+            {
+              key: {html: '<abbr title="Early Career Framework">ECF</abbr> Status'},
+              value: {html: govukTag({text: "Awaiting invitations", classes: "govuk-tag--green"})}
+            }
+          ]
+          }) }}
+        {{ govukButton({text: "Invite school", href: "./invite"}) }}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+
+      <div>
+        <h4 class="govuk-heading-m">
+          <a href="https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/136574" target="_blank">Corfe Hills School</a>
+        </h4>
+
+        {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border',
+          rows: [
+            {
+              key: {text: "Address"},
+              value: {html: "Higher Blandford Road, Broadstone, Dorset, <br/>BH18 9BG"}
+            },
+            {
+              key: {text: "Local authority"},
+              value: {text: "Bournemouth, Christchurch and Poole (839)"}
+            },
+            {
+              key: {text: "ID"},
+              value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 136574, DfE number: 839/5410<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10033260"}
+            },
+            {
+              key: {text: "Phase of education"},
+              value: {text: "Secondary"}
+            },
+            {
+              key: {text: "Disadvantaged"},
+              value: {text: "Yes"}
+            },
+            {
+              key: {text: "Type of school"},
+              value: {text: "Academy converter"}
+            },
+            {
+              key: {html: '<abbr title="Early Career Framework">ECF</abbr> Status'},
+              value: {html: govukTag({text: "Self supplied", classes: "govuk-tag--orange"})}
+            }
+          ]
+          }) }}
+        {{ govukButton({text: "Invite school", href: "./invite"}) }}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+
+      <div>
+        <h4 class="govuk-heading-m">
+          <a href="https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/136574" target="_blank">Corfe Hills School</a>
+        </h4>
+
+        {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border',
+          rows: [
+            {
+              key: {text: "Address"},
+              value: {html: "Higher Blandford Road, Broadstone, Dorset, <br/>BH18 9BG"}
+            },
+            {
+              key: {text: "Local authority"},
+              value: {text: "Bournemouth, Christchurch and Poole (839)"}
+            },
+            {
+              key: {text: "ID"},
+              value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 136574, DfE number: 839/5410<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10033260"}
+            },
+            {
+              key: {text: "Phase of education"},
+              value: {text: "Secondary"}
+            },
+            {
+              key: {text: "Disadvantaged"},
+              value: {text: "Yes"}
+            },
+            {
+              key: {text: "Type of school"},
+              value: {text: "Academy converter"}
+            },
+            {
+              key: {html: '<abbr title="Early Career Framework">ECF</abbr> Status'},
+              value: {html: govukTag({text: "Supplier accepted", classes: "govuk-tag--red"})}
+            }
+          ]
+          }) }}
+        {{ govukButton({text: "Invite school", href: "./invite"}) }}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+
+      <div>
+        <h4 class="govuk-heading-m">
+          <a href="https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/136574" target="_blank">Corfe Hills School</a>
+        </h4>
+
+        {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border',
+          rows: [
+            {
+              key: {text: "Address"},
+              value: {html: "Higher Blandford Road, Broadstone, Dorset, <br/>BH18 9BG"}
+            },
+            {
+              key: {text: "Local authority"},
+              value: {text: "Bournemouth, Christchurch and Poole (839)"}
+            },
+            {
+              key: {text: "ID"},
+              value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 136574, DfE number: 839/5410<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10033260"}
+            },
+            {
+              key: {text: "Phase of education"},
+              value: {text: "Secondary"}
+            },
+            {
+              key: {text: "Disadvantaged"},
+              value: {text: "Yes"}
+            },
+            {
+              key: {text: "Type of school"},
+              value: {text: "Academy converter"}
+            },
+            {
+              key: {html: '<abbr title="Early Career Framework">ECF</abbr> Status'},
+              value: {html: govukTag({text: "Negotiating", classes: "govuk-tag--yellow"})}
+            }
+          ]
+          }) }}
+        {{ govukButton({text: "Invite school", href: "./invite"}) }}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+
+      <div>
+        <h4 class="govuk-heading-m">
+          <a href="https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/136574" target="_blank">Corfe Hills School</a>
+        </h4>
+
+        {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border',
+          rows: [
+            {
+              key: {text: "Address"},
+              value: {html: "Higher Blandford Road, Broadstone, Dorset, <br/>BH18 9BG"}
+            },
+            {
+              key: {text: "Local authority"},
+              value: {text: "Bournemouth, Christchurch and Poole (839)"}
+            },
+            {
+              key: {text: "ID"},
+              value: {html: "<abbr title=\"Unique Reference Number\">URN</abbr>: 136574, DfE number: 839/5410<br><abbr title=\"UK Provider Reference Number\">UKPRN</abbr>: 10033260"}
+            },
+            {
+              key: {text: "Phase of education"},
+              value: {text: "Secondary"}
+            },
+            {
+              key: {text: "Disadvantaged"},
+              value: {text: "Yes"}
+            },
+            {
+              key: {text: "Type of school"},
+              value: {text: "Academy converter"}
+            },
+            {
+              key: {html: '<abbr title="Early Career Framework">ECF</abbr> Status'},
+              value: {html: govukTag({text: "Unregistered", classes: "govuk-tag--grey"})}
+            }
+          ]
+          }) }}
+        {{ govukButton({text: "Invite school", href: "./invite"}) }}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+    </div>
+  {% endblock %}

@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Confirm school invitation | Early Career Framework
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Check your invite</h1>
+      
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-9',
+      rows: [
+      {
+        key: {
+        text: "School details"
+        },
+        value: {
+        html: data['schoolName'] + "<br>" + "URN: 00000000"
+        },
+        actions: {
+        items: [
+          {
+          href: "./lookup",
+          text: "Change",
+          visuallyHiddenText: "school"
+          }
+        ]
+        }
+      },
+      {
+        key: {
+          text: "Induction Partner"
+        },
+        value: {
+          text: data['deliveryPartnerName']
+        },
+        actions: {
+          items: [ 
+            {
+            href: "./assign",
+            text: "Change",
+            visuallyHiddenText: "partner"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Invitation message"
+        },
+        value: {
+          text: data['message']
+        },
+        actions: {
+          items: [ 
+            {
+            href: "./assign",
+            text: "Change",
+            visuallyHiddenText: "message"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Reply-to email address"
+        },
+        value: {
+          text: data['replyEmail']
+        },
+        actions: {
+          items: [ 
+            {
+            href: "./assign",
+            text: "Change",
+            visuallyHiddenText: "reply email"
+            }
+          ]
+        }
+      }
+      ]
+    }) }}
+    
+      {{ govukButton({ text: "Confirm and send", href: "./confirmed" }) }}
+  </div>
+</div>
+{% endblock %}

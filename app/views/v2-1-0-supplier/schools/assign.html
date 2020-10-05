@@ -1,0 +1,68 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  School results | Early Career Framework
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    text: "Back to results",
+    href: "./results"
+  }) }}
+{% endblock %}
+
+{% set searchHTML %}
+{{ govukInput({
+    id: "searchProvider",
+    name: "searchProvider",
+    type: "text",
+    spellcheck: false,
+    hint: {
+      text: "Start typing the name of your delivery partner and select the correct name."
+    }
+  }) }}
+{% endset -%}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Assign {{ data['schoolName'] }} to a delivery partner</h1>
+      <p class="govuk-body">You can assign this school to one of the training providers acting as your delivery partner. The name of the delivery partner will appear on the invite after {{ data['supplierName'] }}.</p>
+      <form action="./invitation" method="POST">
+        {{ govukRadios({
+          idPrefix: "deliveryPartner",
+          name: "deliveryPartner",
+          items: [
+            {
+              text: "Skip this step for now"
+            },
+            {divider: "or"},
+            {text: "Saffron Walden County High School and Saffron Academy Trust"},
+            {text: "Harris Academy Chafford Hundred and Harris Federation"},
+            {text: "Saffron Walden County High School and Saffron Academy Trust"},
+            {text: "Harris Academy Chafford Hundred and Harris Federation"}, 
+            {text: "Saffron Walden County High School and Saffron Academy Trust"},
+            {text: "Harris Academy Chafford Hundred and Harris Federation"},
+            {divider: "or"},
+            {
+              text: "Search", 
+              conditional: {
+                html: searchHTML 
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({text: "Continue"}) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
