@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [#938: Update Marked module to fix security issue](https://github.com/alphagov/govuk-prototype-kit/pull/938)
+
 # 9.10.1 (Patch release)
 
 - [Pull request #936: Update to GOV.UK Frontend v3.9.1](https://github.com/alphagov/govuk-prototype-kit/pull/936)
