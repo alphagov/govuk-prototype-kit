@@ -22,7 +22,7 @@ utils.findAvailablePort(server, function (port) {
         port: port,
         ui: false,
         files: ['public/**/*.*', 'app/views/**/*.*'],
-        ghostmode: false,
+        ghostMode: false,
         open: false,
         notify: false,
         logLevel: 'error'
