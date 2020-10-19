@@ -67,6 +67,10 @@ router.post('/examples/branching/over-18-answer', function (req, res) {
   }
 })
 
+router.get('/making-pages', function (req, res) {
+  res.redirect('/docs/make-first-prototype/create-pages')
+})
+
 module.exports = router
 
 // Strip off markdown extensions if present and redirect
