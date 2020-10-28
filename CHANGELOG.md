@@ -4,6 +4,7 @@
 
 - [#938: Update Marked module to fix security issue](https://github.com/alphagov/govuk-prototype-kit/pull/938)
 - [#948: Fix sass files being copied to public directory](https://github.com/alphagov/govuk-prototype-kit/pull/948)
+- [#944: Fix typo that causes ghostMode to be accidentally enabled](https://github.com/alphagov/govuk-prototype-kit/pull/944)
 
 # 9.10.1 (Patch release)
 
