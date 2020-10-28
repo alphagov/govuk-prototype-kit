@@ -3,6 +3,7 @@
 ## Fixes
 
 - [#938: Update Marked module to fix security issue](https://github.com/alphagov/govuk-prototype-kit/pull/938)
+- [#948: Fix sass files being copied to public directory](https://github.com/alphagov/govuk-prototype-kit/pull/948)
 
 # 9.10.1 (Patch release)
 
