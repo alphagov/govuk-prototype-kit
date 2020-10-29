@@ -5,6 +5,7 @@
   also includes sourcemaps
 */
 
+const Fiber = require('fibers')
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
@@ -15,6 +16,10 @@ const extensions = require('../lib/extensions/extensions')
 const config = require('./config.json')
 
 sass.compiler = require('sass')
+const sassConfig = {
+  fiber: Fiber,
+  outputStyle: 'expanded'
+}
 
 gulp.task('sass-extensions', function (done) {
   const fileContents = '$govuk-extensions-url-context: "/extension-assets"; ' + extensions.getFileSystemPaths('sass')
@@ -26,7 +31,7 @@ gulp.task('sass-extensions', function (done) {
 gulp.task('sass', function () {
   return gulp.src(config.paths.assets + '/sass/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass(sassConfig).on('error', sass.logError))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
 })
@@ -34,7 +39,7 @@ gulp.task('sass', function () {
 gulp.task('sass-documentation', function () {
   return gulp.src(config.paths.docsAssets + '/sass/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass(sassConfig).on('error', sass.logError))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
 })
@@ -45,7 +50,7 @@ gulp.task('sass-v6', function () {
   return gulp.src(config.paths.v6Assets + '/sass/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
-      outputStyle: 'expanded',
+      ...sassConfig,
       includePaths: [
         'node_modules/govuk_frontend_toolkit/stylesheets',
         'node_modules/govuk-elements-sass/public/sass',
