@@ -7,9 +7,6 @@ const express = require('express')
 const marked = require('marked')
 const router = express.Router()
 
-// Local dependencies
-const utils = require('../lib/utils.js')
-
 // Page routes
 
 // Docs index
@@ -34,10 +31,14 @@ router.get('/install/:page', function (req, res) {
   res.render('install_template', { document: html })
 })
 
-// Redirect to the zip of the latest release of the Prototype Kit on GitHub
+// Redirect to download the current release zip from GitHub, based on the
+// version number from package.json
 router.get('/download', function (req, res) {
-  var url = utils.getLatestRelease()
-  res.redirect(url)
+  const version = require('../package.json').version
+
+  res.redirect(
+    `https://github.com/alphagov/govuk-prototype-kit/archive/v${version}.zip`
+  )
 })
 
 // Examples - examples post here
