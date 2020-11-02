@@ -8,3 +8,4 @@ CHANGELOG.md export-ignore
 CONTRIBUTING.md export-ignore
 create-release.sh export-ignore
 README.md export-ignore
+internal_docs export-ignore
