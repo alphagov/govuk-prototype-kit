@@ -2,29 +2,24 @@
 
 ## Download the kit as a zip
 
-The simplest way to get the kit is to <a href="/docs/download" data-link="download">download it as a zip</a>. You'll use a new copy of the kit for each new prototype you make. That way your prototypes don’t interfere with each other.
+The simplest way to get the kit is to <a href="/docs/download" data-link="download">download it as a zip</a>.
 
-### Decide where you want to keep your prototypes
+You'll use a new copy of the kit for each new prototype you make. That way your prototypes don’t interfere with each other.
 
-We recommend keeping all your prototypes in one folder called `projects`.
+### Make a folder for your prototypes
 
-#### Mac users
+We recommend keeping all your prototypes in one folder called `prototypes`.
 
-Create a folder called `projects` in your home folder. You can open your home folder by opening a new finder window, and selecting `go > home` from the top menu.
+Create a folder called `prototypes` in your `Documents` folder.
 
-![Screenshot of a 'projects' folder in the mac home folder](/public/images/docs/mac-home-folder-projects.png)
-
-#### Windows users
-
-Create a folder called `projects` in your `Documents` folder.
 
 ### Unzip the kit and move it
 
 Unzip the kit you downloaded - you should end up with a folder called `govuk-prototype-kit` followed by the version number.
 
-Rename the folder to something descriptive for your prototype. For this guide, we’ll use `juggling-licence-prototype`.
+Rename the folder to something descriptive for your prototype. For this guide, we’ll use `juggling-licence`.
 
-Move the folder into your `projects` folder.
+Move the folder into your `prototypes` folder.
 
 ## Terminal basics
 
@@ -32,37 +27,30 @@ The terminal (on Mac and Linux, git bash on Windows) lets you type in commands a
 
 You can follow a [tutorial on basic terminal commands](https://tutorials.codebar.io/command-line/introduction/tutorial.html) on the codebar website.
 
-### Navigating to your prototype
+### Navigating to your prototype folder
 
-You need to navigate to your prototype in the terminal. Most commands for the kit need to be run in the prototype folder.
-
-If you're using a Mac, enter:
+You need to navigate to your prototype folder in the terminal. Most commands for the kit need to be run in the prototype folder.
 
 ```
-cd ~/projects/juggling-licence-prototype
+cd ~/Documents/prototypes/juggling-licence
 ```
 
-If you're using Windows, enter:
-
-```
-cd ~/Documents/projects/juggling-licence-prototype
-```
+Take note of what is upper or lower case - for example lower case 'd' for 'Documents' will not work.
 
 If any of your folder names contain spaces, you must add quotation marks around everything after `~/`. For example:
 
 ```
-cd ~/"a folder name with spaces/Documents/projects/juggling-licence-prototype"
+cd ~/"a folder name with spaces/Documents/prototypes/juggling-licence"
 ```
 
-## Install the kit
+## Install modules
 
-### Install modules
+You need to download extra code used by the kit before it can run. You only need to run this command the first time you start or download a prototype:
 
-You need to download extra code used by the kit before it can run. You can get this by running:
 ```
 npm install
 ```
-The install may take up to a minute. Whilst installing it may `WARN` about some items - this is ok. As long as there are no `ERROR`s you can continue.
+The install may take about a minute. Whilst installing, it may `WARN` about some items - this is ok. As long as there are no `ERROR`s, you can continue.
 
 
 <a href="run-the-kit.md" class="button">Next (run the kit)</a>
