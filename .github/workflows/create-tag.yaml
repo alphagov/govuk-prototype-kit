@@ -1,0 +1,57 @@
+on:
+  push:
+    branches:
+      - 'master'
+
+name: Create release tag
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/github-script@v3
+        with:
+          # GitHub automatically creates a GITHUB_TOKEN secret for us
+          # https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const version = require(`${process.env.GITHUB_WORKSPACE}/package.json`).version
+
+            let tag = false
+            
+            // Check to see if tag for this version already exists
+            try {
+              tag = await github.git.getRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `tags/v${version}`
+              })
+            } catch (err) {
+              if (err.status && err.status == 404) {
+                // Swallow error – tag doesn't exist but we'll create it in the
+                // next step
+              } else {
+                throw(err)
+              }
+            }
+
+            if (tag) {
+              console.log('😴 Current version already exists. Nothing to do.')
+            } else {
+              console.log(`🏷 Creating new tag: v${version}`)
+              github.git.createRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `refs/tags/v${version}`,
+                sha: context.sha
+              })
+
+              console.log('⏭ Updating latest-release branch to GitHub')
+              github.git.updateRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: 'heads/latest-release',
+                sha: context.sha
+              })
+            }
