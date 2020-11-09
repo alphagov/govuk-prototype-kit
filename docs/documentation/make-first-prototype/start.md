@@ -13,7 +13,12 @@ Our prototype will look a bit like this:
 ![Overview of pages linked together](/public/images/docs/tutorial-overview.png)
 
 ## Before you start
+
 Before you start, you must [install and run the GOV.UK Prototype Kit](/docs/install/introduction).
+
+You'll also need a code editor. You can use any editor, but the instructions in this tutorial will refer to Atom.
+
+[Install Atom code editor](https://atom.io/)
 
 [Next (create pages)](create-pages)
 
