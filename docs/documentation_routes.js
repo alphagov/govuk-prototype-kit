@@ -7,9 +7,6 @@ const express = require('express')
 const marked = require('marked')
 const router = express.Router()
 
-// Local dependencies
-const utils = require('../lib/utils.js')
-
 // Page routes
 
 // Docs index
@@ -34,10 +31,24 @@ router.get('/install/:page', function (req, res) {
   res.render('install_template', { document: html })
 })
 
-// Redirect to the zip of the latest release of the Prototype Kit on GitHub
+// When in 'promo mode', redirect to download the current release zip from
+// GitHub, based on the version number from package.json
+//
+// Otherwise, redirect to the latest release page on GitHub, to avoid just
+// linking to the same version being run by someone referring to the copy of the
+// docs running in their kit
 router.get('/download', function (req, res) {
-  var url = utils.getLatestRelease()
-  res.redirect(url)
+  if (req.app.locals.promoMode === 'true') {
+    const version = require('../package.json').version
+
+    res.redirect(
+      `https://github.com/alphagov/govuk-prototype-kit/archive/v${version}.zip`
+    )
+  } else {
+    res.redirect(
+      'https://github.com/alphagov/govuk-prototype-kit/releases/latest'
+    )
+  }
 })
 
 // Examples - examples post here
