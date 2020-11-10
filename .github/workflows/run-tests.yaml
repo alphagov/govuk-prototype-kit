@@ -10,7 +10,7 @@ jobs:
 
     name: Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     strategy:
       matrix:
