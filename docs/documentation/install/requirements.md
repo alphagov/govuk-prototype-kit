@@ -1,8 +1,7 @@
 # Requirements
 
-The kit runs on Mac, Windows and Linux. At a minimum you’ll need `node.js` (install instructions below) and a web browser.
+The kit runs on Mac, Windows and Linux. At a minimum you’ll need Node.js (install instructions below) and a web browser.
 
-This guide recommends additional software which will be used in later guides.
 
 ## Software you need
 
@@ -10,13 +9,12 @@ You'll usually need admin access to your machine to install the software.
 
 If you do not have admin access, ask your IT team to install the software for you.
 
-GDS staff can install the software themselves with Managed Software Centre (MSC).
+GDS staff can install the software themselves with the Self Service app.
 
 You'll need:
 
 * Node.js 14.x.x
-* Atom (text editor)
-* Git bash (Windows)
+* Git Bash (if you're using Windows, see below)
 
 ## Terminal
 
@@ -30,13 +28,13 @@ Macs come with `Terminal.app`. It’s located in the `Utilities` folder in the `
 
 This guide will use `Git Bash` as a terminal instead of the existing `CMD` application. Git Bash is more fully featured and uses the same commands as Mac and Linux, so instructions in this guide work for all.
 
-Installing `git bash` installs two things for you: a terminal (for entering commands), and git (used later to share your work with others).
+Installing `Git Bash` installs two things for you: a terminal (for entering commands), and Git (used later to share your work with others).
 
-#### Installing git bash
+#### Installing Git Bash
 
-Download [Git bash (direct download)](https://git-scm.com/download/win).
+Download [Git Bash (direct download)](https://git-scm.com/download/win).
 
-Install with all default options.
+Install with all the default options.
 
 ### Entering commands in the terminal
 
@@ -44,7 +42,7 @@ Commands to be entered in to the terminal will be inset like this:
 ```
 command to be typed in to terminal
 ```
-Once you’ve typed the command, press enter to send it.
+Once you’ve typed the command, press enter to run it.
 
 
 ## Node.js version 14 LTS
@@ -53,11 +51,11 @@ The kit is designed to work with Node.js version 14 LTS. The kit works with any 
 
 ### Check if you have Node.js
 
-In terminal (git bash in Windows):
+In terminal (Git Bash in Windows):
 ```
 node --version
 ```
-If it says `command not found` or `Error 0x2 starting node.exe --version` you don’t have node and will need to download and install it.
+If it says `command not found` or `Error 0x2 starting node.exe --version` you don’t have Node and will need to download and install it.
 
 If the version number starts with 14 you have the correct version installed.
 
@@ -86,9 +84,5 @@ node --version
 ```
 
 If it’s installed correctly it should show a number starting with 14.
-
-## Atom (text editor)
-
-You’ll need a text editor to edit and make changes to your prototype. We recommend [Atom](https://atom.io/) - which is free and has lots of useful features.
 
 <a href="install-the-kit.md" class="button">Next (install the kit)</a>
