@@ -1,10 +1,12 @@
 # Unreleased
 
+# 9.11.0 (Feature release)
+
 ## Fixes
 
-- [#938: Update Marked module to fix security issue](https://github.com/alphagov/govuk-prototype-kit/pull/938)
-- [#948: Fix sass files being copied to public directory](https://github.com/alphagov/govuk-prototype-kit/pull/948)
-- [#944: Fix typo that causes ghostMode to be accidentally enabled](https://github.com/alphagov/govuk-prototype-kit/pull/944)
+- [Pull request #938: Update Marked module to fix security issue](https://github.com/alphagov/govuk-prototype-kit/pull/938)
+- [Pull request #944: Disable Browsersync ghostMode to stop interactions being mirrored across tabs and devices](https://github.com/alphagov/govuk-prototype-kit/pull/944)
+- [Pull request #948: Fix Sass files being copied to public directory](https://github.com/alphagov/govuk-prototype-kit/pull/948)
 
 # 9.10.1 (Patch release)
 
