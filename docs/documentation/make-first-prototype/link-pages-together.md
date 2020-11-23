@@ -13,7 +13,7 @@ To take users from one page to another, you can use either:
 
 Go to http://localhost:3000/start and select the **Start now** button to check the link works.
 
-Links normally appear as text with underlines, we make **Start now** look like a button to make it more obvious to users.
+Links normally appear as text with underlines. We make **Start now** look like a button to make it more obvious to users.
 
 ## Link question 1 to question 2
 
