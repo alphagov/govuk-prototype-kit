@@ -2,6 +2,10 @@
 
 # 9.11.0 (Feature release)
 
+## New features
+
+- [Pull request #962: Update to GOV.UK Frontend v3.10.0](https://github.com/alphagov/govuk-prototype-kit/pull/962)
+
 ## Fixes
 
 - [Pull request #938: Update Marked module to fix security issue](https://github.com/alphagov/govuk-prototype-kit/pull/938)
