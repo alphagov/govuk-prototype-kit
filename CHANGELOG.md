@@ -1,5 +1,11 @@
 # Unreleased
 
+# 9.11.1 (Patch release)
+
+## Fixes
+
+- [Pull request #966: Import the notification banner macro as part of the layout](https://github.com/alphagov/govuk-prototype-kit/pull/966)
+
 # 9.11.0 (Feature release)
 
 ## New features
