@@ -1,0 +1,21 @@
+{
+  "name": "govuk-prototype-kit",
+  "scripts": {},
+  "env": {
+    "USE_AUTH": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "stack": "heroku-18"
+}

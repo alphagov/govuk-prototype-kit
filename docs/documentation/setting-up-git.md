@@ -4,7 +4,7 @@ Git helps track changes in code and lets you undo mistakes or identify bugs. It�
 
 This guide will walk you through setting up a git repo (repository) and committing your work so that you can publish your prototype on the web.
 
-> You don’t *have* to use Git to use the prototype kit, but it will be really useful if you learn some basics.
+> You don’t *have* to use Git to use the Prototype Kit, but it will be really useful if you learn some basics.
 
 > Git is not the same as GitHub. Git stores versions of your work, and lets you collaborate more easily with others. GitHub puts it all online with a nice web interface.
 

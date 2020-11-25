@@ -1,18 +1,17 @@
+
 {% extends "layout.html" %}
 
-{% block page_title %}
-  GOV.UK prototype kit
+{% block pageTitle %}
+  GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h1 class="heading-xlarge">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
         Home Office design kit
-        <span class="heading-secondary">Fork of <a href="https://github.com/alphagov/govuk_prototype_kit">govuk_prototype_kit</a> - {{releaseVersion}}</span>
+        <span class="govuk-caption-xl">Fork of <a href="https://github.com/alphagov/govuk_prototype_kit">govuk_prototype_kit</a> - {{releaseVersion}}</span>
       </h1>{{releaseVersion | log }}
       <p>
         This kit lets you rapidly create HTML prototypes of GOV.UK and internal Home Office services.
@@ -22,14 +21,12 @@
         It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
       </p>
 
-      <h2 class="heading-medium">Prototype</h2>
+      <h2 class="govuk-heading-m">About this page</h2>
 
       <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at <code class="code">/app/views/index.html</code></p>
-      <p>
+        You'll find this page in the kit at '/app/views/index.html'.</p>
 
-      <p>Get started with an example prototype page at <code class="code">/app/views/v1/start.html</code></p>
-      <p>
+      <p>You can change the service name by editing the file '/app/config.js'.</p>
 
       <h2 class="heading-medium">Using the Home Office design patterns</h2>
 
@@ -45,8 +42,8 @@
 
       <p>We do not recommend you edit these files. If you find a problem or a user need to change a pattern, please <a href="https://home-office-digital-patterns.herokuapp.com/process/contribute">contribute to the patterns library</a> which will help us to improve it so that everyone can benefit.</p>
 
-<pre class="code">
-  <code>
+      <pre class="code">
+        <code>
     /app/assets/sass
       /_hod-components
         /_badges.scss
@@ -61,55 +58,20 @@
         /_tabs.scss
         /_tasks.scss
         /_timeline.scss
-  </code>
-</pre>
+        </code>
+      </pre>
 
-      <h2 class="heading-medium">Auto data storage</h2>
+      <h2 class="govuk-heading-m">Examples and documentation</h2>
 
-      <p>Form data should automatically be stored in the session for use on later pages, e.g. check your answers.</p>
-
-      <p>The easiest way to clear session data is to use 'Incognito mode' for each user, and close that window when you're done.</p>
-
-      <p>Refer to the <a href="/docs/examples/pass-data">passing data example</a> to learn more.</p>
-
-      <h2 class="heading-medium">Service name</h2>
-
-      <p>You can change the service name by editing <code class="code">serviceName: 'Service name goes here'</code> in the file <code class="code">/app/config.js</code></p>
-
-			<h2 class="heading-medium">Examples and documentation</h2>
-
-			<ul class="list list-bullet">
+      <ul class="govuk-list govuk-list--bullet">
         <li>
-          <a href="/docs">
-            GOV.UK prototype kit docs
-          </a>
+          <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
         </li>
-				<li><a href="/docs/tutorials-and-examples">Example pages and documentation</a></li>
-				<li><a href="https://github.com/alphagov/govuk_prototype_kit">GitHub</a></li>
-			</ul>
-
-      <h2 class="heading-medium">Other resources</h2>
-
-			<ul class="list list-bullet">
-				<li>
-					<a href="https://govuk-elements.herokuapp.com/snippets/">
-						Guide to GOV.UK Elements
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-			</ul>
-
+        <li>
+          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
+        </li>
+      </ul>
     </div>
   </div>
-</main>
 
 {% endblock %}
