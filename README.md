@@ -1,14 +1,10 @@
-# Home Office design kit
+# GOV.UK Prototype Kit
 
-Fork of [GOV.UK prototype kit](https://github.com/alphagov/govuk_prototype_kit)
+Go to the [GOV.UK Prototype Kit site](https://govuk-prototype-kit.herokuapp.com/docs) to download the latest version and read the documentation.
 
-## News
+## About the Prototype Kit
 
-**Upgrading from version 1 to 2:** the latest version of the kit (2.0.0 and later) is not compatible with previous versions. If you update your old prototypes you'll need to [convert them as well](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit).
-
-## About the prototype kit
-
-The prototype kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research.
+The Prototype Kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research.
 
 Read the [project principles](https://govuk-prototype-kit.herokuapp.com/docs/principles).
 
@@ -23,24 +19,17 @@ You must protect user privacy at all times, even when using prototypes. Prototyp
 - [Installation guide for new users (non technical)](https://govuk-prototype-kit.herokuapp.com/docs/install/introduction)
 - [Installation guide for developers (technical)](https://govuk-prototype-kit.herokuapp.com/docs/install/developer-install-instructions)
 
-## Guides
+## Support
 
-1. [Setting up git](https://govuk-prototype-kit.herokuapp.com/docs/setting-up-git)
-2. [Publishing on the web (Heroku)](https://govuk-prototype-kit.herokuapp.com/docs/publishing-on-heroku)
-3. [Using GOV.UK Verify](https://govuk-prototype-kit.herokuapp.com/docs/using-verify)
+The GOV.UK Prototype Kit is maintained by the Government Digital Service. If you’ve got a question or need support you can:
 
-## Other documentation
+* email [govuk-design-system-support@digital.cabinet-office.gov.uk](mailto:govuk-design-system-support@digital.cabinet-office.gov.uk) 
+* [get in touch on Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit)([open in app](slack://channel?team=T04V6EBTR&amp;id=C0647LW4R)) 
+* [view known issues on GitHub](https://github.com/alphagov/govuk-prototype-kit/issues)
+        
+## Contributing
 
-- [Prototype kit principles](https://govuk-prototype-kit.herokuapp.com/docs/principles)
-- [Making pages](https://govuk-prototype-kit.herokuapp.com/docs/making-pages)
-- [Writing CSS](https://govuk-prototype-kit.herokuapp.com/docs/writing-css)
-- [Updating the kit to the latest version](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit)
-- [Tips and tricks](https://govuk-prototype-kit.herokuapp.com/docs/tips-and-tricks)
-- [Creating routes (server-side programming)](https://govuk-prototype-kit.herokuapp.com/docs/creating-routes)
+If you’ve got an idea or suggestion you can:
 
-## Community
-
-We have two Slack channels for the Prototype kit. You'll need a government email address to join them.
-
-* [Slack channel for users of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
-* [Slack channel for developers of the prototype kit](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev/)
+* [get in touch on the developer Slack channel](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev)([open in app](slack://channel?team=T04V6EBTR&amp;id=C0E1063DW))
+* [create a GitHub issue](https://github.com/alphagov/govuk-prototype-kit/issues)

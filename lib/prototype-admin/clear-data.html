@@ -1,27 +1,36 @@
+
 {% extends "layout.html" %}
 
-{% block page_title %}
-  Clear data
+{% block pageTitle %}
+  Clear data? - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  
-  <h1 class="heading-medium">
-    Data cleared
-  </h1>
+<form method="post">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Clear data?
+      </h1>
+      {{ govukWarningText({
+        text: "This will clear all of the data entered in this session",
+        iconFallbackText: "Warning"
+      }) }}
 
-  <p>
-    The session data has been cleared.
-  </p>
-
-  <p>
-    <a href="/">
-      Prototype home page
-    </a>
-  </p>
-  
-</main>
+      {{ govukButton({
+        text: "Clear the data"
+      }) }}
+    </div>
+  </div>
+</form>
 
 {% endblock %}

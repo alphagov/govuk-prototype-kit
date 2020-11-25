@@ -3,7 +3,7 @@
     "public": "public/",
     "assets" : "app/assets/",
     "docsAssets" : "docs/assets/",
-    "govukModules": "govuk_modules/",
+    "v6Assets": "app/v6/assets/",
     "nodeModules": "node_modules/",
     "lib": "lib/"
   }

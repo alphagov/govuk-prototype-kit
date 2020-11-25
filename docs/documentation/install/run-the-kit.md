@@ -4,11 +4,19 @@ You’ll use the terminal to start and stop the kit.
 
 ## Open the prototype folder in terminal
 
-In terminal, navigate to your prototype folder.
+If you're following the installation guide, you'll already have the terminal open in the right folder.
+
+If you're coming back to work on a prototype, you'll need to navigate to the folder:
+
+```
+cd ~/Documents/prototypes/juggling-licence
+```
+
+Or replace 'juggling-licence' with the name of your prototype.
 
 ## Running the kit
 
-In terminal:
+In the terminal, enter:
 ```
 npm start
 ```
@@ -24,18 +32,20 @@ In your web browser, visit <a href="http://localhost:3000" target="_blank">http:
 
 You should see the prototype welcome page.
 
-![Screenshot of the prototype kit homepage](/public/images/docs/prototype-kit-homepage.png)
+![Screenshot of the Prototype Kit homepage](/public/images/docs/prototype-kit-homepage.png)
 
 ## Quitting the kit
 
 It’s fine to leave the kit running for days or while your computer is asleep.
 
-### To quit the kit
-
-In terminal press the `ctrl` and `c` keys together.
+To quit the kit, in the terminal press the `ctrl` and `c` keys together.
 
 ## Installation complete
 
 The kit is now installed. Congratulations!
 
-<!-- <a href="../../readme.md" class="button">Return to Getting Started</a> -->
+The Prototype Kit is updated regularly. We announce new versions of the Prototype Kit in the [#prototype-kit channel on cross-government Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit/). You should [update to the latest version](/docs/updating-the-kit) to get the latest components, new features and fixes. 
+
+## Make your first prototype
+
+You can now start the tutorial to [make your first prototype](/docs/make-first-prototype/start).

@@ -1,53 +1,93 @@
-{% extends "govuk_template.html" %}
+{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
+{%- set assetPath = '/govuk/assets' -%}
+
+{% extends "govuk/template.njk" %}
+
+{% from "govuk/components/back-link/macro.njk"     import govukBackLink %}
+{% from "govuk/components/breadcrumbs/macro.njk"   import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk"        import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk"    import govukCheckboxes %}
+{% from "govuk/components/date-input/macro.njk"    import govukDateInput %}
+{% from "govuk/components/details/macro.njk"       import govukDetails %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk"      import govukFieldset %}
+{% from "govuk/components/file-upload/macro.njk"   import govukFileUpload %}
+{% from "govuk/components/input/macro.njk"         import govukInput %}
+{% from "govuk/components/inset-text/macro.njk"    import govukInsetText %}
+{% from "govuk/components/panel/macro.njk"         import govukPanel %}
+{% from "govuk/components/phase-banner/macro.njk"  import govukPhaseBanner %}
+{% from "govuk/components/radios/macro.njk"        import govukRadios %}
+{% from "govuk/components/select/macro.njk"        import govukSelect %}
+{% from "govuk/components/skip-link/macro.njk"     import govukSkipLink %}
+{% from "govuk/components/table/macro.njk"         import govukTable %}
+{% from "govuk/components/tabs/macro.njk"          import govukTabs %}
+{% from "govuk/components/tag/macro.njk"           import govukTag %}
+{% from "govuk/components/textarea/macro.njk"      import govukTextarea %}
+{% from "govuk/components/warning-text/macro.njk"  import govukWarningText %}
 
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block cookie_message %}
-  <p>{{cookieText | safe }}</p>
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    serviceName: serviceName,
+    serviceUrl: "/",
+    navigation: [
+      {
+        href: "/docs/install",
+        text: "Install",
+        attributes: {
+          "data-install": "Install"
+        }
+      },
+      {
+        href: "/docs/tutorials-and-examples",
+        text: "Tutorials and examples",
+        attributes: {
+          "data-tutorials": "Tutorials and examples"
+        }
+      },
+      {
+        href: "/docs/about",
+        text: "About",
+        attributes: {
+          "data-about": "About"
+        }
+      }
+    ]
+  }) }}
 {% endblock %}
 
-{% block proposition_header %}
+{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
 
-  <div class="header-proposition">
-    <div class="content">
-      <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
-      <nav id="proposition-menu">
-        <a href="/docs" id="proposition-name">
-          {% block service_name %}
-            Prototype kit
-          {% endblock %}
-        </a>
-
-        <ul id="proposition-links">
-          <li><a href="/docs/install">Install</a></li>
-          <li><a href="/docs/tutorials-and-examples">Tutorials and examples</a></li>
-          <li><a href="/docs/about">About</a></li>
-          <li><a href="https://github.com/alphagov/govuk_prototype_kit">GitHub</a></li>
-        </ul>
-
-      </nav>
-    </div>
-  </div>
-
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/prototype-admin/clear-data",
+          text: "Clear data"
+        },
+        {
+          href: "/docs/cookies",
+          text: "Cookies"
+        },
+        {
+          href: "/docs/privacy-policy",
+          text: "Privacy policy"
+        }
+      ]
+    }
+  }) }}
 {% endblock %}
 
-{% block header_class %}
-  with-proposition
-{% endblock %}
-
-{% block footer_support_links %}
-  {% if useAutoStoreData %}
-    <ul>
-      <li>
-        <a href="/prototype-admin/clear-data">Clear data</a>
-      </li>
-    </ul>
-  {% endif %}
-{% endblock %}
-
-{% block body_end %}
-  {% include "includes/scripts.html" %}
-  <!-- GOV.UK Prototype kit {{releaseVersion}} -->
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "includes/scripts.html" %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
 {% endblock %}
