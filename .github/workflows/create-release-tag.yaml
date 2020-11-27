@@ -1,3 +1,15 @@
+# Create release tag
+#
+# If package.json is updated on the master branch, check to see if there is a
+# tag matching the version in package.json.
+#
+# If there is not:
+# - create a new tag for the release
+# - update the latest-release branch
+#
+# Both the tag and the latest-release branch will point to the commit that
+# triggered this action.
+
 on:
   push:
     branches: [master]
