@@ -1,5 +1,9 @@
 # Unreleased
 
+# 9.11.2 (Patch release)
+
+## Fixes
+
 - [Pull request #971: Update to GOV.UK Frontend v3.10.1](https://github.com/alphagov/govuk-prototype-kit/pull/971)
 
 # 9.11.1 (Patch release)
