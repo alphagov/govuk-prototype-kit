@@ -1,7 +1,6 @@
 # dont include the following files in the zip
 .gitattributes export-ignore
-.travis export-ignore
-.travis.yml export-ignore
+.github export-ignore
 __tests__ export-ignore
 app.json export-ignore
 CHANGELOG.md export-ignore
