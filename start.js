@@ -73,7 +73,13 @@ function runGulp () {
   gulp.stderr.pipe(process.stderr)
   process.stdin.pipe(gulp.stdin)
 
-  gulp.on('exit', function (code) {
-    console.log('gulp exited with code ' + code.toString())
+  gulp.on('exit', function (code, signal) {
+    if (code) {
+      console.log('gulp exited with code ' + code.toString())
+      process.exit(0)
+    } else {
+      console.log('gulp exited with signal ' + signal.toString())
+      process.exit(0)
+    }
   })
 }

@@ -24,7 +24,7 @@ gulp.task('sass-extensions', function (done) {
 gulp.task('sass', function () {
   return gulp.src(config.paths.assets + '/sass/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
 })
