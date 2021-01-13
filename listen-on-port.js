@@ -12,13 +12,15 @@ var useBrowserSync = config.useBrowserSync.toLowerCase()
 var env = (process.env.NODE_ENV || 'development').toLowerCase()
 
 utils.findAvailablePort(server, function (port) {
-  console.log('Listening on port ' + port + '   url: http://localhost:' + port)
   if (env === 'production' || useBrowserSync === 'false') {
+    console.log('Listening on port ' + port + '   url: http://localhost:' + port)
     server.listen(port)
   } else {
-    server.listen(port - 50, function () {
+    const newPort = port - 50;
+    console.log('Listening on port ' + newPort + '   url: http://localhost:' + newPort)
+    server.listen(newPort, function () {
       browserSync({
-        proxy: 'localhost:' + (port - 50),
+        proxy: 'localhost:' + (newPort),
         port: port,
         ui: false,
         files: ['public/**/*.*', 'app/views/**/*.*'],
