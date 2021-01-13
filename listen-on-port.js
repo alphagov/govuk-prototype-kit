@@ -16,7 +16,7 @@ utils.findAvailablePort(server, function (port) {
     console.log('Listening on port ' + port + '   url: http://localhost:' + port)
     server.listen(port)
   } else {
-    const newPort = port - 50;
+    const newPort = port - 50
     console.log('Listening on port ' + newPort + '   url: http://localhost:' + newPort)
     server.listen(newPort, function () {
       browserSync({
