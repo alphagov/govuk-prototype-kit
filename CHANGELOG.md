@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #983: Remove the old style "GOV.UK uses cookies to make the site simpler" cookie banner](https://github.com/alphagov/govuk-prototype-kit/pull/983)
+
 # 9.11.2 (Patch release)
 
 ## Fixes
