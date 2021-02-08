@@ -1,12 +1,14 @@
 # Unreleased
 
+# 9.12.0 (Feature release)
+
 ## New features
 
 - [Pull request #985: Update to GOV.UK Frontend v3.11.0](https://github.com/alphagov/govuk-prototype-kit/pull/985)
 
 ## Fixes
 
-- [Pull request #983: Remove the old style "GOV.UK uses cookies to make the site simpler" cookie banner](https://github.com/alphagov/govuk-prototype-kit/pull/983)
+- [Pull request #983: Remove the outdated 'GOV.UK uses cookies to make the site simpler' cookie banner](https://github.com/alphagov/govuk-prototype-kit/pull/983)
 
 # 9.11.2 (Patch release)
 
