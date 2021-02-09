@@ -1,5 +1,7 @@
 # Unreleased
 
+# 9.12.1 (Patch release)
+
 ## Fixes
 
 - [Pull request #987: Import the cookie banner macro as part of the layout](https://github.com/alphagov/govuk-prototype-kit/pull/987)
