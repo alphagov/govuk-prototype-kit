@@ -35,4 +35,4 @@ Go to http://localhost:3000/juggling-trick and select **Continue** to check the 
 
 The 'Check your answers' page template links to the ‘Confirmation’ page by default. So you do not need to change the ‘Check your answers’ page.
 
-[Next (add questions to your question pages)](add-questions)
+[Next (use components from the Design System)](use-components)
