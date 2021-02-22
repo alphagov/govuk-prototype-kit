@@ -13,6 +13,7 @@ const fs = require('fs')
 
 const extensions = require('../lib/extensions/extensions')
 const config = require('./config.json')
+const stylesheetDirectory = config.paths.public + 'stylesheets'
 
 gulp.task('sass-extensions', function (done) {
   const fileContents = '$govuk-extensions-url-context: "/extension-assets"; ' + extensions.getFileSystemPaths('sass')
@@ -24,9 +25,17 @@ gulp.task('sass-extensions', function (done) {
 gulp.task('sass', function () {
   return gulp.src(config.paths.assets + '/sass/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass({ outputStyle: 'expanded' }).on('error', function (error) {
+      // write a blank application.css to force browser refresh on error
+      if (!fs.existsSync(stylesheetDirectory)) {
+        fs.mkdirSync(stylesheetDirectory)
+      }
+      fs.writeFileSync(path.join(stylesheetDirectory, 'application.css'), '')
+      console.error('\n', error.messageFormatted, '\n')
+      this.emit('end')
+    }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.paths.public + '/stylesheets/'))
+    .pipe(gulp.dest(stylesheetDirectory))
 })
 
 gulp.task('sass-documentation', function () {
