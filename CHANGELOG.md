@@ -3,6 +3,7 @@
 ## Fixes
 
 - [Pull request #995: Allow Node 15 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/995)
+- [Pull request #990: Make sass errors clearer to the user](https://github.com/alphagov/govuk-prototype-kit/pull/990)
 
 # 9.12.1 (Patch release)
 
