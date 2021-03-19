@@ -1,11 +1,14 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #995: Allow Node 15 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/995)
+
 # 9.12.1 (Patch release)
 
 ## Fixes
 
 - [Pull request #987: Import the cookie banner macro as part of the layout](https://github.com/alphagov/govuk-prototype-kit/pull/987)
-- [Pull request #995: Allow Node 15 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/995)
 
 # 9.12.0 (Feature release)
 
