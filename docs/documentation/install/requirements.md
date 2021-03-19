@@ -13,7 +13,7 @@ GDS staff can install the software themselves with the Self Service app.
 
 You'll need:
 
-* Node.js 14.x.x (if you’re using a Mac, see below)
+* Node.js 14.x.x
 * Git Bash (if you're using Windows, see below)
 
 ## Terminal
@@ -23,10 +23,6 @@ You'll need a terminal application to install, start and stop the kit. Using a t
 ### Mac users
 
 Macs come with `Terminal.app`. It’s located in the `Utilities` folder in the `Applications` folder. You can also find it using spotlight (magnifying glass icon in the top right) and typing 'terminal'.
-
-#### M1 Chip
-
-If you have a new Mac with the M1 Chip, you will need to use Node.js version 15.
 
 ### Windows users
 
