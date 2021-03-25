@@ -7,8 +7,13 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [10.x, 12.x, 14.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
+        include:
+          - node: 15.x
+            os: ubuntu-latest
+          - node: 15.x
+            os: macos-latest  
 
     name: Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
