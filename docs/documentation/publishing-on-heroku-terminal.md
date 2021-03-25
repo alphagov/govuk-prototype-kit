@@ -27,7 +27,7 @@ Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
 The toolbelt lets you use Heroku through the terminal. You will need to restart the terminal after installing the toolbelt.
 
 ## 4) Choose a name for your app
-Think of a name for your app. You need to choose a name that's unique. The name is used in the url for your prototype. For example the name:
+Think of a name for your app. You need to choose a name that’s unique. The name is used in the url for your prototype. For example the name:
 
 `govuk-payments-prototype`
 
