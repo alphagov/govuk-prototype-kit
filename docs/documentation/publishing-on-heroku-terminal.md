@@ -22,7 +22,7 @@ If you’re new to Heroku, [sign up for a free account](https://signup.heroku.co
 
 Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
 
-> On Windows, after downloading the toolbelt you'll need to run `heroku login` using the `cmd` app, as it does not work in Git Bash. Once you've logged in, you can return to using Git Bash.
+> On Windows, after downloading the toolbelt you'll need to run `heroku login` using the `cmd` app, as it does not work in Git Bash. Once you’ve logged in, you can return to using Git Bash.
 
 The toolbelt lets you use Heroku through the terminal. You will need to restart the terminal after installing the toolbelt.
 
