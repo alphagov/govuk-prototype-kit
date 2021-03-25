@@ -36,7 +36,7 @@ Your prototype will deploy automatically each time you push your code to GitHub 
 
 ## Set a username and password
 
-We need to set a username and password or the Prototype Kit won’t run online. They don’t have to be complicated - it’s just to stop people accidentally coming across your prototype online and mistaking it for a real service.
+We need to set a username and password or the Prototype Kit won’t run online. They don’t have to be complicated – it’s just to stop people accidentally coming across your prototype online and mistaking it for a real service.
 
 1. At the top click the **Settings** tab.
 
