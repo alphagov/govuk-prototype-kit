@@ -30,7 +30,7 @@
 
     If your prototype has not been updated for a long time, you should also follow any guidance in [release notes](https://github.com/alphagov/govuk-prototype-kit/releases) between the version you're updating from and the latest version. You can find out the version you're updating from in the `VERSION.txt` file in your backup folder.
 
-14. In your [terminal](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#terminal), `cd` to your prototype folder.
+14. In your [terminal](/docs/install/requirements.md#terminal), `cd` to your prototype folder.
 
 15. Run `npm install`.
 
