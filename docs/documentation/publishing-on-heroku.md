@@ -2,6 +2,10 @@
 
 Heroku runs your prototype online, the same as it runs on your machine, but available to others at any time. Other similar services are available.
 
+You'll need to have [put your code on GitHub](/docs/github-desktop) to use this guide. If you cannot put your code on GitHub, you can try [publishing to Heroku from the terminal](/docs/publishing-on-heroku-terminal) instead.
+
+## Create an app on Heroku
+
 1. [Create a free Heroku account](https://heroku.com)
 
 2. In the top right click **New** then **Create new app**.
@@ -14,23 +18,25 @@ Heroku runs your prototype online, the same as it runs on your machine, but avai
 
 5. Click **Create app**.
 
-6. For **Deployment method** choose **GitHub**. ‘Deploy’ means publish.
+## Deploy your prototype
+
+1. For **Deployment method** choose **GitHub**. ‘Deploy’ means publish.
 
 ![Screenshot of Heroku deploy page](/public/images/docs/heroku-deploy.png)
 
-7. Scroll down and click **Connect to GitHub**.
+2. Scroll down and click **Connect to GitHub**.
 
-8. In the popup, click **Authorize Heroku**.
+3. In the popup, click **Authorize Heroku**.
 
-9. In the repo-name field, click **search**. You can leave it blank and it will give a list of all your repos.
+4. In the repo-name field, click **search**. You can leave it blank and it will give a list of all your repos.
 
-10. Click **connect** on the right of your repo.
+5. Click **connect** on the right of your repo.
 
-11. Scroll down to the **Automatic deploy** section and click **Enable Automatic Deploys**.
+6. Scroll down to the **Automatic deploy** section and click **Enable Automatic Deploys**.
 
-12. Scroll down to the **Manual deploy** section and click **Deploy branch**.
+7. Scroll down to the **Manual deploy** section and click **Deploy branch**.
 
-13. Wait for the deploy to finish.
+8. Wait for the deploy to finish.
 
 Your prototype will deploy automatically each time you push your code to GitHub (it takes a few minutes each time).
 
