@@ -1,73 +1,61 @@
 # Publishing on the web (Heroku)
 
-We recommend using [Heroku](http://www.heroku.com) to get your prototype online. It’s simple and fast to deploy new versions as you work.
+Heroku runs your prototype online, the same as it runs on your machine, but available to others at any time. Other similar services are available.
 
-Once your prototype is on Heroku, other people will be able to access and try your prototype from their own computers or mobile devices.
+You'll need to have [put your code on GitHub](/docs/github-desktop) to use this guide. If you cannot put your code on GitHub, you can try [publishing to Heroku from the terminal](/docs/publishing-on-heroku-terminal) instead.
 
-> **DO NOT** enter real user data in to prototypes hosted on Heroku. If your prototype stores or collects user data, talk to a security professional about appropriate security steps you must take.
+## Create an app on Heroku
 
-A prototype deployed on Heroku is called an `app` - it will have a url like:
-`your-prototype.herokuapp.com`.
+1. [Create a free Heroku account](https://heroku.com)
 
-You can have multiple apps running on Heroku - projects often have several so they can try different ideas out at once.
+2. In the top right click **New** then **Create new app**.
 
-## 1) Set up Git
-You need to [set up Git](setting-up-git) on your prototype before you can use Heroku.
+![Screenshot of Heroku Create App page](/public/images/docs/heroku-create-app.png)
 
-## 2) Sign up to Heroku
+3. Enter a name for your prototype app. App names in Heroku have to be unique across all the users of Heroku. It can be helpful to add your name or organisation to the start of the name to make it unique. For example joelanman-juggling-prototype.
 
-If you’re new to Heroku, [sign up for a free account](https://signup.heroku.com/). When asked what language you use, select `node.js`.
+4. Select Europe for the region - it’s not important but makes your prototype a bit faster.
 
-## 3) Install the Heroku toolbelt
+5. Click **Create app**.
 
-Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
+## Deploy your prototype
 
-> On Windows, after downloading the toolbelt you'll need to run `heroku login` using the `cmd` app, as it does not work in Git Bash. Once you've logged in, you can return to using Git Bash.
+1. For **Deployment method** choose **GitHub**. ‘Deploy’ means publish.
 
-The toolbelt lets you use Heroku through the terminal. You will need to restart the terminal after installing the toolbelt.
+![Screenshot of Heroku deploy page](/public/images/docs/heroku-deploy.png)
 
-## 4) Choose a name for your app
-Think of a name for your app. You need to choose a name that's unique. The name is used in the url for your prototype. For example the name:
+2. Scroll down and click **Connect to GitHub**.
 
-`govuk-payments-prototype`
+3. In the popup, click **Authorize Heroku**.
 
-will create an app at:
+4. In the repo-name field, click **search**. You can leave it blank and it will give a list of all your repos.
 
-`govuk-payments-prototype.herokuapp.com`.
+5. Click **connect** on the right of your repo.
 
-## 5) Create a Heroku app
+6. Scroll down to the **Automatic deploy** section and click **Enable Automatic Deploys**.
 
-In the terminal, go to the folder of your prototype and run:
+7. Scroll down to the **Manual deploy** section and click **Deploy branch**.
 
-```
-heroku apps:create [name of your app] --region eu
-```
-Replace `[name of your app]` with your app name from step 4.
+8. Wait for the deploy to finish.
 
-## 6) Set a username and password
+Your prototype will deploy automatically each time you push your code to GitHub (it takes a few minutes each time).
 
-Prototypes made with the kit require a username and password when published online. This stops members of the public coming across your prototype by accident.
+## Set a username and password
 
-### To set username and password:
+We need to set a username and password or the Prototype Kit won’t run online. They don’t have to be complicated – it’s just to stop people accidentally coming across your prototype online and mistaking it for a real service.
 
-```
-heroku config:set USERNAME=username_here
-heroku config:set PASSWORD=password_here
-```
+1. At the top click the **Settings** tab.
 
-## 7) Deploy your work
+2. Click **Reveal config vars**.
 
-Make sure any changes you've made to your prototype have been committed to git.
+3. In KEY put the word USERNAME
 
-From your prototype folder:
-```
-git push heroku master
-```
-This will push your work to Heroku. Deploying may take a minute or so.
+4. In VALUE put a username of your choice, click **Add**.
 
-## 8) View your prototype on the web
+That will be saved and you can add another KEY and VALUE.
 
-After your work is deployed, you will be able to view it on the web by visiting `[name].herokuapp.com`.
-You can run `heroku open` to open your prototype in a browser.
+5. In KEY put the word PASSWORD
 
-> Heroku puts apps to sleep that haven’t been accessed in a while - so if you’ve not visited your prototype for a while it may take a few seconds to open.
+6. In VALUE put a password of your choice, click **Add**.
+
+7. In the top right, click **Open app** to see your prototype online!
