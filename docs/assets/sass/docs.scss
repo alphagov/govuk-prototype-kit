@@ -1,6 +1,8 @@
 // We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
 $govuk-assets-path: '/govuk/assets/';
 
+$govuk-new-link-styles: true;
+
 @import "node_modules/govuk-frontend/govuk/all";
 
 img{
