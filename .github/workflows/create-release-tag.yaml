@@ -1,6 +1,6 @@
 # Create release tag
 #
-# If package.json is updated on the master branch, check to see if there is a
+# If package.json is updated on the main branch, check to see if there is a
 # tag matching the version in package.json.
 #
 # If there is not:
@@ -12,7 +12,7 @@
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths: [package.json]
 
 name: Create release tag
