@@ -29,7 +29,7 @@ v8.0.0 // After implementing backwards incompatible changes
 
 3. Checkout a new branch called release-[new version number].
 
-4. Update the version number in [VERSION.txt](https://github.com/alphagov/govuk-prototype-kit/blob/master/VERSION.txt) and update "version" in [package.json](https://github.com/alphagov/govuk-prototype-kit/blob/master/package.json#L4).
+4. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
 
 5. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
 
