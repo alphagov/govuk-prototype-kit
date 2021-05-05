@@ -1,6 +1,6 @@
 # Releasing a new version of the prototype kit
 
-1. Checkout master and pull latest changes.
+1. Checkout main and pull latest changes.
 
 2. Decide on a new version number. Do this by looking at the [current "Unreleased" CHANGELOG](../CHANGELOG.md) changes and updating the previous release number depending on the kind of entries:
 
