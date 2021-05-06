@@ -1,7 +1,8 @@
 # Requirements
 
-The kit runs on Mac, Windows and Linux. At a minimum you’ll need Node.js (install instructions below) and a web browser.
+The GOV.UK Prototype Kit runs on Mac, Windows and Linux. At a minimum you’ll need Node.js (install instructions below) and a web browser.
 
+If you're using an M1 Mac ([certain Macs launched in 2020 and later](https://en.wikipedia.org/wiki/Apple_M1#Products_that_include_the_Apple_M1)), you might experience issues when you run the Prototype Kit. To get support, please [contact the Design System team](https://design-system.service.gov.uk/get-in-touch/).
 
 ## Software you need
 
