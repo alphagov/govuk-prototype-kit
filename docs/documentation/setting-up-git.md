@@ -35,6 +35,11 @@ git init
 
 This sets up git to track the files in your prototype folder.
 
+The default branch created by the `git init` command is called `master`, which is a [potentially offensive term](https://sfconservancy.org/news/2020/jun/23/gitbranchname/). Rename the current branch to `main` instead:
+```
+git branch -M main
+```
+
 ## 3) Check the Git status
 
 It’s a good idea to run `git status` frequently. This tells you the current status - for example, if you made changes to files that haven’t been committed.
