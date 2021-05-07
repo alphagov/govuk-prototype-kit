@@ -8,7 +8,7 @@ If you already installed a previous version of the Prototype Kit, you can [updat
 
 If you’re comfortable using git and the terminal, you may prefer the [developer friendly instructions](developer-install-instructions).
 
-> This guide is a work in progress. Please help [contribute](https://github.com/alphagov/govuk-prototype-kit/blob/master/CONTRIBUTING.md) to make it even better.
+> This guide is a work in progress. Please help [contribute](https://github.com/alphagov/govuk-prototype-kit/blob/main/CONTRIBUTING.md) to make it even better.
 
 ## Introduction
 

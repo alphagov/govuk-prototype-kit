@@ -61,9 +61,12 @@ Make sure any changes you've made to your prototype have been committed to git.
 
 From your prototype folder:
 ```
-git push heroku master
+git push heroku main
 ```
 This will push your work to Heroku. Deploying may take a minute or so.
+
+In this example, `main` is the name of the default branch for the repo. So you
+may need to run the command with your own default branch name instead of `main`.
 
 ## 8) View your prototype on the web
 

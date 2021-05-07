@@ -47,5 +47,5 @@ branches.
 
 ### Commit hygiene
 
-Please see our [git style guide](https://github.com/alphagov/styleguides/blob/master/git.md)
+Please see our [git style guide](https://gds-way.cloudapps.digital/standards/source-code.html#commit-messages)
 which describes how we prefer git history and commit messages to read.
