@@ -29,7 +29,7 @@ Read more about the new link styles in the [GOV.UK Frontend release notes](https
 This was added in [Pull request #1012: Implement the new link and hover styles in the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/1012).
 
 ### Update to GOV.UK Frontend
-This was added in Pull request #???: Update to GOV.UK Frontend v3.12.
+This was added in [Pull request #1025: Update to GOV.UK Frontend v3.12.0](https://github.com/alphagov/govuk-prototype-kit/pull/1025)
 
 ## Fixes
 
