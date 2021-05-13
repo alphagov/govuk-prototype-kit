@@ -47,5 +47,4 @@ branches.
 
 ### Commit hygiene
 
-Please see our [git style guide](https://gds-way.cloudapps.digital/standards/source-code.html#commit-messages)
-which describes how we prefer git history and commit messages to read.
+Please see our [Git style guide in the 'How to store source code' page of the GDS Way](https://gds-way.cloudapps.digital/standards/source-code.html#commit-messages), which describes how we prefer Git history and commit messages to read.
