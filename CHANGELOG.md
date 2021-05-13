@@ -1,9 +1,39 @@
 # Unreleased
 
+# 9.13.0 (Feature release)
+
+## New features
+
+### Make Sass errors clearer to users
+
+Previously, it was not obvious to users if Sass had stopped updating because of an error. An error would be printed to the command line, but nothing would happen in the browser. We know that this error was easy to miss, which could cause confusion.
+
+Now, when there's a Sass error, the GOV.UK Prototype Kit creates a blank `application.css` file to make the site look broken to users.
+
+If you fix the Sass error, the site will automatically reload.
+
+We have also changed the [Gulp](https://www.npmjs.com/package/gulp-sass) log level to be less detailed, so that errors stand out.
+
+This was added in [Pull request #990: Make Sass errors clearer to the user](https://github.com/alphagov/govuk-prototype-kit/pull/990).
+
+### Opt in to the new GOV.UK Frontend link styles
+
+Links now have underlines that are consistently thinner and a bit further away from the link text.
+
+Links also have a clearer hover state, where the underline gets thicker to make the link stand out to users.
+
+The new link styles are opt-in because [Chromium browsers have an issue with links inside a multi-column layout](https://github.com/alphagov/govuk-frontend/issues/2204).
+
+Read more about the new link styles in the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases).
+
+This was added in [Pull request #1012: Implement the new link and hover styles in the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/1012).
+
+### Update to GOV.UK Frontend
+This was added in [Pull request #1025: Update to GOV.UK Frontend v3.12.0](https://github.com/alphagov/govuk-prototype-kit/pull/1025)
+
 ## Fixes
 
 - [Pull request #995: Allow Node 15 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/995)
-- [Pull request #990: Make sass errors clearer to the user](https://github.com/alphagov/govuk-prototype-kit/pull/990)
 
 # 9.12.1 (Patch release)
 
