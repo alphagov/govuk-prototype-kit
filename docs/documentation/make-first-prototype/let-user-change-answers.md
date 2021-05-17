@@ -61,4 +61,4 @@ Add `value: data['most-impressive-trick']` like this:
 
 Go to [http://localhost:3000/juggling-trick](http://localhost:3000/juggling-trick) and check it works by filling in an answer, continuing to the next page, going back, then refreshing your browser.
 
-[Next (Link your index page to your start page)](link-index-page-start-page)
+[Next (Show different pages depending on user input - branching)](branching)
