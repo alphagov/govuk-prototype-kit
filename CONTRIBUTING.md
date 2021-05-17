@@ -48,3 +48,12 @@ branches.
 ### Commit hygiene
 
 Please see our [Git style guide in the 'How to store source code' page of the GDS Way](https://gds-way.cloudapps.digital/standards/source-code.html#commit-messages), which describes how we prefer Git history and commit messages to read.
+
+### Review apps
+
+When a pull request is opened, Heroku may create a [review app](https://devcenter.heroku.com/articles/github-integration-review-apps#viewing-review-apps)
+that will allow you and your reviewers to preview how your changes will appear for users.
+If a review app is not created automatically, you can ask someone from the
+Prototype Kit team to create one.
+
+Review apps are password protected with the username `govuk` and the password `govuk`.
