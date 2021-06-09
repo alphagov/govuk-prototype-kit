@@ -4,4 +4,4 @@
 
 If you'd like to test the use of Verify in your prototype, there is a GOV.UK Verify stable prototype you can use.
 
-To use it, you'll need to contact idasupport@digital.cabinet-office.gov.uk and request access.
+To use it, you'll need to [request access](https://www.signin.service.gov.uk/feedback?).
