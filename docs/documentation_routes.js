@@ -73,7 +73,7 @@ router.get('/making-pages', function (req, res) {
   res.redirect('/docs/make-first-prototype/create-pages')
 })
 
-router.get('/add-questions', function (req, res) {
+router.get('/make-first-prototype/add-questions', function (req, res) {
   res.redirect('/docs/make-first-prototype/use-components')
 })
 
