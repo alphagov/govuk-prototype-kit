@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #1039: Run Gulp using the Node executable to fix permissions problem](https://github.com/alphagov/govuk-prototype-kit/pull/1039)
+
 # 9.14.0 (Feature release)
 
 ## New features
