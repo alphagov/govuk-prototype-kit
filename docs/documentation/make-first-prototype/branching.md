@@ -32,11 +32,11 @@ Currently, the `juggling-balls` page sends the user directly to question 2. Inst
 // Run this code when a form is submitted to 'juggling-balls-answer'
 router.post('/juggling-balls-answer', function (req, res) {
 
-  // Make a variable and give it the value from 'juggling-balls'
-  var jugglingBalls = req.session.data['juggling-balls']
+  // Make a variable and give it the value from 'how-many-balls'
+  var howManyBalls = req.session.data['how-many-balls']
 
   // Check whether the variable matches a condition
-  if (jugglingBalls == "3 or more"){
+  if (howManyBalls == "3 or more"){
     // Send user to next page
     res.redirect('/juggling-trick')
   } else {
