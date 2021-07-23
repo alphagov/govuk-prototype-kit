@@ -2,7 +2,7 @@
 
 Our first question asks the user how many balls they can juggle. We’re going to send them to an ‘ineligible’ page if they can only juggle 2 balls or less. Sending users to different pages based on their input is called branching.
 
-To do this, we’re going to need an ‘ineligible.html’ page, and some logic to decide when to send users there.
+To do this, we’re going to need an `ineligible.html` page, and some logic to decide when to send users there.
 
 This kind of logic goes in a file called `app/routes.js`, which is written in JavaScript. Routes tell the kit what to do when the user goes to specific pages.
 
@@ -22,7 +22,7 @@ We’re going to write some logic to process the user’s answer to question 1. 
 
 Currently, the `juggling-balls` page sends the user directly to question 2. Instead, we’re going to send them to a special URL where we can run some code to check their answer.
 
-1. In juggling-balls.html change the form action to `/juggling-balls-answer`.
+1. In `juggling-balls.html` change the form action to `/juggling-balls-answer`.
 
 2. Open `/app/routes.js`.
 
