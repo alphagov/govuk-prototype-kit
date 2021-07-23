@@ -10,7 +10,7 @@ The route takes the answer the user gave to the first question and either sends 
 
 ## Create an ineligible page
 
-1. Make an `ineligible.html` page by copying `template-content-page.html`.
+1. Make an `ineligible.html` page by copying `content.html` from `docs/views/templates` to `app/views`.
 
 2. Update the content to tell the user why they’re ineligible and what they can do next.
 
