@@ -47,7 +47,7 @@ If you want to run an existing prototype made before July 2021, you may see an e
 To fix this:
 
 - open a code editor, like Atom
-- from you prototype project folder, open the ‘start.js’ file
+- from your prototype project folder, open the ‘start.js’ file
 - go to the line that starts with: var gulp = spawn
 - replace the entire line with:
 
