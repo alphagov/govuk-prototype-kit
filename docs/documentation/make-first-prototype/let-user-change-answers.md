@@ -4,8 +4,8 @@
 
 Make the **Change** links on the ‘Check your answers’ page work by adding the right links.
 
-1. In the the `<a>` tag under `{{ data['how-many-balls'] }}`, change the href attribute from `#` to `/juggling-balls`
-2. In the the `<a>` tag under `{{ data['most-impressive-trick'] }}`, change the href attribute from `#` to `/juggling-trick`
+1. In the `<a>` tag under `{{ data['how-many-balls'] }}`, change the href attribute from `#` to `/juggling-balls`
+2. In the `<a>` tag under `{{ data['most-impressive-trick'] }}`, change the href attribute from `#` to `/juggling-trick`
 
 If you select a **Change** link, you’ll go back to the right question page, but your answer will not appear yet.
 
