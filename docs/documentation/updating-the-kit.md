@@ -38,7 +38,7 @@
 
 If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 3. Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
 
-## Gulp error message, August 2021
+## Gulp error message
 
 If you use a GDS managed device, you no longer have permission to run Gulp (a JavaScript toolkit used by Prototype Kit). We’ve updated the Prototype Kit so if you install it now, it runs Gulp without having to install it separately.
 
@@ -46,18 +46,19 @@ If you want to run an existing prototype made before July 2021, you may see an e
 
 To fix this:
 
-- open a code editor, like Atom
-- from your prototype project folder, open the ‘start.js’ file
-- go to the line that starts with: var gulp = spawn
-- replace the entire line with:
+1. open a code editor, like Atom
+2. from your prototype project folder, open the ‘start.js’ file
+3. go to the line that starts with: var gulp = spawn
+4. replace the entire line with:
 
       var gulp = spawn('node', ['./node_modules/gulp/bin/gulp.js', '--log-level', '-L'])
 
-- save the file
+5. save the file
 
 If you need to restart the Prototype Kit after the fix:
-- in your [terminal](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#terminal), `cd` to your prototype folder
-- run `npm start`
+
+1. in your [terminal](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#terminal), `cd` to your prototype folder
+2. run `npm start`
 
 ## Get help
 
