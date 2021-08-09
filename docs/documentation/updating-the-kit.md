@@ -51,9 +51,9 @@ To fix this:
 3. go to the line that starts with: var gulp = spawn
 4. replace the entire line with:
 
-```
+`
 var gulp = spawn ('node', ['./node_modules/gulp/bin/gulp.js', '--log-level', '-L'])
-```
+`
 
 5. save the file
 
