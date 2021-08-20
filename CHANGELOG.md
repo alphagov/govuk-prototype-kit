@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #1050: Don’t swallow errors from session-data-defaults.js](https://github.com/alphagov/govuk-prototype-kit/pull/1050)
+
 ## 9.14.1 (Patch release)
 
 ## Fixes
