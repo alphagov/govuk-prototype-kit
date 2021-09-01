@@ -6,12 +6,13 @@ The simplest way to get the kit is to <a href="/docs/download" data-link="downlo
 
 You'll use a new copy of the kit for each new prototype you make. That way your prototypes don’t interfere with each other.
 
+Make sure you are installing the kit on a local drive. Do not install the kit on a cloud-based drive (for example, Dropbox, Microsoft OneDrive), as this may cause permissions issues.
+
 ### Make a folder for your prototypes
 
 We recommend keeping all your prototypes in one folder called `prototypes`.
 
 Create a folder called `prototypes` in your `Documents` folder.
-
 
 ### Unzip the kit and move it
 
