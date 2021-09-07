@@ -2,6 +2,7 @@
 
 ## Fixes
 
+- [Pull request #1036: Update to GOV.UK Frontend v3.13.1](https://github.com/alphagov/govuk-prototype-kit/pull/1069)
 - [Pull request #1050: Don’t swallow errors from session-data-defaults.js](https://github.com/alphagov/govuk-prototype-kit/pull/1050)
 
 ## 9.14.1 (Patch release)
