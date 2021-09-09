@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #1076: Update to Node.js v14.17.6 when using Node Version Manager](https://github.com/alphagov/govuk-prototype-kit/pull/1076)
+
 # 9.14.2 (Fix release)
 
 ## Fixes
