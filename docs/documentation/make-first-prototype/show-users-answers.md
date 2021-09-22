@@ -92,7 +92,7 @@ Your code should now look like this:
 
       <h2 class="govuk-heading-m">Now send your application</h2>
 
-      <p>By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+      <p>By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
 
       <form action="/confirmation" method="post" novalidate>
 
