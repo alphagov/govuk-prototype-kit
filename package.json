@@ -45,11 +45,6 @@
     "universal-analytics": "^0.4.16",
     "uuid": "^7.0.3"
   },
-  "greenkeeper": {
-    "ignore": [
-      "nunjucks"
-    ]
-  },
   "devDependencies": {
     "glob": "^7.1.4",
     "jest": "^25.2.7",
