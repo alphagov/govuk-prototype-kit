@@ -77,6 +77,10 @@ router.get('/make-first-prototype/add-questions', function (req, res) {
   res.redirect('/docs/make-first-prototype/use-components')
 })
 
+router.get('/templates/check-your-answers', function (req, res) {
+  res.redirect('/docs/templates/check-answers')
+})
+
 module.exports = router
 
 // Strip off markdown extensions if present and redirect

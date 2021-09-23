@@ -3,7 +3,7 @@
 1. Go to the [textarea](https://design-system.service.gov.uk/components/textarea/) page of the Design System.
 2. Select the **Nunjucks** tab, then **Copy code**.
 3. Open `juggling-trick.html` in your `app/views` folder.
-4. Replace the 2 example `<p>...</p>` paragraphs with the code you copied. 
+4. Replace the 2 example `<p>...</p>` paragraphs with the code you copied.
 5. Delete the old `<h1>` tag with "What is your most impressive juggling trick?" (again the example code comes with an accessible heading for the question).
 
 ### Customise the example code
@@ -30,4 +30,4 @@ Your page should now look like this:
 
 ![Screenshot of the question page with a textarea](/public/images/docs/tutorial-textarea.png)
 
-[Next (Show the user’s answers on your ‘Check your answers’ page)](show-users-answers)
+[Next (Show the user’s answers on your ‘Check answers’ page)](show-users-answers)
