@@ -66,14 +66,13 @@ If it says another number such as `0.12` or `5.x.x`, you need to download and in
 
 #### Mac / Windows users
 
-Download version 14 from [nodejs.org](https://nodejs.org/en/).
+[Download version 14 from the Node.js website.](https://nodejs.org/en/)
 
 Run the installer with all default options.
 
 #### Linux users
 
-Follow the instructions on the [Node.js](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-) site. Make sure you get version 14.
+[Follow the Linux instructions on the Node.js. website.](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions) Make sure you get version 14.
 
 ### Once Node is installed
 
