@@ -7,6 +7,8 @@
     "node": ">=10.0.0 <16.0.0"
   },
   "scripts": {
+    "preinstall": "node check-node-version.js",
+    "prestart": "node check-node-version.js",
     "start": "node start.js",
     "lint": "standard",
     "test": "npm run lint && gulp generate-assets && jest"
