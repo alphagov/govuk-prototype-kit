@@ -1,23 +1,30 @@
 # Unreleased
- 
+
+# 9.15.0 (Feature release)
+
 ## New features
 
-### Replace back link placeholder URLs with javascript
+### Replace back link placeholder URLs with JavaScript
 
-Previously, users had to manually replace the `href` for each back link in the page templates.
+We've added JavaScript to make the [back link component](https://design-system.service.gov.uk/components/back-link/) take users to the previous page by default, rather than you having to update placeholder text.
 
-Now, we use JavaScript to make the back link take you to the previous page by default.
+If you want to use JavaScript in production, you must also use a non-JavaScript alternative, so you do not exclude any users. If you cannot use a non-JavaScript alternative, you should hide the back link when JavaScript is not available.
 
-This approach is not appropriate for production scenarios, where you cannot rely on JavaScript being available at all times.
+You can still override the `href` attribute if you need to provide a solution that works when JavaScript is disabled.
 
-You can still override the `href` attribute if you need different behaviour.
+This was added in [Pull request #1103: Replace back link placeholder URLs with JavaScript](https://github.com/alphagov/govuk-prototype-kit/pull/1103)
 
-This was added in [Pull request #1103: Replace back link placeholder URLs with javascript](https://github.com/alphagov/govuk-prototype-kit/pull/1103)
+### Update Node.js to protect your code
+
+If you use the GOV.UK Prototype Kit, we recommend you update to use the latest version of Node.js 14 Long Term Support (LTS). This is to make sure you're protected from a [recent security vulnerability in the npm (Node Package Manager)](https://github.blog/2021-09-08-github-security-update-vulnerabilities-tar-npmcli-arborist/).
+
+To make sure you're using Node.js version 14.17.6 or later, [follow the install instructions on the Prototype Kit website](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#nodejs-version-14-lts).
+
+If you're using Node Version Manager (nvm), you can instead [run `nvm install` to install v14.17.6](https://github.com/alphagov/govuk-prototype-kit/pull/1076).
 
 ## Fixes
 
 - [Pull request #1104: Change visually hidden footer title](https://github.com/alphagov/govuk-prototype-kit/pull/1104)
-- [Pull request #1076: Update to Node.js v14.17.6 when using Node Version Manager](https://github.com/alphagov/govuk-prototype-kit/pull/1076)
 
 # 9.14.2 (Fix release)
 
