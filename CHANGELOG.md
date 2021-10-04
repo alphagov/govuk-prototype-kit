@@ -4,6 +4,15 @@
 
 ## New features
 
+### Update to GOV.UK Frontend 3.14.0
+
+Added in [Pull request #1108: Update to GOV.UK Frontend v3.14.0](https://github.com/alphagov/govuk-prototype-kit/pull/1108)
+
+This release contains:
+- new override classes for text alignment
+- changes to the `govuk-spacing` function to allow negative spacing
+- a fix for an accessibility issue with the panel component
+
 ### Replace back link placeholder URLs with JavaScript
 
 We've added JavaScript to make the [back link component](https://design-system.service.gov.uk/components/back-link/) take users to the previous page by default, rather than you having to update placeholder text.
