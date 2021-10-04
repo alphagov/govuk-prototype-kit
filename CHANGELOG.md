@@ -1,4 +1,18 @@
 # Unreleased
+ 
+## New features
+
+### Replace back link placeholder URLs with javascript
+
+Previously, users had to manually replace the `href` for each back link in the page templates.
+
+Now, we use JavaScript to make the back link take you to the previous page by default.
+
+This approach is not appropriate for production scenarios, where you cannot rely on JavaScript being available at all times.
+
+You can still override the `href` attribute if you need different behaviour.
+
+This was added in [Pull request #1103: Replace back link placeholder URLs with javascript](https://github.com/alphagov/govuk-prototype-kit/pull/1103)
 
 ## Fixes
 
