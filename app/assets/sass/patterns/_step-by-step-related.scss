@@ -1,4 +1,4 @@
-// Based on https://github.com/alphagov/govuk_publishing_components/blob/v22.0.0/app/assets/stylesheets/govuk_publishing_components/components/_step-by-step-related.scss
+// Based on https://github.com/alphagov/govuk_publishing_components/blob/v27.4.0/app/assets/stylesheets/govuk_publishing_components/components/_step-by-step-nav-related.scss
 // Note - this code for prototype purposes only. It is not production code.
 
 .app-step-nav-related {
@@ -14,7 +14,8 @@
 }
 
 .app-step-nav-related__links {
-  @include govuk-font(16, $weight: bold);
+  @include govuk-font(16);
+  list-style: none;
   margin: 0;
   padding: 0;
 }
@@ -45,18 +46,6 @@
   }
 }
 
-.app-step-nav-related__links {
-  list-style: none;
-}
-
 .app-step-nav-related__link-item {
   margin-top: govuk-spacing(3);
-
-  @include govuk-media-query($from: tablet) {
-    margin-top: govuk-spacing(1);
-  }
-}
-
-.app-step-nav-related__link {
-  @extend %govuk-link;
 }
