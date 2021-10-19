@@ -1,5 +1,9 @@
 # Unreleased
 
+## Breaking changes
+
+- [Pull request #925: Upgrade Notify client library from 4.7.2 to 5.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/925). This may break existing prototypes which are using the Notify client. If you have any issues, please [contact the GOV.UK Prototype Kit team](https://design-system.service.gov.uk/get-in-touch/).
+
 ## Fixes
 
 - [Pull request #1133: Remove express-writer from package file](https://github.com/alphagov/govuk-prototype-kit/pull/1133)
