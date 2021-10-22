@@ -1,5 +1,7 @@
 # Unreleased
 
+Remove v6 backwards compatibility with GOV.UK Elements. GOV.UK Elements is deprecated and has not been released since July 2018. New prototypes should be using the GOV.UK Design System.
+
 # 9.15.0 (Feature release)
 
 ## New features
