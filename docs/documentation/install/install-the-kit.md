@@ -24,7 +24,7 @@ Move the folder into your `prototypes` folder.
 
 ## Terminal basics
 
-The terminal on MacOS and Linux (and git bash on Windows, which is part of Git for Windows) lets you type in commands and run programs on your computer. 
+The terminal on MacOS and Linux (and Git BASH on Windows, which is part of Git for Windows) lets you type in commands and run programs on your computer. 
 
 There are a few commands you‘ll have to run in the terminal to use the kit and make it available online for others to see. 
 
@@ -46,7 +46,7 @@ You can follow a [tutorial on basic terminal commands](https://tutorials.codebar
 
 ### Windows users 
 
-You can use git bash on Windows instead of terminal. The commands are the same as terminal.
+You can use Git BASH on Windows instead of terminal. The commands are the same as terminal.
 [Get Git for Windows](https://git-scm.com/download/win)
 
 ### Navigating to your prototype folder
