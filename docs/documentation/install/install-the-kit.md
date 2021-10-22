@@ -24,20 +24,21 @@ Move the folder into your `prototypes` folder.
 
 ## Terminal basics
 
-The Terminal on Mac OS and Linux (and Git for Windows) lets you type in commands and run programs on your computer. 
+The Terminal on Mac OS (called terminal on Linux, and Git for Windows on Windows) lets you type in commands and run programs on your computer. 
 
-There are a few commands you'll have to run in the Terminal to use the kit and make it available online for others to see. 
+There are a few commands you‘ll have to run in the Terminal to use the kit and make it available online for others to see. 
 
-To start the Terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type 'terminal'. The important thing to remember about the Terminal is that you're working in one directory (folder) at any one time.
+To start the Terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type ‘terminal’. The important thing to remember about the Terminal is that you‘re working in one directory (folder) at any one time.
 
 ### Commands
 
-* cd  = change directory
-* cd ~  = go to your home directory
-* press up and down on the keyboard to go through previous commands.
-* npm start  = start the Prototype Kit (you need to be in your prototype folder) 
+* `cd`  = change directory
+* `cd ~`  = go to your home directory
+* `ls` = list all the folders and files in a directory. 
+* press up and down on the keyboard to go through previous commands
+* `npm start`  = start the Prototype Kit (you need to be in your prototype folder) 
 
-To quit the kit, in the terminal press the <b>ctrl</b> and <b>c</b> keys together.
+To quit the kit, in the Terminal press the <b>ctrl</b> and <b>c</b> keys together.
 
 If you type a command that the command line does not understand, it will show you an error message. Do not worry if you see one of these. Have a look at the command you wrote and see if you can work out what was wrong.
 
@@ -56,7 +57,7 @@ You need to navigate to your prototype folder in the terminal. Most commands for
 cd ~/Documents/prototypes/juggling-licence
 ```
 
-Take note of what is upper or lower case - for example lower case 'd' for 'Documents' will not work.
+Take note of what is upper or lower case - for example lower case ‘d’ for ‘Documents’ will not work.
 
 If any of your folder names contain spaces, you must add quotation marks around everything after `~/`. For example:
 
