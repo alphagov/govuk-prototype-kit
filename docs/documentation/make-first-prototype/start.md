@@ -3,7 +3,7 @@
 This tutorial shows you how to prototype a fictional 'Apply for a juggling licence' service that will:
 
 - ask 2 questions
-- show the user's answers
+- show the user's answers for them to check
 - show a confirmation page
 
 It will take about an hour to finish this tutorial, after you install the Prototype Kit.

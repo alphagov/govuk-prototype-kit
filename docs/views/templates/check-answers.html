@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/url/of/previous/page">Back</a>
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -143,7 +143,7 @@
 
       <h2 class="govuk-heading-m">Now send your application</h2>
 
-      <p>By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+      <p>By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
 
       <form action="/confirmation" method="post" novalidate>
 

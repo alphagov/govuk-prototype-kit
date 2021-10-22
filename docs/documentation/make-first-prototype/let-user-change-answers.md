@@ -2,7 +2,7 @@
 
 ## Make the ‘Change’ links work
 
-Make the **Change** links on the ‘Check your answers’ page work by adding the right links.
+Make the **Change** links on the ‘Check answers’ page work by adding the right links.
 
 1. In the `<a>` tag under `{{ data['how-many-balls'] }}`, change the href attribute from `#` to `/juggling-balls`
 2. In the `<a>` tag under `{{ data['most-impressive-trick'] }}`, change the href attribute from `#` to `/juggling-trick`

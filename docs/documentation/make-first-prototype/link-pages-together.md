@@ -25,14 +25,14 @@ Go to http://localhost:3000/juggling-balls and select **Continue** to check the 
 
 This time it's a real HTML button, not a link. Buttons submit form data - the URL is on the form tag, not the button.
 
-## Link question 2 to your 'Check your answers' page
+## Link question 2 to your 'Check answers' page
 
 1. Open `juggling-trick.html` in your `app/views` folder.
 2. Find the line `<form class="form" action="/url/of/next/page" method="post">`.
-3. Change the value of the `action` attribute from `/url/of/next/page` to `/check-your-answers`.
+3. Change the value of the `action` attribute from `/url/of/next/page` to `/check-answers`.
 
 Go to http://localhost:3000/juggling-trick and select **Continue** to check the button works.
 
-The 'Check your answers' page template links to the ‘Confirmation’ page by default. So you do not need to change the ‘Check your answers’ page.
+The 'Check answers' page template links to the ‘Confirmation’ page by default. So you do not need to change the ‘Check answers’ page.
 
 [Next (use components from the Design System)](use-components)
