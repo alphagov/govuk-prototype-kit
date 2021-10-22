@@ -24,11 +24,11 @@ Move the folder into your `prototypes` folder.
 
 ## Terminal basics
 
-The Terminal on Mac OS (called terminal on Linux, and Git for Windows on Windows) lets you type in commands and run programs on your computer. 
+The terminal on MacOS and Linux (and git bash on Windows, which is part of Git for Windows) lets you type in commands and run programs on your computer. 
 
-There are a few commands you‘ll have to run in the Terminal to use the kit and make it available online for others to see. 
+There are a few commands you‘ll have to run in the terminal to use the kit and make it available online for others to see. 
 
-To start the Terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type ‘terminal’. The important thing to remember about the Terminal is that you‘re working in one directory (folder) at any one time.
+To start the terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type ‘terminal’. The important thing to remember about the terminal is that you‘re working in one directory (folder) at any one time.
 
 ### Commands
 
@@ -38,7 +38,7 @@ To start the Terminal, open Spotlight (magnifying glass icon in the top right of
 * press up and down on the keyboard to go through previous commands
 * `npm start`  = start the Prototype Kit (you need to be in your prototype folder) 
 
-To quit the kit, in the Terminal press the <b>ctrl</b> and <b>c</b> keys together.
+To quit the kit, in the terminal press the <b>ctrl</b> and <b>c</b> keys together.
 
 If you type a command that the command line does not understand, it will show you an error message. Do not worry if you see one of these. Have a look at the command you wrote and see if you can work out what was wrong.
 
@@ -46,7 +46,7 @@ You can follow a [tutorial on basic terminal commands](https://tutorials.codebar
 
 ### Windows users 
 
-You can use Git for Windows instead of Terminal. The commands are all the same as Terminal.
+You can use git bash on Windows instead of terminal. The commands are the same as terminal.
 [Get Git for Windows](https://git-scm.com/download/win)
 
 ### Navigating to your prototype folder
