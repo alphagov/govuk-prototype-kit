@@ -32,6 +32,11 @@ There are a few commands you‘ll have to run in the terminal to use the kit and
 
 To start the terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type ‘terminal’. The important thing to remember about the terminal is that you‘re working in one directory (folder) at any one time.
 
+### Windows users 
+
+You can use Git BASH on Windows instead of terminal. The commands are the same as terminal.
+[Get Git for Windows](https://git-scm.com/download/win)
+
 ### Commands
 
 * `cd`  = change directory
@@ -45,11 +50,6 @@ To quit the kit, in the terminal press the <b>ctrl</b> and <b>c</b> keys togethe
 If you type a command that the command line does not understand, it will show you an error message. Do not worry if you see one of these. Have a look at the command you wrote and see if you can work out what was wrong.
 
 You can follow a [tutorial on basic terminal commands](https://tutorials.codebar.io/command-line/introduction/tutorial.html) on the codebar website.
-
-### Windows users 
-
-You can use Git BASH on Windows instead of terminal. The commands are the same as terminal.
-[Get Git for Windows](https://git-scm.com/download/win)
 
 ### Navigating to your prototype folder
 
