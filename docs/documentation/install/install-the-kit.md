@@ -24,7 +24,24 @@ Move the folder into your `prototypes` folder.
 
 ## Terminal basics
 
-The terminal (on Mac and Linux, git bash on Windows) lets you type in commands and run programs on your computer. You can also use it to browse your file system, for example to open folders.
+The terminal on MacOS and Linux (and Git Bash on Windows, which is part of Git for Windows) lets you type in commands and run programs on your computer. 
+
+The important thing to remember about the terminal is that you‘re working in one directory (folder) at any one time.
+
+There are a few commands you‘ll have to run in the terminal to use the Prototype Kit.
+
+### Commands
+
+* `cd [name of directory]`  = change to [name of directory]
+* `cd ~`  = go to your home directory
+* `ls` = list all the folders and files in a directory
+* `pwd` = print working directory tells you what directory you’re in 
+* press up and down on the keyboard to go through previous commands
+* `npm start`  = start the Prototype Kit (you need to be in your prototype folder) 
+
+To quit the kit, in the terminal press the <b>ctrl</b> and <b>c</b> keys together.
+
+If you type a command that the terminal does not understand, it will show you an error message. Do not worry if you see one of these. Have a look at the command you wrote and see if there is a typo in the command.
 
 You can follow a [tutorial on basic terminal commands](https://tutorials.codebar.io/command-line/introduction/tutorial.html) on the codebar website.
 
