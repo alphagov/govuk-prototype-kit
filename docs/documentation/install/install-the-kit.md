@@ -26,11 +26,13 @@ Move the folder into your `prototypes` folder.
 
 The terminal on MacOS and Linux (and Git BASH on Windows, which is part of Git for Windows) lets you type in commands and run programs on your computer. 
 
+The important thing to remember about the terminal is that you‘re working in one directory (folder) at any one time.
+
 There are a few commands you‘ll have to run in the terminal to use the kit and make it available online for others to see. 
 
 ### Mac users
 
-To start the terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type ‘terminal’. The important thing to remember about the terminal is that you‘re working in one directory (folder) at any one time.
+To start the terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type ‘terminal’. 
 
 ### Windows users 
 
