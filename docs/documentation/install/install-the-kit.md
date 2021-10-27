@@ -28,6 +28,8 @@ The terminal on MacOS and Linux (and Git BASH on Windows, which is part of Git f
 
 There are a few commands you‘ll have to run in the terminal to use the kit and make it available online for others to see. 
 
+### Mac users
+
 To start the terminal, open Spotlight (magnifying glass icon in the top right of the screen) and type ‘terminal’. The important thing to remember about the terminal is that you‘re working in one directory (folder) at any one time.
 
 ### Commands
