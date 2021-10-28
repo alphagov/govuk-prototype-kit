@@ -49,6 +49,6 @@
     "glob": "^7.1.4",
     "jest": "^25.2.7",
     "standard": "^14.3.3",
-    "supertest": "^4.0.2"
+    "supertest": "^6.1.6"
   }
 }
