@@ -37,15 +37,6 @@ Download [Git Bash (direct download)](https://git-scm.com/download/win).
 
 Install with all the default options.
 
-### Entering commands in the terminal
-
-Commands to be entered in to the terminal will be inset like this:
-```
-command to be typed in to terminal
-```
-Once you’ve typed the command, press enter to run it.
-
-
 ## Node.js version 14 LTS
 
 The kit is designed to work with Node.js version 14 LTS. The kit works with any 14.x.x version.
