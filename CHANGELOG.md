@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [Pull request #1133: Remove express-writer from package file](https://github.com/alphagov/govuk-prototype-kit/pull/1133)
+
 # 9.15.0 (Feature release)
 
 ## New features
