@@ -37,7 +37,7 @@
     "keypather": "^3.0.0",
     "marked": "^3.0.8",
     "node-sass": "^6.0.1",
-    "notifications-node-client": "^4.7.2",
+    "notifications-node-client": "^5.1.0",
     "nunjucks": "^3.2.1",
     "portscanner": "^2.1.1",
     "require-dir": "^1.0.0",
