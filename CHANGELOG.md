@@ -1,5 +1,9 @@
 # Unreleased
 
+## Breaking changes
+
+- [Pull request #1127: Update to Node 16 and drop support for Node 10](https://github.com/alphagov/govuk-prototype-kit/pull/1127)
+
 ## Fixes
 
 - [Pull request #1133: Remove express-writer from package file](https://github.com/alphagov/govuk-prototype-kit/pull/1133)
