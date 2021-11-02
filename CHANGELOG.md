@@ -1,6 +1,22 @@
-# Unreleased
+# 10.0.0 (Breaking release)
 
 ## Breaking changes
+
+You must make the following changes if you’re running Node.js 10 and you update to this release, or your prototype may break.
+
+### Update from Node.js 10
+
+You can no longer run the GOV.UK Prototype Kit on Node.js 10.
+
+If you currently run Node.js 10, you'll need to upgrade to a newer version. 
+
+We recommend using version 16. You can find more information on the [Prototype Kit requirements page](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md).
+
+### Upgrade Notify client library from version 4.7.2 to 5.1.0
+
+We have updated the Notify client library to version 5.1.0. This may break existing prototypes that are using the Notify client. Big thanks to [David McDonald](https://github.com/idavidmcdonald).
+
+## Breaking change pull requests
 
 - [Pull request #925: Upgrade Notify client library from 4.7.2 to 5.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/925). This may break existing prototypes which are using the Notify client. If you have any issues, please [contact the GOV.UK Prototype Kit team](https://design-system.service.gov.uk/get-in-touch/).
 - [Pull request #1127: Update to Node 16 and drop support for Node 10](https://github.com/alphagov/govuk-prototype-kit/pull/1127)
