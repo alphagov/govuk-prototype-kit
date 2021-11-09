@@ -10,4 +10,3 @@ lib/extensions/_extensions.scss
 public
 node_modules/*
 .tmuxp.*
-package-lock.json
