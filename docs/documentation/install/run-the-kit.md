@@ -21,6 +21,8 @@ In the terminal, enter:
 npm start
 ```
 
+The first time you run `npm start`, the kit will ask you whether you want to send anonymous data to help the team improve the service. Enter `y` or `n` to answer yes or no. 
+
 After the kit has started, you should see a message telling you that the kit is running:
 ```
 Listening on port 3000 url: http://localhost:3000
@@ -44,7 +46,7 @@ To quit the kit, in the terminal press the `ctrl` and `c` keys together.
 
 The kit is now installed. Congratulations!
 
-The Prototype Kit is updated regularly. We announce new versions of the Prototype Kit in the [#prototype-kit channel on cross-government Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit/). You should [update to the latest version](/docs/updating-the-kit) to get the latest components, new features and fixes. 
+The Prototype Kit is updated regularly. We announce new versions of the Prototype Kit in the [#prototype-kit channel on cross-government Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit/). You should [update to the latest version](/docs/updating-the-kit) to get the latest components, new features and fixes.
 
 ## Make your first prototype
 
