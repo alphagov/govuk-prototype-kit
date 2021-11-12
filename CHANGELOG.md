@@ -1,8 +1,21 @@
-# Unreleased
+# 11.0.0 (Fix release)
 
 ## Fixes
 
-- [Pull request #1143: Add a package-lock.json file](https://github.com/alphagov/govuk-prototype-kit/pull/1143)
+We’ve recently experienced 2 security incidents involving common NPM packages used by the Prototype Kit. We’re sorry for the inconvenience this has caused.
+
+We’ve added new measures (a package-lock.json file) to help prevent this in the future. 
+
+To protect your service from any similar threats in future, please upgrade to this new version of the Kit.
+
+[Install the Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/install)
+
+For any existing prototypes, follow the guide to [update the kit](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit).
+
+## Pull requests
+
+[Pull request #1143: Add a package-lock.json file](https://github.com/alphagov/govuk-prototype-kit/pull/1143).
+
 
 # 10.0.0 (Breaking release)
 
