@@ -1,7 +1,5 @@
 # Releasing a new version of the prototype kit
 
-**Consider removing package-lock.json and disabling npm auditing in a .npmrc file**
-
 1. Checkout main and pull latest changes.
 
 2. Decide on a new version number. Do this by looking at the [current "Unreleased" CHANGELOG](../CHANGELOG.md) changes and updating the previous release number depending on the kind of entries:
