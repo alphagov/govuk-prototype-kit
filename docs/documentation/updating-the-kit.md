@@ -2,39 +2,41 @@
 
 1. [Download the zip file of the latest version of the Prototype Kit](/docs/download).
 
-2. Unzip the zip file.
+2. Unzip the zip file. It will make a folder called `govuk-prototype-kit`, with a version number.
 
 3. Make a backup copy of your prototype folder.
 
-4. In your prototype, delete everything except the `app` and `.git` folders.
+4. You’ll need to copy some files that operating systems do not usually show. These hidden files usually start with a `.` and are known as ‘dot files’. You can:
+- [show hidden files in Windows](https://support.microsoft.com/en-us/windows/view-hidden-files-and-folders-in-windows-97fbc472-c603-9d90-91d0-1166d1d9f4b5)
+- show hidden files on MacOS by pressing command + shift + . in Finder 
 
-   You may not be able to see the `.git` folder because files and folders that start with `.` are hidden by default.
+5. In your prototype folder, delete everything except the `app` and `.git` folders.
 
-5. Copy all the folders from the unzipped folder to your prototype, except the `app` folder.
+6. Copy all the files and folders except the `app` folder from the `govuk-prototype-kit` folder to your prototype.
 
-6. Replace the `app/config.js` file in your prototype with the `app/config.js` file from the unzipped folder.
+7. Replace the `app/config.js` file in your prototype with the `app/config.js` file from the `govuk-prototype-kit` folder.
 
-7. Compare your new `config.js` file to the `config.js` file in the backup you made in step 3, and copy over anything you need to from the backup - for example your service name.
+8. Compare your new `config.js` file to the `config.js` file in the backup you made in step 3, and copy over anything you need to from the backup - for example your service name.
 
-8. Copy `app/assets/sass/patterns` from the unzipped folder to your prototype.
+9. Copy `app/assets/sass/patterns` from the `govuk-prototype-kit` folder to your prototype.
 
-9. Open the `app/assets/sass/application.scss` file in the unzipped folder.
+10. Open the `app/assets/sass/application.scss` file in the `govuk-prototype-kit` folder.
 
-10. Copy everything down to `// Add extra styles here`, then paste it into the `app/assets/sass/application.scss` file in your prototype so it replaces everything above `// Add extra styles here`.
+11. Copy everything down to `// Add extra styles here`, then paste it into the `app/assets/sass/application.scss` file in your prototype so it replaces everything above `// Add extra styles here`.
 
-11. Save the updated `app/assets/sass/application.scss` file in your prototype.
+12. Save the updated `app/assets/sass/application.scss` file in your prototype.
 
-12. Check the [latest Prototype Kit release note](https://github.com/alphagov/govuk-prototype-kit/releases/latest) and follow any guidance on updating your prototype.
+13. Check the [latest Prototype Kit release note](https://github.com/alphagov/govuk-prototype-kit/releases/latest) and follow any guidance on updating your prototype.
 
     If your prototype has not been updated for a long time, you should also follow any guidance in [release notes](https://github.com/alphagov/govuk-prototype-kit/releases) between the version you're updating from and the latest version. You can find out the version you're updating from in the `VERSION.txt` file in your backup folder.
 
-13. In your [terminal](/docs/install/requirements.md#terminal), `cd` to your prototype folder.
+14. In your [terminal](/docs/install/requirements.md#terminal), `cd` to your prototype folder.
 
-14. Run `npm install`.
+15. Run `npm install`.
 
     This may take up to a minute. You can ignore any lines in the log that start with `WARN`.
 
-15. [Run the kit and check it works](/docs/install/run-the-kit).
+16. [Run the kit and check it works](/docs/install/run-the-kit).
 
 If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 3. Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
 
