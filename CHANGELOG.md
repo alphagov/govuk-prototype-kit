@@ -1,3 +1,9 @@
+# Unreleased
+
+## Fixes
+
+- [Pull request #1143: Add a package-lock.json file](https://github.com/alphagov/govuk-prototype-kit/pull/1143)
+
 # 10.0.0 (Breaking release)
 
 ## Breaking changes
