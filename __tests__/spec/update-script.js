@@ -35,6 +35,10 @@ const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.e
 function runScriptSync (options) {
   const opts = { cwd: options.testDir, encoding: 'utf8' }
 
+  if (options.clean === false) {
+    opts.env = { CLEAN: '0' }
+  }
+
   const args = [script]
 
   const ret = child_process.spawnSync(bash, args, opts)
@@ -216,6 +220,42 @@ describe('update.sh', () => {
     })
   })
 
+  describe('prepare', () => {
+    it('removes existing update folder', () => {
+      const testDir = mktestDirSync('prepare1')
+      fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
+      fs.writeFileSync(path.join(testDir, 'update', 'govuk-prototype-kit-empty.zip'), '')
+      const oldStat = fs.statSync(path.join(testDir, 'update'))
+
+      runScriptSyncAndIgnoreStatus({ testDir })
+
+      const newStat = fs.statSync(path.join(testDir, 'update'))
+
+      // tests that update folder _has_ been replaced
+      expect(newStat.birthtimeMs).not.toBe(oldStat.birthtimeMs)
+      expect(() => {
+        fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-empty.zip'))
+      }).toThrowError()
+    })
+
+    it('does not remove existing update folder if CLEAN=0 is set', () => {
+      const testDir = mkTestDirSync('prepare2')
+      fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
+      fs.writeFileSync(path.join(testDir, 'update', 'govuk-prototype-kit-empty.zip'), '')
+      const oldStat = fs.statSync(path.join(testDir, 'update'))
+
+      runScriptSyncAndIgnoreStatus({ testDir, clean: false })
+
+      const newStat = fs.statSync(path.join(testDir, 'update'))
+
+      // tests that update folder has _not_ been replaced
+      expect(newStat.birthtimeMs).toBe(oldStat.birthtimeMs)
+      expect(() => {
+        fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-empty.zip'))
+      }).not.toThrowError()
+    })
+  })
+
   describe('fetch', () => {
     it('downloads the latest release of the prototype kit into the update folder', () => {
       const testDir = mktestDirSync('download')
@@ -233,7 +273,7 @@ describe('update.sh', () => {
       fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
       mktestArchiveSync(testDir)
 
-      runScriptSync({ testDir })
+      runScriptSync({ testDir, clean: false })
 
       fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-foo', 'foo'))
     })
@@ -243,7 +283,7 @@ describe('update.sh', () => {
     it('updating an existing up-to-date prototype does nothing', () => {
       const testDir = mktestPrototypeSync('up-to-date')
 
-      runScriptSyncAndExpectSuccess({ testDir })
+      runScriptSyncAndExpectSuccess({ testDir, clean: false })
 
       // expect that `git status` reports no files added, changed, or removed
       expect(execGitStatusSync(testDir)).toEqual([])
@@ -254,7 +294,7 @@ describe('update.sh', () => {
 
       const oldStat = fs.statSync(path.join(testDir, 'usage-data-config.json'))
 
-      runScriptSyncAndExpectSuccess({ testDir })
+      runScriptSyncAndExpectSuccess({ testDir, clean: false })
 
       const newStat = fs.statSync(path.join(testDir, 'usage-data-config.json'))
       expect(newStat.mtimeMs).toBe(oldStat.mtimeMs)
@@ -269,7 +309,7 @@ describe('update.sh', () => {
       fs.unlinkSync(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
       fs.rmdirSync(path.join(updateDir, 'lib', 'v6'))
 
-      runScriptSyncAndExpectSuccess({ testDir })
+      runScriptSyncAndExpectSuccess({ testDir, clean: false })
 
       expect(execGitStatusSync(testDir)).toEqual([
         ' D docs/documentation/session.md',
@@ -285,7 +325,7 @@ describe('update.sh', () => {
       fs.writeFileSync(path.join(updateDir, 'app', 'assets', 'sass', 'patterns', '_task-list.scss'), 'foobar')
       fs.writeFileSync(path.join(updateDir, 'app', 'routes.js'), 'arglebargle')
 
-      runScriptSyncAndExpectSuccess({ testDir })
+      runScriptSyncAndExpectSuccess({ testDir, clean: false })
 
       expect(execGitStatusSync(testDir)).toEqual([
         ' D app/assets/sass/patterns/_related-items.scss',

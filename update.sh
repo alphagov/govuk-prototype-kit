@@ -17,6 +17,15 @@ fi
 
 OLD_VERSION="$(cat VERSION.txt)"
 
+# Clean any old update folder, in case the script has been run before and the
+# user did not remove the old update files. If for some reason cleaning is
+# not desired, run with envvar CLEAN=0.
+CLEAN="${CLEAN:-1}"
+
+if [[ "$CLEAN" -eq 1 ]]; then
+  rm -rf update
+fi
+
 # make the update folder
 mkdir -p update
 # stop git from committing the update folder
