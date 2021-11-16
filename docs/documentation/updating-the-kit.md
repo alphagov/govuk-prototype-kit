@@ -7,8 +7,8 @@
 3. Make a backup copy of your prototype folder.
 
 4. You’ll need to copy some files that operating systems do not usually show. These hidden files usually start with a `.` and are known as ‘dot files’. You can:
-- [show hidden files in Windows](https://support.microsoft.com/en-us/windows/view-hidden-files-and-folders-in-windows-97fbc472-c603-9d90-91d0-1166d1d9f4b5)
-- show hidden files on MacOS by pressing command + shift + . in Finder 
+    - [show hidden files in Windows](https://support.microsoft.com/en-us/windows/view-hidden-files-and-folders-in-windows-97fbc472-c603-9d90-91d0-1166d1d9f4b5)
+    - show hidden files on MacOS by pressing command + shift + . in Finder 
 
 5. In your prototype folder, delete everything except the `app` and `.git` folders.
 
