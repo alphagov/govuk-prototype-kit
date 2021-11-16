@@ -4,11 +4,10 @@ How to to update your prototype and get help from the GOV.UK Prototype Kit team.
 
 ## Get help
 
-If you have a question or need help with the Prototype Kit, you can:
+If you have a question or need help with updating the Prototype Kit, you can:
 
 - email govuk-design-system-support@digital.cabinet-office.gov.uk
 - get in touch on the [Prototype Kit's channel on cross-government Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
-- [raise an issue in the Prototype Kit GitHub repo](https://github.com/alphagov/govuk-prototype-kit/issues)
 
 Tell us as much as you can about the issue you're having, and the computer and operating system you're using.
 
