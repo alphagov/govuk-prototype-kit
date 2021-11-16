@@ -1,3 +1,9 @@
+# Unreleased
+
+## Features
+
+- [Pull request #1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120)
+
 # 11.0.0 (Fix release)
 
 ## Fixes
