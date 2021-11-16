@@ -2,56 +2,6 @@
 
 ## Features
 
-- [Pull request #1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120)
-
-# 11.0.0 (Fix release)
-
-## Fixes
-
-We’ve recently experienced 2 security incidents involving common NPM packages used by the Prototype Kit. We’re sorry for the inconvenience this has caused.
-
-We’ve added new measures (a package-lock.json file) to help prevent this in the future. 
-
-To protect your service from any similar threats in future, please upgrade to this new version of the Kit.
-
-[Install the Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/install)
-
-For any existing prototypes, follow the guide to [update the kit](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit).
-
-## Pull requests
-
-[Pull request #1143: Add a package-lock.json file](https://github.com/alphagov/govuk-prototype-kit/pull/1143).
-
-
-# 10.0.0 (Breaking release)
-
-## Breaking changes
-
-You must make the following changes if you’re running Node.js 10 and you update to this release, or your prototype may break.
-
-### Update from Node.js 10
-
-You can no longer run the GOV.UK Prototype Kit on Node.js 10.
-
-If you currently run Node.js 10, you'll need to upgrade to a newer version. 
-
-We recommend using version 16. You can find more information on the [Prototype Kit requirements page](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md).
-
-### Upgrade Notify client library from version 4.7.2 to 5.1.0
-
-We have updated the Notify client library to version 5.1.0. This may break existing prototypes that are using the Notify client. Big thanks to [David McDonald](https://github.com/idavidmcdonald).
-
-## Breaking change pull requests
-
-- [Pull request #925: Upgrade Notify client library from 4.7.2 to 5.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/925). This may break existing prototypes which are using the Notify client. If you have any issues, please [contact the GOV.UK Prototype Kit team](https://design-system.service.gov.uk/get-in-touch/).
-- [Pull request #1127: Update to Node 16 and drop support for Node 10](https://github.com/alphagov/govuk-prototype-kit/pull/1127)
-
-## Fixes
-
-- [Pull request #1133: Remove express-writer from package file](https://github.com/alphagov/govuk-prototype-kit/pull/1133)
-
-## Features
-
 - [Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120)
 
 # 11.0.0 (Fix release)
