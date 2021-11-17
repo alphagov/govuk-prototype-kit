@@ -105,6 +105,7 @@ copy () {
 		find "update/$ARCHIVE_ROOT" -type f -depth 1 -print0 | xargs -0 -I % cp -v % .
 
 		# specific workaround for old step 9, yuck
+		rm -rvf app/assets/sass/patterns
 		cp -Rv "update/$ARCHIVE_ROOT/app/assets/sass/patterns" "app/assets/sass/"
 
 		echo "Done"
