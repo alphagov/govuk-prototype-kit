@@ -248,6 +248,13 @@ describe('update.sh', () => {
 
       runScriptSyncAndExpectError('check', { testDir })
     })
+
+    it('exits with error if package.json file contains string containing govuk-prototype-kit', () => {
+      const testDir = mktestDirSync('name-contains-govuk-prototype-kit')
+      fs.writeFileSync(path.join(testDir, 'package.json'), '{\n  "name": "govuk-prototype-kit-test"\n}')
+
+      runScriptSyncAndExpectError('check', { testDir })
+    })
   })
 
   describe('prepare', () => {

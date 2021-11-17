@@ -30,7 +30,7 @@ update_gitignore () {
 
 # Check whether it is safe for the script to run
 check () {
-	if ! grep -q 'govuk-prototype-kit' package.json 2> /dev/null; then
+	if ! grep -q '"govuk-prototype-kit"' package.json 2> /dev/null; then
 		msg 'ERROR you must run update.sh in a folder containing a GOV.UK Prototype Kit installation'
 		msg 'Exiting'
 		exit 1
