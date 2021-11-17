@@ -24,15 +24,21 @@ You must protect user privacy at all times, even when using prototypes. Prototyp
 The GOV.UK Prototype Kit is maintained by the Government Digital Service. If you’ve got a question or need support you can:
 
 * email [govuk-design-system-support@digital.cabinet-office.gov.uk](mailto:govuk-design-system-support@digital.cabinet-office.gov.uk)
-* [get in touch on Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit)([open in app](slack://channel?team=T04V6EBTR&amp;id=C0647LW4R))
+* [get in touch on Slack](https://ukgovernmentdigital.slack.com/app_redirect?channel=prototype-kit)
 * [view known issues on GitHub](https://github.com/alphagov/govuk-prototype-kit/issues)
 
 ## Contributing
 
-If you’ve got an idea or suggestion you can:
+If you’ve got an idea or suggestion, you can:
 
-* [get in touch on the developer Slack channel](https://ukgovernmentdigital.slack.com/messages/prototype-kit-dev)([open in app](slack://channel?team=T04V6EBTR&amp;id=C0E1063DW))
+* [get in touch on the developer Slack channel](https://ukgovernmentdigital.slack.com/app_redirect?channel=prototype-kit-dev)
 * [create a GitHub issue](https://github.com/alphagov/govuk-prototype-kit/issues)
+
+The govuk-prototype-kit repository is public and we welcome contributions from anyone.
+
+Contributors to alphagov repositories are expected to follow the [Contributor Covenant Code of Conduct](https://github.com/alphagov/.github/blob/main/CODE_OF_CONDUCT.md#contributor-covenant-code-of-conduct). Contributors working within government are also expected to follow the [Civil Service code](https://www.gov.uk/government/publications/civil-service-code/the-civil-service-code).
+
+We're unable to monitor activity on this repository outside of our office hours (10am to 4pm, UK time). To get a faster response at other times, you can [report abuse or spam to GitHub](https://docs.github.com/en/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam).
 
 ### Security
 
