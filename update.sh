@@ -92,6 +92,22 @@ copy () {
 	# remove node_modules folder to ensure new packages will be installed cleanly
 	rm -rf node_modules
 
+	# if there are any errors we want there to be a clear error message for users
+	function catch_errors {
+		set +x
+		# Echoes to fd 3 to avoid being caught by redirection to update.log. See comment below.
+		1>&3 echo 'ERROR'
+		1>&3 echo
+		1>&3 tail -n 3 < update/update.log
+		1>&3 echo
+		1>&3 echo 'There has been an error,  your prototype could not be updated.'
+		1>&3 echo 'Your prototype kit files may be in an inconsistent state, please'
+		1>&3 echo 'contact the GOV.UK Prototype Kit team for support.'
+		exit 1
+	}
+
+	trap catch_errors ERR
+
 	msg -n 'Updating your prototype files... '
 
 	{
@@ -109,9 +125,15 @@ copy () {
 		cp -Rv "update/$ARCHIVE_ROOT/app/assets/sass/patterns" "app/assets/sass/"
 
 		echo "Done"
-	} >> update/update.log
+	} >> update/update.log 3>&2 2>&1
+	# The above line saves the output for all commands in the group, from both
+	# stdout and stderr, into update.log, while still allowing the user to see the
+	# error message from catch_errors. The correct order of runes was found by
+	# trial and error.
 
 	msg 'Done'
+
+	trap - ERR
 
 	msg
 	msg "Your prototype kit files have now been updated, from ${OLD_VERSION} to ${NEW_VERSION}."

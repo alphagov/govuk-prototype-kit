@@ -370,6 +370,23 @@ describe('update.sh', () => {
         ' M app/assets/sass/patterns/_task-list.scss'
       ])
     })
+
+    it('it outputs errors and logs them to a file', () => {
+      const testDir = mktestDirSync('error-logging')
+      mktestArchiveSync(testDir)
+
+      runScriptSyncAndExpectSuccess('extract', { testDir })
+      const ret = runScriptSync('copy', { testDir })
+
+      // we expect this to fail because the test archive doesn't have a docs folder
+      expect(ret.status).toBe(1)
+
+      expect(ret.stderr).toMatch(/No such file or directory/)
+      expect(ret.stderr).toMatch(/ERROR/)
+      expect(
+        fs.readFileSync(path.join(testDir, 'update', 'update.log'), 'utf8')
+      ).toMatch(/No such file or directory/)
+    })
   })
 
   afterAll(() => {
