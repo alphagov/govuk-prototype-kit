@@ -151,7 +151,7 @@ copy () {
 	update_gitignore
 }
 
-if [ "$0" == "${BASH_SOURCE[0]}" ]
+if [ "$0" == "${BASH_SOURCE:-$0}" ]
 then
 	check
 	prepare

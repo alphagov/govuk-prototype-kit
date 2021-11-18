@@ -399,6 +399,12 @@ describe('update.sh', () => {
     })
   })
 
+  it('can be run as a piped script', () => {
+    const testDir = mktestPrototypeSync('pipe')
+
+    child_process.execSync(`cat '${script}' | bash`, { cwd: testDir, shell: bash, stdio: 'ignore' })
+  })
+
   afterAll(() => {
     process.chdir(_cwd)
   })
