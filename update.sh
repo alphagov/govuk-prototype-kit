@@ -118,7 +118,7 @@ copy () {
 		cp -Rv "update/$ARCHIVE_ROOT/docs" "update/$ARCHIVE_ROOT/gulp" "update/$ARCHIVE_ROOT/lib" .
 
 		# Update core files (copy only the files in the update folder, not files in app/)
-		find "update/$ARCHIVE_ROOT" -type f -depth 1 -print0 | xargs -0 -I % cp -v % .
+		find "update/$ARCHIVE_ROOT" -maxdepth 1 -type f -print0 | xargs -0 -I % cp -v % .
 
 		# specific workaround for old step 9, yuck
 		rm -rvf app/assets/sass/patterns
