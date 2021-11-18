@@ -191,8 +191,8 @@ describe('update.sh', () => {
     child_process.execFileSync('git', ['commit', '-m', 'Test', '-a'], { cwd: src })
 
     // populate the update folder to speed up tests
-    fs.mkdirSync(path.join(src, 'update'))
-    child_process.execSync(`unzip -q ${fixtureDir}/${headReleaseArchiveFilename}`, { cwd: path.join(src, update) })
+    child_process.execSync(`unzip -q ${fixtureDir}/${headReleaseArchiveFilename}`, { cwd: src })
+    child_process.execSync(`mv ${headReleaseBasename} update`, { cwd: src })
     fs.copyFileSync(path.join(fixtureDir, headReleaseArchiveFilename), path.join(src, 'update', headReleaseArchiveFilename))
   }
 
@@ -312,7 +312,17 @@ describe('update.sh', () => {
 
       runScriptSyncAndExpectSuccess('extract', { testDir })
 
-      fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-foo', 'foo'))
+      // note that the extract process should strip 1 leading component from the path,
+      // so even though the archive contains:
+      //   - ./govuk-prototype-kit-foo/foo
+      // what we should end up with is:
+      //   - ./foo
+      // This is so users don't have to go digging through a complicated
+      // directory heirarchy after the script has asked them to manage their config.
+      fs.accessSync(path.join(testDir, 'update', 'foo'))
+      expect(() => {
+        fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-foo', 'foo'))
+      }).toThrow()
     })
   })
 
@@ -340,7 +350,7 @@ describe('update.sh', () => {
     it('removes files that have been removed from docs, gulp and lib folders', () => {
       const testDir = mktestPrototypeSync('remove-dangling-files')
 
-      const updateDir = path.join(testDir, 'update', headReleaseBasename)
+      const updateDir = path.join(testDir, 'update')
       fs.unlinkSync(path.join(updateDir, 'docs', 'documentation', 'session.md'))
       fs.unlinkSync(path.join(updateDir, 'gulp', 'clean.js'))
       fs.unlinkSync(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
@@ -358,7 +368,7 @@ describe('update.sh', () => {
     it('does not change files in apps folder, except for in assets/sass/patterns', () => {
       const testDir = mktestPrototypeSync('preserve-app-folder')
 
-      const updateDir = path.join(testDir, 'update', headReleaseBasename)
+      const updateDir = path.join(testDir, 'update')
       fs.unlinkSync(path.join(updateDir, 'app', 'assets', 'sass', 'patterns', '_related-items.scss'))
       fs.writeFileSync(path.join(updateDir, 'app', 'assets', 'sass', 'patterns', '_task-list.scss'), 'foobar')
       fs.writeFileSync(path.join(updateDir, 'app', 'routes.js'), 'arglebargle')

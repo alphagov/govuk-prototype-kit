@@ -72,22 +72,23 @@ extract () {
 
 	cd update
 
-	# unzip the release archive into the 'update' folder
-	if [ ! -d "$ARCHIVE_ROOT" ]; then
-		msg -n 'Extracting latest files and folders into update folder...'
-		unzip -qn "$ARCHIVE_FILE"
-		msg 'Done'
-	fi
+	msg -n 'Extracting latest files and folders into update folder...'
+
+	unzip -qn "$ARCHIVE_FILE"
+
+	shopt -s dotglob
+	mv "$ARCHIVE_ROOT"/* .
+	rm -d "$ARCHIVE_ROOT"
+
+	msg 'Done'
 
 	cd ..
 }
 
 # Copy 'core files' from the update folder into the current prototype folder
 copy () {
-	get_archive_vars
-
 	OLD_VERSION="$(cat VERSION.txt)"
-	NEW_VERSION="$(cat update/"$ARCHIVE_ROOT"/VERSION.txt)"
+	NEW_VERSION="$(cat update/VERSION.txt)"
 
 	# remove node_modules folder to ensure new packages will be installed cleanly
 	rm -rf node_modules
@@ -115,14 +116,19 @@ copy () {
 
 		# Replace core folders, making sure to remove any old files
 		rm -rvf docs gulp lib
-		cp -Rv "update/$ARCHIVE_ROOT/docs" "update/$ARCHIVE_ROOT/gulp" "update/$ARCHIVE_ROOT/lib" .
+		cp -Rv "update/docs" "update/gulp" "update/lib" .
 
 		# Update core files (copy only the files in the update folder, not files in app/)
-		find "update/$ARCHIVE_ROOT" -maxdepth 1 -type f -print0 | xargs -0 -I % cp -v % .
+		find "update" -maxdepth 1 \
+			-type f \
+			-not -name update.log \
+			-not -name '*.zip' \
+			-print0 \
+		| xargs -0 -I % cp -v % .
 
 		# specific workaround for old step 9, yuck
 		rm -rvf app/assets/sass/patterns
-		cp -Rv "update/$ARCHIVE_ROOT/app/assets/sass/patterns" "app/assets/sass/"
+		cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
 
 		echo "Done"
 	} >> update/update.log 3>&2 2>&1
@@ -139,7 +145,7 @@ copy () {
 	msg "Your prototype kit files have now been updated, from ${OLD_VERSION} to ${NEW_VERSION}."
 	msg 'There are still some configuration changes needed, please follow the steps at'
 	msg 'https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit'
-	msg "to complete the update. You can find the files for the new version at \`update/${ARCHIVE_ROOT}\`."
+	msg "to complete the update. You can find the files for the new version at \`update\`."
 	msg
 
 	update_gitignore
