@@ -24,13 +24,20 @@ const headReleaseVersion = child_process.execSync(
 const headReleaseBasename = `govuk-prototype-kit-${headReleaseVersion}`
 const headReleaseArchiveFilename = `${headReleaseBasename}.zip`
 
+// When running tests using Windows GitHub runner, make sure to use gitbash.
+// Path is from https://github.com/actions/virtual-environments/blob/win19/20211110.1/images/win/Windows2019-Readme.md
+const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.exe' : '/bin/bash'
+
 /*
  * Test helpers
  */
 
 function runScriptSync (options) {
   const opts = { cwd: options.testDir, encoding: 'utf8' }
-  const ret = child_process.spawnSync(script, opts)
+
+  const args = [script]
+
+  const ret = child_process.spawnSync(bash, args, opts)
   if (ret.error) {
     throw (ret.error)
   }
@@ -95,7 +102,11 @@ describe('update.sh', () => {
     fs.writeFileSync(path.join(dirToArchive, 'foo'), '')
     fs.writeFileSync(path.join(dirToArchive, 'VERSION.txt'), '9999.99.99')
 
-    child_process.execSync(`zip -r ${archiveName} govuk-prototype-kit-foo`, { cwd: fixtureDir })
+    if (process.platform === 'win32') {
+      child_process.execSync(`7z a ${archiveName} govuk-prototype-kit-foo`, { cwd: fixtureDir })
+    } else {
+      child_process.execSync(`zip -r ${archiveName} govuk-prototype-kit-foo`, { cwd: fixtureDir })
+    }
   }
 
   function mktestArchiveSync (testDir) {
