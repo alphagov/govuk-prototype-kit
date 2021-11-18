@@ -214,6 +214,7 @@ describe('update.sh', () => {
 
   beforeAll(() => {
     process.chdir(tmpDir)
+    console.log('Running tests in temporary directory', process.cwd())
 
     // setup fixtures - running this now saves time later
     fs.mkdirSync(fixtureDir)

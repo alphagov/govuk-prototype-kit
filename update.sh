@@ -114,6 +114,8 @@ copy () {
 	{
 		echo "Updating from $OLD_VERSION to $NEW_VERSION"
 
+		set -x
+
 		# Replace core folders, making sure to remove any old files
 		rm -rvf docs gulp lib
 		cp -Rv "update/docs" "update/gulp" "update/lib" .
@@ -129,6 +131,8 @@ copy () {
 		# specific workaround for old step 9, yuck
 		rm -rvf app/assets/sass/patterns
 		cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
+
+		set +x
 
 		echo "Done"
 	} >> update/update.log 3>&2 2>&1
