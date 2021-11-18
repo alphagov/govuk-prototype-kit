@@ -58,7 +58,7 @@ fetch () {
 	cd update
 
 	if ! ls govuk-prototype-kit*.zip > /dev/null 2>&1; then
-		msg 'Downloading latest version of GOV.UK Prototye Kit...'
+		msg 'Downloading latest version of GOV.UK Prototype Kit...'
 		curl -LJO https://govuk-prototype-kit.herokuapp.com/docs/download
 		msg 'Done'
 	fi
@@ -142,10 +142,10 @@ copy () {
 	trap - ERR
 
 	msg
-	msg "Your prototype kit files have now been updated, from ${OLD_VERSION} to ${NEW_VERSION}."
-	msg 'There are still some configuration changes needed, please follow the steps at'
+	msg "Your prototype kit files have now been updated, from version ${OLD_VERSION} to ${NEW_VERSION}."
+	msg 'If you need to make configuration changes, follow the steps at'
 	msg 'https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit'
-	msg "to complete the update. You can find the files for the new version at \`update\`."
+	msg "The files for the new version are at \`update\`."
 	msg
 
 	update_gitignore
