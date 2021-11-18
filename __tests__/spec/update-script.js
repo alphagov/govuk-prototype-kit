@@ -32,34 +32,64 @@ const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.e
  * Test helpers
  */
 
-function runScriptSync (options) {
-  const opts = { cwd: options.testDir, encoding: 'utf8' }
-
-  if (options.clean === false) {
-    opts.env = { CLEAN: '0' }
+/**
+ * Run update.sh, or one of the functions defined in it.
+ *
+ * runScriptSync([fnName][, options])
+ *
+ * Examples:
+ * runScriptSync()  // runs `update.sh` in current working directory
+ * runScriptSync({ testDir: 'example' })  // runs `update.sh` in directory `example`
+ * runScriptSync('extract', { testDir: 'example' })  // runs `source update.sh && extract` in directory `example`
+ *
+ * Throws an error if the spawn fails, but does not throw an error if the
+ * return status of the script or function is non-zero.
+ */
+function runScriptSync (fnName, options) {
+  if (typeof fnName === 'object') {
+    options = fnName
+    fnName = undefined
   }
 
-  const args = [script]
+  const opts = {
+    ...options,
+    cwd: options.testDir,
+    encoding: 'utf8'
+  }
+
+  let args
+
+  if (fnName) {
+    args = ['-c', `source '${script}' && ${fnName}`]
+  } else {
+    args = [script]
+  }
 
   const ret = child_process.spawnSync(bash, args, opts)
   if (ret.error) {
     throw (ret.error)
   }
+
   return ret
 }
 
-function runScriptSyncAndExpectSuccess (options) {
-  const ret = runScriptSync(options)
+function runScriptSyncAndExpectSuccess (fnName, options) {
+  const ret = runScriptSync(fnName, options)
   if (ret.status !== 0) {
     throw new Error(`update.sh in ${path.join(process.cwd(), options.testDir)} failed with status ${ret.status}:\n${ret.stderr}`)
   }
   return ret
 }
 
-function runScriptSyncAndExpectError (options) {
+function runScriptSyncAndExpectError (fnName, options) {
+  if (typeof fnName === 'object') {
+    options = fnName
+    fnName = undefined
+  }
+
   const oldStat = fs.statSync(options.testDir)
 
-  const ret = runScriptSync(options)
+  const ret = runScriptSync(fnName, options)
 
   expect(ret.status).not.toBe(0)
   expect(ret.stderr).toMatch(/ERROR/)
@@ -200,7 +230,7 @@ describe('update.sh', () => {
       const testDir = 'empty'
       fs.mkdirSync(testDir)
 
-      runScriptSyncAndExpectError({ testDir })
+      runScriptSyncAndExpectError('check', { testDir })
     })
 
     it('exits with error if folder does not contain a package.json file', () => {
@@ -209,25 +239,25 @@ describe('update.sh', () => {
       fs.writeFileSync(path.join(testDir, 'foo'), 'my important data about govuk-prototype-kit')
       fs.writeFileSync(path.join(testDir, 'bar'), "don't delete my data!")
 
-      runScriptSyncAndExpectError({ testDir })
+      runScriptSyncAndExpectError('check', { testDir })
     })
 
     it('exits with error if package.json file does not contain string govuk-prototype-kit', () => {
       const testDir = mktestDirSync('no-govuk-prototype-kit')
       fs.writeFileSync(path.join(testDir, 'package.json'), '{\n  "name": "test"\n}')
 
-      runScriptSyncAndExpectError({ testDir })
+      runScriptSyncAndExpectError('check', { testDir })
     })
   })
 
   describe('prepare', () => {
     it('removes existing update folder', () => {
-      const testDir = mktestDirSync('prepare1')
+      const testDir = 'prepare'
       fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
       fs.writeFileSync(path.join(testDir, 'update', 'govuk-prototype-kit-empty.zip'), '')
       const oldStat = fs.statSync(path.join(testDir, 'update'))
 
-      runScriptSyncAndIgnoreStatus({ testDir })
+      runScriptSyncAndExpectSuccess('prepare', { testDir })
 
       const newStat = fs.statSync(path.join(testDir, 'update'))
 
@@ -239,12 +269,12 @@ describe('update.sh', () => {
     })
 
     it('does not remove existing update folder if CLEAN=0 is set', () => {
-      const testDir = mkTestDirSync('prepare2')
+      const testDir = 'prepare-noclean'
       fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
       fs.writeFileSync(path.join(testDir, 'update', 'govuk-prototype-kit-empty.zip'), '')
       const oldStat = fs.statSync(path.join(testDir, 'update'))
 
-      runScriptSyncAndIgnoreStatus({ testDir, clean: false })
+      runScriptSyncAndExpectSuccess('prepare', { testDir, env: { CLEAN: '0' } })
 
       const newStat = fs.statSync(path.join(testDir, 'update'))
 
@@ -258,9 +288,10 @@ describe('update.sh', () => {
 
   describe('fetch', () => {
     it('downloads the latest release of the prototype kit into the update folder', () => {
-      const testDir = mktestDirSync('download')
+      const testDir = 'fetch'
+      fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
 
-      runScriptSync({ testDir })
+      runScriptSyncAndExpectSuccess('fetch', { testDir })
 
       fs.accessSync(path.join(testDir, 'update'))
       fs.accessSync(path.join(testDir, 'update', latestReleaseArchiveFilename))
@@ -269,11 +300,10 @@ describe('update.sh', () => {
 
   describe('extract', () => {
     it('extracts the release into the update folder', () => {
-      const testDir = mktestDirSync('extract')
-      fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
+      const testDir = 'extract'
       mktestArchiveSync(testDir)
 
-      runScriptSync({ testDir, clean: false })
+      runScriptSyncAndExpectSuccess('extract', { testDir })
 
       fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-foo', 'foo'))
     })
@@ -283,7 +313,7 @@ describe('update.sh', () => {
     it('updating an existing up-to-date prototype does nothing', () => {
       const testDir = mktestPrototypeSync('up-to-date')
 
-      runScriptSyncAndExpectSuccess({ testDir, clean: false })
+      runScriptSyncAndExpectSuccess('copy', { testDir })
 
       // expect that `git status` reports no files added, changed, or removed
       expect(execGitStatusSync(testDir)).toEqual([])
@@ -294,7 +324,7 @@ describe('update.sh', () => {
 
       const oldStat = fs.statSync(path.join(testDir, 'usage-data-config.json'))
 
-      runScriptSyncAndExpectSuccess({ testDir, clean: false })
+      runScriptSyncAndExpectSuccess('copy', { testDir })
 
       const newStat = fs.statSync(path.join(testDir, 'usage-data-config.json'))
       expect(newStat.mtimeMs).toBe(oldStat.mtimeMs)
@@ -309,7 +339,7 @@ describe('update.sh', () => {
       fs.unlinkSync(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
       fs.rmdirSync(path.join(updateDir, 'lib', 'v6'))
 
-      runScriptSyncAndExpectSuccess({ testDir, clean: false })
+      runScriptSyncAndExpectSuccess('copy', { testDir })
 
       expect(execGitStatusSync(testDir)).toEqual([
         ' D docs/documentation/session.md',
@@ -325,7 +355,7 @@ describe('update.sh', () => {
       fs.writeFileSync(path.join(updateDir, 'app', 'assets', 'sass', 'patterns', '_task-list.scss'), 'foobar')
       fs.writeFileSync(path.join(updateDir, 'app', 'routes.js'), 'arglebargle')
 
-      runScriptSyncAndExpectSuccess({ testDir, clean: false })
+      runScriptSyncAndExpectSuccess('copy', { testDir })
 
       expect(execGitStatusSync(testDir)).toEqual([
         ' D app/assets/sass/patterns/_related-items.scss',
