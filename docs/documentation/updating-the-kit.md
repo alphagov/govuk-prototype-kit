@@ -1,4 +1,17 @@
-# Updating to the latest version
+# Updating your Prototype Kit
+
+How to to update your prototype and get help from the GOV.UK Prototype Kit team.
+
+## Get help
+
+If you have a question or need help with updating the Prototype Kit, you can:
+
+- email govuk-design-system-support@digital.cabinet-office.gov.uk
+- get in touch on the [Prototype Kit's channel on cross-government Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
+
+Tell us as much as you can about the issue you're having, and the computer and operating system you're using.
+
+## Updating to the latest version
 
 1. [Download the zip file of the latest version of the Prototype Kit](/docs/download).
 
@@ -38,7 +51,11 @@
 
 16. [Run the kit and check it works](/docs/install/run-the-kit).
 
-If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 3. Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
+### If your prototype does not work
+
+If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 3. 
+
+Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
 
 ## Gulp error message
 
@@ -62,11 +79,3 @@ If you need to restart the Prototype Kit after the fix:
 1. in your [terminal](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#terminal), `cd` to your prototype folder
 2. run `npm start`
 
-## Get help
-
-You can:
-
-- [raise an issue in the Prototype Kit GitHub repo](https://github.com/alphagov/govuk-prototype-kit/issues)
-- get in touch using the [#prototype-kit channel on cross-government Slack](https://ukgovernmentdigital.slack.com/messages/prototype-kit/)
-
-Tell us as much as you can about the issue you're having, and the computer and operating system you're using.
