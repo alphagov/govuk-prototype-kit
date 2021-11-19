@@ -230,7 +230,7 @@ describe('update.sh', () => {
       const testDir = 'empty'
       fs.mkdirSync(testDir)
 
-      runScriptSyncAndExpectError('check', { testDir })
+      runScriptSyncAndExpectError({ testDir })
     })
 
     it('exits with error if folder does not contain a package.json file', () => {
@@ -239,21 +239,21 @@ describe('update.sh', () => {
       fs.writeFileSync(path.join(testDir, 'foo'), 'my important data about govuk-prototype-kit')
       fs.writeFileSync(path.join(testDir, 'bar'), "don't delete my data!")
 
-      runScriptSyncAndExpectError('check', { testDir })
+      runScriptSyncAndExpectError({ testDir })
     })
 
     it('exits with error if package.json file does not contain string govuk-prototype-kit', () => {
       const testDir = mktestDirSync('no-govuk-prototype-kit')
       fs.writeFileSync(path.join(testDir, 'package.json'), '{\n  "name": "test"\n}')
 
-      runScriptSyncAndExpectError('check', { testDir })
+      runScriptSyncAndExpectError({ testDir })
     })
 
     it('exits with error if package.json file contains string containing govuk-prototype-kit', () => {
       const testDir = mktestDirSync('name-contains-govuk-prototype-kit')
       fs.writeFileSync(path.join(testDir, 'package.json'), '{\n  "name": "govuk-prototype-kit-test"\n}')
 
-      runScriptSyncAndExpectError('check', { testDir })
+      runScriptSyncAndExpectError({ testDir })
     })
   })
 
@@ -403,6 +403,18 @@ describe('update.sh', () => {
     const testDir = mktestPrototypeSync('pipe')
 
     child_process.execSync(`cat '${script}' | bash`, { cwd: testDir, shell: bash, stdio: 'ignore' })
+  })
+
+  it('does nothing if check fails', () => {
+    const testDir = mktestPrototypeSync('if-check-fails')
+    child_process.execSync('rm -rf update', { cwd: testDir })
+
+    fs.writeFileSync(path.join(testDir, 'package.json'), '{\n  "name": "my-very-customised-prototype" \n}')
+    child_process.execSync('git commit -q -m "Customise my prototype" -a', { cwd: testDir })
+
+    runScriptSyncAndExpectError({ testDir })
+
+    expect(execGitStatusSync(testDir)).toEqual([])
   })
 
   afterAll(() => {
