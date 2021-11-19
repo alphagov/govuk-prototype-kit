@@ -291,6 +291,17 @@ describe('update.sh', () => {
         fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-empty.zip'))
       }).not.toThrowError()
     })
+
+    it('hides the update folder from git', () => {
+      const testDir = 'prepare-gitignore'
+      fs.mkdirSync(testDir)
+
+      runScriptSyncAndExpectSuccess('prepare', { testDir })
+
+      expect(
+        fs.readFileSync(path.join(testDir, 'update', '.gitignore'), 'utf8').trim()
+      ).toBe('*')
+    })
   })
 
   describe('fetch', () => {
@@ -397,12 +408,30 @@ describe('update.sh', () => {
         fs.readFileSync(path.join(testDir, 'update', 'update.log'), 'utf8')
       ).toMatch(/No such file or directory/)
     })
+
+    it('hides the update folder from git', () => {
+      const testDir = mktestPrototypeSync('copy-gitignore')
+
+      runScriptSyncAndExpectSuccess('copy', { testDir })
+
+      expect(
+        fs.readFileSync(path.join(testDir, 'update', '.gitignore'), 'utf8').trim()
+      ).toBe('*')
+    })
   })
 
   it('can be run as a piped script', () => {
     const testDir = mktestPrototypeSync('pipe')
 
     child_process.execSync(`cat '${script}' | bash`, { cwd: testDir, shell: bash, stdio: 'ignore' })
+  })
+
+  it('hides the update folder from git', () => {
+    const testDir = mktestPrototypeSync('gitignore')
+
+    runScriptSyncAndExpectSuccess({ testDir })
+
+    expect(execGitStatusSync(testDir)).not.toContain('?? update/')
   })
 
   it('does nothing if check fails', () => {
