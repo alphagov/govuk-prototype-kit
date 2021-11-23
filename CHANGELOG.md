@@ -2,7 +2,20 @@
 
 ## Features
 
-- [Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120)
+### Preserve query strings
+
+We now preserve URL query strings when redirecting POST requests to GET requests.
+
+This means if you have a query like `/link/to/something?query=true&hello=world` on your POST form action, and you submit the form, the URL query string will be present in the redirected URL.
+
+This is useful when:
+
+- You’re using the query string to set flash messages or return paths
+- You want to rely on explicitly what’s in the query string for a specific page, rather than saved data.
+
+Thanks to @edwardhorsford.
+
+- [Pull request #1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120)
 
 # 11.0.0 (Fix release)
 
