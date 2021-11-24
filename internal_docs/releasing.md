@@ -31,17 +31,19 @@ v8.0.0 // After implementing backwards incompatible changes
 
 4. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
 
-5. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
+5. Run `npm install` to update `package-lock.json`.
 
-6. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
+6. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
 
-7. In Tag version and Release title, put v[version number], for example `v7.0.0`.
+7. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
 
-8. In description, paste the relevant section from the Changelog.
+8. In Tag version and Release title, put v[version number], for example `v7.0.0`.
 
-9. Click 'Publish release'.
+9. In description, paste the relevant section from the Changelog.
 
-10. Let the community know about the release
+10. Click 'Publish release'.
+
+11. Let the community know about the release
 
 Write a brief summary with highlights from the release then send it to the following slack channels:
 
