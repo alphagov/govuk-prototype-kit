@@ -34,7 +34,7 @@
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "inquirer": "^8.2.0",
-    "keypather": "^3.0.0",
+    "lodash": "^4.17.21",
     "marked": "^3.0.8",
     "node-sass": "^6.0.1",
     "notifications-node-client": "^5.1.0",
