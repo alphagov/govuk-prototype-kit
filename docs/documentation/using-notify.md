@@ -83,14 +83,20 @@ example:
     <div class="govuk-grid-column-two-thirds">
       <form class="form" method="post">
 
-        <div class="govuk-form-group">
-          <label class="govuk-label" for="email-address">
-            Email address
-          </label>
-          <input class="govuk-input" id="email-address" name="emailAddress" type="text">
-        </div>
+        {{ govukInput({
+          label: {
+            text: "Email Address"
+          },
+          id: "email-address",
+          name: "emailAddress",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        {{ govukButton({
+          text: "Continue"
+        })}}
 
       </form>
     </div>
