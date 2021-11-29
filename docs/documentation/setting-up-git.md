@@ -1,4 +1,7 @@
-# Setting up Git using the terminal
+---
+title: Set up Git using the Terminal
+---
+# Set up Git using the Terminal
 
 Git helps track changes in code and lets you undo mistakes or identify bugs. It’s also used to collaborate with other people - so you can share your code with other designers and developers on your team (or with other teams!). Git is a type of version control software.
 

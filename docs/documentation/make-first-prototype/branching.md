@@ -1,3 +1,7 @@
+---
+title: Show different pages depending on user input (branching)
+caption: Build a basic prototype
+---
 # Show different pages depending on user input (branching)
 
 Our first question asks the user how many balls they can juggle. We’re going to send them to an ‘ineligible’ page if they can only juggle 2 balls or less. Sending users to different pages based on their input is called branching.

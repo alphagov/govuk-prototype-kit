@@ -1,3 +1,7 @@
+---
+title: Show the user’s answers
+caption: Build a basic prototype
+---
 # Show the user’s answers on the ‘Check answers’ page
 
 The Prototype Kit stores answers that users enter. This means you can make more realistic prototypes, for example by showing answers for users to check.

@@ -1,4 +1,7 @@
-# Publishing on the web (Heroku)
+---
+title: Publish on the web
+---
+# Publish on the web (Heroku)
 
 Heroku runs your prototype online, the same as it runs on your machine, but available to others at any time. Other similar services are available.
 
