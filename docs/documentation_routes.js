@@ -51,6 +51,13 @@ router.get('/download', function (req, res) {
   }
 })
 
+router.get('/update.sh', function (req, res) {
+  res.sendFile(
+    path.resolve(__dirname, '..', 'update.sh'),
+    { headers: { 'content-type': 'text/plain; charset=utf-8' } }
+  )
+})
+
 // Examples - examples post here
 router.post('/tutorials-and-examples', function (req, res) {
   res.redirect('tutorials-and-examples')

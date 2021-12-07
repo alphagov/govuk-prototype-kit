@@ -52,6 +52,18 @@ describe('The Prototype Kit', () => {
     })
   })
 
+  describe('update script', () => {
+    it('should send a well formed response', async () => {
+      const response = await request(app).get('/docs/update.sh')
+      expect(response.statusCode).toBe(200)
+    })
+
+    it('should return plain text file', async () => {
+      const response = await request(app).get('/docs/update.sh')
+      expect(response.type).toBe('text/plain')
+    })
+  })
+
   describe('extensions', () => {
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
