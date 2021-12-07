@@ -52,9 +52,8 @@ router.get('/download', function (req, res) {
 })
 
 router.get('/update.sh', function (req, res) {
-  res.sendFile(
-    path.resolve(__dirname, '..', 'update.sh'),
-    { headers: { 'content-type': 'text/plain; charset=utf-8' } }
+  res.redirect(
+    'https://raw.githubusercontent.com/alphagov/govuk-prototype-kit/main/update.sh'
   )
 })
 
