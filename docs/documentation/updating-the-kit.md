@@ -1,6 +1,6 @@
-# Updating your Prototype Kit
+# Update your Prototype Kit
 
-How to to update your prototype and get help from the GOV.UK Prototype Kit team.
+How to update your prototype and get help from the GOV.UK Prototype Kit team.
 
 ## Get help
 
@@ -13,43 +13,42 @@ Tell us as much as you can about the issue you're having, and the computer and o
 
 ## Updating to the latest version
 
-1. [Download the zip file of the latest version of the Prototype Kit](/docs/download).
+### Find what version you’re using
 
-2. Unzip the zip file. It will make a folder called `govuk-prototype-kit`, with a version number.
+In Finder on Mac or Windows Explorer go to your prototype folder and open the file `VERSION.txt`. This will show what version of the prototype kit you’re using.
 
-3. Make a backup copy of your prototype folder.
+- If your prototype is version 8 or before, then contact the GOV.UK Prototype team for help with updating it
+- If your prototype is version 9 or 10, you can update to version 11 by following the steps on this page
 
-4. You’ll need to copy some files that operating systems do not usually show. These hidden files usually start with a `.` and are known as ‘dot files’. You can:
-    - [show hidden files in Windows](https://support.microsoft.com/en-us/windows/view-hidden-files-and-folders-in-windows-97fbc472-c603-9d90-91d0-1166d1d9f4b5)
-    - show hidden files on MacOS by pressing command + shift + . in Finder 
+### Updating to version 11
 
-5. In your prototype folder, delete everything except the `app` and `.git` folders.
+1. Make a backup of your prototype folder. You can do this in Finder or Windows Explorer. This may take a few minutes.
 
-6. Copy all the files and folders except the `app` folder from the `govuk-prototype-kit` folder to your prototype.
+2. In the terminal, `cd` to your prototype folder.
 
-7. Replace the `app/config.js` file in your prototype with the `app/config.js` file from the `govuk-prototype-kit` folder.
+3. Run this command:
 
-8. Compare your new `config.js` file to the `config.js` file in the backup you made in step 3, and copy over anything you need to from the backup - for example your service name.
+```
+curl -L https://govuk-prototype-kit.herokuapp.com/docs/update.sh | bash
+```
 
-9. Copy `app/assets/sass/patterns` from the `govuk-prototype-kit` folder to your prototype.
+It will download a zip file and unzip the latest version of the Prototype Kit into a new `update` folder.
 
-10. Open the `app/assets/sass/application.scss` file in the `govuk-prototype-kit` folder.
+4. In a code editor (like Atom) open the file at `update/app/assets/sass/application.scss`.
 
-11. Copy everything down to `// Add extra styles here`, then paste it into the `app/assets/sass/application.scss` file in your prototype so it replaces everything above `// Add extra styles here`.
+5. Copy everything until the line that starts with `// Add extra styles here`.
 
-12. Save the updated `app/assets/sass/application.scss` file in your prototype.
+6. Open the file at `app/assets/sass/application.scss`. This is the file in your prototype folder, not the one in the update folder.
 
-13. Check the [latest Prototype Kit release note](https://github.com/alphagov/govuk-prototype-kit/releases/latest) and follow any guidance on updating your prototype.
+7. Delete everything above `// Add extra styles` here and paste what you copied in step 5. Save the file.
 
-    If your prototype has not been updated for a long time, you should also follow any guidance in [release notes](https://github.com/alphagov/govuk-prototype-kit/releases) between the version you're updating from and the latest version. You can find out the version you're updating from in the `VERSION.txt` file in your backup folder.
+8. In your [terminal](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#terminal), run `npm install`. This may take up to a minute. You can ignore any lines in the log that start with `WARN`.
 
-14. In your [terminal](/docs/install/requirements.md#terminal), `cd` to your prototype folder.
+9. In your terminal, run `npm start`.
 
-15. Run `npm install`.
+10. Check your prototype to see if it works as expected.
 
-    This may take up to a minute. You can ignore any lines in the log that start with `WARN`.
-
-16. [Run the kit and check it works](/docs/install/run-the-kit).
+11. Delete the update folder in Finder or Windows Explorer.
 
 ### If your prototype does not work
 
