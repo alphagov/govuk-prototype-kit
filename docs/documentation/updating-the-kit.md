@@ -29,7 +29,7 @@ In Finder on Mac or Windows Explorer go to your prototype folder and open the fi
 3. Run this command:
 
 ```
-curl -o- https://raw.githubusercontent.com/alphagov/govuk-prototype-kit/update-kit-script/update.sh | bash
+curl -L https://govuk-prototype-kit.herokuapp.com/docs/update.sh | bash
 ```
 
 It will download a zip file and unzip the latest version of the Prototype Kit into a new `update` folder.
