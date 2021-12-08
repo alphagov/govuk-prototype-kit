@@ -51,6 +51,12 @@ router.get('/download', function (req, res) {
   }
 })
 
+router.get('/update.sh', function (req, res) {
+  res.redirect(
+    'https://raw.githubusercontent.com/alphagov/govuk-prototype-kit/main/update.sh'
+  )
+})
+
 // Examples - examples post here
 router.post('/tutorials-and-examples', function (req, res) {
   res.redirect('tutorials-and-examples')
