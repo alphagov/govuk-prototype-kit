@@ -1,3 +1,74 @@
+# Unreleased
+
+## Breaking changes
+
+### Step by step navigation templates have been updated
+
+The step by step navigation templates are now up to date with [`govuk_publishing_components`](https://github.com/alphagov/govuk_publishing_components).
+
+This will only apply to new step by step navigation pages created using the templates provided in `docs/views/templates`. Your existing step by step navigation pages should continue to work as they previously did.
+
+To update any existing step by step pages in your prototype, follow these steps:
+
+### Step by step navigation assets
+
+* Delete `app/assets/javascripts/step-by-step-nav.js` from your prototype.
+* In `app/assets/sass/application.scss`
+  * Remove the line `@import "patterns/step-by-step-header";`
+  * Remove the line  `@import "patterns/step-by-step-nav";`
+  * Remove the line  `@import "patterns/step-by-step-related";`
+
+### Pages with step by step navigation
+
+In any HTML file where you have `<script src="/public/javascripts/step-by-step-nav.js"></script>`, insert `<script src="/public/javascripts/step-by-step-polyfills.js"></script>` on the line directly above.
+
+Also replace any instances of 
+
+```
+<script type="text/javascript">
+  var $element = $('#step-by-step-navigation')
+  var stepByStepNavigation = new GOVUK.Modules.AppStepNav()
+  stepByStepNavigation.start($element)
+</script>
+```
+with
+```
+<script type="text/javascript">
+  var $element = document.querySelector('#step-by-step-navigation')
+  var stepByStepNavigation = new GOVUK.Modules.AppStepNav($element).init()
+</script>
+```
+
+In the `div` with id `step-by-step-navigation`:
+  * Replace `data-module="gemstepnav"` with `data-module="appstepnav`
+  * Add ` govuk-!-display-none-print` to the `class` attribute
+  * Replace `data-show-text="show"` with `data-show-text="Show"`
+  * Replace `data-show-text="hide"` with `data-show-text="Hide"`
+  * Replace `data-show-all-text="Show all"` with `data-show-all-text="Show all steps"`
+  * Replace `data-show-all-text="Hide all"` with `data-show-all-text="Hide all steps"`
+
+Replace any instances of `class` attributes matching `"app-step-nav__panel js-panel js-hidden"` with `"app-step-nav__panel js-panel"`
+
+Replace each step label
+
+```
+<span class="app-step-nav__circle-step-label govuk-visually-hidden">Step</span> 1
+<span class="app-step-nav__circle-step-colon govuk-visually-hidden" aria-hidden="true">:</span>
+```
+
+with
+
+```
+<span class="govuk-visually-hidden govuk-!-display-none-print">Step</span> 1<span class="govuk-visually-hidden govuk-!-display-none-print" aria-hidden="true">:</span>
+```
+
+, changing the number of the step as appropriate.
+
+If you have any issues, contact the team.
+
+- [Pull request #1117: Update step by step navigation templates](https://github.com/alphagov/govuk-prototype-kit/pull/1117)
+
+
 # 12.0.1 (Fix release)
 
 ## Recommended changes
