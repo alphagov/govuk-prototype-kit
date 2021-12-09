@@ -5,6 +5,11 @@ $govuk-new-link-styles: true;
 
 @import "node_modules/govuk-frontend/govuk/all";
 
+// Import patterns that aren't part of the Design System
+@import "patterns/step-by-step-navigation-header";
+@import "patterns/step-by-step-navigation";
+@import "patterns/step-by-step-navigation-related";
+
 img{
   max-width: 100%;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * classList polyfill
  * https://github.com/alphagov/govuk-frontend/blob/main/package/govuk/vendor/polyfills/Element/prototype/classList.js
