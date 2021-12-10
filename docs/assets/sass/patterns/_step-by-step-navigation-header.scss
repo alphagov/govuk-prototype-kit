@@ -10,6 +10,7 @@
   background: govuk-colour("light-grey", $legacy: "grey-4");
   border-bottom: solid 1px govuk-colour("blue");
   margin-top: govuk-spacing(3);
+  border-top: none; // Explicitly overrides old value
 
   @include govuk-media-query($from: tablet) {
     padding: govuk-spacing(5);
@@ -19,4 +20,5 @@
 .app-step-nav-header__part-of {
   @include govuk-font(19, $weight: bold);
   display: block;
+  padding-bottom: 0px; // Explicitly overrides old value
 }

@@ -47,5 +47,9 @@
 }
 
 .app-step-nav-related__link-item {
-  margin-top: govuk-spacing(3);
+  margin-top: govuk-spacing(3); 
+  
+  @include govuk-media-query($from: tablet) {	
+    margin-top: govuk-spacing(3);	// Explicitly overrides old value
+  }
 }

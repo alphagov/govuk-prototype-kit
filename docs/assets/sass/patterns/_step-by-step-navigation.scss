@@ -24,6 +24,7 @@ $top-border: solid 1px govuk-colour("mid-grey", $legacy: "grey-3");
 @mixin step-nav-line-position-large {
   left: 0;
   margin-left: govuk-em(($number-circle-size-large / 2) - ($stroke-width / 2), 16);
+  border-width: $stroke-width; // explicitly overrides old value
 }
 
 // custom mixin as govuk-font does undesirable things at different breakpoints
@@ -64,6 +65,7 @@ $top-border: solid 1px govuk-colour("mid-grey", $legacy: "grey-3");
 
 .app-step-nav__controls {
   padding: 3px 3px 0 0;
+  text-align: left; // explicitly overrides old value
 }
 
 .app-step-nav__button {
@@ -113,6 +115,8 @@ $top-border: solid 1px govuk-colour("mid-grey", $legacy: "grey-3");
 
 .app-step-nav__button--controls {
   @include step-nav-font(14, $line-height: 1);
+  text-decoration: none; // explicitly overrides old value
+  text-underline-offset: auto; // explicitly overrides old value
   position: relative;
   z-index: 1; // this and relative position stops focus outline underlap with border of accordion
   margin: .5em 0 1.5em;
@@ -230,6 +234,7 @@ $top-border: solid 1px govuk-colour("mid-grey", $legacy: "grey-3");
       &:before {
         margin-left: $number-circle-size-large / 4;
         width: $number-circle-size-large / 2;
+        border-width: $stroke-width; // explicitly overrides old value
       }
 
       &:after {
@@ -276,6 +281,10 @@ $top-border: solid 1px govuk-colour("mid-grey", $legacy: "grey-3");
 
   .app-step-nav--large & {
     @include step-nav-font(16, $tablet-size: 19, $weight: bold, $line-height: 25px, $tablet-line-height: 34px);
+
+    @include govuk-media-query($from: tablet) {
+      border-width: $stroke-width; // explicitly overrides old value
+    }
   }
 
   .app-step-nav__step--active & {
@@ -478,6 +487,7 @@ $top-border: solid 1px govuk-colour("mid-grey", $legacy: "grey-3");
       &:before {
         left: -(govuk-spacing(9));
         margin-left: ($number-circle-size-large / 2);
+        height: $stroke-width; // explicitly overrides old value
       }
     }
   }
