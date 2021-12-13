@@ -12,6 +12,8 @@ The new release of GOV.UK Frontend contains:
 
 Check the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for changes you may need to make to ensure your prototype works.
 
+This change was added in [pull request #1195: Update the GOV.UK Prototype Kit to use GOV.UK Frontend v4.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/1195).
+
 ## New features 
 
 ### Preserve query strings when redirecting POSTs to GETs
