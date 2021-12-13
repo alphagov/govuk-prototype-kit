@@ -29,7 +29,7 @@ This feature is useful when you:
 
 Thanks to [@edwardhorsford](https://github.com/edwardhorsford) for contributing this issue and its solution.
 
-This was added in [Pull request #1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120).
+This was added in [pull request #1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120).
 
 
 ## Fixes
