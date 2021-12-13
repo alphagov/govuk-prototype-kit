@@ -19,7 +19,7 @@ Thanks to @edwardhorsford.
 
 ## Fixes
 
-[Pull request #1155: Replace lodash with keypather.get](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
+[Pull request #1155: Replace keypather with lodash.get](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
 
 
 # 11.0.0 (Fix release)
