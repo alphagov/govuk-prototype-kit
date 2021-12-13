@@ -6,7 +6,7 @@ This release ensures the GOV.UK Prototype Kit reflects the latest release of the
 
 ### Update to GOV.UK Frontend v4.0.0 [(#1195)](https://github.com/alphagov/govuk-prototype-kit/pull/1195)
 
-In this release:
+The new release of GOV.UK Frontend contains:
 - an iteration to the accordion component
 - guidance about other ‘breaking’ changes you should make to improve your service
 
