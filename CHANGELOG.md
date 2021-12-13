@@ -1,25 +1,43 @@
 # Unreleased
 
-## Features
+## Breaking changes 
 
-### Preserve query strings
+This release ensures the GOV.UK Prototype Kit reflects the latest release of the GOV.UK Frontend, v4.0.0.
 
-We now preserve URL query strings when redirecting POST requests to GET requests.
+### Update to GOV.UK Frontend v4.0.0
 
-This means if you have a query like `/link/to/something?query=true&hello=world` on your POST form action, and you submit the form, the URL query string will be present in the redirected URL.
+The new release of GOV.UK Frontend contains:
+- an iteration to the accordion component
+- other ‘breaking’ changes you should make to improve your service
 
-This is useful when:
+Check the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for changes you may need to make to ensure your prototype works.
 
-- You’re using the query string to set flash messages or return paths
-- You want to rely on explicitly what’s in the query string for a specific page, rather than saved data.
+This change was added in [#1195: Update the GOV.UK Prototype Kit to use GOV.UK Frontend v4.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/1195).
 
-Thanks to @edwardhorsford.
+## New features 
 
-- [Pull request #1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120)
+### Preserve query strings when redirecting POSTs to GETs
+
+The GOV.UK Prototype Kit now preserves URL query strings when redirecting POST requests to GET requests.
+
+This means if you have a query like `/link/to/something?query=true&hello=world` on your POST form action, and you submit the form, the URL query string will be present in the redirected URL. 
+
+This feature is useful when you:
+
+- use the query string to set flash messages or return paths
+- want to use the values in the query string for a specific page, rather than saved data
+
+Thanks to [@edwardhorsford](https://github.com/edwardhorsford) for contributing this issue and its solution.
+
+This was added in [#1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120).
+
 
 ## Fixes
 
-[Pull request #1155: Replace keypather with lodash.get](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
+- [#1155: Replace `keypather` package with `lodash.get`](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
+
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
+
 
 
 # 11.0.0 (Fix release)
