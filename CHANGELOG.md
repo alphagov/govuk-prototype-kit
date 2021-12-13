@@ -36,7 +36,7 @@ This was added in [pull request #1120: Preserve query string when redirecting PO
 
 - [pull request #1155: Replace `keypather` package with `lodash.get`](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
 
-Keypather and lodash.get are both packages that are used to get deep values within objects.
+`keypather` and `lodash.get` are both packages that are used to get deep values within objects.
 
 If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
 
