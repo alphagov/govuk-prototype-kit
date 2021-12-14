@@ -12,7 +12,7 @@ The new release of GOV.UK Frontend contains:
 
 Check the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for changes you may need to make to ensure your prototype works.
 
-This change was added in [pull request #1195: Update the GOV.UK Prototype Kit to use GOV.UK Frontend v4.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/1195).
+This change was added in [#1195: Update the GOV.UK Prototype Kit to use GOV.UK Frontend v4.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/1195).
 
 ## New features 
 
@@ -29,14 +29,12 @@ This feature is useful when you:
 
 Thanks to [@edwardhorsford](https://github.com/edwardhorsford) for contributing this issue and its solution.
 
-This was added in [pull request #1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120).
+This was added in [#1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120).
 
 
 ## Fixes
 
 - [#1155: Replace `keypather` package with `lodash.get`](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
-
-`keypather` and `lodash.get` are both packages that are used to get deep values within objects.
 
 If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
 
