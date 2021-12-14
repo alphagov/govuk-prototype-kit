@@ -34,7 +34,7 @@ This was added in [pull request #1120: Preserve query string when redirecting PO
 
 ## Fixes
 
-- [pull request #1155: Replace `keypather` package with `lodash.get`](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
+- [#1155: Replace `keypather` package with `lodash.get`](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
 
 `keypather` and `lodash.get` are both packages that are used to get deep values within objects.
 
