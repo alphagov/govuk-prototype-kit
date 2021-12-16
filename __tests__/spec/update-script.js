@@ -4,6 +4,7 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 const process = require('process')
+const request = require('superagent')
 
 /*
  * Constants
@@ -11,12 +12,6 @@ const process = require('process')
 
 const repoDir = path.resolve(__dirname, '..', '..')
 const script = path.join(repoDir, 'update.sh')
-
-const latestReleaseVersion = fs.readFileSync(
-  path.join(repoDir, 'VERSION.txt'), { encoding: 'utf8' }
-).trim()
-const latestReleaseBasename = `govuk-prototype-kit-${latestReleaseVersion}`
-const latestReleaseArchiveFilename = `${latestReleaseBasename}.zip`
 
 const headReleaseVersion = child_process.execSync(
   'git rev-parse HEAD', { encoding: 'utf8' }
@@ -306,7 +301,17 @@ describe('update.sh', () => {
   })
 
   describe('fetch', () => {
-    it('downloads the latest release of the prototype kit into the update folder', () => {
+    it('downloads the latest release of the prototype kit into the update folder', async () => {
+      // check what GitHub thinks the latest release archive is
+      var response = await request
+        .get('https://api.github.com/repos/alphagov/govuk-prototype-kit/releases/latest')
+        .set('user-agent', 'node-superagent (tests for govuk-prototype-kit)')
+
+      if (response.error) throw response.error
+      const latestRelease = response.body
+      const latestReleaseVersion = latestRelease.tag_name.trim().slice(1) // need to drop the prefix 'v'
+      const latestReleaseArchiveFilename = `govuk-prototype-kit-${latestReleaseVersion}.zip`
+
       const testDir = 'fetch'
       fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
 
