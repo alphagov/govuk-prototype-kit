@@ -1,4 +1,4 @@
-# Unreleased
+# 12.0.0 (Breaking release)
 
 ## Breaking changes 
 
