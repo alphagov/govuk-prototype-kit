@@ -306,7 +306,7 @@ describe('update.sh', () => {
   })
 
   describe('fetch', () => {
-    it.skip('downloads the latest release of the prototype kit into the update folder', () => {
+    it('downloads the latest release of the prototype kit into the update folder', () => {
       const testDir = 'fetch'
       fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
 
