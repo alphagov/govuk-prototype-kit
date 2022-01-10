@@ -1,15 +1,17 @@
 /*
- * Copied from gulp-nodemon@2.5.0 npm package
+ * Copied from gulp-nodemon@2.5.0 npm package.
+ * Modified to remove dependency on `colors`.
  *
- * This code is licensed under the MIT License
+ * The original code and this code are licensed under the MIT License.
  *
  * Copyright (c) 2010 - present, Remy Sharp, https://remysharp.com <remy@remysharp.com>
+ * Copyright (c) 2021 - present, Crown Copyright (Government Digital Service)
  */
 
 'use strict'
 
 var nodemon
-  , colors  = require('colors')
+  , colors  = require('ansi-colors')
   , gulp    = require('gulp')
   , cp      = require('child_process')
   , bus     = require('nodemon/lib/utils/bus')
@@ -116,5 +118,5 @@ module.exports = function (options) {
 }
 
 function nodemonLog(message){
-  console.log('[' + new Date().toString().split(' ')[4].gray + '] ' + message)
+  console.log('[' + colors.gray(new Date().toString().split(' ')[4]) + '] ' + message)
 }
