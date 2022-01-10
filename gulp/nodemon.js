@@ -10,7 +10,7 @@ const path = require('path')
 const gulp = require('gulp')
 const colour = require('ansi-colors')
 const log = require('fancy-log')
-const nodemon = require('gulp-nodemon')
+const nodemon = require('./gulp-nodemon')
 
 const config = require('./config.json')
 
