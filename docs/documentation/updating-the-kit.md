@@ -1,3 +1,6 @@
+---
+title: Update your Prototype Kit
+---
 # Update your Prototype Kit
 
 How to update your prototype and get help from the GOV.UK Prototype Kit team.

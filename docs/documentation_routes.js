@@ -4,8 +4,10 @@ const path = require('path')
 
 // NPM dependencies
 const express = require('express')
-const marked = require('marked')
 const router = express.Router()
+
+// Local dependencies
+const utils = require('../lib/utils')
 
 // Page routes
 
@@ -27,8 +29,8 @@ router.get('/install/:page', function (req, res) {
   }
   redirectMarkdown(req.params.page, res)
   var doc = fs.readFileSync(path.join(__dirname, '/documentation/install/', req.params.page + '.md'), 'utf8')
-  var html = marked(doc)
-  res.render('install_template', { document: html })
+  const renderOptions = utils.getRenderOptions(doc)
+  res.render('install_template', renderOptions)
 })
 
 // When in 'promo mode', redirect to download the current release zip from

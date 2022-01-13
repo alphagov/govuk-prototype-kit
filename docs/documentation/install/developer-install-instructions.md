@@ -1,4 +1,7 @@
-# Instructions for developers
+---
+title: Installation guide for advanced users
+---
+# Installation guide for advanced users
 
 It's built on the [Express](http://expressjs.com/) framework, and uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend).
 

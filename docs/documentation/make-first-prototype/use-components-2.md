@@ -1,3 +1,7 @@
+---
+title: Add a textarea to question 2
+caption: Build a basic prototype
+---
 # Add a textarea to question 2
 
 1. Go to the [textarea](https://design-system.service.gov.uk/components/textarea/) page of the Design System.

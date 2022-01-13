@@ -1,3 +1,7 @@
+---
+title: Use components from the Design System
+caption: Build a basic prototype
+---
 # Use components from the Design System
 
 You can copy example code from the GOV.UK Design System to add page elements like radios and text inputs - we call these ‘components’.

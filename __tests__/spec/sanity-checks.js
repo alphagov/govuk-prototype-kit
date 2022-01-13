@@ -10,6 +10,7 @@ const sass = require('node-sass')
 
 const app = require('../../server.js')
 const gulpConfig = require('../../gulp/config.json')
+const utils = require('../../lib/utils')
 
 const sassRender = util.promisify(sass.render)
 
@@ -137,6 +138,14 @@ describe('The Prototype Kit', () => {
   describe(`${gulpConfig.paths.assets}sass/`, () => {
     it.each(sassFiles)('%s renders to CSS without errors', (file) => {
       return sassRender({ file: file })
+    })
+  })
+
+  describe('Documentation markdown page titles', () => {
+    const markdownFiles = glob.sync('docs/documentation/**/*.md')
+    it.each(markdownFiles)('%s has a title', (filepath) => {
+      const file = readFile(filepath)
+      utils.getRenderOptions(file, filepath)
     })
   })
 })
