@@ -33,7 +33,6 @@
     "gulp": "^4.0.0",
     "gulp-nodemon": "^2.5.0",
     "gulp-sass": "^5.0.0",
-    "gulp-sourcemaps": "^3.0.0",
     "inquirer": "^8.2.0",
     "lodash": "^4.17.21",
     "marked": "^3.0.8",
