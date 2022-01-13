@@ -47,4 +47,4 @@ Template files are found this way: `/views/` + `template` parameter + `.html`. T
 
 In the same way, the template `/examples/hello_world` would point to the `/examples/hello_world.html` file.
 
-[Read the Express documentation for routes](http://expressjs.com/4x/api.html#app.VERB)
+[Express documentation for routes](http://expressjs.com/4x/api.html#app.VERB)
