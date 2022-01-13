@@ -3,7 +3,7 @@ title: Publish on the web from the terminal
 ---
 # Publish on the web (Heroku) from the terminal
 
-We recommend using [Heroku](http://www.heroku.com) to get your prototype online. It’s simple and fast to deploy new versions as you work.
+We recommend [using Heroku](http://www.heroku.com) to get your prototype online. It’s simple and fast to deploy new versions as you work.
 
 Once your prototype is on Heroku, other people will be able to access and try your prototype from their own computers or mobile devices.
 
@@ -23,7 +23,7 @@ If you’re new to Heroku, [sign up for a free account](https://signup.heroku.co
 
 ## 3) Install the Heroku toolbelt
 
-Install the [Heroku toolbelt](https://toolbelt.heroku.com/).
+[Install the Heroku toolbelt](https://toolbelt.heroku.com/).
 
 > On Windows, after downloading the toolbelt you'll need to run `heroku login` using the `cmd` app, as it does not work in Git Bash. Once you’ve logged in, you can return to using Git Bash.
 
