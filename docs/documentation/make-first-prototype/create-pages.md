@@ -16,7 +16,7 @@ To copy a file in Atom:
 1. Right-click a file in the folders list on the left and select **Copy**.
 2. Right-click the folder you want to copy the file into and select **Paste**.   
 
-Preview the pages in your prototype by going to ht<span>tp</span>://localhost:3000/NAME-OF-HTML-FILE in your web browser. For example, go to [http://localhost:3000/start](http://localhost:3000/start) to preview `start.html`.
+Preview the pages in your prototype by going to ht<span>tp</span>://localhost:3000/NAME-OF-HTML-FILE in your web browser. For example, [go to http://localhost:3000/start](http://localhost:3000/start) to preview `start.html`.
 
 #### Change the service name
 

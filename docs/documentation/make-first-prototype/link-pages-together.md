@@ -15,7 +15,7 @@ To take users from one page to another, you can use either:
 2. Find the `<a>` tag with 'Start now' inside.
 3. Change the value of the `href` attribute from `#` to `/juggling-balls`.
 
-Go to http://localhost:3000/start and select the **Start now** button to check the link works.
+[Go to http://localhost:3000/start](http://localhost:3000/start) and select the **Start now** button to check the link works.
 
 Links normally appear as text with underlines. We make **Start now** look like a button to make it more obvious to users.
 
@@ -25,7 +25,7 @@ Links normally appear as text with underlines. We make **Start now** look like a
 2. Find the line `<form class="form" action="/url/of/next/page" method="post">`.
 3. Change the value of the `action` attribute from `/url/of/next/page` to `/juggling-trick`.
 
-Go to http://localhost:3000/juggling-balls and select **Continue** to check the button works.
+[Go to http://localhost:3000/juggling-balls](http://localhost:3000/juggling-balls) and select **Continue** to check the button works.
 
 This time it's a real HTML button, not a link. Buttons submit form data - the URL is on the form tag, not the button.
 
@@ -35,7 +35,7 @@ This time it's a real HTML button, not a link. Buttons submit form data - the UR
 2. Find the line `<form class="form" action="/url/of/next/page" method="post">`.
 3. Change the value of the `action` attribute from `/url/of/next/page` to `/check-answers`.
 
-Go to http://localhost:3000/juggling-trick and select **Continue** to check the button works.
+[Go to http://localhost:3000/juggling-trick](http://localhost:3000/juggling-trick) and select **Continue** to check the button works.
 
 The 'Check answers' page template links to the ‘Confirmation’ page by default. So you do not need to change the ‘Check answers’ page.
 

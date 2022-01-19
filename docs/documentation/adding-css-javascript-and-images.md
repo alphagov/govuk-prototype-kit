@@ -21,7 +21,7 @@ To add styles use:
 
 Do not edit the file `/public/styles/application.css` because it’s deleted and rebuilt every time you make a change to your prototype.
 
-The Prototype Kit uses [Sass](https://sass-lang.com/guide), which adds extra features to CSS.
+The [Prototype Kit uses Sass](https://sass-lang.com/guide), which adds extra features to CSS.
 
 ### Using import
 

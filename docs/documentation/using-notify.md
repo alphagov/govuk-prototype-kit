@@ -9,11 +9,9 @@ confirmation email at the end of a journey.
 
 ## Sign up for a GOV.UK Notify account
 
-If you have a government email address you can sign up for an account at
-https://www.gov.uk/notify
+You need an account before you can use GOV.UK Notify to send text messages or emails.
 
-You need an account before you can use GOV.UK Notify to send text
-messages or emails.
+If you have a government email address you can [sign up for a GOV.UK Notify account](https://www.gov.uk/notify)
 
 ## Getting an API key
 
@@ -148,4 +146,4 @@ get consent to use them before doing your research.
 
 ## More things you can do with GOV.UK Notify
 
-The complete documentation for using the GOV.UK Notify API is here: https://docs.notifications.service.gov.uk/node.html
+[Documentation for using the GOV.UK Notify API](https://docs.notifications.service.gov.uk/node.html)

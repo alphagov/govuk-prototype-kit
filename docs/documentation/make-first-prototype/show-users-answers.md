@@ -40,7 +40,7 @@ to
 ```
 <span class="govuk-visually-hidden"> your most impressive juggling trick</span>
 ```
-Go to http://localhost:3000/start and answer the questions to check your answers show up correctly.
+[Go to http://localhost:3000/start](http://localhost:3000/start) and answer the questions to check your answers show up correctly.
 
 ## Delete the remaining example answers
 
