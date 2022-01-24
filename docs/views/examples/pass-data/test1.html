@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Example - Passing data
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/breadcrumb_examples.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/docs/examples/pass-data/test2" method="post" class="form">
+
+        <div class="govuk-form-group">
+          <h3 class="govuk-label-wrapper">
+            Example as used in current docs
+          </h3>
+          <input class="govuk-input" id="registration-number" name="[claimant][field1]" value="{{ data['claimant']['field1'] }}" type="text">
+          <h3 class="govuk-label-wrapper">
+            Array of objects within object
+          </h3>
+          <input class="govuk-input" id="registration-number" name="[myObject][myArrayOfObjects][0][name]" value="{{ data['myObject']['myArrayOfObjects'][0]['name'] }}" type="text">
+          <h3 class="govuk-label-wrapper">
+            Simple array within object
+          </h3>
+          <input class="govuk-input" id="registration-number" name="[myObject][mySimpleArray][0]" value="{{ data['myObject']['mySimpleArray'][0] }}" type="text">
+          <h3 class="govuk-label-wrapper">
+            Multi-level array within object
+          </h3>
+          <input class="govuk-input" id="registration-number" name="[myObject][myMultiLevelArray][0][0][0]" value="{{ data['myObject']['myMultiLevelArray'][0][0][0] }}" type="text">
+          <h3 class="govuk-label-wrapper">
+            Arrays within array
+          </h3>
+          <input class="govuk-input" id="registration-number" name="[myArray][0][0]" value="{{ data['myArray'][0][0] }}" type="text">
+        </div>
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h3>Example as used in current docs</h3>
+      {{ data['claimant']['field1'] }}
+      {{ data['claimant']['field2'] }}
+      <br>
+      <br>
+      <h3>Array of objects within object</h3>
+      {{ data['myObject']['myArrayOfObjects'][0]['name'] }}
+      {{ data['myObject']['myArrayOfObjects'][0]['address'] }}
+      {{ data['myObject']['myArrayOfObjects'][1]['name'] }}
+      <br>
+      <br>
+      <h3>Simple array within object</h3>
+      {{ data['myObject']['mySimpleArray'][0] }}
+      {{ data['myObject']['mySimpleArray'][1] }}
+      <br>
+      <br>
+      <h3>Multi-level array within object</h3>
+      {{ data['myObject']['myMultiLevelArray'][0][0][0] }}
+      {{ data['myObject']['myMultiLevelArray'][0][0][1] }}
+      {{ data['myObject']['myMultiLevelArray'][0][1] }}
+      <br>
+      <br>
+      <h3>Arrays within array</h3>
+      {{ data['myArray'][0][0] }}
+      {{ data['myArray'][0][1][0] }}
+      {{ data['myArray'][0][1][1] }}
+    </div>
+
+  </div>
+
+{% endblock %}

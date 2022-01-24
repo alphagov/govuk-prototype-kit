@@ -16,9 +16,47 @@ Example usage:
 ============================================================================
 
 */
-
 module.exports = {
-
-  // Insert values here
-
+  // Example as used in current docs
+  claimant: {
+    field1: 'Example 1',
+    field2: 'Example 2',
+    field3: 'Example 3'
+  },
+  partner: {
+    field1: 'Example 1',
+    field2: 'Example 2',
+    field3: 'Example 3'
+  },
+  myObject: {
+    // Array of objects within object
+    myArrayOfObjects: [
+      {
+        name: 'test1',
+        address: 'test2'
+      },
+      {
+        name: 'test3'
+      }
+    ],
+    // Simple array within object
+    mySimpleArray: [
+      'test4',
+      'test5'
+    ],
+    // Multi-level array within object
+    myMultiLevelArray: [
+      [
+        ['test6', 'test7'],
+        'test8'
+      ]
+    ]
+  },
+  // Arrays within array
+  myArray: [
+    [
+      'test9',
+      ['test10', 'test11']
+    ]
+  ]
 }
