@@ -30,7 +30,7 @@ Some concepts:
 
 A screenshot of GitHub Desktop at this point:
 
-![](/public/images/docs/github-desktop-add-local-repository.png)
+![Screenshot of the GitHub Desktop app. There is a separate pop-up box with the heading 'Add local repository'. In this box there is a text input labelled 'local path'. A button labelled 'choose'. A link titled 'Create a repository'. A button labelled 'Cancel'. And a button labelled 'Add repository'.](/public/images/docs/github-desktop-add-local-repository.png)
 
 3. In the warning, click the **create a repository** link.
 

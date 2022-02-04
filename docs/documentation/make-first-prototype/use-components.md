@@ -71,6 +71,11 @@ Your component code should now look like this:
 
 Your page should now look like this:
 
-![Screenshot of the question page with radios](/public/images/docs/tutorial-radios.png)
+<figure>
+
+![](/public/images/docs/tutorial-radios.png)
+
+<figcaption class="govuk-body">Screenshot of how your prototype should look.</figcaption>
+</figure>
 
 [Next (add a textarea to question 2)](use-components-2)
