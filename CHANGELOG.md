@@ -1,3 +1,19 @@
+# 12.0.1 (Fix release)
+
+## Recommended changes
+
+The Design System team has made some changes to GOV.UK Frontend. While these are not breaking changes, implementing them will mean your prototype uses the latest components.
+
+[Read the release notes for GOV.UK Frontend v4.0.1](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.1).
+
+### Remove the `tabindex` attribute from the error summary component
+
+If you're not using Nunjucks macros, remove the `tabindex` attribute from the error summary's HTML. The component JavaScript now adds and removes this attribute.
+
+This change was introduced in [pull request #2491: Prevent error summary from being refocused after it has been initially focused on page load](https://github.com/alphagov/govuk-frontend/pull/2491).
+
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
+
 # 12.0.0 (Breaking release)
 
 ## Breaking changes 
