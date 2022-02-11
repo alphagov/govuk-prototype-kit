@@ -36,7 +36,7 @@
     "inquirer": "^8.2.0",
     "lodash": "^4.17.21",
     "marked": "^4.0.10",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "notifications-node-client": "^5.1.0",
     "nunjucks": "^3.2.1",
     "portscanner": "^2.1.1",
