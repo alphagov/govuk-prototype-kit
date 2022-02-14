@@ -45,10 +45,6 @@ The content listed below is non-accessible for the following reasons.
 
 #### Non-compliance with the accessibility regulations
 
-Some pages do not have descriptive titles. This fails WCAG 2.1 success criterion 2.4.2 (page titles). 
-
-Some images do not have a good text alternative, so people using a screen reader cannot access the information. This fails WCAG 2.1 success criterion 1.1.1 (non-text content).
-
 The text in the code examples cannot be resized using browser controls. This fails WCAG 2.1 success criterion 1.4.4 (resize text).
 
 The code examples require scrolling horizontally on small screens. This fails WCAG 2.1 success criterion 1.4.10 (reflow).
@@ -88,4 +84,5 @@ When we publish new content, we’ll continue to make sure that it meets accessi
 
 ### Preparation of this accessibility statement
 
-This statement was prepared on 5 November 2021.
+This statement was prepared on 5 November 2021. It was last reviewed on 7 February 2022.
+
