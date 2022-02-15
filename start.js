@@ -1,9 +1,13 @@
 // Core dependencies
 const path = require('path')
 const fs = require('fs')
+const fsPromises = require('fs').promises
 const log = require('fancy-log')
 const nodemon = require('nodemon')
 const colour = require('ansi-colors')
+const sass = require('node-sass')
+
+const extensions = require('./lib/extensions/extensions')
 const config = require('./config.json')
 
 checkFiles()
@@ -25,15 +29,15 @@ if (usageDataConfig.collectUsageData === undefined) {
       usageData.startTracking(usageDataConfig)
     }
 
-    runGulp()
+    compileSass().then(runServer)
   })
 } else if (usageDataConfig.collectUsageData === true) {
   // Opted in
   usageData.startTracking(usageDataConfig)
-  runGulp()
+  compileSass().then(runServer)
 } else {
   // Opted out
-  runGulp()
+  compileSass().then(runServer)
 }
 
 // Warn if node_modules folder doesn't exist
@@ -77,10 +81,57 @@ if (!sessionDataDefaultsFileExists) {
 
 // watch
 // run server
-function runGulp () {
 
-  const nodemon = require('nodemon')
+function prepareSassExtensions () {
+  return new Promise((resolve, reject) => {
+    const fileContents = '$govuk-extensions-url-context: "/extension-assets"; ' + extensions.getFileSystemPaths('sass')
+      .map(filePath => `@import "${filePath.split(path.sep).join('/')}";`)
+      .join('\n')
+    fs.writeFile(path.join(config.paths.lib + 'extensions', '_extensions.scss'), fileContents, (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
+  })
+}
 
+function renderSassFile (fileName) {
+  return new Promise((resolve, reject) => {
+    sass.render({
+      file: path.join(__dirname, 'app', 'assets', 'sass', fileName + '.scss'),
+      sourceMap: true,
+      includePaths: [
+        path.join(__dirname, 'app', 'assets', 'sass'),
+        path.join(__dirname)
+      ]
+    }, (err, result) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(result)
+      }
+    })
+  })
+}
+
+function compileSassFile (fileName) {
+  return renderSassFile(fileName).then(result => {
+    return fsPromises.writeFile(path.join(__dirname, 'compiled', 'stylesheets', fileName + '.css'), result.css)
+  })
+}
+
+function compileSass () {
+  return prepareSassExtensions().then(Promise.all([
+    compileSassFile('application'),
+    compileSassFile('application-ie8'),
+    compileSassFile('unbranded'),
+    compileSassFile('unbranded-ie8')
+  ]))
+}
+
+function runServer () {
 // Warn about npm install on crash
   const onCrash = () => {
     log(colour.cyan('[nodemon] For missing modules try running `npm install`'))
