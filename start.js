@@ -1,6 +1,10 @@
 // Core dependencies
 const path = require('path')
 const fs = require('fs')
+const log = require('fancy-log')
+const nodemon = require('nodemon')
+const colour = require('ansi-colors')
+const config = require('./config.json')
 
 checkFiles()
 
@@ -63,17 +67,43 @@ if (!sessionDataDefaultsFileExists) {
     .pipe(fs.createWriteStream(sessionDataDefaultsFile))
 }
 
-// Run gulp
+// generate assets
+// clean
+// sass-extensions
+// sass
+// copy-assets
+// sass-documentation
+// copy-assets-documentation
+
+// watch
+// run server
 function runGulp () {
-  const spawn = require('cross-spawn')
 
-  process.env.FORCE_COLOR = 1
-  var gulp = spawn('node', ['./node_modules/gulp/bin/gulp.js', '--log-level', '-L'])
-  gulp.stdout.pipe(process.stdout)
-  gulp.stderr.pipe(process.stderr)
-  process.stdin.pipe(gulp.stdin)
+  const nodemon = require('nodemon')
 
-  gulp.on('exit', function (code) {
-    console.log('gulp exited with code ' + code.toString())
+// Warn about npm install on crash
+  const onCrash = () => {
+    log(colour.cyan('[nodemon] For missing modules try running `npm install`'))
+  }
+
+// Remove .port.tmp if it exists
+  const onQuit = () => {
+    try {
+      fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
+    } catch (e) {}
+
+    process.exit(0)
+  }
+
+  nodemon({
+    watch: ['.env', '**/*.js', '**/*.json'],
+    script: 'listen-on-port.js',
+    ignore: [
+      config.paths.public + '*',
+      config.paths.assets + '*',
+      config.paths.nodeModules + '*'
+    ]
   })
+    .on('crash', onCrash)
+    .on('quit', onQuit)
 }
