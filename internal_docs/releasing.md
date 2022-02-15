@@ -29,21 +29,26 @@ v8.0.0 // After implementing backwards incompatible changes
 
 3. Checkout a new branch called release-[new version number].
 
-4. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
+4. Update the [CHANGELOG.md](/CHANGELOG.md) by:
 
-5. Run `npm install` to update `package-lock.json`.
+  - changing the 'Unreleased' heading to the new version-number and release-type - for example, '12.0.1 (Fix release)'
+  - adding a new 'Unreleased' heading above the new version-number and release-type, so users will know where to add PRs to the changelog
 
-6. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
+5. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
 
-7. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
+6. Run `npm install` to update `package-lock.json`.
 
-8. In Tag version and Release title, put v[version number], for example `v7.0.0`.
+7. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
 
-9. In description, paste the relevant section from the Changelog.
+8. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
 
-10. Click 'Publish release'.
+9. In Tag version and Release title, put v[version number], for example `v7.0.0`.
 
-11. Let the community know about the release
+10. In description, paste the relevant section from the Changelog.
+
+11. Click 'Publish release'.
+
+12. Let the community know about the release
 
 Write a brief summary with highlights from the release then send it to the following slack channels:
 
