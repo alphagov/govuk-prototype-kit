@@ -43,22 +43,28 @@ You'll need to have [put your code on GitHub](/docs/github-desktop) to use this 
 
 Your prototype will deploy automatically each time you push your code to GitHub (it takes a few minutes each time).
 
-## Set a username and password
+## Set a password
 
-We need to set a username and password or the Prototype Kit won’t run online. They don’t have to be complicated – it’s just to stop people accidentally coming across your prototype online and mistaking it for a real service.
+You need to set a password or the Prototype Kit will not run online. This password does not have to be complicated. It's just to stop people accidentally finding your prototype online and mistaking it for a real service.
 
-1. At the top click the **Settings** tab.
+1. At the top of the Heroku page, click the **Settings** tab.
 
 2. Click **Reveal config vars**.
 
-3. In KEY put the word USERNAME
+3. In KEY, enter the word PASSWORD.
 
-4. In VALUE put a username of your choice, click **Add**.
+4. In VALUE, enter a password of your choice and click **Add**.
 
-That will be saved and you can add another KEY and VALUE.
+5. In the top right of the Heroku page, click **Open app** to see your prototype online.
 
-5. In KEY put the word PASSWORD
+### If you get an error about username
 
-6. In VALUE put a password of your choice, click **Add**.
+1. At the top of the Heroku page, click the **Settings** tab.
 
-7. In the top right, click **Open app** to see your prototype online!
+2. Click **Reveal config vars**.
+
+3. In KEY, enter the word USERNAME.
+
+4. In VALUE, enter a username of your choice and click **Add**.
+
+5. In the top right of the Heroku page, click **Open app** to see your prototype online.
