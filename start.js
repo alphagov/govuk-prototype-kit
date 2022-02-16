@@ -128,18 +128,15 @@ function sassImporter (url, prev, done) {
       if (stats) {
         if (stats.isFile()) {
           result.exists = true
-          console.log('found', `[${fullPath}]`)
           return Promise.resolve(result)
         } else {
           result.exists = false
-          console.log('directory, ignoring', `[${fullPath}]`)
           return Promise.resolve(result)
         }
       }
     } catch (e) {
       if (e.code === 'ENOENT') {
         result.exists = false
-        console.log('ENOENT', `[${fullPath}]`)
         return Promise.resolve(result)
       } else {
         console.log('caught unexpected', e)
@@ -152,9 +149,9 @@ function sassImporter (url, prev, done) {
       results.forEach(result => {
         if (result.exists) {
           if (firstResult) {
-            console.warn('Duplicate result found:')
-            console.warn(`Using:     ${firstResult.fullPath}`)
-            console.warn(`Duplicate: ${result.fullPath}`)
+            // console.warn('Duplicate result found:')
+            // console.warn(`Using:     ${firstResult.fullPath}`)
+            // console.warn(`Duplicate: ${result.fullPath}`)
           } else {
             firstResult = result
           }
@@ -195,9 +192,9 @@ function compileSassFile (fileName) {
 function compileSass () {
   return prepareSassExtensions().then(Promise.all([
     compileSassFile('application'),
-    // compileSassFile('application-ie8'),
-    // compileSassFile('unbranded'),
-    // compileSassFile('unbranded-ie8')
+    compileSassFile('application-ie8'),
+    compileSassFile('unbranded'),
+    compileSassFile('unbranded-ie8')
   ]))
 }
 
