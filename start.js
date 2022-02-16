@@ -105,7 +105,15 @@ function renderSassFile (fileName) {
       includePaths: [
         path.join(__dirname, 'app', 'assets', 'sass'),
         path.join(__dirname)
-      ]
+      ],
+      importer: (url, prev, done) => {
+        console.log('url', url)
+        console.log('prev', prev)
+        done({
+          file: '/abc/def',
+          contents: '/* no file */'
+        })
+      }
     }, (err, result) => {
       if (err) {
         reject(err)
