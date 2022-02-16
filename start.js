@@ -97,23 +97,85 @@ function prepareSassExtensions () {
   })
 }
 
+const includePaths = [
+  path.join(__dirname, 'app', 'assets', 'sass'),
+  path.join(__dirname, 'node_modules', 'govuk-frontend', 'govuk'),
+  path.join(__dirname)
+]
+
+function addPathToList (fullListToAttempt, fullPath) {
+  fullListToAttempt.push(fullPath)
+
+  const pathParts = fullPath.split(path.sep)
+  const filename = pathParts.pop()
+  pathParts.push(`_${filename}`)
+  fullListToAttempt.push(`${pathParts.join(path.sep)}`)
+}
+
+function sassImporter (url, prev, done) {
+  const fullListToAttempt = []
+  addPathToList(fullListToAttempt, url)
+  ;[path.dirname(prev)].concat(includePaths).forEach(root => {
+    const fullPath = path.join(root, url)
+    addPathToList(fullListToAttempt, fullPath)
+    addPathToList(fullListToAttempt, `${fullPath}.scss`)
+  })
+  Promise.all(fullListToAttempt.map(fullPath => {
+    const result = {}
+    result.fullPath = fullPath
+    try {
+      const stats = fs.statSync(result.fullPath)
+      if (stats) {
+        if (stats.isFile()) {
+          result.exists = true
+          console.log('found', `[${fullPath}]`)
+          return Promise.resolve(result)
+        } else {
+          result.exists = false
+          console.log('directory, ignoring', `[${fullPath}]`)
+          return Promise.resolve(result)
+        }
+      }
+    } catch (e) {
+      if (e.code === 'ENOENT') {
+        result.exists = false
+        console.log('ENOENT', `[${fullPath}]`)
+        return Promise.resolve(result)
+      } else {
+        console.log('caught unexpected', e)
+        process.exit(1)
+      }
+    }
+  }))
+    .then(results => {
+      let firstResult
+      results.forEach(result => {
+        if (result.exists) {
+          if (firstResult) {
+            console.warn('Duplicate result found:')
+            console.warn(`Using:     ${firstResult.fullPath}`)
+            console.warn(`Duplicate: ${result.fullPath}`)
+          } else {
+            firstResult = result
+          }
+        }
+      })
+      if (!firstResult) {
+        throw new Error(`No SASS import available for [${url}] (prev [${prev}]), attempted to use ${fullListToAttempt.map(x => `[${x}]`).join(', ')}`)
+      }
+      done({
+        file: firstResult.fullPath,
+        contents: fs.readFileSync(firstResult.fullPath, 'utf8')
+      })
+    })
+}
+
 function renderSassFile (fileName) {
   return new Promise((resolve, reject) => {
     sass.render({
       file: path.join(__dirname, 'app', 'assets', 'sass', fileName + '.scss'),
       sourceMap: true,
-      includePaths: [
-        path.join(__dirname, 'app', 'assets', 'sass'),
-        path.join(__dirname)
-      ],
-      importer: (url, prev, done) => {
-        console.log('url', url)
-        console.log('prev', prev)
-        done({
-          file: '/abc/def',
-          contents: '/* no file */'
-        })
-      }
+      importer: sassImporter,
     }, (err, result) => {
       if (err) {
         reject(err)
@@ -133,9 +195,9 @@ function compileSassFile (fileName) {
 function compileSass () {
   return prepareSassExtensions().then(Promise.all([
     compileSassFile('application'),
-    compileSassFile('application-ie8'),
-    compileSassFile('unbranded'),
-    compileSassFile('unbranded-ie8')
+    // compileSassFile('application-ie8'),
+    // compileSassFile('unbranded'),
+    // compileSassFile('unbranded-ie8')
   ]))
 }
 
