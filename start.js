@@ -192,9 +192,9 @@ function compileSassFile (fileName) {
 function compileSass () {
   return prepareSassExtensions().then(Promise.all([
     compileSassFile('application'),
-    compileSassFile('application-ie8'),
-    compileSassFile('unbranded'),
-    compileSassFile('unbranded-ie8')
+    // compileSassFile('application-ie8'),
+    // compileSassFile('unbranded'),
+    // compileSassFile('unbranded-ie8')
   ]))
 }
 
