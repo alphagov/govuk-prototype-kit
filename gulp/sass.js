@@ -22,6 +22,7 @@ gulp.task('sass-extensions', function (done) {
 })
 
 gulp.task('sass', function () {
+  const hrTime = process.hrtime()
   return gulp.src(config.paths.assets + '/sass/*.scss', { sourcemaps: true })
     .pipe(sass({ outputStyle: 'expanded' }).on('error', function (error) {
       // write a blank application.css to force browser refresh on error
@@ -33,6 +34,9 @@ gulp.task('sass', function () {
       this.emit('end')
     }))
     .pipe(gulp.dest(stylesheetDirectory, { sourcemaps: true }))
+    .on('end', () => {
+      console.log('Sass compilation time in milliseconds is: ', hrTime[0] * 1000 + hrTime[1] / 1000000)
+    })
 })
 
 gulp.task('sass-documentation', function () {
