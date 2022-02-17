@@ -225,3 +225,15 @@ function runServer () {
     .on('crash', onCrash)
     .on('quit', onQuit)
 }
+
+function watchedFileUpdated (event, filename) {
+  if (filename && event === 'change') {
+    console.log('Updated', filename)
+  } else {
+    console.log('Other', event, filename)
+  }
+}
+
+const file = path.join(__dirname)
+fs.watch(file, watchedFileUpdated)
+console.log('watching file', file)
