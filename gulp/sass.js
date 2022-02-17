@@ -6,7 +6,7 @@
 */
 
 const gulp = require('gulp')
-const sass = require('gulp-sass')(require('node-sass'))
+const sass = require('gulp-sass')(require('sass'))
 const path = require('path')
 const fs = require('fs')
 
