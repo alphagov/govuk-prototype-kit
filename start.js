@@ -5,7 +5,7 @@ const fsPromises = require('fs').promises
 const log = require('fancy-log')
 const nodemon = require('nodemon')
 const colour = require('ansi-colors')
-const sass = require('node-sass')
+const sass = require('sass')
 
 const extensions = require('./lib/extensions/extensions')
 const config = require('./config.json')
