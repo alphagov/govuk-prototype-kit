@@ -1,7 +1,7 @@
 # ignore tracking usage data config - we want a different one for each user
 usage-data-config.json
 # ignore extension SCSS because it's dynamically generated
-lib/extensions/_extensions.scss
+govuk-prototype-kit/lib/extensions/_extensions.scss
 .env
 .sass-cache
 .DS_Store
@@ -10,3 +10,4 @@ lib/extensions/_extensions.scss
 public
 node_modules/*
 .tmuxp.*
+.idea
