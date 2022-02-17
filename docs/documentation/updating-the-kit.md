@@ -5,6 +5,8 @@ title: Update your Prototype Kit
 
 How to update your prototype and get help from the GOV.UK Prototype Kit team.
 
+To get security patches and new features, make sure you update to the latest version of the Prototype Kit.
+
 ## Get help
 
 If you have a question or need help with updating the Prototype Kit, you can:
@@ -18,7 +20,7 @@ Tell us as much as you can about the issue you're having, and the computer and o
 
 ### Find what version you’re using
 
-In Finder on Mac or Windows Explorer go to your prototype folder and open the file `VERSION.txt`. This will show what version of the prototype kit you’re using.
+In Finder on Mac or Windows Explorer, go to your prototype folder and open the file `VERSION.txt`. This will show what version of the Prototype Kit you’re using.
 
 - If your prototype is version 8 or before, then contact the GOV.UK Prototype team for help with updating it
 - If your prototype is version 9, 10 or 11, you can update to version 12 by following the steps on this page
@@ -55,7 +57,7 @@ It will download a zip file and unzip the latest version of the Prototype Kit in
 
 ### If your prototype does not work
 
-If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 3. 
+If your prototype does not work, compare the new `package.json` file to the `package.json` file in the backup you made in step 3.
 
 Run `npm install PACKAGE-NAME` for each package that's missing in the new file.
 
@@ -80,4 +82,3 @@ If you need to restart the Prototype Kit after the fix:
 
 1. in your [terminal](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#terminal), `cd` to your prototype folder
 2. run `npm start`
-
