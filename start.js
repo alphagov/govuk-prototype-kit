@@ -190,12 +190,17 @@ function compileSassFile (fileName) {
 }
 
 function compileSass () {
+  const startTime = process.hrtime()
   return prepareSassExtensions().then(Promise.all([
     compileSassFile('application'),
     // compileSassFile('application-ie8'),
     // compileSassFile('unbranded'),
     // compileSassFile('unbranded-ie8')
-  ]))
+  ])).then(result => {
+    const endTime = process.hrtime(startTime)
+    console.log(`Sass compilation time ${endTime[0]}.${endTime[1]}`);
+    return result
+  })
 }
 
 function runServer () {
