@@ -13,7 +13,7 @@ You'll need to have [put your code on GitHub](/docs/github-desktop) to use this 
 
 2. In the top right click **New** then **Create new app**.
 
-![Screenshot of Heroku Create New App page](/public/images/docs/heroku-create-app.png)
+![Screenshot of a Heroku dashboard page that is titled 'Create a new app'. There are 2 input fields on the page. A text input labelled 'App name'. And a drop-down labelled 'Choose a region'. There is a button labelled 'Add to pipeline' and another button labelled 'Create app'.](/public/images/docs/heroku-create-app.png)
 
 3. Enter a name for your prototype app. App names in Heroku have to be unique across all the users of Heroku. It can be helpful to add your name or organisation to the start of the name to make it unique. For example joelanman-juggling-prototype.
 
@@ -25,7 +25,7 @@ You'll need to have [put your code on GitHub](/docs/github-desktop) to use this 
 
 1. For **Deployment method** choose **GitHub**. ‘Deploy’ means publish.
 
-![Screenshot of section of page headed Deployment method](/public/images/docs/heroku-deploy.png)
+![Screenshot of a section on the Heroku page that has the heading 'Deployment method'. It lists 3 links, left to right: 1. Heroku Git. 2. GitHub. 3. Container Registry.](/public/images/docs/heroku-deploy.png)
 
 2. Scroll down and click **Connect to GitHub**.
 

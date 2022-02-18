@@ -9,6 +9,16 @@ img{
   max-width: 100%;
 }
 
+// remove user agent stylesheet indent from figures / captions
+figure {
+  // Needed for WebKit, Blink
+  margin-inline-start: inherit;
+  margin-inline-end: inherit;
+  // Needed for Internet Explorer
+  margin-left: inherit;
+  margin-right: inherit;
+}
+
 // adjust code block font-size to 19px
 .hljs {
   font-size: 19px;

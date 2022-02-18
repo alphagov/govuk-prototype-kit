@@ -32,6 +32,11 @@ Your component code should now look like this:
 
 Your page should now look like this:
 
-![Screenshot of the question page with a textarea](/public/images/docs/tutorial-textarea.png)
+<figure>
+
+![Web page with the heading "What is your most impressive juggling trick", a textarea and continue button](/public/images/docs/tutorial-textarea.png)
+
+<figcaption class="govuk-body">Screenshot of how your prototype should look.</figcaption>
+</figure>
 
 [Next (Show the user’s answers on your ‘Check answers’ page)](show-users-answers)

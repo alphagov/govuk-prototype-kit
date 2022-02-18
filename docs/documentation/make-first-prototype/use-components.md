@@ -71,6 +71,11 @@ Your component code should now look like this:
 
 Your page should now look like this:
 
-![Screenshot of the question page with radios](/public/images/docs/tutorial-radios.png)
+<figure>
+
+![Web page with the heading "How many balls can you juggle?", 3 radios and a continue button](/public/images/docs/tutorial-radios.png)
+
+<figcaption class="govuk-body">Screenshot of how your prototype should look.</figcaption>
+</figure>
 
 [Next (add a textarea to question 2)](use-components-2)
