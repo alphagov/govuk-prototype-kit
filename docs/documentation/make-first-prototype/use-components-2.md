@@ -34,7 +34,7 @@ Your page should now look like this:
 
 <figure>
 
-![](/public/images/docs/tutorial-textarea.png)
+![Web page with the heading "What is your most impressive juggling trick", a textarea and continue button](/public/images/docs/tutorial-textarea.png)
 
 <figcaption class="govuk-body">Screenshot of how your prototype should look.</figcaption>
 </figure>
