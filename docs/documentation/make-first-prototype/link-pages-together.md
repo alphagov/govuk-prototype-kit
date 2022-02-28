@@ -9,6 +9,10 @@ To take users from one page to another, you can use either:
 - a link (`<a>` tag)
 - a form (`<form>` tag, when the user inputs data)
 
+If you need to pass data, do not use a link with the button class on your form. While the link will look identical to a `<button>` element, it will not pass any data.
+
+To pass data, wrap the button and any form inputs with a `<form>` tag and use a real `<button>` element.
+
 ## Link your start page to question 1
 
 1. Open `start.html` in your `app/views` folder.
