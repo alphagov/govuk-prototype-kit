@@ -57,9 +57,9 @@ It will download a zip file and unzip the latest version of the Prototype Kit in
 
 12. If your prototype is already on GitHub, make sure that users with a local copy will get any file changes you make. To update this kind of prototype:
 
-- [branch off the `main` (or default) branch](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/managing-branches)
-- [pull the latest changes](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/keeping-your-local-repository-in-sync-with-github/syncing-your-branch)
-- once the update completes in your terminal, [commit the files](https://github.com/git-guides/git-commit), [open a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request), and so on
+  - [branch off the `main` (or default) branch](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/managing-branches)
+  - [pull the latest changes](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/keeping-your-local-repository-in-sync-with-github/syncing-your-branch)
+  - once the update completes in your terminal, [commit the files](https://github.com/git-guides/git-commit), [open a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request), and so on
 
 What you do might depend on the process followed by the team working on the prototype.
 
