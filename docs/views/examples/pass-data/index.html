@@ -33,7 +33,7 @@
         The code for the example is in this folder in the Prototype Kit:
       </p>
 
-      <pre class="app-code"><code>/docs/views/examples/pass-data</code></pre>
+      <pre class="app-code" tabindex="0"><code>/docs/views/examples/pass-data</code></pre>
 
       <h2 class="govuk-heading-m">How to use</h2>
 
@@ -41,15 +41,15 @@
 
       <p>For example, if you have this input:</p>
 
-      <pre class="app-code"><code>&lt;input name="first-name"&gt;</code></pre>
+      <pre class="app-code" tabindex="0"><code>&lt;input name="first-name"&gt;</code></pre>
 
       <p>You can show what the user entered later on like this:</p>
 
-      <pre class="app-code"><code>&lt;p&gt;{%raw%}{{ data['first-name'] }}{%endraw%}&lt;/p&gt;</code></pre>
+      <pre class="app-code" tabindex="0"><code>&lt;p&gt;{%raw%}{{ data['first-name'] }}{%endraw%}&lt;/p&gt;</code></pre>
 
       <p>Or with nested fields:</p>
 
-      <pre class="app-code"><code>&lt;p&gt;{%raw%}{{ data['claimant']['first-name'] }}{%endraw%}&lt;/p&gt;</code></pre>
+      <pre class="app-code" tabindex="0"><code>&lt;p&gt;{%raw%}{{ data['claimant']['first-name'] }}{%endraw%}&lt;/p&gt;</code></pre>
 
       <h3 class="govuk-heading-s">
         Clearing data
@@ -69,15 +69,15 @@
 
       <p>For a text input:</p>
 
-      <pre class="app-code"><code>&lt;input name="first-name" value="{%raw%}{{ data['first-name'] }}{%endraw%}"&gt;</code></pre>
+      <pre class="app-code" tabindex="0"><code>&lt;input name="first-name" value="{%raw%}{{ data['first-name'] }}{%endraw%}"&gt;</code></pre>
 
       <p>For a radio or checkbox input you need to use the 'checked' function:</p>
 
-      <pre class="app-code"><code>&lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked("over-18", "yes") }}{%endraw%}&gt;</code></pre>
+      <pre class="app-code" tabindex="0"><code>&lt;input type="radio" name="over-18" value="yes" {%raw%}{{ checked("over-18", "yes") }}{%endraw%}&gt;</code></pre>
 
       <p>Or with nested fields:</p>
 
-      <pre class="app-code"><code>&lt;input type="radio" name="claimant[over-18]" value="yes" {%raw%}{{ checked("['claimant']['over-18']", "yes") }}{%endraw%}&gt;</code></pre>
+      <pre class="app-code" tabindex="0"><code>&lt;input type="radio" name="claimant[over-18]" value="yes" {%raw%}{{ checked("['claimant']['over-18']", "yes") }}{%endraw%}&gt;</code></pre>
 
       <h3 class="govuk-heading-s">
         Setting default data
@@ -85,7 +85,7 @@
 
       <p>You can set default values in this file in your prototype folder:
 
-      <pre class="app-code"><code>app/data/session-data-defaults.js</code></pre>
+      <pre class="app-code" tabindex="0"><code>app/data/session-data-defaults.js</code></pre>
 
       <h2 class="govuk-heading-m">Advanced features</h2>
 
@@ -95,7 +95,7 @@
 
       <p>Example using the 'checked' function in a checkbox component macro:</p>
 
-<pre class="app-code"><code>{% raw %}
+<pre class="app-code" tabindex="0"><code>{% raw %}
 {{ govukCheckboxes({
   name: "vehicle-features",
   fieldset: {
@@ -135,7 +135,7 @@
 
       <p>Example using the 'checked' function in a checkbox component macro (nested fields for multiple vehicles):</p>
 
-<pre class="app-code"><code>{% raw %}
+<pre class="app-code" tabindex="0"><code>{% raw %}
 {{ govukCheckboxes({
   name: "vehicle1[vehicle-features]",
   fieldset: {
@@ -177,7 +177,7 @@
 
       <p>For example for an input with name="first-name":</p>
 
-      <pre class="app-code"><code>var firstName = req.session.data['first-name']</code></pre>
+      <pre class="app-code" tabindex="0"><code>var firstName = req.session.data['first-name']</code></pre>
 
       <h3 class="govuk-heading-s">
         Using the data on the server (nested fields)
@@ -185,7 +185,7 @@
 
       <p>For example for an input with name="claimant[first-name]":</p>
 
-      <pre class="app-code"><code>var firstName = req.session.data['claimant']['first-name']</code></pre>
+      <pre class="app-code" tabindex="0"><code>var firstName = req.session.data['claimant']['first-name']</code></pre>
 
       <h3 class="govuk-heading-s">
         Ignoring inputs
@@ -193,7 +193,7 @@
 
       <p>To prevent an input being stored, use an underscore at the start of the name.</p>
 
-      <pre class="app-code"><code>&lt;input name="_secret"&gt;</code></pre>
+      <pre class="app-code" tabindex="0"><code>&lt;input name="_secret"&gt;</code></pre>
 
     </div>
   </div>
