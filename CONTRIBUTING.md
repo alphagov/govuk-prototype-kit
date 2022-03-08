@@ -34,17 +34,6 @@ Your JavaScript code should pass [linting](docs/linting.md).
 
 For anything else, maintain 2-space, soft-tabs only indentation. No trailing whitespace.
 
-### Versioning
-
-Follow the guidelines on [semver.org](http://semver.org/) for assigning version
-numbers.
-
-Versions should only be changed in a commit of their own, in a pull request of
-their own. This alerts team members to the new version and allows for
-last-minute scrutiny before the new version is released. Also, by raising a
-separate pull request, we avoid version number conflicts between feature
-branches.
-
 ### Commit hygiene
 
 Please see our [Git style guide in the 'How to store source code' page of the GDS Way](https://gds-way.cloudapps.digital/standards/source-code.html#commit-messages), which describes how we prefer Git history and commit messages to read.
