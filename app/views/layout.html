@@ -131,21 +131,35 @@ value of $govuk-black #}
 
 {% if useAutoStoreData %}
   {% block footer %}
-    {{ govukFooter({
-      meta: {
-        items: [
-          {
-            href: "https://govuk-prototype-kit.herokuapp.com/",
-            text: "GOV.UK Prototype Kit " + releaseVersion
-          },
-          {
-            href: "/prototype-admin/clear-data",
-            text: "Clear data"
-          }
-        ],
-        visuallyHiddenTitle: "Footer links"
-      }
-    }) }}
+<footer class="hods-footer" role="contentinfo">
+  <div class="hods-footer__inner">
+    <div class="hods-footer__container hods-width-container">
+      <div class="hods-footer__content">
+        A Home Office Digital, Data and Technology
+        service
+      </div>
+      <div class="hods-footer__navigation">
+        <ul id="navigation" class="hods-footer__navigation-list">
+          <li class="hods-footer__navigation-item">
+            <a class="hods-footer__link" href="/feedback">
+              Feedback
+            </a>
+          </li>
+          <li class="hods-footer__navigation-item">
+            <a class="hods-footer__link" href="/help">
+              Help
+            </a>
+          </li>
+          <li class="hods-footer__navigation-item">
+            <a class="hods-footer__link" href="https://gov.uk/">
+              Gov.UK home
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
   {% endblock %}
 {% endif %}
 
