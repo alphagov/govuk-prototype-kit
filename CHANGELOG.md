@@ -1,4 +1,217 @@
-# Unreleased
+# 12.0.1 (Fix release)
+
+## Recommended changes
+
+The Design System team has made some changes to GOV.UK Frontend. While these are not breaking changes, implementing them will mean your prototype uses the latest components.
+
+[Read the release notes for GOV.UK Frontend v4.0.1](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.1).
+
+### Remove the `tabindex` attribute from the error summary component
+
+If you're not using Nunjucks macros, remove the `tabindex` attribute from the error summary's HTML. The component JavaScript now adds and removes this attribute.
+
+This change was introduced in [pull request #2491: Prevent error summary from being refocused after it has been initially focused on page load](https://github.com/alphagov/govuk-frontend/pull/2491).
+
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
+
+# 12.0.0 (Breaking release)
+
+## Breaking changes 
+
+This release ensures the GOV.UK Prototype Kit reflects the latest release of the GOV.UK Frontend, v4.0.0.
+
+### Update to GOV.UK Frontend v4.0.0
+
+The new release of GOV.UK Frontend contains:
+- an iteration to the accordion component
+- other ‘breaking’ changes you should make to improve your service
+
+Check the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for changes you may need to make to ensure your prototype works.
+
+This change was added in [#1195: Update the GOV.UK Prototype Kit to use GOV.UK Frontend v4.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/1195).
+
+## New features 
+
+### Preserve query strings when redirecting POSTs to GETs
+
+The GOV.UK Prototype Kit now preserves URL query strings when redirecting POST requests to GET requests.
+
+This means if you have a query like `/link/to/something?query=true&hello=world` on your POST form action, and you submit the form, the URL query string will be present in the redirected URL. 
+
+This feature is useful when you:
+
+- use the query string to set flash messages or return paths
+- want to use the values in the query string for a specific page, rather than saved data
+
+Thanks to [@edwardhorsford](https://github.com/edwardhorsford) for contributing this issue and its solution.
+
+This was added in [#1120: Preserve query string when redirecting POSTs to GETs](https://github.com/alphagov/govuk-prototype-kit/pull/1120).
+
+
+## Fixes
+
+- [#1155: Replace `keypather` package with `lodash.get`](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
+
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
+
+
+
+# 11.0.0 (Fix release)
+
+## Fixes
+
+We’ve recently experienced 2 security incidents involving common NPM packages used by the Prototype Kit. We’re sorry for the inconvenience this has caused.
+
+We’ve added new measures (a package-lock.json file) to help prevent this in the future. 
+
+To protect your service from any similar threats in future, please upgrade to this new version of the Kit.
+
+[Install the Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs/install)
+
+For any existing prototypes, follow the guide to [update the kit](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit).
+
+## Pull requests
+
+[Pull request #1143: Add a package-lock.json file](https://github.com/alphagov/govuk-prototype-kit/pull/1143).
+
+
+# 10.0.0 (Breaking release)
+
+## Breaking changes
+
+You must make the following changes if you’re running Node.js 10 and you update to this release, or your prototype may break.
+
+### Update from Node.js 10
+
+You can no longer run the GOV.UK Prototype Kit on Node.js 10.
+
+If you currently run Node.js 10, you'll need to upgrade to a newer version. 
+
+We recommend using version 16. You can find more information on the [Prototype Kit requirements page](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md).
+
+### Upgrade Notify client library from version 4.7.2 to 5.1.0
+
+We have updated the Notify client library to version 5.1.0. This may break existing prototypes that are using the Notify client. Big thanks to [David McDonald](https://github.com/idavidmcdonald).
+
+## Breaking change pull requests
+
+- [Pull request #925: Upgrade Notify client library from 4.7.2 to 5.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/925). This may break existing prototypes which are using the Notify client. If you have any issues, please [contact the GOV.UK Prototype Kit team](https://design-system.service.gov.uk/get-in-touch/).
+- [Pull request #1127: Update to Node 16 and drop support for Node 10](https://github.com/alphagov/govuk-prototype-kit/pull/1127)
+
+## Fixes
+
+- [Pull request #1133: Remove express-writer from package file](https://github.com/alphagov/govuk-prototype-kit/pull/1133)
+
+# 9.15.0 (Feature release)
+
+## New features
+
+### Update to GOV.UK Frontend 3.14.0
+
+Added in [Pull request #1108: Update to GOV.UK Frontend v3.14.0](https://github.com/alphagov/govuk-prototype-kit/pull/1108)
+
+This release contains:
+- new override classes for text alignment
+- changes to the `govuk-spacing` function to allow negative spacing
+- a fix for an accessibility issue with the panel component
+
+### Replace back link placeholder URLs with JavaScript
+
+We've added JavaScript to make the [back link component](https://design-system.service.gov.uk/components/back-link/) take users to the previous page by default, rather than you having to update placeholder text.
+
+If you want to use JavaScript in production, you must also use a non-JavaScript alternative, so you do not exclude any users. If you cannot use a non-JavaScript alternative, you should hide the back link when JavaScript is not available.
+
+You can still override the `href` attribute if you need to provide a solution that works when JavaScript is disabled.
+
+This was added in [Pull request #1103: Replace back link placeholder URLs with JavaScript](https://github.com/alphagov/govuk-prototype-kit/pull/1103)
+
+### Update Node.js to protect your code
+
+If you use the GOV.UK Prototype Kit, we recommend you update to use the latest version of Node.js 14 Long Term Support (LTS). This is to make sure you're protected from a [recent security vulnerability in the npm (Node Package Manager)](https://github.blog/2021-09-08-github-security-update-vulnerabilities-tar-npmcli-arborist/).
+
+To make sure you're using Node.js version 14.17.6 or later, [follow the install instructions on the Prototype Kit website](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md#nodejs-version-14-lts).
+
+If you're using Node Version Manager (nvm), you can instead [run `nvm install` to install v14.17.6](https://github.com/alphagov/govuk-prototype-kit/pull/1076).
+
+## Fixes
+
+- [Pull request #1104: Change visually hidden footer title](https://github.com/alphagov/govuk-prototype-kit/pull/1104)
+
+# 9.14.2 (Fix release)
+
+## Fixes
+
+- [Pull request #1036: Update to GOV.UK Frontend v3.13.1](https://github.com/alphagov/govuk-prototype-kit/pull/1069)
+- [Pull request #1050: Do not swallow errors from `session-data-defaults.js`](https://github.com/alphagov/govuk-prototype-kit/pull/1050)
+
+# 9.14.1 (Patch release)
+
+## Fixes
+
+- [Pull request #1039: Run Gulp using the Node executable to fix permissions problem on GDS-managed devices](https://github.com/alphagov/govuk-prototype-kit/pull/1039)
+
+# 9.14.0 (Feature release)
+
+## New features
+
+- [Pull request #1036: Update to GOV.UK Frontend v3.13.0](https://github.com/alphagov/govuk-prototype-kit/pull/1036)
+
+# 9.13.0 (Feature release)
+
+## New features
+
+### Make Sass errors clearer to users
+
+Previously, it was not obvious to users if Sass had stopped updating because of an error. An error would be printed to the command line, but nothing would happen in the browser. We know that this error was easy to miss, which could cause confusion.
+
+Now, when there's a Sass error, the GOV.UK Prototype Kit creates a blank `application.css` file to make the site look broken to users.
+
+If you fix the Sass error, the site will automatically reload.
+
+We have also changed the [Gulp](https://www.npmjs.com/package/gulp-sass) log level to be less detailed, so that errors stand out.
+
+This was added in [Pull request #990: Make Sass errors clearer to the user](https://github.com/alphagov/govuk-prototype-kit/pull/990).
+
+### Opt in to the new GOV.UK Frontend link styles
+
+Links now have underlines that are consistently thinner and a bit further away from the link text.
+
+Links also have a clearer hover state, where the underline gets thicker to make the link stand out to users.
+
+The new link styles are opt-in because [Chromium browsers have an issue with links inside a multi-column layout](https://github.com/alphagov/govuk-frontend/issues/2204).
+
+Read more about the new link styles in the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases).
+
+This was added in [Pull request #1012: Implement the new link and hover styles in the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/1012).
+
+### Update to GOV.UK Frontend
+This was added in [Pull request #1025: Update to GOV.UK Frontend v3.12.0](https://github.com/alphagov/govuk-prototype-kit/pull/1025)
+
+## Fixes
+
+- [Pull request #995: Allow Node 15 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/995)
+
+# 9.12.1 (Patch release)
+
+## Fixes
+
+- [Pull request #987: Import the cookie banner macro as part of the layout](https://github.com/alphagov/govuk-prototype-kit/pull/987)
+
+# 9.12.0 (Feature release)
+
+## New features
+
+- [Pull request #985: Update to GOV.UK Frontend v3.11.0](https://github.com/alphagov/govuk-prototype-kit/pull/985)
+
+## Fixes
+
+- [Pull request #983: Remove the outdated 'GOV.UK uses cookies to make the site simpler' cookie banner](https://github.com/alphagov/govuk-prototype-kit/pull/983)
+
+# 9.11.2 (Patch release)
+
+## Fixes
+
+- [Pull request #971: Update to GOV.UK Frontend v3.10.1](https://github.com/alphagov/govuk-prototype-kit/pull/971)
 
 # 9.11.1 (Patch release)
 

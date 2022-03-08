@@ -4,8 +4,10 @@ const path = require('path')
 
 // NPM dependencies
 const express = require('express')
-const marked = require('marked')
 const router = express.Router()
+
+// Local dependencies
+const utils = require('../lib/utils')
 
 // Page routes
 
@@ -27,8 +29,8 @@ router.get('/install/:page', function (req, res) {
   }
   redirectMarkdown(req.params.page, res)
   var doc = fs.readFileSync(path.join(__dirname, '/documentation/install/', req.params.page + '.md'), 'utf8')
-  var html = marked(doc)
-  res.render('install_template', { document: html })
+  const renderOptions = utils.getRenderOptions(doc)
+  res.render('install_template', renderOptions)
 })
 
 // When in 'promo mode', redirect to download the current release zip from
@@ -51,6 +53,12 @@ router.get('/download', function (req, res) {
   }
 })
 
+router.get('/update.sh', function (req, res) {
+  res.redirect(
+    'https://raw.githubusercontent.com/alphagov/govuk-prototype-kit/main/update.sh'
+  )
+})
+
 // Examples - examples post here
 router.post('/tutorials-and-examples', function (req, res) {
   res.redirect('tutorials-and-examples')
@@ -63,23 +71,22 @@ router.get('/examples/template-data', function (req, res) {
   res.render('examples/template-data', { name: 'Foo' })
 })
 
-// Branching
-router.post('/examples/branching/over-18-answer', function (req, res) {
-  // Get the answer from session data
-  // The name between the quotes is the same as the 'name' attribute on the input elements
-  // However in JavaScript we can't use hyphens in variable names
+// Redirects
 
-  const over18 = req.session.data['over-18']
-
-  if (over18 === 'false') {
-    res.redirect('/docs/examples/branching/under-18')
-  } else {
-    res.redirect('/docs/examples/branching/over-18')
-  }
+router.get('/examples/branching', function (req, res) {
+  res.redirect('/docs/make-first-prototype/branching')
 })
 
 router.get('/making-pages', function (req, res) {
   res.redirect('/docs/make-first-prototype/create-pages')
+})
+
+router.get('/make-first-prototype/add-questions', function (req, res) {
+  res.redirect('/docs/make-first-prototype/use-components')
+})
+
+router.get('/templates/check-your-answers', function (req, res) {
+  res.redirect('/docs/templates/check-answers')
 })
 
 module.exports = router

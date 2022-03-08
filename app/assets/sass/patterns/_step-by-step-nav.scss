@@ -94,10 +94,10 @@ $top-border: solid 2px govuk-colour("mid-grey", $legacy: "grey-3");
 
 .app-step-nav__button--controls {
   @include step-nav-font(14, $line-height: 1);
+  @include govuk-link-common;
   position: relative;
   z-index: 1; // this and relative position stops focus outline underlap with border of accordion
   padding: .5em 0;
-  text-decoration: underline;
 
   .app-step-nav--large & {
     @include step-nav-font(14, $tablet-size: 16, $line-height: 1);
@@ -271,7 +271,8 @@ $top-border: solid 2px govuk-colour("mid-grey", $legacy: "grey-3");
     }
 
     .app-step-nav__toggle-link {
-      text-decoration: underline;
+      @include govuk-link-common;
+      @include govuk-link-hover-decoration;
     }
   }
 

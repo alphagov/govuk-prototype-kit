@@ -9,6 +9,7 @@
 {% from "govuk/components/button/macro.njk"              import govukButton %}
 {% from "govuk/components/character-count/macro.njk"     import govukCharacterCount %}
 {% from "govuk/components/checkboxes/macro.njk"          import govukCheckboxes %}
+{% from "govuk/components/cookie-banner/macro.njk"       import govukCookieBanner %}
 {% from "govuk/components/date-input/macro.njk"          import govukDateInput %}
 {% from "govuk/components/details/macro.njk"             import govukDetails %}
 {% from "govuk/components/error-message/macro.njk"       import govukErrorMessage %}
@@ -39,7 +40,6 @@
 {% endblock %}
 
 {% block header %}
-  {% include "includes/cookie-banner.html" %}
   {# Set serviceName in config.js. #}
   {{ govukHeader({
     homepageUrl: "/",
@@ -64,7 +64,8 @@
             href: "/prototype-admin/clear-data",
             text: "Clear data"
           }
-        ]
+        ],
+        visuallyHiddenTitle: "Footer links"
       }
     }) }}
   {% endblock %}

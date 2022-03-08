@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Example - Passing data
+  Which of these applies to your vehicle? – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,9 +22,9 @@
                 Which of these applies to your vehicle?
               </h1>
             </legend>
-            <span id="vehicle-features-hint" class="govuk-hint">
+            <div id="vehicle-features-hint" class="govuk-hint">
               Select all that apply
-            </span>
+            </div>
             <div class="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="vehicle-features-heated-seats" name="vehicle-features" type="checkbox" value="Heated seats" {{ checked("vehicle-features", "Heated seats") }}>
