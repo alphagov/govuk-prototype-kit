@@ -1,0 +1,43 @@
+.hods-pagination {
+
+  &__summary {
+    @include govuk-font(16);
+    @include govuk-responsive-padding(2, "bottom");
+    @include govuk-responsive-padding(2, "top");;
+    float: right;
+  }
+
+  &__item {
+    display: inline-block;
+  }
+
+  &__link {
+    @include govuk-font(16);
+    @include govuk-responsive-padding(1, "bottom");
+    @include govuk-responsive-padding(1, "top");
+    @include govuk-responsive-padding(2, "left");
+    @include govuk-responsive-padding(2, "right");
+    text-decoration: none;
+
+    &:hover, &:focus {
+      @include govuk-font(16);
+      outline: 3px solid govuk-colour("yellow");
+    }
+
+    &--current {
+      @include govuk-font(16);
+      @include govuk-responsive-padding(1, "bottom");
+      @include govuk-responsive-padding(1, "top");
+      @include govuk-responsive-padding(2, "left");
+      @include govuk-responsive-padding(2, "right");
+      font-weight: bold;
+      border: none;
+      pointer-events: none;
+      cursor: default;
+
+      &:link, &:visited {
+        color: black
+      }
+    }
+  }
+}
