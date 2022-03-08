@@ -15,6 +15,10 @@ html {
   height: 100%;
 }
 
+main {
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
 .hods-page {
   @extend .govuk-template__body;
   display: flex;
