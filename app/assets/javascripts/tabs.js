@@ -1,3 +1,5 @@
+/* eslint-env jquery */
+
 /* tab navigation and content show/hide */
 $('ul.tab--nav li a').click(function () {
   const target = '#' + $(this).data('target')

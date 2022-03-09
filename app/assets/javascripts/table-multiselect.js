@@ -1,3 +1,4 @@
+/* eslint-env jquery */
 
 // Select all checkbox change
 $('.jsCheckboxAll').change(function () {
@@ -17,20 +18,20 @@ $('.jsCheckbox').change(function () {
   $(this).parents('tr').toggleClass('checked')
 
   // uncheck "select all", if one of the listed checkbox item is unchecked
-  if ($(this).prop('checked') == false) {
+  if ($(this).prop('checked') === false) {
     // change "select all" checked status to false
     $('.jsCheckboxAll').prop('checked', false)
   }
 
   // check "select all" if all checkbox items are checked
-  if ($('.jsCheckbox:checked').length == $('.jsCheckbox').length) {
+  if ($('.jsCheckbox:checked').length === $('.jsCheckbox').length) {
     $('.jsCheckboxAll').prop('checked', true)
   }
 })
 
 // Select entire table row
 $('.table-clickable tbody tr').click(function (e) {
-  if (e.target.type == 'checkbox') {
+  if (e.target.type === 'checkbox') {
     // stop the bubbling to prevent firing the rows click event
     e.stopPropagation()
   } else {
