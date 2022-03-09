@@ -28,9 +28,9 @@ const extensions = require('./lib/extensions/extensions.js')
 
 // Variables for v6 backwards compatibility
 // Set false by default, then turn on if we find /app/v6/routes.js
-var useV6 = false
-var v6App
-var v6Routes
+let useV6 = false
+let v6App
+let v6Routes
 
 if (fs.existsSync('./app/v6/routes.js')) {
   v6Routes = require('./app/v6/routes.js')
@@ -46,19 +46,19 @@ if (useV6) {
 }
 
 // Set up configuration variables
-var releaseVersion = packageJson.version
-var glitchEnv = (process.env.PROJECT_REMIX_CHAIN) ? 'production' : false // glitch.com
-var env = (process.env.NODE_ENV || glitchEnv || 'development').toLowerCase()
-var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
-var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
-var useHttps = process.env.USE_HTTPS || config.useHttps
+const releaseVersion = packageJson.version
+const glitchEnv = (process.env.PROJECT_REMIX_CHAIN) ? 'production' : false // glitch.com
+const env = (process.env.NODE_ENV || glitchEnv || 'development').toLowerCase()
+const useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
+const useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
+let useHttps = process.env.USE_HTTPS || config.useHttps
 
 useHttps = useHttps.toLowerCase()
 
-var useDocumentation = (config.useDocumentation === 'true')
+const useDocumentation = (config.useDocumentation === 'true')
 
 // Promo mode redirects the root to /docs - so our landing page is docs when published on heroku
-var promoMode = process.env.PROMO_MODE || 'false'
+let promoMode = process.env.PROMO_MODE || 'false'
 promoMode = promoMode.toLowerCase()
 
 // Disable promo mode if docs aren't enabled
@@ -66,7 +66,7 @@ if (!useDocumentation) promoMode = 'false'
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-var isSecure = (env === 'production' && useHttps === 'true')
+const isSecure = (env === 'production' && useHttps === 'true')
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
@@ -75,12 +75,12 @@ if (isSecure) {
 middleware.forEach(func => app.use(func))
 
 // Set up App
-var appViews = extensions.getAppViews([
+const appViews = extensions.getAppViews([
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/')
 ])
 
-var nunjucksConfig = {
+const nunjucksConfig = {
   autoescape: true,
   noCache: true,
   watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
@@ -92,7 +92,7 @@ if (env === 'development') {
 
 nunjucksConfig.express = app
 
-var nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
+const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
@@ -108,7 +108,7 @@ app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/no
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [
+  const documentationViews = [
     path.join(__dirname, '/node_modules/govuk-frontend/'),
     path.join(__dirname, '/node_modules/govuk-frontend/components'),
     path.join(__dirname, '/docs/views/'),
@@ -132,7 +132,7 @@ app.use(bodyParser.urlencoded({
 
 // Set up v6 app for backwards compatibility
 if (useV6) {
-  var v6Views = [
+  const v6Views = [
     path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
     path.join(__dirname, '/app/v6/views/'),
     path.join(__dirname, '/lib/v6') // for old unbranded template
@@ -270,8 +270,8 @@ if (useV6) {
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {
-  var path = req.path
-  var parts = path.split('.')
+  let path = req.path
+  const parts = path.split('.')
   parts.pop()
   path = parts.join('.')
   res.redirect(path)
@@ -311,7 +311,7 @@ app.post(/^\/([^.]+)$/, function (req, res) {
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error(`Page not found: ${req.path}`)
+  const err = new Error(`Page not found: ${req.path}`)
   err.status = 404
   next(err)
 })
