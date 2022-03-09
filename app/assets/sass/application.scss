@@ -9,10 +9,222 @@ $govuk-assets-path: '/govuk/assets/';
 @import "lib/extensions/extensions";
 
 // Patterns that aren't in Frontend
+@import "patterns/contents-list";
+@import "patterns/mainstream-guide";
+@import "patterns/pagination";
+@import "patterns/related-items";
 @import "patterns/step-by-step-header";
 @import "patterns/step-by-step-nav";
 @import "patterns/step-by-step-related";
 @import "patterns/task-list";
-@import "patterns/related-items";
+
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+
+// Mainstream guide example doc
+
+
+// Contents list
+
+
+// .app--contents-list {
+// }
+//
+// .app--contents-list__title {
+//   @include govuk-text-colour;
+//   @include govuk-font($size: 16, $weight: regular, $line-height: 1.5);
+//   margin: 0;
+// }
+//
+// .app--contents-list__list,
+// .app--contents-list__nested-list {
+//   margin: 0;
+//   padding: 0;
+//   list-style-type: none;
+// }
+//
+// .app--contents-list__list-item {
+//   padding-top: govuk-spacing(2);
+//   line-height: 1.3;
+//   list-style-type: none;
+// }
+//
+//
+// .app--contents-list__list,
+// .app--contents-list__nested-list {
+//   @include govuk-text-colour;
+//   @include govuk-font($size: 16);
+//   margin: 0;
+//   padding: 0;
+//   list-style-type: none;
+// }
+//
+// .app--contents-list__list-item--dashed {
+//   $contents-spacing: govuk-spacing(5);
+//   position: relative;
+//   padding-left: $contents-spacing;
+//   padding-right: $contents-spacing;
+//
+//   &:before {
+//     content: "—";
+//     position: absolute;
+//     left: 0;
+//     width: govuk-spacing(4);
+//     overflow: hidden;
+//
+//     .direction-rtl & {
+//       left: auto;
+//       right: 0;
+//     }
+//   }
+// }
+//
+//
+// // Pagination
+//
+// .part-navigation-container {
+//     margin-top: 30px;
+//     margin-bottom: 30px;
+//     padding-bottom: 25px;
+//     border-bottom: 1px
+//     solid #b1b4b6;
+//   }
+//
+// .pagination {
+//   padding: 15px 0 15px 0;
+//   margin-top: 80px;
+//   }
+//
+// .pagination-subtitle-link {
+//   margin-top: -20px;
+// }
+//
+// .pagination-link a, a:visited {
+//   text-decoration: none;
+// }
+//
+//
+//
+//
+// .info-notice {
+//   border-left: 10px solid #b1b4b6;
+//     padding: 1em 0 0.001em 1em;
+//     margin: 2em 0;
+// }
+//
+// .related-navigation {
+// border-top: 2px solid #1d70b8;
+// padding-top: 10px;
+// margin-top: -40px;
+// }
+//
+// .related-links li {
+//   line-height: 1.60;
+// }
+//
+// .contents-list {
+//   padding-top: 50px;
+//   padding-bottom: 10px;
+// }
+//
+// .contents li, ol {
+//   padding: 6px 25px 0px 0px;
+// }
+//
+// .mainstream-guide-content {
+// }
+//
+// // Pagination styling from GOV.UK Mainstream Guide
+//
+// .app--pagination {
+//   display: block;
+//   margin: govuk-spacing(8) 0;
+// }
+//
+// .app--pagination__list {
+//   margin: 0;
+//   padding: 40px 0 0 0;
+// }
+//
+// .app--pagination__item {
+//   font-size: 16;
+//   line-height: 2;
+//   list-style: none;
+//
+//   &:first-child {
+//     margin-bottom: govuk-spacing(4);
+//   }
+// }
+//
+// .app--pagination__link {
+//   display: block;
+//   text-decoration: none;
+//   padding-bottom: govuk-spacing(4);
+//
+//   &:hover,
+//   &:active,
+//   &:visited {
+//     color: $govuk-link-colour;
+//   }
+//
+//   &:hover,
+//   &:active {
+//     background-color: govuk-colour("light-grey");
+//
+//     // Add govuk-link hover decoration to title if no label present
+//     .app--pagination__link-text--decorated {
+//       @include govuk-link-decoration;
+//     }
+//
+//     .app--pagination__link-label,
+//     .app--pagination__link-text--decorated {
+//       @include govuk-link-hover-decoration;
+//     }
+//   }
+//
+//   &:focus {
+//     @include govuk-focused-text;
+//
+//     .app--pagination__link-title {
+//       border-top-color: transparent;
+//     }
+//
+//     .app--pagination__link-icon {
+//       fill: $govuk-text-colour;
+//     }
+//   }
+// }
+//
+// .app--pagination__link-title {
+//   display: block;
+//   border-top: 1px solid $govuk-border-colour;
+//   padding-top: govuk-spacing(3);
+// }
+//
+// .app--pagination__link-divider {
+//   @include govuk-visually-hidden;
+// }
+//
+// .app--pagination__link-text {
+//   font-size: 19px;
+//   font-weight: bold;
+//   margin-left: 20px;
+//   @include govuk-font(19, $weight: bold);
+//   margin-left: govuk-spacing(2);
+// }
+//
+// .app--pagination__link-icon {
+//   @include govuk-font($size: 24, $line-height: (33.75 / 27));
+//   display: inline-block;
+//   margin-bottom: 1px;
+//   height: .482em;
+//   width: .63em;
+//   fill: govuk-colour("dark-grey", $legacy: "grey-1");
+// }
+//
+// .app--pagination__link-label {
+//   display: inline-block;
+//   margin-top: .1em;
+//   margin-left: govuk-spacing(5);
+//   }
