@@ -1,3 +1,9 @@
+# Unreleased
+
+## New features
+
+- [#1258: Add GOV.UK Mainstream Guide template](https://github.com/alphagov/govuk-prototype-kit/pull/1258)
+
 # 12.0.1 (Fix release)
 
 ## Recommended changes
@@ -16,7 +22,7 @@ If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](htt
 
 # 12.0.0 (Breaking release)
 
-## Breaking changes 
+## Breaking changes
 
 This release ensures the GOV.UK Prototype Kit reflects the latest release of the GOV.UK Frontend, v4.0.0.
 
@@ -30,13 +36,13 @@ Check the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-fron
 
 This change was added in [#1195: Update the GOV.UK Prototype Kit to use GOV.UK Frontend v4.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/1195).
 
-## New features 
+## New features
 
 ### Preserve query strings when redirecting POSTs to GETs
 
 The GOV.UK Prototype Kit now preserves URL query strings when redirecting POST requests to GET requests.
 
-This means if you have a query like `/link/to/something?query=true&hello=world` on your POST form action, and you submit the form, the URL query string will be present in the redirected URL. 
+This means if you have a query like `/link/to/something?query=true&hello=world` on your POST form action, and you submit the form, the URL query string will be present in the redirected URL.
 
 This feature is useful when you:
 
@@ -62,7 +68,7 @@ If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](htt
 
 We’ve recently experienced 2 security incidents involving common NPM packages used by the Prototype Kit. We’re sorry for the inconvenience this has caused.
 
-We’ve added new measures (a package-lock.json file) to help prevent this in the future. 
+We’ve added new measures (a package-lock.json file) to help prevent this in the future.
 
 To protect your service from any similar threats in future, please upgrade to this new version of the Kit.
 
@@ -85,7 +91,7 @@ You must make the following changes if you’re running Node.js 10 and you updat
 
 You can no longer run the GOV.UK Prototype Kit on Node.js 10.
 
-If you currently run Node.js 10, you'll need to upgrade to a newer version. 
+If you currently run Node.js 10, you'll need to upgrade to a newer version.
 
 We recommend using version 16. You can find more information on the [Prototype Kit requirements page](https://govuk-prototype-kit.herokuapp.com/docs/install/requirements.md).
 
