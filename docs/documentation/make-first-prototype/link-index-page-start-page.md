@@ -1,5 +1,5 @@
 ---
-title: Linke your index page to your start page
+title: Link your index page to your start page
 caption: Build a basic prototype
 ---
 # Link your index page to your start page
