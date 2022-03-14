@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Start page example
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -45,7 +45,7 @@
 
       <a href="#" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"  data-module="govuk-button">
         Start now
-        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" role="presentation" focusable="false">
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
           <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
         </svg>
       </a>
@@ -54,7 +54,7 @@
 
       <p>You can also <a href="#">register by post</a>.</p>
 
-      <p>The online service is also available in <a href="#">Welsh (Cymraeg)</a>.</p>
+      <p>The online service is also <a href="#">available in Welsh (ar gael yn Gymraeg)</a>.</p>
 
       <p>You can’t register for this service if you’re in the UK illegally.</p>
 

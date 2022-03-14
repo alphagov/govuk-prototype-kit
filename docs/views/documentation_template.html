@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Documentation - GOV.UK Prototype Kit
+{{ title or "Documentation" }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,7 +12,7 @@ Documentation - GOV.UK Prototype Kit
 	      href: "/docs"
 	    },
 	    {
-	      text: "Tutorials and examples",
+	      text: "Tutorials and templates",
 	      href: "/docs/tutorials-and-examples"
 	    }
 	  ]

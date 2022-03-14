@@ -1,0 +1,153 @@
+.hods-header {
+  background-color: #FFF;
+
+  &__link, a {
+    text-decoration: none;
+    color: #000;
+
+    &:active, &:hover, &:link, &:visited {
+      color: #000;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--service-name {
+      @include govuk-font(24);
+    }
+  }
+
+  &__container {
+    align-items: center;
+  }
+
+  &__main {
+    @include govuk-responsive-padding(4, "top");
+    @include govuk-responsive-padding(4, "bottom");
+    @include govuk-responsive-padding(0, "left");
+    @include govuk-responsive-padding(0, "right");
+    display: inherit;
+    width: 100%;
+
+    @include govuk-media-query($from: mobile, $until: tablet) {
+    }
+    @include govuk-media-query($from: tablet) {
+      display: flex;
+    }
+
+    > *:last-child {
+      margin-right: auto;
+    }
+  }
+
+  &__logo {
+    display: block;
+    width: 110px;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: govuk-spacing(3);
+    line-height: 0;
+
+    @include govuk-media-query($from: mobile, $until: tablet) {
+      margin-right: 10%;
+      margin-bottom: 0;
+    }
+    @include govuk-media-query($from: tablet) {
+      width: 150px;
+      margin-right: 20%;
+      margin-bottom: 0;
+    }
+  }
+
+  &__logo-svg {
+  }
+
+  &__title {
+    margin-right: auto;
+    align-self: center;
+  }
+
+  &__account-menu {
+    @include govuk-font(19);
+    align-self: center;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+
+      a {
+        text-decoration: none;
+        color: #0B0C0C;
+      }
+
+      a:hover {
+        text-decoration: underline!important;
+      }
+    }
+
+    li:first-child {
+      padding-left:0;
+    }
+
+    li {
+      padding-left: 1.5em;
+      list-style: none;
+      margin-bottom: 0;
+    }
+  }
+
+  &__navigation {
+    @include govuk-font(19);
+  }
+
+  &__navigation-list {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+
+    &__item {
+      box-sizing: border-box;
+      height: 50px;
+      float: left;
+      line-height: 50px;
+      margin: 0;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+
+      &--active {
+        border-bottom: 3px solid #0b0c0c !important;
+        font-weight: bold;
+
+        a:hover {
+          color: #232727;
+        }
+      }
+
+      &:hover {
+        border-bottom: 3px solid #0b0c0c;
+      }
+
+      a {
+        @include govuk-responsive-padding(2, "top");
+        @include govuk-responsive-padding(2, "bottom");
+        @include govuk-responsive-padding(3, "left");
+        @include govuk-responsive-padding(3, "right");
+        color: #0b0c0c !important;
+        text-decoration: none;
+
+        &:visited {
+          color: #0b0c0c !important;
+        }
+
+        &:hover, &focus {
+          color: #0b0c0c;
+          background-color: inherit;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

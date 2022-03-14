@@ -1,0 +1,68 @@
+$govuk-button-colour: govuk-colour("white");
+$govuk-button-text-colour: govuk-colour("black");
+
+.hods-status-message {
+  color: govuk-colour("white");
+  background-color: govuk-colour("blue");
+  @include govuk-responsive-padding(4, "all");
+
+  p {
+    font-weight: bold;
+  }
+
+  &__extra {
+    font-weight: normal;
+  }
+
+  &__actions {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      padding: 0;
+    }
+
+    &__link {
+      @extend .govuk-button;
+
+      &, &:active, &:hover, &:link, &:visited {
+        color: $govuk-button-text-colour;
+        background-color: $govuk-button-colour;
+        border: $govuk-button-text-colour 1px solid;
+        margin: 0;
+        @include govuk-responsive-margin(2, "top");
+        @include govuk-responsive-margin(2, "bottom");
+      }
+
+      &:hover {
+        background-color: govuk-shade($govuk-button-colour, 10%);
+      }
+    }
+  }
+
+  @include govuk-media-query($from: tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      @include govuk-font(24);
+      font-weight: bold;
+      margin: 0;
+    }
+
+    &__extra {
+      @include govuk-font(19);
+    }
+
+    &__actions {
+      display: flex;
+
+      li {
+        margin: 0;
+        @include govuk-responsive-margin(1, "left");
+      }
+    }
+  }
+}

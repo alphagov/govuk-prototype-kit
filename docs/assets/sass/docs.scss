@@ -1,10 +1,22 @@
 // We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
 $govuk-assets-path: '/govuk/assets/';
 
+$govuk-new-link-styles: true;
+
 @import "node_modules/govuk-frontend/govuk/all";
 
 img{
   max-width: 100%;
+}
+
+// remove user agent stylesheet indent from figures / captions
+figure {
+  // Needed for WebKit, Blink
+  margin-inline-start: inherit;
+  margin-inline-end: inherit;
+  // Needed for Internet Explorer
+  margin-left: inherit;
+  margin-right: inherit;
 }
 
 // adjust code block font-size to 19px
@@ -30,15 +42,21 @@ img{
 }
 
 .app-code {
-  font-size: 16px;
+  @include govuk-font($size: 19);
   position: relative;
   margin: 0;
   padding: govuk-spacing(3);
   overflow: auto;
-  border: 1px solid $govuk-border-colour;
+  border: $govuk-focus-width solid transparent;
+  outline: 1px solid $govuk-border-colour;
   background-color: govuk-colour("light-grey", $legacy: "grey-4");
   max-width: 38em;
   @include govuk-responsive-margin(5, "bottom");
+
+  &:focus {
+    border: $govuk-focus-width solid $govuk-input-border-colour;
+    outline: $govuk-focus-width solid $govuk-focus-colour;
+  }
 }
 
 .app-prose-scope {

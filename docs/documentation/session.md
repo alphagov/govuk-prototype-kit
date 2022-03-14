@@ -1,4 +1,7 @@
-# Storing data in session
+---
+title: Store data in session
+---
+# Store data in session
 
 **Advanced topic**
 
@@ -89,10 +92,6 @@ Or in views as:
 {{ data['partner']['last-name'] }}
 ```
 
-You can see a full example here:
+An [example using express-session to store page views for a user](https://github.com/expressjs/session#example)
 
-[https://github.com/expressjs/session#example](https://github.com/expressjs/session#example)
-
-You can read more about Express Session here:
-
-[https://github.com/expressjs/session](https://github.com/expressjs/session)
+Read more about the [Express Session](https://github.com/expressjs/session)

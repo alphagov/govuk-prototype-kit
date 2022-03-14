@@ -31,7 +31,6 @@
 {% endblock %}
 
 {% block header %}
-  {% include "includes/cookie-banner.html" %}
   {# Set serviceName in config.js. #}
   {{ govukHeader({
     serviceName: serviceName,
@@ -46,9 +45,9 @@
       },
       {
         href: "/docs/tutorials-and-examples",
-        text: "Tutorials and examples",
+        text: "Tutorials and templates",
         attributes: {
-          "data-tutorials": "Tutorials and examples"
+          "data-tutorials": "Tutorials and templates"
         }
       },
       {
@@ -71,6 +70,10 @@
         {
           href: "/prototype-admin/clear-data",
           text: "Clear data"
+        },
+        {
+          href: "/docs/accessibility",
+          text: "Accessibility"
         },
         {
           href: "/docs/cookies",

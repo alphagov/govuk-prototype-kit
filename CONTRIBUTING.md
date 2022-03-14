@@ -34,18 +34,15 @@ Your JavaScript code should pass [linting](docs/linting.md).
 
 For anything else, maintain 2-space, soft-tabs only indentation. No trailing whitespace.
 
-### Versioning
-
-Follow the guidelines on [semver.org](http://semver.org/) for assigning version
-numbers.
-
-Versions should only be changed in a commit of their own, in a pull request of
-their own. This alerts team members to the new version and allows for
-last-minute scrutiny before the new version is released. Also, by raising a
-separate pull request, we avoid version number conflicts between feature
-branches.
-
 ### Commit hygiene
 
-Please see our [git style guide](https://github.com/alphagov/styleguides/blob/master/git.md)
-which describes how we prefer git history and commit messages to read.
+Please see our [Git style guide in the 'How to store source code' page of the GDS Way](https://gds-way.cloudapps.digital/standards/source-code.html#commit-messages), which describes how we prefer Git history and commit messages to read.
+
+### Review apps
+
+When a pull request is opened, Heroku may create a [review app](https://devcenter.heroku.com/articles/github-integration-review-apps#viewing-review-apps)
+that will allow you and your reviewers to preview how your changes will appear for users.
+If a review app is not created automatically, you can ask someone from the
+Prototype Kit team to create one.
+
+Review apps are password protected with the username `govuk` and the password `govuk`.

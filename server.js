@@ -1,6 +1,7 @@
 // Core dependencies
 const fs = require('fs')
 const path = require('path')
+const url = require('url')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -9,7 +10,6 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
-const cookieParser = require('cookie-parser')
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
@@ -28,9 +28,9 @@ const extensions = require('./lib/extensions/extensions.js')
 
 // Variables for v6 backwards compatibility
 // Set false by default, then turn on if we find /app/v6/routes.js
-var useV6 = false
-var v6App
-var v6Routes
+let useV6 = false
+let v6App
+let v6Routes
 
 if (fs.existsSync('./app/v6/routes.js')) {
   v6Routes = require('./app/v6/routes.js')
@@ -45,26 +45,20 @@ if (useV6) {
   v6App = express()
 }
 
-// Set cookies for use in cookie banner.
-app.use(cookieParser())
-documentationApp.use(cookieParser())
-app.use(utils.handleCookies(app))
-documentationApp.use(utils.handleCookies(documentationApp))
-
 // Set up configuration variables
-var releaseVersion = packageJson.version
-var glitchEnv = (process.env.PROJECT_REMIX_CHAIN) ? 'production' : false // glitch.com
-var env = (process.env.NODE_ENV || glitchEnv || 'development').toLowerCase()
-var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
-var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
-var useHttps = process.env.USE_HTTPS || config.useHttps
+const releaseVersion = packageJson.version
+const glitchEnv = (process.env.PROJECT_REMIX_CHAIN) ? 'production' : false // glitch.com
+const env = (process.env.NODE_ENV || glitchEnv || 'development').toLowerCase()
+const useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
+const useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
+let useHttps = process.env.USE_HTTPS || config.useHttps
 
 useHttps = useHttps.toLowerCase()
 
-var useDocumentation = (config.useDocumentation === 'true')
+const useDocumentation = (config.useDocumentation === 'true')
 
 // Promo mode redirects the root to /docs - so our landing page is docs when published on heroku
-var promoMode = process.env.PROMO_MODE || 'false'
+let promoMode = process.env.PROMO_MODE || 'false'
 promoMode = promoMode.toLowerCase()
 
 // Disable promo mode if docs aren't enabled
@@ -72,7 +66,7 @@ if (!useDocumentation) promoMode = 'false'
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-var isSecure = (env === 'production' && useHttps === 'true')
+const isSecure = (env === 'production' && useHttps === 'true')
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
@@ -81,12 +75,12 @@ if (isSecure) {
 middleware.forEach(func => app.use(func))
 
 // Set up App
-var appViews = extensions.getAppViews([
+const appViews = extensions.getAppViews([
   path.join(__dirname, '/app/views/'),
   path.join(__dirname, '/lib/')
 ])
 
-var nunjucksConfig = {
+const nunjucksConfig = {
   autoescape: true,
   noCache: true,
   watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
@@ -98,7 +92,7 @@ if (env === 'development') {
 
 nunjucksConfig.express = app
 
-var nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
+const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
@@ -109,12 +103,12 @@ app.set('view engine', 'html')
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
 
-// Serve govuk-frontend in from node_modules (so not to break pre-extenstions prototype kits)
+// Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
 // Set up documentation app
 if (useDocumentation) {
-  var documentationViews = [
+  const documentationViews = [
     path.join(__dirname, '/node_modules/govuk-frontend/'),
     path.join(__dirname, '/node_modules/govuk-frontend/components'),
     path.join(__dirname, '/docs/views/'),
@@ -138,7 +132,7 @@ app.use(bodyParser.urlencoded({
 
 // Set up v6 app for backwards compatibility
 if (useV6) {
-  var v6Views = [
+  const v6Views = [
     path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
     path.join(__dirname, '/app/v6/views/'),
     path.join(__dirname, '/lib/v6') // for old unbranded template
@@ -162,7 +156,6 @@ if (useV6) {
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
-app.locals.cookieText = config.cookieText
 app.locals.promoMode = promoMode
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
@@ -171,10 +164,11 @@ app.locals.extensionConfig = extensions.getAppConfig()
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
+const sessionHours = (promoMode === 'true') ? 20 : 4
 const sessionOptions = {
   secret: sessionName,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 4, // 4 hours
+    maxAge: 1000 * 60 * 60 * sessionHours,
     secure: isSecure
   }
 }
@@ -215,8 +209,6 @@ app.post('/prototype-admin/clear-data', function (req, res) {
 // Redirect root to /docs when in promo mode.
 if (promoMode === 'true') {
   console.log('Prototype Kit running in promo mode')
-
-  app.locals.cookieText = 'GOV.UK uses cookies to make the site simpler. <a href="/docs/cookies">Find out more about cookies</a>'
 
   app.get('/', function (req, res) {
     res.redirect('/docs')
@@ -278,8 +270,8 @@ if (useV6) {
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {
-  var path = req.path
-  var parts = path.split('.')
+  let path = req.path
+  const parts = path.split('.')
   parts.pop()
   path = parts.join('.')
   res.redirect(path)
@@ -310,12 +302,16 @@ if (useV6) {
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, function (req, res) {
-  res.redirect('/' + req.params[0])
+  res.redirect(url.format({
+    pathname: '/' + req.params[0],
+    query: req.query
+  })
+  )
 })
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error(`Page not found: ${req.path}`)
+  const err = new Error(`Page not found: ${req.path}`)
   err.status = 404
   next(err)
 })

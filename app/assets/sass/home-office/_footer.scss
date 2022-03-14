@@ -1,0 +1,68 @@
+.hods-footer {
+  $border-thin: 1px;
+  $border-thick: govuk-spacing(2);
+  $border-both: $border-thin + $border-thick;
+
+  border-top: $border-thick solid #F5F5F5;
+  background-color: #FFF;
+  color: #0b0c0c;
+
+  &__link, a {
+    color: #3B3B3B;
+
+    &:active, &:hover, &:link, &:visited {
+      color: #3B3B3B;
+    }
+  }
+
+  &__inner {
+    border-top: $border-thin #cbcbcb solid;
+  }
+
+  &__container {
+    @include govuk-font(16);
+    @include govuk-responsive-padding(6, "top");
+    @include govuk-responsive-padding(6, "bottom");
+    @include govuk-responsive-padding(8, "left");
+    @include govuk-responsive-padding(8, "right");
+    border-top: $border-both solid govuk-colour("mid-grey");
+    display: flex;
+    margin: -$border-both auto 0 auto;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    @include govuk-font(16);
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__navigation {
+    align-items: flex-end;
+    display: flex;
+  }
+
+  &__navigation-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  &__navigation-item {
+    @include govuk-font(16);
+    @include govuk-responsive-padding(4, "left");
+    list-style: none;
+
+    &:first-child {
+      @include govuk-responsive-padding(0, "left");
+    }
+  }
+}

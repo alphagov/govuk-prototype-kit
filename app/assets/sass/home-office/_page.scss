@@ -1,0 +1,55 @@
+.hods-page,
+#story-root,
+#root,
+body,
+html {
+  background-color: #F5F5F5 !important;
+  color: #0b0c0c;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+}
+
+.hods-page,
+body,
+html {
+  height: 100%;
+}
+
+main {
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.hods-page {
+  @extend .govuk-template__body;
+  display: flex;
+  flex-direction: column;
+  overflow: initial;
+  flex: 1 0 auto;
+  padding: initial;
+
+  .hods-page {
+    height: initial;
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  &__container {
+  }
+
+  &__main {
+    @extend .govuk-main-wrapper;
+  }
+
+  aside {
+    $home-office: map-get($govuk-colours-organisations, "home-office");
+
+    border-color: map_get($home-office, "colour-websafe");
+  }
+}
+
+.hods-width-container {
+  @extend .govuk-width-container;
+}

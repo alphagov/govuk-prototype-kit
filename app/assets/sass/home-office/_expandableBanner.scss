@@ -1,0 +1,35 @@
+.hods-expandable-banner {
+  @include govuk-responsive-padding(2, "top");
+  @include govuk-responsive-padding(2, "bottom");
+  @include govuk-responsive-padding(3, "left");
+  @include govuk-responsive-padding(3, "right");
+  background-color: govuk-colour("dark-grey");
+  color: govuk-colour("white");
+
+  &--positive {
+    background-color: govuk-colour("green");
+    color: govuk-colour("white");
+  }
+
+  &--negative {
+    background-color: #b10e1e;
+    color: govuk-colour("white");
+  }
+
+  &__summary {
+    @include govuk-font(19, 'bold');
+    color: govuk-colour("white");
+    display: block;
+    text-transform: uppercase;
+
+    &:hover {
+      color: govuk-colour("white");
+    }
+  }
+
+  &__text {
+    @include govuk-responsive-padding (2, "top");
+    @include govuk-responsive-margin(5, "left");
+    border-top: 1px solid govuk-colour("white");
+  }
+}

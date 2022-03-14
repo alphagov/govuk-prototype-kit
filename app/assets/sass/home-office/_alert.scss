@@ -1,0 +1,28 @@
+.hods-alert {
+  @extend .govuk-inset-text;
+  border-color: #2b8cc4;
+  background-color: #dbeff9;
+
+  &--success {
+    border-color: #28a197;
+    background-color: #c6ece9;
+  }
+
+  &--error {
+    border-color: #c42b2b;
+    background-color: #f3dede;
+  }
+
+  &:first-child {
+    @include govuk-responsive-margin(0, "top");
+  }
+
+  &:last-child {
+    @include govuk-responsive-margin(0, "bottom");
+  }
+
+  &__heading {
+    @include govuk-font(24, 'bold');
+    @include govuk-responsive-margin(3, "bottom");
+  }
+}
