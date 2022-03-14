@@ -129,39 +129,39 @@ value of $govuk-black #}
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
 
-{% if useAutoStoreData %}
-  {% block footer %}
-<footer class="hods-footer" role="contentinfo">
-  <div class="hods-footer__inner">
-    <div class="hods-footer__container hods-width-container">
-      <div class="hods-footer__content">
-        A Home Office Digital, Data and Technology
-        service
-      </div>
-      <div class="hods-footer__navigation">
-        <ul id="navigation" class="hods-footer__navigation-list">
-          <li class="hods-footer__navigation-item">
-            <a class="hods-footer__link" href="/feedback">
-              Feedback
-            </a>
-          </li>
-          <li class="hods-footer__navigation-item">
-            <a class="hods-footer__link" href="/help">
-              Help
-            </a>
-          </li>
-          <li class="hods-footer__navigation-item">
-            <a class="hods-footer__link" href="https://gov.uk/">
-              Gov.UK home
-            </a>
-          </li>
-        </ul>
+{% block footer %}
+  <footer class="hods-footer" role="contentinfo">
+    <div class="hods-footer__inner">
+      <div class="hods-footer__container hods-width-container">
+        <div class="hods-footer__content">
+          A Home Office Digital, Data and Technology service
+        </div>
+        <div class="hods-footer__navigation">
+          <ul
+            id="navigation"
+            class="hods-footer__navigation-list"
+          >
+            {% if useAutoStoreData %}
+              <li class="hods-footer__navigation-item">
+                <a
+                  class="hods-footer__link"
+                  href="/prototype-admin/clear-data"
+                >
+                  Clear data
+                </a>
+              </li>
+            {% endif %}
+            <li class="hods-footer__navigation-item">
+              <a class="hods-footer__link" href="https://govuk-prototype-kit.herokuapp.com/">
+                GOV.UK Prototype Kit {{ releaseVersion }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-  {% endblock %}
-{% endif %}
+  </footer>
+{% endblock %}
 
 {% block bodyEnd %}
   {% block scripts %}
