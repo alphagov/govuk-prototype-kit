@@ -6,13 +6,11 @@ const util = require('util')
 
 const glob = require('glob')
 const request = require('supertest')
-const sass = require('node-sass')
+const sass = require('sass')
 
 const app = require('../../server.js')
 const gulpConfig = require('../../gulp/config.json')
 const utils = require('../../lib/utils')
-
-const sassRender = util.promisify(sass.render)
 
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
@@ -135,9 +133,16 @@ describe('The Prototype Kit', () => {
 
   const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss')
 
-  describe(`${gulpConfig.paths.assets}sass/`, () => {
+  describe(`${gulpConfig.paths.assets}sass/`, (done) => {
     it.each(sassFiles)('%s renders to CSS without errors', (file) => {
-      return sassRender({ file: file })
+      return sass.render({ file: file }, (err) => {
+        console.log('callback')
+        if (err) {
+          console.error('error found', err)
+          throw err
+        }
+        done()
+      })
     })
   })
 

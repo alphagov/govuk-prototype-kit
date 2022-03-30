@@ -6,7 +6,7 @@
 */
 
 const gulp = require('gulp')
-const sass = require('gulp-sass')(require('node-sass'))
+const sass = require('gulp-sass')(require('sass'))
 const path = require('path')
 const fs = require('fs')
 
@@ -23,7 +23,7 @@ gulp.task('sass-extensions', function (done) {
 
 gulp.task('sass', function () {
   return gulp.src(config.paths.assets + '/sass/*.scss', { sourcemaps: true })
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', function (error) {
+    .pipe(sass({ outputStyle: 'expanded', quietDeps: true }, false).on('error', function (error) {
       // write a blank application.css to force browser refresh on error
       if (!fs.existsSync(stylesheetDirectory)) {
         fs.mkdirSync(stylesheetDirectory)
