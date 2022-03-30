@@ -2,7 +2,6 @@
 const assert = require('assert')
 const fs = require('fs')
 const path = require('path')
-const util = require('util')
 
 const glob = require('glob')
 const request = require('supertest')
@@ -131,18 +130,18 @@ describe('The Prototype Kit', () => {
     })
   })
 
-  const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss')
-
-  describe(`${gulpConfig.paths.assets}sass/`, (done) => {
+  describe(`${gulpConfig.paths.assets}sass/`, () => {
+    const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss') && ['app/assets/sass/unbranded.scss']
     it.each(sassFiles)('%s renders to CSS without errors', (file) => {
-      return sass.render({ file: file }, (err) => {
-        console.log('callback')
-        if (err) {
-          console.error('error found', err)
-          throw err
-        }
-        done()
-      })
+      const fullPath = path.resolve(__dirname, '..', '..', file)
+      const options = {
+        loadPaths: glob.sync(path.resolve(__dirname, '..', '..'))
+      }
+      console.log(fs.readFileSync(fullPath, 'utf8'))
+      console.log('compiling file', fullPath)
+      console.log('options', options)
+      const result = sass.compile(fullPath, options)
+      console.log(result.css)
     })
   })
 

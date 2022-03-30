@@ -11,6 +11,7 @@ const path = require('path')
 const fs = require('fs')
 
 const extensions = require('../lib/extensions/extensions')
+const customDartSassLoggerFactory = require('../lib/utils').customDartSassLoggerFactory
 const config = require('./config.json')
 const stylesheetDirectory = config.paths.public + 'stylesheets'
 
@@ -22,11 +23,11 @@ gulp.task('sass-extensions', function (done) {
 })
 
 gulp.task('sass', function () {
-  const deprecationWarningList = {}
+  const customLogger = customDartSassLoggerFactory()
   return gulp.src(config.paths.assets + '/sass/*.scss', { sourcemaps: true })
     .pipe(sass.sync({
       outputStyle: 'expanded',
-      logger: customLogger(deprecationWarningList)
+      logger: customLogger.logger
     }, false).on('error', function (error) {
       // write a blank application.css to force browser refresh on error
       if (!fs.existsSync(stylesheetDirectory)) {
@@ -37,28 +38,28 @@ gulp.task('sass', function () {
       this.emit('end')
     }))
     .pipe(gulp.dest(stylesheetDirectory, { sourcemaps: true }))
-    .on('end', showDeprecationError(deprecationWarningList))
+    .on('end', customLogger.endHandler)
 })
 
 gulp.task('sass-documentation', function () {
-  const deprecationWarningList = {}
+  const customLogger = customDartSassLoggerFactory()
   return gulp.src(config.paths.docsAssets + '/sass/*.scss', { sourcemaps: true })
     .pipe(sass.sync({
       outputStyle: 'expanded',
-      logger: customLogger(deprecationWarningList)
+      logger: customLogger.logger
     }).on('error', sass.logError))
     .pipe(gulp.dest(config.paths.public + '/stylesheets/', { sourcemaps: true }))
-    .on('end', showDeprecationError(deprecationWarningList))
+    .on('end', customLogger.endHandler)
 })
 
 // Backward compatibility with Elements
 
 gulp.task('sass-v6', function () {
-  const deprecationWarningList = {}
+  const customLogger = customDartSassLoggerFactory()
   return gulp.src(config.paths.v6Assets + '/sass/*.scss', { sourcemaps: true })
     .pipe(sass.sync({
       outputStyle: 'expanded',
-      logger: customLogger(deprecationWarningList),
+      logger: customLogger.logger,
       includePaths: [
         'node_modules/govuk_frontend_toolkit/stylesheets',
         'node_modules/govuk-elements-sass/public/sass',
@@ -66,60 +67,5 @@ gulp.task('sass-v6', function () {
       ]
     }).on('error', sass.logError))
     .pipe(gulp.dest(config.paths.public + '/v6/stylesheets/', { sourcemaps: true }))
-    .on('end', showDeprecationError(deprecationWarningList))
+    .on('end', customLogger.endHandler)
 })
-
-// Custom logs to support the Dart Sass transition
-
-function customLogger (warningList) {
-  function getFileNameFromMeta (meta) {
-    try {
-      return meta.span.file.url._uri.replace('file://' + path.resolve(__dirname, '..') + '/', '')
-    } catch (e) {
-      return ''
-    }
-  }
-
-  return {
-    debug: (debug, meta) => {
-      console.log(debug)
-      console.log(meta.stack)
-    },
-    warn: (warning, meta) => {
-      if (warning.match(/^[0-9]+ repetitive deprecation warnings omitted\.$/)) {
-        return
-      }
-      if (meta.deprecation === true && warning.includes('More info and automated migrator: https://sass-lang.com/d/slash-div')) {
-        const fileName = getFileNameFromMeta(meta)
-        const match = fileName.match(/node_modules[/\\]([^/\\]+)/)
-        const project = match ? match[1] : fileName
-        warningList[project] = warningList[project] || 0
-        warningList[project] += 1
-      } else {
-        const prefix = meta.deprecation ? 'DEPRECATION WARNING: ' : ''
-        console.error(`${prefix}${warning}`)
-        console.error(meta.stack)
-      }
-    }
-  }
-}
-
-function showDeprecationError (warningList) {
-  return function () {
-    if (Object.keys(warningList).length === 0) {
-      return;
-    }
-    const fmtStart = '\x1b[33m'
-    const fmtEnd = '\x1b[0m'
-    const em = '\x1b[4m'
-    const fmtRestart = `${fmtEnd}${fmtStart}`
-    Object.keys(warningList).forEach(project => console.warn(
-      `${fmtStart}${em}${project}${fmtRestart} uses a forward slash for division ${em}${warningList[project]} time${warningList[project] ? 's' : ''}${fmtRestart}.${fmtEnd}`))
-
-    console.error([
-      fmtStart,
-      'This is deprecated as documented at https://sass-lang.com/d/slash-div.',
-      'This won\'t cause any problems with your prototype but it would we would encourage them to move to Dart Sass.',
-      fmtEnd].join('\n'))
-  }
-}
