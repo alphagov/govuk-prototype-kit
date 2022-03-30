@@ -41,6 +41,7 @@
     "nunjucks": "^3.2.1",
     "portscanner": "^2.1.1",
     "require-dir": "^1.0.0",
+    "sass": "^1.49.9",
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.4.16",
     "uuid": "^8.3.2"
