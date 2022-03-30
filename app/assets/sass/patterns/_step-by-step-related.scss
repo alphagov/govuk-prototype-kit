@@ -34,7 +34,7 @@
   }
 
   .app-step-nav-related__pretitle {
-    margin-bottom: govuk-spacing(6) / 4;
+    margin-bottom: math.div(govuk-spacing(6), 4);
   }
 }
 

@@ -72,6 +72,14 @@ gulp.task('sass-v6', function () {
 // Custom logs to support the Dart Sass transition
 
 function customLogger (warningList) {
+  function getFileNameFromMeta (meta) {
+    try {
+      return meta.span.file.url._uri.replace('file://' + path.resolve(__dirname, '..') + '/', '')
+    } catch (e) {
+      return ''
+    }
+  }
+
   return {
     debug: (debug, meta) => {
       console.log(debug)
@@ -82,12 +90,16 @@ function customLogger (warningList) {
         return
       }
       if (meta.deprecation === true && warning.includes('More info and automated migrator: https://sass-lang.com/d/slash-div')) {
-        const match = meta.stack.match(/node_modules[/\\]([^/\\]+)/)
-        const project = match ? match[1] : 'GOVUK Prototype Kit'
+        const fileName = getFileNameFromMeta(meta)
+        const match = fileName.match(/node_modules[/\\]([^/\\]+)/)
+        const project = match ? match[1] : fileName
         warningList[project] = warningList[project] || 0
         warningList[project] += 1
       } else {
-        console.warn(warning, meta.stack)
+        const prefix = meta.deprecation ? 'DEPRECATION WARNING: ' : ''
+        console.error(`${prefix}${warning}`)
+        console.error(meta.stack)
+        process.exit(1)
       }
     }
   }
@@ -105,7 +117,7 @@ function showDeprecationError (warningList) {
     Object.keys(warningList).forEach(project => console.warn(
       `${fmtStart}${em}${project}${fmtRestart} uses a forward slash for division ${em}${warningList[project]} time${warningList[project] ? 's' : ''}${fmtRestart}.${fmtEnd}`))
 
-    console.warn([
+    console.error([
       fmtStart,
       'This is deprecated as documented at https://sass-lang.com/d/slash-div.',
       'This won\'t cause any problems with your prototype but it would we would encourage them to move to Dart Sass.',
