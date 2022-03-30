@@ -99,7 +99,6 @@ function customLogger (warningList) {
         const prefix = meta.deprecation ? 'DEPRECATION WARNING: ' : ''
         console.error(`${prefix}${warning}`)
         console.error(meta.stack)
-        process.exit(1)
       }
     }
   }
