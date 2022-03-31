@@ -15,6 +15,7 @@ const utils = require('../../lib/utils')
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
 }
+
 /**
  * Basic sanity checks on the dev server
  */
@@ -141,8 +142,20 @@ describe('The Prototype Kit', () => {
   // // console.log(sassFiles)
 
   describe('temp', () => {
-    it.only('temp', () => {
-      console.log(sass.compile('/Users/joelanman/projects/govuk-prototype-kit/app/assets/sass/unbranded.scss'))
+    it.only('temp', (done) => {
+      sass.render({
+        file: 'app/assets/sass/unbranded.scss',
+        loadPaths: [path.resolve(__dirname, '..', '..')]
+      }, (err, result) => {
+        if (err) {
+          console.error('Found an error')
+          console.error(err)
+          done(err)
+        } else {
+          expect(result.css.length).toBeGreaterThan(1000)
+          done()
+        }
+      })
     })
   })
   // // describe(`${gulpConfig.paths.assets}sass/`, () => {
