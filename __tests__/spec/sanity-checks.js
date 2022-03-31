@@ -1,4 +1,5 @@
 /* eslint-env jest */
+
 const assert = require('assert')
 const fs = require('fs')
 const path = require('path')
@@ -130,20 +131,26 @@ describe('The Prototype Kit', () => {
     })
   })
 
-  const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss')
+  // const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss')
+  // const knownFiles = [
+  //   'app/assets/sass/application-ie8.scss',
+  //   'app/assets/sass/application.scss',
+  //   'app/assets/sass/unbranded-ie8.scss',
+  //   'app/assets/sass/unbranded.scss'
+  // ]
+  // // console.log(sassFiles)
 
-  describe(`${gulpConfig.paths.assets}sass/`, (done) => {
-    it.each(sassFiles)('%s renders to CSS without errors', (file) => {
-      return sass.render({ file: file }, (err) => {
-        console.log('callback')
-        if (err) {
-          console.error('error found', err)
-          throw err
-        }
-        done()
-      })
+  describe('temp', () => {
+    it.only('temp', () => {
+      console.log(sass.compile('/Users/joelanman/projects/govuk-prototype-kit/app/assets/sass/unbranded.scss'))
     })
   })
+  // // describe(`${gulpConfig.paths.assets}sass/`, () => {
+  // //   it.each(sassFiles)('%s renders to CSS without errors', (file) => {
+  // //     console.log(file)
+  // //     return sass.compile(file)
+  // //   })
+  // // })
 
   describe('Documentation markdown page titles', () => {
     const markdownFiles = glob.sync('docs/documentation/**/*.md')
