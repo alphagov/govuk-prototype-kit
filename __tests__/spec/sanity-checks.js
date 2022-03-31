@@ -132,38 +132,28 @@ describe('The Prototype Kit', () => {
     })
   })
 
-  // const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss')
-  // const knownFiles = [
-  //   'app/assets/sass/application-ie8.scss',
-  //   'app/assets/sass/application.scss',
-  //   'app/assets/sass/unbranded-ie8.scss',
-  //   'app/assets/sass/unbranded.scss'
-  // ]
-  // // console.log(sassFiles)
+  const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss')
 
-  describe('temp', () => {
-    it.only('temp', (done) => {
-      sass.render({
-        file: 'app/assets/sass/unbranded.scss',
-        loadPaths: [path.resolve(__dirname, '..', '..')]
-      }, (err, result) => {
-        if (err) {
-          console.error('Found an error')
-          console.error(err)
-          done(err)
-        } else {
-          expect(result.css.length).toBeGreaterThan(1000)
-          done()
-        }
+  describe(`${gulpConfig.paths.assets}sass/`, () => {
+    it.each(sassFiles)('%s renders to CSS without errors', async (file) => {
+      return new Promise((resolve, reject) => {
+        sass.render({
+          file,
+          logger: sass.Logger.silent,
+          loadPaths: [path.resolve(__dirname, '..', '..')]
+        }, (err, result) => {
+          if (err) {
+            console.error('Found an error')
+            console.error(err)
+            reject(err)
+          } else {
+            expect(result.css.length).toBeGreaterThan(1000)
+            resolve()
+          }
+        })
       })
     })
   })
-  // // describe(`${gulpConfig.paths.assets}sass/`, () => {
-  // //   it.each(sassFiles)('%s renders to CSS without errors', (file) => {
-  // //     console.log(file)
-  // //     return sass.compile(file)
-  // //   })
-  // // })
 
   describe('Documentation markdown page titles', () => {
     const markdownFiles = glob.sync('docs/documentation/**/*.md')
