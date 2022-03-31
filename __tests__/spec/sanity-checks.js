@@ -1,22 +1,21 @@
 /* eslint-env jest */
+
 const assert = require('assert')
 const fs = require('fs')
 const path = require('path')
-const util = require('util')
 
 const glob = require('glob')
 const request = require('supertest')
-const sass = require('node-sass')
+const sass = require('sass')
 
 const app = require('../../server.js')
 const gulpConfig = require('../../gulp/config.json')
 const utils = require('../../lib/utils')
 
-const sassRender = util.promisify(sass.render)
-
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
 }
+
 /**
  * Basic sanity checks on the dev server
  */
@@ -136,8 +135,21 @@ describe('The Prototype Kit', () => {
   const sassFiles = glob.sync(gulpConfig.paths.assets + '/sass/*.scss')
 
   describe(`${gulpConfig.paths.assets}sass/`, () => {
-    it.each(sassFiles)('%s renders to CSS without errors', (file) => {
-      return sassRender({ file: file })
+    it.each(sassFiles)('%s renders to CSS without errors', async (file) => {
+      return new Promise((resolve, reject) => {
+        sass.render({
+          file,
+          logger: sass.Logger.silent,
+          loadPaths: [path.resolve(__dirname, '..', '..')]
+        }, (err, result) => {
+          if (err) {
+            reject(err)
+          } else {
+            expect(result.css.length).toBeGreaterThan(1000)
+            resolve()
+          }
+        })
+      })
     })
   })
 
