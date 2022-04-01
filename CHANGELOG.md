@@ -1,5 +1,7 @@
 # Unreleased
 
+# 12.0.2 (Fix release)
+
 ## Fixes
 
 - [Pull request #1269: Replace node-sass with Dart Sass](https://github.com/alphagov/govuk-prototype-kit/pull/1269).  This should allow the kit to work on M1 Macs.
