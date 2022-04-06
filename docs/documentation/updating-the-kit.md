@@ -23,9 +23,9 @@ Tell us as much as you can about the issue you're having, and the computer and o
 In Finder on Mac or Windows Explorer, go to your prototype folder and open the file `VERSION.txt`. This will show what version of the Prototype Kit you’re using.
 
 - If your prototype is version 8 or before, then contact the GOV.UK Prototype team for help with updating it
-- If your prototype is version 9, 10 or 11, you can update to version 12 by following the steps on this page
+- If your prototype is version 9, 10, 11 or 12, you can update to the latest version by following the steps on this page
 
-### Updating to version 12
+### Updating to the latest version
 
 1. Make a backup of your prototype folder. You can do this in Finder or Windows Explorer. This may take a few minutes.
 
