@@ -3,7 +3,7 @@ $govuk-assets-path: '/govuk/assets/';
 
 $govuk-new-link-styles: true;
 
-@import "node_modules/govuk-frontend/govuk/all";
+@import "govuk-frontend/govuk/all";
 
 img{
   max-width: 100%;

@@ -5,7 +5,7 @@
 
 // Import settings first so we can override them before importing all of GOV.UK Frontend
 // If you need to enable compatibility mode or the legacy palette, do that *before* this import.
-@import "node_modules/govuk-frontend/govuk/settings/all";
+@import "govuk-frontend/govuk/settings/all";
 
 // Override the default GOV.UK Frontend font stack
 $govuk-font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
