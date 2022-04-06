@@ -1,5 +1,7 @@
 # Unreleased
 
+# 12.0.3 (Fix release)
+
 ## Fixes
 
 - [#1182: Replace basic auth with a custom authentication process](https://github.com/alphagov/govuk-prototype-kit/pull/1182)
