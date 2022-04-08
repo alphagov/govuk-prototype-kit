@@ -30,7 +30,7 @@ update_gitignore () {
 
 # Check whether it is safe for the script to run
 check () {
-	if ! grep -q '"govuk-prototype-kit"' package.json 2> /dev/null; then
+	if ! grep -q '"govuk-prototype-kit"\|"express-prototype"' package.json 2> /dev/null; then
 		msg 'ERROR you must run update.sh in a folder containing a GOV.UK Prototype Kit installation'
 		msg 'Exiting'
 		exit 1
@@ -131,6 +131,9 @@ copy () {
 		# specific workaround for old step 9, yuck
 		rm -rvf app/assets/sass/patterns
 		cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
+
+		# copy unbranded layout - needed for the password page
+		cp -v "update/app/views/layout_unbranded.html" "app/views/"
 
 		set +x
 
