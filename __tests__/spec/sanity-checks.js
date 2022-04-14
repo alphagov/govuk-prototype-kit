@@ -10,7 +10,6 @@ const sass = require('sass')
 
 const app = require('../../server.js')
 const gulpConfig = require('../../gulp/config.json')
-const utils = require('../../lib/utils')
 
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
@@ -37,36 +36,6 @@ describe('The Prototype Kit', () => {
     it('should return html file', async () => {
       const response = await request(app).get('/')
       expect(response.type).toBe('text/html')
-    })
-  })
-
-  describe('docs index page', () => {
-    it('should send a well formed response', async () => {
-      const response = await request(app).get('/docs')
-      expect(response.statusCode).toBe(200)
-    })
-
-    it('should return html file', async () => {
-      const response = await request(app).get('/docs')
-      expect(response.type).toBe('text/html')
-    })
-  })
-
-  describe('update script', () => {
-    it('should redirect to GitHub', async () => {
-      const response = await request(app).get('/docs/update.sh')
-      expect(response.statusCode).toBe(302)
-      expect(response.get('location')).toBe('https://raw.githubusercontent.com/alphagov/govuk-prototype-kit/main/update.sh')
-    })
-
-    it('should send a well formed response', async () => {
-      const response = await request(app).get('/docs/update.sh').redirects(1)
-      expect(response.statusCode).toBe(200)
-    })
-
-    it('should return plain text file', async () => {
-      const response = await request(app).get('/docs/update.sh').redirects(1)
-      expect(response.type).toBe('text/plain')
     })
   })
 
@@ -150,14 +119,6 @@ describe('The Prototype Kit', () => {
           }
         })
       })
-    })
-  })
-
-  describe('Documentation markdown page titles', () => {
-    const markdownFiles = glob.sync('docs/documentation/**/*.md')
-    it.each(markdownFiles)('%s has a title', (filepath) => {
-      const file = readFile(filepath)
-      utils.getRenderOptions(file, filepath)
     })
   })
 })

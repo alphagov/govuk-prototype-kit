@@ -35,12 +35,6 @@ gulp.task('sass', function () {
     .pipe(gulp.dest(stylesheetDirectory, { sourcemaps: true }))
 })
 
-gulp.task('sass-documentation', function () {
-  return gulp.src(config.paths.docsAssets + '/sass/*.scss', { sourcemaps: true })
-    .pipe(sass.sync({ outputStyle: 'expanded', logger: sass.compiler.Logger.silent }).on('error', sass.logError))
-    .pipe(gulp.dest(config.paths.public + '/stylesheets/', { sourcemaps: true }))
-})
-
 // Backward compatibility with Elements
 
 gulp.task('sass-v6', function () {

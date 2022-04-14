@@ -372,7 +372,6 @@ describe('update.sh', () => {
       const testDir = mktestPrototypeSync('remove-dangling-files')
 
       const updateDir = path.join(testDir, 'update')
-      fs.unlinkSync(path.join(updateDir, 'docs', 'documentation', 'session.md'))
       fs.unlinkSync(path.join(updateDir, 'gulp', 'clean.js'))
       fs.unlinkSync(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
       fs.rmdirSync(path.join(updateDir, 'lib', 'v6'))
@@ -380,7 +379,6 @@ describe('update.sh', () => {
       runScriptSyncAndExpectSuccess('copy', { testDir })
 
       expect(execGitStatusSync(testDir)).toEqual([
-        ' D docs/documentation/session.md',
         ' D gulp/clean.js',
         ' D lib/v6/govuk_template_unbranded.html'
       ])
