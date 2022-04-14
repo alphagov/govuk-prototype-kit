@@ -3,10 +3,10 @@ module.exports = function(){
     sassExtensions()
     // in parallel:
     sass()
-    console.log('copy-assets')
+    copyAssets()
     // in parallel:
-    console.log('watch')
-    console.log('nodemon')
+    watch()
+    runNodemon()
 }
 
 function clean() {
@@ -53,4 +53,75 @@ function sass() {
     //   this.emit('end')
     // }))
     // .pipe(gulp.dest(stylesheetDirectory, { sourcemaps: true }))
+}
+
+function copyAssets() {
+    console.log('copy-assets')
+    const fs = require('fs-extra')
+    const filterFunc = (src, dest) => {
+        return !src.startsWith("app/assets/sass")
+    }
+    
+    fs.copy('app/assets', 'public', { filter: filterFunc }, err => {
+        if (err) return console.error(err)
+    })
+}
+
+function watch() {
+    console.log('watch')
+    const chokidar = require('chokidar')
+
+    chokidar.watch('app/assets/sass', {
+        ignoreInitial: true
+    }).on('all', (event, path) => {
+        console.log('watch sass')
+        console.log(event, path)
+        sass()
+    })
+
+    chokidar.watch([
+        'app/assets/**',
+        '!app/assets/sass/**'
+    ],{
+        ignoreInitial: true
+    }).on('all', (event, path) => {
+        console.log('watch assets')
+        console.log(event, path)
+        copyAssets()
+    })
+}
+
+function runNodemon() {
+    console.log('runNodemon')
+
+    const fs = require('fs')
+    const path = require('path')
+
+    const nodemon = require('nodemon')
+
+    // Warn about npm install on crash
+    const onCrash = () => {
+        log(colour.cyan('[nodemon] For missing modules try running `npm install`'))
+    }
+
+    // Remove .port.tmp if it exists
+    const onQuit = () => {
+        try {
+        fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
+        } catch (e) {}
+    
+        process.exit(0)
+    }
+  
+    nodemon({
+      watch: ['.env', '**/*.js', '**/*.json'],
+      script: 'listen-on-port.js',
+      ignore: [
+        'public/*',
+        'app/assets/*',
+        'node_modules/*'
+      ]
+    })
+    .on('crash', onCrash)
+    .on('quit', onQuit)
 }
