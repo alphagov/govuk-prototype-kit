@@ -19,9 +19,6 @@ module.exports = {
   // Please note 4KB cookie limit per domain, cookies too large will silently be ignored
   useCookieSessionStore: 'false',
 
-  // Enable or disable built-in docs and examples.
-  useDocumentation: 'true',
-
   // Force HTTP to redirect to HTTPS on production
   useHttps: 'true',
 

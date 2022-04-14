@@ -390,14 +390,12 @@ describe('update.sh', () => {
 
       const updateDir = path.join(testDir, 'update')
       fs.unlinkSync(path.join(updateDir, 'lib', 'build', 'config.json'))
-      fs.unlinkSync(path.join(updateDir, 'docs', 'documentation', 'session.md'))
       fs.unlinkSync(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
       fs.rmdirSync(path.join(updateDir, 'lib', 'v6'))
 
       runScriptSyncAndExpectSuccess('copy', { testDir })
 
       expect(execGitStatusSync(testDir)).toEqual([
-        ' D docs/documentation/session.md',
         ' D lib/build/config.json',
         ' D lib/v6/govuk_template_unbranded.html'
       ])
