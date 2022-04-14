@@ -2,8 +2,8 @@ module.exports = function(){
     clean()
     sassExtensions()
     // in parallel:
-    sass()
     copyAssets()
+    sass()
     // in parallel:
     watch()
     runNodemon()
@@ -11,14 +11,12 @@ module.exports = function(){
 
 function clean() {
     // doesn't clean extensions.scss, should it?
-    console.log('clean')
     const fs = require('fs')
     fs.rmSync('public', { recursive: true, force: true })
     fs.rmSync('.port.tmp', { force: true })
 }
 
 function sassExtensions() {
-    console.log('sass-extensions')
     const fs = require('fs')
     const path = require('path')
     const extensions = require('./lib/extensions/extensions')
@@ -30,7 +28,8 @@ function sassExtensions() {
 }
 
 function sass() {
-    console.log('sass')
+    // to do: compile all sass files, not just application.scss
+    console.log('compiling CSS...')
     const fs = require('fs')
     const sass = require('sass')
     const result = sass.compile("app/assets/sass/application.scss", {
@@ -56,19 +55,18 @@ function sass() {
 }
 
 function copyAssets() {
-    console.log('copy-assets')
+    console.log('copying assets...')
     const fs = require('fs-extra')
     const filterFunc = (src, dest) => {
         return !src.startsWith("app/assets/sass")
     }
     
     fs.copy('app/assets', 'public', { filter: filterFunc }, err => {
-        if (err) return console.error(err)
+        if (err && err.code != 'EEXIST') return console.error(err)
     })
 }
 
 function watch() {
-    console.log('watch')
     const chokidar = require('chokidar')
 
     chokidar.watch('app/assets/sass', {
@@ -92,7 +90,6 @@ function watch() {
 }
 
 function runNodemon() {
-    console.log('runNodemon')
 
     const fs = require('fs')
     const path = require('path')
