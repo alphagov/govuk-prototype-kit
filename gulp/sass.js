@@ -40,19 +40,3 @@ gulp.task('sass-documentation', function () {
     .pipe(sass.sync({ outputStyle: 'expanded', logger: sass.compiler.Logger.silent }).on('error', sass.logError))
     .pipe(gulp.dest(config.paths.public + '/stylesheets/', { sourcemaps: true }))
 })
-
-// Backward compatibility with Elements
-
-gulp.task('sass-v6', function () {
-  return gulp.src(config.paths.v6Assets + '/sass/*.scss', { sourcemaps: true })
-    .pipe(sass.sync({
-      outputStyle: 'expanded',
-      logger: sass.compiler.Logger.silent,
-      includePaths: [
-        'node_modules/govuk_frontend_toolkit/stylesheets',
-        'node_modules/govuk-elements-sass/public/sass',
-        'node_modules/govuk_template_jinja/assets/stylesheets'
-      ]
-    }).on('error', sass.logError))
-    .pipe(gulp.dest(config.paths.public + '/v6/stylesheets/', { sourcemaps: true }))
-})

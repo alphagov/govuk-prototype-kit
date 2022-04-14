@@ -1,5 +1,4 @@
 // Core dependencies
-const fs = require('fs')
 const path = require('path')
 const url = require('url')
 
@@ -28,24 +27,8 @@ const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 
-// Variables for v6 backwards compatibility
-// Set false by default, then turn on if we find /app/v6/routes.js
-var useV6 = false
-var v6App
-var v6Routes
-
-if (fs.existsSync('./app/v6/routes.js')) {
-  v6Routes = require('./app/v6/routes.js')
-  useV6 = true
-}
-
 const app = express()
 const documentationApp = express()
-
-if (useV6) {
-  console.log('/app/v6/routes.js detected - using v6 compatibility mode')
-  v6App = express()
-}
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
@@ -173,37 +156,12 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-// Set up v6 app for backwards compatibility
-if (useV6) {
-  var v6Views = [
-    path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
-    path.join(__dirname, '/app/v6/views/'),
-    path.join(__dirname, '/lib/v6') // for old unbranded template
-  ]
-  nunjucksConfig.express = v6App
-  var nunjucksV6Env = nunjucks.configure(v6Views, nunjucksConfig)
-
-  // Nunjucks filters
-  utils.addNunjucksFilters(nunjucksV6Env)
-
-  // Set views engine
-  v6App.set('view engine', 'html')
-
-  // Backward compatibility with GOV.UK Elements
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
-  app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/')))
-}
-
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
   utils.addCheckedFunction(nunjucksAppEnv)
   if (useDocumentation) {
     utils.addCheckedFunction(nunjucksDocumentationEnv)
-  }
-  if (useV6) {
-    utils.addCheckedFunction(nunjucksV6Env)
   }
 }
 
@@ -260,18 +218,6 @@ if (useDocumentation) {
   documentationApp.use('/', documentationRoutes)
 }
 
-if (useV6) {
-  // Clone app locals to v6 app locals
-  v6App.locals = Object.assign({}, app.locals)
-  v6App.locals.asset_path = '/public/v6/'
-
-  // Create separate router for v6
-  app.use('/', v6App)
-
-  // Docs under the /docs namespace
-  v6App.use('/', v6Routes)
-}
-
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {
   var path = req.path
@@ -294,13 +240,6 @@ if (useDocumentation) {
     if (!utils.matchMdRoutes(req, res)) {
       utils.matchRoutes(req, res, next)
     }
-  })
-}
-
-if (useV6) {
-  // App folder routes get priority
-  v6App.get(/^([^.]+)$/, function (req, res, next) {
-    utils.matchRoutes(req, res, next)
   })
 }
 
