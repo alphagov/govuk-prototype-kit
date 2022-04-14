@@ -128,8 +128,7 @@ copy () {
 			-print0 \
 		| xargs -0 -I % cp -v % .
 
-		# specific workaround for old step 9, yuck
-		rm -rvf app/assets/sass/patterns
+		# copy any new patterns
 		cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
 
 		# copy unbranded layout - needed for the password page
