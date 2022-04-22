@@ -28,18 +28,24 @@ function sassExtensions() {
 }
 
 function sass() {
-    // to do: compile all sass files, not just application.scss
     console.log('compiling CSS...')
     const fs = require('fs')
     const sass = require('sass')
-    const result = sass.compile("app/assets/sass/application.scss", {
-        logger: sass.Logger.silent,
-        loadPaths: [__dirname],
-        sourceMap: true,
-        style: "expanded"
-    })
     fs.mkdirSync('public/stylesheets', { recursive: true })
-    fs.writeFileSync("public/stylesheets/application.css", result.css)
+    fs.readdirSync("app/assets/sass").forEach(file => {
+
+        if (!file.endsWith(".scss")) return
+
+        const result = sass.compile("app/assets/sass/" + file, {
+            logger: sass.Logger.silent,
+            loadPaths: [__dirname],
+            sourceMap: true,
+            style: "expanded"
+        })
+
+        const cssFilename = file.replace(".scss",".css")
+        fs.writeFileSync("public/stylesheets/" + cssFilename, result.css)
+    })
 
     // return gulp.src(config.paths.assets + '/sass/*.scss', { sourcemaps: true })
     // .pipe(sass.sync({ outputStyle: 'expanded', logger: sass.compiler.Logger.silent }).on('error', function (error) {
@@ -61,8 +67,10 @@ function copyAssets() {
         return !src.startsWith("app/assets/sass")
     }
     
+    // shouldnt have to mkdir, but copy errors with EEXIST otherwise
+    fs.mkdirSync('public', { recursive: true })
     fs.copy('app/assets', 'public', { filter: filterFunc }, err => {
-        if (err && err.code != 'EEXIST') return console.error(err)
+        if (err) return console.error(err)
     })
 }
 
@@ -104,9 +112,9 @@ function runNodemon() {
     // Remove .port.tmp if it exists
     const onQuit = () => {
         try {
-        fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
+            fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
         } catch (e) {}
-    
+        console.log('quit')
         process.exit(0)
     }
   
