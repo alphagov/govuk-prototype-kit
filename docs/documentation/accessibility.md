@@ -45,17 +45,9 @@ The content listed below is non-accessible for the following reasons.
 
 #### Non-compliance with the accessibility regulations
 
-The text in the code examples cannot be resized using browser controls. This fails WCAG 2.1 success criterion 1.4.4 (resize text).
-
-The code examples require scrolling horizontally on small screens. This fails WCAG 2.1 success criterion 1.4.10 (reflow).
-
-Some code examples require scrolling within the element. This is not possible with a keyboard. This fails WCAG 2.1 criterion 2.1.1 (keyboard).
-
-The session is 4 hours long and cannot be extended. This fails WCAG 2.1 criterion 2.2.1 (timing adjustable).
-
 The kit uses an old version of the step by step pattern, in which it is not clear if elements are buttons or links. This fails WCAG 2.1 criterion 1.3.1 (info and relationships).
 
-We plan to fix these issues by 31 March 2022.
+We plan to fix these issues by 31 August 2022.
 
 ### How this website has been tested for accessibility
 
@@ -84,5 +76,5 @@ When we publish new content, we’ll continue to make sure that it meets accessi
 
 ### Preparation of this accessibility statement
 
-This statement was prepared on 5 November 2021. It was last reviewed on 7 February 2022.
+This statement was prepared on 5 November 2021. It was last reviewed on 20 April 2022.
 
