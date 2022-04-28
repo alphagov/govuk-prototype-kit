@@ -3,6 +3,8 @@ title: Publish on the web
 ---
 # Publish on the web (Heroku)
 
+<div class="govuk-inset-text">
+
 ## Publishing GOV.UK Prototype Kit to Heroku, April 2022
 
 Following a security incident, Heroku has temporarily stopped GitHub repositories automatically deploying to Heroku or deploying through its dashboard.
@@ -18,6 +20,7 @@ If you need to deploy on Heroku at the moment, the Prototype Kit team can help y
 Heroku discovered unauthorised access to its GitHub account on 13 April 2022. As a result, it revoked all existing tokens from the Heroku GitHub integration and new OAuth tokens cannot be created until further notice. Heroku continues to investigate the incident.
 [More on the Heroku security notification](https://status.heroku.com/incidents/2413).
 
+</div>
 
 ## Publishing on Heroku
 
