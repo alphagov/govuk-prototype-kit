@@ -139,7 +139,6 @@ describe('The Prototype Kit', () => {
       return new Promise((resolve, reject) => {
         sass.render({
           file,
-          logger: sass.Logger.silent,
           loadPaths: [path.resolve(__dirname, '..', '..')]
         }, (err, result) => {
           if (err) {
