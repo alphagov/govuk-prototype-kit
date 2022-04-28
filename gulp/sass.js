@@ -23,7 +23,10 @@ gulp.task('sass-extensions', function (done) {
 
 gulp.task('sass', function () {
   return gulp.src(config.paths.assets + '/sass/*.scss', { sourcemaps: true })
-    .pipe(sass.sync({ outputStyle: 'expanded' }).on('error', function (error) {
+    .pipe(sass.sync({
+      outputStyle: 'expanded',
+      quietDeps: true
+    }).on('error', function (error) {
       // write a blank application.css to force browser refresh on error
       if (!fs.existsSync(stylesheetDirectory)) {
         fs.mkdirSync(stylesheetDirectory)
@@ -37,7 +40,10 @@ gulp.task('sass', function () {
 
 gulp.task('sass-documentation', function () {
   return gulp.src(config.paths.docsAssets + '/sass/*.scss', { sourcemaps: true })
-    .pipe(sass.sync({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass.sync({
+      outputStyle: 'expanded',
+      quietDeps: true
+    }).on('error', sass.logError))
     .pipe(gulp.dest(config.paths.public + '/stylesheets/', { sourcemaps: true }))
 })
 
@@ -51,7 +57,8 @@ gulp.task('sass-v6', function () {
         'node_modules/govuk_frontend_toolkit/stylesheets',
         'node_modules/govuk-elements-sass/public/sass',
         'node_modules/govuk_template_jinja/assets/stylesheets'
-      ]
+      ],
+      quietDeps: true
     }).on('error', sass.logError))
     .pipe(gulp.dest(config.paths.public + '/v6/stylesheets/', { sourcemaps: true }))
 })
