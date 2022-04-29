@@ -10,7 +10,7 @@
     "start": "node start.js",
     "lint": "standard",
     "rapidtest": "jest --bail",
-    "test": "npm run lint && gulp generate-assets && jest"
+    "test": "gulp generate-assets && jest && npm run lint"
   },
   "dependencies": {
     "acorn": "^8.5.0",
