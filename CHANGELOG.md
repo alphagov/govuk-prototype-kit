@@ -1,5 +1,9 @@
 # Unreleased
 
+## Fixes
+
+- [#1303: Fix authentication on Glitch](https://github.com/alphagov/govuk-prototype-kit/pull/1303)
+
 # 12.0.3 (Fix release)
 
 ## Fixes
