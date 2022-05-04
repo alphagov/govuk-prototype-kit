@@ -1,10 +1,9 @@
-name: Tests
+name: Tests (Download)
 
 on:
   push:
     branches:
       - main
-      - support/*
   pull_request:
 
 jobs:
@@ -13,10 +12,11 @@ jobs:
     strategy:
       fail-fast: false  # continue other tests if one test in matrix fails
       matrix:
-        node-version: [12.x, 14.x, 16.x, 18.x]
+        node-version: [12.x, 14.x, 16.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     name: Test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
+    continue-on-error: true
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
 
@@ -29,8 +29,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
 
     - name: Use Node v${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -46,19 +44,14 @@ jobs:
 
     - run: npm ci
 
-    - run: npx jest --runInBand
-      env:
-        CI: true
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - run: npm run test:integration
+    - run: npm run test:download
       env:
         CYPRESS_REQUEST_TIMEOUT: 20000
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
         CYPRESS_PAGE_LOAD_TIMEOUT: 150000
         CYPRESS_RETRIES: 3
 
-    - run: npm run test:integration:package
+    - run: npm run test:download:package
       env:
         CYPRESS_REQUEST_TIMEOUT: 20000
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000

@@ -1,5 +1,3 @@
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
 const waitForApplication = async () => {
   cy.task('log', 'Waiting for app to restart and load home page')
   cy.task('waitUntilAppRestarts')
@@ -19,7 +17,6 @@ const deleteFile = (filename) => {
 }
 
 module.exports = {
-  sleep,
   waitForApplication,
   copyFile,
   deleteFile
