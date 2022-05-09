@@ -9,10 +9,13 @@ $govuk-assets-path: '/govuk/assets/';
 @import "lib/extensions/extensions";
 
 // Patterns that aren't in Frontend
+@import "patterns/contents-list";
+@import "patterns/mainstream-guide";
+@import "patterns/pagination";
+@import "patterns/related-items";
 @import "patterns/step-by-step-header";
 @import "patterns/step-by-step-nav";
 @import "patterns/step-by-step-related";
 @import "patterns/task-list";
-@import "patterns/related-items";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
