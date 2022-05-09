@@ -33,6 +33,7 @@ gulp.task('server', function () {
     watch: ['.env', '**/*.js', '**/*.json'],
     script: 'listen-on-port.js',
     ignore: [
+      config.paths.cypress + '*',
       config.paths.public + '*',
       config.paths.assets + '*',
       config.paths.nodeModules + '*'

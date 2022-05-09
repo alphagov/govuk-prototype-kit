@@ -6,6 +6,7 @@ jobs:
   run-tests:
 
     strategy:
+      fail-fast: false  # continue other tests if one test in matrix fails
       matrix:
         node-version: [12.x, 14.x, 16.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
@@ -28,3 +29,4 @@ jobs:
       env:
         CI: true
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: npm run test:integration

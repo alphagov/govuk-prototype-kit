@@ -1,0 +1,5 @@
+{
+  "testFiles": "**/*.cypress.js",
+  "video": false,
+  "chromeWebSecurity": false
+}
