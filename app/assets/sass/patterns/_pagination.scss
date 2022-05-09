@@ -75,7 +75,7 @@
 }
 
 .app-pagination__link-icon {
-  @include govuk-font($size: 24, $line-height: (33.75 / 27));
+  @include govuk-font($size: 24, $line-height: calc(33.75 / 27));
   display: inline-block;
   margin-bottom: 1px;
   height: .482em;
