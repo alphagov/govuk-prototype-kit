@@ -40,6 +40,10 @@ Contributors to alphagov repositories are expected to follow the [Contributor Co
 
 We're unable to monitor activity on this repository outside of our office hours (10am to 4pm, UK time). To get a faster response at other times, you can [report abuse or spam to GitHub](https://docs.github.com/en/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam).
 
+### Running tests
+
+By default, the prototype kit does not install development dependencies. If you want to run tests, you will need to run `npm install --include=optional` first.
+
 ### Security
 
 GDS is an advocate of responsible vulnerability disclosure. If you’ve found a vulnerability, we would like to know so we can fix it.

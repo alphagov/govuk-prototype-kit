@@ -45,7 +45,7 @@
     "universal-analytics": "^0.4.16",
     "uuid": "^8.3.2"
   },
-  "devDependencies": {
+  "optionalDependencies": {
     "glob": "^7.1.4",
     "jest": "^27.3.1",
     "standard": "^14.3.3",
