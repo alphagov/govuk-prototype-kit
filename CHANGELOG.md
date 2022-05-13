@@ -1,3 +1,23 @@
+# Unreleased
+
+# 12.0.4 (Fix release)
+
+## Fixes
+
+- [#1303: Fix authentication on Glitch](https://github.com/alphagov/govuk-prototype-kit/pull/1303)
+
+# 12.0.3 (Fix release)
+
+## Fixes
+
+- [#1182: Replace basic auth with a custom authentication process](https://github.com/alphagov/govuk-prototype-kit/pull/1182)
+
+# 12.0.2 (Fix release)
+
+## Fixes
+
+- [Pull request #1269: Replace node-sass with Dart Sass](https://github.com/alphagov/govuk-prototype-kit/pull/1269).  This should allow the kit to work on M1 Macs.
+
 # 12.0.1 (Fix release)
 
 ## Recommended changes
