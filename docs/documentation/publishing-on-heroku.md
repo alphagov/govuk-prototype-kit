@@ -3,6 +3,27 @@ title: Publish on the web
 ---
 # Publish on the web (Heroku)
 
+<div class="govuk-inset-text">
+
+## Publishing GOV.UK Prototype Kit to Heroku, April 2022
+
+Following a security incident, Heroku has temporarily stopped GitHub repositories automatically deploying to Heroku or deploying through its dashboard.
+
+For Prototype Kit users this means the integration of prototypes from Heroku to GitHub has been turned off and you may not be able to use your new prototype for user research on Heroku.
+
+### What to do
+
+If you need to deploy on Heroku at the moment, the Prototype Kit team can help you to do this. [Contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
+
+### What happened
+
+Heroku discovered unauthorised access to its GitHub account on 13 April 2022. As a result, it revoked all existing tokens from the Heroku GitHub integration and new OAuth tokens cannot be created until further notice. Heroku continues to investigate the incident.
+[More on the Heroku security notification](https://status.heroku.com/incidents/2413).
+
+</div>
+
+## Publishing on Heroku
+
 Heroku runs your prototype online, the same as it runs on your machine, but available to others at any time. Other similar services are available.
 
 You'll need to have [put your code on GitHub](/docs/github-desktop) to use this guide. If you cannot put your code on GitHub, you can try [publishing to Heroku from the terminal](/docs/publishing-on-heroku-terminal) instead.
@@ -43,22 +64,28 @@ You'll need to have [put your code on GitHub](/docs/github-desktop) to use this 
 
 Your prototype will deploy automatically each time you push your code to GitHub (it takes a few minutes each time).
 
-## Set a username and password
+## Set a password
 
-We need to set a username and password or the Prototype Kit won’t run online. They don’t have to be complicated – it’s just to stop people accidentally coming across your prototype online and mistaking it for a real service.
+You need to set a password or the Prototype Kit will not run online. This password does not have to be complicated. It's just to stop people accidentally finding your prototype online and mistaking it for a real service.
 
-1. At the top click the **Settings** tab.
+1. At the top of the Heroku page, click the **Settings** tab.
 
 2. Click **Reveal config vars**.
 
-3. In KEY put the word USERNAME
+3. In KEY, enter the word PASSWORD.
 
-4. In VALUE put a username of your choice, click **Add**.
+4. In VALUE, enter a password of your choice and click **Add**.
 
-That will be saved and you can add another KEY and VALUE.
+5. In the top right of the Heroku page, click **Open app** to see your prototype online.
 
-5. In KEY put the word PASSWORD
+### If you get an error about username
 
-6. In VALUE put a password of your choice, click **Add**.
+1. At the top of the Heroku page, click the **Settings** tab.
 
-7. In the top right, click **Open app** to see your prototype online!
+2. Click **Reveal config vars**.
+
+3. In KEY, enter the word USERNAME.
+
+4. In VALUE, enter a username of your choice and click **Add**.
+
+5. In the top right of the Heroku page, click **Open app** to see your prototype online.
