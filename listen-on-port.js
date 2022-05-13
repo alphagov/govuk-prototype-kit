@@ -8,8 +8,8 @@ const config = require('./app/config.js')
 const utils = require('./lib/utils.js')
 
 // Set up configuration variables
-const useBrowserSync = config.useBrowserSync.toLowerCase()
-const env = (process.env.NODE_ENV || 'development').toLowerCase()
+var useBrowserSync = config.useBrowserSync.toLowerCase()
+var env = utils.getNodeEnv()
 
 utils.findAvailablePort(server, function (port) {
   console.log('Listening on port ' + port + '   url: http://localhost:' + port)

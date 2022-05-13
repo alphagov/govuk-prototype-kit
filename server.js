@@ -5,6 +5,7 @@ const url = require('url')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
 const nunjucks = require('nunjucks')
@@ -16,11 +17,12 @@ dotenv.config()
 
 // Local dependencies
 const middleware = [
-  require('./lib/middleware/authentication/authentication.js'),
+  require('./lib/middleware/authentication/authentication.js')(),
   require('./lib/middleware/extensions/extensions.js')
 ]
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
+const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
 const routes = require('./app/routes.js')
 const utils = require('./lib/utils.js')
@@ -28,9 +30,9 @@ const extensions = require('./lib/extensions/extensions.js')
 
 // Variables for v6 backwards compatibility
 // Set false by default, then turn on if we find /app/v6/routes.js
-let useV6 = false
-let v6App
-let v6Routes
+var useV6 = false
+var v6App
+var v6Routes
 
 if (fs.existsSync('./app/v6/routes.js')) {
   v6Routes = require('./app/v6/routes.js')
@@ -46,19 +48,18 @@ if (useV6) {
 }
 
 // Set up configuration variables
-const releaseVersion = packageJson.version
-const glitchEnv = (process.env.PROJECT_REMIX_CHAIN) ? 'production' : false // glitch.com
-const env = (process.env.NODE_ENV || glitchEnv || 'development').toLowerCase()
-const useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
-const useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
-let useHttps = process.env.USE_HTTPS || config.useHttps
+var releaseVersion = packageJson.version
+var env = utils.getNodeEnv()
+var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
+var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
+var useHttps = process.env.USE_HTTPS || config.useHttps
 
 useHttps = useHttps.toLowerCase()
 
-const useDocumentation = (config.useDocumentation === 'true')
+var useDocumentation = (config.useDocumentation === 'true')
 
 // Promo mode redirects the root to /docs - so our landing page is docs when published on heroku
-let promoMode = process.env.PROMO_MODE || 'false'
+var promoMode = process.env.PROMO_MODE || 'false'
 promoMode = promoMode.toLowerCase()
 
 // Disable promo mode if docs aren't enabled
@@ -66,90 +67,10 @@ if (!useDocumentation) promoMode = 'false'
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-const isSecure = (env === 'production' && useHttps === 'true')
+var isSecure = (env === 'production' && useHttps === 'true')
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
-}
-
-middleware.forEach(func => app.use(func))
-
-// Set up App
-const appViews = extensions.getAppViews([
-  path.join(__dirname, '/app/views/'),
-  path.join(__dirname, '/lib/')
-])
-
-const nunjucksConfig = {
-  autoescape: true,
-  noCache: true,
-  watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
-}
-
-if (env === 'development') {
-  nunjucksConfig.watch = true
-}
-
-nunjucksConfig.express = app
-
-const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
-
-// Add Nunjucks filters
-utils.addNunjucksFilters(nunjucksAppEnv)
-
-// Set views engine
-app.set('view engine', 'html')
-
-// Middleware to serve static assets
-app.use('/public', express.static(path.join(__dirname, '/public')))
-
-// Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
-app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
-
-// Set up documentation app
-if (useDocumentation) {
-  const documentationViews = [
-    path.join(__dirname, '/node_modules/govuk-frontend/'),
-    path.join(__dirname, '/node_modules/govuk-frontend/components'),
-    path.join(__dirname, '/docs/views/'),
-    path.join(__dirname, '/lib/')
-  ]
-
-  nunjucksConfig.express = documentationApp
-  var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, nunjucksConfig)
-  // Nunjucks filters
-  utils.addNunjucksFilters(nunjucksDocumentationEnv)
-
-  // Set views engine
-  documentationApp.set('view engine', 'html')
-}
-
-// Support for parsing data in POSTs
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-
-// Set up v6 app for backwards compatibility
-if (useV6) {
-  const v6Views = [
-    path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
-    path.join(__dirname, '/app/v6/views/'),
-    path.join(__dirname, '/lib/v6') // for old unbranded template
-  ]
-  nunjucksConfig.express = v6App
-  var nunjucksV6Env = nunjucks.configure(v6Views, nunjucksConfig)
-
-  // Nunjucks filters
-  utils.addNunjucksFilters(nunjucksV6Env)
-
-  // Set views engine
-  v6App.set('view engine', 'html')
-
-  // Backward compatibility with GOV.UK Elements
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
-  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
-  app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/')))
 }
 
 // Add variables that are available in all views
@@ -161,6 +82,9 @@ app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig()
+
+// use cookie middleware for reading authentication cookie
+app.use(cookieParser())
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
@@ -188,6 +112,88 @@ if (useCookieSessionStore === 'true') {
   })))
 }
 
+// Authentication middleware must be loaded before other middleware such as
+// static assets to prevent unauthorised access
+middleware.forEach(func => app.use(func))
+
+// Set up App
+var appViews = extensions.getAppViews([
+  path.join(__dirname, '/app/views/'),
+  path.join(__dirname, '/lib/')
+])
+
+var nunjucksConfig = {
+  autoescape: true,
+  noCache: true,
+  watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
+}
+
+if (env === 'development') {
+  nunjucksConfig.watch = true
+}
+
+nunjucksConfig.express = app
+
+var nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
+
+// Add Nunjucks filters
+utils.addNunjucksFilters(nunjucksAppEnv)
+
+// Set views engine
+app.set('view engine', 'html')
+
+// Middleware to serve static assets
+app.use('/public', express.static(path.join(__dirname, '/public')))
+
+// Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
+app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+
+// Set up documentation app
+if (useDocumentation) {
+  var documentationViews = [
+    path.join(__dirname, '/node_modules/govuk-frontend/'),
+    path.join(__dirname, '/node_modules/govuk-frontend/components'),
+    path.join(__dirname, '/docs/views/'),
+    path.join(__dirname, '/lib/')
+  ]
+
+  nunjucksConfig.express = documentationApp
+  var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, nunjucksConfig)
+  // Nunjucks filters
+  utils.addNunjucksFilters(nunjucksDocumentationEnv)
+
+  // Set views engine
+  documentationApp.set('view engine', 'html')
+}
+
+// Support for parsing data in POSTs
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+
+// Set up v6 app for backwards compatibility
+if (useV6) {
+  var v6Views = [
+    path.join(__dirname, '/node_modules/govuk_template_jinja/views/layouts'),
+    path.join(__dirname, '/app/v6/views/'),
+    path.join(__dirname, '/lib/v6') // for old unbranded template
+  ]
+  nunjucksConfig.express = v6App
+  var nunjucksV6Env = nunjucks.configure(v6Views, nunjucksConfig)
+
+  // Nunjucks filters
+  utils.addNunjucksFilters(nunjucksV6Env)
+
+  // Set views engine
+  v6App.set('view engine', 'html')
+
+  // Backward compatibility with GOV.UK Elements
+  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
+  app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
+  app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/')))
+}
+
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
@@ -200,11 +206,8 @@ if (useAutoStoreData === 'true') {
   }
 }
 
-// Clear all data in session if you open /prototype-admin/clear-data
-app.post('/prototype-admin/clear-data', function (req, res) {
-  req.session.data = {}
-  res.render('prototype-admin/clear-data-success')
-})
+// Load prototype admin routes
+app.use('/prototype-admin', prototypeAdminRoutes)
 
 // Redirect root to /docs when in promo mode.
 if (promoMode === 'true') {
@@ -270,8 +273,8 @@ if (useV6) {
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {
-  let path = req.path
-  const parts = path.split('.')
+  var path = req.path
+  var parts = path.split('.')
   parts.pop()
   path = parts.join('.')
   res.redirect(path)
@@ -311,7 +314,7 @@ app.post(/^\/([^.]+)$/, function (req, res) {
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  const err = new Error(`Page not found: ${req.path}`)
+  var err = new Error(`Page not found: ${req.path}`)
   err.status = 404
   next(err)
 })
