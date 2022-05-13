@@ -15,5 +15,4 @@ node_modules/
 /cypress/screenshots
 /cypress/downloads
 /cypress/support
-/cypress/fixtures
 /cypress/temp

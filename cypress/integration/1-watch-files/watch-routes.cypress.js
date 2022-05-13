@@ -1,5 +1,5 @@
 const { waitForApplication } = require('../utils')
-const cypressRoutes = 'cypress/files/routes.js'
+const cypressRoutes = 'cypress/fixtures/routes.js'
 const appRoutes = 'app/routes.js'
 const backupRoutes = 'cypress/temp/temp-routes.js'
 const appUrl = 'http://localhost:3000'

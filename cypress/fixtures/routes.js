@@ -3,7 +3,7 @@ const router = express.Router()
 
 router.get('/cypress-test', (req, res) => {
   const heading = 'CYPRESS TEST PAGE'
-  res.send(`
+  res.send(`<!DOCTYPE html>
     <html lang="en">
         <head>
             <title>${heading}</title>

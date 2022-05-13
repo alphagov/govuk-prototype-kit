@@ -1,7 +1,7 @@
 const { waitForApplication } = require('../utils')
 const { hostName } = require('../../config')
 const imageFile = 'larry-the-cat.jpg'
-const cypressImages = 'cypress/files/images'
+const cypressImages = 'cypress/fixtures/images'
 const appImages = 'app/assets/images'
 const publicImages = 'public/images'
 
