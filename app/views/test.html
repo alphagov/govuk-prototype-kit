@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/test" method="post">
+
+        {{ govukCheckboxes({
+            idPrefix: "waste",
+            name: "waste",
+            fieldset: {
+            legend: {
+                text: "Which types of waste do you transport?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+            }
+            },
+            hint: {
+            text: "Select all that apply."
+            },
+            items: [
+            {
+                value: "carcasses",
+                text: "Waste from animal carcasses"
+            },
+            {
+                value: "mines",
+                text: "Waste from mines or quarries"
+            },
+            {
+                value: "farm",
+                text: "Farm or agricultural waste"
+            }
+            ]
+        }) }}
+
+        {{ govukRadios({
+            idPrefix: "where-do-you-live",
+            name: "where-do-you-live",
+            fieldset: {
+                legend: {
+                    text: "Where do you live?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                }
+            },
+            items: [
+                {
+                    value: "england",
+                    text: "England"
+                },
+                {
+                    value: "scotland",
+                    text: "Scotland"
+                },
+                {
+                    value: "wales",
+                    text: "Wales"
+                },
+                {
+                    value: "northern-ireland",
+                    text: "Northern Ireland"
+                }
+            ]
+        }) }}
+
+        {{ govukSelect({
+            id: "sort",
+            name: "sort",
+            label: {
+                text: "Sort by"
+            },
+            items: [
+                {
+                    value: "published",
+                    text: "Recently published"
+                },
+                {
+                    value: "updated",
+                    text: "Recently updated",
+                    selected: true
+                },
+                {
+                    value: "views",
+                    text: "Most views"
+                },
+                {
+                    value: "comments",
+                    text: "Most comments"
+                }
+            ]
+        }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -31,6 +31,33 @@
 {% from "govuk/components/textarea/macro.njk"            import govukTextarea %}
 {% from "govuk/components/warning-text/macro.njk"        import govukWarningText %}
 
+{% set _govukCheckboxes = govukCheckboxes %}
+
+{% macro govukCheckboxes(options) %}
+  {% set options = options | merge({
+    checkedValues: data[options.name]
+  }) %}
+  {{ _govukCheckboxes(options) }}
+{% endmacro %}
+
+{% set _govukRadios = govukRadios %}
+
+{% macro govukRadios(options) %}
+  {% set options = options | merge({
+    checkedValue: data[options.name]
+  }) %}
+  {{ _govukRadios(options) }}
+{% endmacro %}
+
+{% set _govukSelect = govukSelect %}
+
+{% macro govukSelect(options) %}
+  {% set options = options | merge({
+    selectedValue: data[options.name]
+  }) %}
+  {{ _govukSelect(options) }}
+{% endmacro %}
+
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}
