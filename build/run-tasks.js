@@ -1,4 +1,5 @@
 const colour = require('nodemon/lib/utils/colour')
+const del = require('del')
 const fs = require('fs')
 const fse = require('fs-extra')
 const path = require('path')
@@ -25,8 +26,7 @@ function runTasks () {
 
 function clean () {
   // doesn't clean extensions.scss, should it?
-  fs.rmSync('public', { recursive: true, force: true })
-  fs.rmSync('.port.tmp', { force: true })
+  del.sync(['public/**', '.port.tmp'])
 }
 
 function sassExtensions () {
