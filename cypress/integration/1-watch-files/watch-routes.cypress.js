@@ -30,7 +30,7 @@ describe('watch route file', () => {
     waitForApplication()
 
     cy.task('log', 'The cypress test page should be displayed')
-    cy.visit(pageUrl, { failOnStatusCode: false })
+    cy.visit(pageUrl)
     cy.get('h1', { timeout: 20000 })
       .should('contains.text', 'CYPRESS TEST PAGE')
 
