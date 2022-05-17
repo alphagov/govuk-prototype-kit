@@ -459,7 +459,7 @@ In the `app/views/layout_unbranded.html` file:
 
 #### Update HTML in GOV.UK Frontend components
 
-#### Update and add data-module attributes
+##### Update and add data-module attributes
 
 If you’re using HTML versions of GOV.UK Frontend components, add a `govuk-` prefix to `data-module` attribute values. For example:
 
