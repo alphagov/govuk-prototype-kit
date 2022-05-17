@@ -10,6 +10,11 @@
     "start": "node start.js",
     "lint": "standard",
     "rapidtest": "jest --bail",
+    "cypress:open": "cypress open",
+    "test:integration": "start-server-and-test 3000 'cypress run'",
+    "test:integration:edge": "start-server-and-test 3000 'cypress run --browser edge'",
+    "test:integration:chrome": "start-server-and-test 3000 'cypress run --browser chrome'",
+    "test:integration:electron": "start-server-and-test 3000 'cypress run --browser electron'",
     "test": "gulp generate-assets && jest && npm run lint"
   },
   "dependencies": {
@@ -46,10 +51,22 @@
     "uuid": "^8.3.2"
   },
   "optionalDependencies": {
+    "cypress": "^9.6.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "glob": "^7.1.4",
     "jest": "^27.3.1",
     "standard": "^14.3.3",
-    "supertest": "^6.1.6"
+    "start-server-and-test": "^1.14.0",
+    "supertest": "^6.1.6",
+    "wait-on": "^6.0.1"
+  },
+  "standard": {
+    "plugins": [
+      "cypress"
+    ],
+    "env": {
+      "cypress/globals": true
+    }
   },
   "jest": {
     "testRunner": "jest-jasmine2"
