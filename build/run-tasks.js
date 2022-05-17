@@ -47,7 +47,8 @@ function sass (sassPath, cssPath) {
     if (!file.endsWith('.scss')) return
 
     try {
-      const result = sass.compile(`${sassPath}/${file}`, {
+      const result = sass.renderSync({
+        file: `${sassPath}/${file}`,
         logger: sass.Logger.silent,
         loadPaths: [__dirname],
         sourceMap: true,
