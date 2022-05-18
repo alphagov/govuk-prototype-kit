@@ -9,13 +9,23 @@ const buildConfig = require('./config.json')
 const { paths } = buildConfig
 
 const appSassPath = path.join(paths.assets, 'sass')
+const docsSassPath = path.join(paths.docsAssets, 'sass')
+const v6SassPath = path.join(paths.v6Assets, 'sass')
+
 const appCssPath = path.join(paths.public, 'stylesheets')
+const v6CssPath = path.join(paths.public, 'v6', 'stylesheets')
+
+const v6PublicPath = path.join(paths.public, 'v6')
 
 function generateAssets () {
   clean()
   sassExtensions()
   sass(appSassPath, appCssPath)
+  sass(docsSassPath, appCssPath)
+  sass(v6SassPath, v6CssPath)
   copyAssets(paths.assets, paths.public)
+  copyAssets(paths.docsAssets, paths.public)
+  copyAssets(paths.v6Assets, v6PublicPath)
 }
 
 function runTasks () {
@@ -100,7 +110,9 @@ function watchAssets (sourcePath, targetPath) {
 
 function watch () {
   watchSass(appSassPath, appCssPath)
+  watchSass(v6SassPath, v6CssPath)
   watchAssets(paths.assets, paths.public)
+  watchAssets(paths.v6Assets, v6PublicPath)
 }
 
 function runNodemon () {
