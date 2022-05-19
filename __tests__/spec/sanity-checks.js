@@ -102,10 +102,13 @@ describe('The Prototype Kit', () => {
     })
 
     it('should not expose everything', function (done) {
+      const consoleErrorMock = jest.spyOn(global.console, 'error').mockImplementation()
+
       request(app)
         .get('/govuk/assets/common.js')
         .expect(404)
         .end(function (err, res) {
+          consoleErrorMock.mockRestore()
           if (err) {
             done(err)
           } else {
