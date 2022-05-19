@@ -1,40 +1,22 @@
 /* eslint-env jest */
 
 const childProcess = require('child_process')
-const fs = require('fs')
-const os = require('os')
 const path = require('path')
 
-const repoDir = path.resolve(__dirname, '..', '..')
-
-const headReleaseVersion = childProcess.execSync(
-  'git rev-parse HEAD', { encoding: 'utf8' }
-).trim()
-const headReleaseBasename = `govuk-prototype-kit-${headReleaseVersion}`
-const headReleaseArchiveFilename = `${headReleaseBasename}.zip`
+const utils = require('./utils')
 
 describe('release archive', () => {
   var archivePath
   var archiveFiles
 
   beforeAll(() => {
-    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'jest-'))
-    const fixtureDir = path.resolve(tmpDir, '__fixtures__')
-
-    fs.mkdirSync(fixtureDir)
-    archivePath = path.join(fixtureDir, headReleaseArchiveFilename)
-
-    // Create a release archive from the HEAD we are running tests in
-    childProcess.execSync(
-      `git archive --prefix=${archivePath}/ --output=${headReleaseArchivePath} HEAD`,
-      { cwd: repoDir }
-    )
+    archivePath = utils.mkReleaseArchiveSync()
 
     console.log(`test release archive saved to ${archivePath}`)
 
-    headReleaseArchiveFiles = childProcess.execSync(`zipinfo -1 ${archivePath}`, { encoding: 'utf8' })
+    archiveFiles = childProcess.execSync(`zipinfo -1 ${archivePath}`, { encoding: 'utf8' })
       .trim().split('\n').map(
-        p => p.substring(headReleaseBasename.length + 1)
+        p => p.substring(path.parse(archivePath).name.length + 1)
       ).filter(
         p => p
       )
