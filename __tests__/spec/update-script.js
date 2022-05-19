@@ -368,21 +368,40 @@ describe('update.sh', () => {
       expect(newStat.mtimeMs).toBe(oldStat.mtimeMs)
     })
 
-    it('removes files that have been removed from docs, gulp and lib folders', () => {
+    it('removes files that have been removed from docs, build and lib folders', () => {
       const testDir = mktestPrototypeSync('remove-dangling-files')
 
       const updateDir = path.join(testDir, 'update')
+      fs.unlinkSync(path.join(updateDir, 'build', 'config.json'))
       fs.unlinkSync(path.join(updateDir, 'docs', 'documentation', 'session.md'))
-      fs.unlinkSync(path.join(updateDir, 'gulp', 'clean.js'))
       fs.unlinkSync(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
       fs.rmdirSync(path.join(updateDir, 'lib', 'v6'))
 
       runScriptSyncAndExpectSuccess('copy', { testDir })
 
       expect(execGitStatusSync(testDir)).toEqual([
+        ' D build/config.json',
         ' D docs/documentation/session.md',
-        ' D gulp/clean.js',
         ' D lib/v6/govuk_template_unbranded.html'
+      ])
+    })
+
+    it('removes gulp files and adds build files if the release does not contain gulp', () => {
+      const testDir = mktestPrototypeSync('remove-gulp-files')
+
+      fs.mkdirSync(path.join(testDir, 'gulp'))
+      fs.writeFileSync(path.join(testDir, 'gulp', 'watch.js'), 'foo')
+      fs.writeFileSync(path.join(testDir, 'gulpfile.js'), 'bar')
+      child_process.execSync('git add gulp/watch.js gulpfile.js', { cwd: testDir })
+      child_process.execSync('git rm -r build', { cwd: testDir })
+      child_process.execSync('git commit -q -m "Ensure gulp files exist"', { cwd: testDir })
+
+      runScriptSyncAndExpectSuccess('copy', { testDir })
+
+      expect(execGitStatusSync(testDir)).toEqual([
+        ' D gulp/watch.js',
+        ' D gulpfile.js',
+        '?? build/'
       ])
     })
 

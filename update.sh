@@ -117,8 +117,10 @@ copy () {
 		set -x
 
 		# Replace core folders, making sure to remove any old files
-		rm -rvf docs gulp lib
-		cp -Rv "update/docs" "update/gulp" "update/lib" .
+		rm -rvf docs gulp build lib gulpfile.js
+		cp -Rv "update/docs" "update/lib" .
+		[[ -e "update/gulp" ]] && cp -Rv update/gulp .
+		[[ -e "update/build" ]] && cp -Rv update/build .
 
 		# Update core files (copy only the files in the update folder, not files in app/)
 		find "update" -maxdepth 1 \
