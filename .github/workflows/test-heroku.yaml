@@ -16,6 +16,7 @@ jobs:
     - name: Use Node v16
       uses: actions/setup-node@v3
       with:
+        cache: 'npm'
         node-version: '16'
     - run: npm ci
     - run: npm run test:heroku
