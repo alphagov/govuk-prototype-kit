@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 
 // Local dependencies
-const { runTasks } = require('./build/run-tasks')
+const { buildWatchAndServe } = require('./lib/build/build-watch-and-serve')
 
 checkFiles()
 
@@ -24,15 +24,15 @@ if (usageDataConfig.collectUsageData === undefined) {
       usageData.startTracking(usageDataConfig)
     }
 
-    runTasks()
+    buildWatchAndServe()
   })
 } else if (usageDataConfig.collectUsageData === true) {
   // Opted in
   usageData.startTracking(usageDataConfig)
-  runTasks()
+  buildWatchAndServe()
 } else {
   // Opted out
-  runTasks()
+  buildWatchAndServe()
 }
 
 // Warn if node_modules folder doesn't exist

@@ -9,9 +9,9 @@ const request = require('supertest')
 const sass = require('sass')
 
 const app = require('../../server.js')
-const buildConfig = require('../../build/config.json')
+const buildConfig = require('../../lib/build/config.json')
 const utils = require('../../lib/utils')
-const { generateAssets } = require('../../build/run-tasks')
+const { generateAssets } = require('../../lib/build/build-watch-and-serve')
 
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')

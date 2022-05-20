@@ -372,7 +372,7 @@ describe('update.sh', () => {
       const testDir = mktestPrototypeSync('remove-dangling-files')
 
       const updateDir = path.join(testDir, 'update')
-      fs.unlinkSync(path.join(updateDir, 'build', 'config.json'))
+      fs.unlinkSync(path.join(updateDir, 'lib', 'build', 'config.json'))
       fs.unlinkSync(path.join(updateDir, 'docs', 'documentation', 'session.md'))
       fs.unlinkSync(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
       fs.rmdirSync(path.join(updateDir, 'lib', 'v6'))
@@ -380,8 +380,8 @@ describe('update.sh', () => {
       runScriptSyncAndExpectSuccess('copy', { testDir })
 
       expect(execGitStatusSync(testDir)).toEqual([
-        ' D build/config.json',
         ' D docs/documentation/session.md',
+        ' D lib/build/config.json',
         ' D lib/v6/govuk_template_unbranded.html'
       ])
     })
@@ -393,7 +393,7 @@ describe('update.sh', () => {
       fs.writeFileSync(path.join(testDir, 'gulp', 'watch.js'), 'foo')
       fs.writeFileSync(path.join(testDir, 'gulpfile.js'), 'bar')
       child_process.execSync('git add gulp/watch.js gulpfile.js', { cwd: testDir })
-      child_process.execSync('git rm -r build', { cwd: testDir })
+      child_process.execSync('git rm -r lib/build', { cwd: testDir })
       child_process.execSync('git commit -q -m "Ensure gulp files exist"', { cwd: testDir })
 
       runScriptSyncAndExpectSuccess('copy', { testDir })
@@ -401,7 +401,7 @@ describe('update.sh', () => {
       expect(execGitStatusSync(testDir)).toEqual([
         ' D gulp/watch.js',
         ' D gulpfile.js',
-        '?? build/'
+        '?? lib/build/'
       ])
     })
 
