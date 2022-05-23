@@ -1,5 +1,4 @@
 const { waitForApplication } = require('../utils')
-const { hostName } = require('../../config')
 const imageFile = 'larry-the-cat.jpg'
 const cypressImages = 'cypress/fixtures/images'
 const appImages = 'app/assets/images'
@@ -26,7 +25,7 @@ describe('watch image files', () => {
     cy.task('copyFile', { source, target })
 
     cy.task('log', `Requesting ${publicImage}`)
-    cy.request(`${hostName}/${publicImage}`, { timeout: 20000, retryOnStatusCodeFailure: true })
+    cy.request(`/${publicImage}`, { timeout: 20000, retryOnStatusCodeFailure: true })
       .then(response => expect(response.status).to.eq(200))
   })
 })
