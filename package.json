@@ -15,6 +15,7 @@
     "test:integration:edge": "start-server-and-test 3000 'cypress run --browser edge'",
     "test:integration:chrome": "start-server-and-test 3000 'cypress run --browser chrome'",
     "test:integration:electron": "start-server-and-test 3000 'cypress run --browser electron'",
+    "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
     "test": "jest && npm run lint"
   },
   "dependencies": {
