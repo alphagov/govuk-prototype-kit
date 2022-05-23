@@ -7,7 +7,10 @@
     "node": ">=12.0.0 <17.0.0"
   },
   "scripts": {
-    "start": "node start.js",
+    "start": "npm run dev",
+    "build": "node lib/build/generate-assets",
+    "dev": "node start",
+    "serve": "node listen-on-port",
     "lint": "standard",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
