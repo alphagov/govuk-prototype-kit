@@ -2,6 +2,9 @@
 const path = require('path')
 const fs = require('fs')
 
+// Local dependencies
+const { buildWatchAndServe } = require('./lib/build/build-watch-and-serve')
+
 checkFiles()
 
 // Local dependencies
@@ -21,15 +24,15 @@ if (usageDataConfig.collectUsageData === undefined) {
       usageData.startTracking(usageDataConfig)
     }
 
-    runGulp()
+    buildWatchAndServe()
   })
 } else if (usageDataConfig.collectUsageData === true) {
   // Opted in
   usageData.startTracking(usageDataConfig)
-  runGulp()
+  buildWatchAndServe()
 } else {
   // Opted out
-  runGulp()
+  buildWatchAndServe()
 }
 
 // Warn if node_modules folder doesn't exist
@@ -61,19 +64,4 @@ if (!sessionDataDefaultsFileExists) {
 
   fs.createReadStream(path.join(__dirname, '/lib/template.session-data-defaults.js'))
     .pipe(fs.createWriteStream(sessionDataDefaultsFile))
-}
-
-// Run gulp
-function runGulp () {
-  const spawn = require('cross-spawn')
-
-  process.env.FORCE_COLOR = 1
-  var gulp = spawn('node', ['./node_modules/gulp/bin/gulp.js', '--log-level', '-L'])
-  gulp.stdout.pipe(process.stdout)
-  gulp.stderr.pipe(process.stderr)
-  process.stdin.pipe(gulp.stdin)
-
-  gulp.on('exit', function (code) {
-    console.log('gulp exited with code ' + code.toString())
-  })
 }
