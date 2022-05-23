@@ -16,9 +16,6 @@ const waitOn = require('wait-on')
 const fs = require('fs')
 
 const { sleep } = require('../integration/utils')
-const { hostName } = require('../config')
-
-const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [hostName], timeout })
 
 const createFolderForFile = (filepath) => {
   const dir = filepath.substring(0, filepath.lastIndexOf('/'))
@@ -36,6 +33,8 @@ const createFolderForFile = (filepath) => {
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
 
   on('task', {
     copyFile: async ({ source, target, timeout = 2000 }) => {
