@@ -69,6 +69,7 @@
     }
   },
   "jest": {
+    "testPathIgnorePatterns": ["__tests__/spec/utils.js", "/node_modules/"],
     "testRunner": "jest-jasmine2"
   }
 }
