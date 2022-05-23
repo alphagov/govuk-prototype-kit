@@ -26,8 +26,7 @@ describe('release archive', () => {
     expect(archiveFiles).toEqual(expect.arrayContaining([
       'app/',
       'lib/',
-      'gulp/',
-      'gulpfile.js',
+      'lib/build/',
       'listen-on-port.js',
       'server.js',
       'Procfile',
