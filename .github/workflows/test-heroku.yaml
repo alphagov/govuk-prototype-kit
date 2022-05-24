@@ -1,0 +1,21 @@
+name: Test kit on Heroku
+
+on: [push, pull_request]
+
+jobs:
+  test-heroku:
+
+    name: Test
+    runs-on: ubuntu-latest
+
+    env:
+      npm_config_include: 'optional'
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node v16
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16'
+    - run: npm ci
+    - run: npm run test:heroku

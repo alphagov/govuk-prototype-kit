@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 
 // Local dependencies
-const { buildWatchAndServe } = require('./lib/build/build-watch-and-serve')
+const { buildWatchAndServe } = require('./lib/build/tasks')
 
 checkFiles()
 

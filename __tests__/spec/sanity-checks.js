@@ -11,7 +11,7 @@ const sass = require('sass')
 const app = require('../../server.js')
 const buildConfig = require('../../lib/build/config.json')
 const utils = require('../../lib/utils')
-const { generateAssets } = require('../../lib/build/build-watch-and-serve')
+const { generateAssets } = require('../../lib/build/tasks')
 
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
