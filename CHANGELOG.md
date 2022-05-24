@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 12.1.0 (Feature release)
+
 ### New features
 
 - [#1328: Update to GOV.UK Frontend 4.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/1328)
