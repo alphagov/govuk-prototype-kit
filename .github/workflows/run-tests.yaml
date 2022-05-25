@@ -17,6 +17,7 @@ jobs:
 
     env:
       npm_config_include: 'optional'
+      CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
     steps:
     - uses: actions/checkout@v2
