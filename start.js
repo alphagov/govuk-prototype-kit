@@ -5,11 +5,7 @@ const fs = require('fs')
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
 
-checkFiles()
-createSessionDataDefaults()
-buildAndServe()
-
-async function buildAndServe () {
+async function collectDataUsage () {
 // Local dependencies
   const usageData = require('./lib/usage_data')
 
@@ -31,7 +27,6 @@ async function buildAndServe () {
       usageData.startTracking(usageDataConfig)
     }
   }
-  return buildWatchAndServe()
 }
 
 // Warn if node_modules folder doesn't exist
@@ -66,3 +61,10 @@ function createSessionDataDefaults () {
       .pipe(fs.createWriteStream(sessionDataDefaultsFile))
   }
 }
+
+(async () => {
+  checkFiles()
+  createSessionDataDefaults()
+  await collectDataUsage()
+  await buildWatchAndServe()
+})()
