@@ -62,7 +62,7 @@
     "jest": "^27.3.1",
     "standard": "^14.3.3",
     "start-server-and-test": "^1.14.0",
-    "supertest": "^6.1.6",
+    "supertest": "^6.2.3",
     "wait-on": "^6.0.1"
   },
   "standard": {
