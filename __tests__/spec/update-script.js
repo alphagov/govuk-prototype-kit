@@ -157,10 +157,9 @@ describe('update.sh', () => {
     const archivePath = utils.mkReleaseArchiveSync()
     const releaseDir = path.parse(archivePath).name
 
-    // Create a git repo from the new release archive so we can see changes.
-    child_process.execSync(`unzip -q ${archivePath}`, { cwd: fixtureDir })
-    child_process.execSync(`mv ${releaseDir} ${src}`, { cwd: fixtureDir })
+    utils.mkPrototypeSync(src)
 
+    // Create a git repo from the new release archive so we can see changes.
     child_process.execFileSync('git', ['init'], { cwd: src })
     child_process.execFileSync('git', ['config', 'user.email', 'test@example.com'], { cwd: src })
     child_process.execFileSync('git', ['config', 'user.name', 'Jest Tests'], { cwd: src })
