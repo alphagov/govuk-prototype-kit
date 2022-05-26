@@ -9,6 +9,7 @@
   "scripts": {
     "start": "npm run dev",
     "build": "node lib/build/generate-assets",
+    "predev": "node lib/build/check-files",
     "dev": "node start",
     "serve": "node listen-on-port",
     "lint": "standard",
