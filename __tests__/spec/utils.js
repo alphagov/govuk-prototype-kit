@@ -60,7 +60,26 @@ function mkReleaseArchiveSync () {
   return archive
 }
 
+/**
+ * Create a test prototype from the current release archive
+ *
+ * Creates a prototype at `prototypePath`.
+ *
+ * @param {string} prototypePath
+ */
+function mkPrototypeSync (prototypePath) {
+  const archivePath = mkReleaseArchiveSync()
+  const releaseDir = path.parse(archivePath).name
+
+  const parentDir = path.dirname(prototypePath)
+  const name = path.basename(prototypePath)
+
+  child_process.execSync(`unzip -q ${archivePath}`, { cwd: parentDir })
+  child_process.execSync(`mv ${releaseDir} ${name}`, { cwd: parentDir })
+}
+
 module.exports = {
   mkdtempSync,
-  mkReleaseArchiveSync
+  mkReleaseArchiveSync,
+  mkPrototypeSync
 }
