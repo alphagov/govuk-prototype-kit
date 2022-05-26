@@ -16,7 +16,7 @@ describe('npm run start', () => {
 
       expect(() => {
         child_process.execSync('npm run start', { cwd: testDir })
-      }).toThrow('ERROR: Node module folder missing. Try running `npm install`')
+      }).toThrow(/ERROR: Node module folder missing. Try running `npm install`\n$/)
 
       fs.mkdirSync(path.join(testDir, 'node_modules'))
 
