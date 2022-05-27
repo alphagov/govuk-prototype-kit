@@ -1,0 +1,61 @@
+// Based on https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/stylesheets/govuk_publishing_components/components/_contents-list.scss
+// Note - this code for prototype purposes only. It is not production code.
+
+.app-contents-list {
+  // Always render the contents list above a
+  // back to contents link
+  position: relative;
+  margin: 0 0 govuk-spacing(4) 0;
+  z-index: 1;
+  background: govuk-colour("white");
+  box-shadow: 0 20px 15px -10px govuk-colour("white");
+}
+
+.app-contents-list__title {
+  @include govuk-text-colour;
+  @include govuk-font($size: 16, $weight: regular, $line-height: 1.5);
+  margin: 0;
+}
+
+.app-contents-list__list,
+.app-contents-list__nested-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.app-contents-list__list-item {
+  padding-top: govuk-spacing(2);
+  line-height: 1.3;
+  list-style-type: none;
+}
+
+
+.app-contents-list__list,
+.app-contents-list__nested-list {
+  @include govuk-text-colour;
+  @include govuk-font($size: 16);
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.app-contents-list__list-item--dashed {
+  $contents-spacing: govuk-spacing(5);
+  position: relative;
+  padding-left: $contents-spacing;
+  padding-right: $contents-spacing;
+
+  &:before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    width: govuk-spacing(4);
+    overflow: hidden;
+
+    .direction-rtl & {
+      left: auto;
+      right: 0;
+    }
+  }
+}

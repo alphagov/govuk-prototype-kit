@@ -102,10 +102,13 @@ describe('The Prototype Kit', () => {
     })
 
     it('should not expose everything', function (done) {
+      const consoleErrorMock = jest.spyOn(global.console, 'error').mockImplementation()
+
       request(app)
         .get('/govuk/assets/common.js')
         .expect(404)
         .end(function (err, res) {
+          consoleErrorMock.mockRestore()
           if (err) {
             done(err)
           } else {
@@ -139,8 +142,7 @@ describe('The Prototype Kit', () => {
       return new Promise((resolve, reject) => {
         sass.render({
           file,
-          logger: sass.Logger.silent,
-          loadPaths: [path.resolve(__dirname, '..', '..')]
+          quietDeps: true
         }, (err, result) => {
           if (err) {
             reject(err)
