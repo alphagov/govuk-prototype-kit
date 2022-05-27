@@ -3,27 +3,6 @@ title: Publish on the web
 ---
 # Publish on the web (Heroku)
 
-<div class="govuk-inset-text">
-
-## Publishing GOV.UK Prototype Kit to Heroku, April 2022
-
-Following a security incident, Heroku has temporarily stopped GitHub repositories automatically deploying to Heroku or deploying through its dashboard.
-
-For Prototype Kit users this means the integration of prototypes from Heroku to GitHub has been turned off and you may not be able to use your new prototype for user research on Heroku.
-
-### What to do
-
-If you need to deploy on Heroku at the moment, the Prototype Kit team can help you to do this. [Contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
-
-### What happened
-
-Heroku discovered unauthorised access to its GitHub account on 13 April 2022. As a result, it revoked all existing tokens from the Heroku GitHub integration and new OAuth tokens cannot be created until further notice. Heroku continues to investigate the incident.
-[More on the Heroku security notification](https://status.heroku.com/incidents/2413).
-
-</div>
-
-## Publishing on Heroku
-
 Heroku runs your prototype online, the same as it runs on your machine, but available to others at any time. Other similar services are available.
 
 You'll need to have [put your code on GitHub](/docs/github-desktop) to use this guide. If you cannot put your code on GitHub, you can try [publishing to Heroku from the terminal](/docs/publishing-on-heroku-terminal) instead.
