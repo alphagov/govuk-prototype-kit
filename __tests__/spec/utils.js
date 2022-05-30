@@ -37,7 +37,8 @@ function getReleaseVersion () {
  * Return a path to the release archive for the current git index
  *
  * Creates a release archive from the git HEAD for the project we are currently
- * running tests in.
+ * running tests in. This will include uncommitted changes for tracked files, but
+ * not untracked changes.
  *
  * @returns {string}
  */
@@ -51,13 +52,21 @@ function mkReleaseArchiveSync () {
   try {
     fs.accessSync(archive)
   } catch (err) {
-    child_process.execSync(
-      `git archive --prefix=${name}/ --output=${archive} HEAD`,
-      { cwd: repoDir }
-    )
+    _mkReleaseArchiveSync({ archive: archive, prefix: name })
   }
 
   return archive
+}
+
+function _mkReleaseArchiveSync ({ archive, prefix }) {
+  // Create a stash commit so we can include files modified in the worktree in the archive
+  // TODO: this doesn't pick up unstaged files
+  const ref = child_process.execSync('git stash create', { cwd: repoDir, encoding: 'utf8' }) || 'HEAD'
+
+  child_process.execSync(
+    `git archive --worktree-attributes --prefix=${prefix}/ --output=${archive} ${ref}`,
+    { cwd: repoDir }
+  )
 }
 
 /**
