@@ -1,7 +1,10 @@
+const path = require('path')
+
 const { waitForApplication } = require('../utils')
+
 const imageFile = 'larry-the-cat.jpg'
-const cypressImages = 'cypress/fixtures/images'
-const appImages = 'app/assets/images'
+const cypressImages = path.join(Cypress.config('fixturesFolder'), 'images')
+const appImages = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'images')
 const publicImages = 'public/images'
 
 describe('watch image files', () => {
@@ -11,14 +14,14 @@ describe('watch image files', () => {
 
   afterEach(() => {
     // delete temporary files
-    cy.task('deleteFile', { filename: `${publicImages}/${imageFile}` })
+    cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), publicImages, imageFile) })
     cy.wait(2000)
-    cy.task('deleteFile', { filename: `${appImages}/${imageFile}` })
+    cy.task('deleteFile', { filename: path.join(appImages, imageFile) })
   })
 
   it(`image created in ${appImages} should be copied to ${publicImages} and accessible from the browser`, () => {
-    const source = `${cypressImages}/${imageFile}`
-    const target = `${appImages}/${imageFile}`
+    const source = path.join(cypressImages, imageFile)
+    const target = path.join(appImages, imageFile)
     const publicImage = `${publicImages}/${imageFile}`
 
     cy.task('log', `Copying ${source} to ${target}`)
