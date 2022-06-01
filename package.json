@@ -7,10 +7,8 @@
     "node": ">=12.0.0 <17.0.0"
   },
   "scripts": {
-    "start": "npm run dev",
+    "start": "node start",
     "build": "node lib/build/generate-assets",
-    "predev": "node lib/build/check-files",
-    "dev": "node start",
     "serve": "node listen-on-port",
     "lint": "standard",
     "rapidtest": "jest --bail",
