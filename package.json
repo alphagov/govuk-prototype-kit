@@ -75,7 +75,8 @@
   "jest": {
     "testPathIgnorePatterns": [
       "__tests__/spec/utils.js",
-      "/node_modules/"
+      "/node_modules/",
+      "/tmp/"
     ],
     "testRunner": "jest-jasmine2"
   }

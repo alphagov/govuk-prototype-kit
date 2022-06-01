@@ -16,3 +16,4 @@ node_modules/
 /cypress/downloads
 /cypress/support
 /cypress/temp
+tmp/
