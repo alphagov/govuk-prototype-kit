@@ -1,10 +1,13 @@
+const path = require('path')
+
 const { waitForApplication } = require('../utils')
-const appStyles = 'app/assets/sass'
-const appStylesheet = `${appStyles}/application.scss`
+
+const appStyles = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'sass')
+const appStylesheet = path.join(appStyles, 'application.scss')
 const cypressTestStyles = 'cypress-test'
 const cypressTestStylePattern = `${appStyles}/patterns/_${cypressTestStyles}.scss`
 const publicStylesheet = 'public/stylesheets/application.css'
-const backupAppStylesheet = 'cypress/temp/temp-application.scss'
+const backupAppStylesheet = path.join(Cypress.env('tempFolder'), 'temp-application.scss')
 
 describe('watch sass files', () => {
   describe(`sass file ${cypressTestStylePattern} should be created and included within the ${appStylesheet} and accessible from the browser as /${publicStylesheet}`, () => {

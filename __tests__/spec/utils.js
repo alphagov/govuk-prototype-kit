@@ -40,12 +40,15 @@ function getReleaseVersion () {
  * running tests in. This will include uncommitted changes for tracked files, but
  * not untracked changes.
  *
- * @returns {string}
+ * @param {Object} [options]
+ * @param {string} [options.archiveType=zip] - The type of archive to make, tar or zip
+ * @param {string} [options.dir] - The folder to place the archive in, by default is a fixture folder in the temporary directory
+ * @returns {string} - The absolute path to the archive
  */
-function mkReleaseArchiveSync () {
-  const dir = path.join(mkdtempSync(), '__fixtures__')
+function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
+  dir = dir || path.join(mkdtempSync(), '__fixtures__')
   const name = `govuk-prototype-kit-${getReleaseVersion()}`
-  const archive = path.format({ dir, name, ext: '.zip' })
+  const archive = path.format({ dir, name, ext: '.' + archiveType })
 
   fs.mkdirSync(dir, { recursive: true })
 
@@ -75,13 +78,25 @@ function _mkReleaseArchiveSync ({ archive, prefix }) {
  * Creates a prototype at `prototypePath`.
  *
  * @param {string} prototypePath
+ * @param {Object} [options]
+ * @param {string} [options.archivePath] - Path to archive to use to create prototype, if not provided uses mkReleaseArchiveSync
+ * @returns {void}
  */
-function mkPrototypeSync (prototypePath) {
-  const archivePath = mkReleaseArchiveSync()
+function mkPrototypeSync (prototypePath, { archivePath } = {}) {
+  if (fs.existsSync(prototypePath)) {
+    const err = new Error(`path already exists '${prototypePath}'`)
+    err.path = prototypePath
+    err.code = 'EEXIST'
+    throw err
+  }
+
+  archivePath = archivePath || mkReleaseArchiveSync()
   const releaseDir = path.parse(archivePath).name
 
   const parentDir = path.dirname(prototypePath)
   const name = path.basename(prototypePath)
+
+  fs.mkdirSync(parentDir, { recursive: true })
 
   child_process.execSync(`unzip -q ${archivePath}`, { cwd: parentDir })
   child_process.execSync(`mv ${releaseDir} ${name}`, { cwd: parentDir })

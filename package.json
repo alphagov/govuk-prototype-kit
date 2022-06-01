@@ -14,10 +14,7 @@
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
     "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",
-    "test:integration": "start-server-and-test 3000 'cypress run'",
-    "test:integration:edge": "start-server-and-test 3000 'cypress run --browser edge'",
-    "test:integration:chrome": "start-server-and-test 3000 'cypress run --browser chrome'",
-    "test:integration:electron": "start-server-and-test 3000 'cypress run --browser electron'",
+    "test:integration": "KIT_TEST_DIR=tmp/test-prototype start-server-and-test 'node cypress/scripts/run-from-release' 3000 'cypress run'",
     "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
     "test": "jest && npm run lint"
   },
@@ -75,7 +72,8 @@
   "jest": {
     "testPathIgnorePatterns": [
       "__tests__/spec/utils.js",
-      "/node_modules/"
+      "/node_modules/",
+      "/tmp/"
     ],
     "testRunner": "jest-jasmine2"
   }

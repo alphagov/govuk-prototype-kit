@@ -1,7 +1,9 @@
-import { waitForApplication } from '../utils'
+const path = require('path')
 
-const templatesView = 'docs/views/templates/start.html'
-const appView = 'app/views/start.html'
+const { waitForApplication } = require('../utils')
+
+const templatesView = path.join(Cypress.env('projectFolder'), 'docs', 'views', 'templates', 'start.html')
+const appView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'start.html')
 const pagePath = '/start'
 
 describe('watching start page', () => {
