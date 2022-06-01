@@ -19,6 +19,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
 
+    defaults:
+      run:
+        shell: bash
+
     env:
       npm_config_include: 'optional'
       CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
