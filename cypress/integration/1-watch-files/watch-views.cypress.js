@@ -2,7 +2,7 @@ const path = require('path')
 
 const { waitForApplication } = require('../utils')
 
-const templatesView = path.join(Cypress.env('projectFolder'), 'docs', 'views', 'templates', 'start.html')
+const templatesView = path.join(Cypress.env('packageFolder') || Cypress.env('projectFolder'), 'docs', 'views', 'templates', 'start.html')
 const appView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'start.html')
 const pagePath = '/start'
 

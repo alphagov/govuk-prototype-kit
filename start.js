@@ -6,11 +6,9 @@ const fs = require('fs')
 const checkFiles = require('./lib/build/check-files').checkFiles
 checkFiles()
 
-// External dependencies
-const fse = require('fs-extra')
-
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
+const { projectDir } = require('./lib/utils')
 
 async function collectDataUsage () {
 // Local dependencies
@@ -38,16 +36,14 @@ async function collectDataUsage () {
 
 function createSessionDataDefaults () {
 // Create template session data defaults file if it doesn't exist
-  const dataDirectory = path.join('.', '/app/data')
+  const dataDirectory = path.join(projectDir, '/app/data')
   const sessionDataDefaultsFile = path.join(dataDirectory, '/session-data-defaults.js')
   const sessionDataDefaultsFileExists = fs.existsSync(sessionDataDefaultsFile)
 
   if (!sessionDataDefaultsFileExists) {
     console.log('Creating session data defaults file')
     if (!fs.existsSync(dataDirectory)) {
-      fs.mkdirSync(dataDirectory, {
-        recursive: true
-      })
+      fs.mkdirSync(dataDirectory)
     }
 
     fs.createReadStream(path.join(__dirname, '/lib/template.session-data-defaults.js'))
@@ -55,23 +51,7 @@ function createSessionDataDefaults () {
   }
 }
 
-function ensureAppExits () {
-  const srcDir = path.join(__dirname, 'app')
-  const destDir = path.join('.', 'app')
-
-  if (!fs.existsSync(destDir)) {
-    fs.mkdirSync(destDir, {
-      recursive: true
-    })
-
-    fse.copySync(srcDir, destDir, {
-      overwrite: true
-    })
-  }
-}
-
 (async () => {
-  ensureAppExits()
   createSessionDataDefaults()
   await collectDataUsage()
   await buildWatchAndServe()

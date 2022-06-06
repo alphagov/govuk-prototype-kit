@@ -39,10 +39,19 @@ module.exports = (on, config) => {
   config.env.projectFolder = process.env.KIT_TEST_DIR || process.cwd()
   config.env.tempFolder = path.join(__dirname, '..', 'temp')
 
+  const packagePath = path.join(config.env.projectFolder, 'package.json')
+  const packageContent = fs.readFileSync(packagePath, 'utf8')
+  const packageObject = JSON.parse(packageContent)
+  const dependencies = packageObject.dependencies || {}
+
+  if ('govuk-prototype-kit' in dependencies) {
+    config.env.packageFolder = path.join(config.env.projectFolder, 'node_modules', 'govuk-prototype-kit')
+  }
+
   const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
 
   on('task', {
-    copyFile: async ({ source, target, timeout = 2000 }) => {
+    copyFile: async ({ source, target }) => {
       try {
         createFolderForFile(target)
         fs.copyFileSync(source, target)
