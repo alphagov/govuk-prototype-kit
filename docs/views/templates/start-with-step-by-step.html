@@ -1,20 +1,28 @@
-{% extends "layout.html" %} {% block pageTitle %} Start page with step by step template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
-<!-- Blank header with no service name for the start page -->
-{{ govukHeader() }} {% endblock %} {% block pageScripts %}
-<script src="/public/javascripts/step-by-step-nav.js"></script>
-<script type="text/javascript">
-  var $element = $('#step-by-step-navigation')
-  var stepByStepNavigation = new GOVUK.Modules.AppStepNav()
-  stepByStepNavigation.start($element)
-</script>
-{% endblock %} {% block beforeContent %}
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Start page with step by step navigation template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/extension-assets/govuk-prototype-kit-step-by-step/javascripts/step-by-step-nav.js"></script>
+  <script type="text/javascript">
+    var $element = $('#step-by-step-navigation')
+    var stepByStepNavigation = new GOVUK.Modules.AppStepNav()
+    stepByStepNavigation.start($element)
+  </script>
+{% endblock %}
+
+{% block beforeContent %}
 <div class="app-step-nav-header">
   <span class="app-step-nav-header__part-of">Part of</span>
   <a class="app-step-nav-header__title" href="#">
     Learn to drive a car: step by step
   </a>
 </div>
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
