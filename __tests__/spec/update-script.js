@@ -35,7 +35,7 @@ const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.e
  * Throws an error if the spawn fails, but does not throw an error if the
  * return status of the script or function is non-zero.
  */
-function runScriptSync (fnName, options) {
+function runScriptSync (fnName = undefined, options) {
   if (typeof fnName === 'object') {
     options = fnName
     fnName = undefined
@@ -63,10 +63,15 @@ function runScriptSync (fnName, options) {
   return ret
 }
 
-function runScriptSyncAndExpectSuccess (fnName, options) {
+function runScriptSyncAndExpectSuccess (fnName = undefined, options) {
+  if (typeof fnName === 'object') {
+    options = fnName
+    fnName = undefined
+  }
+
   const ret = runScriptSync(fnName, options)
   if (ret.status !== 0) {
-    throw new Error(`update.sh in ${path.join(process.cwd(), options.testDir)} failed with status ${ret.status}:\n${ret.stderr}`)
+    throw new Error(`update.sh in ${path.resolve(options.testDir)} failed with status ${ret.status}:\n${ret.stderr}`)
   }
   return ret
 }
