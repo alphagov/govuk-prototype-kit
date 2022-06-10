@@ -320,27 +320,18 @@ describe('update.sh', () => {
 
   describe('fetch', () => {
     it('downloads the latest release of the prototype kit into the update folder', async () => {
-      // check what GitHub thinks the latest release archive is
-      const req = request
-        .get('https://api.github.com/repos/alphagov/govuk-prototype-kit/releases/latest')
-        .set('user-agent', 'node-superagent (tests for govuk-prototype-kit)')
-
-      if (process.env.GITHUB_TOKEN) req.set('authorization', `Bearer ${process.env.GITHUB_TOKEN}`)
-
-      const res = await req
-      if (res.error) throw res.error
-
-      const latestRelease = res.body
-      const latestReleaseVersion = latestRelease.tag_name.trim().slice(1) // need to drop the prefix 'v'
-      const latestReleaseArchiveFilename = `govuk-prototype-kit-${latestReleaseVersion}.zip`
-
       const testDir = 'fetch'
       fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
 
-      runScriptSyncAndExpectSuccess('fetch', { testDir })
+      const ret = runScriptSyncAndExpectSuccess('fetch', { testDir, trace: true })
 
-      fs.accessSync(path.join(testDir, 'update'))
-      fs.accessSync(path.join(testDir, 'update', latestReleaseArchiveFilename))
+      expect(ret.trace).toEqual(expect.arrayContaining([
+        expect.stringMatching('curl( -[LJO]*)? https://govuk-prototype-kit.herokuapp.com/docs/download')
+      ]))
+
+      expect(fs.readdirSync(path.join(testDir, 'update'))).toEqual([
+        expect.stringMatching(/govuk-prototype-kit-\d+\.\d+\.\d+\.zip/)
+      ])
     })
   })
 
