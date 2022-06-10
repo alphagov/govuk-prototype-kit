@@ -8,6 +8,7 @@ checkFiles()
 
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
+const { projectDir } = require('./lib/utils')
 
 async function collectDataUsage () {
 // Local dependencies
@@ -35,7 +36,7 @@ async function collectDataUsage () {
 
 function createSessionDataDefaults () {
 // Create template session data defaults file if it doesn't exist
-  const dataDirectory = path.join(__dirname, '/app/data')
+  const dataDirectory = path.join(projectDir, '/app/data')
   const sessionDataDefaultsFile = path.join(dataDirectory, '/session-data-defaults.js')
   const sessionDataDefaultsFileExists = fs.existsSync(sessionDataDefaultsFile)
 

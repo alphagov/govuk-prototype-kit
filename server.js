@@ -24,9 +24,10 @@ const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
 const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
-const routes = require('./app/routes.js')
+const routes = require(`${process.cwd()}/app/routes.js`)
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
+const { projectDir } = require('./lib/utils')
 
 // Variables for v6 backwards compatibility
 // Set false by default, then turn on if we find /app/v6/routes.js
@@ -118,8 +119,8 @@ middleware.forEach(func => app.use(func))
 
 // Set up App
 var appViews = extensions.getAppViews([
-  path.join(__dirname, '/app/views/'),
-  path.join(__dirname, '/lib/')
+  path.join(projectDir, '/app/views/'),
+  path.join(projectDir, '/lib/')
 ])
 
 var nunjucksConfig = {
@@ -143,7 +144,7 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/public', express.static(path.join(__dirname, '/public')))
+app.use('/public', express.static(path.join(projectDir, '/public')))
 
 // Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))

@@ -6,6 +6,7 @@ const process = require('process')
 const request = require('superagent')
 
 const utils = require('./utils')
+const fse = require('fs-extra')
 
 /*
  * Constants
@@ -203,8 +204,10 @@ describe('update.sh', () => {
     process.chdir(tmpDir)
     console.log('Running tests in temporary directory', process.cwd())
 
-    // setup fixtures - running this now saves time later
-    fs.mkdirSync(fixtureDir)
+    // setup fixtures
+    // - running this now saves time later
+    // - ensureDirSync is used to prevent a failure where the fixtureDir already exists from a previous test
+    fse.ensureDirSync(fixtureDir)
     mktestArchiveSync()
     mktestPrototypeSync()
   })
