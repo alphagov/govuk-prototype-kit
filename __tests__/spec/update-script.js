@@ -3,7 +3,8 @@ const child_process = require('child_process') // eslint-disable-line camelcase
 const fs = require('fs')
 const path = require('path')
 const process = require('process')
-const request = require('superagent')
+
+const _ = require('lodash')
 
 const utils = require('./utils')
 const fse = require('fs-extra')
@@ -33,6 +34,12 @@ const bash = process.platform === 'win32' ? 'C:\\Program Files\\Git\\bin\\bash.e
  * runScriptSync({ testDir: 'example' })  // runs `update.sh` in directory `example`
  * runScriptSync('extract', { testDir: 'example' })  // runs `source update.sh && extract` in directory `example`
  *
+ * Returns an object with output of `stdout`, `stderr`, and exit code in `status`.
+ *
+ * If the option `trace` is true, then the return object will also have an
+ * array of strings `trace` which lists the commands called by the scripts (see
+ * the bash man page and the option xtrace).
+ *
  * Throws an error if the spawn fails, but does not throw an error if the
  * return status of the script or function is non-zero.
  */
@@ -45,7 +52,8 @@ function runScriptSync (fnName, options) {
   const opts = {
     ...options,
     cwd: options.testDir,
-    encoding: 'utf8'
+    encoding: 'utf8',
+    env: { LANG: process.env.LANG, PATH: process.env.PATH, ...(options.env || {}) }
   }
 
   let args
@@ -56,7 +64,25 @@ function runScriptSync (fnName, options) {
     args = [script]
   }
 
+  if (options.trace) {
+    args.unshift('-x')
+    opts.env.PS4 = '+xtrace '
+  }
+
   const ret = child_process.spawnSync(bash, args, opts)
+
+  if (options.trace) {
+    // split the trace lines out from stderr
+    let { stderr, trace } = _.groupBy(
+      ret.stderr.split(/(^\++xtrace [^\n]+)\n/m),
+      (line) => /^\++xtrace [^\n]+/.test(line) ? 'trace' : 'stderr'
+    )
+    stderr = stderr.join('')
+    trace = trace.map((line) => line.replace(/^(\++)xtrace /, '$1 '))
+    ret.stderr = stderr
+    ret.trace = trace
+  }
+
   if (ret.error) {
     throw (ret.error)
   }
@@ -297,27 +323,18 @@ describe('update.sh', () => {
 
   describe('fetch', () => {
     it('downloads the latest release of the prototype kit into the update folder', async () => {
-      // check what GitHub thinks the latest release archive is
-      const req = request
-        .get('https://api.github.com/repos/alphagov/govuk-prototype-kit/releases/latest')
-        .set('user-agent', 'node-superagent (tests for govuk-prototype-kit)')
-
-      if (process.env.GITHUB_TOKEN) req.set('authorization', `Bearer ${process.env.GITHUB_TOKEN}`)
-
-      const res = await req
-      if (res.error) throw res.error
-
-      const latestRelease = res.body
-      const latestReleaseVersion = latestRelease.tag_name.trim().slice(1) // need to drop the prefix 'v'
-      const latestReleaseArchiveFilename = `govuk-prototype-kit-${latestReleaseVersion}.zip`
-
       const testDir = 'fetch'
       fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
 
-      runScriptSyncAndExpectSuccess('fetch', { testDir })
+      const ret = runScriptSyncAndExpectSuccess('fetch', { testDir, trace: true })
 
-      fs.accessSync(path.join(testDir, 'update'))
-      fs.accessSync(path.join(testDir, 'update', latestReleaseArchiveFilename))
+      expect(ret.trace).toEqual(expect.arrayContaining([
+        expect.stringMatching('curl( -[LJO]*)? https://govuk-prototype-kit.herokuapp.com/docs/download')
+      ]))
+
+      expect(fs.readdirSync(path.join(testDir, 'update'))).toEqual([
+        expect.stringMatching(/govuk-prototype-kit-\d+\.\d+\.\d+\.zip/)
+      ])
     })
   })
 
