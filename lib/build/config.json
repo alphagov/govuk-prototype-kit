@@ -3,6 +3,7 @@
     "public": "public",
     "cypress": "cypress",
     "assets" : "app/assets",
+    "libAssets" : "lib/assets",
     "v6Assets": "app/v6/assets",
     "nodeModules": "node_modules",
     "lib": "lib"
