@@ -85,6 +85,20 @@ extract () {
 	cd ..
 }
 
+# Patch files that may have been changed by user, such as package.json
+merge () {
+	OLD_VERSION="$(cat VERSION.txt)"
+	OLD_PACKAGE_JSON=/tmp/govuk-prototype-kit-${OLD_VERSION}-package.json
+
+	curl -sf https://raw.githubusercontent.com/alphagov/govuk-prototype-kit/v${OLD_VERSION}/package.json > $OLD_PACKAGE_JSON || return
+
+	if ! cmp package.json ${OLD_PACKAGE_JSON} > /dev/null; then
+		echo package.json has been changed, patching new version...
+		diff3 -e -m package.json ${OLD_PACKAGE_JSON} update/package.json > update/package.json.MERGED
+		mv update/package.json.MERGED update/package.json
+	fi
+}
+
 # Copy 'core files' from the update folder into the current prototype folder
 copy () {
 	OLD_VERSION="$(cat VERSION.txt)"
@@ -164,5 +178,6 @@ then
 	prepare
 	fetch
 	extract
+	merge
 	copy
 fi

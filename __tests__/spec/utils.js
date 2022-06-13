@@ -43,11 +43,12 @@ function getReleaseVersion () {
  * @param {Object} [options]
  * @param {string} [options.archiveType=zip] - The type of archive to make, tar or zip
  * @param {string} [options.dir] - The folder to place the archive in, by default is a fixture folder in the temporary directory
+ * @param {string} [options.ref] - The branch or tag to archive, defaults to the working directory
  * @returns {string} - The absolute path to the archive
  */
-function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
+function mkReleaseArchiveSync ({ archiveType = 'zip', dir, ref } = {}) {
   dir = dir || path.join(mkdtempSync(), '__fixtures__')
-  const name = `govuk-prototype-kit-${getReleaseVersion()}`
+  const name = `govuk-prototype-kit-${ref || getReleaseVersion()}`
   const archive = path.format({ dir, name, ext: '.' + archiveType })
 
   fs.mkdirSync(dir, { recursive: true })
@@ -55,16 +56,18 @@ function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
   try {
     fs.accessSync(archive)
   } catch (err) {
-    _mkReleaseArchiveSync({ archive: archive, prefix: name })
+    _mkReleaseArchiveSync({ archive: archive, prefix: name, ref: ref })
   }
 
   return archive
 }
 
-function _mkReleaseArchiveSync ({ archive, prefix }) {
-  // Create a stash commit so we can include files modified in the worktree in the archive
-  // TODO: this doesn't pick up unstaged files
-  const ref = child_process.execSync('git stash create', { cwd: repoDir, encoding: 'utf8' }) || 'HEAD'
+function _mkReleaseArchiveSync ({ archive, prefix, ref }) {
+  if (ref === undefined) {
+    // Create a stash commit so we can include files modified in the worktree in the archive
+    // TODO: this doesn't pick up unstaged files
+    ref = child_process.execSync('git stash create', { cwd: repoDir, encoding: 'utf8' }) || 'HEAD'
+  }
 
   child_process.execSync(
     `git archive --worktree-attributes --prefix=${prefix}/ --output=${archive} ${ref}`,

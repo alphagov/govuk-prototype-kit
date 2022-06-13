@@ -184,12 +184,12 @@ describe('update.sh', () => {
     }
   }
 
-  function _mktestPrototypeSync (src) {
-    // Create a release archive from the HEAD we are running tests in
-    const archivePath = utils.mkReleaseArchiveSync()
+  function _mktestPrototypeSync (src, { ref } = {}) {
+    // Create a release archive from a ref, or the HEAD we are running tests in
+    const archivePath = utils.mkReleaseArchiveSync({ ref })
     const releaseDir = path.parse(archivePath).name
 
-    utils.mkPrototypeSync(src)
+    utils.mkPrototypeSync(src, { archivePath })
 
     // Create a git repo from the new release archive so we can see changes.
     child_process.execFileSync('git', ['init'], { cwd: src })
@@ -215,12 +215,12 @@ describe('update.sh', () => {
     fs.copyFileSync(archivePath, path.join(src, 'update', path.basename(archivePath)))
   }
 
-  function mktestPrototypeSync (dest) {
+  function mktestPrototypeSync (dest, options = {}) {
     const src = path.resolve(fixtureDir, 'prototype')
     try {
       fs.accessSync(src)
     } catch (error) {
-      _mktestPrototypeSync(src)
+      _mktestPrototypeSync(src, options)
     }
 
     if (dest) {
@@ -361,6 +361,36 @@ describe('update.sh', () => {
       expect(() => {
         fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-foo', 'foo'))
       }).toThrow()
+    })
+  })
+
+  describe.only('merge', () => {
+    it('keeps packages a user has added to package.json', () => {
+      const testDir = mktestPrototypeSync('mergePackageJson', { ref: 'v12.0.0' })
+
+      child_process.execSync('npm install --save foobar@1.0.0', { cwd: testDir })
+
+      runScriptSyncAndExpectSuccess('merge', { testDir })
+
+      // only differences between our package.json and test should be the foobar package
+      expect(
+        child_process.spawnSync('diff', [path.join(repoDir, 'package.json'), path.join(testDir, 'package.json')], { encoding: 'utf8' }).stdout
+      ).toEqual('35a36\n>     "foobar": "^1.0.0",\n')
+    })
+
+    it('removes packages we have removed even if the user has updated it', () => {
+      const testDir = mktestPrototypeSync('mergePackageJsonWithDeletion', { ref: 'v12.0.0' })
+
+      let packageJson = fs.readFileSync(path.join(testDir, 'package.json'), { encoding: 'utf8' })
+      packageJson = packageJson.replace(/("gulp-sass"): "^5.0.0"/, '$1: "^5.1.0"')
+      fs.writeFileSync(path.join(testDir, 'package.json'), packageJson, { encoding: 'utf8' })
+
+      runScriptSyncAndExpectSuccess('merge', { testDir })
+
+      // there should be no differences between our package.json and test
+      expect(
+        child_process.spawnSync('diff', [path.join(repoDir, 'package.json'), path.join(testDir, 'package.json')], { encoding: 'utf8' })
+      ).toEqual(expect.objectContaining({ status: 0 }))
     })
   })
 
