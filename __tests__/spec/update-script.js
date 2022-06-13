@@ -426,13 +426,14 @@ describe('update.sh', () => {
       const testDir = mktestPrototypeSync('preserve-app-folder')
 
       const updateDir = path.join(testDir, 'update')
+      fs.mkdirSync(path.join(updateDir, 'app', 'assets', 'sass', 'patterns'))
       fs.writeFileSync(path.join(updateDir, 'app', 'assets', 'sass', 'patterns', '_task-list.scss'), 'foobar')
       fs.writeFileSync(path.join(updateDir, 'app', 'routes.js'), 'arglebargle')
 
       runScriptSyncAndExpectSuccess('copy', { testDir })
 
       expect(execGitStatusSync(testDir)).toEqual([
-        ' M app/assets/sass/patterns/_task-list.scss'
+        '?? app/assets/sass/patterns/'
       ])
     })
 

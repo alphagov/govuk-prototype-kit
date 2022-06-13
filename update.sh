@@ -130,7 +130,9 @@ copy () {
 		| xargs -0 -I % cp -v % .
 
 		# copy any new patterns
-		cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
+		if [ -d "update/app/assets/sass/patterns" ]; then
+		  cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
+		fi
 
 		# copy unbranded layout - needed for the password page
 		cp -v "update/app/views/layout_unbranded.html" "app/views/"
@@ -158,6 +160,13 @@ copy () {
 	update_gitignore
 }
 
+post () {
+  # execute update-kit if it exists in the update folder
+  if [ -d "update/lib/update-kit" ]; then
+    node "update/lib/update-kit"
+  fi
+}
+
 if [ "$0" == "${BASH_SOURCE:-$0}" ]
 then
 	check
@@ -165,4 +174,5 @@ then
 	fetch
 	extract
 	copy
+	post
 fi

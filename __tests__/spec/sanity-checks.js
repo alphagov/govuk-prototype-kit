@@ -140,9 +140,9 @@ describe('The Prototype Kit', () => {
     })
   })
 
-  const sassFiles = glob.sync(buildConfig.paths.assets + '/sass/*.scss')
+  const sassFiles = glob.sync(buildConfig.paths.libAssets + '/sass/*.scss')
 
-  describe(`${buildConfig.paths.assets}sass/`, () => {
+  describe(`${buildConfig.paths.assets}/sass/`, () => {
     it.each(sassFiles)('%s renders to CSS without errors', async (file) => {
       return new Promise((resolve, reject) => {
         sass.render({
