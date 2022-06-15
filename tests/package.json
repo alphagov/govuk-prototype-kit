@@ -2,7 +2,7 @@
   "name": "@govuk-prototype-kit/tests",
   "private": true,
   "scripts": {
-    "lint": "standard",
+    "lint": "cd .. && standard --plugins cypress",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
     "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",

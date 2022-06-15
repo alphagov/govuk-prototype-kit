@@ -1,3 +1,5 @@
+/* eslint-env cypress/globals */
+
 const path = require('path')
 
 const { waitForApplication } = require('../utils')
