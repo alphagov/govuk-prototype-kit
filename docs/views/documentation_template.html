@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-{{ title or "Documentation" }} – GOV.UK Prototype Kit
+{{ (title or header) or "Documentation" }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,6 +22,12 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {% if caption %}
+          <span class="govuk-caption-l">{{ caption }}</span>
+        {% endif %}
+        {{header}}
+      </h1>
       <div class="app-prose-scope">
         {{document | safe}}
       </div>
