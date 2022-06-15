@@ -12,9 +12,6 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
 
-    env:
-      npm_config_include: 'optional'
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node v16
@@ -23,4 +20,7 @@ jobs:
         cache: 'npm'
         node-version: '16'
     - run: npm ci
+    - run: npm ci
+      working-directory: tests/
     - run: npm run test:heroku
+      working-directory: tests/

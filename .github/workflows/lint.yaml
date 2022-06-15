@@ -11,9 +11,6 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
 
-    env:
-      npm_config_include: 'optional'
-
     steps:
       - uses: actions/checkout@v2
 
@@ -23,5 +20,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - run: npm install --omit=production
+        working-directory: tests/
 
       - run: npm run lint
+        working-directory: tests/
