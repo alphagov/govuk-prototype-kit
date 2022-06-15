@@ -42,7 +42,7 @@ We're unable to monitor activity on this repository outside of our office hours 
 
 ### Running tests
 
-By default, the prototype kit does not install development dependencies. If you want to run tests, you will need to run `npm install --include=optional` first.
+By default, the prototype kit does not install development dependencies. If you want to run tests, you will need to run change directory to the `tests` folder and run `npm install` there.
 
 ### Security
 

@@ -1,10 +1,7 @@
 # dont include the following files in the zip
 .gitattributes export-ignore
 .github export-ignore
-__tests__ export-ignore
-*.test.js export-ignore
-cypress export-ignore
-cypress.json export-ignore
+tests export-ignore
 app.json export-ignore
 CHANGELOG.md export-ignore
 CONTRIBUTING.md export-ignore

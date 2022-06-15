@@ -1,0 +1,5 @@
+/cypress/videos
+/cypress/screenshots
+/cypress/downloads
+/cypress/support
+/cypress/temp

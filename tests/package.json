@@ -1,0 +1,42 @@
+{
+  "name": "@govuk-prototype-kit/tests",
+  "private": true,
+  "scripts": {
+    "lint": "standard",
+    "rapidtest": "jest --bail",
+    "cypress:open": "cypress open",
+    "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",
+    "test:integration": "KIT_TEST_DIR=tmp/test-prototype start-server-and-test 'node cypress/scripts/run-from-release' 3000 'cypress run'",
+    "test:integration:package": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-as-package' 3000 'cypress run'",
+    "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
+    "test": "jest && npm run lint"
+  },
+  "dependencies": {
+     "govuk-prototype-kit": "file:.."
+  },
+  "devDependencies": {
+    "cypress": "^9.6.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "glob": "^7.1.4",
+    "jest": "^27.3.1",
+    "standard": "^14.3.3",
+    "start-server-and-test": "^1.14.0",
+    "supertest": "^6.2.3",
+    "wait-on": "^6.0.1"
+  },
+  "standard": {
+    "plugins": [
+      "cypress"
+    ],
+    "env": {
+      "cypress/globals": true
+    }
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "__tests__/spec/utils.js",
+      "/node_modules/",
+      "/tmp/"
+    ]
+  }
+}

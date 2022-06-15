@@ -11,10 +11,4 @@ public
 node_modules/
 .tmuxp.*
 .idea
-/cypress-test
-/cypress/videos
-/cypress/screenshots
-/cypress/downloads
-/cypress/support
-/cypress/temp
 tmp/
