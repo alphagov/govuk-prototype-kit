@@ -11,6 +11,9 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
 
+    env:
+      CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
+
     steps:
       - uses: actions/checkout@v2
 
@@ -18,6 +21,12 @@ jobs:
         with:
           cache: 'npm'
           node-version-file: '.nvmrc'
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('tests/package.json') }}
 
       - run: npm install --omit=production
         working-directory: tests/
