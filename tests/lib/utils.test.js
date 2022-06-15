@@ -2,7 +2,7 @@
 
 const nunjucks = require('nunjucks')
 
-const utils = require('./utils.js')
+const utils = require('govuk-prototype-kit/lib/utils.js')
 
 const originalEnvironmentVariables = process.env
 

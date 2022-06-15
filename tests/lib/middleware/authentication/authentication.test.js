@@ -3,8 +3,8 @@
 const url = require('url')
 
 // Local dependencies
-const authentication = require('./authentication')
-const config = require('../../../app/config')
+const authentication = require('govuk-prototype-kit/lib/middleware/authentication/authentication')
+const config = require('govuk-prototype-kit/app/config')
 
 // Local variables
 const userPassword = 'secure-password'
@@ -31,7 +31,7 @@ const originalEnvironmentVariables = process.env
 console.error = jest.fn()
 
 jest.mock('express/lib/response')
-jest.mock('../../../app/config')
+jest.mock('govuk-prototype-kit/app/config')
 
 describe('authentication', () => {
   beforeEach(function () {

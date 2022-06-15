@@ -3,14 +3,17 @@
 // NPM dependencies
 const path = require('path')
 const fs = require('fs')
-const appConfig = require('../../app/config')
+const appConfig = require('govuk-prototype-kit/app/config')
 
 // Local dependencies
-const extensions = require('./extensions.js')
+// TODO: figure out why extensions module needs this workaround
+const rootPath = path.join(__dirname, '..', '..', '..')
+process.chdir(rootPath)
+
+const extensions = require('govuk-prototype-kit/lib/extensions/extensions.js')
 
 // Local variables
-const rootPath = path.join(__dirname, '..', '..')
-const pkg = fs.readFileSync('package.json', 'utf8')
+const pkg = fs.readFileSync(path.join(rootPath, 'package.json'), 'utf8')
 let testScope
 
 // helpers

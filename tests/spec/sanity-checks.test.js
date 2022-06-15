@@ -8,13 +8,16 @@ const glob = require('glob')
 const request = require('supertest')
 const sass = require('sass')
 
-const app = require('../../server.js')
-const buildConfig = require('../../lib/build/config.json')
-const utils = require('../../lib/utils')
-const { generateAssets } = require('../../lib/build/tasks')
+const repoDir = path.join(__dirname, '..', '..')
+process.chdir(repoDir)
+
+const app = require('govuk-prototype-kit/server.js')
+const buildConfig = require('govuk-prototype-kit/lib/build/config.json')
+const utils = require('govuk-prototype-kit/lib/utils')
+const { generateAssets } = require('govuk-prototype-kit/lib/build/tasks')
 
 function readFile (pathFromRoot) {
-  return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
+  return fs.readFileSync(path.join(__dirname, '..', '..', pathFromRoot), 'utf8')
 }
 
 /**
