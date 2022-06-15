@@ -1,5 +1,6 @@
 ---
 header: Update your Prototype Kit
+caption: Update the Prototype Kit
 ---
 
 How to update your prototype and get help from the GOV.UK Prototype Kit team.

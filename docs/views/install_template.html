@@ -1,8 +1,4 @@
-{% extends "layout.html" %}
-
-{% block pageTitle %}
-{{ title }} – GOV.UK Prototype Kit
-{% endblock %}
+{% extends "documentation_template.html" %}
 
 {% block beforeContent %}
 	{{ govukBreadcrumbs({
@@ -17,14 +13,4 @@
 	    }
 	  ]
 	}) }}
-{% endblock %}
-
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div class="app-prose-scope">
-        {{document | safe}}
-      </div>
-    </div>
-  </div>
 {% endblock %}
