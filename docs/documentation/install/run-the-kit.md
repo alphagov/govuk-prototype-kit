@@ -1,8 +1,7 @@
 ---
-title: How to run the kit
+header: How to run the kit
 caption: Installation guide for new users
 ---
-# How to run the kit
 
 You’ll use the terminal to start and stop the kit.
 

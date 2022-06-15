@@ -1,7 +1,6 @@
 ---
-title: Installation guide for advanced users
+header: Installation guide for advanced users
 ---
-# Installation guide for advanced users
 
 The Prototype Kit is built on the [Express framework](http://expressjs.com/), and uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend).
 

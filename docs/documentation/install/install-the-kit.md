@@ -1,8 +1,7 @@
 ---
-title: How to install the kit
+header: How to install the kit
 caption: Installation guide for new users
 ---
-# How to install the kit
 
 ## Download the kit as a zip
 

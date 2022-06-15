@@ -1,7 +1,6 @@
 ---
-title: Store data in session
+header: Store data in session
 ---
-# Store data in session
 
 **Advanced topic**
 

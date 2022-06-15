@@ -1,7 +1,6 @@
 ---
-title: Principles
+header: Principles
 ---
-# Principles
 
 The GOV.UK Prototype Kit:
 

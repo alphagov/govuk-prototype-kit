@@ -1,7 +1,7 @@
 ---
+header: Publish on the web (Heroku) from the terminal
 title: Publish on the web from the terminal
 ---
-# Publish on the web (Heroku) from the terminal
 
 We recommend [using Heroku](http://www.heroku.com) to get your prototype online. It’s simple and fast to deploy new versions as you work.
 

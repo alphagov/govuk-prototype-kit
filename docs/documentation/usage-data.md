@@ -1,7 +1,6 @@
 ---
-title: Share usage data
+header: Share usage data
 ---
-# Share usage data
 
 You can choose to have the Prototype Kit send anonymous usage data for analysis.
 This helps the team working on the Kit understand how it's being used, in order

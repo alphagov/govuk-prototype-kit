@@ -1,8 +1,7 @@
 ---
-title: Let the user change their answers
+header: Let the user change their answers
 caption: Build a basic prototype
 ---
-# Let the user change their answers
 
 ## Make the ‘Change’ links work
 

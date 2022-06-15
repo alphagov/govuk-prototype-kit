@@ -1,8 +1,7 @@
 ---
-title: Link your pages together
+header: Link your pages together
 caption: Build a basic prototype
 ---
-# Link your pages together
 
 To take users from one page to another, you can use either:
 

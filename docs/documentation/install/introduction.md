@@ -1,7 +1,6 @@
 ---
-title: Installation guide for new users
+header: Installation guide for new users
 ---
-# Installation guide for new users
 
 This guide will walk you through installing and getting started with the kit. You don’t need any technical knowledge to follow along. If you get stuck, contact us using the [#prototype-kit channel on cross-government Slack](https://ukgovernmentdigital.slack.com/messages/C0647LW4R/), or if you have a developer on your team, they should be able to help.
 
