@@ -2,6 +2,8 @@
 usage-data-config.json
 # ignore extension SCSS because it's dynamically generated
 lib/extensions/_extensions.scss
+# ignore any release archives
+/govuk-prototype-kit*.zip
 .env
 .sass-cache
 .DS_Store
