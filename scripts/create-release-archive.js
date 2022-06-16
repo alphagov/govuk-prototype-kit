@@ -1,0 +1,182 @@
+#!/usr/bin/env node
+
+const child_process = require('child_process') // eslint-disable-line camelcase
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+
+const packageJsonScriptsInclude = [
+  'start',
+  'build',
+  'serve'
+]
+const repoDir = path.join(__dirname, '..')
+
+function usage () {
+  console.log(`
+Usage:
+    scripts/create-release-archive [REF]
+  `)
+}
+
+function parseArgs (args) {
+  const argv = { _: [] }
+  for (const arg of args) {
+    if (arg === '-h' || arg === '--help') {
+      argv.help = true
+    } else {
+      argv._.push(arg)
+    }
+  }
+  return argv
+}
+
+function cli () {
+  const argv = parseArgs(process.argv.slice(2))
+
+  if (argv.help) {
+    usage()
+    process.exitCode = 0
+    return
+  }
+
+  if (argv._.length > 1) {
+    usage()
+    process.exitCode = 2
+    return
+  }
+
+  const ref = argv.ref || 'HEAD'
+  const version = getReleaseVersion(argv.ref)
+  const newVersion = isNewVersion(version) ? 'new version' : 'version'
+
+  console.log(`Creating release archive for ${newVersion} ${version}`)
+
+  const name = `govuk-prototype-kit-${version}`
+  const releaseArchive = `${name}.zip`
+
+  const repoDir = path.resolve(__dirname, '..')
+  const workdir = fs.mkdtempSync(
+    path.join(os.tmpdir(), `govuk-prototype-kit--release-${version}`)
+  )
+
+  console.log(workdir)
+
+  copyReleaseFiles(repoDir, workdir, { prefix: name, ref: ref })
+
+  // Make the changes we want to make
+  // Currently just removing dev stuff from package.json
+  console.log('Updating package.json')
+  updatePackageJson(path.join(workdir, name, 'package.json'), cleanPackageJson)
+
+  // Create the release archive in the project root
+  zipReleaseFiles({
+    cwd: workdir, file: path.join(repoDir, releaseArchive), prefix: name
+  })
+
+  console.log(`Saved release archive to ${releaseArchive}`)
+
+  // Clean up
+  fs.rmSync(workdir, { force: true, recursive: true })
+}
+
+function updatePackageJson (file, updater) {
+  let pkg
+  pkg = JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }))
+  pkg = updater(pkg)
+  fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + os.EOL, { encoding: 'utf8' })
+  // update package-lock.json to match
+  child_process.execSync('npm install', { cwd: path.dirname(file), encoding: 'utf8', stdio: 'inherit' })
+}
+
+function cleanPackageJson (pkg) {
+  // remove dev dependencies
+  delete pkg.devDependencies
+
+  // remove config for dev dependencies
+  delete pkg.jest
+  delete pkg.standard
+
+  // remove dev scripts
+  pkg.scripts = Object.fromEntries(
+    Object.entries(pkg.scripts)
+      .filter(([name]) => packageJsonScriptsInclude.includes(name))
+  )
+
+  return pkg
+}
+
+function getReleaseVersion (ref) {
+  if (!ref) {
+    const packageVersion = JSON.parse(
+      fs.readFileSync(path.join(repoDir, 'package.json'), { encoding: 'utf8' })
+    ).version
+    if (isNewVersion(packageVersion)) {
+      return packageVersion
+    }
+  }
+
+  ref = ref || 'HEAD'
+
+  const versionString = child_process.execSync(`git describe --tags ${ref}`, { encoding: 'utf8' }).trim()
+  const version = versionString.slice(1) // drop the initial 'v'
+
+  return version
+}
+
+function isNewVersion (version) {
+  return !!child_process.spawnSync(
+    'git', ['rev-parse', `v${version}`]
+  ).status
+}
+
+function copyReleaseFiles (src, dest, { prefix, ref }) {
+  // We are currently using the export-ignore directives in .gitattributes to
+  // decide which files to include in the release archive, so the easiest way
+  // to copy all the release files is `git archive`
+  child_process.execSync(
+    `git archive --format=tar --prefix="${prefix}/" ${ref} | tar -C ${dest} -xf -`,
+    { cwd: src }
+  )
+}
+
+function zipReleaseFiles ({ cwd, file, prefix }) {
+  zipCreate(
+    {
+      cwd: cwd,
+      file: file,
+      exclude: path.join(prefix, 'node_modules', '*')
+    },
+    prefix
+  )
+}
+
+function zipCreate ({ cwd, file, exclude }, files) {
+  files = Array.isArray(files) ? files : [files]
+
+  const zipArgs = ['--exclude', exclude, '-r', file, ...files]
+  const ret = child_process.spawnSync(
+    'zip', zipArgs,
+    { cwd: cwd, encoding: 'utf8', stdio: 'inherit' }
+  )
+
+  if (ret.status !== 0) {
+    // eslint-disable-next-line no-throw-literal
+    throw ['zip', ...zipArgs].join(' \\\n\t') +
+     `\n: Failed with status ${ret.status}`
+  }
+  // insert a blank line for niceness
+  console.log()
+}
+
+// These exports are here only for tests
+module.exports = {
+  cleanPackageJson,
+  updatePackageJson,
+  getReleaseVersion,
+  zipReleaseFiles
+}
+
+if (require.main === module) {
+  cli()
+}
