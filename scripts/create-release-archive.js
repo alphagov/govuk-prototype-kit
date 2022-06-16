@@ -96,7 +96,7 @@ function cli () {
   console.log(`Saved release archive to ${argv.dest ? argv.dest : ''}${releaseArchive}`)
 
   // Clean up
-  fs.rmSync(workdir, { force: true, recursive: true })
+  fs.rmdirSync(workdir, { recursive: true })
 }
 
 function updatePackageJson (file, updater) {
