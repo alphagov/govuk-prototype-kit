@@ -15,15 +15,30 @@ const repoDir = path.join(__dirname, '..')
 function usage () {
   console.log(`
 Usage:
-    scripts/create-release-archive [REF]
+    scripts/create-release-archive [options] [REF]
+
+Options
+    -h, --help
+
+Options (advanced):
+    --destDir DIR
+    --releaseName NAME
   `)
 }
 
 function parseArgs (args) {
   const argv = { _: [] }
-  for (const arg of args) {
+  for (var i = 0; i < args.length; i++) {
+    var arg = args[i]
+
     if (arg === '-h' || arg === '--help') {
       argv.help = true
+    } else if (arg === '--destDir') {
+      i++
+      argv.dest = args[i]
+    } else if (arg === '--releaseName') {
+      i++
+      argv.releaseName = args[i]
     } else {
       argv._.push(arg)
     }
@@ -46,9 +61,13 @@ function cli () {
     return
   }
 
+  if (argv.dest) {
+    fs.mkdirSync(argv.dest, { recursive: true })
+  }
+
   const ref = argv.ref || 'HEAD'
-  const version = getReleaseVersion(argv.ref)
-  const newVersion = isNewVersion(version) ? 'new version' : 'version'
+  const version = argv.releaseName || getReleaseVersion(argv.ref)
+  const newVersion = !argv.releaseName && isNewVersion(version) ? 'new version' : 'version'
 
   console.log(`Creating release archive for ${newVersion} ${version}`)
 
@@ -69,12 +88,12 @@ function cli () {
   console.log('Updating package.json')
   updatePackageJson(path.join(workdir, name, 'package.json'), cleanPackageJson)
 
-  // Create the release archive in the project root
+  // Create the release archive in the project root (or destDir)
   zipReleaseFiles({
-    cwd: workdir, file: path.join(repoDir, releaseArchive), prefix: name
+    cwd: workdir, file: path.join(argv.dest || repoDir, releaseArchive), prefix: name
   })
 
-  console.log(`Saved release archive to ${releaseArchive}`)
+  console.log(`Saved release archive to ${argv.dest ? argv.dest : ''}${releaseArchive}`)
 
   // Clean up
   fs.rmSync(workdir, { force: true, recursive: true })
