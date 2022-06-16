@@ -131,9 +131,17 @@ describe('scripts/create-release-archive', () => {
 
     it('zips release files', () => {
       createReleaseArchive.zipReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
-      expect(mockSpawnSync).toBeCalledWith(
-        'zip', ['--exclude', 'test/node_modules/*', '-r', '/test.zip', 'test'], expect.objectContaining({ cwd: '/tmp' })
-      )
+      if (process.platform === 'win32') {
+        expect(mockSpawnSync).toBeCalledWith(
+          '7z', ['a', '-tzip', '-x!test\\node_modules', '/test.zip', 'test'],
+          expect.objectContaining({ cwd: '/tmp' })
+        )
+      } else {
+        expect(mockSpawnSync).toBeCalledWith(
+          'zip', ['--exclude', 'test/node_modules/*', '-r', '/test.zip', 'test'],
+          expect.objectContaining({ cwd: '/tmp' })
+        )
+      }
     })
   })
 })

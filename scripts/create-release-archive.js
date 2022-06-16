@@ -103,7 +103,8 @@ function updatePackageJson (file, updater) {
   let pkg
   pkg = JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }))
   pkg = updater(pkg)
-  fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + os.EOL, { encoding: 'utf8' })
+  const formattedJson = JSON.stringify(pkg, null, 2).replace(/\n/g, os.EOL) + os.EOL
+  fs.writeFileSync(file, formattedJson, { encoding: 'utf8' })
   // update package-lock.json to match
   child_process.execSync('npm install', { cwd: path.dirname(file), encoding: 'utf8', stdio: 'inherit' })
 }
@@ -173,15 +174,24 @@ function zipReleaseFiles ({ cwd, file, prefix }) {
 function zipCreate ({ cwd, file, exclude }, files) {
   files = Array.isArray(files) ? files : [files]
 
-  const zipArgs = ['--exclude', exclude, '-r', file, ...files]
+  let zipProgram, zipArgs
+
+  if (process.platform === 'win32') {
+    zipProgram = '7z'
+    zipArgs = ['a', '-tzip', `-x!${path.dirname(exclude)}`, file, ...files]
+  } else {
+    zipProgram = 'zip'
+    zipArgs = ['--exclude', exclude, '-r', file, ...files]
+  }
+
   const ret = child_process.spawnSync(
-    'zip', zipArgs,
+    zipProgram, zipArgs,
     { cwd: cwd, encoding: 'utf8', stdio: 'inherit' }
   )
 
   if (ret.status !== 0) {
     // eslint-disable-next-line no-throw-literal
-    throw ['zip', ...zipArgs].join(' \\\n\t') +
+    throw [zipProgram, ...zipArgs].join(' \\\n\t') +
      `\n: Failed with status ${ret.status}`
   }
   // insert a blank line for niceness
