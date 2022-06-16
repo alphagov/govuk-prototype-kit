@@ -8,6 +8,14 @@ const createReleaseArchive = require('./create-release-archive')
 
 const repoDir = path.join(__dirname, '..')
 
+function testFailingIf (condition, ...args) {
+  if (condition) {
+    return test.failing(...args)
+  } else {
+    return test(...args)
+  }
+}
+
 describe('scripts/create-release-archive', () => {
   afterEach(() => {
     jest.restoreAllMocks()
@@ -38,7 +46,8 @@ describe('scripts/create-release-archive', () => {
       )
     })
 
-    it('tells us the version number of the release described by a ref', () => {
+    // this fails on CI because we do a shallow clone
+    testFailingIf(process.env.CI, 'tells us the version number of the release described by a ref', () => {
       expect(
         createReleaseArchive.getReleaseVersion('v12.1.0')
       ).toEqual('12.1.0')
