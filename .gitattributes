@@ -13,3 +13,4 @@ create-release.sh export-ignore
 internal_docs export-ignore
 update.sh export-ignore
 /CODEOWNERS export-ignore
+/scripts export-ignore

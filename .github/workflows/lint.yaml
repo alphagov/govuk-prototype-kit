@@ -11,9 +11,6 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
 
-    env:
-      npm_config_include: 'optional'
-
     steps:
       - uses: actions/checkout@v2
 

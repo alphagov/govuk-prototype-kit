@@ -24,8 +24,6 @@ jobs:
         shell: bash
 
     env:
-      npm_config_include: 'optional'
-      npm_config_optional: 'true'
       CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
     steps:

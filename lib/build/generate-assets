@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { generateAssets } = require('./tasks.js')
 
 generateAssets()

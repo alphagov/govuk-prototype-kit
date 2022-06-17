@@ -67,7 +67,7 @@ function _mkReleaseArchiveSync ({ archive, prefix }) {
   const ref = child_process.execSync('git stash create', { cwd: repoDir, encoding: 'utf8' }) || 'HEAD'
 
   child_process.execSync(
-    `git archive --worktree-attributes --prefix=${prefix}/ --output=${archive} ${ref}`,
+    `node scripts/create-release-archive --releaseName ${getReleaseVersion()} --destDir ${path.dirname(archive)} ${ref}`,
     { cwd: repoDir }
   )
 }

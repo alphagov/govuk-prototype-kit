@@ -48,9 +48,15 @@ v8.0.0 // After implementing backwards incompatible changes
 
 11. In the description, paste the relevant section from the release notes in the Google Doc.
 
-12. Click 'Publish release'.
+12. Checkout the *main* branch and pull the latest changes.
 
-13. Let the community know about the release
+13. Run `node scripts/create-release-archive`, which will generate a ZIP in the root of this project.
+
+14. Attach the generated ZIP to the release.
+
+15. Click 'Publish release'.
+
+16. Let the community know about the release
 
 Write a brief summary with highlights from the release then send it to the following slack channels:
 
