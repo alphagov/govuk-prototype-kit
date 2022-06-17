@@ -1,4 +1,4 @@
-name: Test kit on Heroku
+name: Tests (Heroku)
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   test-heroku:
 
-    name: Test
+    name: Test kit on Heroku
     runs-on: ubuntu-latest
 
     steps:
