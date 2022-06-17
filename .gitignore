@@ -1,22 +1,23 @@
-# ignore tracking usage data config - we want a different one for each user
-usage-data-config.json
-# ignore extension SCSS because it's dynamically generated
-lib/extensions/_extensions.scss
-# ignore any release archives
-/govuk-prototype-kit*.zip
-.env
-.sass-cache
-.DS_Store
-.start.pid
-.port.tmp
-public
+# Node.js ignores
 node_modules/
-.tmuxp.*
-.idea
-/cypress-test
-/cypress/videos
-/cypress/screenshots
+
+# Prototype Kit ignores - per-user
+.env
+.port.tmp
+lib/extensions/_extensions.scss
+public/
+usage-data-config.json
+
+# Prototype Kit ignores - developer tools
 /cypress/downloads
+/cypress/screenshots
 /cypress/support
 /cypress/temp
+/cypress/videos
+/govuk-prototype-kit*.zip
 tmp/
+
+# General ignores
+.DS_Store
+.idea
+.tmuxp.*
