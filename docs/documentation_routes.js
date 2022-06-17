@@ -44,7 +44,7 @@ router.get('/download', function (req, res) {
     const version = require('../package.json').version
 
     res.redirect(
-      `https://github.com/alphagov/govuk-prototype-kit/releases/v${version}/download/govuk-prototype-kit-${version}.zip`
+      `https://github.com/alphagov/govuk-prototype-kit/releases/download/v${version}/govuk-prototype-kit-${version}.zip`
     )
   } else {
     res.redirect(
