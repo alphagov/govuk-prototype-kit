@@ -82,10 +82,32 @@
       <h3 class="govuk-heading-s">
         Setting default data
       </h3>
-
-      <p>You can set default values in this file in your prototype folder:
-
+      <p>
+        You can set default data in your prototype. This will appear without the
+        user having to enter anything. For example, if you want to prototype a
+        journey where a user previously saved their responses and returned to it
+        later to review or update the information already in the prototype.
+      </p>
+      <p>
+        If the user changes this data in the prototype, their new answers will
+        be saved.
+      </p>
+      <p>
+        Add default data to this file:
+      </p>
       <pre class="app-code" tabindex="0"><code>app/data/session-data-defaults.js</code></pre>
+      <p>
+        For example to set default data for the inputs for 'First name' and
+        'Over 18' in the examples above, you would have this in your
+        session-data-defaults.js file:
+      </p>
+      <pre class="app-code" tabindex="0"><code>
+module.exports = {
+
+  'first-name': 'Amina',
+  'over-18': 'yes'
+
+}</code></pre>
 
       <h2 class="govuk-heading-m">Advanced features</h2>
 
