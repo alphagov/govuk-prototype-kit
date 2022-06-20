@@ -5,6 +5,8 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
+const tar = require('tar')
+
 const packageJsonScriptsInclude = [
   'start',
   'build',
@@ -39,6 +41,9 @@ function parseArgs (args) {
     } else if (arg === '--releaseName') {
       i++
       argv.releaseName = args[i]
+    } else if (arg === '--archiveType') {
+      i++
+      argv.archiveType = args[i]
     } else {
       argv._.push(arg)
     }
@@ -68,11 +73,12 @@ function cli () {
   const ref = argv.ref || 'HEAD'
   const version = argv.releaseName || getReleaseVersion(argv.ref)
   const newVersion = !argv.releaseName && isNewVersion(version) ? 'new version' : 'version'
+  const archiveType = argv.archiveType || 'zip'
 
   console.log(`Creating release archive for ${newVersion} ${version}`)
 
   const name = `govuk-prototype-kit-${version}`
-  const releaseArchive = `${name}.zip`
+  const releaseArchive = `${name}.${archiveType}`
 
   const repoDir = path.resolve(__dirname, '..')
   const workdir = fs.mkdtempSync(
@@ -89,10 +95,12 @@ function cli () {
   updatePackageJson(path.join(workdir, name, 'package.json'), cleanPackageJson)
 
   // Create the release archive in the project root (or destDir)
-  zipReleaseFiles({
+  archiveReleaseFiles({
     cwd: workdir, file: path.join(argv.dest || repoDir, releaseArchive), prefix: name
   })
 
+  // insert a blank line for niceness
+  console.log()
   console.log(`Saved release archive to ${argv.dest ? argv.dest : ''}${releaseArchive}`)
 
   // Clean up
@@ -160,15 +168,31 @@ function copyReleaseFiles (src, dest, { prefix, ref }) {
   )
 }
 
-function zipReleaseFiles ({ cwd, file, prefix }) {
-  zipCreate(
-    {
-      cwd: cwd,
-      file: file,
-      exclude: path.join(prefix, 'node_modules', '*')
-    },
-    prefix
-  )
+function archiveReleaseFiles ({ cwd, file, prefix }) {
+  const archiveType = path.parse(file).ext.slice(1)
+  if (archiveType === 'zip') {
+    zipCreate(
+      {
+        cwd: cwd,
+        file: file,
+        exclude: path.join(prefix, 'node_modules', '*')
+      },
+      prefix
+    )
+  } else if (archiveType === 'tar') {
+    tar.create(
+      {
+        cwd: cwd,
+        file: file,
+        filter: (p) => !p.startsWith(path.join(prefix, 'node_modules')),
+        portable: true,
+        sync: true
+      },
+      [prefix]
+    )
+  } else {
+    throw new Error(`unrecognized archiveType '${archiveType}'`)
+  }
 }
 
 function zipCreate ({ cwd, file, exclude }, files) {
@@ -194,8 +218,6 @@ function zipCreate ({ cwd, file, exclude }, files) {
     throw [zipProgram, ...zipArgs].join(' \\\n\t') +
      `\n: Failed with status ${ret.status}`
   }
-  // insert a blank line for niceness
-  console.log()
 }
 
 // These exports are here only for tests
@@ -203,7 +225,7 @@ module.exports = {
   cleanPackageJson,
   updatePackageJson,
   getReleaseVersion,
-  zipReleaseFiles
+  archiveReleaseFiles
 }
 
 if (require.main === module) {

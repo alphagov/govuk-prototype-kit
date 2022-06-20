@@ -130,7 +130,7 @@ describe('scripts/create-release-archive', () => {
     })
 
     it('zips release files', () => {
-      createReleaseArchive.zipReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
+      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
       if (process.platform === 'win32') {
         expect(mockSpawnSync).toBeCalledWith(
           '7z', ['a', '-tzip', '-x!test\\node_modules', '/test.zip', 'test'],
