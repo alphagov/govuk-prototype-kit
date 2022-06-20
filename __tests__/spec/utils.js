@@ -65,9 +65,11 @@ function _mkReleaseArchiveSync ({ archive, prefix }) {
   // Create a stash commit so we can include files modified in the worktree in the archive
   // TODO: this doesn't pick up unstaged files
   const ref = child_process.execSync('git stash create', { cwd: repoDir, encoding: 'utf8' }) || 'HEAD'
+  archive = path.parse(archive)
+  const archiveType = archive.ext.slice(1)
 
   child_process.execSync(
-    `node scripts/create-release-archive --releaseName ${getReleaseVersion()} --destDir ${path.dirname(archive)} ${ref}`,
+    `node scripts/create-release-archive --releaseName ${getReleaseVersion()} --destDir ${archive.dir} --archiveType ${archiveType} ${ref}`,
     { cwd: repoDir }
   )
 }
