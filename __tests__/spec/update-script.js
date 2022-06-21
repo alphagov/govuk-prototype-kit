@@ -364,6 +364,24 @@ describe('update.sh', () => {
         fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-foo', 'foo'))
       }).toThrow()
     })
+
+    it('extracts the file supplied in ARCHIVE_FILE', () => {
+      const testDir = 'extractArchiveFile'
+      fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
+
+      const ret = runScriptSyncAndExpectSuccess(
+        'extract',
+        { testDir, env: { ARCHIVE_FILE: '../__fixtures__/govuk-prototype-kit-foo.zip' }, trace: true }
+      )
+
+      expect(ret.trace).not.toEqual(expect.arrayContaining([
+        expect.stringMatching('curl( -[LJO]*)? https://govuk-prototype-kit.herokuapp.com/docs/download')
+      ]))
+
+      expect(ret.trace).toEqual(expect.arrayContaining([
+        expect.stringMatching('unzip .*/__fixtures__/govuk-prototype-kit-foo.zip')
+      ]))
+    })
   })
 
   describe('copy', () => {
