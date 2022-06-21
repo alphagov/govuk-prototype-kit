@@ -10,8 +10,8 @@ msg () {
 
 # Set global vars ARCHIVE_FILE ARCHIVE_ROOT
 get_archive_vars () {
-	# choose the archive file with the largest version number, use this to update from
-	ARCHIVE_FILE="$(find . -name 'govuk-prototype-kit*.zip' -exec basename '{}' ';' | sort -V | tail -n1)"
+	# choose the archive file in the update folder with the largest version number, use this to update from
+	ARCHIVE_FILE="$(find update -name 'govuk-prototype-kit*.zip' -exec basename '{}' ';' | sort -V | tail -n1)"
 	ARCHIVE_ROOT="${ARCHIVE_FILE//.zip}"
 }
 
