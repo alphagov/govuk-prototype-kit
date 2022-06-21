@@ -3,17 +3,16 @@ title: Use backwards compatibility to upgrade from version 6
 ---
 # Use backwards compatibility to upgrade from version 6
 
-Version 7 of the Prototype Kit uses the new GOV.UK Design System. It is not compatible with prototypes built with older versions by default.
+Versions 7 and above of the Prototype Kit use the GOV.UK Design System. They are not compatible with prototypes built with older versions.
 
-Backwards compatibility lets you import a large old prototype into version 7, without having to rewrite it. You can update old pages one by one as you need to, and add new pages.
+Backwards compatibility lets you import a large old prototype into the latest version without having to rewrite it. You can update old pages one by one as you need to, and add new pages.
 
 You will end up with 2 'apps' in your prototype:
 
-**/app** using version 7
+**/app** using version 7 and above
 
 **/app/v6** using version 6
 
-If any pages or routes exist in both apps, the one in version 7 will win.
 
 ## Instructions
 
@@ -42,11 +41,11 @@ In Atom, press **cmd shift F**. It looks like this:
 
 1. If your previous Prototype Kit version was older than 6.3.0, follow the guidance below about updating from older versions.
 
-## Updating pages to use version 7
+## Updating pages to use versions 7 and above
 
-You can now create new pages using version 7 by working in the app/views folder.
+You can now create new pages using version 7 and above by working in the app/views folder.
 
-You can update old pages by moving them from app/v6/views to app/views. You will then need to update the code on these pages to work with version 7. See the [updating your code guide in the GOV.UK Design System](https://design-system.service.gov.uk/get-started/updating-your-code/).
+You can update old pages by moving them from app/v6/views to app/views. You will then need to update the code on these pages to work with versions 7 and above. See the [updating your code guide in the GOV.UK Design System](https://design-system.service.gov.uk/get-started/updating-your-code/).
 
 ## Updating from versions older than 6.3.0
 
