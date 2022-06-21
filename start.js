@@ -8,7 +8,7 @@ checkFiles()
 
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
-const { projectDir } = require('./lib/utils')
+const { projectDir } = require('./lib/path-utils')
 
 async function collectDataUsage () {
 // Local dependencies
