@@ -9,9 +9,9 @@ const utils = require('../util')
 describe('npm install', () => {
   const tmpDir = utils.mkdtempSync()
 
-  it('does not install dev dependencies by default', () => {
+  it('does not install dev dependencies by default', async () => {
     const testDir = path.join(tmpDir, 'install-no-optional')
-    utils.mkPrototypeSync(testDir)
+    await utils.mkPrototype(testDir)
 
     child_process.execSync(
       'npm install',

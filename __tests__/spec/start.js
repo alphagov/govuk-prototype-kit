@@ -12,9 +12,9 @@ describe('npm start', () => {
   const tmpDir = utils.mkdtempSync()
 
   describe('prestart', () => {
-    it('checks whether node modules are installed', () => {
+    it('checks whether node modules are installed', async () => {
       const testDir = path.join(tmpDir, 'check-node-modules-exists')
-      utils.mkPrototypeSync(testDir)
+      await utils.mkPrototype(testDir)
 
       expect(
         child_process.execSync('npm start', { cwd: testDir, encoding: 'utf8' })
@@ -25,7 +25,7 @@ describe('npm start', () => {
   describe('dev server', () => {
     it('suggests running npm install if app crashes', async () => {
       const testDir = path.join(tmpDir, 'onCrash')
-      utils.mkPrototypeSync(testDir)
+      await utils.mkPrototype(testDir)
       fs.symlinkSync(path.join(repoDir, 'node_modules'), path.join(testDir, 'node_modules'), 'dir')
 
       // add a require for an unincluded and uninstalled module
