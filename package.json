@@ -73,7 +73,7 @@
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "__tests__/spec/utils.js",
+      "__tests__/util/",
       "/node_modules/",
       "/tmp/"
     ]

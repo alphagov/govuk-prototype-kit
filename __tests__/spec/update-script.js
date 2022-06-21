@@ -6,7 +6,7 @@ const process = require('process')
 
 const _ = require('lodash')
 
-const utils = require('./utils')
+const utils = require('../util')
 const fse = require('fs-extra')
 
 /*
