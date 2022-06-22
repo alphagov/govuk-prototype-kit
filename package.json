@@ -10,7 +10,7 @@
     "start": "node start",
     "build": "node lib/build/generate-assets",
     "serve": "node listen-on-port",
-    "lint": "standard",
+    "lint": "standard **/*.js scripts/create-release-archive lib/build/dev-server lib/build/generate-assets",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
     "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",
