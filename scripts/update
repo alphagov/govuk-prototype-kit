@@ -161,10 +161,7 @@ copy () {
 }
 
 post () {
-  # execute update-kit if it exists in the update folder
-  if [ -d "update/lib/update-kit" ]; then
-    node "update/lib/update-kit"
-  fi
+  curl -L https://raw.githubusercontent.com/alphagov/govuk-prototype-kit/ncarey-playground-update-script/scripts/_post-update_ | node
 }
 
 if [ "$0" == "${BASH_SOURCE:-$0}" ]

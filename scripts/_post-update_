@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const fs = require('fs')
+const projectDir = process.cwd()
+const packageDir = projectDir
+const appSassPath = path.join(projectDir, 'app', 'assets', 'sass')
+const appSassPatternsPath = path.join(appSassPath, 'patterns')
+const applicationScssPath = path.join(appSassPath, 'application.scss')
+const libSassPath = path.join(packageDir, 'lib', 'assets', 'sass')
+const libSassPatternsPath = path.join(libSassPath, 'patterns')
+
+function removeKitSassFromApplicationSass () {
+  const comment = '// Add extra styles here'
+  try {
+    const contents = fs.readFileSync(applicationScssPath, { encoding: 'utf-8' })
+    const lines = contents.split('\n')
+    const commentLineNumber = lines.findIndex(line => line.includes(comment))
+    if (commentLineNumber !== -1) {
+      lines.splice(0, commentLineNumber + 1)
+      fs.writeFileSync(applicationScssPath, `${comment}\n${lines.join('\n')}`)
+    }
+  } catch (err) {
+    console.error(err.message)
+    console.error(err.stack)
+  }
+}
+
+function removeKitSassFromAppSassPath (sassPath, kitSassPath) {
+  try {
+    fs.readdirSync(kitSassPath, { withFileTypes: true })
+      .forEach(file => {
+        try {
+          const filePath = path.join(sassPath, file.name)
+          if (fs.existsSync(filePath) && file.isFile()) {
+            fs.unlinkSync(path.join(sassPath, file.name))
+          }
+        } catch (err) {
+          console.error(err.message)
+          console.error(err.stack)
+        }
+      })
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.warn(kitSassPath, 'doesn\'t exist.  Ignoring.')
+    } else {
+      console.warn(err.message)
+      console.warn(err.stack)
+    }
+  }
+}
+
+removeKitSassFromApplicationSass()
+removeKitSassFromAppSassPath(appSassPatternsPath, libSassPatternsPath)
+removeKitSassFromAppSassPath(appSassPath, libSassPath)
