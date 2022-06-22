@@ -78,6 +78,7 @@
       "__tests__/util/",
       "/node_modules/",
       "/tmp/"
-    ]
+    ],
+    "testTimeout": 30000
   }
 }
