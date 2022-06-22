@@ -188,9 +188,6 @@ describe('update.sh', () => {
 
   function _mktestPrototypeSync (src) {
     // Create a release archive from the HEAD we are running tests in
-    const archivePath = utils.mkReleaseArchiveSync()
-    const releaseDir = path.parse(archivePath).name
-
     utils.mkPrototypeSync(src)
 
     // Create a git repo from the new release archive so we can see changes.
@@ -212,9 +209,7 @@ describe('update.sh', () => {
     child_process.execFileSync('git', ['commit', '-m', 'Test', '-a'], { cwd: src })
 
     // populate the update folder to speed up tests
-    child_process.execSync(`unzip -q ${archivePath}`, { cwd: src })
-    child_process.execSync(`mv ${releaseDir} update`, { cwd: src })
-    fs.copyFileSync(archivePath, path.join(src, 'update', path.basename(archivePath)))
+    utils.mkPrototypeSync(path.join(src, 'update'))
   }
 
   function mktestPrototypeSync (dest) {

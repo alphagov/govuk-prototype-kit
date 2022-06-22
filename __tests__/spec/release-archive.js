@@ -1,7 +1,8 @@
 /* eslint-env jest */
 
-const childProcess = require('child_process')
 const path = require('path')
+
+const tar = require('tar')
 
 const utils = require('../util')
 
@@ -12,14 +13,16 @@ describe('release archive', () => {
   beforeAll(() => {
     archivePath = utils.mkReleaseArchiveSync()
 
-    console.log(`test release archive saved to ${archivePath}`)
+    archiveFiles = []
 
-    archiveFiles = childProcess.execSync(`zipinfo -1 ${archivePath}`, { encoding: 'utf8' })
-      .trim().split('\n').map(
-        p => p.substring(path.parse(archivePath).name.length + 1)
-      ).filter(
-        p => p
-      )
+    tar.list({
+      file: archivePath,
+      onentry: (entry) => {
+        const p = entry.path.substring(path.parse(archivePath).name.length + 1)
+        if (p) { archiveFiles.push(p) }
+      },
+      sync: true
+    })
   })
 
   it('contains the prototype kit files', () => {
