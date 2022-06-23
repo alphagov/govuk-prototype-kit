@@ -51,6 +51,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "adm-zip": "^0.5.9",
     "cypress": "^9.6.0",
     "eslint-plugin-cypress": "^2.12.1",
     "glob": "^7.1.4",
