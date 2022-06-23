@@ -5,7 +5,7 @@ const path = require('path')
 
 const repoDir = path.resolve(__dirname, '..', '..')
 
-var _releaseVersion
+var _worktreeCommit
 
 /**
  * Returns the temporary directory path for this jest process
@@ -19,22 +19,32 @@ function mkdtempSync () {
 }
 
 /**
- * Return a string representing the current git index version
+ * Get a git stash entry representing the current worktree
+ *
+ * Returns a string which is a commit object ID.
  *
  * @returns {string}
  */
-function getReleaseVersion () {
-  if (_releaseVersion === undefined) {
-    _releaseVersion = child_process.execSync(
+function getWorktreeCommit () {
+  if (_worktreeCommit === undefined) {
+    // TODO: git stash create doesn't pick up unstaged files
+    // TODO: git stash create isn't deterministic, commit ID changes even if stashed files haven't
+    _worktreeCommit = child_process.execSync(
+      'git stash create',
+      { cwd: repoDir, encoding: 'utf8' }
+    ).trim() || child_process.execSync(
+      // if stash create returned nothing, that means there were no changes to
+      // stash and no new commit was created, so instead use the HEAD commit id
       'git rev-parse HEAD',
       { cwd: repoDir, encoding: 'utf8' }
     ).trim()
   }
-  return _releaseVersion
+
+  return _worktreeCommit
 }
 
 /**
- * Return a path to the release archive for the current git index
+ * Return a path to the release archive for the current git worktree
  *
  * Creates a release archive from the git HEAD for the project we are currently
  * running tests in. This will include uncommitted changes for tracked files, but
@@ -47,7 +57,8 @@ function getReleaseVersion () {
  */
 function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
   dir = dir || path.join(mkdtempSync(), '__fixtures__')
-  const name = `govuk-prototype-kit-${getReleaseVersion()}`
+  const commitRef = getWorktreeCommit()
+  const name = `govuk-prototype-kit-${commitRef}`
   const archive = path.format({ dir, name, ext: '.' + archiveType })
 
   fs.mkdirSync(dir, { recursive: true })
@@ -55,21 +66,13 @@ function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
   try {
     fs.accessSync(archive)
   } catch (err) {
-    _mkReleaseArchiveSync({ destDir: dir, archiveType: archiveType })
+    child_process.execSync(
+      `node scripts/create-release-archive --releaseName ${commitRef} --destDir ${dir} --archiveType ${archiveType} ${commitRef}`,
+      { cwd: repoDir }
+    )
   }
 
   return archive
-}
-
-function _mkReleaseArchiveSync ({ destDir, archiveType }) {
-  // Create a stash commit so we can include files modified in the worktree in the archive
-  // TODO: this doesn't pick up unstaged files
-  const ref = child_process.execSync('git stash create', { cwd: repoDir, encoding: 'utf8' }) || 'HEAD'
-
-  child_process.execSync(
-    `node scripts/create-release-archive --releaseName ${getReleaseVersion()} --destDir ${destDir} --archiveType ${archiveType} ${ref}`,
-    { cwd: repoDir }
-  )
 }
 
 /**
