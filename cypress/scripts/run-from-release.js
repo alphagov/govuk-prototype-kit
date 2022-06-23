@@ -5,7 +5,10 @@ const path = require('path')
 const utils = require('../../__tests__/util')
 
 const testDir = path.resolve(process.env.KIT_TEST_DIR || 'tmp/test-prototype')
+
+console.log('getting release archive...')
 const releaseArchive = utils.mkReleaseArchiveSync({ dir: path.resolve('tmp') })
+console.log(`using test release archive ${releaseArchive}`)
 
 try {
   utils.mkPrototypeSync(testDir, { archivePath: releaseArchive })
