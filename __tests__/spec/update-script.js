@@ -74,7 +74,7 @@ function runScriptSync (fnName = undefined, options) {
   if (options.trace) {
     // split the trace lines out from stderr
     let { stderr, trace } = _.groupBy(
-      ret.stderr.split(/(^\++xtrace [^\n]+)\n/m),
+      ret.stderr.split(/(\++xtrace [^\n]+)\n/m),
       (line) => /^\++xtrace [^\n]+/.test(line) ? 'trace' : 'stderr'
     )
     stderr = stderr.join('')
@@ -151,22 +151,24 @@ describe('update.sh', () => {
 
   // Create a test archive fixture
   function _mktestArchiveSync (archive) {
-    const archiveName = path.basename(archive)
-    const dirToArchive = path.join(fixtureDir, 'govuk-prototype-kit-foo')
+    const archivePath = path.parse(archive)
+    const archiveName = archivePath.base
+    const archivePrefix = archivePath.name
+    const dirToArchive = path.join(fixtureDir, archivePrefix)
 
     fs.mkdirSync(dirToArchive)
     fs.writeFileSync(path.join(dirToArchive, 'foo'), '')
     fs.writeFileSync(path.join(dirToArchive, 'VERSION.txt'), '9999.99.99')
 
     if (process.platform === 'win32') {
-      child_process.execSync(`7z a ${archiveName} govuk-prototype-kit-foo`, { cwd: fixtureDir })
+      child_process.execSync(`7z a ${archiveName} ${archivePrefix}`, { cwd: fixtureDir })
     } else {
-      child_process.execSync(`zip -r ${archiveName} govuk-prototype-kit-foo`, { cwd: fixtureDir })
+      child_process.execSync(`zip -r ${archiveName} ${archivePrefix}`, { cwd: fixtureDir })
     }
   }
 
   function mktestArchiveSync (testDir) {
-    const archive = path.resolve(fixtureDir, 'foo.zip')
+    const archive = path.resolve(fixtureDir, 'govuk-prototype-kit-foo.zip')
 
     try {
       fs.accessSync(archive)
@@ -361,6 +363,24 @@ describe('update.sh', () => {
       expect(() => {
         fs.accessSync(path.join(testDir, 'update', 'govuk-prototype-kit-foo', 'foo'))
       }).toThrow()
+    })
+
+    it('extracts the file supplied in ARCHIVE_FILE', () => {
+      const testDir = 'extractArchiveFile'
+      fs.mkdirSync(path.join(testDir, 'update'), { recursive: true })
+
+      const ret = runScriptSyncAndExpectSuccess(
+        'extract',
+        { testDir, env: { ARCHIVE_FILE: '../__fixtures__/govuk-prototype-kit-foo.zip' }, trace: true }
+      )
+
+      expect(ret.trace).not.toEqual(expect.arrayContaining([
+        expect.stringMatching('curl( -[LJO]*)? https://govuk-prototype-kit.herokuapp.com/docs/download')
+      ]))
+
+      expect(ret.trace).toEqual(expect.arrayContaining([
+        expect.stringMatching('unzip .*/__fixtures__/govuk-prototype-kit-foo.zip')
+      ]))
     })
   })
 

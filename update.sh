@@ -10,9 +10,16 @@ msg () {
 
 # Set global vars ARCHIVE_FILE ARCHIVE_ROOT
 get_archive_vars () {
-	# choose the archive file with the largest version number, use this to update from
-	ARCHIVE_FILE="$(find . -name 'govuk-prototype-kit*.zip' -exec basename '{}' ';' | sort -V | tail -n1)"
-	ARCHIVE_ROOT="${ARCHIVE_FILE//.zip}"
+	# If ARCHIVE_FILE hasn't been set in the env already choose the archive file
+	# in the update folder with the largest version number.
+	if [ -z "${ARCHIVE_FILE:-}" ]; then
+		ARCHIVE_FILE="$(find update -name 'govuk-prototype-kit*.zip' | sort -V | tail -n1)"
+	fi
+	if [ ! -z "${ARCHIVE_FILE:-}" ]; then
+		ARCHIVE_FILE="$PWD/$ARCHIVE_FILE"
+		ARCHIVE_NAME="$(basename "$ARCHIVE_FILE")"
+		ARCHIVE_ROOT="${ARCHIVE_NAME//.zip}"
+	fi
 }
 
 # Hide update folder from git
@@ -55,6 +62,13 @@ prepare () {
 
 # Download the latest Prototype Kit release archive to the update folder
 fetch () {
+	get_archive_vars
+
+	# If archive file already exists do nothing
+	if [ -f "$ARCHIVE_FILE" ]; then
+		return
+	fi
+
 	cd update
 
 	if ! ls govuk-prototype-kit*.zip > /dev/null 2>&1; then
