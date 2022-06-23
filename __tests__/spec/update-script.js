@@ -74,7 +74,7 @@ function runScriptSync (fnName = undefined, options) {
   if (options.trace) {
     // split the trace lines out from stderr
     let { stderr, trace } = _.groupBy(
-      ret.stderr.split(/(^\++xtrace [^\n]+)\n/m),
+      ret.stderr.split(/(\++xtrace [^\n]+)\n/m),
       (line) => /^\++xtrace [^\n]+/.test(line) ? 'trace' : 'stderr'
     )
     stderr = stderr.join('')
