@@ -50,9 +50,8 @@ describe('release archive', () => {
     expect(archiveFiles).not.toContain('cypress/')
     expect(archiveFiles).not.toContain('cypress.json')
 
-    expect(archiveFiles).not.toContainEqual(
-      expect.stringMatching(/.*\.test\.js$/)
-    )
+    expect(archiveFiles.filter(p => /.*\.test\.js$/.test(p)))
+      .toEqual([])
   })
 
   it('does not contain internal files', () => {
