@@ -5,7 +5,7 @@ const path = require('path')
 const utils = require('../../__tests__/util')
 
 const testDir = path.resolve(process.env.KIT_TEST_DIR || 'tmp/test-prototype')
-const releaseArchive = utils.mkReleaseArchiveSync({ dir: path.resolve('cypress', 'temp') })
+const releaseArchive = utils.mkReleaseArchiveSync({ dir: path.resolve('tmp') })
 
 try {
   utils.mkPrototypeSync(testDir, { archivePath: releaseArchive })

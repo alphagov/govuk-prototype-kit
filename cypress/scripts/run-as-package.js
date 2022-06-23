@@ -7,7 +7,7 @@ const prototypePkg = require('../../package.json')
 const utils = require('../../__tests__/util')
 
 const testDir = path.resolve(process.env.KIT_TEST_DIR || 'cypress/temp/test-project')
-const releaseArchive = utils.mkReleaseArchiveSync({ archiveType: 'tar', dir: path.resolve('cypress', 'temp') })
+const releaseArchive = utils.mkReleaseArchiveSync({ archiveType: 'tar', dir: path.resolve('tmp') })
 
 fs.mkdirSync(testDir, { recursive: true })
 
