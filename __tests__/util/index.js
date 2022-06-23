@@ -70,7 +70,9 @@ function getWorktreeCommit () {
 function mkReleaseArchiveSync ({ archiveType = 'tar', dir } = {}) {
   dir = dir || path.join(mkdtempSync(), '__fixtures__')
   const commitRef = getWorktreeCommit()
-  const name = `govuk-prototype-kit-${commitRef}`
+  const releaseName = process.env.KIT_JEST_RUN_ID
+    ? getJestId() : commitRef
+  const name = `govuk-prototype-kit-${releaseName}`
   const archive = path.format({ dir, name, ext: '.' + archiveType })
 
   fs.mkdirSync(dir, { recursive: true })
@@ -79,7 +81,7 @@ function mkReleaseArchiveSync ({ archiveType = 'tar', dir } = {}) {
     fs.accessSync(archive)
   } catch (err) {
     child_process.execSync(
-      `node scripts/create-release-archive --releaseName ${commitRef} --destDir ${dir} --archiveType ${archiveType} ${commitRef}`,
+      `node scripts/create-release-archive --releaseName ${releaseName} --destDir ${dir} --archiveType ${archiveType} ${commitRef}`,
       { cwd: repoDir }
     )
   }
