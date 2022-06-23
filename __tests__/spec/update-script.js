@@ -151,22 +151,24 @@ describe('update.sh', () => {
 
   // Create a test archive fixture
   function _mktestArchiveSync (archive) {
-    const archiveName = path.basename(archive)
-    const dirToArchive = path.join(fixtureDir, 'govuk-prototype-kit-foo')
+    const archivePath = path.parse(archive)
+    const archiveName = archivePath.base
+    const archivePrefix = archivePath.name
+    const dirToArchive = path.join(fixtureDir, archivePrefix)
 
     fs.mkdirSync(dirToArchive)
     fs.writeFileSync(path.join(dirToArchive, 'foo'), '')
     fs.writeFileSync(path.join(dirToArchive, 'VERSION.txt'), '9999.99.99')
 
     if (process.platform === 'win32') {
-      child_process.execSync(`7z a ${archiveName} govuk-prototype-kit-foo`, { cwd: fixtureDir })
+      child_process.execSync(`7z a ${archiveName} ${archivePrefix}`, { cwd: fixtureDir })
     } else {
-      child_process.execSync(`zip -r ${archiveName} govuk-prototype-kit-foo`, { cwd: fixtureDir })
+      child_process.execSync(`zip -r ${archiveName} ${archivePrefix}`, { cwd: fixtureDir })
     }
   }
 
   function mktestArchiveSync (testDir) {
-    const archive = path.resolve(fixtureDir, 'foo.zip')
+    const archive = path.resolve(fixtureDir, 'govuk-prototype-kit-foo.zip')
 
     try {
       fs.accessSync(archive)
