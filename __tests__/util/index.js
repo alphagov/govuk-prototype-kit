@@ -10,12 +10,22 @@ const repoDir = path.resolve(__dirname, '..', '..')
 var _worktreeCommit
 
 /**
- * Returns the temporary directory path for this jest process
+ * An ID that will be shared between all process in the same Jest test run,
+ * this is useful for sharing fixture files. Normally sharing state across Jest
+ * test files is bad practice, however with our functions to create release
+ * scripts that can take up to half a minute we really do want to share state.
+ */
+function getJestId () {
+  return `jest.${process.env.KIT_JEST_RUN_ID || process.ppid}`
+}
+
+/**
+ * Returns the temporary directory path for this Jest test run
  *
  * @returns {string}
  */
 function mkdtempSync () {
-  const tempdir = path.join(os.tmpdir(), `jest.${process.ppid}.${process.pid}`)
+  const tempdir = path.join(os.tmpdir(), getJestId())
   fs.mkdirSync(tempdir, { recursive: true })
   return tempdir
 }
