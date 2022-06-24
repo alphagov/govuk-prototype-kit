@@ -4,7 +4,7 @@ const child_process = require('child_process') // eslint-disable-line camelcase
 const fs = require('fs')
 const path = require('path')
 
-const utils = require('./utils')
+const utils = require('../util')
 
 describe('npm install', () => {
   const tmpDir = utils.mkdtempSync()

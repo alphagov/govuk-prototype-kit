@@ -2,10 +2,13 @@ const child_process = require('child_process') // eslint-disable-line camelcase
 const fs = require('fs')
 const path = require('path')
 
-const utils = require('../../__tests__/spec/utils')
+const utils = require('../../__tests__/util')
 
 const testDir = path.resolve(process.env.KIT_TEST_DIR || 'tmp/test-prototype')
-const releaseArchive = utils.mkReleaseArchiveSync({ dir: path.resolve('cypress', 'temp') })
+
+console.log('getting release archive...')
+const releaseArchive = utils.mkReleaseArchiveSync({ dir: path.resolve('tmp') })
+console.log(`using test release archive ${path.relative('', releaseArchive)}`)
 
 try {
   utils.mkPrototypeSync(testDir, { archivePath: releaseArchive })
@@ -16,8 +19,8 @@ try {
   }
 }
 
+console.log(`running tests in ${path.relative('', testDir)}`)
 process.chdir(testDir)
-console.log(`running tests in ${testDir}`)
 
 fs.writeFileSync(path.join(testDir, 'usage-data-config.json'), '{ "collectUsageData": false }')
 

@@ -3,7 +3,7 @@
 const childProcess = require('child_process')
 const path = require('path')
 
-const utils = require('./utils')
+const utils = require('../util')
 
 describe('release archive', () => {
   var archivePath
