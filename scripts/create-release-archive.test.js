@@ -125,7 +125,7 @@ describe('scripts/create-release-archive', () => {
   })
 
   describe('archiveReleaseFiles', () => {
-    let mockSpawnSync
+    let mockSpawnSync, mockTarCreate
 
     beforeEach(() => {
       mockSpawnSync = jest.spyOn(child_process, 'spawnSync').mockImplementation(() => ({ status: 0 }))
@@ -142,6 +142,21 @@ describe('scripts/create-release-archive', () => {
       } else {
         expect(mockSpawnSync).toBeCalledWith(
           'zip', ['--exclude', 'test/node_modules/*', '-r', '/test.zip', 'test'],
+          expect.objectContaining({ cwd: '/tmp' })
+        )
+      }
+    })
+
+    it('resolves paths correctly for arguments to zip', () => {
+      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: 'test.zip', prefix: 'test' })
+      if (process.platform === 'win32') {
+        expect(mockSpawnSync).toBeCalledWith(
+          '7z', ['a', '-tzip', '-x!test\\node_modules', path.join(repoDir, 'test.zip'), 'test'],
+          expect.objectContaining({ cwd: '/tmp' })
+        )
+      } else {
+        expect(mockSpawnSync).toBeCalledWith(
+          'zip', ['--exclude', 'test/node_modules/*', '-r', path.join(repoDir, 'test.zip'), 'test'],
           expect.objectContaining({ cwd: '/tmp' })
         )
       }
