@@ -4,6 +4,8 @@ const child_process = require('child_process') // eslint-disable-line camelcase
 const fs = require('fs')
 const path = require('path')
 
+const tar = require('tar')
+
 const createReleaseArchive = require('./create-release-archive')
 
 const repoDir = path.join(__dirname, '..')
@@ -122,14 +124,15 @@ describe('scripts/create-release-archive', () => {
     })
   })
 
-  describe('zipReleaseFiles', () => {
+  describe('archiveReleaseFiles', () => {
     let mockSpawnSync
 
     beforeEach(() => {
       mockSpawnSync = jest.spyOn(child_process, 'spawnSync').mockImplementation(() => ({ status: 0 }))
+      mockTarCreate = jest.spyOn(tar, 'create').mockImplementation(() => {})
     })
 
-    it('zips release files', () => {
+    it('zips release files by default', () => {
       createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
       if (process.platform === 'win32') {
         expect(mockSpawnSync).toBeCalledWith(
@@ -142,6 +145,20 @@ describe('scripts/create-release-archive', () => {
           expect.objectContaining({ cwd: '/tmp' })
         )
       }
+    })
+
+    it('tars release files if file extension is .tar', () => {
+      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.tar', prefix: 'test' })
+      expect(mockTarCreate).toBeCalledWith(
+        expect.objectContaining({ cwd: '/tmp', file: '/test.tar' }),
+        ['test']
+      )
+    })
+
+    it('throws an error if file extension is unrecognised', () => {
+      expect(
+        () => createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.8z', prefix: 'test' })
+      ).toThrow()
     })
   })
 })
