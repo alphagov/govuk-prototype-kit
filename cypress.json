@@ -1,6 +1,9 @@
 {
   "baseUrl": "http://localhost:3000",
   "testFiles": "**/*.cypress.js",
+  "requestTimeout": 2000,
+  "defaultCommandTimeout": 40000,
+  "retries": 3,
   "video": false,
   "chromeWebSecurity": false
 }

@@ -24,7 +24,7 @@ describe('watch route file', () => {
   it(`add and remove ${pageUrl} route`, () => {
     cy.task('log', 'The cypress test page should not be found')
     cy.visit(pageUrl, { failOnStatusCode: false })
-    cy.get('body', { timeout: 20000 })
+    cy.get('body')
       .should('contains.text', `Page not found: ${pagePath}`)
 
     cy.task('log', `Replace ${appRoutes} with Cypress routes`)
@@ -34,7 +34,7 @@ describe('watch route file', () => {
 
     cy.task('log', 'The cypress test page should be displayed')
     cy.visit(pageUrl)
-    cy.get('h1', { timeout: 20000 })
+    cy.get('h1')
       .should('contains.text', 'CYPRESS TEST PAGE')
 
     cy.task('log', `Restore ${appRoutes}`)
@@ -44,7 +44,7 @@ describe('watch route file', () => {
 
     cy.task('log', 'The cypress test page should not be found')
     cy.visit(pageUrl, { failOnStatusCode: false })
-    cy.get('body', { timeout: 20000 })
+    cy.get('body')
       .should('contains.text', `Page not found: ${pagePath}`)
   })
 })

@@ -28,7 +28,7 @@ describe('watch image files', () => {
     cy.task('copyFile', { source, target })
 
     cy.task('log', `Requesting ${publicImage}`)
-    cy.request(`/${publicImage}`, { timeout: 20000, retryOnStatusCodeFailure: true })
+    cy.request(`/${publicImage}`, { retryOnStatusCodeFailure: true })
       .then(response => expect(response.status).to.eq(200))
   })
 })
