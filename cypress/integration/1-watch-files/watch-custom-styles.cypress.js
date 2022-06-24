@@ -29,13 +29,13 @@ describe('watch custom sass files', () => {
       // delete temporary files
       cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), publicStylesheet) })
       cy.task('deleteFile', { filename: customStyleFile })
-      cy.get('.govuk-header', { timeout: 20000 }).should('have.css', 'background-color', BLACK)
+      cy.get('.govuk-header').should('have.css', 'background-color', BLACK)
       cy.task('deleteFile', { filename: backupHeadView })
     })
 
     it('The colour of the header should be changed to green then back to black', () => {
       cy.task('log', 'The colour of the header should be black')
-      cy.get('.govuk-header', { timeout: 20000 }).should('have.css', 'background-color', BLACK)
+      cy.get('.govuk-header').should('have.css', 'background-color', BLACK)
 
       cy.task('log', `Create ${customStyleFile}`)
       cy.task('createFile', {
@@ -54,7 +54,7 @@ describe('watch custom sass files', () => {
       })
 
       cy.task('log', 'The colour of the header should be changed to green')
-      cy.get('.govuk-header', { timeout: 20000 }).should('have.css', 'background-color', GREEN)
+      cy.get('.govuk-header').should('have.css', 'background-color', GREEN)
     })
   })
 })
