@@ -133,13 +133,14 @@ describe('scripts/create-release-archive', () => {
     })
 
     it('zips release files by default', () => {
-      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
       if (process.platform === 'win32') {
+        createReleaseArchive.archiveReleaseFiles({ cwd: 'C:\\tmp', file: 'C:\\test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
-          '7z', ['a', '-tzip', '-x!test\\node_modules', '/test.zip', 'test'],
-          expect.objectContaining({ cwd: '/tmp' })
+          '7z', ['a', '-tzip', '-x!test\\node_modules', 'C:\\test.zip', 'test'],
+          expect.objectContaining({ cwd: 'C:\\tmp' })
         )
       } else {
+        createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           'zip', ['--exclude', 'test/node_modules/*', '-r', '/test.zip', 'test'],
           expect.objectContaining({ cwd: '/tmp' })
@@ -148,13 +149,14 @@ describe('scripts/create-release-archive', () => {
     })
 
     it('resolves paths correctly for arguments to zip', () => {
-      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: 'test.zip', prefix: 'test' })
       if (process.platform === 'win32') {
+        createReleaseArchive.archiveReleaseFiles({ cwd: 'C:\\tmp', file: 'test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           '7z', ['a', '-tzip', '-x!test\\node_modules', path.join(repoDir, 'test.zip'), 'test'],
-          expect.objectContaining({ cwd: '/tmp' })
+          expect.objectContaining({ cwd: 'C:\\tmp' })
         )
       } else {
+        createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: 'test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           'zip', ['--exclude', 'test/node_modules/*', '-r', path.join(repoDir, 'test.zip'), 'test'],
           expect.objectContaining({ cwd: '/tmp' })
