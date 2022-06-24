@@ -172,6 +172,13 @@ copy () {
 	update_gitignore
 }
 
+post () {
+  # execute _update_scss if it exists in the update folder
+  if [ -d "update/lib/_update_scss" ]; then
+    node "update/lib/_update_scss"
+  fi
+}
+
 if [ "$0" == "${BASH_SOURCE:-$0}" ]
 then
 	check
@@ -179,4 +186,5 @@ then
 	fetch
 	extract
 	copy
+	post
 fi
