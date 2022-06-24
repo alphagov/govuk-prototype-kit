@@ -87,8 +87,8 @@ function mkReleaseArchiveSync ({ archiveType = 'tar', dir } = {}) {
  * @param {string} [options.archivePath] - Path to archive to use to create prototype, if not provided uses mkReleaseArchiveSync
  * @returns {void}
  */
-function mkPrototypeSync (prototypePath, { archivePath } = {}) {
-  if (fs.existsSync(prototypePath)) {
+function mkPrototypeSync (prototypePath, { archivePath, overwrite = false } = {}) {
+  if (!overwrite && fs.existsSync(prototypePath)) {
     const err = new Error(`path already exists '${prototypePath}'`)
     err.path = prototypePath
     err.code = 'EEXIST'
