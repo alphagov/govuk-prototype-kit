@@ -3,6 +3,8 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
+const tar = require('tar')
+
 const repoDir = path.resolve(__dirname, '..', '..')
 
 var _worktreeCommit
@@ -51,11 +53,11 @@ function getWorktreeCommit () {
  * not untracked changes.
  *
  * @param {Object} [options]
- * @param {string} [options.archiveType=zip] - The type of archive to make, tar or zip
+ * @param {string} [options.archiveType=tar] - The type of archive to make, tar or zip
  * @param {string} [options.dir] - The folder to place the archive in, by default is a fixture folder in the temporary directory
  * @returns {string} - The absolute path to the archive
  */
-function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
+function mkReleaseArchiveSync ({ archiveType = 'tar', dir } = {}) {
   dir = dir || path.join(mkdtempSync(), '__fixtures__')
   const commitRef = getWorktreeCommit()
   const name = `govuk-prototype-kit-${commitRef}`
@@ -85,8 +87,8 @@ function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
  * @param {string} [options.archivePath] - Path to archive to use to create prototype, if not provided uses mkReleaseArchiveSync
  * @returns {void}
  */
-function mkPrototypeSync (prototypePath, { archivePath } = {}) {
-  if (fs.existsSync(prototypePath)) {
+function mkPrototypeSync (prototypePath, { archivePath, overwrite = false } = {}) {
+  if (!overwrite && fs.existsSync(prototypePath)) {
     const err = new Error(`path already exists '${prototypePath}'`)
     err.path = prototypePath
     err.code = 'EEXIST'
@@ -94,15 +96,10 @@ function mkPrototypeSync (prototypePath, { archivePath } = {}) {
   }
 
   archivePath = archivePath || mkReleaseArchiveSync()
-  const releaseDir = path.parse(archivePath).name
 
-  const parentDir = path.dirname(prototypePath)
-  const name = path.basename(prototypePath)
+  fs.mkdirSync(prototypePath, { recursive: true })
 
-  fs.mkdirSync(parentDir, { recursive: true })
-
-  child_process.execSync(`unzip -q ${archivePath}`, { cwd: parentDir })
-  child_process.execSync(`mv ${releaseDir} ${name}`, { cwd: parentDir })
+  tar.extract({ cwd: prototypePath, file: archivePath, strip: 1, sync: true })
 }
 
 module.exports = {

@@ -9,15 +9,7 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || 'tmp/test-prototype')
 console.log('getting release archive...')
 const releaseArchive = utils.mkReleaseArchiveSync({ dir: path.resolve('tmp') })
 console.log(`using test release archive ${path.relative('', releaseArchive)}`)
-
-try {
-  utils.mkPrototypeSync(testDir, { archivePath: releaseArchive })
-} catch (error) {
-  /* assume it is okay if prototype exists already */
-  if (error.code !== 'EEXIST') {
-    throw error
-  }
-}
+utils.mkPrototypeSync(testDir, { archivePath: releaseArchive, overwrite: true })
 
 console.log(`running tests in ${path.relative('', testDir)}`)
 process.chdir(testDir)

@@ -184,7 +184,7 @@ function archiveReleaseFiles ({ cwd, file, prefix }) {
       {
         cwd: cwd,
         file: file,
-        filter: (p) => !p.startsWith(path.join(prefix, 'node_modules')),
+        filter: (p) => !p.startsWith(path.posix.join(prefix, 'node_modules')),
         portable: true,
         sync: true
       },
