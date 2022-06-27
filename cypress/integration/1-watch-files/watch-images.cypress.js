@@ -42,15 +42,18 @@ describe('watch image files', () => {
         expect($img[0].naturalWidth).to.equal(0)
       })
 
-    // When we do the copy, we expect the page to reload, so let's set up an
-    // intercept so we can wait for that request
-    cy.intercept(`/${pageFixture}`).as('reloadPage')
-
     cy.task('log', 'Copying the image to the app folder')
     cy.task('copyFile', { source, target })
 
-    cy.task('log', 'Wait for the page to reload')
-    cy.wait('@reloadPage')
+    cy.task('log', 'Wait for the image to be loaded')
+    cy.waitForResource(imageFile)
+
+    // FIXME: the expected behaviour is that the page should update itself,
+    // however there is a bug in our setup where on Windows the image doesn't
+    // show up without a page reload. When this is fixed, remove this step.
+    // See issue #1440 for other details.
+    cy.task('log', 'Reload the page')
+    cy.reload()
 
     cy.task('log', 'Our page should now have its image')
     cy.get('img#larry')
