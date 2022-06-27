@@ -10,18 +10,17 @@ describe('release archive', () => {
   var archivePath
   var archiveFiles
 
-  beforeAll(() => {
-    archivePath = utils.mkReleaseArchiveSync()
+  beforeAll(async () => {
+    archivePath = await utils.mkReleaseArchive()
 
     archiveFiles = []
 
-    tar.list({
+    await tar.list({
       file: archivePath,
       onentry: (entry) => {
         const p = entry.path.substring(path.parse(archivePath).name.length + 1)
         if (p) { archiveFiles.push(p) }
-      },
-      sync: true
+      }
     })
   })
 
