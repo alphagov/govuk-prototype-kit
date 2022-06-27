@@ -5,9 +5,7 @@ const { waitForApplication } = require('../utils')
 const routesFixture = path.join(Cypress.config('fixturesFolder'), 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), 'app', 'routes.js')
 const backupRoutes = path.join(Cypress.env('tempFolder'), 'temp-routes.js')
-const appUrl = 'http://localhost:3000'
 const pagePath = '/cypress-test'
-const pageUrl = `${appUrl}${pagePath}`
 
 describe('watch route file', () => {
   before(() => {
@@ -21,9 +19,9 @@ describe('watch route file', () => {
     cy.task('deleteFile', { filename: backupRoutes })
   })
 
-  it(`add and remove ${pageUrl} route`, () => {
+  it(`add and remove ${pagePath} route`, () => {
     cy.task('log', 'The cypress test page should not be found')
-    cy.visit(pageUrl, { failOnStatusCode: false })
+    cy.visit(pagePath, { failOnStatusCode: false })
     cy.get('body')
       .should('contains.text', `Page not found: ${pagePath}`)
 
@@ -33,7 +31,7 @@ describe('watch route file', () => {
     waitForApplication()
 
     cy.task('log', 'The cypress test page should be displayed')
-    cy.visit(pageUrl)
+    cy.visit(pagePath)
     cy.get('h1')
       .should('contains.text', 'CYPRESS TEST PAGE')
 
@@ -43,7 +41,7 @@ describe('watch route file', () => {
     waitForApplication()
 
     cy.task('log', 'The cypress test page should not be found')
-    cy.visit(pageUrl, { failOnStatusCode: false })
+    cy.visit(pagePath, { failOnStatusCode: false })
     cy.get('body')
       .should('contains.text', `Page not found: ${pagePath}`)
   })
