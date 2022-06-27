@@ -27,6 +27,13 @@ describe('watch custom sass files', () => {
     })
 
     it('The colour of the paragraph should be changed to green', () => {
+      // FIXME: the expected behaviour is that it shouldn't make a difference
+      // whether the stylesheet exists or not, but currently for Browsersync to
+      // update the page properly the stylesheet has to be created first, so we
+      // create an empty one. See issue #1440 for more details.
+      cy.task('log', 'Create an empty custom stylesheet')
+      cy.task('createFile', { filename: customStylesAppPath, data: '// Custom styles\n' })
+
       cy.task('log', 'Create a page to view our custom styles')
       cy.task('copyFile', {
         source: pageFixturePath,
