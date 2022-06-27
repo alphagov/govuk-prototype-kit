@@ -4,6 +4,8 @@ const child_process = require('child_process') // eslint-disable-line camelcase
 const fs = require('fs')
 const path = require('path')
 
+const tar = require('tar')
+
 const createReleaseArchive = require('./create-release-archive')
 
 const repoDir = path.join(__dirname, '..')
@@ -122,26 +124,58 @@ describe('scripts/create-release-archive', () => {
     })
   })
 
-  describe('zipReleaseFiles', () => {
-    let mockSpawnSync
+  describe('archiveReleaseFiles', () => {
+    let mockSpawnSync, mockTarCreate
 
     beforeEach(() => {
       mockSpawnSync = jest.spyOn(child_process, 'spawnSync').mockImplementation(() => ({ status: 0 }))
+      mockTarCreate = jest.spyOn(tar, 'create').mockImplementation(() => {})
     })
 
-    it('zips release files', () => {
-      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
+    it('zips release files by default', () => {
       if (process.platform === 'win32') {
+        createReleaseArchive.archiveReleaseFiles({ cwd: 'C:\\tmp', file: 'C:\\test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
-          '7z', ['a', '-tzip', '-x!test\\node_modules', '/test.zip', 'test'],
-          expect.objectContaining({ cwd: '/tmp' })
+          '7z', ['a', '-tzip', '-x!test\\node_modules', 'C:\\test.zip', 'test'],
+          expect.objectContaining({ cwd: 'C:\\tmp' })
         )
       } else {
+        createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           'zip', ['--exclude', 'test/node_modules/*', '-r', '/test.zip', 'test'],
           expect.objectContaining({ cwd: '/tmp' })
         )
       }
+    })
+
+    it('resolves paths correctly for arguments to zip', () => {
+      if (process.platform === 'win32') {
+        createReleaseArchive.archiveReleaseFiles({ cwd: 'C:\\tmp', file: 'test.zip', prefix: 'test' })
+        expect(mockSpawnSync).toBeCalledWith(
+          '7z', ['a', '-tzip', '-x!test\\node_modules', path.join(repoDir, 'test.zip'), 'test'],
+          expect.objectContaining({ cwd: 'C:\\tmp' })
+        )
+      } else {
+        createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: 'test.zip', prefix: 'test' })
+        expect(mockSpawnSync).toBeCalledWith(
+          'zip', ['--exclude', 'test/node_modules/*', '-r', path.join(repoDir, 'test.zip'), 'test'],
+          expect.objectContaining({ cwd: '/tmp' })
+        )
+      }
+    })
+
+    it('tars release files if file extension is .tar', () => {
+      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.tar', prefix: 'test' })
+      expect(mockTarCreate).toBeCalledWith(
+        expect.objectContaining({ cwd: '/tmp', file: '/test.tar' }),
+        ['test']
+      )
+    })
+
+    it('throws an error if file extension is unrecognised', () => {
+      expect(
+        () => createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.8z', prefix: 'test' })
+      ).toThrow()
     })
   })
 })

@@ -101,7 +101,7 @@ function cli () {
 
   // insert a blank line for niceness
   console.log()
-  console.log(`Saved release archive to ${argv.dest ? argv.dest : ''}${releaseArchive}`)
+  console.log(`Saved release archive to ${path.join(argv.dest ? argv.dest : '', releaseArchive)}`)
 
   // Clean up
   fs.rmdirSync(workdir, { recursive: true })
@@ -174,7 +174,7 @@ function archiveReleaseFiles ({ cwd, file, prefix }) {
     zipCreate(
       {
         cwd: cwd,
-        file: file,
+        file: path.resolve(file),
         exclude: path.join(prefix, 'node_modules', '*')
       },
       prefix
