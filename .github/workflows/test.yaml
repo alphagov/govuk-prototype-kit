@@ -49,3 +49,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - run: npm run test:integration
+      env:
+        CYPRESS_REQUEST_TIMEOUT: 20000
+        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
+        CYPRESS_PAGE_LOAD_TIMEOUT: 120000
+        CYPRESS_RETRIES: 3
