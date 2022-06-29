@@ -4,7 +4,12 @@
 
 ### Breaking changes
 
-- [#1432 Remove v6 backwards compatibility support](https://github.com/alphagov/govuk-prototype-kit/pull/1432)
+- [#1394: Remove Internet Explorer 8 support](https://github.com/alphagov/govuk-prototype-kit/issues/1394)
+- [#1432: Remove v6 backwards compatibility support](https://github.com/alphagov/govuk-prototype-kit/pull/1432)
+
+### Other changes
+
+- [#866: Remove docs from the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/866)
 
 ## 12.1.1 (Fix release)
 
