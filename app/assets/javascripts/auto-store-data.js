@@ -1,26 +1,28 @@
-/* global $ */
-$('body').on('submit', 'form', function (e) {
+document.addEventListener('submit', function (event) {
   // On form submit, add hidden inputs for checkboxes so the server knows if
   // they've been unchecked. This means we can automatically store and update
   // all form data on the server, including checkboxes that are checked, then
   // later unchecked
 
-  var $checkboxes = $(this).find('input:checkbox')
+  const $checkboxes = event.target.querySelectorAll('input[type=checkbox]')
 
-  var $inputs = []
-  var names = {}
+  const $inputs = []
+  const names = {}
 
-  $checkboxes.each(function () {
-    var $this = $(this)
+  $checkboxes.forEach(function ($checkbox) {
+    const name = $checkbox.getAttribute('name')
 
-    if (!names[$this.attr('name')]) {
-      names[$this.attr('name')] = true
-      var $input = $('<input type="hidden">')
-      $input.attr('name', $this.attr('name'))
-      $input.attr('value', '_unchecked')
+    if (!names[name]) {
+      names[name] = true
+      const $input = document.createElement('input')
+      $input.setAttribute('type', 'hidden')
+      $input.setAttribute('name', name)
+      $input.setAttribute('value', '_unchecked')
       $inputs.push($input)
     }
   })
 
-  $(this).prepend($inputs)
+  for (const $input of $inputs) {
+    event.target.appendChild($input)
+  }
 })
