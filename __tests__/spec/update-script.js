@@ -345,7 +345,7 @@ describe('update.sh', () => {
       const ret = await runScriptAndExpectSuccess('fetch', { testDir, trace: true })
 
       expect(ret.trace).toEqual(expect.arrayContaining([
-        expect.stringMatching('curl( -[LJO]*)? https://govuk-prototype-kit.herokuapp.com/docs/download')
+        expect.stringMatching('curl( -[LJO]*)? https://github.com/alphagov/govuk-prototype-kit/releases/download/v12.1.1/govuk-prototype-kit-12.1.1.zip')
       ]))
 
       expect(await fs.readdir(path.join(testDir, 'update'))).toEqual([
@@ -359,7 +359,7 @@ describe('update.sh', () => {
       const testDir = 'extract'
       await mktestArchive(testDir)
 
-      await runScriptAndExpectSuccess('extract', { testDir })
+      await runScriptAndExpectSuccess('extract', { testDir, env: { VERSION: 'foo' } })
 
       // note that the extract process should strip 1 leading component from the path,
       // so even though the archive contains:
@@ -465,7 +465,7 @@ describe('update.sh', () => {
       const testDir = await mktestDir('error-logging')
       await mktestArchive(testDir)
 
-      await runScriptAndExpectSuccess('extract', { testDir })
+      await runScriptAndExpectSuccess('extract', { testDir, env: { VERSION: 'foo' } })
       const ret = await runScript('copy', { testDir })
 
       // we expect this to fail because the test archive doesn't have a docs folder

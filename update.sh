@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Set the version of the kit that should be downloaded by default
+# Update this when making a new release
 VERSION="${VERSION:-12.1.1}"
 
 # Use unofficial bash strict mode
@@ -77,11 +78,9 @@ fetch () {
 
 	cd update
 
-	if ! ls govuk-prototype-kit*.zip > /dev/null 2>&1; then
-		msg "Downloading version ${VERSION} of GOV.UK Prototype Kit..."
-		curl -LJO "https://github.com/alphagov/govuk-prototype-kit/releases/download/v${VERSION}/govuk-prototype-kit-v${VERSION}.zip"
-		msg 'Done'
-	fi
+	msg "Downloading version ${VERSION} of GOV.UK Prototype Kit..."
+	curl -LJO "https://github.com/alphagov/govuk-prototype-kit/releases/download/v${VERSION}/${ARCHIVE_NAME}"
+	msg 'Done'
 
 	cd ..
 }
