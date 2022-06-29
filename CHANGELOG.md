@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Breaking changes
+
+- [#1432 Remove v6 backwards compatibility support](https://github.com/alphagov/govuk-prototype-kit/pull/1432)
+
 ## 12.1.1 (Fix release)
 
 ### Fixes

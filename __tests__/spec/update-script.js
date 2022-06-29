@@ -419,14 +419,11 @@ describe('update.sh', () => {
 
       const updateDir = path.join(testDir, 'update')
       await fs.unlink(path.join(updateDir, 'lib', 'build', 'config.json'))
-      await fs.unlink(path.join(updateDir, 'lib', 'v6', 'govuk_template_unbranded.html'))
-      await fs.rmdir(path.join(updateDir, 'lib', 'v6'))
 
       await runScriptAndExpectSuccess('copy', { testDir })
 
       expect(await execGitStatus(testDir)).toEqual([
-        ' D lib/build/config.json',
-        ' D lib/v6/govuk_template_unbranded.html'
+        ' D lib/build/config.json'
       ])
     })
 
