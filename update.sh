@@ -79,7 +79,8 @@ fetch () {
 	cd update
 
 	msg "Downloading version ${VERSION} of GOV.UK Prototype Kit..."
-	curl -LJO "https://github.com/alphagov/govuk-prototype-kit/releases/download/v${VERSION}/${ARCHIVE_NAME}"
+	curl -fLJO "https://github.com/alphagov/govuk-prototype-kit/releases/download/v${VERSION}/${ARCHIVE_NAME}" \
+		|| { msg 'ERROR: could not download update'; exit 1; }
 	msg 'Done'
 
 	cd ..
