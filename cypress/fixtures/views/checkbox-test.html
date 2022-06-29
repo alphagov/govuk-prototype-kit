@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="govuk-heading-xl">Checkbox tests</h1>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="/checkbox-test" method="post" class="form">
+                {{ govukCheckboxes({
+                    idPrefix: "vehicle-features",
+                    name: "vehicle1[vehicle-features]",
+                    fieldset: {
+                        legend: {
+                            text: "Which of these applies to your vehicle?"
+                        }
+                    },
+                    hint: {
+                        text: "Select all that apply"
+                    },
+                    items: [
+                        {
+                            value: "Heated seats",
+                            text: "Heated seats",
+                            checked: checked("['vehicle1']['vehicle-features']", "Heated seats")
+                        },
+                        {
+                            value: "GPS",
+                            text: "GPS",
+                            checked: checked("['vehicle1']['vehicle-features']", "GPS")
+                        },
+                        {
+                            value: "Radio",
+                            text: "Radio",
+                            checked: checked("['vehicle1']['vehicle-features']", "Radio")
+                        }
+                    ]
+                }) }}
+
+                <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
