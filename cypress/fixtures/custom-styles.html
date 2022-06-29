@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link href="/public/stylesheets/custom-styles.css" rel="stylesheet" type="text/css" />
+{% endblock head %}
+
+{% block pageTitle %}
+  Custom styles – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Custom styles
+      </h1>
+
+      <p class="app-custom-style">This is a paragraph of text. It has a custom style.</p>
+
+    </div>
+  </div>
+
+{% endblock %}

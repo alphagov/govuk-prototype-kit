@@ -36,7 +36,7 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  config.env.projectFolder = process.env.KIT_TEST_DIR || process.cwd()
+  config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
   config.env.tempFolder = path.join(__dirname, '..', 'temp')
 
   const packagePath = path.join(config.env.projectFolder, 'package.json')
