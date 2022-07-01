@@ -73,19 +73,18 @@ function getWorktreeCommit () {
   return _worktreeCommit
 }
 
-function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir } = {}) {
+function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir, ref } = {}) {
   const destDir = dir || path.join(mkdtempSync(), '__fixtures__')
-  const ref = getWorktreeCommit()
-  const releaseName = process.env.KIT_JEST_RUN_ID
-    ? getJestId() : ref
+  const commitRef = ref || getWorktreeCommit()
+  const releaseName = ref || (process.env.KIT_JEST_RUN_ID ? getJestId() : commitRef)
   const name = `govuk-prototype-kit-${releaseName}`
   const archive = path.format({ name, dir: destDir, ext: '.' + archiveType })
 
-  return { archive, archiveType, destDir, releaseName, ref }
+  return { archive, archiveType, destDir, releaseName, ref: commitRef }
 }
 
 /**
- * Return a path to the release archive for the current git worktree
+ * Return a path to the release archive for a git ref
  *
  * Creates a release archive from the git HEAD for the project we are currently
  * running tests in. This will include uncommitted changes for tracked files, but
@@ -94,6 +93,7 @@ function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir } = {}) {
  * @param {Object} [options]
  * @param {string} [options.archiveType=tar] - The type of archive to make, tar or zip
  * @param {string} [options.dir] - The folder to place the archive in, by default is a fixture folder in the temporary directory
+ * @param {string} [options.ref] - The branch or tag to archive, defaults to a stash of the worktree
  * @returns {string} - The absolute path to the archive
  */
 async function mkReleaseArchive (options) {
@@ -129,6 +129,7 @@ async function mkReleaseArchive (options) {
  * @param {Object} [options]
  * @param {string} [options.archiveType=tar] - The type of archive to make, tar or zip
  * @param {string} [options.dir] - The folder to place the archive in, by default is a fixture folder in the temporary directory
+ * @param {string} [options.ref] - The branch or tag to archive, defaults to a stash of the worktree
  * @returns {string} - The absolute path to the archive
  */
 function mkReleaseArchiveSync (options) {

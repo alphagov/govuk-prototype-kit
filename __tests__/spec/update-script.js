@@ -200,9 +200,10 @@ describe('update.sh', () => {
     }
   }
 
-  async function _mktestPrototype (src) {
-    // Create a release archive from the HEAD we are running tests in
-    await utils.mkPrototype(src)
+  async function _mktestPrototype (src, { ref } = {}) {
+    // Create a release archive from a ref, or the HEAD we are running tests in
+    const archivePath = await utils.mkReleaseArchive({ ref })
+    await utils.mkPrototype(src, { archivePath })
 
     // Create a git repo from the new release archive so we can see changes.
     await execFilePromise('git', ['init'], { cwd: src })
@@ -226,12 +227,12 @@ describe('update.sh', () => {
     await utils.mkPrototype(path.join(src, 'update'))
   }
 
-  async function mktestPrototype (dest) {
-    const src = path.resolve(fixtureDir, 'prototype')
+  async function mktestPrototype (dest, { ref } = {}) {
+    const src = path.resolve(fixtureDir, ref ? `prototype-${ref}` : 'prototype')
     try {
       await fs.access(src)
     } catch (error) {
-      await _mktestPrototype(src)
+      await _mktestPrototype(src, { ref })
     }
 
     if (dest) {
