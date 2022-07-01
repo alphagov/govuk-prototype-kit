@@ -66,45 +66,51 @@ function cli () {
     return
   }
 
-  if (argv.dest) {
-    fs.mkdirSync(argv.dest, { recursive: true })
-  }
-
+  const destDir = argv.dest || repoDir // default to project root
   const ref = argv.ref || 'HEAD'
-  const version = argv.releaseName || getReleaseVersion(argv.ref)
-  const newVersion = !argv.releaseName && isNewVersion(version) ? 'new version' : 'version'
+  const releaseName = argv.releaseName || getReleaseVersion(argv.ref)
+  const newVersion = !argv.releaseName && isNewVersion(releaseName) ? 'new version' : 'version'
   const archiveType = argv.archiveType || 'zip'
 
   console.log(`Creating release archive for ${newVersion} ${version}`)
 
-  const name = `govuk-prototype-kit-${version}`
+  const releaseArchive = createReleaseArchive(
+    archiveType, destDir, releaseName, ref, { verbose: true })
+
+  // insert a blank line for niceness
+  console.log()
+  console.log(`Saved release archive to ${path.join(argv.dest ? argv.dest : '', releaseArchive)}`)
+}
+
+function createReleaseArchive (
+  archiveType, destDir, releaseName, ref, { verbose } = {}
+) {
+  const name = `govuk-prototype-kit-${releaseName}`
   const releaseArchive = `${name}.${archiveType}`
 
-  const repoDir = path.resolve(__dirname, '..')
   const workdir = fs.mkdtempSync(
-    path.join(os.tmpdir(), `govuk-prototype-kit--release-${version}`)
+    path.join(os.tmpdir(), `govuk-prototype-kit--release-${releaseName}`)
   )
 
-  console.log(workdir)
+  if (verbose) console.debug(workdir)
 
   copyReleaseFiles(repoDir, workdir, { prefix: name, ref: ref })
 
   // Make the changes we want to make
   // Currently just removing dev stuff from package.json
-  console.log('Updating package.json')
+  if (verbose) console.log('Updating package.json')
   updatePackageJson(path.join(workdir, name, 'package.json'), cleanPackageJson)
 
-  // Create the release archive in the project root (or destDir)
+  // Create the release archive in destDir
+  fs.mkdirSync(destDir, { recursive: true }) // ensure destDir exists
   archiveReleaseFiles({
-    cwd: workdir, file: path.join(argv.dest || repoDir, releaseArchive), prefix: name
+    cwd: workdir, file: path.join(destDir, releaseArchive), prefix: name
   })
-
-  // insert a blank line for niceness
-  console.log()
-  console.log(`Saved release archive to ${path.join(argv.dest ? argv.dest : '', releaseArchive)}`)
 
   // Clean up
   fs.rmdirSync(workdir, { recursive: true })
+
+  return releaseArchive
 }
 
 function updatePackageJson (file, updater) {
