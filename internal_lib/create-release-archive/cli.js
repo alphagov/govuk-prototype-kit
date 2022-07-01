@@ -57,8 +57,8 @@ function cli () {
   }
 
   const destDir = argv.dest || repoDir // default to project root
-  const ref = argv.ref || 'HEAD'
-  const releaseName = argv.releaseName || getReleaseVersion(argv.ref)
+  const ref = argv._[0] || 'HEAD'
+  const releaseName = argv.releaseName || getReleaseVersion(ref)
   const newVersion = !argv.releaseName && isNewVersion(releaseName) ? 'new version' : 'version'
   const archiveType = argv.archiveType || 'zip'
 
