@@ -6,9 +6,9 @@ const path = require('path')
 
 const tar = require('tar')
 
-const createReleaseArchive = require('./create-release-archive')
+const createReleaseArchive = require('./util')
 
-const repoDir = path.join(__dirname, '..')
+const repoDir = path.join(__dirname, '..', '..')
 
 function testFailingIf (condition, ...args) {
   if (condition) {
@@ -18,7 +18,7 @@ function testFailingIf (condition, ...args) {
   }
 }
 
-describe('scripts/create-release-archive', () => {
+describe('create-release-archive/util', () => {
   afterEach(() => {
     jest.restoreAllMocks()
   })

@@ -11,6 +11,7 @@ cypress.json export-ignore
 .gitattributes export-ignore
 .github export-ignore
 /CODEOWNERS export-ignore
+/internal_lib export-ignore
 /scripts export-ignore
 
 # Internal docs
