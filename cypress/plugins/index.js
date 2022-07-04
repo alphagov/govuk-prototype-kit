@@ -50,6 +50,7 @@ module.exports = (on, config) => {
   }
 
   const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
+  const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
 
   const makeSureCypressCanInterpretTheResult = () => null
 
@@ -82,9 +83,11 @@ module.exports = (on, config) => {
         .then(makeSureCypressCanInterpretTheResult)
     },
 
-    replaceTextInFile: ({ filename, originalText, newText }) => fsp.readFile(filename)
-      .then((buffer) => fsp.writeFile(filename, buffer.toString().replace(originalText, newText)))
-      .then(makeSureCypressCanInterpretTheResult),
+    replaceTextInFile: ({ filename, originalText, newText, source }) => getReplacementText(newText, source)
+      .then((replacementText) => fsp.readFile(filename)
+        .then((buffer) => fsp.writeFile(filename, buffer.toString().replace(originalText, replacementText)))
+        .then(makeSureCypressCanInterpretTheResult)
+      ),
 
     log: (message) => {
       console.log(`${new Date().toLocaleTimeString()} => ${message}`)
