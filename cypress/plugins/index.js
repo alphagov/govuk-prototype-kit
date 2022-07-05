@@ -51,89 +51,40 @@ module.exports = (on, config) => {
 
   const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
 
-  on('task', {
-    copyFile: async ({ source, target }) => {
-      try {
-        createFolderForFile(target)
-        await fsp.copyFile(source, target)
-        // The sleep of 2 seconds allows for the file to be copied completely to prevent
-        // it from not existing when the file is needed in a subsequent step
-        await sleep(2000) // pause after the copy
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+  const makeSureCypressCanInterpretTheResult = () => null
 
   on('task', {
-    createFile: async ({ filename, data, replace = false }) => {
-      try {
-        createFolderForFile(filename)
-        await fsp.writeFile(filename, data, {
-          flag: replace ? 'w' : '' // Flag of w will overwrite
-        })
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+    copyFile: ({ source, target }) => createFolderForFile(target)
+      .then(() => fsp.copyFile(source, target))
+      // The sleep of 2 seconds allows for the file to be copied completely to prevent
+      // it from not existing when the file is needed in a subsequent step
+      .then(() => sleep(2000)) // pause after the copy
+      .then(makeSureCypressCanInterpretTheResult),
 
-  on('task', {
-    appendFile: async ({ filename, data }) => {
-      try {
-        await fsp.appendFile(filename, data)
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+    createFile: ({ filename, data, replace = false }) => createFolderForFile(filename)
+      .then(() => fsp.writeFile(filename, data, {
+        flag: replace ? 'w' : '' // Flag of w will overwrite
+      }))
+      .then(makeSureCypressCanInterpretTheResult),
 
-  on('task', {
-    replaceTextInFile: async ({ filename, originalText, newText }) => {
-      try {
-        const content = fs.readFileSync(filename).toString()
-        fs.writeFileSync(filename, content.replace(originalText, newText))
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+    appendFile: ({ filename, data }) => fsp.appendFile(filename, data)
+      .then(makeSureCypressCanInterpretTheResult),
 
-  on('task', {
-    deleteFile: async ({ filename, timeout }) => {
-      try {
-        await fsp.unlink(filename)
-        await sleep(timeout)
-        return Promise.resolve(null)
-      } catch (err) {
-        if (err.code !== 'ENOENT') {
-          return Promise.reject(err)
-        }
-        return Promise.resolve(null)
-      }
-    }
-  })
+    deleteFile: ({ filename, timeout }) => fsp.unlink(filename)
+      .then(() => sleep(timeout))
+      .then(makeSureCypressCanInterpretTheResult)
+      .catch((err) => err.code !== 'ENOENT' ? err : null
+      ),
 
-  on('task', {
-    waitUntilAppRestarts: async (config) => {
+    waitUntilAppRestarts: (config) => {
       const { timeout = 20000 } = config || {}
-      try {
-        await waitUntilAppRestarts(timeout)
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+      return waitUntilAppRestarts(timeout)
+        .then(makeSureCypressCanInterpretTheResult)
+    },
 
-  on('task', {
-    log (message) {
+    log: (message) => {
       console.log(`${new Date().toLocaleTimeString()} => ${message}`)
-      return null
+      return makeSureCypressCanInterpretTheResult()
     }
   })
 
