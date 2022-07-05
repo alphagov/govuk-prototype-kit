@@ -13,16 +13,17 @@
 // the project's config changing)
 // const spawn = require('child_process').spawn
 const fs = require('fs')
+const fsp = fs.promises
 const path = require('path')
 
 const waitOn = require('wait-on')
 
 const { sleep } = require('../integration/utils')
 
-const createFolderForFile = (filepath) => {
+const createFolderForFile = async (filepath) => {
   const dir = filepath.substring(0, filepath.lastIndexOf('/'))
   if (dir && !fs.existsSync(dir)) {
-    fs.mkdirSync(dir, {
+    await fsp.mkdir(dir, {
       recursive: true
     })
   }
@@ -54,7 +55,7 @@ module.exports = (on, config) => {
     copyFile: async ({ source, target }) => {
       try {
         createFolderForFile(target)
-        fs.copyFileSync(source, target)
+        await fsp.copyFile(source, target)
         // The sleep of 2 seconds allows for the file to be copied completely to prevent
         // it from not existing when the file is needed in a subsequent step
         await sleep(2000) // pause after the copy
@@ -69,7 +70,7 @@ module.exports = (on, config) => {
     createFile: async ({ filename, data, replace = false }) => {
       try {
         createFolderForFile(filename)
-        fs.writeFileSync(filename, data, {
+        await fsp.writeFile(filename, data, {
           flag: replace ? 'w' : '' // Flag of w will overwrite
         })
         return Promise.resolve(null)
@@ -82,7 +83,19 @@ module.exports = (on, config) => {
   on('task', {
     appendFile: async ({ filename, data }) => {
       try {
-        fs.appendFileSync(filename, data)
+        await fsp.appendFile(filename, data)
+        return Promise.resolve(null)
+      } catch (err) {
+        return Promise.reject(err)
+      }
+    }
+  })
+
+  on('task', {
+    replaceTextInFile: async ({ filename, originalText, newText }) => {
+      try {
+        const content = fs.readFileSync(filename).toString()
+        fs.writeFileSync(filename, content.replace(originalText, newText))
         return Promise.resolve(null)
       } catch (err) {
         return Promise.reject(err)
@@ -93,7 +106,7 @@ module.exports = (on, config) => {
   on('task', {
     deleteFile: async ({ filename, timeout }) => {
       try {
-        fs.unlinkSync(filename)
+        await fsp.unlink(filename)
         await sleep(timeout)
         return Promise.resolve(null)
       } catch (err) {
