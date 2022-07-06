@@ -148,13 +148,7 @@ app.get('/robots.txt', function (req, res) {
 })
 
 // Load routes (found in app/routes.js)
-if (typeof (routes) !== 'function') {
-  console.log(routes.bind)
-  console.log('Warning: the use of bind in routes is deprecated - please check the Prototype Kit documentation for writing routes.')
-  routes.bind(app)
-} else {
-  app.use('/', routes)
-}
+app.use('/', routes)
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {
