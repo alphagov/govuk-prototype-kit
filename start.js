@@ -6,6 +6,9 @@ const fs = require('fs')
 const checkFiles = require('./lib/build/check-files').checkFiles
 checkFiles()
 
+// npm dependencies
+const fse = require('fs-extra')
+
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
 const { projectDir } = require('./lib/path-utils')
@@ -43,7 +46,7 @@ function createSessionDataDefaults () {
   if (!sessionDataDefaultsFileExists) {
     console.log('Creating session data defaults file')
     if (!fs.existsSync(dataDirectory)) {
-      fs.mkdirSync(dataDirectory)
+      fse.ensureDirSync(dataDirectory)
     }
 
     fs.createReadStream(path.join(__dirname, '/lib/template.session-data-defaults.js'))
