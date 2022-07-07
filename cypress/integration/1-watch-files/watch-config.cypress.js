@@ -8,6 +8,8 @@ const backupAppConfig = path.join(Cypress.env('tempFolder'), 'temp-config.js')
 const originalText = 'Service name goes here'
 const newText = 'Cypress test'
 
+const serverNameQuery = 'a.govuk-header__link.govuk-header__service-name, a.govuk-header__link--service-name'
+
 describe('watch config file', () => {
   describe(`service name in config file ${appConfig} should be changed and restored`, () => {
     before(() => {
@@ -23,10 +25,10 @@ describe('watch config file', () => {
     })
 
     it('The service name should change to "cypress test"', () => {
-      cy.get('a.govuk-header__link--service-name').should('contains.text', originalText)
+      cy.get(serverNameQuery).should('contains.text', originalText)
       cy.task('replaceTextInFile', { filename: appConfig, originalText, newText })
       waitForApplication()
-      cy.get('a.govuk-header__link--service-name').should('contains.text', newText)
+      cy.get(serverNameQuery).should('contains.text', newText)
     })
   })
 })
