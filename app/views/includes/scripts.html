@@ -1,5 +1,5 @@
 <!-- Javascript -->
 
-{% for scriptUrl in extensionConfig.scripts %}
+{% for scriptUrl in extensionConfig.scripts.concat(userScripts) %}
   <script src="{{scriptUrl}}"></script>
 {% endfor %}

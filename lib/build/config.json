@@ -1,6 +1,6 @@
 {
   "paths": {
-    "public": "public",
+    "public": ".tmp/public",
     "cypress": "cypress",
     "assets" : "app/assets",
     "libAssets" : "lib/assets",

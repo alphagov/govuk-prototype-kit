@@ -1,6 +1,7 @@
 // Core dependencies
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -22,7 +23,6 @@ const middleware = [
 const config = require('./app/config.js')
 const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
-const routes = require(`${process.cwd()}/app/routes.js`)
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const { projectDir } = require('./lib/path-utils')
@@ -52,8 +52,13 @@ app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+app.locals.userScripts = []
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig()
+
+if (fs.existsSync(path.join(projectDir, 'app', 'assets', 'javascripts', 'application.js'))) {
+  app.locals.userScripts.push(['public', 'javascripts', 'application.js'].join('/'))
+}
 
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
@@ -115,7 +120,7 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/public', express.static(path.join(projectDir, '/public')))
+app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
 
 // Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
@@ -148,7 +153,10 @@ app.get('/robots.txt', function (req, res) {
 })
 
 // Load routes (found in app/routes.js)
-app.use('/', routes)
+const pathToUserRoutes = path.join(process.cwd(), 'app', 'routes.js')
+if (fs.existsSync(pathToUserRoutes)) {
+  app.use('/', require(pathToUserRoutes))
+}
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {

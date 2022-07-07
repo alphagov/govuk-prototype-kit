@@ -1,6 +1,6 @@
 {
   "nunjucksPaths": ["/app/views"],
-  "script": [
+  "scripts": [
     "/app/assets/javascripts/jquery-1.11.3.js",
     "/app/assets/javascripts/application.js",
     "/app/assets/javascripts/auto-store-data.js"

@@ -19,4 +19,4 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/task-list";
 
 // SASS that is user defined
-@import "app/assets/sass/application";
+@import ".tmp/sass/application";
