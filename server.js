@@ -20,21 +20,22 @@ const middleware = [
   require('./lib/middleware/authentication/authentication.js')(),
   require('./lib/middleware/extensions/extensions.js')
 ]
-const config = require('./app/config.js')
 const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const { projectDir } = require('./lib/path-utils')
+const configLocation = path.join(projectDir, 'app', 'config.js')
+const config = fs.existsSync(configLocation) ? require(configLocation) : {}
 
 const app = express()
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
 var env = utils.getNodeEnv()
-var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
-var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
-var useHttps = process.env.USE_HTTPS || config.useHttps
+var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData || 'true'
+var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore || 'true'
+var useHttps = process.env.USE_HTTPS || config.useHttps || 'true'
 
 useHttps = useHttps.toLowerCase()
 
@@ -64,7 +65,7 @@ if (fs.existsSync(path.join(projectDir, 'app', 'assets', 'javascripts', 'applica
 app.use(cookieParser())
 
 // Session uses service name to avoid clashes with other prototypes
-const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
+const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName || 'default', 'utf8')).toString('hex')
 const sessionHours = 4
 const sessionOptions = {
   secret: sessionName,
