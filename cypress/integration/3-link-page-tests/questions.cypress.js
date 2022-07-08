@@ -21,6 +21,8 @@ const jugglingTrickView = path.join(appViews, 'juggling-trick.html')
 const checkAnswersView = path.join(appViews, 'check-answers.html')
 const confirmationView = path.join(appViews, 'confirmation.html')
 
+const appDataFile = path.join(Cypress.env('projectFolder'), 'app', 'data', 'session-data-defaults.js')
+
 const startPath = '/start'
 const jugglingBallsPath = '/juggling-balls'
 const jugglingTrickPath = '/juggling-trick'
@@ -28,6 +30,9 @@ const checkAnswersPath = '/check-answers'
 
 const howManyBalls = '3 or more'
 const mostImpressiveTrick = 'Standing on my head'
+
+const defaultHowManyBalls = 'None - I cannot juggle'
+const defaultMostImpressiveTrick = 'None - I cannot do tricks'
 
 describe('Question journey', async () => {
   const cleanup = () => {
@@ -51,19 +56,7 @@ describe('Question journey', async () => {
     cy.task('replaceTextInFile', { filename: view, originalText: '/url/of/next/page', newText: nextPath })
   }
 
-  before(() => {
-    waitForApplication()
-    cleanup()
-  })
-
-  after(() => {
-    cleanup()
-  })
-
-  it('Add the views', () => {
-    // Set up pages and journey
-    // ========================
-
+  const setUpPages = () => {
     // Set up start view
     copyFile(startTemplate, startView)
     cy.task('replaceTextInFile', { filename: startView, originalText: '<a href="#" role="button"', newText: `<a href="${jugglingBallsPath}" role="button"` })
@@ -79,10 +72,27 @@ describe('Question journey', async () => {
 
     // Set up confirmation view
     copyFile(confirmationTemplate, confirmationView)
+  }
 
-    // Navigate through pages
-    // ======================
+  const setUpData = () => {
+    cy.task('replaceTextInFile', { filename: appDataFile, originalText: '// Insert values here', newText: `"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"` })
+  }
 
+  const clearUpData = () => {
+    cy.task('replaceTextInFile', { filename: appDataFile, originalText: `"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"`, newText: '// Insert values here' })
+  }
+
+  before(() => {
+    waitForApplication()
+    cleanup()
+    setUpPages()
+  })
+
+  after(() => {
+    // cleanup()
+  })
+
+  it('Happy path journey', () => {
     // Visit start page and click start
     cy.task('log', 'The start page should be displayed')
     cy.visit(startPath)
@@ -111,5 +121,66 @@ describe('Question journey', async () => {
     // Confirmation page should be displayed correctly
     cy.task('log', 'The confirmation page should be displayed')
     cy.get('h1.govuk-panel__title').should('contains.text', 'Application complete')
+  })
+
+  describe('Change', async () => {
+    before(() => {
+      setUpData()
+    })
+
+    after(() => {
+      clearUpData()
+    })
+
+    it('Change juggling balls journey', () => {
+      // Visit Check answers page, click change juggling balls
+      cy.task('log', 'The check answers page should be displayed')
+      cy.visit(checkAnswersPath)
+      cy.get('h1').should('contains.text', 'Check your answers before sending your application')
+      cy.get('.govuk-summary-list__value:first').should('contains.text', defaultHowManyBalls)
+      cy.get('.govuk-summary-list__value:last').should('contains.text', defaultMostImpressiveTrick)
+      cy.get('a[href="/juggling-balls"]').should('contains.text', 'Change').click()
+
+      // On Juggling balls page, click continue
+      cy.task('log', 'The juggling balls page should be displayed')
+      cy.get('h1').should('contains.text', 'How many balls can you juggle?')
+      cy.get(`input[value="${defaultHowManyBalls}"]`).should('be.checked')
+      cy.get(`input[value="${howManyBalls}"]`).check()
+      cy.get('button.govuk-button').should('contains.text', 'Continue').click()
+
+      // On Juggling trick page, click continue
+      cy.task('log', 'The juggling trick page should be displayed')
+      cy.get('h1').should('contains.text', 'What is your most impressive juggling trick?')
+      cy.get('textarea#most-impressive-trick').should('contains.text', defaultMostImpressiveTrick)
+      cy.get('button.govuk-button').should('contains.text', 'Continue').click()
+
+      // On Check answers page, click accept and send
+      cy.task('log', 'The check answers page should be displayed')
+      cy.get('h1').should('contains.text', 'Check your answers before sending your application')
+      cy.get('.govuk-summary-list__value:first').should('contains.text', howManyBalls)
+      cy.get('.govuk-summary-list__value:last').should('contains.text', defaultMostImpressiveTrick)
+    })
+
+    it('Change juggling trick journey', () => {
+      // Visit Check answers page, click change juggling trick
+      cy.task('log', 'The check answers page should be displayed')
+      cy.visit(checkAnswersPath)
+      cy.get('h1').should('contains.text', 'Check your answers before sending your application')
+      cy.get('.govuk-summary-list__value:first').should('contains.text', defaultHowManyBalls)
+      cy.get('.govuk-summary-list__value:last').should('contains.text', defaultMostImpressiveTrick)
+      cy.get('a[href="/juggling-trick"]').should('contains.text', 'Change').click()
+
+      // On Juggling trick page, click continue
+      cy.task('log', 'The juggling trick page should be displayed')
+      cy.get('h1').should('contains.text', 'What is your most impressive juggling trick?')
+      cy.get('textarea#most-impressive-trick').should('contains.text', defaultMostImpressiveTrick).type(mostImpressiveTrick)
+      cy.get('button.govuk-button').should('contains.text', 'Continue').click()
+
+      // On Check answers page, click accept and send
+      cy.task('log', 'The check answers page should be displayed')
+      cy.get('h1').should('contains.text', 'Check your answers before sending your application')
+      cy.get('.govuk-summary-list__value:first').should('contains.text', defaultHowManyBalls)
+      cy.get('.govuk-summary-list__value:last').should('contains.text', mostImpressiveTrick)
+    })
   })
 })
