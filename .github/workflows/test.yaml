@@ -17,7 +17,7 @@ jobs:
 
     name: Test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 25
 
     defaults:
       run:
