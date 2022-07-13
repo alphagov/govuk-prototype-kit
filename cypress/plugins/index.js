@@ -51,6 +51,20 @@ module.exports = (on, config) => {
 
   const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
   const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
+  const replaceText = ({ text, originalText, newText, source }) => getReplacementText(newText, source)
+    .then((replacementText) => {
+      return text.replace(originalText, replacementText)
+    })
+
+  const replaceMultipleText = async (text, list) => {
+    let resultText = text
+    let index = 0
+    while (list.length >= index) {
+      resultText = await replaceText({ text: resultText, ...list[index] })
+      index++
+    }
+    return resultText
+  }
 
   const makeSureCypressCanInterpretTheResult = () => null
 
@@ -83,11 +97,15 @@ module.exports = (on, config) => {
         .then(makeSureCypressCanInterpretTheResult)
     },
 
-    replaceTextInFile: ({ filename, originalText, newText, source }) => getReplacementText(newText, source)
-      .then((replacementText) => fsp.readFile(filename)
-        .then((buffer) => fsp.writeFile(filename, buffer.toString().replace(originalText, replacementText)))
-        .then(makeSureCypressCanInterpretTheResult)
-      ),
+    replaceTextInFile: ({ filename, ...options }) => fsp.readFile(filename)
+      .then((buffer) => replaceText({ text: buffer.toString(), ...options }))
+      .then((text) => fsp.writeFile(filename, text.toString()))
+      .then(makeSureCypressCanInterpretTheResult),
+
+    replaceMultipleTextInFile: ({ filename, list }) => fsp.readFile(filename)
+      .then((buffer) => replaceMultipleText(buffer.toString(), list))
+      .then((text) => fsp.writeFile(filename, text.toString()))
+      .then(makeSureCypressCanInterpretTheResult),
 
     log: (message) => {
       console.log(`${new Date().toLocaleTimeString()} => ${message}`)
