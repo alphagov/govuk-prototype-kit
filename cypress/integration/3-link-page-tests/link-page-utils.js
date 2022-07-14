@@ -4,13 +4,17 @@ const templates = path.join(Cypress.env('packageFolder') || Cypress.env('project
 const startTemplate = path.join(templates, 'start.html')
 const questionTemplate = path.join(templates, 'question.html')
 const confirmationTemplate = path.join(templates, 'confirmation.html')
+const contentTemplate = path.join(templates, 'content.html')
 
-const fixtureViews = path.join(Cypress.config('fixturesFolder'), 'views')
+const fixtures = path.join(Cypress.config('fixturesFolder'))
+
+const fixtureViews = path.join(fixtures, 'views')
 const jugglingCheckAnswersFixtureView = path.join(fixtureViews, 'juggling-check-answers.html')
 
-const components = path.join(fixtureViews, 'components')
+const components = path.join(fixtures, 'components')
 const jugglingBallsComponent = path.join(components, 'juggling-balls-component.html')
 const jugglingTrickComponent = path.join(components, 'juggling-trick-component.html')
+const jugglingBallsAnswerComponent = path.join(components, 'juggling-balls-route-component.js')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const startView = path.join(appViews, 'start.html')
@@ -18,12 +22,18 @@ const jugglingBallsView = path.join(appViews, 'juggling-balls.html')
 const jugglingTrickView = path.join(appViews, 'juggling-trick.html')
 const checkAnswersView = path.join(appViews, 'check-answers.html')
 const confirmationView = path.join(appViews, 'confirmation.html')
+const ineligibleView = path.join(appViews, 'ineligible.html')
+
+const appRoutes = path.join(Cypress.env('projectFolder'), 'app', 'routes.js')
+const backedUpRoutes = path.join(Cypress.env('tempFolder'), 'temp-routes.js')
 
 const appDataFile = path.join(Cypress.env('projectFolder'), 'app', 'data', 'session-data-defaults.js')
 
 const jugglingBallsPath = '/juggling-balls'
 const jugglingTrickPath = '/juggling-trick'
 const checkAnswersPath = '/check-answers'
+
+const jugglingBallsAnswerRoute = '/juggling-balls-answer'
 
 const defaultHowManyBalls = 'None - I cannot juggle'
 const defaultMostImpressiveTrick = 'None - I cannot do tricks'
@@ -75,9 +85,40 @@ const clearUpData = () => {
   cy.task('replaceTextInFile', { filename: appDataFile, originalText: `"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"`, newText: '// Insert values here' })
 }
 
+const setUpBranchingPages = () => {
+  // Set up ineligible view
+  copyFile(contentTemplate, ineligibleView)
+  cy.task('replaceTextInFile', { filename: ineligibleView, originalText: 'Heading goes here', newText: 'Sorry, you are ineligible for juggling tricks' })
+  cy.task('replaceTextInFile', { filename: ineligibleView, originalText: 'This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.', newText: 'Keep practicing and when you can juggle 3 or more balls, you will be eligible for tricks.' })
+  cy.task('replaceTextInFile', { filename: ineligibleView, originalText: '<p>Read more <a href="/url/of/onward/page">about this topic</a>.</p>', newText: '' })
+
+  // Update the juggling balls action
+  cy.task('replaceTextInFile', { filename: jugglingBallsView, originalText: jugglingTrickPath, newText: jugglingBallsAnswerRoute })
+
+  // Update routes with juggling balls answer component
+  cy.task('replaceTextInFile', { filename: appRoutes, originalText: '// Add your routes here - above the module.exports line', source: jugglingBallsAnswerComponent })
+}
+
+const cleanUpBranchingPages = () => {
+  cy.task('deleteFile', { filename: ineligibleView })
+}
+
+const backUpRoutes = () => {
+  copyFile(appRoutes, backedUpRoutes)
+}
+
+const restoreRoutes = () => {
+  copyFile(backedUpRoutes, appRoutes)
+  cy.task('deleteFile', { filename: backedUpRoutes })
+}
+
 module.exports = {
   setUpPages,
+  setUpBranchingPages,
   setUpData,
   cleanUpPages,
-  clearUpData
+  cleanUpBranchingPages,
+  clearUpData,
+  backUpRoutes,
+  restoreRoutes
 }
