@@ -32,7 +32,6 @@ const app = express()
 // Set up configuration variables
 var releaseVersion = packageJson.version
 var env = utils.getNodeEnv()
-var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
 var useHttps = process.env.USE_HTTPS || config.useHttps
 
@@ -48,7 +47,6 @@ if (isSecure) {
 
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
-app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
@@ -125,12 +123,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
-
-// Automatically store all data users enter
-if (useAutoStoreData === 'true') {
-  app.use(utils.autoStoreData)
-  utils.addCheckedFunction(nunjucksAppEnv)
-}
 
 // Load prototype admin routes
 app.use('/prototype-admin', prototypeAdminRoutes)

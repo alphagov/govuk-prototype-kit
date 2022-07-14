@@ -5,9 +5,9 @@ const fs = require('fs')
 const path = require('path')
 
 const utils = require('../util')
+const childProcesstimeout = parseInt(process.env.CHILD_PROCESS_TIMEOUT || '2500', 10)
 
 const repoDir = path.resolve(__dirname, '..', '..')
-
 describe('npm start', () => {
   const tmpDir = utils.mkdtempSync()
 
@@ -21,23 +21,22 @@ describe('npm start', () => {
       ).toMatch(/ERROR: Node module folder missing. Try running `npm install`\n$/)
     })
   })
-
   describe('dev server', () => {
     it('suggests running npm install if app crashes', async () => {
       const testDir = path.join(tmpDir, 'onCrash')
       await utils.mkPrototype(testDir)
-      fs.symlinkSync(path.join(repoDir, 'node_modules'), path.join(testDir, 'node_modules'), 'dir')
 
+      fs.symlinkSync(path.join(repoDir, 'node_modules'), path.join(testDir, 'node_modules'), 'dir')
       // add a require for an unincluded and uninstalled module
       // this should always fail
+
       fs.writeFileSync(
         path.join(testDir, 'listen-on-port.js'),
-        "const foobar = require('foobar')\n"
+        'const foobar = require(\'foobar\')\n'
       )
-
       const app = child_process.spawnSync(
         'node lib/build/dev-server',
-        { cwd: testDir, encoding: 'utf8', shell: true, timeout: 2500 }
+        { cwd: testDir, encoding: 'utf8', shell: true, timeout: childProcesstimeout }
       )
 
       expect(app).toEqual(expect.objectContaining({
