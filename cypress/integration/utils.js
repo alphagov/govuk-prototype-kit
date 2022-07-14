@@ -8,7 +8,19 @@ const waitForApplication = async () => {
     .should('contains.text', 'Prototype your service using GOV.UK Prototype Kit')
 }
 
+const copyFile = (source, target) => {
+  cy.task('log', `Copy ${source} to ${target}`)
+  cy.task('copyFile', { source, target })
+}
+
+const deleteFile = (filename) => {
+  cy.task('log', `Delete ${filename}`)
+  cy.task('deleteFile', { filename })
+}
+
 module.exports = {
   sleep,
-  waitForApplication
+  waitForApplication,
+  copyFile,
+  deleteFile
 }

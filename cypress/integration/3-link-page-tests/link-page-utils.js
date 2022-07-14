@@ -1,4 +1,5 @@
 import path from 'path'
+import { copyFile, deleteFile } from '../utils'
 
 const templates = path.join(Cypress.env('packageFolder') || Cypress.env('projectFolder'), 'docs', 'views', 'templates')
 const startTemplate = path.join(templates, 'start.html')
@@ -39,16 +40,11 @@ const defaultHowManyBalls = 'None - I cannot juggle'
 const defaultMostImpressiveTrick = 'None - I cannot do tricks'
 
 const cleanUpPages = () => {
-  cy.task('deleteFile', { filename: startView })
-  cy.task('deleteFile', { filename: jugglingBallsView })
-  cy.task('deleteFile', { filename: jugglingTrickView })
-  cy.task('deleteFile', { filename: checkAnswersView })
-  cy.task('deleteFile', { filename: confirmationView })
-}
-
-const copyFile = (source, target) => {
-  cy.task('log', `Copy ${source} to ${target}`)
-  cy.task('copyFile', { source, target })
+  deleteFile(startView)
+  deleteFile(jugglingBallsView)
+  deleteFile(jugglingTrickView)
+  deleteFile(checkAnswersView)
+  deleteFile(confirmationView)
 }
 
 const createQuestionView = (view, content, nextPath) => {
@@ -100,7 +96,7 @@ const setUpBranchingPages = () => {
 }
 
 const cleanUpBranchingPages = () => {
-  cy.task('deleteFile', { filename: ineligibleView })
+  deleteFile(ineligibleView)
 }
 
 const backUpRoutes = () => {
@@ -109,7 +105,7 @@ const backUpRoutes = () => {
 
 const restoreRoutes = () => {
   copyFile(backedUpRoutes, appRoutes)
-  cy.task('deleteFile', { filename: backedUpRoutes })
+  deleteFile(backedUpRoutes)
 }
 
 module.exports = {
