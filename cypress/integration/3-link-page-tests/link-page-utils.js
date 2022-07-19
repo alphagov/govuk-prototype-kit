@@ -53,10 +53,15 @@ const copyFile = (source, target) => {
 
 const createQuestionView = (view, content, nextPath) => {
   copyFile(questionTemplate, view)
-  cy.task('replaceTextInFile', { filename: view, originalText: '<h1 class="govuk-heading-xl">Heading or question goes here</h1>', newText: '' })
-  cy.task('replaceTextInFile', { filename: view, originalText: '<p>[See <a href="https://design-system.service.gov.uk">the GOV.UK Design System</a> for examples]</p>', newText: '' })
-  cy.task('replaceTextInFile', { filename: view, originalText: '<p>[Insert question content here]</p>', source: content })
-  cy.task('replaceTextInFile', { filename: view, originalText: '/url/of/next/page', newText: nextPath })
+  cy.task('replaceMultipleTextInFile', {
+    filename: view,
+    list: [
+      { originalText: '<h1 class="govuk-heading-xl">Heading or question goes here</h1>', newText: '' },
+      { originalText: '<p>[See <a href="https://design-system.service.gov.uk">the GOV.UK Design System</a> for examples]</p>', newText: '' },
+      { originalText: '<p>[Insert question content here]</p>', source: content },
+      { originalText: '/url/of/next/page', newText: nextPath }
+    ]
+  })
 }
 
 const setUpPages = () => {
@@ -88,9 +93,14 @@ const clearUpData = () => {
 const setUpBranchingPages = () => {
   // Set up ineligible view
   copyFile(contentTemplate, ineligibleView)
-  cy.task('replaceTextInFile', { filename: ineligibleView, originalText: 'Heading goes here', newText: 'Sorry, you are ineligible for juggling tricks' })
-  cy.task('replaceTextInFile', { filename: ineligibleView, originalText: 'This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.', newText: 'Keep practicing and when you can juggle 3 or more balls, you will be eligible for tricks.' })
-  cy.task('replaceTextInFile', { filename: ineligibleView, originalText: '<p>Read more <a href="/url/of/onward/page">about this topic</a>.</p>', newText: '' })
+  cy.task('replaceMultipleTextInFile', {
+    filename: ineligibleView,
+    list: [
+      { originalText: 'Heading goes here', newText: 'Sorry, you are ineligible for juggling tricks' },
+      { originalText: 'This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.', newText: 'Keep practicing and when you can juggle 3 or more balls, you will be eligible for tricks.' },
+      { originalText: '<p>Read more <a href="/url/of/onward/page">about this topic</a>.</p>', newText: '' }
+    ]
+  })
 
   // Update the juggling balls action
   cy.task('replaceTextInFile', { filename: jugglingBallsView, originalText: jugglingTrickPath, newText: jugglingBallsAnswerRoute })
