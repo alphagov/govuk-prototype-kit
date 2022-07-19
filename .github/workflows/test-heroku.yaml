@@ -12,6 +12,9 @@ jobs:
     name: Test kit on Heroku
     runs-on: ubuntu-latest
 
+    env:
+      CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node v16
@@ -19,5 +22,10 @@ jobs:
       with:
         cache: 'npm'
         node-version: '16'
+    - name: Cache Cypress binary
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/Cypress
+        key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
     - run: npm ci
     - run: npm run test:heroku
