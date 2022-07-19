@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Set the version of the kit that should be downloaded by default
+# Update this when making a new release
+VERSION="${VERSION:-12.1.1}"
+
 # Use unofficial bash strict mode
 set -euo pipefail
 
@@ -8,15 +12,18 @@ msg () {
 	1>&2 echo $*
 }
 
+abspath () {
+	# From https://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-os-x
+	[[ "$1" = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 # Set global vars ARCHIVE_FILE ARCHIVE_ROOT
 get_archive_vars () {
-	# If ARCHIVE_FILE hasn't been set in the env already choose the archive file
-	# in the update folder with the largest version number.
 	if [ -z "${ARCHIVE_FILE:-}" ]; then
-		ARCHIVE_FILE="$(find update -name 'govuk-prototype-kit*.zip' | sort -V | tail -n1)"
+		ARCHIVE_FILE="update/govuk-prototype-kit-${VERSION}.zip"
 	fi
 	if [ ! -z "${ARCHIVE_FILE:-}" ]; then
-		ARCHIVE_FILE="$PWD/$ARCHIVE_FILE"
+		ARCHIVE_FILE="$(abspath $ARCHIVE_FILE)"
 		ARCHIVE_NAME="$(basename "$ARCHIVE_FILE")"
 		ARCHIVE_ROOT="${ARCHIVE_NAME//.zip}"
 	fi
@@ -71,11 +78,10 @@ fetch () {
 
 	cd update
 
-	if ! ls govuk-prototype-kit*.zip > /dev/null 2>&1; then
-		msg 'Downloading latest version of GOV.UK Prototype Kit...'
-		curl -LJO https://govuk-prototype-kit.herokuapp.com/docs/download
-		msg 'Done'
-	fi
+	msg "Downloading version ${VERSION} of GOV.UK Prototype Kit..."
+	curl -fLJO "https://github.com/alphagov/govuk-prototype-kit/releases/download/v${VERSION}/${ARCHIVE_NAME}" \
+		|| { msg 'ERROR: could not download update'; exit 1; }
+	msg 'Done'
 
 	cd ..
 }
