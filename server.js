@@ -181,6 +181,11 @@ app.post(/^\/([^.]+)$/, function (req, res) {
   )
 })
 
+// redirect old local docs to the docs site
+app.get('/docs/tutorials-and-examples', function (req, res) {
+  res.redirect('https://govuk-prototype-kit.herokuapp.com/docs')
+})
+
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error(`Page not found: ${req.path}`)
