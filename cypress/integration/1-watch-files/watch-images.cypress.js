@@ -12,17 +12,21 @@ const pageFixtureName = `${pageFixture}.html`
 const pageFixturePath = path.join(Cypress.config('fixturesFolder'), pageFixtureName)
 const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
 
+function cleanUp () {
+  cy.task('deleteFile', { filename: path.join(appImages, imageFile) })
+  cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), publicImages, imageFile) })
+  cy.task('deleteFile', { filename: pageAppPath })
+}
+
 describe('watch image files', () => {
   before(() => {
+    waitForApplication()
+    cleanUp()
     waitForApplication()
   })
 
   afterEach(() => {
-    // delete test files
-    cy.task('deleteFile', { filename: path.join(appImages, imageFile) })
-    cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), publicImages, imageFile) })
-    cy.task('deleteFile', { filename: pageAppPath })
-    cy.wait(2000)
+    cleanUp()
   })
 
   it(`image created in ${appImages} should be copied to ${publicImages} and accessible from the browser`, () => {

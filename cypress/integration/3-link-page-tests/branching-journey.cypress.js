@@ -15,6 +15,7 @@ describe('Branching journey', async () => {
     backUpRoutes()
     setUpPages()
     setUpBranchingPages()
+    waitForApplication()
   })
 
   after(() => {

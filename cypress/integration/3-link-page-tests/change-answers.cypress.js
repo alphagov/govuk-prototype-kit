@@ -16,6 +16,7 @@ describe('Change answers', async () => {
     cleanUpPages()
     setUpPages()
     setUpData()
+    waitForApplication()
   })
 
   after(() => {

@@ -12,6 +12,7 @@ describe('watch route file', () => {
     waitForApplication()
     // backup routes
     cy.task('copyFile', { source: appRoutes, target: backupRoutes })
+    waitForApplication()
   })
 
   after(() => {

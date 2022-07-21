@@ -42,6 +42,7 @@ describe('Step by step journey', async () => {
     runScript('npm install jquery')
     waitForApplication()
     copyFile(stepByStepNavigationFixtureView, stepByStepNavigationView)
+    waitForApplication()
     cy.visit(stepByStepNavigationPath)
     cy.get('h1').should('contains.text', 'Juggling Tricks: step by step')
   })
