@@ -7,6 +7,10 @@
 - [#1394: Remove Internet Explorer 8 support](https://github.com/alphagov/govuk-prototype-kit/issues/1394)
 - [#1432: Remove v6 backwards compatibility support](https://github.com/alphagov/govuk-prototype-kit/pull/1432)
 
+### New Features
+
+- [#1476: Update to GOV.UK Frontend 4.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/1476)
+
 ### Other changes
 
 - [#866: Remove docs from the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/866)
