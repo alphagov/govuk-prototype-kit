@@ -90,9 +90,10 @@ middleware.forEach(func => app.use(func))
 
 // Set up App
 var appViews = extensions.getAppViews([
-  path.join(projectDir, '/app/views/'),
   path.join(projectDir, '/lib/views/'),
-  path.join(projectDir, '/lib/')
+  path.join(projectDir, '/app/views/'),
+  path.join(projectDir, '/lib/'),
+  path.join(projectDir, '.')
 ])
 
 var nunjucksConfig = {
