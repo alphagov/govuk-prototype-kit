@@ -86,7 +86,7 @@ describe('the build pipeline', () => {
 
     it('copies javascript to the public folder', () => {
       expect(fs.copyFileSync).toHaveBeenCalledWith(
-        path.join('app', 'assets', 'javascripts', 'application.js'),
+        path.join(projectDir, 'lib', 'assets', 'javascripts', 'application.js'),
         path.join('public', 'javascripts', 'application.js')
       )
     })
