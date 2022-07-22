@@ -37,7 +37,13 @@ fse.copySync(srcDir, destDir, {
   overwrite: true
 })
 
-child_process.execSync(
-  `node ${path.join('.', 'node_modules', prototypePkg.name, 'start.js')}`,
-  { cwd: testDir, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
-)
+try {
+  child_process.execSync(
+    `node ${path.join('.', 'node_modules', prototypePkg.name, 'start.js')}`,
+    { cwd: testDir, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+  )
+} catch (error) {
+  if (error.status > 0) {
+    process.exitCode = error.status
+  }
+}
