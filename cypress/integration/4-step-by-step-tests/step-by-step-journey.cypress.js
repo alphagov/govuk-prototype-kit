@@ -3,12 +3,14 @@ import { deleteFile } from '../utils'
 
 const { waitForApplication, copyFile } = require('../utils')
 
+const projectFolder = Cypress.env('projectFolder')
+
 const fixtures = path.join(Cypress.config('fixturesFolder'))
 
 const fixtureViews = path.join(fixtures, 'views')
 const stepByStepNavigationFixtureView = path.join(fixtureViews, 'step-by-step-navigation.html')
 
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
+const appViews = path.join(projectFolder, 'app', 'views')
 const stepByStepNavigationView = path.join(appViews, 'step-by-step-navigation.html')
 
 const stepByStepNavigationPath = '/step-by-step-navigation'
@@ -29,8 +31,15 @@ const assertHidden = (step) => {
   cy.get(showHideLinkQuery(step)).should('contains.text', 'Show')
 }
 
+const runScript = (script) => {
+  script = `cd ${projectFolder} && ${script}`
+  cy.task('log', script)
+  cy.exec(script)
+}
+
 describe('Step by step journey', async () => {
   before(() => {
+    runScript('npm install jquery')
     waitForApplication()
     copyFile(stepByStepNavigationFixtureView, stepByStepNavigationView)
     cy.visit(stepByStepNavigationPath)
@@ -39,6 +48,7 @@ describe('Step by step journey', async () => {
 
   after(() => {
     deleteFile(stepByStepNavigationView)
+    runScript('npm uninstall jquery')
   })
 
   it('renders ok', () => {
