@@ -511,6 +511,23 @@ describe('update.sh', () => {
     })
   })
 
+  describe('post', () => {
+    it('updates app javascripts', async () => {
+      const testDir = await mktestPrototype(
+        'updates-app-javascripts', { ref: 'v12.1.1' }
+      )
+
+      await runScriptAndExpectSuccess('post', { testDir })
+
+      expect(await execGitStatus(testDir)).toEqual(expect.arrayContaining([
+        ' M app/assets/javascripts/application.js',
+        ' D app/assets/javascripts/auto-store-data.js',
+        ' D app/assets/javascripts/jquery-1.11.3.js',
+        ' D app/assets/javascripts/step-by-step-nav.js'
+      ]))
+    })
+  })
+
   it('can be run as a piped script', async () => {
     const testDir = await mktestPrototype('pipe')
 
