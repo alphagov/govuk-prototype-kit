@@ -10,6 +10,7 @@ describe('watching start page', () => {
   before(() => {
     waitForApplication()
     cy.task('deleteFile', { filename: appView })
+    waitForApplication()
   })
 
   after(() => {

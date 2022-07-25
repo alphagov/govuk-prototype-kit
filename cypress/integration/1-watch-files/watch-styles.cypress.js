@@ -22,6 +22,7 @@ describe('watch sass files', () => {
       waitForApplication()
       // backup application.scss
       cy.task('copyFile', { source: appStylesheet, target: backupAppStylesheet })
+      waitForApplication()
     })
 
     after(() => {

@@ -12,6 +12,7 @@ describe('Question journey', async () => {
     waitForApplication()
     cleanUpPages()
     setUpPages()
+    waitForApplication()
   })
 
   after(() => {

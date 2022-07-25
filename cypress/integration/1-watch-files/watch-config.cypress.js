@@ -16,6 +16,7 @@ describe('watch config file', () => {
       waitForApplication()
       // backup config.js
       cy.task('copyFile', { source: appConfig, target: backupAppConfig })
+      waitForApplication()
     })
 
     after(() => {
