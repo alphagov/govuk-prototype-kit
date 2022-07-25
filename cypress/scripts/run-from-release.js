@@ -21,7 +21,13 @@ child_process.execSync(
   { cwd: testDir, env: { ...process.env, npm_config_include: '' }, stdio: 'inherit' }
 )
 
-child_process.execSync(
-  'npm start',
-  { cwd: testDir, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
-)
+try {
+  child_process.execSync(
+    'npm start',
+    { cwd: testDir, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+  )
+} catch (error) {
+  if (error.status > 0) {
+    process.exitCode = error.status
+  }
+}
