@@ -526,6 +526,18 @@ describe('update.sh', () => {
     expect(await execGitStatus(testDir)).toEqual([])
   })
 
+  it('updates from the previous release', async () => {
+    const packageVersion = JSON.parse(
+      await fs.readFile(path.join(repoDir, 'package.json'), 'utf8')
+    ).version
+
+    const releaseArchive = await utils.mkReleaseArchive({ archiveType: 'zip' })
+    const testDir = await mktestPrototype(
+      'updates-from-the-previous-release', { ref: `v${packageVersion}` })
+
+    await runScriptAndExpectSuccess({ env: { ARCHIVE_FILE: releaseArchive }, testDir })
+  })
+
   afterAll(() => {
     process.chdir(_cwd)
   })
