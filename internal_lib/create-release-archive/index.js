@@ -4,14 +4,14 @@ const path = require('path')
 
 const {
   repoDir,
-  copyReleaseFiles,
+  copyReleaseFilesSync,
   cleanPackageJson,
-  updatePackageJson,
-  archiveReleaseFiles
+  updatePackageJsonSync,
+  archiveReleaseFilesSync
 } = require('./util')
 
-function createReleaseArchive (
-  archiveType, destDir, releaseName, ref, { verbose } = {}
+function createReleaseArchiveSync (
+  { archiveType, destDir, releaseName, ref, verbose = false } = {}
 ) {
   const name = `govuk-prototype-kit-${releaseName}`
   const releaseArchive = `${name}.${archiveType}`
@@ -22,17 +22,17 @@ function createReleaseArchive (
 
   if (verbose) console.debug(workdir)
 
-  copyReleaseFiles(repoDir, workdir, { prefix: name, ref: ref })
+  copyReleaseFilesSync(repoDir, workdir, { prefix: name, ref: ref })
 
   // Make the changes we want to make
   // Currently just removing dev stuff from package.json
   if (verbose) console.log('Updating package.json')
-  updatePackageJson(path.join(workdir, name, 'package.json'), cleanPackageJson)
+  updatePackageJsonSync(path.join(workdir, name, 'package.json'), cleanPackageJson, { verbose })
 
   // Create the release archive in destDir
   fs.mkdirSync(destDir, { recursive: true }) // ensure destDir exists
-  archiveReleaseFiles({
-    cwd: workdir, file: path.join(destDir, releaseArchive), prefix: name
+  archiveReleaseFilesSync({
+    cwd: workdir, file: path.join(destDir, releaseArchive), prefix: name, verbose
   })
 
   // Clean up
@@ -42,5 +42,5 @@ function createReleaseArchive (
 }
 
 module.exports = {
-  createReleaseArchive
+  createReleaseArchiveSync
 }

@@ -27,7 +27,7 @@ describe('create-release-archive/util', () => {
     it('returns the version from package.json if that version has not been released before', () => {
       jest.spyOn(fs, 'readFileSync').mockImplementation(() => '{ "version": "foo" }')
       expect(
-        createReleaseArchive.getReleaseVersion()
+        createReleaseArchive.getReleaseVersionSync()
       ).toEqual('foo')
     })
 
@@ -40,7 +40,7 @@ describe('create-release-archive/util', () => {
         .mockImplementation(() => 'v12.1.0-99-g2ea97da8\n')
 
       expect(
-        createReleaseArchive.getReleaseVersion()
+        createReleaseArchive.getReleaseVersionSync()
       ).toMatch('12.1.0-99-g2ea97da8')
 
       expect(mockExecSync).toHaveBeenCalledWith(
@@ -51,7 +51,7 @@ describe('create-release-archive/util', () => {
     // this fails on CI because we do a shallow clone
     testFailingIf(process.env.CI, 'tells us the version number of the release described by a ref', () => {
       expect(
-        createReleaseArchive.getReleaseVersion('v12.1.0')
+        createReleaseArchive.getReleaseVersionSync('v12.1.0')
       ).toEqual('12.1.0')
     })
   })
@@ -104,19 +104,19 @@ describe('create-release-archive/util', () => {
     })
 
     it('updates a package.json file using the function updater', () => {
-      createReleaseArchive.updatePackageJson('package.json', () => { return {} })
+      createReleaseArchive.updatePackageJsonSync('package.json', () => { return {} })
       expect(fakeFs['package.json']).toMatch('{}')
     })
 
     it('preserves the formatting of the package.json file', () => {
       const before = fakeFs['package.json']
-      createReleaseArchive.updatePackageJson('package.json', (x) => x)
+      createReleaseArchive.updatePackageJsonSync('package.json', (x) => x)
       expect(fakeFs['package.json']).toMatch(before)
     })
 
     it('runs npm install after changing the file', () => {
       fakeFs['test/package.json'] = fakeFs['package.json']
-      createReleaseArchive.updatePackageJson('test/package.json', () => { return {} })
+      createReleaseArchive.updatePackageJsonSync('test/package.json', () => { return {} })
 
       expect(mockExecSync).toHaveBeenCalledWith(
         'npm install', expect.objectContaining({ cwd: 'test' })
@@ -134,13 +134,13 @@ describe('create-release-archive/util', () => {
 
     it('zips release files by default', () => {
       if (process.platform === 'win32') {
-        createReleaseArchive.archiveReleaseFiles({ cwd: 'C:\\tmp', file: 'C:\\test.zip', prefix: 'test' })
+        createReleaseArchive.archiveReleaseFilesSync({ cwd: 'C:\\tmp', file: 'C:\\test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           '7z', ['a', '-tzip', '-x!test\\node_modules', 'C:\\test.zip', 'test'],
           expect.objectContaining({ cwd: 'C:\\tmp' })
         )
       } else {
-        createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
+        createReleaseArchive.archiveReleaseFilesSync({ cwd: '/tmp', file: '/test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           'zip', ['--exclude', 'test/node_modules/*', '-r', '/test.zip', 'test'],
           expect.objectContaining({ cwd: '/tmp' })
@@ -150,13 +150,13 @@ describe('create-release-archive/util', () => {
 
     it('resolves paths correctly for arguments to zip', () => {
       if (process.platform === 'win32') {
-        createReleaseArchive.archiveReleaseFiles({ cwd: 'C:\\tmp', file: 'test.zip', prefix: 'test' })
+        createReleaseArchive.archiveReleaseFilesSync({ cwd: 'C:\\tmp', file: 'test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           '7z', ['a', '-tzip', '-x!test\\node_modules', path.join(repoDir, 'test.zip'), 'test'],
           expect.objectContaining({ cwd: 'C:\\tmp' })
         )
       } else {
-        createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: 'test.zip', prefix: 'test' })
+        createReleaseArchive.archiveReleaseFilesSync({ cwd: '/tmp', file: 'test.zip', prefix: 'test' })
         expect(mockSpawnSync).toBeCalledWith(
           'zip', ['--exclude', 'test/node_modules/*', '-r', path.join(repoDir, 'test.zip'), 'test'],
           expect.objectContaining({ cwd: '/tmp' })
@@ -165,7 +165,7 @@ describe('create-release-archive/util', () => {
     })
 
     it('tars release files if file extension is .tar', () => {
-      createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.tar', prefix: 'test' })
+      createReleaseArchive.archiveReleaseFilesSync({ cwd: '/tmp', file: '/test.tar', prefix: 'test' })
       expect(mockTarCreate).toBeCalledWith(
         expect.objectContaining({ cwd: '/tmp', file: '/test.tar' }),
         ['test']
@@ -174,7 +174,7 @@ describe('create-release-archive/util', () => {
 
     it('throws an error if file extension is unrecognised', () => {
       expect(
-        () => createReleaseArchive.archiveReleaseFiles({ cwd: '/tmp', file: '/test.8z', prefix: 'test' })
+        () => createReleaseArchive.archiveReleaseFilesSync({ cwd: '/tmp', file: '/test.8z', prefix: 'test' })
       ).toThrow()
     })
   })

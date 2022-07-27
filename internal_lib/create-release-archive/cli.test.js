@@ -2,10 +2,8 @@
 
 const path = require('path')
 
-const createReleaseArchive = require('./index')
-
-const mockCreateReleaseArchive = jest.fn()
-createReleaseArchive.createReleaseArchive = mockCreateReleaseArchive
+jest.mock('./index')
+const { createReleaseArchiveSync: mockCreateReleaseArchiveSync } = require('./index')
 
 const cli = require('./cli')
 
@@ -40,12 +38,12 @@ describe('create-release-archive/cli', () => {
       'qux'
     ]
 
-    mockCreateReleaseArchive.mockImplementation(() => 'qux.foo')
+    mockCreateReleaseArchiveSync.mockImplementation(() => 'qux.foo')
     cli.cli()
 
-    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(
-      'foo', 'bar', 'baz', 'qux', expect.anything()
-    )
+    expect(mockCreateReleaseArchiveSync).toHaveBeenCalledWith(expect.objectContaining({
+      archiveType: 'foo', destDir: 'bar', releaseName: 'baz', ref: 'qux'
+    }))
   })
 
   // this fails on CI because we do a shallow clone
@@ -54,12 +52,15 @@ describe('create-release-archive/cli', () => {
       null, null
     ]
 
-    mockCreateReleaseArchive.mockImplementation(() => 'qux.foo')
+    mockCreateReleaseArchiveSync.mockImplementation(() => 'qux.foo')
     cli.cli()
 
-    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(
-      'zip', repoDir, expect.anything(), 'HEAD', expect.anything()
-    )
+    expect(mockCreateReleaseArchiveSync).toHaveBeenCalledWith(expect.objectContaining({
+      archiveType: 'zip',
+      destDir: repoDir,
+      releaseName: expect.anything(),
+      ref: 'HEAD'
+    }))
   })
 
   it('prints an error and exits if it does not recognise the arguments', () => {
@@ -76,7 +77,7 @@ describe('create-release-archive/cli', () => {
 
     global.console.log = actualConsoleLog
 
-    expect(mockCreateReleaseArchive).not.toHaveBeenCalled()
+    expect(mockCreateReleaseArchiveSync).not.toHaveBeenCalled()
     expect(process.exitCode).not.toBe(0)
     expect(mockConsoleLog).toHaveBeenCalledWith(
       expect.stringMatching(/^Usage:.*/m)

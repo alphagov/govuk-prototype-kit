@@ -14,14 +14,17 @@ const repoDir = path.join(__dirname, '..', '..')
 
 module.exports.repoDir = repoDir
 
-module.exports.updatePackageJson = function (file, updater) {
+module.exports.updatePackageJsonSync = function (file, updater, { verbose } = {}) {
   let pkg
   pkg = JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }))
   pkg = updater(pkg)
   const formattedJson = JSON.stringify(pkg, null, 2).replace(/\n/g, os.EOL) + os.EOL
   fs.writeFileSync(file, formattedJson, { encoding: 'utf8' })
   // update package-lock.json to match
-  child_process.execSync('npm install', { cwd: path.dirname(file), encoding: 'utf8', stdio: 'inherit' })
+  child_process.execSync(
+    'npm install',
+    { cwd: path.dirname(file), encoding: 'utf8', stdio: verbose ? 'inherit' : 'ignore' }
+  )
 }
 
 module.exports.cleanPackageJson = function (pkg) {
@@ -41,12 +44,12 @@ module.exports.cleanPackageJson = function (pkg) {
   return pkg
 }
 
-module.exports.getReleaseVersion = function (ref) {
+module.exports.getReleaseVersionSync = function (ref) {
   if (!ref) {
     const packageVersion = JSON.parse(
       fs.readFileSync(path.join(repoDir, 'package.json'), { encoding: 'utf8' })
     ).version
-    if (module.exports.isNewVersion(packageVersion)) {
+    if (module.exports.isNewVersionSync(packageVersion)) {
       return packageVersion
     }
   }
@@ -59,13 +62,13 @@ module.exports.getReleaseVersion = function (ref) {
   return version
 }
 
-module.exports.isNewVersion = function (version) {
+module.exports.isNewVersionSync = function (version) {
   return !!child_process.spawnSync(
     'git', ['rev-parse', `v${version}`]
   ).status
 }
 
-module.exports.copyReleaseFiles = function (src, dest, { prefix, ref }) {
+module.exports.copyReleaseFilesSync = function (src, dest, { prefix, ref }) {
   // We are currently using the export-ignore directives in .gitattributes to
   // decide which files to include in the release archive, so the easiest way
   // to copy all the release files is `git archive`
@@ -75,14 +78,15 @@ module.exports.copyReleaseFiles = function (src, dest, { prefix, ref }) {
   )
 }
 
-module.exports.archiveReleaseFiles = function ({ cwd, file, prefix }) {
+module.exports.archiveReleaseFilesSync = function ({ cwd, file, prefix, verbose = false }) {
   const archiveType = path.parse(file).ext.slice(1)
   if (archiveType === 'zip') {
-    zipCreate(
+    zipCreateSync(
       {
         cwd: cwd,
         file: path.resolve(file),
-        exclude: path.join(prefix, 'node_modules', '*')
+        exclude: path.join(prefix, 'node_modules', '*'),
+        verbose
       },
       prefix
     )
@@ -102,7 +106,7 @@ module.exports.archiveReleaseFiles = function ({ cwd, file, prefix }) {
   }
 }
 
-function zipCreate ({ cwd, file, exclude }, files) {
+function zipCreateSync ({ cwd, file, exclude, verbose = false }, files) {
   files = Array.isArray(files) ? files : [files]
 
   let zipProgram, zipArgs
@@ -117,7 +121,7 @@ function zipCreate ({ cwd, file, exclude }, files) {
 
   const ret = child_process.spawnSync(
     zipProgram, zipArgs,
-    { cwd: cwd, encoding: 'utf8', stdio: 'inherit' }
+    { cwd: cwd, encoding: 'utf8', stdio: verbose ? 'inherit' : 'ignore' }
   )
 
   if (ret.status !== 0) {
