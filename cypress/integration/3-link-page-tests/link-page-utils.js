@@ -1,5 +1,5 @@
-import path from 'path'
-import { copyFile, deleteFile } from '../utils'
+const path = require('path')
+const { copyFile, deleteFile } = require('../utils')
 
 const templates = path.join(Cypress.env('packageFolder') || Cypress.env('projectFolder'), 'docs', 'views', 'templates')
 const startTemplate = path.join(templates, 'start.html')
