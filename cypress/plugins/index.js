@@ -51,15 +51,21 @@ module.exports = (on, config) => {
 
   const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
   const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
-  const replaceText = ({ text, originalText, newText, source }) => getReplacementText(newText, source)
-    .then((replacementText) => {
-      return text.replace(originalText, replacementText)
-    })
+  const replaceText = ({ text, originalText, newText, source }) => {
+    return getReplacementText(newText, source)
+      .then((replacementText) => {
+        if (text.includes(originalText)) {
+          return text.replace(originalText, replacementText)
+        } else {
+          throw new Error('Text to be replaced not found')
+        }
+      })
+  }
 
   const replaceMultipleText = async (text, list) => {
     let resultText = text
     let index = 0
-    while (list.length >= index) {
+    while (index < list.length) {
       resultText = await replaceText({ text: resultText, ...list[index] })
       index++
     }
