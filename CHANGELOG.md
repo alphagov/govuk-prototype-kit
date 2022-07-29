@@ -4,6 +4,7 @@
 
 ### Breaking changes
 
+- [#1471: Update step by step and install it as an extension](https://github.com/alphagov/govuk-prototype-kit/pull/1471)
 - [#1394: Remove Internet Explorer 8 support](https://github.com/alphagov/govuk-prototype-kit/issues/1394)
 - [#1432: Remove v6 backwards compatibility support](https://github.com/alphagov/govuk-prototype-kit/pull/1432)
 
