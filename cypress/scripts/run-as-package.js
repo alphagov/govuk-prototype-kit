@@ -21,7 +21,7 @@ fs.writeFileSync(path.join(testDir, 'package.json'), '{ "name": "test-prototype"
 fs.writeFileSync(path.join(testDir, 'usage-data-config.json'), '{ "collectUsageData": false }')
 
 child_process.execSync(
-  `npm install ${releaseArchive} govuk-frontend`,
+  `npm install ${releaseArchive} govuk-frontend @govuk-prototype-kit/step-by-step`,
   { cwd: testDir, env: { ...process.env, npm_config_include: '' }, stdio: 'inherit' }
 )
 

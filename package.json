@@ -16,10 +16,12 @@
     "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",
     "test:integration": "KIT_TEST_DIR=tmp/test-prototype start-server-and-test 'node cypress/scripts/run-from-release' 3000 'cypress run'",
     "test:integration:package": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-as-package' 3000 'cypress run'",
+    "test:integration:package:open": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-as-package' 3000 'cypress open'",
     "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
     "test": "jest && npm run lint"
   },
   "dependencies": {
+    "@govuk-prototype-kit/step-by-step": "^2.0.0",
     "acorn": "^8.5.0",
     "ansi-colors": "^4.1.1",
     "body-parser": "^1.14.1",
