@@ -11,6 +11,10 @@
 
 - [#1476: Update to GOV.UK Frontend 4.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/1476)
 
+### Fixes
+
+- [#1491: Fix page reloads when prototype assets are changed](https://github.com/alphagov/govuk-prototype-kit/pull/1491)
+
 ### Other changes
 
 - [#866: Remove docs from the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/866)
