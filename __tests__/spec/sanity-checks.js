@@ -11,7 +11,7 @@ const sass = require('sass')
 const app = require('../../server.js')
 const buildConfig = require('../../lib/build/config.json')
 const utils = require('../../lib/utils')
-const { generateAssets } = require('../../lib/build/tasks')
+const { generateAssetsSync } = require('../../lib/build/tasks')
 
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
@@ -22,7 +22,7 @@ function readFile (pathFromRoot) {
  */
 describe('The Prototype Kit', () => {
   beforeAll(() => {
-    generateAssets()
+    generateAssetsSync()
   })
 
   it('should generate assets into the /public folder', () => {

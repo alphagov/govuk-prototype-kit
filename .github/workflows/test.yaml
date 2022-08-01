@@ -43,7 +43,7 @@ jobs:
 
     - run: npm ci
 
-    - run: npx jest
+    - run: npx jest --runInBand
       env:
         CI: true
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
