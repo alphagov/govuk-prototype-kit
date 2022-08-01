@@ -540,6 +540,13 @@ describe('update.sh', () => {
         ' D app/assets/javascripts/step-by-step-nav.js'
       ]))
     })
+
+    it('updates app template includes', () => {
+      expect(gitStatus).toEqual(expect.arrayContaining([
+        ' M app/views/includes/head.html',
+        ' M app/views/includes/scripts.html'
+      ]))
+    })
   })
 
   it('can be run as a piped script', async () => {
