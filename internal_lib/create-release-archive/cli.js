@@ -2,7 +2,7 @@ const path = require('path')
 
 const { repoDir, isNewVersionSync, getReleaseVersionSync } = require('./util')
 
-const { createReleaseArchiveSync } = require('./index')
+const { createReleaseArchive } = require('./index')
 
 function usage () {
   console.log(`
@@ -41,7 +41,7 @@ function parseArgs (args) {
   return argv
 }
 
-function cli () {
+async function cli () {
   const argv = parseArgs(process.argv.slice(2))
 
   if (argv.help) {
@@ -64,7 +64,7 @@ function cli () {
 
   console.log(`Creating release archive for ${newVersion} ${releaseName}`)
 
-  const releaseArchive = createReleaseArchiveSync(
+  const releaseArchive = await createReleaseArchive(
     { archiveType, destDir, releaseName, ref, verbose: true })
 
   // insert a blank line for niceness

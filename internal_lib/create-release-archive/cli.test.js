@@ -3,7 +3,7 @@
 const path = require('path')
 
 jest.mock('./index')
-const { createReleaseArchiveSync: mockCreateReleaseArchiveSync } = require('./index')
+const { createReleaseArchive: mockCreateReleaseArchive } = require('./index')
 
 const cli = require('./cli')
 
@@ -29,7 +29,7 @@ describe('create-release-archive/cli', () => {
     jest.resetAllMocks()
   })
 
-  it('parses command line arguments', () => {
+  it('parses command line arguments', async () => {
     process.argv = [
       null, null,
       '--archiveType', 'foo',
@@ -38,24 +38,24 @@ describe('create-release-archive/cli', () => {
       'qux'
     ]
 
-    mockCreateReleaseArchiveSync.mockImplementation(() => 'qux.foo')
-    cli.cli()
+    mockCreateReleaseArchive.mockResolvedValue('qux.foo')
+    await cli.cli()
 
-    expect(mockCreateReleaseArchiveSync).toHaveBeenCalledWith(expect.objectContaining({
+    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(expect.objectContaining({
       archiveType: 'foo', destDir: 'bar', releaseName: 'baz', ref: 'qux'
     }))
   })
 
   // this fails on CI because we do a shallow clone
-  testFailingIf(process.env.CI, 'defaults to creating a release of HEAD in the repo dir', () => {
+  testFailingIf(process.env.CI, 'defaults to creating a release of HEAD in the repo dir', async () => {
     process.argv = [
       null, null
     ]
 
-    mockCreateReleaseArchiveSync.mockImplementation(() => 'qux.foo')
-    cli.cli()
+    mockCreateReleaseArchive.mockResolvedValue('qux.foo')
+    await cli.cli()
 
-    expect(mockCreateReleaseArchiveSync).toHaveBeenCalledWith(expect.objectContaining({
+    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(expect.objectContaining({
       archiveType: 'zip',
       destDir: repoDir,
       releaseName: expect.anything(),
@@ -63,7 +63,7 @@ describe('create-release-archive/cli', () => {
     }))
   })
 
-  it('prints an error and exits if it does not recognise the arguments', () => {
+  it('prints an error and exits if it does not recognise the arguments', async () => {
     process.argv = [
       null, null,
       '--foo', 'bar'
@@ -73,11 +73,11 @@ describe('create-release-archive/cli', () => {
     const mockConsoleLog = jest.fn()
     global.console.log = mockConsoleLog
 
-    cli.cli()
+    await cli.cli()
 
     global.console.log = actualConsoleLog
 
-    expect(mockCreateReleaseArchiveSync).not.toHaveBeenCalled()
+    expect(mockCreateReleaseArchive).not.toHaveBeenCalled()
     expect(process.exitCode).not.toBe(0)
     expect(mockConsoleLog).toHaveBeenCalledWith(
       expect.stringMatching(/^Usage:.*/m)
