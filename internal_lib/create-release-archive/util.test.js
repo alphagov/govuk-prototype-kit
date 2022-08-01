@@ -19,14 +19,6 @@ const createReleaseArchive = require('./util')
 
 const repoDir = path.join(__dirname, '..', '..')
 
-function testFailingIf (condition, ...args) {
-  if (condition) {
-    return test.failing(...args)
-  } else {
-    return test(...args)
-  }
-}
-
 afterEach(() => {
   jest.restoreAllMocks()
 })
@@ -74,8 +66,7 @@ describe('create-release-archive/util', () => {
       )
     })
 
-    // this fails on CI because we do a shallow clone
-    testFailingIf(process.env.CI, 'tells us the version number of the release described by a ref', async () => {
+    it('tells us the version number of the release described by a ref', async () => {
       // temporarily install the real implementation
       mockExecPromise.mockImplementation(util.promisify(child_process.exec))
 
@@ -110,8 +101,7 @@ describe('create-release-archive/util', () => {
       )
     })
 
-    // this fails on CI because we do a shallow clone
-    testFailingIf(process.env.CI, 'tells us the version number of the release described by a ref', () => {
+    it('tells us the version number of the release described by a ref', () => {
       expect(
         createReleaseArchive.getReleaseVersionSync('v12.1.0')
       ).toEqual('12.1.0')

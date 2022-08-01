@@ -9,14 +9,6 @@ const cli = require('./cli')
 
 const repoDir = path.join(__dirname, '..', '..')
 
-function testFailingIf (condition, ...args) {
-  if (condition) {
-    return test.failing(...args)
-  } else {
-    return test(...args)
-  }
-}
-
 describe('create-release-archive/cli', () => {
   let actualArgv
 
@@ -46,8 +38,7 @@ describe('create-release-archive/cli', () => {
     }))
   })
 
-  // this fails on CI because we do a shallow clone
-  testFailingIf(process.env.CI, 'defaults to creating a release of HEAD in the repo dir', async () => {
+  it('defaults to creating a release of HEAD in the repo dir', async () => {
     process.argv = [
       null, null
     ]
