@@ -10,7 +10,7 @@ const { createReleaseArchive, createReleaseArchiveSync } = require('../../intern
 
 const repoDir = path.resolve(__dirname, '..', '..')
 
-var _worktreeCommit
+var _worktreeCommit = process.env.KIT_JEST_WORKTREE_COMMIT || undefined
 
 /**
  * An ID that will be shared between all process in the same Jest test run,
@@ -57,17 +57,24 @@ function mkdtempSync () {
  */
 function getWorktreeCommit () {
   if (_worktreeCommit === undefined) {
-    // TODO: git stash create doesn't pick up unstaged files
-    // TODO: git stash create isn't deterministic, commit ID changes even if stashed files haven't
-    _worktreeCommit = child_process.execSync(
-      'git stash create',
-      { cwd: repoDir, encoding: 'utf8' }
-    ).trim() || child_process.execSync(
-      // if stash create returned nothing, that means there were no changes to
-      // stash and no new commit was created, so instead use the HEAD commit id
-      'git rev-parse HEAD',
-      { cwd: repoDir, encoding: 'utf8' }
-    ).trim()
+    // TODO: we shouldn't really be using git for any of this
+
+    // If no files have been changed we can just use the HEAD commit it
+    if (child_process.spawnSync('git', ['diff', '--quiet']).status === 0) {
+      _worktreeCommit = child_process.execSync(
+        'git rev-parse HEAD',
+        { cwd: repoDir, encoding: 'utf8' }
+      ).trim()
+    } else {
+      // Otherwise create a stash commit to point to the current worktree
+      // TODO: git stash create sometimes fails, and I don't know why
+      // TODO: git stash create doesn't pick up unstaged files
+      // TODO: git stash create isn't deterministic, commit ID changes even if stashed files haven't
+      _worktreeCommit = child_process.execSync(
+        'git stash create',
+        { cwd: repoDir, encoding: 'utf8' }
+      ).trim()
+    }
   }
 
   return _worktreeCommit
@@ -198,6 +205,7 @@ function mkPrototypeSync (prototypePath, { archivePath, overwrite = false } = {}
 }
 
 module.exports = {
+  getWorktreeCommit,
   mkdtemp,
   mkdtempSync,
   mkReleaseArchive,
