@@ -14,7 +14,7 @@ const execPromise = promisify(child_process.exec)
 const execFilePromise = promisify(child_process.execFile)
 
 // This is a long-running test
-jest.setTimeout(60000)
+jest.setTimeout(120000)
 
 function testSkipFailingIf (condition, ...args) {
   if (condition) {
