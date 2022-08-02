@@ -170,6 +170,16 @@ copy () {
 
 	trap - ERR
 
+	update_gitignore
+}
+
+post () {
+	if [ -f 'update/lib/_update/post.js' ]; then
+		node 'update/lib/_update/post'
+	fi
+}
+
+finish () {
 	msg
 	msg "Your prototype kit files have now been updated, from version ${OLD_VERSION} to ${NEW_VERSION}."
 	msg 'If you need to make configuration changes, follow the steps at'
@@ -180,15 +190,6 @@ copy () {
 	update_gitignore
 }
 
-post () {
-	if [ -d "update/lib/_update/update-scss" ]; then
-		node "update/lib/_update/update-scss"
-	fi
-	if [ -f "update/lib/_update/update-javascripts.js" ]; then
-		node "update/lib/_update/update-javascripts"
-	fi
-}
-
 if [ "$0" == "${BASH_SOURCE:-$0}" ]
 then
 	check
@@ -197,4 +198,5 @@ then
 	extract
 	copy
 	post
+	finish
 fi
