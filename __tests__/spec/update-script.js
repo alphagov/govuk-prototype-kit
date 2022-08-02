@@ -512,14 +512,28 @@ describe('update.sh', () => {
   })
 
   describe('post', () => {
-    it('updates app javascripts', async () => {
-      const testDir = await mktestPrototype(
-        'updates-app-javascripts', { ref: 'v12.1.1' }
+    let testDir, gitStatus
+
+    beforeAll(async () => {
+      testDir = await mktestPrototype(
+        'update-post', { ref: 'v12.1.1' }
       )
 
       await runScriptAndExpectSuccess('post', { testDir })
 
-      expect(await execGitStatus(testDir)).toEqual(expect.arrayContaining([
+      gitStatus = await execGitStatus(testDir)
+    })
+
+    it('updates app stylesheets', () => {
+      expect(gitStatus).toEqual(expect.arrayContaining([
+        ' M app/assets/sass/application.scss',
+        ' D app/assets/sass/application-ie8.scss',
+        ' D app/assets/sass/unbranded-ie8.scss'
+      ]))
+    })
+
+    it('updates app javascripts', () => {
+      expect(gitStatus).toEqual(expect.arrayContaining([
         ' M app/assets/javascripts/application.js',
         ' D app/assets/javascripts/auto-store-data.js',
         ' D app/assets/javascripts/jquery-1.11.3.js',

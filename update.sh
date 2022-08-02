@@ -181,8 +181,8 @@ copy () {
 }
 
 post () {
-	if [ -d "update/lib/_update_scss" ]; then
-		node "update/lib/_update_scss"
+	if [ -d "update/lib/_update/update-scss" ]; then
+		node "update/lib/_update/update-scss"
 	fi
 	if [ -f "update/lib/_update/update-javascripts.js" ]; then
 		node "update/lib/_update/update-javascripts"
