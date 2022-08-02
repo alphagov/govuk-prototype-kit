@@ -105,6 +105,12 @@ extract () {
 	cd ..
 }
 
+pre () {
+	if [ -f 'update/lib/_update/pre.js' ]; then
+		node 'update/lib/_update/pre'
+	fi
+}
+
 # Copy 'core files' from the update folder into the current prototype folder
 copy () {
 	OLD_VERSION="$(cat VERSION.txt)"

@@ -415,6 +415,31 @@ describe('update.sh', () => {
     })
   })
 
+  describe('pre', () => {
+    it('updates package.json if user has installed extra packages', async () => {
+      const testDir = await mktestPrototype('update-pre-updates-package-json', { ref: 'v12.1.1' })
+
+      // insert an extra package, right at the top of the (sorted) dependencies list
+      const addTestPackage = (packageJson) =>
+        packageJson.replace(/"dependencies": {(\s\s+)/m, '$&"@aaa/aaa": "^0.0.1",$1')
+
+      let userPackageJson = await fs.readFile(path.join(testDir, 'package.json'), 'utf8')
+
+      userPackageJson = addTestPackage(userPackageJson)
+      await fs.writeFile(path.join(testDir, 'package.json'), userPackageJson, 'utf8')
+
+      const ourPackageJson = await fs.readFile(path.join(testDir, 'update', 'package.json'), 'utf8')
+
+      await runScriptAndExpectSuccess('pre', { testDir })
+
+      const mergedPackageJson = await fs.readFile(path.join(testDir, 'update', 'package.json'), 'utf8')
+
+      expect(mergedPackageJson).toEqual(
+        addTestPackage(ourPackageJson)
+      )
+    })
+  })
+
   describe('copy', () => {
     it('updating an existing up-to-date prototype does nothing', async () => {
       const testDir = await mktestPrototype('up-to-date')
