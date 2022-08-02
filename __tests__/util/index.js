@@ -1,5 +1,4 @@
 const child_process = require('child_process') // eslint-disable-line camelcase
-const execPromise = require('util').promisify(child_process.exec)
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -7,9 +6,11 @@ const path = require('path')
 const lockfile = require('proper-lockfile')
 const tar = require('tar')
 
+const { createReleaseArchive, createReleaseArchiveSync } = require('../../internal_lib/create-release-archive')
+
 const repoDir = path.resolve(__dirname, '..', '..')
 
-var _worktreeCommit
+var _worktreeCommit = process.env.KIT_JEST_WORKTREE_COMMIT || undefined
 
 /**
  * An ID that will be shared between all process in the same Jest test run,
@@ -56,37 +57,41 @@ function mkdtempSync () {
  */
 function getWorktreeCommit () {
   if (_worktreeCommit === undefined) {
-    // TODO: git stash create doesn't pick up unstaged files
-    // TODO: git stash create isn't deterministic, commit ID changes even if stashed files haven't
-    _worktreeCommit = child_process.execSync(
-      'git stash create',
-      { cwd: repoDir, encoding: 'utf8' }
-    ).trim() || child_process.execSync(
-      // if stash create returned nothing, that means there were no changes to
-      // stash and no new commit was created, so instead use the HEAD commit id
-      'git rev-parse HEAD',
-      { cwd: repoDir, encoding: 'utf8' }
-    ).trim()
+    // TODO: we shouldn't really be using git for any of this
+
+    // If no files have been changed we can just use the HEAD commit it
+    if (child_process.spawnSync('git', ['diff', '--quiet']).status === 0) {
+      _worktreeCommit = child_process.execSync(
+        'git rev-parse HEAD',
+        { cwd: repoDir, encoding: 'utf8' }
+      ).trim()
+    } else {
+      // Otherwise create a stash commit to point to the current worktree
+      // TODO: git stash create sometimes fails, and I don't know why
+      // TODO: git stash create doesn't pick up unstaged files
+      // TODO: git stash create isn't deterministic, commit ID changes even if stashed files haven't
+      _worktreeCommit = child_process.execSync(
+        'git stash create',
+        { cwd: repoDir, encoding: 'utf8' }
+      ).trim()
+    }
   }
 
   return _worktreeCommit
 }
 
-function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir } = {}) {
-  dir = dir || path.join(mkdtempSync(), '__fixtures__')
-  const commitRef = getWorktreeCommit()
-  const releaseName = process.env.KIT_JEST_RUN_ID
-    ? getJestId() : commitRef
+function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir, ref } = {}) {
+  const destDir = dir || path.join(mkdtempSync(), '__fixtures__')
+  const commitRef = ref || getWorktreeCommit()
+  const releaseName = ref || (process.env.KIT_JEST_RUN_ID ? getJestId() : commitRef)
   const name = `govuk-prototype-kit-${releaseName}`
-  const archive = path.format({ dir, name, ext: '.' + archiveType })
+  const archive = path.format({ name, dir: destDir, ext: '.' + archiveType })
 
-  const script = `node scripts/create-release-archive --releaseName ${releaseName} --destDir ${dir} --archiveType ${archiveType} ${commitRef}`
-
-  return { archive, archiveType, commitRef, dir, releaseName, script }
+  return { archive, archiveType, destDir, releaseName, ref: commitRef }
 }
 
 /**
- * Return a path to the release archive for the current git worktree
+ * Return a path to the release archive for a git ref
  *
  * Creates a release archive from the git HEAD for the project we are currently
  * running tests in. This will include uncommitted changes for tracked files, but
@@ -95,18 +100,19 @@ function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir } = {}) {
  * @param {Object} [options]
  * @param {string} [options.archiveType=tar] - The type of archive to make, tar or zip
  * @param {string} [options.dir] - The folder to place the archive in, by default is a fixture folder in the temporary directory
+ * @param {string} [options.ref] - The branch or tag to archive, defaults to a stash of the worktree
  * @returns {string} - The absolute path to the archive
  */
 async function mkReleaseArchive (options) {
   options = _mkReleaseArchiveOptions(options)
 
-  await fs.promises.mkdir(options.dir, { recursive: true })
+  await fs.promises.mkdir(options.destDir, { recursive: true })
 
   while (!fs.existsSync(options.archive)) {
     try {
       const releaseLock = await lockfile.lock(options.archive, { realpath: false, retries: 5 })
       if (!fs.existsSync(options.archive)) {
-        await execPromise(options.script, { cwd: repoDir })
+        await createReleaseArchive(options)
       }
       await releaseLock()
     } catch (err) {
@@ -130,17 +136,18 @@ async function mkReleaseArchive (options) {
  * @param {Object} [options]
  * @param {string} [options.archiveType=tar] - The type of archive to make, tar or zip
  * @param {string} [options.dir] - The folder to place the archive in, by default is a fixture folder in the temporary directory
+ * @param {string} [options.ref] - The branch or tag to archive, defaults to a stash of the worktree
  * @returns {string} - The absolute path to the archive
  */
 function mkReleaseArchiveSync (options) {
   options = _mkReleaseArchiveOptions(options)
 
-  fs.mkdirSync(options.dir, { recursive: true })
+  fs.mkdirSync(options.destDir, { recursive: true })
 
   try {
     fs.accessSync(options.archive)
   } catch (err) {
-    child_process.execSync(options.script, { cwd: options.repoDir })
+    createReleaseArchiveSync(options)
   }
 
   return options.archive
@@ -198,6 +205,7 @@ function mkPrototypeSync (prototypePath, { archivePath, overwrite = false } = {}
 }
 
 module.exports = {
+  getWorktreeCommit,
   mkdtemp,
   mkdtempSync,
   mkReleaseArchive,

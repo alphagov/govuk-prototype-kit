@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { repoDir, isNewVersion, getReleaseVersion } = require('./util')
+const { repoDir, isNewVersionSync, getReleaseVersionSync } = require('./util')
 
 const { createReleaseArchive } = require('./index')
 
@@ -41,7 +41,7 @@ function parseArgs (args) {
   return argv
 }
 
-function cli () {
+async function cli () {
   const argv = parseArgs(process.argv.slice(2))
 
   if (argv.help) {
@@ -58,14 +58,14 @@ function cli () {
 
   const destDir = argv.dest || repoDir // default to project root
   const ref = argv._[0] || 'HEAD'
-  const releaseName = argv.releaseName || getReleaseVersion(ref)
-  const newVersion = !argv.releaseName && isNewVersion(releaseName) ? 'new version' : 'version'
+  const releaseName = argv.releaseName || getReleaseVersionSync(ref)
+  const newVersion = !argv.releaseName && isNewVersionSync(releaseName) ? 'new version' : 'version'
   const archiveType = argv.archiveType || 'zip'
 
   console.log(`Creating release archive for ${newVersion} ${releaseName}`)
 
-  const releaseArchive = createReleaseArchive(
-    archiveType, destDir, releaseName, ref, { verbose: true })
+  const releaseArchive = await createReleaseArchive(
+    { archiveType, destDir, releaseName, ref, verbose: true })
 
   // insert a blank line for niceness
   console.log()

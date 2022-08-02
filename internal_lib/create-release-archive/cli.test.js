@@ -2,22 +2,12 @@
 
 const path = require('path')
 
-const createReleaseArchive = require('./index')
-
-const mockCreateReleaseArchive = jest.fn()
-createReleaseArchive.createReleaseArchive = mockCreateReleaseArchive
+jest.mock('./index')
+const { createReleaseArchive: mockCreateReleaseArchive } = require('./index')
 
 const cli = require('./cli')
 
 const repoDir = path.join(__dirname, '..', '..')
-
-function testFailingIf (condition, ...args) {
-  if (condition) {
-    return test.failing(...args)
-  } else {
-    return test(...args)
-  }
-}
 
 describe('create-release-archive/cli', () => {
   let actualArgv
@@ -31,7 +21,7 @@ describe('create-release-archive/cli', () => {
     jest.resetAllMocks()
   })
 
-  it('parses command line arguments', () => {
+  it('parses command line arguments', async () => {
     process.argv = [
       null, null,
       '--archiveType', 'foo',
@@ -40,29 +30,31 @@ describe('create-release-archive/cli', () => {
       'qux'
     ]
 
-    mockCreateReleaseArchive.mockImplementation(() => 'qux.foo')
-    cli.cli()
+    mockCreateReleaseArchive.mockResolvedValue('qux.foo')
+    await cli.cli()
 
-    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(
-      'foo', 'bar', 'baz', 'qux', expect.anything()
-    )
+    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(expect.objectContaining({
+      archiveType: 'foo', destDir: 'bar', releaseName: 'baz', ref: 'qux'
+    }))
   })
 
-  // this fails on CI because we do a shallow clone
-  testFailingIf(process.env.CI, 'defaults to creating a release of HEAD in the repo dir', () => {
+  it('defaults to creating a release of HEAD in the repo dir', async () => {
     process.argv = [
       null, null
     ]
 
-    mockCreateReleaseArchive.mockImplementation(() => 'qux.foo')
-    cli.cli()
+    mockCreateReleaseArchive.mockResolvedValue('qux.foo')
+    await cli.cli()
 
-    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(
-      'zip', repoDir, expect.anything(), 'HEAD', expect.anything()
-    )
+    expect(mockCreateReleaseArchive).toHaveBeenCalledWith(expect.objectContaining({
+      archiveType: 'zip',
+      destDir: repoDir,
+      releaseName: expect.anything(),
+      ref: 'HEAD'
+    }))
   })
 
-  it('prints an error and exits if it does not recognise the arguments', () => {
+  it('prints an error and exits if it does not recognise the arguments', async () => {
     process.argv = [
       null, null,
       '--foo', 'bar'
@@ -72,7 +64,7 @@ describe('create-release-archive/cli', () => {
     const mockConsoleLog = jest.fn()
     global.console.log = mockConsoleLog
 
-    cli.cli()
+    await cli.cli()
 
     global.console.log = actualConsoleLog
 
