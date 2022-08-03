@@ -25,7 +25,7 @@ const packageJson = require('./package.json')
 const routes = require(`${process.cwd()}/app/routes.js`)
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
-const { projectDir } = require('./lib/path-utils')
+const { packageDir, projectDir } = require('./lib/path-utils')
 
 const app = express()
 
@@ -90,9 +90,9 @@ middleware.forEach(func => app.use(func))
 
 // Set up App
 var appViews = extensions.getAppViews([
-  path.join(projectDir, '/lib/views/'),
+  path.join(packageDir, '/lib/views/'),
   path.join(projectDir, '/app/views/'),
-  path.join(projectDir, '/lib/'),
+  path.join(packageDir, '/lib/'),
   path.join(projectDir, '.')
 ])
 
