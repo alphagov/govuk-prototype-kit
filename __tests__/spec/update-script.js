@@ -6,6 +6,7 @@ const process = require('process')
 const { promisify } = require('util')
 
 const _ = require('lodash')
+const AdmZip = require('adm-zip')
 
 const utils = require('../util')
 const fse = require('fs-extra')
@@ -177,7 +178,6 @@ describe('update.sh', () => {
   // Create a test archive fixture
   async function _mktestArchive (archive) {
     const archivePath = path.parse(archive)
-    const archiveName = archivePath.base
     const archivePrefix = archivePath.name
     const dirToArchive = path.join(fixtureDir, archivePrefix)
 
@@ -185,11 +185,9 @@ describe('update.sh', () => {
     await fs.writeFile(path.join(dirToArchive, 'foo'), '')
     await fs.writeFile(path.join(dirToArchive, 'VERSION.txt'), '9999.99.99')
 
-    if (process.platform === 'win32') {
-      await execPromise(`7z a ${archiveName} ${archivePrefix}`, { cwd: fixtureDir })
-    } else {
-      await execPromise(`zip -r ${archiveName} ${archivePrefix}`, { cwd: fixtureDir })
-    }
+    const zip = new AdmZip()
+    zip.addLocalFolder(path.join(fixtureDir, archivePrefix), archivePrefix)
+    zip.writeZip(archive)
   }
 
   async function mktestArchive (testDir) {
