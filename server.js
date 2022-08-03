@@ -25,7 +25,7 @@ const packageJson = require('./package.json')
 const routes = require(`${process.cwd()}/app/routes.js`)
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
-const { projectDir } = require('./lib/path-utils')
+const { projectDir, isRunningAsModule } = require('./lib/path-utils')
 
 const app = express()
 
@@ -54,6 +54,15 @@ app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig()
+
+app.locals.extensionConfig.scripts.push('/public/javascripts/application.js')
+
+if (!isRunningAsModule) {
+  app.locals.extensionConfig.scripts.unshift('/public/_kit/javascripts/kit.js')
+  if (useAutoStoreData) {
+    app.locals.extensionConfig.scripts.push('/public/_kit/javascripts/auto-store-data.js')
+  }
+}
 
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())

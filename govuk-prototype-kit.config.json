@@ -1,0 +1,6 @@
+{
+  "nunjucksPaths": ["/app/views"],
+  "scripts": [
+    "/app/assets/javascripts/application.js"
+  ]
+}
