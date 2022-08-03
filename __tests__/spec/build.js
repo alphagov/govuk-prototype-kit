@@ -31,7 +31,7 @@ describe('the build pipeline', () => {
       jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {})
       jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
 
-      jest.spyOn(sass, 'renderSync').mockImplementation((options) => ({ css: options.file }))
+      jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
 
       generateAssetsSync()
     })
@@ -70,18 +70,20 @@ describe('the build pipeline', () => {
     })
 
     it('compiles sass', () => {
-      expect(sass.renderSync).toHaveBeenCalledWith(expect.objectContaining({
-        file: path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')
-      }))
+      const options = {
+        quietDeps: true,
+        loadPaths: [projectDir],
+        sourceMap: true,
+        style: 'expanded'
+      }
+      expect(sass.compile).toHaveBeenCalledWith(expect.stringContaining(path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')), expect.objectContaining(options))
 
       expect(fse.writeFileSync).toHaveBeenCalledWith(
         path.join('public', 'stylesheets', 'application.css'),
         path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')
       )
 
-      expect(sass.renderSync).not.toHaveBeenCalledWith(expect.objectContaining({
-        file: path.join('app', 'assets', 'sass', 'application.scss')
-      }))
+      expect(sass.compile).not.toHaveBeenCalledWith(expect.stringContaining(path.join('app', 'assets', 'sass', 'application.scss')), expect.objectContaining(options))
     })
 
     it('copies javascript to the public folder', () => {
