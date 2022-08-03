@@ -14,7 +14,7 @@ const execPromise = promisify(child_process.exec)
 const execFilePromise = promisify(child_process.execFile)
 
 // This is a long-running test
-jest.setTimeout(60000)
+jest.setTimeout(120000)
 
 function testSkipFailingIf (condition, ...args) {
   if (condition) {
@@ -508,6 +508,37 @@ describe('update.sh', () => {
       expect(
         (await fs.readFile(path.join(testDir, 'update', '.gitignore'), 'utf8')).trim()
       ).toBe('*')
+    })
+  })
+
+  describe('post', () => {
+    let testDir, gitStatus
+
+    beforeAll(async () => {
+      testDir = await mktestPrototype(
+        'update-post', { ref: 'v12.1.1' }
+      )
+
+      await runScriptAndExpectSuccess('post', { testDir })
+
+      gitStatus = await execGitStatus(testDir)
+    })
+
+    it('updates app stylesheets', () => {
+      expect(gitStatus).toEqual(expect.arrayContaining([
+        ' M app/assets/sass/application.scss',
+        ' D app/assets/sass/application-ie8.scss',
+        ' D app/assets/sass/unbranded-ie8.scss'
+      ]))
+    })
+
+    it('updates app javascripts', () => {
+      expect(gitStatus).toEqual(expect.arrayContaining([
+        ' M app/assets/javascripts/application.js',
+        ' D app/assets/javascripts/auto-store-data.js',
+        ' D app/assets/javascripts/jquery-1.11.3.js',
+        ' D app/assets/javascripts/step-by-step-nav.js'
+      ]))
     })
   })
 

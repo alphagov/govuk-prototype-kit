@@ -22,7 +22,7 @@ describe('watch application.js', () => {
     const onAlert = cy.stub()
     cy.on('window:alert', onAlert)
 
-    const markerText = 'window.GOVUKFrontend.initAll()'
+    const markerText = '// Add JavaScript here'
     const newText = markerText + '\n  ' + "window.alert('Test')"
 
     cy.task('replaceTextInFile', {
