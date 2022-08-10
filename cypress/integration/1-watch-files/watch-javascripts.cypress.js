@@ -33,6 +33,7 @@ describe('watch application.js', () => {
 
     // wait for page to be reloaded by Browsersync
     cy.once('window:load', () => {
+      cy.wait(1000)
       expect(onAlert).to.be.calledWith('Test')
       done()
     })
