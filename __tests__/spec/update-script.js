@@ -238,19 +238,20 @@ describe('update.sh', () => {
     await utils.mkPrototype(path.join(src, 'update'))
   }
 
-  async function mktestPrototype (dest, { ref } = {}) {
-    const src = path.resolve(fixtureDir, ref ? `prototype-${ref}` : 'prototype')
+  async function mktestPrototype (destDir, { ref } = {}) {
+    const srcDir = path.resolve(fixtureDir, ref ? `prototype-${ref}` : 'prototype')
     try {
-      await fs.access(src)
+      await fs.access(srcDir)
     } catch (error) {
-      await _mktestPrototype(src, { ref })
+      await _mktestPrototype(srcDir, { ref })
     }
 
-    if (dest) {
-      await execPromise(`cp -r ${src} ${dest}`)
-      return dest
+    if (destDir) {
+      await fs.mkdir(destDir)
+      await fse.copy(srcDir, destDir)
+      return destDir
     } else {
-      return src
+      return srcDir
     }
   }
 
