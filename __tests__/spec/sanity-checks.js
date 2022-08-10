@@ -4,12 +4,10 @@ const assert = require('assert')
 const fs = require('fs')
 const path = require('path')
 
-const glob = require('glob')
 const request = require('supertest')
 const sass = require('sass')
 
 const app = require('../../server.js')
-const buildConfig = require('../../lib/build/config.json')
 const utils = require('../../lib/utils')
 const { generateAssetsSync } = require('../../lib/build/tasks')
 
@@ -22,6 +20,7 @@ function readFile (pathFromRoot) {
  */
 describe('The Prototype Kit', () => {
   beforeAll(() => {
+    jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
     generateAssetsSync()
   })
 
@@ -106,26 +105,6 @@ describe('The Prototype Kit', () => {
               done()
             }
           })
-      })
-    })
-  })
-
-  const sassFiles = glob.sync(buildConfig.paths.libAssets + '/sass/*.scss')
-
-  describe(`${buildConfig.paths.assets}/sass/`, () => {
-    it.each(sassFiles)('%s renders to CSS without errors', async (file) => {
-      return new Promise((resolve, reject) => {
-        sass.render({
-          file,
-          quietDeps: true
-        }, (err, result) => {
-          if (err) {
-            reject(err)
-          } else {
-            expect(result.css.length).toBeGreaterThan(1000)
-            resolve()
-          }
-        })
       })
     })
   })
