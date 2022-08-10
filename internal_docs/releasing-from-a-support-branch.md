@@ -6,21 +6,21 @@ This document is for Prototype team developers who need to publish a support bra
 - release, after the team has started to merge changes for a new breaking release into the `main` branch - for example, a 12.x.x release once we've started merging changes for 13.0.0
 - release for a previous major version - for example, a 12.x.x release after we've released 13.0.0
 
-If you want to publish the `main` branch for the prototype kit, [follow the steps in releasing a new version of the prototype kit](/internal_docs/releasing.md).
+If you want to publish the `main` branch for the Prototype Kit, [follow the steps in releasing a new version of the Prototype Kit](/internal_docs/releasing.md).
 
 If the `main` branch only has a few unreleasable changes, you can temporarily revert these changes.
 
 1. Revert the unreleasable changes on the `main` branch.
-2. Publish the prototype kit.
+2. Publish the Prototype Kit.
 3. Add the reverted changes back into the `main` branch.
 
 However, this approach has risks. For example, it creates a messy commit history on the `main` branch.
 
 ## Before you release
 
-1. Draft release notes in a Google Doc
+1. Draft release notes in a Google Doc.
 
-## Release a new version of the prototype kit from the support branch
+## Release a new version of the Prototype Kit from the support branch
 
 ### Change the code
 
@@ -96,9 +96,11 @@ Write a brief summary with highlights from the release then send it to the follo
 - X-GOV #prototype-kit
 - GDS #govuk-design-system
 
-Make sure to send a link to the install page rather than the GitHub release page: https://govuk-prototype-kit.herokuapp.com/docs/install.
+Include a link to the install page: https://govuk-prototype-kit.herokuapp.com/docs/install.
 
-2. On the [GOV.UK Prototype Team Sprintboard](https://github.com/orgs/alphagov/projects/15):
+Include a link to the GitHub release page if there are actions for users that are not covered in the release notes.
+
+2. On the [GOV.UK Prototype team Sprintboard](https://github.com/orgs/alphagov/projects/15):
 
     - move any relevant issues from the 'Ready to Release' column to 'Done'
     - close any associated milestones
