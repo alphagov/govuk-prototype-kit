@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Set the version of the kit that should be downloaded by default
+# Update this when making a new release
+VERSION="${VERSION:-12.1.1}"
+
 # Use unofficial bash strict mode
 set -euo pipefail
 
@@ -8,11 +12,21 @@ msg () {
 	1>&2 echo $*
 }
 
+abspath () {
+	# From https://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-os-x
+	[[ "$1" = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 # Set global vars ARCHIVE_FILE ARCHIVE_ROOT
 get_archive_vars () {
-	# choose the archive file with the largest version number, use this to update from
-	ARCHIVE_FILE="$(find . -name 'govuk-prototype-kit*.zip' -exec basename '{}' ';' | sort -V | tail -n1)"
-	ARCHIVE_ROOT="${ARCHIVE_FILE//.zip}"
+	if [ -z "${ARCHIVE_FILE:-}" ]; then
+		ARCHIVE_FILE="update/govuk-prototype-kit-${VERSION}.zip"
+	fi
+	if [ ! -z "${ARCHIVE_FILE:-}" ]; then
+		ARCHIVE_FILE="$(abspath $ARCHIVE_FILE)"
+		ARCHIVE_NAME="$(basename "$ARCHIVE_FILE")"
+		ARCHIVE_ROOT="${ARCHIVE_NAME//.zip}"
+	fi
 }
 
 # Hide update folder from git
@@ -55,13 +69,19 @@ prepare () {
 
 # Download the latest Prototype Kit release archive to the update folder
 fetch () {
+	get_archive_vars
+
+	# If archive file already exists do nothing
+	if [ -f "$ARCHIVE_FILE" ]; then
+		return
+	fi
+
 	cd update
 
-	if ! ls govuk-prototype-kit*.zip > /dev/null 2>&1; then
-		msg 'Downloading latest version of GOV.UK Prototype Kit...'
-		curl -LJO https://govuk-prototype-kit.herokuapp.com/docs/download
-		msg 'Done'
-	fi
+	msg "Downloading version ${VERSION} of GOV.UK Prototype Kit..."
+	curl -fLJO "https://github.com/alphagov/govuk-prototype-kit/releases/download/v${VERSION}/${ARCHIVE_NAME}" \
+		|| { msg 'ERROR: could not download update'; exit 1; }
+	msg 'Done'
 
 	cd ..
 }
@@ -130,7 +150,9 @@ copy () {
 		| xargs -0 -I % cp -v % .
 
 		# copy any new patterns
-		cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
+		if [ -d "update/app/assets/sass/patterns" ]; then
+		  cp -Rv "update/app/assets/sass/patterns" "app/assets/sass/"
+		fi
 
 		# copy unbranded layout - needed for the password page
 		cp -v "update/app/views/layout_unbranded.html" "app/views/"
@@ -148,6 +170,16 @@ copy () {
 
 	trap - ERR
 
+	update_gitignore
+}
+
+post () {
+	if [ -f 'update/lib/_update/post.js' ]; then
+		node 'update/lib/_update/post'
+	fi
+}
+
+finish () {
 	msg
 	msg "Your prototype kit files have now been updated, from version ${OLD_VERSION} to ${NEW_VERSION}."
 	msg 'If you need to make configuration changes, follow the steps at'
@@ -165,4 +197,6 @@ then
 	fetch
 	extract
 	copy
+	post
+	finish
 fi
