@@ -64,7 +64,7 @@ However, this approach has risks. For example, it creates a messy commit history
 
 7. Run `npm install` to update `package-lock.json`.
 
-8. Update `VERSION` in [update.sh](/update.sh#L5).
+8. Update `VERSION` in [update.sh](/update.sh#L5) (if it is present).
 
 9. Commit your changeds and open a new pull request, with `support/<MAJOR VERSION NUMBER>.x` as the base branch to merge into. Copy the relevant Changelog section into the description.
 
