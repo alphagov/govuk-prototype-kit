@@ -1,9 +1,10 @@
-name: Run linter
+name: Lint
 
 on:
   push:
     branches:
       - main
+      - support/*
   pull_request:
 
 jobs:

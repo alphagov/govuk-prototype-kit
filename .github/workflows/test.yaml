@@ -1,13 +1,14 @@
-name: Run tests
+name: Tests
 
 on:
   push:
     branches:
       - main
+      - support/*
   pull_request:
 
 jobs:
-  run-tests:
+  tests:
 
     strategy:
       fail-fast: false  # continue other tests if one test in matrix fails
@@ -15,7 +16,7 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
 
-    name: Node v${{ matrix.node-version }} (${{ matrix.os }})
+    name: Test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
 
