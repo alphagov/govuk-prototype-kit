@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- Update to GOV.UK Frontend 4.3.0
+
 ## 12.1.1 (Fix release)
 
 ### Fixes
