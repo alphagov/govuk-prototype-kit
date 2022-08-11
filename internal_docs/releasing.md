@@ -40,25 +40,23 @@ v8.0.0 // After implementing backwards incompatible changes
 
 7. Run `npm install` to update `package-lock.json`.
 
-8. Update `VERSION` in [update.sh](/update.sh#L5).
+8. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
 
-9. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
+9. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
 
-10. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
+10. In Tag version and Release title, put v[version number], for example `v7.0.0`.
 
-11. In Tag version and Release title, put v[version number], for example `v7.0.0`.
+11. In the description, paste the relevant section from the release notes in the Google Doc.
 
-12. In the description, paste the relevant section from the release notes in the Google Doc.
+12. Checkout the *main* branch and pull the latest changes.
 
-13. Checkout the *main* branch and pull the latest changes.
+13. Run `node scripts/create-release-archive`, which will generate a ZIP in the root of this project.
 
-14. Run `node scripts/create-release-archive`, which will generate a ZIP in the root of this project.
+14. Attach the generated ZIP to the release.
 
-15. Attach the generated ZIP to the release.
+15. Click 'Publish release'.
 
-16. Click 'Publish release'.
-
-17. Let the community know about the release
+16. Let the community know about the release
 
 Write a brief summary with highlights from the release then send it to the following slack channels:
 
