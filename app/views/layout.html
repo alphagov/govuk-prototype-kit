@@ -33,7 +33,7 @@
 {% from "govuk/components/warning-text/macro.njk"        import govukWarningText %}
 
 {% block head %}
-  {% include "includes/head.html" %}
+  {% include "govuk-prototype-kit/includes/stylesheets.html" %}
 {% endblock %}
 
 {% block pageTitle %}
@@ -74,7 +74,7 @@
 
 {% block bodyEnd %}
   {% block scripts %}
-    {% include "includes/scripts.html" %}
+    {% include "govuk-prototype-kit/includes/scripts.html" %}
     {% block pageScripts %}{% endblock %}
   {% endblock %}
   <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
