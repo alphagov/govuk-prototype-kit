@@ -1,0 +1,6 @@
+# Prototype Kit ignores - per-user
+.env
+.port.tmp
+lib/extensions/_extensions.scss
+public/
+usage-data-config.json

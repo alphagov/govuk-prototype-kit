@@ -1,0 +1,7 @@
+# Prototype Kit ignores - developer tools
+/cypress/downloads
+/cypress/screenshots
+/cypress/temp
+/cypress/videos
+/govuk-prototype-kit*.zip
+tmp/
