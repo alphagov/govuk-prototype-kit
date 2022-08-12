@@ -60,7 +60,7 @@ However, this approach has risks. For example, it creates a messy commit history
   - changing the 'Unreleased' heading to the new version-number and release-type - for example, '12.0.1 (Fix release)'
   - adding a new 'Unreleased' heading above the new version-number and release-type, so users will know where to add PRs to the changelog
 
-6. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
+6. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package/package.json](/package/package.json#L4).
 
 7. Run `npm install` to update `package-lock.json`.
 
