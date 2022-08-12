@@ -7,7 +7,7 @@ const { createReleaseArchive } = require('./index')
 function usage () {
   console.log(`
 Usage:
-    scripts/create-release-archive [options] [REF]
+    scripts/create-release-archive [options]
 
 Options
     -h, --help
@@ -50,14 +50,14 @@ async function cli () {
     return
   }
 
-  if (argv._.length > 1) {
+  if (argv._.length) {
     usage()
     process.exitCode = 2
     return
   }
 
   const destDir = argv.dest || repoDir // default to project root
-  const ref = argv._[0] || 'HEAD'
+  const ref = 'HEAD'
   const releaseName = argv.releaseName || getReleaseVersionSync(ref)
   const newVersion = !argv.releaseName && isNewVersionSync(releaseName) ? 'new version' : 'version'
   const archiveType = argv.archiveType || 'zip'
@@ -65,7 +65,7 @@ async function cli () {
   console.log(`Creating release archive for ${newVersion} ${releaseName}`)
 
   const releaseArchive = await createReleaseArchive(
-    { archiveType, destDir, releaseName, ref, verbose: true })
+    { archiveType, destDir, releaseName, verbose: true })
 
   // insert a blank line for niceness
   console.log()

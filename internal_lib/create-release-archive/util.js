@@ -114,21 +114,33 @@ module.exports.isNewVersionSync = function (version) {
 }
 
 module.exports.copyReleaseFiles = async function (src, dest, { prefix, ref }) {
-  // We are currently using the export-ignore directives in .gitattributes to
-  // decide which files to include in the release archive, so the easiest way
-  // to copy all the release files is `git archive`
+  const _destDir = prefix ? path.join(destDir, prefix) : destDir
+
+  if (ref) {
+    throw new Error('create-release-archive: creating a release archive for a specific ref is no longer supported')
+  }
+
+  // We are currently using the rules in the gitignore files to decide which
+  // files to include in the release archive, so the easiest way to copy all
+  // the release files is `git archive`
   await execPromise(
-    `git archive --format=tar --prefix="${prefix}/" ${ref} | tar -C ${dest} -xf -`,
+    `git archive --format=tar --prefix="${prefix}/" HEAD prototype-starter | tar -C ${dest} -xf -`,
     { cwd: src }
   )
 }
 
 module.exports.copyReleaseFilesSync = function (src, dest, { prefix, ref }) {
-  // We are currently using the export-ignore directives in .gitattributes to
-  // decide which files to include in the release archive, so the easiest way
-  // to copy all the release files is `git archive`
+  const _destDir = prefix ? path.join(destDir, prefix) : destDir
+
+  if (ref) {
+    throw new Error('create-release-archive: creating a release archive for a specific ref is no longer supported')
+  }
+
+  // We are currently using the rules in the gitignore files to decide which
+  // files to include in the release archive, so the easiest way to copy all
+  // the release files is `git archive`
   child_process.execSync(
-    `git archive --format=tar --prefix="${prefix}/" ${ref} | tar -C ${dest} -xf -`,
+    `git archive --format=tar --prefix="${prefix}/" HEAD prototype-starter | tar -C ${dest} -xf -`,
     { cwd: src }
   )
 }
