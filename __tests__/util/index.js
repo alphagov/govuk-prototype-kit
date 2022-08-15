@@ -10,8 +10,6 @@ const { createReleaseArchive, createReleaseArchiveSync } = require('../../intern
 
 const repoDir = path.resolve(__dirname, '..', '..')
 
-var _worktreeCommit = process.env.KIT_JEST_WORKTREE_COMMIT || undefined
-
 /**
  * An ID that will be shared between all process in the same Jest test run,
  * this is useful for sharing fixture files. Normally sharing state across Jest
@@ -48,46 +46,17 @@ function mkdtempSync () {
   return tempdir
 }
 
-/**
- * Get a git stash entry representing the current worktree
- *
- * Returns a string which is a commit object ID.
- *
- * @returns {string}
- */
-function getWorktreeCommit () {
-  if (_worktreeCommit === undefined) {
-    // TODO: we shouldn't really be using git for any of this
-
-    // If no files have been changed we can just use the HEAD commit it
-    if (child_process.spawnSync('git', ['diff', '--quiet']).status === 0) {
-      _worktreeCommit = child_process.execSync(
-        'git rev-parse HEAD',
-        { cwd: repoDir, encoding: 'utf8' }
-      ).trim()
-    } else {
-      // Otherwise create a stash commit to point to the current worktree
-      // TODO: git stash create sometimes fails, and I don't know why
-      // TODO: git stash create doesn't pick up unstaged files
-      // TODO: git stash create isn't deterministic, commit ID changes even if stashed files haven't
-      _worktreeCommit = child_process.execSync(
-        'git stash create',
-        { cwd: repoDir, encoding: 'utf8' }
-      ).trim()
-    }
+function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir, ref } = {}) {
+  if (ref) {
+    throw new Error('creating a release archive for a specific ref is no longer supported')
   }
 
-  return _worktreeCommit
-}
-
-function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir, ref } = {}) {
   const destDir = dir || path.join(mkdtempSync(), '__fixtures__')
-  const commitRef = ref || getWorktreeCommit()
-  const releaseName = ref || (process.env.KIT_JEST_RUN_ID ? getJestId() : commitRef)
+  const releaseName = process.env.KIT_JEST_RUN_ID ? getJestId() : 'test'
   const name = `govuk-prototype-kit-${releaseName}`
   const archive = path.format({ name, dir: destDir, ext: '.' + archiveType })
 
-  return { archive, archiveType, destDir, releaseName, ref: commitRef }
+  return { archive, archiveType, destDir, releaseName }
 }
 
 /**
@@ -205,7 +174,6 @@ function mkPrototypeSync (prototypePath, { archivePath, overwrite = false } = {}
 }
 
 module.exports = {
-  getWorktreeCommit,
   mkdtemp,
   mkdtempSync,
   mkReleaseArchive,
