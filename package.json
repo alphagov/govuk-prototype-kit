@@ -18,7 +18,9 @@
     "test:integration:package": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-as-package' 3000 'cypress run'",
     "test:integration:package:open": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-as-package' 3000 'cypress open'",
     "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
-    "test": "jest && npm run lint"
+    "test:unit": "jest lib",
+    "test:acceptance": "jest --testTimeout=30000 __tests__",
+    "test": "npm run test:unit && npm run test:acceptance && npm run lint"
   },
   "dependencies": {
     "@govuk-prototype-kit/step-by-step": "^2.0.0",
@@ -76,7 +78,6 @@
       "__tests__/util/",
       "/node_modules/",
       "/tmp/"
-    ],
-    "testTimeout": 30000
+    ]
   }
 }
