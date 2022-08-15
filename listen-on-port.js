@@ -10,22 +10,26 @@ const utils = require('./lib/utils.js')
 var useBrowserSync = config.useBrowserSync.toLowerCase()
 var env = utils.getNodeEnv()
 
-utils.findAvailablePort(server, function (port) {
-  console.log('Listening on port ' + port + '   url: http://localhost:' + port)
-  if (env === 'production' || useBrowserSync === 'false') {
-    server.listen(port)
-  } else {
-    server.listen(port - 50, function () {
-      browserSync({
-        proxy: 'localhost:' + (port - 50),
-        port: port,
-        ui: false,
-        files: ['public/**/*.*', 'app/views/**/*.*'],
-        ghostMode: false,
-        open: false,
-        notify: false,
-        logLevel: 'error'
+if (process.env.IS_INTEGRATION_TEST === 'true') {
+  server.listen()
+} else {
+  utils.findAvailablePort(server, function (port) {
+    console.log('Listening on port ' + port + '   url: http://localhost:' + port)
+    if (env === 'production' || useBrowserSync === 'false') {
+      server.listen(port)
+    } else {
+      server.listen(port - 50, function () {
+        browserSync({
+          proxy: 'localhost:' + (port - 50),
+          port: port,
+          ui: false,
+          files: ['public/**/*.*', 'app/views/**/*.*', 'app/assets/**/*.*'],
+          ghostMode: false,
+          open: false,
+          notify: false,
+          logLevel: 'error'
+        })
       })
-    })
-  }
-})
+    }
+  })
+}
