@@ -15,7 +15,7 @@ const packageJsonScriptsInclude = [
   'build',
   'serve'
 ]
-const repoDir = path.join(__dirname, '..', '..')
+const repoDir = path.join(__dirname, '..', '..', '..')
 
 module.exports.repoDir = repoDir
 
@@ -114,8 +114,6 @@ module.exports.isNewVersionSync = function (version) {
 }
 
 module.exports.copyReleaseFiles = async function (src, dest, { prefix, ref }) {
-  const _destDir = prefix ? path.join(destDir, prefix) : destDir
-
   if (ref) {
     throw new Error('create-release-archive: creating a release archive for a specific ref is no longer supported')
   }
@@ -130,8 +128,6 @@ module.exports.copyReleaseFiles = async function (src, dest, { prefix, ref }) {
 }
 
 module.exports.copyReleaseFilesSync = function (src, dest, { prefix, ref }) {
-  const _destDir = prefix ? path.join(destDir, prefix) : destDir
-
   if (ref) {
     throw new Error('create-release-archive: creating a release archive for a specific ref is no longer supported')
   }

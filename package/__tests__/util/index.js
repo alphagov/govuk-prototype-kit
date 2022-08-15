@@ -81,13 +81,15 @@ function getWorktreeCommit () {
 }
 
 function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir, ref } = {}) {
+  if (ref) {
+    throw new Error('creating a release archive for a specific ref is no longer supported')
+  }
   const destDir = dir || path.join(mkdtempSync(), '__fixtures__')
-  const commitRef = ref || getWorktreeCommit()
-  const releaseName = ref || (process.env.KIT_JEST_RUN_ID ? getJestId() : commitRef)
+  const releaseName = process.env.KIT_JEST_RUN_ID ? getJestId() : 'test'
   const name = `govuk-prototype-kit-${releaseName}`
   const archive = path.format({ name, dir: destDir, ext: '.' + archiveType })
 
-  return { archive, archiveType, destDir, releaseName, ref: commitRef }
+  return { archive, archiveType, destDir, releaseName }
 }
 
 /**
