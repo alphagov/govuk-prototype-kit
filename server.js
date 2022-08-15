@@ -1,6 +1,7 @@
 // Core dependencies
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -19,13 +20,18 @@ const middleware = [
   require('./lib/middleware/authentication/authentication.js')(),
   require('./lib/middleware/extensions/extensions.js')
 ]
-const config = require(`${process.cwd()}/app/config.js`)
+const config = require('./lib/config.js')
 const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
-const routes = require(`${process.cwd()}/app/routes.js`)
+const routesPath = `${process.cwd()}/app/routes.js`
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const { projectDir, packageDir } = require('./lib/path-utils')
+
+let routes
+if (fs.existsSync(routesPath)) {
+  routes = require(routesPath)
+}
 
 const app = express()
 
@@ -51,7 +57,7 @@ app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
 app.locals.releaseVersion = 'v' + releaseVersion
-app.locals.serviceName = config.serviceName
+app.locals.serviceName = config.serviceName || 'GOV.UK Prototype Kit'
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig()
 
@@ -59,7 +65,7 @@ app.locals.extensionConfig = extensions.getAppConfig()
 app.use(cookieParser())
 
 // Session uses service name to avoid clashes with other prototypes
-const sessionName = 'govuk-prototype-kit-' + (Buffer.from(config.serviceName, 'utf8')).toString('hex')
+const sessionName = 'govuk-prototype-kit-' + (Buffer.from(app.locals.serviceName, 'utf8')).toString('hex')
 const sessionHours = 4
 const sessionOptions = {
   secret: sessionName,
@@ -149,11 +155,7 @@ app.get('/robots.txt', function (req, res) {
 })
 
 // Load routes (found in app/routes.js)
-if (typeof (routes) !== 'function') {
-  console.log(routes.bind)
-  console.log('Warning: the use of bind in routes is deprecated - please check the Prototype Kit documentation for writing routes.')
-  routes.bind(app)
-} else {
+if (routes) {
   app.use('/', routes)
 }
 
