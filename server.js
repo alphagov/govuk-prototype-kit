@@ -25,7 +25,7 @@ const packageJson = require('./package.json')
 const routes = require(`${process.cwd()}/app/routes.js`)
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
-const { projectDir } = require('./lib/path-utils')
+const { projectDir, packageDir } = require('./lib/path-utils')
 
 const app = express()
 
@@ -91,7 +91,8 @@ middleware.forEach(func => app.use(func))
 // Set up App
 var appViews = extensions.getAppViews([
   path.join(projectDir, '/app/views/'),
-  path.join(projectDir, '/lib/')
+  path.join(projectDir, '/lib/'), // TODO: Remove for v13
+  path.join(packageDir, '/lib/nunjucks') // TODO: Remove for v13
 ])
 
 var nunjucksConfig = {
