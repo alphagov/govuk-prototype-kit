@@ -27,14 +27,13 @@ describe('create-release-archive/cli', () => {
       '--archiveType', 'foo',
       '--destDir', 'bar',
       '--releaseName', 'baz',
-      'qux'
     ]
 
     mockCreateReleaseArchive.mockResolvedValue('qux.foo')
     await cli.cli()
 
     expect(mockCreateReleaseArchive).toHaveBeenCalledWith(expect.objectContaining({
-      archiveType: 'foo', destDir: 'bar', releaseName: 'baz', ref: 'qux'
+      archiveType: 'foo', destDir: 'bar', releaseName: 'baz'
     }))
   })
 
@@ -49,8 +48,7 @@ describe('create-release-archive/cli', () => {
     expect(mockCreateReleaseArchive).toHaveBeenCalledWith(expect.objectContaining({
       archiveType: 'zip',
       destDir: repoDir,
-      releaseName: expect.anything(),
-      ref: 'HEAD'
+      releaseName: expect.anything()
     }))
   })
 
