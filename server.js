@@ -91,8 +91,8 @@ middleware.forEach(func => app.use(func))
 // Set up App
 var appViews = extensions.getAppViews([
   path.join(projectDir, '/app/views/'),
-  path.join(projectDir, '/lib/'),
-  path.join(packageDir, '/lib/nunjucks')
+  path.join(projectDir, '/lib/'), // TODO: Remove for v13
+  path.join(packageDir, '/lib/nunjucks') // TODO: Remove for v13
 ])
 
 var nunjucksConfig = {
