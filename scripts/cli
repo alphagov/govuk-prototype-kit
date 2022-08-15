@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+const fs = require('fs-extra')
+const path = require('path')
+
+function copyFile (fileName) {
+  fs.copy(path.join(__dirname, '..', fileName), path.join(process.cwd(), fileName))
+}
+
+;(async () => {
+  if (process.argv[2] === 'install') {
+    fs.copy(path.join(__dirname, '..', 'prototype-starter'), process.cwd())
+    copyFile('CHANGELOG.md')
+    copyFile('LICENCE.txt')
+    copyFile('.npmrc')
+    copyFile('.nvmrc')
+  } else {
+    console.log('command not found')
+  }
+})()

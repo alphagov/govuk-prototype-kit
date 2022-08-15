@@ -122,7 +122,7 @@ module.exports.copyReleaseFiles = async function (src, dest, { prefix, ref }) {
   // decide which files to include in the release archive, so the easiest way
   // to copy all the release files is `git archive`
   await execPromise(
-    `git archive --format=tar --prefix="${prefix}/" HEAD | tar -C ${dest} -xf -`,
+    `git archive --format=tar --prefix="${prefix}/" HEAD prototype-starter | tar -C ${dest} -xf -`,
     { cwd: src }
   )
 }
