@@ -40,7 +40,7 @@ var releaseVersion = packageJson.version
 var env = utils.getNodeEnv()
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
-var useHttps = process.env.USE_HTTPS || config.useHttps
+var useHttps = process.env.USE_HTTPS || config.useHttps || 'true'
 
 useHttps = useHttps.toLowerCase()
 
@@ -141,6 +141,9 @@ if (useAutoStoreData === 'true') {
 
 // Load prototype admin routes
 app.use('/prototype-admin', prototypeAdminRoutes)
+app.get('/', (req, res) => {
+  res.send('this will be the kit homepage')
+})
 
 // Prevent search indexing
 app.use(function (req, res, next) {
