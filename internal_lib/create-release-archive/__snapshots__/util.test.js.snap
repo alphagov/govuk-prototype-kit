@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`create-release-archive/util cleanPackageJson deletes all dev scripts 1`] = `
-Object {
-  "build": "node lib/build/generate-assets",
-  "serve": "node listen-on-port",
-  "start": "node start",
-}
-`;
