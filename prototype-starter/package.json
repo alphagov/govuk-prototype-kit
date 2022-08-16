@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "start": "govuk-prototype-kit start"
+  }
+}

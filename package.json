@@ -6,10 +6,10 @@
   "engines": {
     "node": ">=12.0.0 <17.0.0"
   },
+  "bin": {
+    "govuk-prototype-kit": "scripts/cli"
+  },
   "scripts": {
-    "start": "node start",
-    "build": "node lib/build/generate-assets",
-    "serve": "node listen-on-port",
     "lint": "standard '**/*.js' scripts/create-release-archive lib/build/dev-server lib/build/generate-assets",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
