@@ -62,12 +62,6 @@ async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTr
   }
 
   try {
-    // Install the prototype kit cli
-    child_process.execSync(
-      'npm i -g',
-      { cwd: path.join(__dirname, '..', '..'), env: { ...process.env, env: 'test' }, stdio: 'inherit' }
-    )
-
     // Remove previous test starter project
     await fs.remove(prototypePath)
 

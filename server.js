@@ -60,6 +60,7 @@ app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName || 'GOV.UK Prototype Kit'
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig()
+app.locals.extensionConfig.scripts.push('/assets/javascripts/application.js')
 
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
@@ -94,7 +95,7 @@ if (useCookieSessionStore === 'true') {
 // static assets to prevent unauthorised access
 middleware.forEach(func => app.use(func))
 app.get('/', (req, res) => {
-  res.send('this is the homepage.')
+  res.send('GOV.UK Prototype Kit (temporary home page)')
 })
 
 // Set up App
@@ -125,10 +126,11 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/public', express.static(path.join(projectDir, '/public')))
+app.use('/public', express.static(path.join(projectDir, 'public')))
+app.use('/assets', express.static(path.join(projectDir, 'app', 'assets')))
 
 // Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
-app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend')))
 
 // Support for parsing data in POSTs
 app.use(bodyParser.json())

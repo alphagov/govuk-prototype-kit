@@ -36,7 +36,7 @@ const stepByStepTestData = [{
 }]
 
 stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
-  const stepByStepTemplateView = path.join(Cypress.env('packageFolder') || Cypress.env('projectFolder'), 'docs', 'views', 'templates', `${name}.html`)
+  const stepByStepTemplateView = path.join(Cypress.config('fixturesFolder'), 'views', `${name}.html`)
   const stepByStepView = path.join(appViews, `${name}.html`)
   const stepByStepPath = `/${name}`
 

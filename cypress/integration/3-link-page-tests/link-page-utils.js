@@ -1,7 +1,7 @@
 const path = require('path')
 const { copyFile, deleteFile } = require('../utils')
 
-const templates = path.join(Cypress.env('packageFolder') || Cypress.env('projectFolder'), 'docs', 'views', 'templates')
+const templates = path.join(Cypress.config('fixturesFolder'), 'views')
 const startTemplate = path.join(templates, 'start.html')
 const questionTemplate = path.join(templates, 'question.html')
 const confirmationTemplate = path.join(templates, 'confirmation.html')
