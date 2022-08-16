@@ -2,8 +2,6 @@ const fs = require('fs-extra')
 const os = require('os')
 const path = require('path')
 
-const tar = require('tar')
-
 const child_process = require('child_process') // eslint-disable-line camelcase
 
 /**
@@ -42,19 +40,6 @@ function mkdtempSync () {
   return tempdir
 }
 
-function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir, ref } = {}) {
-  if (ref) {
-    throw new Error('creating a release archive for a specific ref is no longer supported')
-  }
-
-  const destDir = dir || path.join(mkdtempSync(), '__fixtures__')
-  const releaseName = process.env.KIT_JEST_RUN_ID ? getJestId() : 'test'
-  const name = `govuk-prototype-kit-${releaseName}`
-  const archive = path.format({ name, dir: destDir, ext: '.' + archiveType })
-
-  return { archive, archiveType, destDir, releaseName }
-}
-
 /**
  * Create a test prototype from the current release archive
  *
@@ -68,7 +53,7 @@ function _mkReleaseArchiveOptions ({ archiveType = 'tar', dir, ref } = {}) {
  *                                         if false a usage-data-config.json is crated disallowing tracking
  * @returns {void}
  */
-async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTracking = undefined } = {}) { //TODO: Use kitPath if provided
+async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTracking = undefined } = {}) { // TODO: Use kitPath if provided
   if (!overwrite && fs.existsSync(prototypePath)) {
     const err = new Error(`path already exists '${prototypePath}'`)
     err.path = prototypePath
@@ -98,11 +83,6 @@ async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTr
     if (allowTracking !== undefined) {
       await fs.writeFile(path.join(prototypePath, 'usage-data-config.json'), `{ "collectUsageData": ${allowTracking}}`)
     }
-
-    child_process.execSync(
-      'npm start',
-      { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
-    )
   } catch (error) {
     console.error(error.message)
     console.error(error.stack)
@@ -110,6 +90,13 @@ async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTr
       process.exitCode = error.status
     }
   }
+}
+
+function startPrototype (prototypePath) {
+  child_process.execSync(
+    'npm start',
+    { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+  )
 }
 
 // /**
@@ -142,5 +129,6 @@ module.exports = {
   mkdtemp,
   mkdtempSync,
   mkPrototype,
+  startPrototype
   // mkPrototypeSync
 }

@@ -16,11 +16,13 @@ const command = process.argv[2]
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       copyFile('CHANGELOG.md'),
       copyFile('LICENCE.txt'),
-      copyFile('package.json'),
       copyFile('.npmrc'),
       copyFile('.nvmrc')
     ])
-    exec(`npm install ${kitRoot} govuk-frontend express`)
+    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, {inherit: true})
+    installProcess.stdout.on('data', function(data) {
+      console.log(data);
+    });
   } else if (command === 'start') {
     require('../start')
   } else {
