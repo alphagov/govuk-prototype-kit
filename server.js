@@ -141,9 +141,6 @@ if (useAutoStoreData === 'true') {
 
 // Load prototype admin routes
 app.use('/prototype-admin', prototypeAdminRoutes)
-app.get('/', (req, res) => {
-  res.send('this will be the kit homepage')
-})
 
 // Prevent search indexing
 app.use(function (req, res, next) {
