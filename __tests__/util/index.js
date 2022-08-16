@@ -1,4 +1,3 @@
-const child_process = require('child_process') // eslint-disable-line camelcase
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -7,8 +6,6 @@ const lockfile = require('proper-lockfile')
 const tar = require('tar')
 
 const { createReleaseArchive, createReleaseArchiveSync } = require('../../internal_lib/create-release-archive')
-
-const repoDir = path.resolve(__dirname, '..', '..')
 
 /**
  * An ID that will be shared between all process in the same Jest test run,

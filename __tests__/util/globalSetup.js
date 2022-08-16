@@ -1,4 +1,4 @@
-const { mkReleaseArchive } = require('./index')
+// const { mkReleaseArchive } = require('./index')
 
 module.exports = async function () {
   // process.stdout.write('\nDoing global setup...')
