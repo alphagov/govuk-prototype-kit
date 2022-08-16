@@ -1,10 +1,3 @@
 {% for scriptUrl in extensionConfig.scripts %}
   <script src="{{scriptUrl}}"></script>
 {% endfor %}
-
-<script src="/public/_kit/javascripts/kit.js"></script>
-<script src="/public/javascripts/application.js"></script>
-
-{% if useAutoStoreData %}
-  <script src="/public/_kit/javascripts/auto-store-data.js"></script>
-{% endif %}
