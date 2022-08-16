@@ -54,11 +54,15 @@ function mkdtempSync () {
  * @returns {void}
  */
 async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTracking = undefined } = {}) { // TODO: Use kitPath if provided
-  if (!overwrite && fs.existsSync(prototypePath)) {
-    const err = new Error(`path already exists '${prototypePath}'`)
-    err.path = prototypePath
-    err.code = 'EEXIST'
-    throw err
+  if (fs.existsSync(prototypePath)) {
+    if (!overwrite) {
+      const err = new Error(`path already exists '${prototypePath}'`)
+      err.path = prototypePath
+      err.code = 'EEXIST'
+      throw err
+    } else {
+      fs.rmdir(prototypePath, { recursive: true })
+    }
   }
 
   try {
