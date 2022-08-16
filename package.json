@@ -10,17 +10,17 @@
     "govuk-prototype-kit": "scripts/cli"
   },
   "scripts": {
+    "start": "echo 'there is no start script, honest.'",
     "lint": "standard '**/*.js' scripts/create-release-archive lib/build/dev-server lib/build/generate-assets",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
     "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",
-    "test:acceptance": "KIT_TEST_DIR=tmp/test-prototype start-server-and-test 'node cypress/scripts/run-from-release' 3000 'cypress run'",
-    "test:acceptance:package": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress run'",
-    "test:acceptance:package:open": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress open'",
+    "test:acceptance": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress run'",
+    "test:acceptance:open": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress open'",
     "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
     "test:unit": "jest lib",
     "test:integration": "jest --testTimeout=30000 __tests__",
-    "test": "npm run test:unit && npm run test:acceptance && npm run lint"
+    "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
   "dependencies": {
     "@govuk-prototype-kit/step-by-step": "^2.0.0",
@@ -61,7 +61,6 @@
     "standard": "^14.3.3",
     "start-server-and-test": "^1.14.0",
     "supertest": "^6.2.3",
-    "tar": "^6.1.11",
     "wait-on": "^6.0.1"
   },
   "standard": {
