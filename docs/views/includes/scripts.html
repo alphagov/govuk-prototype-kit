@@ -1,5 +1,10 @@
 <!-- Javascript -->
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
+
+{% for scriptUrl in extensionConfig.scripts %}
+  <script src="{{scriptUrl}}"></script>
+{% endfor %}
+
 <script src="/extension-assets/govuk-frontend/govuk/all.js"></script>
 <script src="/public/javascripts/docs.js"></script>
 
