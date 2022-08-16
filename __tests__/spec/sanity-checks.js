@@ -7,7 +7,10 @@ const path = require('path')
 const request = require('supertest')
 const sass = require('sass')
 
-const app = require('../../server.js')
+const { mkPrototype, mkdtempSync } = require('../util')
+const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
+let app
+
 const utils = require('../../lib/utils')
 const { generateAssetsSync } = require('../../lib/build/tasks')
 
@@ -19,7 +22,10 @@ function readFile (pathFromRoot) {
  * Basic sanity checks on the dev server
  */
 describe('The Prototype Kit', () => {
-  beforeAll(() => {
+  beforeAll(async () => {
+    process.env.IS_INTEGRATION_TEST = 'true'
+    await mkPrototype(tmpDir, { allowTracking: false })
+    app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
     generateAssetsSync()
   })

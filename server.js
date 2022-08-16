@@ -93,6 +93,9 @@ if (useCookieSessionStore === 'true') {
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
 middleware.forEach(func => app.use(func))
+app.get('/', (req, res) => {
+  res.send('this is the homepage.')
+})
 
 // Set up App
 var appViews = extensions.getAppViews([
