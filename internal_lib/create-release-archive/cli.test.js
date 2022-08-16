@@ -26,7 +26,7 @@ describe('create-release-archive/cli', () => {
       null, null,
       '--archiveType', 'foo',
       '--destDir', 'bar',
-      '--releaseName', 'baz',
+      '--releaseName', 'baz'
     ]
 
     mockCreateReleaseArchive.mockResolvedValue('qux.foo')
