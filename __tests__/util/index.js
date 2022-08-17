@@ -53,7 +53,13 @@ function mkdtempSync () {
  *                                         if false a usage-data-config.json is crated disallowing tracking
  * @returns {void}
  */
-async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTracking = undefined } = {}) { // TODO: Use kitPath if provided
+async function mkPrototype (prototypePath, {
+  kitPath,
+  overwrite = false,
+  allowTracking = undefined,
+  extensions = ['govuk-frontend'],
+  additionalExtensions = []
+} = {}) { // TODO: Use kitPath if provided
   if (fs.existsSync(prototypePath)) {
     if (!overwrite) {
       const err = new Error(`path already exists '${prototypePath}'`)
@@ -88,6 +94,17 @@ async function mkPrototype (prototypePath, { kitPath, overwrite = false, allowTr
       process.exitCode = error.status
     }
   }
+}
+
+function installExtensions (prototypePath, extensionNames) {
+  let extensionNamesProcessed = extensionNames
+  if (!Array.isArray(extensionNames)) {
+    extensionNamesProcessed = [extensionNames]
+  }
+  child_process.execSync(
+    `npm install ${extensionNamesProcessed.join(' ')}`,
+    { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+  )
 }
 
 function startPrototype (prototypePath) {
@@ -127,6 +144,6 @@ module.exports = {
   mkdtemp,
   mkdtempSync,
   mkPrototype,
-  startPrototype
-  // mkPrototypeSync
+  startPrototype,
+  installExtensions
 }
