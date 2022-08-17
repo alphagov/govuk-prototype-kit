@@ -32,8 +32,6 @@ describe('The Prototype Kit', () => {
 
   it('should generate assets into the /public folder', () => {
     assert.doesNotThrow(async function () {
-      await utils.waitUntilFileExists(path.resolve(__dirname, '../../public/javascripts/application.js'), 5000)
-      await utils.waitUntilFileExists(path.resolve(__dirname, '../../public/images/unbranded.ico'), 5000)
       await utils.waitUntilFileExists(path.resolve(__dirname, '../../public/stylesheets/application.css'), 5000)
     })
   })
