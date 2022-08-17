@@ -14,7 +14,7 @@
     "lint": "standard '**/*.js' scripts/create-release-archive lib/build/dev-server lib/build/generate-assets",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
-    "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",
+    "test:heroku": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 test:smoke",
     "test:acceptance": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress run'",
     "test:acceptance:open": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress open'",
     "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
