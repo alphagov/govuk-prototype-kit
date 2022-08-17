@@ -46,12 +46,12 @@ jobs:
 
     - run: npm ci
 
-    - run: npx jest --runInBand
+    - run: npm test
       env:
         CI: true
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - run: npm run test:integration
+    - run: npm run test:acceptance
       env:
         CYPRESS_REQUEST_TIMEOUT: 20000
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
