@@ -80,6 +80,12 @@ async function mkPrototype (prototypePath, {
 
     // Generate starter project and start
     child_process.execSync(
+      'npm i -g',
+      { stdio: 'inherit' }
+    )
+
+    // Generate starter project and start
+    child_process.execSync(
       'govuk-prototype-kit install',
       { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
     )
