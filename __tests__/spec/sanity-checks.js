@@ -11,8 +11,9 @@ const { mkPrototype, mkdtempSync } = require('../util')
 const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
 let app
 
-const utils = require('../../lib/utils')
 const { generateAssetsSync } = require('../../lib/build/tasks')
+const fse = require('fs-extra')
+const { projectDir } = require('../../lib/path-utils')
 
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
@@ -26,14 +27,16 @@ describe('The Prototype Kit', () => {
     process.env.IS_INTEGRATION_TEST = 'true'
     await mkPrototype(tmpDir, { allowTracking: false })
     app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
+    jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
     generateAssetsSync()
   })
 
-  it('should generate assets into the /public folder', () => {
-    assert.doesNotThrow(async function () {
-      await utils.waitUntilFileExists(path.resolve(__dirname, '../../public/stylesheets/application.css'), 5000)
-    })
+  it('should call writeFileSync with result css from sass.compile', () => {
+    expect(fse.writeFileSync).toHaveBeenCalledWith(
+      path.join('public', 'stylesheets', 'application.css'),
+      path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')
+    )
   })
 
   describe('index page', () => {
