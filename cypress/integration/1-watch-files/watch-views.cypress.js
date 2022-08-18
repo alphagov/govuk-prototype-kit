@@ -28,7 +28,7 @@ describe('watching start page', () => {
 
     cy.task('log', 'The start page should be displayed')
     cy.visit(pagePath)
-    cy.get('h1')
-      .should('contains.text', 'Service name goes here')
+    cy.get('.govuk-button--start')
+      .should('contains.text', 'Start now')
   })
 })

@@ -9,7 +9,7 @@ const publicImages = 'public/images'
 
 const pageFixture = 'larry-the-cat'
 const pageFixtureName = `${pageFixture}.html`
-const pageFixturePath = path.join(Cypress.config('fixturesFolder'), pageFixtureName)
+const pageFixturePath = path.join(Cypress.config('fixturesFolder'), 'views', pageFixtureName)
 const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
 
 function cleanUp () {
