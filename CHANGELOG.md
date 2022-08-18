@@ -4,7 +4,7 @@
 
 ### New features
 
-- Update to GOV.UK Frontend 4.3.1
+- Update to GOV.UK Frontend 4.3.0
 - Update step by step pattern and install it as an extension
 
 ## 12.1.1 (Fix release)
