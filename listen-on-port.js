@@ -14,7 +14,12 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
   server.listen()
 } else {
   utils.findAvailablePort(server, function (port) {
-    console.log('Listening on port ' + port + '   url: http://localhost:' + port)
+    const baseUrl = `http://localhost:${port}`
+    console.log('The prototype is now running on:')
+    console.log(baseUrl)
+    console.log('')
+    console.log('You can access settings at:')
+    console.log(`${baseUrl}/prototype-settings`)
     if (env === 'production' || useBrowserSync === 'false') {
       server.listen(port)
     } else {
@@ -23,7 +28,7 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
           proxy: 'localhost:' + (port - 50),
           port: port,
           ui: false,
-          files: ['public/**/*.*', 'app/views/**/*.*', 'app/assets/**/*.*'],
+          files: ['public/**/*.*', 'app/views/**/*.*', 'app/assets/**/*.*', 'lib/prototype-admin/**/*.*'],
           ghostMode: false,
           open: false,
           notify: false,

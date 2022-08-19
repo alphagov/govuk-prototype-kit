@@ -17,3 +17,317 @@ $govuk-assets-path: '/govuk/assets/';
 
 // SASS that is user defined
 @import "app/assets/sass/application";
+
+
+.app-navigation {
+  border-bottom: 1px solid #1d70b8;
+}
+
+@media(min-width: 40.0625em) {
+  .app-navigation {
+    display: block
+  }
+}
+
+.app-navigation [hidden],
+.app-navigation[hidden] {
+  display: none
+}
+
+@media(max-width: 40.0525em) {
+  .no-js .app-navigation {
+    display: block
+  }
+}
+
+.app-navigation__list {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+@media(min-width: 40.0625em) {
+  .app-navigation__list {
+    position: relative;
+  }
+}
+
+.app-navigation__list-item {
+  position: relative
+}
+
+@media(min-width: 40.0625em) {
+  .app-navigation__list-item {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 3.125;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 50px;
+    height: 3.125rem;
+    padding: 0 15px;
+    float: left
+  }
+}
+
+@media print and (min-width: 40.0625em) {
+  .app-navigation__list-item {
+    font-family: sans-serif
+  }
+}
+
+@media(min-width: 40.0625em)and (min-width: 40.0625em) {
+  .app-navigation__list-item {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 2.6315789474
+  }
+}
+
+@media print and (min-width: 40.0625em) {
+  .app-navigation__list-item {
+    font-size: 14pt;
+    line-height: 50px
+  }
+}
+
+@media(min-width: 40.0625em) {
+  .app-navigation__list-item--current {
+    border-bottom: 4px solid #1d70b8
+  }
+}
+
+.app-navigation__link,
+.app-navigation__button {
+  margin: 15px 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 19px;
+  font-size: 1.1875rem
+}
+
+.app-navigation__link:after,
+.app-navigation__button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0
+}
+
+.app-navigation__link:not([hidden]) {
+  display: inline-block
+}
+
+@media(min-width: 40.0625em) {
+  .app-navigation__link:not([hidden]) {
+    display: inline
+  }
+}
+
+.app-navigation__button {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: underline;
+  text-decoration-thickness: max(1px, .0625rem);
+  text-underline-offset: .1em;
+  border: 0;
+  color: #1d70b8;
+  background-color: rgba(0, 0, 0, 0)
+}
+
+@media print {
+  .app-navigation__button {
+    font-family: sans-serif
+  }
+}
+
+.app-navigation__button:hover {
+  text-decoration-thickness: max(3px, .1875rem, .12em);
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip: none;
+  text-decoration-skip: none
+}
+
+.app-navigation__button:focus {
+  outline: 3px solid rgba(0, 0, 0, 0);
+  color: #0b0c0c;
+  background-color: #fd0;
+  -webkit-box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  text-decoration: none
+}
+
+.app-navigation__button:not(:hover):not(:active) {
+  text-decoration: none
+}
+
+.app-navigation__button:link {
+  color: #1d70b8
+}
+
+.app-navigation__button:visited {
+  color: #1d70b8
+}
+
+.app-navigation__button:hover {
+  color: #003078
+}
+
+.app-navigation__button:active {
+  color: #0b0c0c
+}
+
+.app-navigation__button:focus {
+  color: #0b0c0c
+}
+
+.app-navigation__subnav {
+  margin: 0 -15px;
+  padding: 10px 0;
+  background-color: #fff;
+  list-style: none
+}
+
+.js-enabled .app-navigation__subnav--active {
+  display: block
+}
+
+@media(min-width: 40.0625em) {
+
+  .app-navigation__subnav,
+  .js-enabled .app-navigation__subnav--active {
+    display: none
+  }
+}
+
+.app-navigation__subnav-item {
+  display: block;
+  position: relative;
+  padding: 15px
+}
+
+.app-navigation__subnav-item--current {
+  padding-left: 16px;
+  border-left: 4px solid #1d70b8
+}
+
+.app-navigation__theme {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  margin: 0;
+  padding: 20px 15px 5px;
+  color: #505a5f;
+  font-size: 19px;
+  font-size: 1.1875rem;
+  font-weight: normal
+}
+
+@media print {
+  .app-navigation__theme {
+    font-family: sans-serif
+  }
+}
+
+.app-navigation__menu-button {
+  top: auto;
+  right: 5px;
+  bottom: 25px
+}
+
+.app-navigation__menu-button[hidden] {
+  display: none
+}
+
+.app-options {
+  margin-bottom: 10px;
+  padding: 0
+}
+
+@media(min-width: 40.0625em) {
+  .app-options {
+    margin-bottom: 15px
+  }
+}
+
+.app-options__table {
+  max-width: 38em
+}
+
+@media(min-width: 20em) {
+  .app-options__table {
+    table-layout: fixed
+  }
+
+  .app-options__table .govuk-table__header,
+  .app-options__table .govuk-table__cell {
+    padding-right: 10px;
+    word-break: break-word
+  }
+}
+
+@media(min-width: 20em) {
+  .app-options__limit-table-cell {
+    width: 29%
+  }
+}
+
+.app-page-navigation {
+  margin-top: 0;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  list-style: none
+}
+
+.app-page-navigation__item {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-bottom: 10px
+}
+
+@media print {
+  .app-page-navigation__item {
+    font-family: sans-serif
+  }
+}
+
+@media(min-width: 40.0625em) {
+  .app-page-navigation__item {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.3157894737
+  }
+}
+
+@media print {
+  .app-page-navigation__item {
+    font-size: 14pt;
+    line-height: 1.15
+  }
+}
+
+@media(min-width: 40.0625em) {
+  .app-page-navigation__item {
+    display: none
+  }
+}
+
+.app-page-navigation__item:before {
+  content: "—";
+  margin-left: -20px;
+  padding-right: 5px
+}

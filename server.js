@@ -22,7 +22,7 @@ const middleware = [
 ]
 const { projectDir, packageDir } = require('./lib/path-utils')
 const config = require('./lib/config.js')
-const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
+const prototypeSettingsRoutes = require('./lib/prototype-settings-routes.js')
 const packageJson = require('./package.json')
 const routesPath = `${packageDir}/app/routes.js`
 const utils = require('./lib/utils.js')
@@ -96,9 +96,9 @@ if (useCookieSessionStore === 'true') {
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
 middleware.forEach(func => app.use(func))
-app.get('/', (req, res) => {
-  res.send('GOV.UK Prototype Kit (temporary home page)')
-})
+// app.get('/', (req, res) => {
+//   res.render('GOV.UK Prototype Kit (temporary home page)')
+// })
 
 // Set up App
 var appViews = extensions.getAppViews([
@@ -142,7 +142,7 @@ if (useAutoStoreData === 'true') {
 }
 
 // Load prototype admin routes
-app.use('/prototype-admin', prototypeAdminRoutes)
+app.use('/prototype-settings', prototypeSettingsRoutes)
 
 // Prevent search indexing
 app.use(function (req, res, next) {
