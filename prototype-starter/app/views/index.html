@@ -1,43 +1,12 @@
-{% extends "layout.html" %}
+<h1 class="govuk-heading-l">
+  {{serviceName}}
+</h1>
 
-{% block pageTitle %}
-Home – GOV.UK Prototype Kit
-{% endblock %}
+<p>
 
-{% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-m">
-      GOV.UK Prototype Kit
-    </h2>
-
-    <ul class="govuk-list">
-      <li>
-        <a href="/prototype-settings">
-          Settings
-        </a>
-      </li>
-      <li>
-        <a href="https://govuk-prototype-kit.herokuapp.com/docs">
-          Documentation
-        </a>
-      </li>
-    </ul>
-
-    <h1 class="govuk-heading-l">
-      {{serviceName}}
-    </h1>
-
-    <p>
-
-      Edit this home page in the file <strong>app/views/index.html</strong>
-      <br>For example you can add links to common user journeys.
-    </p>
-    <p>
-      Change the service name in the file <strong>app/config.js</strong>
-    </p>
-  </div>
-</div>
-
-{% endblock %}
+  Edit this home page in the file <strong>app/views/index.html</strong>
+  <br>For example you can add links to common user journeys.
+</p>
+<p>
+  Change the service name in the file <strong>app/serviceName.txt</strong>
+</p>
