@@ -4,7 +4,7 @@ const fs = require('fs-extra')
 const path = require('path')
 const { exec } = require('child_process')
 
-const installDirectory = process.cwd()
+const installDirectory = path.join(process.cwd(), 'govuk-prototype-kit')
 const kitRoot = 'https://github.com/alphagov/govuk-prototype-kit.git#2022-08_user-testing'
 
 const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
@@ -12,6 +12,12 @@ const command = process.argv[2]
 
 ;(async () => {
   if (command === 'install') {
+    if (fs.pathExistsSync(installDirectory)) {
+      console.error('Cannot create as something exists in:')
+      console.error(installDirectory)
+      process.exit(3)
+    }
+    fs.ensureDir(installDirectory)
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       copyFile('CHANGELOG.md'),
