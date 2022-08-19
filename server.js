@@ -20,13 +20,13 @@ const middleware = [
   require('./lib/middleware/authentication/authentication.js')(),
   require('./lib/middleware/extensions/extensions.js')
 ]
+const { projectDir, packageDir } = require('./lib/path-utils')
 const config = require('./lib/config.js')
 const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
-const routesPath = `${process.cwd()}/app/routes.js`
+const routesPath = `${packageDir}/app/routes.js`
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
-const { projectDir, packageDir } = require('./lib/path-utils')
 
 let routes
 if (fs.existsSync(routesPath)) {
@@ -59,8 +59,10 @@ app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName || 'GOV.UK Prototype Kit'
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
-app.locals.extensionConfig = extensions.getAppConfig()
-app.locals.extensionConfig.scripts.push('/assets/javascripts/application.js')
+app.locals.extensionConfig = extensions.getAppConfig({
+  scripts: ['/public/javascripts/application.js'],
+  stylesheets: ['/public/stylesheets/application.css']
+})
 
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
@@ -100,9 +102,7 @@ app.get('/', (req, res) => {
 
 // Set up App
 var appViews = extensions.getAppViews([
-  path.join(projectDir, '/app/views/'),
-  path.join(projectDir, '/lib/'), // TODO: Remove for v13
-  path.join(packageDir, '/lib/nunjucks') // TODO: Remove for v13
+  path.join(projectDir, '/app/views/')
 ])
 
 var nunjucksConfig = {
@@ -127,10 +127,7 @@ app.set('view engine', 'html')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(projectDir, 'public')))
-app.use('/assets', express.static(path.join(projectDir, 'app', 'assets')))
-
-// Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
-app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend')))
+app.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
 
 // Support for parsing data in POSTs
 app.use(bodyParser.json())
