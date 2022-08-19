@@ -59,26 +59,7 @@
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        html: '<a href="#">GOV.UK Frontend</a>',
-        classes: "govuk-!-font-weight-regular"
-      },
-      value: {
-        text: "v4.1.0"
-      }
-    },
-    {
-      key: {
-        html: '<a href="#">GOV.UK Step by step</a>',
-        classes: "govuk-!-font-weight-regular"
-      },
-      value: {
-        text: "v2.0.0"
-      }
-    }
-    ]
+  rows: installedExtensionRows
 }) }}
 
 <h2 class="govuk-heading-m">
@@ -88,35 +69,7 @@
   {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {{ govukSummaryList({
-rows: [
-{
-  key: {
-    html: '<a href="#">HMRC Frontend</a>',
-    classes: "govuk-!-font-weight-regular"
-  },
-  value: {
-    text: "v1.2.3"
-  }
-},
-{
-  key: {
-    html: '<a href="#">DWP Frontend</a>',
-    classes: "govuk-!-font-weight-regular"
-  },
-  value: {
-    text: "v2.3.4"
-  }
-},
-{
-  key: {
-    html: '<a href="#">DVLA Frontend</a>',
-    classes: "govuk-!-font-weight-regular"
-  },
-  value: {
-    text: "v3.4.5"
-  }
-}
-]
+rows: availableExtensionRows
 }) }}
 
     </div>
