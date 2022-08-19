@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
+console.log(process.argv)
+
 const fs = require('fs-extra')
 const path = require('path')
 const { exec } = require('child_process')
 
 const installDirectory = path.join(process.cwd(), 'govuk-prototype-kit')
-const kitRoot = 'https://github.com/alphagov/govuk-prototype-kit.git#2022-08_user-testing'
+const kitRoot = path.join(__dirname, '..')
+const kitDependency = 'https://github.com/alphagov/govuk-prototype-kit.git#2022-08_user-testing'
 
 const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 const command = process.argv[2]
@@ -25,7 +28,7 @@ const command = process.argv[2]
       copyFile('.npmrc'),
       copyFile('.nvmrc')
     ])
-    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, { inherit: true })
+    const installProcess = exec(`npm install ${kitDependency} govuk-frontend`, { inherit: true })
     installProcess.stdout.on('data', function (data) {
       console.log(data)
     })
