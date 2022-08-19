@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<nav id="app-navigation" class="app-navigation js-app-navigation govuk-clearfix" role="navigation" aria-labelledby="app-navigation-heading">
+  <h2 class="govuk-visually-hidden" id="app-navigation-heading">Menu</h2>
+  <ul class="app-navigation__list app-width-container">
+    
+      <li class="app-navigation__list-item">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings">
+          Home
+        </a>
+      </li>
+    
+      <li class="app-navigation__list-item ">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings/data">
+          Data
+        </a>  
+      </li>
+    
+      <li class="app-navigation__list-item  app-navigation__list-item--current">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings/extensions">
+          Extensions
+        </a>        
+      </li>
+    
+      <li class="app-navigation__list-item ">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/">
+          Back to prototype
+        </a>        
+      </li>
+    
+  </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row govuk-!-margin-bottom-8">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Extensions
+      </h1>
+
+      <p>
+          <a href="#">
+              Help
+          </a>
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Installed
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        html: '<a href="#">GOV.UK Frontend</a>',
+        classes: "govuk-!-font-weight-regular"
+      },
+      value: {
+        text: "v4.1.0"
+      }
+    },
+    {
+      key: {
+        html: '<a href="#">GOV.UK Step by step</a>',
+        classes: "govuk-!-font-weight-regular"
+      },
+      value: {
+        text: "v2.0.0"
+      }
+    }
+    ]
+}) }}
+
+<h2 class="govuk-heading-m">
+    Available
+  </h2>
+
+  {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+rows: [
+{
+  key: {
+    html: '<a href="#">HMRC Frontend</a>',
+    classes: "govuk-!-font-weight-regular"
+  },
+  value: {
+    text: "v1.2.3"
+  }
+},
+{
+  key: {
+    html: '<a href="#">DWP Frontend</a>',
+    classes: "govuk-!-font-weight-regular"
+  },
+  value: {
+    text: "v2.3.4"
+  }
+},
+{
+  key: {
+    html: '<a href="#">DVLA Frontend</a>',
+    classes: "govuk-!-font-weight-regular"
+  },
+  value: {
+    text: "v3.4.5"
+  }
+}
+]
+}) }}
+
+    </div>
+  </div>
+
+ 
+{% endblock %}

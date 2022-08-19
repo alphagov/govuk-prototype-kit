@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<nav id="app-navigation" class="app-navigation js-app-navigation govuk-clearfix" role="navigation" aria-labelledby="app-navigation-heading">
+  <h2 class="govuk-visually-hidden" id="app-navigation-heading">Menu</h2>
+  <ul class="app-navigation__list app-width-container">
+    
+      <li class="app-navigation__list-item  app-navigation__list-item--current">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings">
+          Home
+        </a>
+      </li>
+    
+      <li class="app-navigation__list-item ">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings/data">
+          Data
+        </a>  
+      </li>
+    
+      <li class="app-navigation__list-item ">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings/extensions">
+          Extensions
+        </a>        
+      </li>
+    
+      <li class="app-navigation__list-item ">
+        <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/">
+          Back to prototype
+        </a>        
+      </li>
+    
+  </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row govuk-!-margin-bottom-8">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        GOV.UK Prototype Kit settings
+      </h1>
+
+      <p>GOV.UK Prototype Kit version 13.0.0</p>
+
+      <p>
+        <a href="#">
+          New version available: 13.1.0
+        </a>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">
+        <a href="#">
+          Documentation
+        </a>
+      </h2>
+      <p>
+        How to use the Prototype Kit
+      </p>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">
+        <a href="/prototype-settings/data">
+          Data
+        </a>
+      </h2>
+      <p>
+        View and manage the current session data
+      </p>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">
+        <a href="/prototype-settings/extensions">
+          Extensions
+        </a>
+      </h2>
+      <p>
+        Add and manage components and styles
+      </p>
+    </div>
+  </div>
+
+{% endblock %}
