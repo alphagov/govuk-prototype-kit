@@ -10,8 +10,8 @@
     "govuk-prototype-kit": "scripts/cli"
   },
   "scripts": {
-    "start": "echo 'there is no start script, honest.'",
-    "lint": "standard '**/*.js' scripts/create-release-archive lib/build/dev-server lib/build/generate-assets",
+    "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
+    "lint": "standard '**/*.js' scripts/create-release-archive scripts/cli lib/build/dev-server lib/build/generate-assets",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
     "test:heroku": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 test:smoke",

@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-
-const { cli } = require('../internal_lib/create-release-archive/cli')
-
-cli()

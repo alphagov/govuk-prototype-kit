@@ -1,8 +1,8 @@
+const child_process = require('child_process') // eslint-disable-line camelcase
+
 const fs = require('fs-extra')
 const os = require('os')
 const path = require('path')
-
-const child_process = require('child_process') // eslint-disable-line camelcase
 
 /**
  * An ID that will be shared between all process in the same Jest test run,
@@ -119,32 +119,6 @@ function startPrototype (prototypePath) {
     { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
-
-// /**
-//  * Synchronous version of `mkPrototype()`
-//  *
-//  * See the note in the docstring for `mkReleaseArchive()` for a warning against
-//  * using this function. Prefer the async version where possible.
-//  *
-//  * @param {string} prototypePath
-//  * @param {Object} [options]
-//  * @param {string} [options.archivePath] - Path to archive to use to create prototype, if not provided uses mkReleaseArchiveSync
-//  * @returns {void}
-//  */
-// function mkPrototypeSync (prototypePath, { archivePath, overwrite = false } = {}) {
-//   if (!overwrite && fs.existsSync(prototypePath)) {
-//     const err = new Error(`path already exists '${prototypePath}'`)
-//     err.path = prototypePath
-//     err.code = 'EEXIST'
-//     throw err
-//   }
-//
-//   archivePath = archivePath || mkReleaseArchiveSync()
-//
-//   fs.mkdirSync(prototypePath, { recursive: true })
-//
-//   tar.extract({ cwd: prototypePath, file: archivePath, strip: 1, sync: true })
-// }
 
 module.exports = {
   mkdtemp,
