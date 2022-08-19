@@ -42,6 +42,15 @@ var env = utils.getNodeEnv()
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE ? process.env.USE_COOKIE_SESSION_STORE !== 'false' : config.useCookieSessionStore !== 'false'
 var useHttps = process.env.USE_HTTPS || config.useHttps || 'true'
+let serviceName
+
+try {
+  serviceName = fs.readFileSync(path.join(projectDir, 'app', 'serviceName.txt'), 'utf8')
+} catch (e) {
+  serviceName = 'GOV.UK Prototype Kit'
+}
+
+serviceName = serviceName.trim().replace(/\s+/g, ' ')
 
 useHttps = useHttps.toLowerCase()
 
@@ -58,7 +67,7 @@ app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.useCookieSessionStore = useCookieSessionStore
 app.locals.releaseVersion = 'v' + releaseVersion
-app.locals.serviceName = config.serviceName || 'GOV.UK Prototype Kit'
+app.locals.serviceName = serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig({
   scripts: ['/public/javascripts/application.js'],
@@ -97,6 +106,9 @@ if (useCookieSessionStore) {
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
 middleware.forEach(func => app.use(func))
+app.get('/', (req, res) => {
+  res.render('govuk-prototype-kit/homepage')
+})
 
 // Set up App
 var appViews = extensions.getAppViews([

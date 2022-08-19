@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Home – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-m">
+      GOV.UK Prototype Kit
+    </h2>
+
+    <ul class="govuk-list">
+      <li>
+        <a href="/prototype-settings">
+          Settings
+        </a>
+      </li>
+      <li>
+        <a href="https://govuk-prototype-kit.herokuapp.com/docs">
+          Documentation
+        </a>
+      </li>
+    </ul>
+
+    {% include "index.html" %}
+    
+  </div>
+</div>
+
+{% endblock %}
