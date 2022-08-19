@@ -51,7 +51,7 @@
         </a>
     </p>
 
-    <form action="">
+    <form action="{{postUrl}}" method="post">
 
         {{ govukTextarea({
         name: "session-data",
@@ -60,6 +60,7 @@
             text: "Current session data",
             classes: "govuk-!-font-weight-bold"
         },
+        value: currentData, 
         hint: {
             text: "You can edit your session data and it will update the prototype"
         }

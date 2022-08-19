@@ -6,7 +6,7 @@ const { exec } = require('child_process')
 
 const installDirectory = path.join(process.cwd(), 'govuk-prototype-kit')
 const kitRoot = path.join(__dirname, '..')
-const kitDependency = 'https://github.com/alphagov/govuk-prototype-kit.git#2022-08_user-testing'
+const kitDependency = process.argv[3] === 'local' ? kitRoot : 'https://github.com/alphagov/govuk-prototype-kit.git#2022-08_user-testing'
 
 const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 const command = process.argv[2]
