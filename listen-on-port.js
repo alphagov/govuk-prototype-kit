@@ -23,7 +23,7 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
           proxy: 'localhost:' + (port - 50),
           port: port,
           ui: false,
-          files: ['public/**/*.*', 'app/views/**/*.*', 'app/assets/javascripts/application.js'],
+          files: ['public/**/*.*', 'app/views/**/*.*', 'app/assets/**/*.*'],
           ghostMode: false,
           open: false,
           notify: false,

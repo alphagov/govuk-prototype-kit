@@ -2,7 +2,7 @@
 
 const fs = require('fs-extra')
 const path = require('path')
-const {exec} = require('child_process')
+const { exec } = require('child_process')
 
 const installDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
@@ -19,13 +19,14 @@ const command = process.argv[2]
       copyFile('.npmrc'),
       copyFile('.nvmrc')
     ])
-    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, {inherit: true})
-    installProcess.stdout.on('data', function(data) {
-      console.log(data);
-    });
+    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, { inherit: true })
+    installProcess.stdout.on('data', function (data) {
+      console.log(data)
+    })
   } else if (command === 'start') {
     require('../start')
   } else {
     console.log(`I don't know how to handle ${command}`)
+    process.exit(2)
   }
 })()
