@@ -26,15 +26,15 @@ Home – GOV.UK Prototype Kit
     </ul>
 
     {% if onboarding.length > 0 %}
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <h2 class="govuk-heading-m">Onboarding</h2>
       <ul class="govuk-list govuk-list--bullet">
         {% for i in onboarding %}
           <li>{{ i | safe }}</li>
         {% endfor %}
       </ul>
-    
     {% endif %}
-    
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
     {% include "index.html" %}
     
   </div>
