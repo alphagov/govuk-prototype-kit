@@ -134,13 +134,14 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+const fileUpload = require('express-fileupload')
+app.use(fileUpload())
 
 // Automatically store all data users enter
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData)
   utils.addCheckedFunction(nunjucksAppEnv)
 }
-
 // Load prototype admin routes
 app.use('/prototype-settings', prototypeSettingsRoutes)
 

@@ -1,0 +1,58 @@
+{% extends "govuk-prototype-kit/prototype-settings/layout.html" %}
+
+{% set settingsPage = "Home" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row govuk-!-margin-bottom-8">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        GOV.UK Prototype Kit settings
+      </h1>
+
+      <p>GOV.UK Prototype Kit version 13.0.0</p>
+
+      <p>
+        <a href="#">
+          New version available: 13.1.0
+        </a>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">
+        <a href="#">
+          Documentation
+        </a>
+      </h2>
+      <p>
+        How to use the Prototype Kit
+      </p>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">
+        <a href="/prototype-settings/data">
+          Data
+        </a>
+      </h2>
+      <p>
+        View and manage the current session data
+      </p>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">
+        <a href="/prototype-settings/extensions">
+          Extensions
+        </a>
+      </h2>
+      <p>
+        Add and manage components and styles
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

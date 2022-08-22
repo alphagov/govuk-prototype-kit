@@ -1,0 +1,69 @@
+{% extends "govuk-prototype-kit/prototype-settings/layout.html" %}
+
+{% set settingsPage = "Data" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+        Data
+    </h1>
+    <p>
+        <a href="#">
+            Help
+        </a>
+    </p>
+
+    <form action="{{postUrl}}" method="post">
+
+        {{ govukTextarea({
+        name: "session-data",
+        id: "session-data",
+        label: {
+            text: "Current session data",
+            classes: "govuk-!-font-weight-bold"
+        },
+        value: currentData, 
+        hint: {
+            text: "You can edit your session data and it will update the prototype"
+        }
+        }) }}
+
+        {{ govukButton({
+            name: "perform",
+            value: "update",
+            text: "Save changes"
+        })}}
+
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Clear data",
+    classes: "govuk-button--secondary",
+    href: "/prototype-settings/data/clear"
+  }) }}
+
+  {{ govukButton({
+    text: "Import",
+    classes: "govuk-button--secondary",
+    name: "perform",
+    value: "import",
+    href: "/prototype-settings/data/import"
+  }) }}
+
+  {{ govukButton({
+    text: "Export",
+    classes: "govuk-button--secondary",
+    name: "perform",
+    value: "export"
+  }) }}
+</div>
+
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "govuk-prototype-kit/prototype-settings/layout.html" %}
+
+{% set settingsPage = "Extensions" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row govuk-!-margin-bottom-8">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Extensions
+      </h1>
+
+      <p>
+          <a href="#">
+              Help
+          </a>
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Installed
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: installedExtensionRows
+}) }}
+
+<h2 class="govuk-heading-m">
+    Available
+  </h2>
+
+  {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+rows: availableExtensionRows
+}) }}
+
+    </div>
+  </div>
+
+ 
+{% endblock %}

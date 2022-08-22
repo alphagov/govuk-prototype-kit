@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{settingsPage}} – Settings – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<nav id="app-navigation" class="app-navigation js-app-navigation govuk-clearfix" role="navigation" aria-labelledby="app-navigation-heading">
+  <h2 class="govuk-visually-hidden" id="app-navigation-heading">Menu</h2>
+  <ul class="app-navigation__list app-width-container">
+
+    <li class="app-navigation__list-item {{"app-navigation__list-item--current" if settingsPage === "Home"}}">
+      <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings">
+        Home
+      </a>
+    </li>
+
+    <li class="app-navigation__list-item {{"app-navigation__list-item--current" if settingsPage === "Data"}}">
+      <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings/data">
+        Data
+      </a>
+    </li>
+
+    <li class="app-navigation__list-item  {{"app-navigation__list-item--current" if settingsPage === "Extensions"}}">
+      <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/prototype-settings/extensions">
+        Extensions
+      </a>
+    </li>
+
+    <li class="app-navigation__list-item">
+      <a class="govuk-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/">
+        Back to prototype
+      </a>
+    </li>
+
+  </ul>
+</nav>
+{% endblock %}
