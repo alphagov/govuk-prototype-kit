@@ -17,7 +17,7 @@ process.chdir(testDir)
 fs.writeFileSync(path.join(testDir, 'usage-data-config.json'), '{ "collectUsageData": false }')
 
 child_process.execSync(
-  'npm install',
+  'npm install "file:../../cypress/fixtures/extensions/extension-foo"',
   { cwd: testDir, env: { ...process.env, npm_config_include: '' }, stdio: 'inherit' }
 )
 
