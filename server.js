@@ -79,7 +79,7 @@ const sessionOptions = {
 }
 
 // Support session data in cookie or memory
-if (useCookieSessionStore === 'true') {
+if (useCookieSessionStore) {
   app.use(sessionInCookie(Object.assign(sessionOptions, {
     cookieName: sessionName,
     proxy: true,
@@ -96,9 +96,6 @@ if (useCookieSessionStore === 'true') {
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
 middleware.forEach(func => app.use(func))
-// app.get('/', (req, res) => {
-//   res.render('GOV.UK Prototype Kit (temporary home page)')
-// })
 
 // Set up App
 var appViews = extensions.getAppViews([
