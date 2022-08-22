@@ -1,42 +1,148 @@
 #!/usr/bin/env node
 
+const { EOL } = require('os')
+
 const fs = require('fs-extra')
 const path = require('path')
 const { exec } = require('child_process')
+const { projectDir } = require('../lib/path-utils')
 
-const installDirectory = path.join(process.cwd(), 'govuk-prototype-kit')
 const kitRoot = path.join(__dirname, '..')
-const kitDependency = process.argv[3] === 'local' ? kitRoot : 'https://github.com/alphagov/govuk-prototype-kit.git#2022-08_user-testing'
+const kitDependency = process.argv[3] === 'local' ? kitRoot : 'https://github.com/alphagov/govuk-prototype-kit.git#2022_user-testing_homepage-and-service-name'
 
-const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 const command = process.argv[2]
 
-;(async () => {
-  if (command === 'install') {
-    if (fs.pathExistsSync(installDirectory)) {
+const commands = {
+  install: async (dir, ignoreExists) => {
+    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+    const installDirectory = dir || path.join(process.cwd(), 'govuk-prototype-kit')
+    let dirExists = fs.pathExistsSync(installDirectory)
+    if (!ignoreExists && dirExists) {
       console.error('Cannot create as something exists in:')
       console.error(installDirectory)
       process.exit(3)
     }
     fs.ensureDir(installDirectory)
-    await Promise.all([
-      fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
-      copyFile('CHANGELOG.md'),
-      copyFile('LICENCE.txt'),
-      copyFile('.npmrc'),
-      copyFile('.nvmrc')
-    ])
+    let fileCopyPromises = [copyFile('LICENCE.txt'), copyFile('.npmrc'), copyFile('.nvmrc')]
+    if (fs.pathExistsSync(path.join(installDirectory, 'app'))) {
+      fileCopyPromises.push(fs.copy(path.join(kitRoot, 'prototype-starter/app/serviceName.txt'), path.join(installDirectory, 'app/serviceName.txt')))
+    } else {
+      fileCopyPromises.push(fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory))
+    }
+    await Promise.all(fileCopyPromises)
     const installProcess = exec(`npm install ${kitDependency} govuk-frontend`, {
-      inherit: true,
-      cwd: installDirectory
+      inherit: true, cwd: installDirectory
     })
     installProcess.stdout.on('data', function (data) {
       console.log(data)
     })
-  } else if (command === 'start') {
+
+  }, start: () => {
     require('../start')
+  }, upgrade: async () => {
+    const installDirectory = process.cwd()
+    const itemsToRemove = ['docs', 'lib', '__tests__', 'cypress', 'internal_docs', 'scripts', 'update', 'node_modules', 'public', 'VERSION.txt', 'Procfile', 'listen-on-port.js', 'server.js', 'start.js', 'VERSION.txt']
+    await Promise.all(itemsToRemove.map(dir => fs.rm(path.join(installDirectory, dir), {
+      recursive: true
+    }).catch(() => {})))
+    await commands.install(installDirectory, true)
+    let packageFileLocation = path.join(installDirectory, 'package.json')
+    const originalPackage = require(packageFileLocation)
+    const targetPackageStart = require(path.join(kitRoot, 'prototype-starter', 'package.json')).scripts.start
+    const updatedPackage = Object.assign({}, originalPackage)
+    updatedPackage.scripts.start = targetPackageStart
+    await fs.writeFile(packageFileLocation, JSON.stringify(updatedPackage, null, 2))
+    await deleteBeforeLine('app/assets/sass/application.scss', '// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you')
+    await stripDownIndexHtml()
+    const configJsLocation = path.join(projectDir, 'app', 'config.js')
+    try {
+      if (fs.pathExistsSync(configJsLocation)) {
+        const serviceName = require(configJsLocation).serviceName
+        if (serviceName) {
+          await fs.writeFile(path.join(projectDir, 'app', 'serviceName.txt'), serviceName)
+        }
+      }
+    } catch (e) {}
+  }
+}
+
+const deleteBeforeLine = (file, line) => {
+  const fullPath = path.join(projectDir, file)
+  fs.readFile(fullPath, 'utf8')
+    .then(file => file.split(EOL))
+    .then(lines => {
+      const index = lines.indexOf(line)
+      if (index > -1) {
+        const result = lines.splice(index)
+        return fs.writeFile(fullPath, result.join(EOL))
+      }
+    })
+}
+const stripDownIndexHtml = () => {
+  const fullPath = path.join(projectDir, 'app', 'views', 'index.html')
+  fs.readFile(fullPath, 'utf8')
+    .then(file => file.split(EOL))
+    .then(lines => {
+      const trimmedLines = lines.map(x => x.trim().replace(/\s+/g, ' '))
+      let start = trimmedLines.indexOf('{% block content %}')
+      const skipEmptyLinesAhead = () => {
+        while (trimmedLines[start + 1] === '') {
+          start += 1
+        }
+      }
+      const skipEmptyLinesBehind = () => {
+        while (trimmedLines[end - 1] === '') {
+          end -= 1
+        }
+      }
+
+      if (start === -1) {
+        return
+      }
+
+      skipEmptyLinesAhead()
+      if (trimmedLines[start + 1] === '<div class="govuk-grid-row">') {
+        start += 1
+      } else {
+        return
+      }
+      skipEmptyLinesAhead()
+      if (trimmedLines[start + 1] === '<div class="govuk-grid-column-two-thirds">') {
+        start += 1
+      } else {
+        return
+      }
+      
+      let end = trimmedLines.indexOf('{% endblock %}', start)
+      skipEmptyLinesBehind()
+
+      if (trimmedLines[end - 1] === '</div>') {
+        end -= 1
+      } else {
+        return
+      }
+      skipEmptyLinesBehind()
+      if (trimmedLines[end - 1] === '</div>') {
+        end -= 1
+      } else {
+        return
+      }
+      
+      const result = lines.splice(start + 1, end - start - 1)
+      result.push('')
+      return fs.writeFile(fullPath, result.join(EOL))
+    })
+}
+
+commands.playground = stripDownIndexHtml
+
+console.log();
+(async () => {
+  let fn = commands[command]
+  if (fn) {
+    fn()
   } else {
-    console.log(`I don't know how to handle ${command}`)
+    console.log(`I don't know how to handle [${command}]`)
     process.exit(2)
   }
 })()
