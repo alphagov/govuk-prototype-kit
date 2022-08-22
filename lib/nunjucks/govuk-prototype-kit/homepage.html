@@ -25,6 +25,16 @@ Home – GOV.UK Prototype Kit
       </li>
     </ul>
 
+    {% if onboarding.length > 0 %}
+      <h2 class="govuk-heading-m">Onboarding</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        {% for i in onboarding %}
+          <li>{{ i | safe }}</li>
+        {% endfor %}
+      </ul>
+    
+    {% endif %}
+    
     {% include "index.html" %}
     
   </div>

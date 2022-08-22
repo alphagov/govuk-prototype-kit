@@ -106,8 +106,17 @@ if (useCookieSessionStore) {
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
 middleware.forEach(func => app.use(func))
-app.get('/', (req, res) => {
-  res.render('govuk-prototype-kit/homepage')
+app.get('/', async (req, res) => {
+  const homepageContents = await fs.promises.readFile(path.join(projectDir, 'app', 'views', 'index.html'), 'utf8')
+  const defaultHomepageContents = await fs.promises.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
+  const onboarding = []
+  if (serviceName === 'Service name goes here' || serviceName === '') {
+    onboarding.push('Change the service name in the file <strong>app/serviceName.txt</strong>')
+  }
+  if (homepageContents === defaultHomepageContents) {
+    onboarding.push('Edit the homepage in the file <strong>app/views/index.html</strong>')
+  }
+  res.render('govuk-prototype-kit/homepage', { onboarding })
 })
 
 // Set up App
