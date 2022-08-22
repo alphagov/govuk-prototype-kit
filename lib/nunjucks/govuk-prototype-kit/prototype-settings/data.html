@@ -46,18 +46,18 @@
   }) }}
 
   {{ govukButton({
-    text: "Import",
+    text: "Export data",
+    classes: "govuk-button--secondary",
+    name: "perform",
+    value: "export"
+  }) }}
+
+  {{ govukButton({
+    text: "Import data",
     classes: "govuk-button--secondary",
     name: "perform",
     value: "import",
     href: "/prototype-settings/data/import"
-  }) }}
-
-  {{ govukButton({
-    text: "Export",
-    classes: "govuk-button--secondary",
-    name: "perform",
-    value: "export"
   }) }}
 </div>
 

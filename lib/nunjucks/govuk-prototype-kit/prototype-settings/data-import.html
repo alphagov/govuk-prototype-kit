@@ -7,14 +7,11 @@
 <form action="/prototype-settings/data" method="post" enctype='multipart/form-data'>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Import session data
-      </h1>
       {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
       
       {{ govukFileUpload({
         label: {
-          text: "Upload a JSON file with the config you want to import.",
+          text: "Upload the JSON file with the session data you want to import",
           classes: "govuk-label--l",
           isPageHeading: true
         },
@@ -28,7 +25,7 @@
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
       {{ govukButton({
-        text: "Import",
+        text: "Import data",
         preventDoubleClick: true,
         name: "perform",
         value: "import"

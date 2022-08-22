@@ -39,7 +39,7 @@ const app = express()
 var releaseVersion = packageJson.version
 var env = utils.getNodeEnv()
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
-var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
+var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE ? process.env.USE_COOKIE_SESSION_STORE !== 'false' : config.useCookieSessionStore !== 'false'
 var useHttps = process.env.USE_HTTPS || config.useHttps || 'true'
 
 useHttps = useHttps.toLowerCase()
@@ -55,7 +55,7 @@ if (isSecure) {
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
-app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
+app.locals.useCookieSessionStore = useCookieSessionStore
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName || 'GOV.UK Prototype Kit'
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
