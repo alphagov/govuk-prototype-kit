@@ -111,12 +111,19 @@ app.get('/', async (req, res) => {
   const defaultHomepageContents = await fs.promises.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
   const onboarding = []
   if (serviceName === 'Service name goes here' || serviceName === '') {
-    onboarding.push('Change the service name in the file <strong>app/serviceName.txt</strong>')
+    onboarding.push('Change the service name in the file **app/serviceName.txt**')
   }
   if (homepageContents === defaultHomepageContents) {
-    onboarding.push('Edit the homepage in the file <strong>app/views/index.html</strong>')
+    onboarding.push('Edit the homepage in the file **app/views/index.html**')
   }
-  res.render('govuk-prototype-kit/homepage', { onboarding })
+  if (homepageContents.includes('{% extends')) {
+    onboarding.push('You seem to be using an old homepage, you no longer need the **extends**, **header** or **footer**.  You can now put paragraphs, links, lists etc. into **app/views/index.html** and they\'ll appear below.')
+  }
+  res.render('govuk-prototype-kit/homepage', {
+    onboarding: onboarding.map(x => x
+      .replace(/\*\*([\w\s/.]+)\*\*/g, '<strong>$1</strong>')
+    )
+  })
 })
 
 // Set up App
