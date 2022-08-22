@@ -101,7 +101,7 @@ describe('The Prototype Kit', () => {
     describe('misconfigured prototype kit - while upgrading kit developer did not copy over changes in /app folder', () => {
       it('should still allow known assets to be loaded from node_modules', (done) => {
         request(app)
-          .get('/node_modules/govuk-frontend/govuk/all.js')
+          .get('/extension-assets/govuk-frontend/govuk/all.js')
           .expect('Content-Type', /application\/javascript; charset=UTF-8/)
           .expect(200)
           .end(function (err, res) {
