@@ -20,11 +20,11 @@ const middleware = [
   require('./lib/middleware/authentication/authentication.js')(),
   require('./lib/middleware/extensions/extensions.js')
 ]
-const { projectDir, packageDir } = require('./lib/path-utils')
+const { projectDir } = require('./lib/path-utils')
 const config = require('./lib/config.js')
 const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
-const routesPath = `${packageDir}/app/routes.js`
+const routesPath = `${projectDir}/app/routes.js`
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 
