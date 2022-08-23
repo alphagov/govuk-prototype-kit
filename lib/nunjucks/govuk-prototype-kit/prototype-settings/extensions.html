@@ -27,6 +27,7 @@
   rows: installedExtensionRows
 }) }}
 
+      {% if availableExtensionRows.length > 0 %}
 <h2 class="govuk-heading-m">
     Available
   </h2>
@@ -36,7 +37,7 @@
 {{ govukSummaryList({
 rows: availableExtensionRows
 }) }}
-
+{% endif %}
     </div>
   </div>
 
