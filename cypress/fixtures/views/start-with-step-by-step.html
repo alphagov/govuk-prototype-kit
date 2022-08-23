@@ -1,4 +1,7 @@
-{% extends "layout.html" %}
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
 {% block beforeContent %}
   <div class="app-step-nav-header">
     <span class="app-step-nav-header__part-of">Part of</span>

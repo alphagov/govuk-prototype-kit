@@ -1,0 +1,27 @@
+{%- set assetPath = '/govuk/assets' -%}
+
+{% extends "govuk/template.njk" %}
+
+{% block head %}
+  {% include "govuk-prototype-kit/includes/stylesheets.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "govuk-prototype-kit/includes/scripts.html" %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+{% endblock %}

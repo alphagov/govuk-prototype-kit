@@ -1,4 +1,5 @@
 {
+  "assets": "/lib/assets/images",
   "nunjucksPaths": "/lib/nunjucks",
   "scripts": [
     "/lib/assets/javascripts/kit.js",
