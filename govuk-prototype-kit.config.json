@@ -1,3 +1,7 @@
 {
-  "nunjucksPaths": "/lib/nunjucks"
+  "nunjucksPaths": "/lib/nunjucks",
+  "scripts": [
+    "/lib/assets/javascripts/kit.js",
+    "/lib/assets/javascripts/auto-store-data.js"
+  ]
 }

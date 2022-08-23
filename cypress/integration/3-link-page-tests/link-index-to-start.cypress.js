@@ -4,7 +4,7 @@ const { waitForApplication, copyFile, deleteFile } = require('../utils')
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const indexView = path.join(appViews, 'index.html')
 const startView = path.join(appViews, 'start.html')
-const templateStartView = path.join(Cypress.env('packageFolder') || Cypress.env('projectFolder'), 'docs', 'views', 'templates', 'start.html')
+const templateStartView = path.join(Cypress.config('fixturesFolder'), 'views', 'start.html')
 
 const commentText = '<p>You can change the service name by editing the file \'/app/config.js\'.</p>'
 

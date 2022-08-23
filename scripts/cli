@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+const fs = require('fs-extra')
+const path = require('path')
+const { exec } = require('child_process')
+
+const installDirectory = process.cwd()
+const kitRoot = path.join(__dirname, '..')
+
+const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+const command = process.argv[2]
+
+;(async () => {
+  if (command === 'install') {
+    await Promise.all([
+      fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
+      copyFile('CHANGELOG.md'),
+      copyFile('LICENCE.txt'),
+      copyFile('.npmrc'),
+      copyFile('.nvmrc')
+    ])
+    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, { inherit: true })
+    installProcess.stdout.on('data', function (data) {
+      console.log(data)
+    })
+  } else if (command === 'start') {
+    require('../start')
+  } else {
+    console.log(`I don't know how to handle ${command}`)
+    process.exit(2)
+  }
+})()
