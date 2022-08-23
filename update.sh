@@ -2,7 +2,7 @@
 
 # Set the version of the kit that should be downloaded by default
 # Update this when making a new release
-VERSION="${VERSION:-12.1.1}"
+VERSION="${VERSION:-12.2.0}"
 
 # Use unofficial bash strict mode
 set -euo pipefail
