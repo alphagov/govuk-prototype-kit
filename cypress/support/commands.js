@@ -65,6 +65,22 @@ Cypress.Commands.add('waitForResource', (name, options = {}) => {
   )
 })
 
+Cypress.Commands.add(
+  'download',
+  { prevSubject: true },
+  (subject) => {
+    return cy.get(subject)
+      .invoke('attr', 'href')
+      .then((filename) => {
+        cy.url().then((uri) => {
+          const url = new URL(uri)
+          cy.task('log', `Downloading ${url.origin}${filename}`)
+          cy.task('download', { filename: `${url.origin}${filename}` })
+        })
+      })
+  }
+)
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
