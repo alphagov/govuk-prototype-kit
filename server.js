@@ -27,6 +27,7 @@ const packageJson = require('./package.json')
 const routesPath = `${packageDir}/app/routes.js`
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
+const { autoStoreData } = require('./lib/utils')
 
 let routes
 if (fs.existsSync(routesPath)) {
@@ -131,12 +132,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
-const fileUpload = require('express-fileupload')
-app.use(fileUpload())
 
 // Automatically store all data users enter
+const noopMiddleware = (req, res, next) => { next() }
+
+let autoStoreDataMiddleware = noopMiddleware
 if (useAutoStoreData === 'true') {
-  app.use(utils.autoStoreData)
+  autoStoreDataMiddleware = utils.autoStoreData
   utils.addCheckedFunction(nunjucksAppEnv)
 }
 // Load prototype admin routes
@@ -171,16 +173,16 @@ app.get(/\.html?$/i, function (req, res) {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, function (req, res, next) {
+app.get(/^([^.]+)$/, [autoStoreDataMiddleware], function (req, res, next) {
   utils.matchRoutes(req, res, next)
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
-app.post(/^\/([^.]+)$/, function (req, res) {
+app.post(/^\/([^.]+)$/, [autoStoreDataMiddleware], function (req, res) {
   res.redirect(url.format({
-    pathname: '/' + req.params[0],
-    query: req.query
-  })
+      pathname: '/' + req.params[0],
+      query: req.query
+    })
   )
 })
 
