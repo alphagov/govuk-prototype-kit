@@ -1,0 +1,52 @@
+name: Tests (Download)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  tests:
+
+    strategy:
+      fail-fast: false  # continue other tests if one test in matrix fails
+      matrix:
+        node-version: [16.x]
+        os: [ubuntu-latest]
+
+    name: Test downloading kit from website
+    continue-on-error: true
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node v${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        cache: 'npm'
+        node-version: ${{ matrix.node-version }}
+
+    - name: Cache Cypress binary
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/Cypress
+        key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+
+    - run: npm ci
+
+    - run: npm run test:acceptance:download
+      env:
+        CYPRESS_REQUEST_TIMEOUT: 20000
+        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
+        CYPRESS_PAGE_LOAD_TIMEOUT: 150000
+        CYPRESS_RETRIES: 3
