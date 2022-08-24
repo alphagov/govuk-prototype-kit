@@ -17,7 +17,7 @@ const extensionFooViewMarkup = `
 {% block pageScripts %}
 <script>
   window.GOVUKPrototypeKit.documentReady(function () {
-    new window.GOVUK.Modules.ExtensionFoo('.test-foo')
+    new window.FOO.Modules.ExtensionFoo('.test-foo')
   })
 </script>
 {% endblock %}

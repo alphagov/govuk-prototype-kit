@@ -1,6 +1,6 @@
 
-window.GOVUK = window.GOVUK || {}
-window.GOVUK.Modules = window.GOVUK.Modules || {};
+window.FOO = window.FOO || {}
+window.FOO.Modules = window.FOO.Modules || {};
 
 ((Modules) => {
   class ExtensionFoo {
@@ -17,4 +17,4 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
   }
 
   Modules.ExtensionFoo = ExtensionFoo
-})(window.GOVUK.Modules)
+})(window.FOO.Modules)
