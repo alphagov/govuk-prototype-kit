@@ -4,6 +4,7 @@ const path = require('path')
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const extensionFooView = path.join(appViews, 'extension-foo.html')
 
+const WHITE = 'rgb(255, 255, 255)'
 const YELLOW = 'rgb(255, 255, 0)'
 const BLUE = 'rgb(0, 0, 255)'
 
@@ -23,7 +24,7 @@ const extensionFooViewMarkup = `
 {% endblock %}
 `
 
-describe(`${name} journey`, async () => {
+describe('Single Extension Test', async () => {
   before(() => {
     waitForApplication()
     cy.task('createFile', { filename: extensionFooView, data: extensionFooViewMarkup })
@@ -44,11 +45,13 @@ describe(`${name} journey`, async () => {
     cy.visit('/extension-foo')
     cy.get('.extension-foo')
       .should('have.css', 'background-color', YELLOW)
+      .should('have.css', 'border-color', WHITE)
   })
 
   it('Loads extension-foo script correctly', () => {
     cy.visit('/extension-foo')
     cy.get('.extension-foo').click()
     cy.get('.extension-foo').should('have.css', 'background-color', BLUE)
+    cy.get('.extension-foo').should('have.css', 'border-color', WHITE)
   })
 })

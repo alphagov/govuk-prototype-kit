@@ -1,0 +1,11 @@
+{
+  "nunjucksPaths": [
+    "/views"
+  ],
+  "scripts": [
+    "/scripts/bar.js"
+  ],
+  "sass": [
+    "/sass/bar.scss"
+  ]
+}

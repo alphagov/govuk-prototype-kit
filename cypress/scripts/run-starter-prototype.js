@@ -11,7 +11,8 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
   await mkPrototype(testDir, { overwrite: true, allowTracking: false })
   await installExtensions(testDir, [
     '@govuk-prototype-kit/step-by-step@1',
-    '"file:../../cypress/fixtures/extensions/extension-foo"']
+    '"file:../../cypress/fixtures/extensions/extension-foo"',
+    '"file:../../cypress/fixtures/extensions/extension-bar"']
   )
   startPrototype(testDir)
 })()
