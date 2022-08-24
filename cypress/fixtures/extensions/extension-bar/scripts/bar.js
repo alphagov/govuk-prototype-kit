@@ -1,6 +1,6 @@
 
-window.GOVUK = window.GOVUK || {}
-window.GOVUK.Modules = window.GOVUK.Modules || {};
+window.BAR = window.BAR || {}
+window.BAR.Modules = window.BAR.Modules || {};
 
 ((Modules) => {
   class ExtensionBar {
@@ -17,4 +17,4 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
   }
 
   Modules.ExtensionBar = ExtensionBar
-})(window.GOVUK.Modules)
+})(window.BAR.Modules)

@@ -19,8 +19,8 @@ const extensionFooBarCombinedViewMarkup = `
 {% block pageScripts %}
 <script>
   window.GOVUKPrototypeKit.documentReady(function () {
-    new window.GOVUK.Modules.ExtensionBar('.test-bar')
-    new window.GOVUK.Modules.ExtensionFoo('.test-foo')
+    new window.BAR.Modules.ExtensionBar('.test-bar')
+    new window.FOO.Modules.ExtensionFoo('.test-foo')
   })
 </script>
 {% endblock %}
