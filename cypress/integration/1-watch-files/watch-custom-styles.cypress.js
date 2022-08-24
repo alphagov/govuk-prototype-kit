@@ -10,7 +10,7 @@ const customStylesPublicPath = 'public/stylesheets/custom-styles.css'
 
 const pageFixture = 'custom-styles'
 const pageFixtureName = `${pageFixture}.html`
-const pageFixturePath = path.join(Cypress.config('fixturesFolder'), pageFixtureName)
+const pageFixturePath = path.join(Cypress.config('fixturesFolder'), 'views', pageFixtureName)
 const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
 
 function cleanUp () {
