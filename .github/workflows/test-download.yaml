@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false  # continue other tests if one test in matrix fails
       matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        node-version: [16.x]
+        os: [ubuntu-latest]
 
     name: Test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     continue-on-error: true
@@ -34,7 +34,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         cache: 'npm'
-        node-version: ${{ matrix.node-version }}
+        node-version: '16'
 
     - name: Cache Cypress binary
       uses: actions/cache@v3
