@@ -1,0 +1,6 @@
+.extension-foo {
+  background: rgb(255, 255, 0);
+  &.extension-foo-clicked {
+    background: rgb(0, 0, 255);
+  }
+}
