@@ -15,7 +15,7 @@ jobs:
         node-version: [16.x]
         os: [ubuntu-latest]
 
-    name: Test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
+    name: Test downloading kit from website
     continue-on-error: true
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
