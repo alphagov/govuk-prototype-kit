@@ -6,7 +6,7 @@ module.exports = defineConfig({
   chromeWebSecurity: false,
   trashAssetsBeforeRun: true,
   e2e: {
-    setupNodeEvents(on, config) {
+    setupNodeEvents (on, config) {
       return plugins(on, config)
     },
     baseUrl: 'http://localhost:3000',
