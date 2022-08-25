@@ -26,10 +26,7 @@ const command = process.argv[2]
       copyFile('.npmrc'),
       copyFile('.nvmrc')
     ])
-    const installProcess = exec(`npm install ${kitDependency} govuk-frontend`, {
-      inherit: true,
-      cwd: installDirectory
-    })
+    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, { inherit: true })
     installProcess.stdout.on('data', function (data) {
       console.log(data)
     })

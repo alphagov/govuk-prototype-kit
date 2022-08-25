@@ -18,9 +18,6 @@ describe('the build pipeline', () => {
         fs.existsSync(path.join('app', 'assets', 'test'))
       ).toBe(false)
 
-      // fs.mkdirSync(path.join('app', 'assets', 'test'))
-      // fs.writeFileSync(path.join('app', 'assets', 'test', 'testtest'), '', 'utf8')
-
       jest.spyOn(fs, 'chmodSync').mockImplementation(() => {})
       jest.spyOn(fse, 'chmodSync').mockImplementation(() => {})
       jest.spyOn(fs, 'copyFileSync').mockImplementation(() => {})
@@ -84,6 +81,35 @@ describe('the build pipeline', () => {
       )
 
       expect(sass.compile).not.toHaveBeenCalledWith(expect.stringContaining(path.join('app', 'assets', 'sass', 'application.scss')), expect.objectContaining(options))
+    })
+
+    it('copies javascript to the public folder', () => {
+      expect(fs.copyFileSync).toHaveBeenCalledWith(
+        path.join(projectDir, 'lib', 'assets', 'javascripts', 'kit.js'),
+        path.join('public', '_kit', 'javascripts', 'kit.js')
+      )
+
+      expect(fs.copyFileSync).toHaveBeenCalledWith(
+        path.join('app', 'assets', 'javascripts', 'application.js'),
+        path.join('public', 'javascripts', 'application.js')
+      )
+    })
+
+    it('copies images to the public folder', () => {
+      expect(fs.copyFileSync).toHaveBeenCalledWith(
+        path.join('app', 'assets', 'images', 'unbranded.ico'),
+        path.join('public', 'images', 'unbranded.ico')
+      )
+    })
+
+    it('copies files from the assets folder', () => {
+      expect(fs.mkdirSync).toHaveBeenCalledWith(
+        path.join('public', 'test')
+      )
+      expect(fs.copyFileSync).toHaveBeenCalledWith(
+        path.join('app', 'assets', 'test', 'testtest'),
+        path.join('public', 'test', 'testtest')
+      )
     })
   })
 })

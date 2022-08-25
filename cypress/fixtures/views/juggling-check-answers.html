@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
 
 {% block pageTitle %}
   Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
@@ -47,18 +47,10 @@
         </div>
       </dl>
 
-      <h2 class="govuk-heading-m">Now send your application</h2>
-
-      <p>By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-
       <form action="/confirmation" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Accept and send
         </button>
-
       </form>
 
     </div>

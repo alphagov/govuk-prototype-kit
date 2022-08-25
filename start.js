@@ -2,10 +2,6 @@
 const path = require('path')
 const fs = require('fs')
 
-// Check for node_modules before running
-const checkFiles = require('./lib/build/check-files').checkFiles
-checkFiles()
-
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
 const { projectDir } = require('./lib/path-utils')

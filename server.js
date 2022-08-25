@@ -24,7 +24,7 @@ const { projectDir, packageDir } = require('./lib/path-utils')
 const config = require('./lib/config.js')
 const prototypeSettingsRoutes = require('./lib/prototype-settings-routes.js')
 const packageJson = require('./package.json')
-const routesPath = `${packageDir}/app/routes.js`
+const routesPath = `${projectDir}/app/routes.js`
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const { autoStoreData } = require('./lib/utils')
@@ -141,6 +141,7 @@ if (useAutoStoreData === 'true') {
   autoStoreDataMiddleware = utils.autoStoreData
   utils.addCheckedFunction(nunjucksAppEnv)
 }
+
 // Load prototype admin routes
 app.use('/prototype-settings', prototypeSettingsRoutes)
 
@@ -180,9 +181,9 @@ app.get(/^([^.]+)$/, [autoStoreDataMiddleware], function (req, res, next) {
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, [autoStoreDataMiddleware], function (req, res) {
   res.redirect(url.format({
-      pathname: '/' + req.params[0],
-      query: req.query
-    })
+    pathname: '/' + req.params[0],
+    query: req.query
+  })
   )
 })
 
