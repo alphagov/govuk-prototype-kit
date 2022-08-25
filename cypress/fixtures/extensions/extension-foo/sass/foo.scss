@@ -1,4 +1,5 @@
 .extension-foo {
+  border: rgb(255, 255, 255) solid 10px;
   background: rgb(255, 255, 0);
   &.extension-foo-clicked {
     background: rgb(0, 0, 255);
