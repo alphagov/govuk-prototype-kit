@@ -17,7 +17,7 @@
     "test:heroku": "echo 'test:heroku' needs to be implemented",
     "test:acceptance": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress run'",
     "test:acceptance:open": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress open'",
-    "test:acceptance:download": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress run --config integrationFolder=cypress/download-tests'",
+    "test:acceptance:download": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress run --config specPattern=cypress/download-tests'",
     "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
     "test:unit": "jest lib",
     "test:integration": "jest --testTimeout=30000 __tests__",
