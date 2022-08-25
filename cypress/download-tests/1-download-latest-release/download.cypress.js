@@ -1,4 +1,4 @@
-import { waitForApplication } from '../../integration/utils'
+import { waitForApplication } from '../../e2e/utils'
 
 describe('download page', () => {
   beforeEach(() => {
