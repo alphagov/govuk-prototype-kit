@@ -20,7 +20,7 @@ const waitOn = require('wait-on')
 const extract = require('extract-zip')
 const https = require('https')
 
-const { sleep } = require('../integration/utils')
+const { sleep } = require('../e2e/utils')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
 
