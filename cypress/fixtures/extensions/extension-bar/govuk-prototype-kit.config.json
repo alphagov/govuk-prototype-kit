@@ -1,4 +1,7 @@
 {
+  "nunjucksFilters": [
+    "/filters.js"
+  ],
   "nunjucksPaths": [
     "/views"
   ],

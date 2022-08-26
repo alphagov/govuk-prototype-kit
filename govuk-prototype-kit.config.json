@@ -1,6 +1,7 @@
 {
   "assets": "/lib/assets/images",
   "nunjucksPaths": "/lib/nunjucks",
+  "nunjucksFilters": "/lib/filters/coreFilters",
   "scripts": [
     "/lib/assets/javascripts/kit.js",
     "/lib/assets/javascripts/auto-store-data.js"
