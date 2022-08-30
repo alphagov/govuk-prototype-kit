@@ -16,6 +16,7 @@ const command = process.argv[2]
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       copyFile('CHANGELOG.md'),
       copyFile('LICENCE.txt'),
+      copyFile('.gitignore'),
       copyFile('.npmrc'),
       copyFile('.nvmrc')
     ])
