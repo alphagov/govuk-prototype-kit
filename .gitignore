@@ -20,3 +20,4 @@ tmp/
 .DS_Store
 .idea
 .tmuxp.*
+/coverage

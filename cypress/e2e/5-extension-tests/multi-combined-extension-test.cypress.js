@@ -13,7 +13,10 @@ const extensionFooBarCombinedViewMarkup = `
 {% extends "layout.html" %}
 
 {% block content %}
+{% set testVar="Hello" %}
 <h1 class="test-foo test-bar">Extension Foo Bar</h1>
+<p id="filter-test-foo">{{testVar | foo__strong}}</p>
+<p id="filter-test-bar">{{testVar | bar__link('https://gov.uk/')}}</p>
 {% endblock %}
 
 {% block pageScripts %}
@@ -58,6 +61,11 @@ describe('Multiple Extension test', async () => {
         .should('have.css', 'background-color', BLUE)
         .should('have.css', 'border-color', RED)
     })
+    it('Uses the foo filter correctly', () => {
+      cy.visit('/extension-foo-bar')
+      cy.get('#filter-test-bar')
+        .should('contain.html', '<a href="https://gov.uk/">Hello</a>')
+    })
   })
 
   describe('Extension Foo', () => {
@@ -79,6 +87,11 @@ describe('Multiple Extension test', async () => {
       cy.get('.extension-foo').click()
       cy.get('.extension-foo').should('have.css', 'background-color', BLUE)
         .should('have.css', 'border-color', RED)
+    })
+    it('Uses the bar filter correctly', () => {
+      cy.visit('/extension-foo-bar')
+      cy.get('#filter-test-foo')
+        .should('contain.html', '<strong>Hello</strong>')
     })
   })
 })

@@ -103,13 +103,20 @@ async function mkPrototype (prototypePath, {
 }
 
 function installExtensions (prototypePath, extensionNames) {
-  let extensionNamesProcessed = extensionNames
+  let extensionNamesProcessed = extensionNames || []
   if (!Array.isArray(extensionNames)) {
     extensionNamesProcessed = [extensionNames]
   }
   child_process.execSync(
     `npm install ${extensionNamesProcessed.join(' ')}`,
     { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+  )
+}
+
+function npmInstall (pathToRunInstallIn) {
+  return child_process.exec(
+    'npm install',
+    { cwd: pathToRunInstallIn, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
 
@@ -122,6 +129,7 @@ function startPrototype (prototypePath) {
 
 module.exports = {
   mkdtemp,
+  npmInstall,
   mkdtempSync,
   mkPrototype,
   startPrototype,

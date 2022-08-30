@@ -4,6 +4,7 @@
 
 ### Breaking changes
 
+- [#1550: Allow extensions to add filters](https://github.com/alphagov/govuk-prototype-kit/issues/1550) Adding the ability for extensions to add filters, providing an API for filters
 - [#1522: Create govuk-branded.html template](https://github.com/alphagov/govuk-prototype-kit/pull/1522) This changes the way layouts are used, it also means you'll need to import nunjucks macros before using them (code snippets from the design system have the import in them).
 - [#1533: Generate Starter Files](https://github.com/alphagov/govuk-prototype-kit/pull/1533) This is a major change to the way the kit is used including:
   - The kit is used as an NPM Module
