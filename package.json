@@ -7,7 +7,7 @@
     "node": ">=12.0.0 <17.0.0"
   },
   "bin": {
-    "govuk-prototype-kit": "scripts/cli"
+    "govuk-prototype-kit": "cli"
   },
   "scripts": {
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
