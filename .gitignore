@@ -14,6 +14,7 @@ usage-data-config.json
 /cypress/temp
 /cypress/videos
 /govuk-prototype-kit*.zip
+/govuk-prototype-kit*.tgz
 tmp/
 
 # General ignores
