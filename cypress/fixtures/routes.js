@@ -1,5 +1,4 @@
-const express = require('express')
-const router = express.Router()
+const router = require('govuk-prototype-kit').requests.setupRouter()
 
 router.get('/cypress-test', (req, res) => {
   const heading = 'CYPRESS TEST PAGE'
@@ -14,5 +13,3 @@ router.get('/cypress-test', (req, res) => {
     </html>
 `)
 })
-
-module.exports = router

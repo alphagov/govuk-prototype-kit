@@ -1,8 +1,7 @@
-const { getFilter, addFilter } = require('./lib/filters/api')
+const filtersApi = require('./lib/filters/api').external
+const routesApi = require('./lib/routes/api').external
 
 module.exports = {
-  nunjucks: {
-    getFilter,
-    addFilter
-  }
+  requests: routesApi,
+  views: filtersApi
 }

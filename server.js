@@ -1,7 +1,6 @@
 // Core dependencies
 const path = require('path')
 const url = require('url')
-const fs = require('fs')
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -16,24 +15,18 @@ const sessionInMemory = require('express-session')
 dotenv.config()
 
 // Local dependencies
-const middleware = [
-  require('./lib/middleware/authentication/authentication.js')(),
-  require('./lib/middleware/extensions/extensions.js')
+const middlewareFunctions = [
+  require('./lib/middleware/authentication/authentication.js')()
 ]
 const { projectDir } = require('./lib/path-utils')
 const config = require('./lib/config.js')
-const prototypeAdminRoutes = require('./lib/prototype-admin-routes.js')
 const packageJson = require('./package.json')
-const routesPath = `${projectDir}/app/routes.js`
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
-
-let routes
-if (fs.existsSync(routesPath)) {
-  routes = require(routesPath)
-}
+const routesApi = require('./lib/routes/api.js')
 
 const app = express()
+routesApi.setApp(app)
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
@@ -95,7 +88,7 @@ if (useCookieSessionStore === 'true') {
 
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
-middleware.forEach(func => app.use(func))
+middlewareFunctions.forEach(func => app.use(func))
 app.get('/', (req, res) => {
   res.send('GOV.UK Prototype Kit (temporary home page)')
 })
@@ -141,9 +134,6 @@ if (useAutoStoreData === 'true') {
   utils.addCheckedFunction(nunjucksAppEnv)
 }
 
-// Load prototype admin routes
-app.use('/prototype-admin', prototypeAdminRoutes)
-
 // Prevent search indexing
 app.use(function (req, res, next) {
   // Setting headers stops pages being indexed even if indexed pages link to them.
@@ -151,15 +141,14 @@ app.use(function (req, res, next) {
   next()
 })
 
+require('./lib/routes/prototype-admin-routes.js')
+require('./lib/routes/extensions.js')
+utils.addRouters(app)
+
 app.get('/robots.txt', function (req, res) {
   res.type('text/plain')
   res.send('User-agent: *\nDisallow: /')
 })
-
-// Load routes (found in app/routes.js)
-if (routes) {
-  app.use('/', routes)
-}
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {

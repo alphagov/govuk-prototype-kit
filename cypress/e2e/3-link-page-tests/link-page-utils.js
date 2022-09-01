@@ -102,7 +102,7 @@ const setUpBranchingPages = () => {
   cy.task('replaceTextInFile', { filename: jugglingBallsView, originalText: jugglingTrickPath, newText: jugglingBallsAnswerRoute })
 
   // Update routes with juggling balls answer component
-  cy.task('replaceTextInFile', { filename: appRoutes, originalText: '// Add your routes here - above the module.exports line', source: jugglingBallsAnswerComponent })
+  cy.task('replaceTextInFile', { filename: appRoutes, originalText: '// Add your routes here', source: jugglingBallsAnswerComponent })
 }
 
 const cleanUpBranchingPages = () => {
