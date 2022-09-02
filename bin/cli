@@ -52,11 +52,17 @@ ${prog} start`
     // as possible into stage two; stage one should ideally be able to install
     // any future version of the kit.
 
-    if (process.argv.length === 3) {
+    argv = process.argv
+    argc = process.argv.length
+    if (argc === 3 || (argc === 5 && argv[3] === '--package-spec')) {
       // stage one
+
+      // undocumented command line arg to specify package spec of kit to install
+      const packageSpec = argv[4] || 'govuk-prototype-kit'
+
       const installDirectory = process.cwd()
       await fs.writeFile(path.join(installDirectory, 'package.json'), '{}' + os.EOL, 'utf8')
-      execSync('npm install govuk-prototype-kit', { stdio: 'inherit' })
+      execSync(`npm install ${packageSpec}`, { stdio: 'inherit' })
       execSync(
         `npm exec -- govuk-prototype-kit install -- ${installDirectory}`,
         {
@@ -65,7 +71,7 @@ ${prog} start`
           stdio: 'inherit'
         }
       )
-    } else if (process.argv.length === 5 && process.argv[3] === '--') {
+    } else if (argc === 5 && argv[3] === '--') {
       // stage two
       const installDirectory = process.argv[4]
       await fs.access(installDirectory, fs.constants.W_OK)
