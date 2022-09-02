@@ -116,9 +116,10 @@ function isSafeToCreateProjectIn (root, name) {
       const packageSpec = argv[4] || 'govuk-prototype-kit'
 
       await fs.writeFile(path.join(installDirectory, 'package.json'), '{}' + os.EOL, 'utf8')
+      console.log(`Installing ${packageSpec}, this may take a few minutes...`)
       execSync(`npm install ${packageSpec}`, { stdio: 'inherit' })
       execSync(
-        `npm exec -- govuk-prototype-kit install -- ${installDirectory}`,
+        `${process.execPath} node_modules/.bin/govuk-prototype-kit install -- ${installDirectory}`,
         {
           env: { LANG: process.env.LANG, PATH: process.env.PATH }, // clearing the env of any npm_ stuff is important,
                                                                    // otherwise npx won't be able to use the package we just installed
@@ -147,7 +148,7 @@ function isSafeToCreateProjectIn (root, name) {
       stageTwoPackageJson.dependencies = stageOnePackageJson.dependencies
       await fs.writeFile(packageJsonPath, JSON.stringify(stageTwoPackageJson, null, 2) + os.EOL, 'utf8')
 
-      execSync('npm install govuk-frontend express', { cwd: installDirectory, stdio: 'inherit' })
+      execSync('npm install govuk-frontend express', { cwd: installDirectory, stdio: 'ignore' })
     } else {
       usage()
       process.exitCode = 2
