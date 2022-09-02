@@ -145,10 +145,10 @@ function isSafeToCreateProjectIn (root, name) {
 
       // Add govuk-prototype-kit from stage one package.json back into the starter files package.json
       const stageTwoPackageJson = await fs.readJson(packageJsonPath, 'utf8')
-      stageTwoPackageJson.dependencies = stageOnePackageJson.dependencies
+      stageTwoPackageJson.dependencies = Object.assign(stageTwoPackageJson.dependencies || {}, stageOnePackageJson.dependencies || {})
       await fs.writeFile(packageJsonPath, JSON.stringify(stageTwoPackageJson, null, 2) + os.EOL, 'utf8')
 
-      execSync('npm install govuk-frontend express', { cwd: installDirectory, stdio: 'ignore' })
+      execSync('npm install', { cwd: installDirectory, stdio: 'ignore' })
     } else {
       usage()
       process.exitCode = 2
