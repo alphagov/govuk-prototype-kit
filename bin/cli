@@ -15,6 +15,7 @@ const command = process.argv[2]
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       copyFile('LICENCE.txt'),
+      copyFile('.gitignore'),
       copyFile('.nvmrc')
     ])
 
