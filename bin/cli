@@ -14,8 +14,7 @@ const command = process.argv[2]
   if (command === 'install') {
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
-      copyFile('LICENCE.txt'),
-      copyFile('.nvmrc')
+      copyFile('LICENCE.txt')
     ])
 
     // Rename npmrc after the fact because npm will never include a file called .npmrc in a release.
