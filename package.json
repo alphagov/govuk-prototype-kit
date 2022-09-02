@@ -10,6 +10,21 @@
   "bin": {
     "govuk-prototype-kit": "bin/cli"
   },
+  "files": [
+    "bin/",
+    "lib/",
+    "prototype-starter/",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENCE.txt",
+    "README.md",
+    ".gitignore",
+    "govuk-prototype-kit.config.json",
+    "index.js",
+    "listen-on-port.js",
+    "server.js",
+    "start.js"
+  ],
   "scripts": {
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
     "lint": "standard '**/*.js' scripts/create-release-archive scripts/cli lib/build/dev-server lib/build/generate-assets",
