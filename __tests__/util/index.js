@@ -4,6 +4,8 @@ const fs = require('fs-extra')
 const os = require('os')
 const path = require('path')
 
+const { packageDir: repoDir } = require('../../lib/path-utils')
+
 /**
  * An ID that will be shared between all process in the same Jest test run,
  * this is useful for sharing fixture files. Normally sharing state across Jest
@@ -78,16 +80,15 @@ async function mkPrototype (prototypePath, {
     // Create test starter project folder
     await fs.mkdirp(prototypePath)
 
-    // Generate starter project and start
-    child_process.execSync(
-      'npm i -g',
-      { stdio: 'inherit' }
+    await fs.writeJson(
+      path.join(prototypePath, 'package.json'),
+      { dependencies: { 'govuk-prototype-kit': `file:${repoDir}` } }
     )
 
     // Generate starter project and start
     child_process.execSync(
-      'govuk-prototype-kit install',
-      { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+      `node bin/cli install -- ${prototypePath}`,
+      { env: { ...process.env, env: 'test' }, stdio: 'inherit' }
     )
 
     if (allowTracking !== undefined) {

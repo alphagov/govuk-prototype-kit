@@ -1,13 +1,10 @@
 #!/usr/bin/env node
 
 const fs = require('fs-extra')
+const os = require('os')
 const path = require('path')
 const { execSync } = require('child_process')
 
-const installDirectory = process.cwd()
-const kitRoot = path.join(__dirname, '..')
-
-const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 const command = process.argv[2]
 
 const npmrc = `
@@ -42,14 +39,59 @@ ${prog} start`
 
 ;(async () => {
   if (command === 'install') {
-    await Promise.all([
-      fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
-      fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
+    // Install as a two-stage bootstrap process.
+    //
+    // In the first stage, when install has no arguments, we just install the
+    // latest version of govuk-prototype-kit, then bootstrap stage two.
+    //
+    // In the second stage, when install has the magic arguments, we do the
+    // actual setup of the starter files.
+    //
+    // Doing it this way means we can be sure the version of the cli matches
+    // the version of the kit the user ends up with. Try to put as much logic
+    // as possible into stage two; stage one should ideally be able to install
+    // any future version of the kit.
+
+    if (process.argv.length === 3) {
+      // stage one
+      const installDirectory = process.cwd()
+      await fs.writeFile(path.join(installDirectory, 'package.json'), '{}' + os.EOL, 'utf8')
+      execSync('npm install govuk-prototype-kit', { stdio: 'inherit' })
+      execSync(
+        `npm exec -- govuk-prototype-kit install -- ${installDirectory}`,
+        {
+          env: { LANG: process.env.LANG, PATH: process.env.PATH }, // clearing the env of any npm_ stuff is important,
+                                                                   // otherwise npx won't be able to use the package we just installed
+          stdio: 'inherit'
+        }
+      )
+    } else if (process.argv.length === 5 && process.argv[3] === '--') {
+      // stage two
+      const installDirectory = process.argv[4]
+      await fs.access(installDirectory, fs.constants.W_OK)
+      const kitRoot = path.resolve(__dirname, '..')
+      const packageJsonPath = path.join(installDirectory, 'package.json')
+      const stageOnePackageJson = await fs.readJson(packageJsonPath, 'utf8')
+
+      const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+
+      await Promise.all([
+        fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
+        fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
       fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
       copyFile('LICENCE.txt')
     ])
 
-    execSync(`npm install ${kitRoot} govuk-frontend express`, { stdio: 'inherit' })
+      // Add govuk-prototype-kit from stage one package.json back into the starter files package.json
+      const stageTwoPackageJson = await fs.readJson(packageJsonPath, 'utf8')
+      stageTwoPackageJson.dependencies = stageOnePackageJson.dependencies
+      await fs.writeFile(packageJsonPath, JSON.stringify(stageTwoPackageJson, null, 2) + os.EOL, 'utf8')
+
+      execSync('npm install govuk-frontend express', { cwd: installDirectory, stdio: 'inherit' })
+    } else {
+      usage()
+      process.exitCode = 2
+    }
   } else if (command === 'start') {
     require('../start')
   } else {
