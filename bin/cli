@@ -37,6 +37,56 @@ ${prog} start`
   )
 }
 
+function isSafeToCreateProjectIn (root, name) {
+    const validFiles = [
+    '.DS_Store',
+    '.git',
+    '.gitattributes',
+    '.gitignore',
+    '.gitlab-ci.yml',
+    '.hg',
+    '.hgcheck',
+    '.hgignore',
+    '.idea',
+    '.npmignore',
+    '.travis.yml',
+    'docs',
+    'README.md',
+    'Thumbs.db',
+  ]
+
+  const conflicts = fs
+    .readdirSync(root)
+    .filter(file => !validFiles.includes(file))
+
+  if (conflicts.length > 0) {
+    console.log(
+      `The directory ${name} contains files that could conflict:`
+    );
+    console.log();
+    for (const file of conflicts) {
+      try {
+        const stats = fs.lstatSync(path.join(root, file));
+        if (stats.isDirectory()) {
+          console.log(`  ${file}/`);
+        } else {
+          console.log(`  ${file}`);
+        }
+      } catch (e) {
+        console.log(`  ${file}`);
+      }
+    }
+    console.log();
+    console.log(
+      'Either try using a new directory name, or remove the files listed above.'
+    );
+
+    return false
+  }
+
+  return true
+}
+
 ;(async () => {
   if (command === 'install') {
     // Install as a two-stage bootstrap process.
@@ -56,11 +106,15 @@ ${prog} start`
     argc = process.argv.length
     if (argc === 3 || (argc === 5 && argv[3] === '--package-spec')) {
       // stage one
+      const installDirectory = process.cwd()
+      if (!isSafeToCreateProjectIn(installDirectory, path.basename(installDirectory))) {
+        process.exitCode = 1
+        return
+      }
 
       // undocumented command line arg to specify package spec of kit to install
       const packageSpec = argv[4] || 'govuk-prototype-kit'
 
-      const installDirectory = process.cwd()
       await fs.writeFile(path.join(installDirectory, 'package.json'), '{}' + os.EOL, 'utf8')
       execSync(`npm install ${packageSpec}`, { stdio: 'inherit' })
       execSync(
