@@ -18,7 +18,6 @@
     "CONTRIBUTING.md",
     "LICENCE.txt",
     "README.md",
-    ".gitignore",
     "govuk-prototype-kit.config.json",
     "index.js",
     "listen-on-port.js",

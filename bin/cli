@@ -10,18 +10,32 @@ const kitRoot = path.join(__dirname, '..')
 const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 const command = process.argv[2]
 
+const npmrc = `
+audit=false
+script-shell=bash
+`
+
+const gitignore = `
+# Node.js ignores
+node_modules/
+
+# Prototype ignores - per-user
+.env
+public/
+
+# General ignores
+.DS_Store
+.idea
+`
+
 ;(async () => {
   if (command === 'install') {
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
-      copyFile('LICENCE.txt'),
-      copyFile('.gitignore'),
-      copyFile('.nvmrc')
+      fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
+      fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
+      copyFile('LICENCE.txt')
     ])
-
-    // Rename npmrc after the fact because npm will never include a file called .npmrc in a release.
-    // See https://docs.npmjs.com/cli/v8/configuring-npm/package-json#files
-    await fs.move(path.join(installDirectory, 'npmrc'), path.join(installDirectory, '.npmrc'))
 
     const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, { inherit: true })
     installProcess.stdout.on('data', function (data) {
