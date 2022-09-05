@@ -28,6 +28,18 @@ public/
 .idea
 `
 
+function usage () {
+  const prog = 'govuk-prototype-kit'
+  console.log(`
+${prog} <command>
+
+Usage:
+
+${prog} install
+${prog} start`
+  )
+}
+
 ;(async () => {
   if (command === 'install') {
     await Promise.all([
@@ -44,7 +56,7 @@ public/
   } else if (command === 'start') {
     require('../start')
   } else {
-    console.log(`I don't know how to handle ${command}`)
-    process.exit(2)
+    usage()
+    process.exitCode = 2
   }
 })()
