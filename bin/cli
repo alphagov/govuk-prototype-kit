@@ -3,7 +3,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 const { exec } = require('../lib/exec')
-const { runUpgrade } = require('../lib/upgrade-to-v13')
+const { runUpgrade } = require('../lib/upgradeToV13')
 
 const installDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')

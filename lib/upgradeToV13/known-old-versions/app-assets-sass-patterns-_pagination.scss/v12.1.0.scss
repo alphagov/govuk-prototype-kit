@@ -1,0 +1,95 @@
+// Based on https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/stylesheets/govuk_publishing_components/components/_previous-and-next-navigation.scss
+// Note - this code for prototype purposes only. It is not production code.
+
+.app-pagination {
+  display: block;
+  margin: govuk-spacing(8) 0;
+}
+
+.app-pagination__list {
+  margin: 0;
+  padding: 0;
+}
+
+.app-pagination__item {
+  @include govuk-font($size: 19);
+  list-style: none;
+
+  &:first-child {
+    margin-bottom: govuk-spacing(4);
+  }
+}
+
+.app-pagination__link {
+  display: block;
+  text-decoration: none;
+  padding-bottom: govuk-spacing(4);
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: $govuk-link-colour;
+  }
+
+  &:hover,
+  &:active {
+    background-color: govuk-colour("light-grey", $legacy: "grey-4");
+
+    // Add govuk-link hover decoration to title if no label present
+    .app-pagination__link-text--decorated {
+      @include govuk-link-decoration;
+    }
+
+    .app-pagination__link-label,
+    .app-pagination__link-text--decorated {
+      @include govuk-link-hover-decoration;
+    }
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    .app-pagination__link-title {
+      border-top-color: transparent;
+    }
+
+    .app-pagination__link-icon {
+      fill: $govuk-text-colour;
+    }
+  }
+}
+
+.app-pagination__link-title {
+  display: block;
+  border-top: 1px solid $govuk-border-colour;
+  padding-top: govuk-spacing(3);
+}
+
+.app-pagination__link-divider {
+  @include govuk-visually-hidden;
+}
+
+.app-pagination__link-text {
+  @include govuk-font(19, $weight: bold);
+  margin-left: govuk-spacing(2);
+}
+
+.app-pagination__link-icon {
+  @include govuk-font($size: 24, $line-height: calc(33.75 / 27));
+  display: inline-block;
+  margin-bottom: 1px;
+  height: .482em;
+  width: .63em;
+  fill: govuk-colour("dark-grey", $legacy: "grey-1");
+}
+
+.app-pagination__link-label {
+  display: inline-block;
+  margin-top: .1em;
+  margin-left: govuk-spacing(5);
+  @include govuk-link-decoration;
+
+  @include govuk-media-query($from: tablet) {
+    margin-left: govuk-spacing(6);
+  }
+}
