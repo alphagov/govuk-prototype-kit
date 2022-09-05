@@ -1,6 +1,4 @@
-const express = require('express')
-const router = express.Router()
+/* eslint-disable-next-line no-unused-vars */
+const router = require('govuk-prototype-kit').requests.setupRouter()
 
-// Add your routes here - above the module.exports line
-
-module.exports = router
+// Add your routes here
