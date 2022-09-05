@@ -2,7 +2,7 @@
 
 const fs = require('fs-extra')
 const path = require('path')
-const { exec } = require('child_process')
+const { execSync } = require('child_process')
 
 const installDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
@@ -49,10 +49,7 @@ ${prog} start`
       copyFile('LICENCE.txt')
     ])
 
-    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, { inherit: true })
-    installProcess.stdout.on('data', function (data) {
-      console.log(data)
-    })
+    execSync(`npm install ${kitRoot} govuk-frontend express`, { stdio: 'inherit' })
   } else if (command === 'start') {
     require('../start')
   } else {
