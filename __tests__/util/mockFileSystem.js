@@ -119,14 +119,21 @@ const mockFileSystem = (rootPath) => {
     jest.spyOn(fs, 'existsSync').mockImplementation(existsImplementation)
     jest.spyOn(fs.promises, 'readFile').mockImplementation(promiseWrap(readFileImplementation))
     jest.spyOn(fs.promises, 'writeFile').mockImplementation(promiseWrap(writeFileImplementation))
-    jest.spyOn(fs.promises, 'rm').mockImplementation(promiseWrap(rm))
+    if (fs.promises.rm) {
+      jest.spyOn(fs.promises, 'rm').mockImplementation(promiseWrap(rm))
+      spiesToTearDown.push(fs.promises.rm)
+    } else {
+      jest.spyOn(fs.promises, 'unlink').mockImplementation(promiseWrap(rm))
+      jest.spyOn(fs.promises, 'rmdir').mockImplementation(promiseWrap(rm))
+      spiesToTearDown.push(fs.promises.unlink)
+      spiesToTearDown.push(fs.promises.rmdir)
+    }
 
     spiesToTearDown.push(fs.readFileSync)
     spiesToTearDown.push(fs.writeFileSync)
     spiesToTearDown.push(fs.existsSync)
     spiesToTearDown.push(fs.promises.readFile)
     spiesToTearDown.push(fs.promises.writeFile)
-    spiesToTearDown.push(fs.promises.rm)
   }
   return {
     writeFile,
