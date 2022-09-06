@@ -2,13 +2,14 @@
 
 const fs = require('fs-extra')
 const path = require('path')
-const { exec } = require('child_process')
+const { exec } = require('../lib/exec')
 
 const installDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
 
 const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 const command = process.argv[2]
+const option = process.argv[3]
 
 const npmrc = `
 audit=false
@@ -28,6 +29,18 @@ public/
 .idea
 `
 
+function usage () {
+  const prog = 'npx govuk-prototype-kit'
+  console.log(`
+${prog} <command>
+
+Usage:
+
+${prog} install
+${prog} start`
+  )
+}
+
 ;(async () => {
   if (command === 'install') {
     await Promise.all([
@@ -37,14 +50,27 @@ public/
       copyFile('LICENCE.txt')
     ])
 
-    const installProcess = exec(`npm install ${kitRoot} govuk-frontend express`, { inherit: true })
-    installProcess.stdout.on('data', function (data) {
-      console.log(data)
-    })
+    let kitDependency = 'govuk-prototype-kit'
+
+    if (option === 'local') {
+      kitDependency = kitRoot
+    } else if (option.match(/\d+\.\d+\.\d+/)) {
+      kitDependency = `govuk-prototype-kit@${option}`
+    } else if (option) {
+      kitDependency = option
+    }
+
+    console.log('Installing the kit')
+    const dots = setInterval(() => {
+      process.stdout.write('.');
+    }, 500)
+    await exec(`npm install ${kitDependency} govuk-frontend`, { stdio: 'inherit' }, console.log)
+    clearInterval(dots)
+    
   } else if (command === 'start') {
     require('../start')
   } else {
-    console.log(`I don't know how to handle ${command}`)
-    process.exit(2)
+    usage()
+    process.exitCode = 2
   }
 })()
