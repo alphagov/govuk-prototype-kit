@@ -17,7 +17,7 @@ const mockFileSystem = (rootPath) => {
 
   const originalFsFunctions = {
     promises: {
-      readFile: fs.readFile
+      readFile: fs.promises.readFile
     }
   }
 
@@ -62,9 +62,9 @@ const mockFileSystem = (rootPath) => {
       return (filePath).replace(rootPath + path.sep, '').split(path.sec)
     }
 
-    const readFileImplementation = (filePath, encoding) => {
+    const readFileImplementation = function (filePath, encoding) {
       if (filePath.includes('node_modules/jest-worker')) {
-        return originalFsFunctions.promises.readFile(filePath, encoding)
+        return originalFsFunctions.promises.readFile.apply(null, arguments)
       }
       if (encoding !== 'utf8') {
         throw new Error(`In this project we always read as UTF8 - if that changes please update the mock. [${encoding}] was provided`)
@@ -105,7 +105,6 @@ const mockFileSystem = (rootPath) => {
         } else {
           throwNotFound(path)
         }
-
       } else {
         if (doesFileExist(preparedPath)) {
           delete files[preparedPath]
