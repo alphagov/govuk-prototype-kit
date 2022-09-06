@@ -49,7 +49,7 @@ ${prog} start`
       copyFile('LICENCE.txt')
     ])
 
-    execSync(`npm install ${kitRoot} govuk-frontend express`, { stdio: 'inherit' })
+    execSync(`npm install ${kitRoot} govuk-frontend`, { stdio: 'inherit' })
   } else if (command === 'start') {
     require('../start')
   } else {
