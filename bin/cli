@@ -102,9 +102,9 @@ function isSafeToCreateProjectIn (root, name) {
     // as possible into stage two; stage one should ideally be able to install
     // any future version of the kit.
 
-    argv = process.argv
-    argc = process.argv.length
-    if (argc === 3 || (argc === 5 && argv[3] === '--package-spec')) {
+    const argv = process.argv
+    const numberOfArguments = process.argv.length
+    if (numberOfArguments === 3 || (numberOfArguments === 5 && argv[3] === '--package-spec')) {
       // stage one
       const installDirectory = process.cwd()
       if (!isSafeToCreateProjectIn(installDirectory, path.basename(installDirectory))) {
@@ -126,7 +126,7 @@ function isSafeToCreateProjectIn (root, name) {
           stdio: 'inherit'
         }
       )
-    } else if (argc === 5 && argv[3] === '--') {
+    } else if (numberOfArguments === 5 && argv[3] === '--') {
       // stage two
       const installDirectory = process.argv[4]
       await fs.access(installDirectory, fs.constants.W_OK)
