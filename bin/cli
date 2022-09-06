@@ -30,7 +30,7 @@ public/
 `
 
 function usage () {
-  const prog = 'govuk-prototype-kit'
+  const prog = 'npx govuk-prototype-kit'
   console.log(`
 ${prog} <command>
 
