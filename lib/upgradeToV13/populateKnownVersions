@@ -103,5 +103,6 @@ const outputDir = path.join(packageDir, 'lib', 'upgradeToV13', 'known-old-versio
     console.log(`Written ${allWrites.length} unique files`)
     allWrites.map(x => {console.log(x)})
   })
+    .then(() => fs.remove(tmpDir))
 
 })()
