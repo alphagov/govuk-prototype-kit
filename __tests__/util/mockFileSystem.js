@@ -99,7 +99,7 @@ const mockFileSystem = (rootPath) => {
 
     const rm = (path, options) => {
       const preparedPath = prepFilePath(path)
-      if (options?.recursive) {
+      if ((options || {}).recursive) {
         if (doesDirectoryExist(preparedPath)) {
           delete directories[preparedPath]
         } else {
