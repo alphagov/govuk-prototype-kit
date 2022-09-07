@@ -54,10 +54,15 @@ ${prog} start`
 
     if (option === 'local') {
       kitDependency = kitRoot
-    } else if (option.match(/\d+\.\d+\.\d+/)) {
-      kitDependency = `govuk-prototype-kit@${option}`
     } else if (option) {
-      kitDependency = option
+      if (option.match(/\d+\.\d+\.\d+/) ||
+        option.match(/\d+\.\d+\.\d+-alpha\.\d+]/) ||
+        option.match(/\d+\.\d+\.\d+-beta\.\d+]/)
+      ) {
+        kitDependency = `govuk-prototype-kit@${option}`
+      } else {
+        kitDependency = option
+      }
     }
 
     console.log('Installing the kit')
