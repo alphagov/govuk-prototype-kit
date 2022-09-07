@@ -1,0 +1,428 @@
+// Based on https://github.com/alphagov/govuk_publishing_components/blob/v22.0.0/app/assets/stylesheets/govuk_publishing_components/components/_step-by-step-nav.scss
+// Note - this code for prototype purposes only. It is not production code.
+
+$stroke-width: 2px;
+$stroke-width-large: 3px;
+$number-circle-size: 26px;
+$number-circle-size-large: 35px;
+$top-border: solid 2px govuk-colour("mid-grey", $legacy: "grey-3");
+
+@mixin step-nav-vertical-line ($line-style: solid) {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 100%;
+  border-left: $line-style $stroke-width govuk-colour("mid-grey", $legacy: "grey-2");
+  background: govuk-colour("white");
+}
+
+@mixin step-nav-line-position {
+  left: 0;
+  margin-left: ($number-circle-size / 2) - ($stroke-width / 2);
+}
+
+@mixin step-nav-line-position-large {
+  left: 0;
+  margin-left: ($number-circle-size-large / 2) - ($stroke-width-large / 2);
+  border-width: $stroke-width-large;
+}
+
+// custom mixin as govuk-font does undesirable things at different breakpoints
+// we want to ensure that both large and small step navs have the same size font on mobile
+// this will stop text resizing if compatibility mode is turned off
+@mixin step-nav-font($size, $tablet-size: $size, $weight: normal, $line-height: 1.3, $tablet-line-height: $line-height) {
+  @include govuk-typography-common();
+  font-size: $size + px;
+  font-weight: $weight;
+  line-height: $line-height;
+
+  @include govuk-media-query($from: tablet) {
+    font-size: $tablet-size + px;
+    line-height: $tablet-line-height;
+  }
+}
+
+.app-step-nav {
+  margin-bottom: govuk-spacing(6);
+
+  &.app-step-nav--large {
+    @include govuk-media-query($from: tablet) {
+      margin-bottom: govuk-spacing(9);
+    }
+  }
+
+  .js-enabled &.js-hidden {
+    display: none;
+  }
+}
+
+.app-step-nav__controls {
+  padding: 3px 3px 0 0;
+  text-align: right;
+}
+
+.app-step-nav__button {
+  color: $govuk-link-colour;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  margin: 0;
+
+  &:focus {
+    @include govuk-focused-text;
+  }
+}
+
+// removes extra dotted outline from buttons in Firefox
+// on focus (standard yellow outline unaffected)
+.app-step-nav__button::-moz-focus-inner {
+  border: 0;
+}
+
+.app-step-nav__button--title {
+  @include step-nav-font(19, $weight: bold, $line-height: 1.4);
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+  color: govuk-colour("black");
+
+  .app-step-nav--large & {
+    @include step-nav-font(19, $tablet-size: 24, $weight: bold, $line-height: 1.4);
+  }
+}
+
+.app-step-nav__button--controls {
+  @include step-nav-font(14, $line-height: 1);
+  @include govuk-link-common;
+  position: relative;
+  z-index: 1; // this and relative position stops focus outline underlap with border of accordion
+  padding: .5em 0;
+
+  .app-step-nav--large & {
+    @include step-nav-font(14, $tablet-size: 16, $line-height: 1);
+  }
+}
+
+.app-step-nav__steps {
+  padding: 0;
+  margin: 0;
+}
+
+.app-step-nav__step {
+  position: relative;
+  padding-left: govuk-spacing(6) + govuk-spacing(3);
+  list-style: none;
+
+  // line down the side of a step
+  &:after {
+    @include step-nav-vertical-line;
+    @include step-nav-line-position;
+    top: govuk-spacing(3);
+  }
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      padding-left: govuk-spacing(9);
+
+      &:after {
+        @include step-nav-line-position-large;
+        top: govuk-spacing(6);
+      }
+    }
+  }
+}
+
+.app-step-nav__step:last-child {
+  // little dash at the bottom of the line
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 6;
+    bottom: 0;
+    left: 0;
+    margin-left: $number-circle-size / 4;
+    width: $number-circle-size / 2;
+    height: 0;
+    border-bottom: solid $stroke-width govuk-colour("mid-grey", $legacy: "grey-2");
+  }
+
+  &:after {
+    // scss-lint:disable DuplicateProperty
+    // sass-lint:disable no-duplicate-properties
+    height: -webkit-calc(100% - #{govuk-spacing(3)}); // fallback for iphone 4
+    height: calc(100% - #{govuk-spacing(3)});
+    // sass-lint:enable no-duplicate-properties
+    // scss-lint:enable DuplicateProperty
+  }
+
+  .app-step-nav__help:after {
+    height: 100%;
+  }
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      &:before {
+        margin-left: $number-circle-size-large / 4;
+        width: $number-circle-size-large / 2;
+        border-width: $stroke-width-large;
+      }
+
+      &:after {
+        height: calc(100% - #{govuk-spacing(6)});
+      }
+    }
+  }
+}
+
+.app-step-nav__step--active {
+  &:last-child:before,
+  .app-step-nav__circle--number,
+  &:after,
+  .app-step-nav__help:after {
+    border-color: govuk-colour("black");
+  }
+}
+
+.app-step-nav__circle {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 5;
+  top: govuk-spacing(3);
+  left: 0;
+  width: $number-circle-size;
+  height: $number-circle-size;
+  color: govuk-colour("black");
+  background: govuk-colour("white");
+  border-radius: 100px;
+  text-align: center;
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      top: govuk-spacing(6);
+      width: $number-circle-size-large;
+      height: $number-circle-size-large;
+    }
+  }
+}
+
+.app-step-nav__circle--number {
+  @include step-nav-font(16, $weight: bold, $line-height: 23px);
+  border: solid $stroke-width govuk-colour("mid-grey", $legacy: "grey-2");
+
+  .app-step-nav--large & {
+    @include step-nav-font(16, $tablet-size: 19, $weight: bold, $line-height: 23px, $tablet-line-height: 30px);
+
+    @include govuk-media-query($from: tablet) {
+      border-width: $stroke-width-large;
+    }
+  }
+}
+
+.app-step-nav__circle--logic {
+  @include step-nav-font(16, $weight: bold, $line-height: 28px);
+
+  .app-step-nav--large & {
+    @include step-nav-font(16, $tablet-size: 19, $weight: bold, $line-height: 28px, $tablet-line-height: 34px);
+  }
+}
+
+// makes sure logic text expands to the left if text size is zoomed, preventing overlap
+.app-step-nav__circle-inner {
+  float: right;
+  min-width: 100%;
+}
+
+.app-step-nav__circle-background {
+  $shadow-offset: .1em;
+  $shadow-colour: govuk-colour("white");
+
+  // to make numbers readable for users zooming text only in browsers such as Firefox
+  text-shadow: 0 -#{$shadow-offset} 0 $shadow-colour, $shadow-offset 0 0 $shadow-colour, 0 $shadow-offset 0 $shadow-colour, -#{$shadow-offset} 0 0 $shadow-colour;
+}
+
+.app-step-nav__circle-step-label,
+.app-step-nav__circle-step-colon {
+  @include govuk-visually-hidden;
+}
+
+.app-step-nav__header {
+  padding: govuk-spacing(3) 0;
+  border-top: $top-border;
+
+  .app-step-nav--active & {
+    cursor: pointer;
+  }
+
+  .app-step-nav__button {
+    &:focus {
+      @include govuk-focused-text;
+
+      .app-step-nav__toggle-link {
+        @include govuk-focused-text;
+      }
+    }
+  }
+
+  &:hover {
+    .app-step-nav__button:not(:focus),
+    .app-step-nav__circle {
+      color: $govuk-link-colour;
+    }
+
+    .app-step-nav__toggle-link {
+      @include govuk-link-common;
+      @include govuk-link-hover-decoration;
+    }
+  }
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      padding: govuk-spacing(6) 0;
+    }
+  }
+}
+
+.app-step-nav__title {
+  @include govuk-text-colour;
+  @include step-nav-font(19, $weight: bold, $line-height: 1.4);
+  margin: 0;
+
+  .app-step-nav--large & {
+    @include step-nav-font(19, $tablet-size: 24, $weight: bold, $line-height: 1.4);
+  }
+}
+
+.app-step-nav__toggle-link {
+  @include step-nav-font(14, $line-height: 1.2);
+  display: block;
+  color: $govuk-link-colour;
+  text-transform: capitalize;
+
+  .app-step-nav--large & {
+    @include step-nav-font(14, $tablet-size: 16, $line-height: 1.2);
+  }
+}
+
+.app-step-nav__panel {
+  @include govuk-text-colour;
+  @include step-nav-font(16);
+
+  .app-step-nav--large & {
+    @include step-nav-font(16, $tablet-size: 19);
+  }
+
+  .js-enabled &.js-hidden {
+    display: none;
+  }
+}
+
+// contents of the steps, such as paragraphs and links
+
+.app-step-nav__paragraph {
+  padding-bottom: govuk-spacing(3);
+  margin: 0;
+  font-size: inherit;
+
+  + .app-step-nav__list {
+    margin-top: -5px;
+
+    .app-step-nav--large & {
+      @include govuk-media-query($from: tablet) {
+        margin-top: -govuk-spacing(3);
+      }
+    }
+  }
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      padding-bottom: govuk-spacing(6);
+    }
+  }
+}
+
+.app-step-nav__list {
+  padding: 0;
+  padding-bottom: 10px;
+  list-style: none;
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.app-step-nav__list--choice {
+  $links-margin: 20px;
+
+  margin-left: $links-margin;
+  list-style: disc;
+
+  .app-step-nav__list-item--active:before {
+    left: -(govuk-spacing(6) + govuk-spacing(3)) - $links-margin;
+  }
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      .app-step-nav__list-item--active:before {
+        left: -(govuk-spacing(9)) - $links-margin;
+      }
+    }
+  }
+}
+
+.app-step-nav__list-item {
+  margin-bottom: 10px;
+}
+
+.app-step-nav__link {
+  @include govuk-link-common;
+  @include govuk-link-style-default;
+}
+
+.app-step-nav__link-active-context {
+  @include govuk-visually-hidden;
+}
+
+.app-step-nav__list-item--active {
+  position: relative;
+
+  &:before {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    z-index: 5;
+    top: .6em; // position the dot to align with the first row of text in the link
+    left: -(govuk-spacing(6) + govuk-spacing(3));
+    margin-top: -($stroke-width / 2);
+    margin-left: ($number-circle-size / 2);
+    width: $number-circle-size / 2;
+    height: $stroke-width;
+    background: govuk-colour("black");
+  }
+
+  .app-step-nav--large & {
+    @include govuk-media-query($from: tablet) {
+      &:before {
+        left: -(govuk-spacing(9));
+        margin-left: ($number-circle-size-large / 2);
+        height: $stroke-width-large;
+      }
+    }
+  }
+
+  .app-step-nav__link {
+    @include govuk-link-style-text;
+  }
+}
+
+.app-step-nav__context {
+  display: inline-block;
+  font-weight: normal;
+  color: govuk-colour("dark-grey", $legacy: "grey-1");
+
+  &:before {
+    content: " \2013\00a0"; // dash followed by &nbsp;
+  }
+}

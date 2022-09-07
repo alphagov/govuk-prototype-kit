@@ -3,6 +3,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 const { exec } = require('../lib/exec')
+const { runUpgrade } = require('../lib/upgradeToV13')
 
 const installDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
@@ -74,6 +75,8 @@ ${prog} start`
     
   } else if (command === 'start') {
     require('../start')
+  } else if (command === 'upgrade') {
+    await runUpgrade()
   } else {
     usage()
     process.exitCode = 2
