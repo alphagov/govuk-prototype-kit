@@ -4,7 +4,8 @@ const fs = require('fs')
 
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
-const { projectDir } = require('./lib/path-utils')
+const { projectDir, packageDir } = require('./lib/path-utils')
+const kitVersion = require(path.join(packageDir, 'package.json')).version
 
 async function collectDataUsage () {
 // Local dependencies
@@ -47,7 +48,11 @@ function createSessionDataDefaults () {
   }
 }
 
-(async () => {
+console.log(`GOVV.UK Prototype Kit ${kitVersion}`)
+console.log('')
+console.log('starting...')
+
+;(async () => {
   createSessionDataDefaults()
   await collectDataUsage()
   await buildWatchAndServe()
