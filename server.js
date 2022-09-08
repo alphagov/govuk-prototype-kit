@@ -31,9 +31,9 @@ routesApi.setApp(app)
 // Set up configuration variables
 var releaseVersion = packageJson.version
 var env = utils.getNodeEnv()
-var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
-var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
-var useHttps = process.env.USE_HTTPS || config.useHttps || 'true'
+var useAutoStoreData = config.useAutoStoreData
+var useCookieSessionStore = config.useCookieSessionStore
+var useHttps = config.useHttps
 
 useHttps = useHttps.toLowerCase()
 
@@ -50,7 +50,7 @@ app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = (useAutoStoreData === 'true')
 app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
 app.locals.releaseVersion = 'v' + releaseVersion
-app.locals.serviceName = config.serviceName || 'GOV.UK Prototype Kit'
+app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig({
   scripts: ['/public/javascripts/application.js'],

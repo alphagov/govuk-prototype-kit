@@ -7,7 +7,7 @@ const config = require('./lib/config.js')
 const utils = require('./lib/utils.js')
 
 // Set up configuration variables
-var useBrowserSync = config.useBrowserSync.toLowerCase()
+var useBrowserSync = config.useBrowserSync
 var env = utils.getNodeEnv()
 
 if (process.env.IS_INTEGRATION_TEST === 'true') {
