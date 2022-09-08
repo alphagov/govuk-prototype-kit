@@ -1,1 +1,80 @@
 {% extends "govuk-prototype-kit/internal/views/manage-prototype/layout.njk" %}
+
+{% block content %}
+
+<style>
+  .app-task-list__items {
+    padding-left: 0;
+  }
+  .govuk-tag{
+    text-transform: none;
+  }
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-!-margin-bottom-8">
+        <h1 class="govuk-heading-l">
+          Manage your prototype
+        </h1>
+        <p>
+          GOV.UK Prototype Kit {{releaseVersion}}
+        </p>
+        <p>
+          <a href="#">
+            New version available: 13.1.0
+          </a>
+        </p>
+        <p>
+          <a href="#">
+            Prototype Kit website
+          </a>
+          for guidance and tutorials
+        </p>
+      </div>
+
+      <h2 class="govuk-heading-m">
+        Start a new prototype
+      </h2>
+      <ul class="app-task-list__items">
+        <li class="app-task-list__item">
+          <span class="app-task-list__task-name">
+            </strong>
+            Change the service name in the file <strong>app/config.js</strong>
+          </span>
+          <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+            To do
+          </strong>
+        </li>
+        <li class="app-task-list__item">
+          <span class="app-task-list__task-name">
+            Edit the homepage in the file <strong>app/views/index.html</strong>
+          </span>
+          <strong class="govuk-tag app-task-list__tag" id="read-declaration-status">
+            To do
+          </strong>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        <a href="#">Templates</a>
+      </h2>
+      <p>
+        Add templates of common pages to your prototype
+      </p>
+
+      <h2 class="govuk-heading-m">
+        <a href="#">Plug-ins</a>
+      </h2>
+      <p>
+        Install plug-ins that provide you with new components and styles 
+      </p>
+
+      <a class="govuk-heading-m" href="#">
+        Clear session data
+      </a>
+    
+    </div>
+  </div>
+
+{% endblock %}
