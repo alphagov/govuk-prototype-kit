@@ -1,0 +1,33 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
+
+{% block pageTitle %}
+  {% if currentPage !== "Home" %}{{ currentPage }}
+    – {% endif %}Manage your prototype
+  – {{ serviceName }}
+  – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent   %}
+  <nav id="govuk-prototype-kit-manage-prototype-navigation" class="govuk-prototype-kit-manage-prototype-navigation js-govuk-prototype-kit-manage-prototype-navigation govuk-clearfix" role="navigation"
+       aria-labelledby="govuk-prototype-kit-manage-prototype-navigation-heading">
+    <h2 class="govuk-visually-hidden" id="govuk-prototype-kit-manage-prototype-navigation-heading">Menu</h2>
+    <ul class="govuk-prototype-kit-manage-prototype-navigation__list govuk-prototype-kit-manage-prototype-width-container">
+
+      
+      {% for link in links %}
+
+        <li class="govuk-prototype-kit-manage-prototype-navigation__list-item {{ "govuk-prototype-kit-manage-prototype-navigation__list-item--current" if link.text === currentPage }}">
+          <a
+            class="govuk-link govuk-link--no-visited-state govuk-link--no-underline govuk-prototype-kit-manage-prototype-navigation__link js-govuk-prototype-kit-manage-prototype-navigation__link"
+            href="{{ link.url }}">
+            {{ link.text }}
+          </a>
+        </li>
+        
+      {% endfor %}
+      
+    </ul>
+  </nav>
+  
+  {{ super() }}
+{% endblock %}
