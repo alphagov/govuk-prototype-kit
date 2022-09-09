@@ -400,11 +400,16 @@ body .govuk-prototype-kit-manage-prototype-govuk-tag {
 
 .govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name {
   display: inline-block;
-  width: 60%
+  width: 50%
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-links {
+.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-links,
+.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version{
   display: inline-block;
+}
+
+.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version {
+  width: 25%
 }
 
 .govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link {

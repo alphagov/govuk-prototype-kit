@@ -8,12 +8,12 @@
         {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
       </h1>
       <p>{{ verb.title }} to version {{ chosenPlugin.latestVersion }} by using the command:</p>
-      <p><code>{{ chosenPlugin.installCommand }}</code></p>
+      <p><code>{{ command }}</code></p>
       <p>Or use the {{ verb.para }} button below</p>
 
       <form action="{{ currentUrl }}" method="post">
       {{ govukButton({
-        text: verb.title + " " + chosenPlugin.packageName
+        text: verb.title + " " + chosenPlugin.name
       }) }}
       </form>
     </div>
