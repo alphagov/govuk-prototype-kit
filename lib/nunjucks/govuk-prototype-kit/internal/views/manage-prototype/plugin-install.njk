@@ -5,15 +5,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-m">
-        Upgrade {{ chosenPlugin.packageName }}
+        {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
       </h1>
-      <p>Upgrade to version {{ chosenPlugin.latestVersion }} by using the command:</p>
-      <p><code>npm install --save {{ chosenPlugin.packageName }}@{{ chosenPlugin.latestVersion }}</code></p>
-      <p>Or use the upgrade button below</p>
+      <p>{{ verb.title }} to version {{ chosenPlugin.latestVersion }} by using the command:</p>
+      <p><code>{{ chosenPlugin.installCommand }}</code></p>
+      <p>Or use the {{ verb.para }} button below</p>
 
+      <form action="{{ currentUrl }}" method="post">
       {{ govukButton({
-        text: "Upgrade " + chosenPlugin.packageName
+        text: verb.title + " " + chosenPlugin.packageName
       }) }}
+      </form>
     </div>
   </div>
 {% endblock %}
