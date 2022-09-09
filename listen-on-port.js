@@ -10,8 +10,6 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
   server.listen()
 } else {
   utils.findAvailablePort(server, function (port) {
-    console.log('Listening on port ' + port + '   url: http://localhost:' + port)
-    if (config.isProduction || !config.useBrowserSync) {
     console.log('The Prototype Kit is now running at:')
     console.log('http://localhost:3000')
     console.log('')
@@ -19,7 +17,7 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
     console.log('http://localhost:3000/manage-prototype')
     console.log('')
 
-    if (env === 'production' || useBrowserSync === 'false') {
+    if (config.isProduction || !config.useBrowserSync) {
       server.listen(port)
     } else {
       server.listen(port - 50, function () {

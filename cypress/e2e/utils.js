@@ -1,11 +1,11 @@
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const waitForApplication = async (headingText) => {
+const waitForApplication = async (path = '/index') => {
   cy.task('log', 'Waiting for app to restart and load home page')
   cy.task('waitUntilAppRestarts')
-  cy.visit('/index')
-  cy.get('h1.govuk-heading-xl')
-    .should('contains.text', headingText || 'Service name goes here')
+  cy.visit(path)
+  cy.get('.govuk-header__logotype-text')
+    .should('contains.text', 'GOV.UK')
 }
 
 const copyFile = (source, target) => {
