@@ -34,7 +34,7 @@
                 {% endif %}
                 {% if plugin.upgradeLink %}
                   <br/>
-                  v{{ plugin.latestVersion }} available <a href="{{ plugin.upgradeLink }}">Update</a>
+                  v{{ plugin.latestVersion }} available
                 {% endif %}
               </div>
               <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version">
@@ -48,6 +48,10 @@
                 {% if plugin.uninstallLink %}
                   <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
                      href="{{ plugin.uninstallLink }}">Uninstall</a>
+                {% endif %}
+                {% if plugin.upgradeLink %}
+                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
+                     href="{{ plugin.upgradeLink }}">Upgrade</a>
                 {% endif %}
                 {% if plugin.helpLink %}
                   <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
