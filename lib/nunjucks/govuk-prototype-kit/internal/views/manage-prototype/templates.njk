@@ -10,7 +10,7 @@
       <p class="govuk-body">Add templates of common pages to your prototype</p>
 
       {% for plugin in availableTemplates %}
-        <h2 class="govuk-heading-m">{{ plugin.pluginDisplayName }}</h2>
+        <h2 class="govuk-heading-m">{{ plugin.pluginDisplayName.name }}</h2>
 
         <ul class="govuk-list govuk-prototype-kit-manage-prototype-template-list-template-list">
           {% for template in plugin.templates %}
