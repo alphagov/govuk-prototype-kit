@@ -1,0 +1,19 @@
+{% extends "govuk-prototype-kit/internal/views/manage-prototype/layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-m">
+        Upgrade {{ chosenPlugin.packageName }}
+      </h1>
+      <p>Upgrade to version {{ chosenPlugin.latestVersion }} by using the command:</p>
+      <p><code>npm install --save {{ chosenPlugin.packageName }}@{{ chosenPlugin.latestVersion }}</code></p>
+      <p>Or use the upgrade button below</p>
+
+      {{ govukButton({
+        text: "Upgrade " + chosenPlugin.packageName
+      }) }}
+    </div>
+  </div>
+{% endblock %}
