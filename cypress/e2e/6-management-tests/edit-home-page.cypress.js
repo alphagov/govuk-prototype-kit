@@ -13,18 +13,18 @@ const newText = 'Cypress test service'
 const managePagePath = '/manage-prototype'
 
 describe('edit home page', () => {
-    before(() => {
-      waitForApplication(managePagePath)
-      // backup home.js
-      cy.task('copyFile', { source: appHome, target: backupAppHome })
-      waitForApplication(managePagePath)
-    })
+  before(() => {
+    waitForApplication(managePagePath)
+    // backup home.js
+    cy.task('copyFile', { source: appHome, target: backupAppHome })
+    waitForApplication(managePagePath)
+  })
 
-    after(() => {
-      // restore home.js
-      cy.task('copyFile', { source: backupAppHome, target: appHome })
-      cy.task('deleteFile', { filename: backupAppHome })
-    })
+  after(() => {
+    // restore home.js
+    cy.task('copyFile', { source: backupAppHome, target: appHome })
+    cy.task('deleteFile', { filename: backupAppHome })
+  })
 
   it(`The home page heading should change to "${newText}" and the task should be set to "Done"`, () => {
     cy.task('log', 'Visit the manage prototype templates page')

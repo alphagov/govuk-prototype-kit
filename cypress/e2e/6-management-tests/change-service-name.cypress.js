@@ -15,18 +15,18 @@ const serverNameQuery = 'a.govuk-header__link.govuk-header__service-name, a.govu
 const managePagePath = '/manage-prototype'
 
 describe('change service name', () => {
-    before(() => {
-      waitForApplication(managePagePath)
-      // backup config.js
-      cy.task('copyFile', { source: appConfig, target: backupAppConfig })
-      waitForApplication(managePagePath)
-    })
+  before(() => {
+    waitForApplication(managePagePath)
+    // backup config.js
+    cy.task('copyFile', { source: appConfig, target: backupAppConfig })
+    waitForApplication(managePagePath)
+  })
 
-    after(() => {
-      // restore config.js
-      cy.task('copyFile', { source: backupAppConfig, target: appConfig })
-      cy.task('deleteFile', { filename: backupAppConfig })
-    })
+  after(() => {
+    // restore config.js
+    cy.task('copyFile', { source: backupAppConfig, target: appConfig })
+    cy.task('deleteFile', { filename: backupAppConfig })
+  })
 
   it('The service name should change to "cypress test" and the task should be set to "Done"', () => {
     cy.task('log', 'Visit the manage prototype templates page')
