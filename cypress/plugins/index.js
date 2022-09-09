@@ -95,6 +95,8 @@ module.exports = (on, config) => {
 
   const makeSureCypressCanInterpretTheResult = () => null
 
+  const existsFile = (filename, timeout = 0) => fsp.access(filename)
+
   const deleteFile = (filename, timeout = 0) => fsp.unlink(filename)
     .then(() => sleep(timeout))
     .catch((err) => err.code !== 'ENOENT' ? err : null
@@ -160,6 +162,9 @@ module.exports = (on, config) => {
       .then(makeSureCypressCanInterpretTheResult),
 
     deleteFile: ({ filename, timeout }) => deleteFile(filename, timeout)
+      .then(makeSureCypressCanInterpretTheResult),
+
+    existsFile: ({ filename, timeout }) => existsFile(filename, timeout)
       .then(makeSureCypressCanInterpretTheResult),
 
     waitUntilAppRestarts: (config) => {
