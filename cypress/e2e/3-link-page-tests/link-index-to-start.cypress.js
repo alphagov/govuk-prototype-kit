@@ -6,7 +6,7 @@ const indexView = path.join(appViews, 'index.html')
 const startView = path.join(appViews, 'start.html')
 const templateStartView = path.join(Cypress.config('fixturesFolder'), 'views', 'start.html')
 
-const commentText = '<p>You can change the service name by editing the file \'/app/config.js\'.</p>'
+const commentText = '<p>You can change the service name by editing the file \'/app/config.json\'.</p>'
 
 const startText = 'Click here to start'
 

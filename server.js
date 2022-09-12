@@ -19,7 +19,7 @@ const middlewareFunctions = [
   require('./lib/middleware/authentication/authentication.js')()
 ]
 const { projectDir } = require('./lib/path-utils')
-const config = require('./lib/config.js')
+const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
@@ -30,16 +30,10 @@ routesApi.setApp(app)
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
-var env = utils.getNodeEnv()
-var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
-var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
-var useHttps = process.env.USE_HTTPS || config.useHttps || 'true'
-
-useHttps = useHttps.toLowerCase()
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-var isSecure = (env === 'production' && useHttps === 'true')
+var isSecure = (config.isProduction && config.useHttps)
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
@@ -47,10 +41,10 @@ if (isSecure) {
 
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
-app.locals.useAutoStoreData = (useAutoStoreData === 'true')
-app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
+app.locals.useAutoStoreData = config.useAutoStoreData
+app.locals.useCookieSessionStore = config.useCookieSessionStore
 app.locals.releaseVersion = 'v' + releaseVersion
-app.locals.serviceName = config.serviceName || 'GOV.UK Prototype Kit'
+app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig({
   scripts: ['/public/javascripts/application.js'],
@@ -72,7 +66,7 @@ const sessionOptions = {
 }
 
 // Support session data in cookie or memory
-if (useCookieSessionStore === 'true') {
+if (config.useCookieSessionStore) {
   app.use(sessionInCookie(Object.assign(sessionOptions, {
     cookieName: sessionName,
     proxy: true,
@@ -104,7 +98,7 @@ var nunjucksConfig = {
   watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
 }
 
-if (env === 'development') {
+if (config.isDevelopment) {
   nunjucksConfig.watch = true
 }
 
@@ -129,7 +123,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 // Automatically store all data users enter
-if (useAutoStoreData === 'true') {
+if (config.useAutoStoreData) {
   app.use(utils.autoStoreData)
   utils.addCheckedFunction(nunjucksAppEnv)
 }

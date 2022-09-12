@@ -2,8 +2,8 @@ const path = require('path')
 
 const { waitForApplication } = require('../utils')
 
-const appConfig = path.join(Cypress.env('projectFolder'), 'app', 'config.js')
-const backupAppConfig = path.join(Cypress.env('tempFolder'), 'temp-config.js')
+const appConfig = path.join(Cypress.env('projectFolder'), 'app', 'config.json')
+const backupAppConfig = path.join(Cypress.env('tempFolder'), 'temp-config.json')
 
 const originalText = 'Service name goes here'
 const newText = 'Cypress test'
@@ -14,13 +14,13 @@ describe('watch config file', () => {
   describe(`service name in config file ${appConfig} should be changed and restored`, () => {
     before(() => {
       waitForApplication()
-      // backup config.js
+      // backup config.json
       cy.task('copyFile', { source: appConfig, target: backupAppConfig })
       waitForApplication()
     })
 
     after(() => {
-      // restore config.js
+      // restore config.json
       cy.task('copyFile', { source: backupAppConfig, target: appConfig })
       cy.task('deleteFile', { filename: backupAppConfig })
     })
