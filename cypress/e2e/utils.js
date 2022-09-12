@@ -1,11 +1,11 @@
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const waitForApplication = async () => {
+const waitForApplication = async (headingText) => {
   cy.task('log', 'Waiting for app to restart and load home page')
   cy.task('waitUntilAppRestarts')
   cy.visit('/index')
   cy.get('h1.govuk-heading-xl')
-    .should('contains.text', 'Prototype your service using GOV.UK Prototype Kit')
+    .should('contains.text', headingText || 'Service name goes here')
 }
 
 const copyFile = (source, target) => {

@@ -1,6 +1,8 @@
 // Core dependencies
 const path = require('path')
 const url = require('url')
+const os = require('os')
+const fs = require('fs').promises
 
 // NPM dependencies
 const bodyParser = require('body-parser')
@@ -18,7 +20,7 @@ dotenv.config()
 const middlewareFunctions = [
   require('./lib/middleware/authentication/authentication.js')()
 ]
-const { projectDir } = require('./lib/path-utils')
+const { projectDir, packageDir } = require('./lib/path-utils')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
@@ -83,14 +85,16 @@ if (config.useCookieSessionStore) {
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
 middlewareFunctions.forEach(func => app.use(func))
-app.get('/', (req, res) => {
-  res.send('GOV.UK Prototype Kit (temporary home page)')
-})
 
 // Set up App
 var appViews = extensions.getAppViews([
   path.join(projectDir, '/app/views/')
 ])
+
+if (process.env.IS_INTEGRATION_TEST) {
+  appViews.push(path.join(packageDir, 'lib', 'nunjucks'))
+  appViews.push(path.join(packageDir, 'prototype-starter', 'app', 'views'))
+}
 
 var nunjucksConfig = {
   autoescape: true,
@@ -172,6 +176,13 @@ app.post(/^\/([^.]+)$/, function (req, res) {
 // redirect old local docs to the docs site
 app.get('/docs/tutorials-and-examples', function (req, res) {
   res.redirect('https://govuk-prototype-kit.herokuapp.com/docs')
+})
+
+app.get('/', async (req, res) => {
+  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
+  res.render('govuk-prototype-kit/backup-homepage', {
+    starterHomepageCodeLines: starterHomepageCode.split(os.EOL)
+  })
 })
 
 // Catch 404 and forward to error handler

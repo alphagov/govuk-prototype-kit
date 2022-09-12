@@ -25,7 +25,7 @@ function readFile (pathFromRoot) {
 describe('The Prototype Kit', () => {
   beforeAll(async () => {
     process.env.IS_INTEGRATION_TEST = 'true'
-    await mkPrototype(tmpDir, { allowTracking: false })
+    await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
     app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
     jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))

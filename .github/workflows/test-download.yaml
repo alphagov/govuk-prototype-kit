@@ -43,10 +43,3 @@ jobs:
         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
 
     - run: npm ci
-
-    - run: npm run test:acceptance:download
-      env:
-        CYPRESS_REQUEST_TIMEOUT: 20000
-        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
-        CYPRESS_PAGE_LOAD_TIMEOUT: 150000
-        CYPRESS_RETRIES: 3
