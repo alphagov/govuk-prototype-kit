@@ -7,7 +7,7 @@ const appHomePath = path.join('app', 'views', 'index.html')
 const appHome = path.join(Cypress.env('projectFolder'), appHomePath)
 const backupAppHome = path.join(Cypress.env('tempFolder'), 'temp-home.html')
 
-const originalText = 'Prototype your service using GOV.UK Prototype Kit'
+const originalText = 'Service name goes here'
 const newText = 'Cypress test service'
 
 const managePagePath = '/manage-prototype'
@@ -36,7 +36,7 @@ describe('edit home page', () => {
     cy.visit('/index')
     cy.get('.govuk-heading-xl').should('contains.text', originalText)
 
-    cy.task('replaceTextInFile', { filename: appHome, originalText, newText })
+    cy.task('replaceTextInFile', { filename: appHome, originalText: '{{ serviceName }}', newText })
 
     waitForApplication(managePagePath)
 
