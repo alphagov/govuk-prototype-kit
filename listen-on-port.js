@@ -11,10 +11,10 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
 } else {
   utils.findAvailablePort(server, function (port) {
     console.log('The Prototype Kit is now running at:')
-    console.log('http://localhost:3000')
+    console.log(`http://localhost:${port}`)
     console.log('')
     console.log('You can access the settings at:')
-    console.log('http://localhost:3000/manage-prototype')
+    console.log(`http://localhost:${port}/manage-prototype`)
     console.log('')
 
     if (config.isProduction || !config.useBrowserSync) {
