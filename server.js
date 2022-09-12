@@ -30,8 +30,6 @@ routesApi.setApp(app)
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
-var useAutoStoreData = config.useAutoStoreData
-var useCookieSessionStore = config.useCookieSessionStore
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
@@ -43,8 +41,8 @@ if (isSecure) {
 
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
-app.locals.useAutoStoreData = (useAutoStoreData === 'true')
-app.locals.useCookieSessionStore = (useCookieSessionStore === 'true')
+app.locals.useAutoStoreData = config.useAutoStoreData
+app.locals.useCookieSessionStore = config.useCookieSessionStore
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
@@ -68,7 +66,7 @@ const sessionOptions = {
 }
 
 // Support session data in cookie or memory
-if (useCookieSessionStore === 'true') {
+if (config.useCookieSessionStore) {
   app.use(sessionInCookie(Object.assign(sessionOptions, {
     cookieName: sessionName,
     proxy: true,
@@ -125,7 +123,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 // Automatically store all data users enter
-if (useAutoStoreData === 'true') {
+if (config.useAutoStoreData) {
   app.use(utils.autoStoreData)
   utils.addCheckedFunction(nunjucksAppEnv)
 }
