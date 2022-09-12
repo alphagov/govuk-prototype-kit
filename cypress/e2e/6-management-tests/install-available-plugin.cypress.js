@@ -27,8 +27,12 @@ describe('install available plugin', () => {
     cy.get('h1')
       .should('contains.text', `Installing ${pluginName}`)
 
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(0)
-      .should('contains.text', 'Installed')
+    cy.wait(10000)
+
+    cy.visit(managePluginsPagePath)
+
+    // cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(0)
+    //   .should('contains.text', 'Installed')
 
     cy.task('log', `Confirm the ${plugin} plugin is installed`)
     cy.get(`a[href*="/uninstall?package=${plugin}"]`)
