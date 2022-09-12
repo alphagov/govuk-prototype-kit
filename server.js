@@ -91,6 +91,11 @@ var appViews = extensions.getAppViews([
   path.join(projectDir, '/app/views/')
 ])
 
+if (process.env.IS_INTEGRATION_TEST) {
+  appViews.push(path.join(packageDir, 'lib', 'nunjucks'))
+  appViews.push(path.join(packageDir, 'prototype-starter', 'app', 'views'))
+}
+
 var nunjucksConfig = {
   autoescape: true,
   noCache: true,
@@ -174,7 +179,7 @@ app.get('/docs/tutorials-and-examples', function (req, res) {
 })
 
 app.get('/', async (req, res) => {
-  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8') 
+  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
   res.render('govuk-prototype-kit/backup-homepage', {
     starterHomepageCodeLines: starterHomepageCode.split(os.EOL)
   })
