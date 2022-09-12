@@ -21,42 +21,7 @@ describe('install available plugin', () => {
     cy.get('h1')
       .should('contains.text', `Install ${pluginName}`)
 
-    cy.get('button')
-      .should('contains.text', `Install ${pluginName}`).click()
-
-    cy.get('h1')
-      .should('contains.text', `Installing ${pluginName}`)
-
-    cy.wait(10000)
-
-    cy.visit(managePluginsPagePath)
-
-    // cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(0)
-    //   .should('contains.text', 'Installed')
-
-    cy.task('log', `Confirm the ${plugin} plugin is installed`)
-    cy.get(`a[href*="/uninstall?package=${plugin}"]`)
-      .should('contains.text', 'Uninstall')
-
-    cy.task('log', `Uninstall the ${plugin} plugin`)
-    cy.get(`a[href*="/uninstall?package=${plugin}"]`)
-      .should('contains.text', 'Uninstall').click()
-
-    cy.task('log', `The ${plugin} plugin should be displayed`)
-    cy.get('h1')
-      .should('contains.text', `Uninstall ${pluginName}`)
-
-    cy.get('button')
-      .should('contains.text', `Uninstall ${pluginName}`).click()
-
-    cy.get('h1')
-      .should('contains.text', `Uninstalling ${pluginName}`)
-
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(1)
-      .should('contains.text', 'Available')
-
-    cy.task('log', `Confirm the ${plugin} plugin is uninstalled`)
-    cy.get(`a[href*="/install?package=${plugin}"]`)
-      .should('contains.text', 'Install')
+    cy.get('code')
+      .should('have.text', 'npm i govuk-prototype-kit')
   })
 })
