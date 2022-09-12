@@ -10,7 +10,7 @@ describe('install available plugin', () => {
   })
 
   it(`Install and uninstall the ${plugin} plugin from the management plugins page`, () => {
-    cy.get('h2.govuk-heading-m', { timeout: 10000 }).eq(1)
+    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(1)
       .should('contains.text', 'Available')
 
     cy.task('log', `Install the ${plugin} plugin`)
@@ -27,7 +27,7 @@ describe('install available plugin', () => {
     cy.get('h1')
       .should('contains.text', `Installing ${pluginName}`)
 
-    cy.get('h2.govuk-heading-m', { timeout: 10000 }).eq(0)
+    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(0)
       .should('contains.text', 'Installed')
 
     cy.task('log', `Confirm the ${plugin} plugin is installed`)
