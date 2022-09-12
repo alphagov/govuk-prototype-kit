@@ -15,7 +15,7 @@ const getTemplateLink = (type, packageName, path) => {
 
 describe('create new start page', () => {
   before(() => {
-    waitForApplication()
+    waitForApplication(manageTemplatesPagePath)
     Cypress.on('uncaught:exception', (err, runnable) => {
       // we expect an error with message 'Cannot read properties of undefined (reading 'documentReady')'
       // and don't want to fail the test so we return false
@@ -26,7 +26,7 @@ describe('create new start page', () => {
       // errors, so we let them fail the test
     })
     cy.task('deleteFile', { filename: startPageView })
-    waitForApplication()
+    waitForApplication(manageTemplatesPagePath)
   })
 
   after(() => {
@@ -35,7 +35,6 @@ describe('create new start page', () => {
 
   it('View the start page from the management page', () => {
     cy.task('log', 'Visit the manage prototype templates page')
-    cy.visit(manageTemplatesPagePath)
     cy.get(`a[href="${getTemplateLink('view', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
 
     cy.task('log', 'The start page template should be displayed')
