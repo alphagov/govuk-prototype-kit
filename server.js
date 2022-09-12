@@ -19,7 +19,7 @@ const middlewareFunctions = [
   require('./lib/middleware/authentication/authentication.js')()
 ]
 const { projectDir } = require('./lib/path-utils')
-const config = require('./lib/config.js')
+const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
@@ -30,16 +30,12 @@ routesApi.setApp(app)
 
 // Set up configuration variables
 var releaseVersion = packageJson.version
-var env = utils.getNodeEnv()
 var useAutoStoreData = config.useAutoStoreData
 var useCookieSessionStore = config.useCookieSessionStore
-var useHttps = config.useHttps
-
-useHttps = useHttps.toLowerCase()
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-var isSecure = (env === 'production' && useHttps === 'true')
+var isSecure = (config.isProduction && config.useHttps)
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
@@ -104,7 +100,7 @@ var nunjucksConfig = {
   watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
 }
 
-if (env === 'development') {
+if (config.isDevelopment) {
   nunjucksConfig.watch = true
 }
 
