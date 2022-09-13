@@ -8,9 +8,8 @@ const { runUpgrade } = require('../lib/upgradeToV13')
 const currentDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
 
-const command = process.argv[2]
-const option = process.argv[3]
-const lastOption = process.argv.length > 3 ? process.argv[process.argv.length - 1] : undefined
+const additionalOptions = [].concat(...process.argv).splice(2)
+const command = additionalOptions.shift()
 
 const npmrc = `
 audit=false
@@ -37,28 +36,61 @@ ${prog} <command>
 
 Usage:
 
-${prog} install
+${prog} create
+${prog} create /exact/location/to/create/in
+${prog} create relative/location/to/create/in
+${prog}
 ${prog} start`
   )
 }
 
 const getInstallLocation = () => {
-    if (lastOption) {
-      if (lastOption.startsWith('/')) {
-        return lastOption
-      }
-      return path.join(currentDirectory, lastOption)
+  const lastOption = ('' + additionalOptions[additionalOptions.length - 2]).startsWith('-') ? undefined : additionalOptions[additionalOptions.length - 1]
+  if (lastOption) {
+    if (lastOption.startsWith('/')) {
+      return lastOption
     }
-    return currentDirectory
+    return path.join(currentDirectory, lastOption)
+  }
+  return currentDirectory
+}
+
+const getChosenKitDependency = () => {
+  const defaultValue = 'govuk-prototype-kit'
+  let versionFlagIndex = additionalOptions.indexOf('--version')
+  if (versionFlagIndex === -1) {
+    versionFlagIndex = additionalOptions.indexOf('-v')
+  }
+  if (versionFlagIndex === -1) {
+    return defaultValue
   }
 
-;(async () => {
+  const versionRequested = additionalOptions[versionFlagIndex + 1]
+
+  if (versionRequested === 'local') {
+    return kitRoot
+  } else if (versionRequested) {
+    if (versionRequested.match(/\d+\.\d+\.\d+/) ||
+      versionRequested.match(/\d+\.\d+\.\d+-alpha\.\d+]/) ||
+      versionRequested.match(/\d+\.\d+\.\d+-beta\.\d+]/)
+    ) {
+      return `${defaultValue}@${versionRequested}`
+    } else {
+      return versionRequested
+    }
+  }
+  return defaultValue
+};
+
+(async () => {
   if (command === 'create') {
     const installDirectory = getInstallLocation()
+    const kitDependency = getChosenKitDependency()
+
     const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
-    
+
     await fs.ensureDir(installDirectory)
-    
+
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
@@ -66,26 +98,11 @@ const getInstallLocation = () => {
       copyFile('LICENCE.txt')
     ])
 
-    let kitDependency = 'govuk-prototype-kit'
-
-    if (option === 'local') {
-      kitDependency = kitRoot
-    } else if (option && option !== lastOption) {
-      if (option.match(/\d+\.\d+\.\d+/) ||
-        option.match(/\d+\.\d+\.\d+-alpha\.\d+]/) ||
-        option.match(/\d+\.\d+\.\d+-beta\.\d+]/)
-      ) {
-        kitDependency = `govuk-prototype-kit@${option}`
-      } else {
-        kitDependency = option
-      }
-    }
-
     console.log('Creating your prototype')
     const dots = setInterval(() => {
       process.stdout.write('.')
     }, 500)
-    await exec(`npm install ${kitDependency} govuk-frontend`, { 
+    await exec(`npm install ${kitDependency} govuk-frontend`, {
       stdio: 'inherit',
       cwd: installDirectory
     }, console.log)
