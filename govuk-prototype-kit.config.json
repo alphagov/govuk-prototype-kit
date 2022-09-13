@@ -19,28 +19,36 @@
       "path": "/lib/templates/blank-govuk.html"
     },
     {
-      "name": "Check answers page",
-      "path": "/lib/templates/check-answers.html"
+      "name": "Blank unbranded page",
+      "path": "/lib/templates/blank-unbranded.html"
+    },
+    {
+      "name": "Start page",
+      "path": "/lib/templates/start.html"
     },
     {
       "name": "Question page",
       "path": "/lib/templates/question.html"
     },
     {
-      "name": "Confirmation page",
-      "path": "/lib/templates/confirmation.html"
-    },
-    {
       "name": "Content page",
       "path": "/lib/templates/content.html"
     },
     {
-      "name": "Mainstream guide page",
-      "path": "/lib/templates/mainstream-guide.html"
+      "name": "Task list page",
+      "path": "/lib/templates/task-list.html"
     },
     {
-      "name": "Start page",
-      "path": "/lib/templates/start.html"
+      "name": "Check answers page",
+      "path": "/lib/templates/check-answers.html"
+    },
+    {
+      "name": "Confirmation page",
+      "path": "/lib/templates/confirmation.html"
+    },
+    {
+      "name": "Mainstream guide page",
+      "path": "/lib/templates/mainstream-guide.html"
     }
   ]
 }

@@ -22,6 +22,6 @@ describe('install available plugin', () => {
       .should('contains.text', `Install ${pluginName}`)
 
     cy.get('code')
-      .should('have.text', `npm i ${plugin}`)
+      .should('have.text', `npm install ${plugin}`)
   })
 })

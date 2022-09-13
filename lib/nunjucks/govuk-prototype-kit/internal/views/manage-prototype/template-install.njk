@@ -3,6 +3,11 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
+{% block beforeContent %}
+  {{ super() }}
+  <a class="govuk-back-link" href="/manage-prototype/templates">Back</a>
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
