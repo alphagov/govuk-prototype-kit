@@ -90,6 +90,10 @@ const getChosenKitDependency = () => {
     const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 
     await fs.ensureDir(installDirectory)
+    if ((await fs.readdir(installDirectory)).length > 0) {
+      console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
+      process.exit(3)
+    }
 
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
