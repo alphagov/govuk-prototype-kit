@@ -14,7 +14,7 @@
   - Generated assets are all inside .tmp
   - The core prototype-kit files have been moved into the package
   - The start script uses the new govuk-prototype-kit cli
-  - To start a new kit the user will need to either run `npx govuk-prototype-kit install` or be provided the results of running this command in a zip format
+  - To start a new kit the user will need to either run `npx govuk-prototype-kit create` or be provided the results of running this command in a zip format
 - [#1471: Update step by step and install it as an extension](https://github.com/alphagov/govuk-prototype-kit/pull/1471)
 - [#1394: Remove Internet Explorer 8 support](https://github.com/alphagov/govuk-prototype-kit/issues/1394)
 - [#1432: Remove v6 backwards compatibility support](https://github.com/alphagov/govuk-prototype-kit/pull/1432)

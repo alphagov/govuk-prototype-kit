@@ -5,12 +5,12 @@ const path = require('path')
 const { exec } = require('../lib/exec')
 const { runUpgrade } = require('../lib/upgradeToV13')
 
-const installDirectory = process.cwd()
+const currentDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
 
-const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 const command = process.argv[2]
 const option = process.argv[3]
+const lastOption = process.argv.length > 3 ? process.argv[process.argv.length - 1] : undefined
 
 const npmrc = `
 audit=false
@@ -42,8 +42,23 @@ ${prog} start`
   )
 }
 
+const getInstallLocation = () => {
+    if (lastOption) {
+      if (lastOption.startsWith('/')) {
+        return lastOption
+      }
+      return path.join(currentDirectory, lastOption)
+    }
+    return currentDirectory
+  }
+
 ;(async () => {
-  if (command === 'install') {
+  if (command === 'create') {
+    const installDirectory = getInstallLocation()
+    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+    
+    await fs.ensureDir(installDirectory)
+    
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
@@ -55,7 +70,7 @@ ${prog} start`
 
     if (option === 'local') {
       kitDependency = kitRoot
-    } else if (option) {
+    } else if (option && option !== lastOption) {
       if (option.match(/\d+\.\d+\.\d+/) ||
         option.match(/\d+\.\d+\.\d+-alpha\.\d+]/) ||
         option.match(/\d+\.\d+\.\d+-beta\.\d+]/)
@@ -66,13 +81,16 @@ ${prog} start`
       }
     }
 
-    console.log('Installing the kit')
+    console.log('Creating your prototype')
     const dots = setInterval(() => {
-      process.stdout.write('.');
+      process.stdout.write('.')
     }, 500)
-    await exec(`npm install ${kitDependency} govuk-frontend`, { stdio: 'inherit' }, console.log)
+    await exec(`npm install ${kitDependency} govuk-frontend`, { 
+      stdio: 'inherit',
+      cwd: installDirectory
+    }, console.log)
     clearInterval(dots)
-    
+
   } else if (command === 'start') {
     require('../start')
   } else if (command === 'upgrade') {
