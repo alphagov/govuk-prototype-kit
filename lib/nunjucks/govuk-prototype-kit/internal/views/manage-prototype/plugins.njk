@@ -3,7 +3,7 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
       {{ successBanner | log }}
       {% if successBanner %}
 
@@ -19,6 +19,13 @@
           type: 'success'
         }) }}
       {% endif %}
+
+      <h1 class="govuk-heading-l">Plug-ins</h1>
+
+      <p class="govuk-body">
+        Plug-ins provide you with new components, styles and other features
+      </p>
+
       {% for group in groupsOfPlugins %}
         <h2 class="govuk-heading-m">{{ group.name }}</h2>
 
