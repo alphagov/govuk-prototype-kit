@@ -34,7 +34,7 @@ describe('The Prototype Kit', () => {
 
   it('should call writeFileSync with result css from sass.compile', () => {
     expect(fse.writeFileSync).toHaveBeenCalledWith(
-      path.join('public', 'stylesheets', 'application.css'),
+      path.join('.tmp', 'public', 'stylesheets', 'application.css'),
       path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')
     )
   })

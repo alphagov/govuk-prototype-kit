@@ -117,7 +117,7 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 app.set('view engine', 'html')
 
 // Middleware to serve static assets
-app.use('/public', express.static(path.join(projectDir, 'public')))
+app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
 app.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
 
 // Support for parsing data in POSTs

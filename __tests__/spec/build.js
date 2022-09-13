@@ -76,7 +76,7 @@ describe('the build pipeline', () => {
       expect(sass.compile).toHaveBeenCalledWith(expect.stringContaining(path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')), expect.objectContaining(options))
 
       expect(fse.writeFileSync).toHaveBeenCalledWith(
-        path.join('public', 'stylesheets', 'application.css'),
+        path.join('.tmp', 'public', 'stylesheets', 'application.css'),
         path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')
       )
 
