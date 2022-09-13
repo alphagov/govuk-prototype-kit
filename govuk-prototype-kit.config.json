@@ -5,5 +5,38 @@
   "scripts": [
     "/lib/assets/javascripts/kit.js",
     "/lib/assets/javascripts/auto-store-data.js"
+  ],
+  "sass": [
+    "/lib/assets/sass/internal/manage-prototype.scss"
+  ],
+  "templates": [
+    {
+      "name": "Blank GOV.UK page",
+      "path": "/lib/templates/blank-govuk.html"
+    },
+    {
+      "name": "Check answers page",
+      "path": "/lib/templates/check-answers.html"
+    },
+    {
+      "name": "Question page",
+      "path": "/lib/templates/question.html"
+    },
+    {
+      "name": "Confirmation page",
+      "path": "/lib/templates/confirmation.html"
+    },
+    {
+      "name": "Content page",
+      "path": "/lib/templates/content.html"
+    },
+    {
+      "name": "Mainstream guide page",
+      "path": "/lib/templates/mainstream-guide.html"
+    },
+    {
+      "name": "Start page",
+      "path": "/lib/templates/start.html"
+    }
   ]
 }

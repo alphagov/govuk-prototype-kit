@@ -28,7 +28,7 @@ describe('watch config file', () => {
     it('The service name should change to "cypress test"', () => {
       cy.get(serverNameQuery).should('contains.text', originalText)
       cy.task('replaceTextInFile', { filename: appConfig, originalText, newText })
-      waitForApplication(newText)
+      waitForApplication()
       cy.get(serverNameQuery).should('contains.text', newText)
     })
   })

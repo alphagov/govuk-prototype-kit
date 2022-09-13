@@ -199,7 +199,4 @@ app.use(function (err, req, res, next) {
   res.send(err.message)
 })
 
-console.log('\nGOV.UK Prototype Kit v' + releaseVersion)
-console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.')
-
 module.exports = app
