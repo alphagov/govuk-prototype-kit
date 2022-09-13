@@ -5,6 +5,7 @@
     "assets" : "app/assets",
     "libAssets" : "lib/assets",
     "nodeModules": "node_modules",
-    "lib": "lib"
+    "lib": "lib",
+    "shadowNunjucks": ".tmp/shadow-nunjucks"
   }
 }

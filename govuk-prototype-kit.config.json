@@ -9,6 +9,10 @@
   "sass": [
     "/lib/assets/sass/internal/manage-prototype.scss"
   ],
+  "autoImportNunjucksComponents": [
+    "/lib/nunjucks/govuk-prototype-kit/layouts/govuk-branded.html",
+    "/lib/nunjucks/govuk-prototype-kit/layouts/unbranded.html"
+  ],
   "templates": [
     {
       "name": "Blank GOV.UK page",
