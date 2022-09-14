@@ -13,7 +13,7 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
     console.log('The Prototype Kit is now running at:')
     console.log(`http://localhost:${port}`)
     console.log('')
-    console.log('You can access the settings at:')
+    console.log('You can manage your prototype at:')
     console.log(`http://localhost:${port}/manage-prototype`)
     console.log('')
 
