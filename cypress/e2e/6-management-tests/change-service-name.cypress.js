@@ -16,10 +16,10 @@ const managePagePath = '/manage-prototype'
 
 describe('change service name', () => {
   before(() => {
-    waitForApplication(managePagePath)
+    waitForApplication()
     // backup config.js
     cy.task('copyFile', { source: appConfig, target: backupAppConfig })
-    waitForApplication(managePagePath)
+    waitForApplication()
   })
 
   after(() => {
@@ -29,7 +29,12 @@ describe('change service name', () => {
   })
 
   it('The service name should change to "cypress test" and the task should be set to "Done"', () => {
-    cy.task('log', 'Visit the manage prototype templates page')
+    cy.task('log', 'Visit the index page and navigate to the manage your prototype page')
+    cy.get('.govuk-heading-xl').should('contains.text', originalText)
+    cy.get('p strong').should('contains.text', appConfigPath)
+    cy.get(`a[href="${managePagePath}"]`).should('contains.text', 'Manage your prototype').click()
+
+    cy.task('log', 'Visit the manage prototype page')
 
     cy.get(serverNameQuery).should('contains.text', originalText)
     cy.get('.app-task-list__item')
@@ -44,5 +49,8 @@ describe('change service name', () => {
     cy.get('.app-task-list__item')
       .eq(0).should('contains.text', appConfigPath)
       .get('.app-task-list__tag').should('contains.text', 'Done')
+
+    cy.visit('/index')
+    cy.get('.govuk-heading-xl').should('contains.text', newText)
   })
 })
