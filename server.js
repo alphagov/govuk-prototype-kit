@@ -10,81 +10,37 @@ const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
 const nunjucks = require('nunjucks')
-const sessionInCookie = require('client-sessions')
-const sessionInMemory = require('express-session')
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
 
 // Local dependencies
-const middlewareFunctions = [
-  require('./lib/middleware/authentication/authentication.js')()
-]
 const { projectDir, packageDir } = require('./lib/path-utils')
 const config = require('./lib/config.js').getConfig()
-const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const routesApi = require('./lib/routes/api.js')
 
+const middlewareFunctions = [
+  require('./lib/middleware/authentication/authentication.js')(),
+  utils.getSessionMiddleware()
+]
+
 const app = express()
 routesApi.setApp(app)
 
-// Set up configuration variables
-var releaseVersion = packageJson.version
-
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-var isSecure = (config.isProduction && config.useHttps)
-if (isSecure) {
+if (config.isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
 
-// Add variables that are available in all views
-app.locals.asset_path = '/public/'
-app.locals.useAutoStoreData = config.useAutoStoreData
-app.locals.useCookieSessionStore = config.useCookieSessionStore
-app.locals.releaseVersion = 'v' + releaseVersion
-app.locals.serviceName = config.serviceName
-// extensionConfig sets up variables used to add the scripts and stylesheets to each page.
-app.locals.extensionConfig = extensions.getAppConfig({
-  scripts: ['/public/javascripts/application.js'],
-  stylesheets: ['/public/stylesheets/application.css']
-})
-
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
 
-// Session uses service name to avoid clashes with other prototypes
-const sessionName = 'govuk-prototype-kit-' + (Buffer.from(app.locals.serviceName, 'utf8')).toString('hex')
-const sessionHours = 4
-const sessionOptions = {
-  secret: sessionName,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * sessionHours,
-    secure: isSecure
-  }
-}
-
-// Support session data in cookie or memory
-if (config.useCookieSessionStore) {
-  app.use(sessionInCookie(Object.assign(sessionOptions, {
-    cookieName: sessionName,
-    proxy: true,
-    requestKey: 'session'
-  })))
-} else {
-  app.use(sessionInMemory(Object.assign(sessionOptions, {
-    name: sessionName,
-    resave: false,
-    saveUninitialized: false
-  })))
-}
-
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
-middlewareFunctions.forEach(func => app.use(func))
 
 // Set up App
 var appViews = extensions.getAppViews([
@@ -128,7 +84,7 @@ app.use(bodyParser.urlencoded({
 
 // Automatically store all data users enter
 if (config.useAutoStoreData) {
-  app.use(utils.autoStoreData)
+  middlewareFunctions.push(utils.autoStoreData)
   utils.addCheckedFunction(nunjucksAppEnv)
 }
 
@@ -160,16 +116,18 @@ app.get(/\.html?$/i, function (req, res) {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, function (req, res, next) {
-  utils.matchRoutes(req, res, next)
+app.get(/^([^.]+)$/, middlewareFunctions, async function (req, res, next) {
+  await utils.matchRoutes(req, res, next)
 })
 
+console.log(middlewareFunctions.map(x => x.toString().substr(0,100)))
+
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
-app.post(/^\/([^.]+)$/, function (req, res) {
+app.post(/^\/([^.]+)$/, middlewareFunctions, function (req, res) {
   res.redirect(url.format({
-    pathname: '/' + req.params[0],
-    query: req.query
-  })
+      pathname: '/' + req.params[0],
+      query: req.query
+    })
   )
 })
 
@@ -195,6 +153,7 @@ app.use(function (req, res, next) {
 // Display error
 app.use(function (err, req, res, next) {
   console.error(err.message)
+  console.error(err.stack)
   res.status(err.status || 500)
   res.send(err.message)
 })
