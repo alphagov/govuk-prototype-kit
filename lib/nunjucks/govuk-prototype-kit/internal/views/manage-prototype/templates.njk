@@ -8,7 +8,7 @@
       <h1 class="govuk-heading-l">Templates</h1>
 
       <p class="govuk-body">
-        Add templates of common pages to your prototype
+        Create pages from templates
       </p>
 
       {% for plugin in availableTemplates %}
@@ -25,7 +25,7 @@
                 <a class="govuk-prototype-kit-manage-prototype-template-list-template-list__item-link" href="{{ template.viewLink }}">
                    View<span class="govuk-visually-hidden"> {{ template.name }}</span></a>
                 <a class="govuk-prototype-kit-manage-prototype-template-list-template-list__item-link" href="{{ template.installLink }}">
-                   Install<span class="govuk-visually-hidden"> {{ template.name }}</span></a>
+                   Create<span class="govuk-visually-hidden"> {{ template.name }}</span></a>
               </div>
             </li>
           {% endfor %}

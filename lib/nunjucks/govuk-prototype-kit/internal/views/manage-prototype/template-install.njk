@@ -24,17 +24,11 @@
         }) }}
       {% endif %}
 
-      <h1 class="govuk-heading-l">Create new page from template</h1>
-
-      <p class="govuk-body">Using template "{{ templateName }}".</p>
-
+      <h1 class="govuk-heading-l">Create new {{ templateName }}</h1>
 
       <form action="{{ currentUrl }}" method="post">
 
         {{ govukInput({
-          hint: {
-            text: "For example /my-useful-page"
-          },
           errorMessage: {
             text: error
           } if error,
@@ -42,6 +36,9 @@
             text: "Path for the new page",
 
             classes: "govuk-label--m"
+          },
+          hint: {
+            text: "For example: /my-useful-page"
           },
           id: "chosen-url",
           name: "chosen-url",

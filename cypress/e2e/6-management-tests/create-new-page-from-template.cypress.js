@@ -55,9 +55,9 @@ describe('create new start page', () => {
 
     cy.task('log', 'Create the page')
     cy.get('.govuk-heading-l')
-      .should('contains.text', 'Create new page from template')
-    cy.get('.govuk-body')
-      .should('contains.text', 'Using template "Start page".')
+      .should('contains.text', 'Create new Start page')
+    cy.get('.govuk-label')
+      .should('contains.text', 'Path for the new page')
     cy.get('#chosen-url')
       .type(startPagePath)
     cy.get('.govuk-button')
