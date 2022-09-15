@@ -19,6 +19,24 @@
   }) }}
 {% endblock %}
 
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/manage-prototype",
+          text: "Manage your prototype"
+        },
+        {
+          href: "/manage-prototype/clear-data",
+          text: "Clear data"
+        }
+      ],
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
+{% endblock %}
+
 {% block bodyEnd %}
   {% block scripts %}
     {% include "govuk-prototype-kit/includes/scripts.html" %}
