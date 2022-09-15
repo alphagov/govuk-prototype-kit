@@ -32,7 +32,7 @@ describe('change service name', () => {
     cy.task('log', 'Visit the index page and navigate to the manage your prototype page')
     cy.get('.govuk-heading-xl').should('contains.text', originalText)
     cy.get('p strong').should('contains.text', appConfigPath)
-    cy.get(`a[href="${managePagePath}"]`).should('contains.text', 'Manage your prototype').click()
+    cy.get(`main a[href="${managePagePath}"]`).should('contains.text', 'Manage your prototype').click()
 
     cy.task('log', 'Visit the manage prototype page')
 
