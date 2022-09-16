@@ -144,6 +144,10 @@ app.get('/', async (req, res) => {
   })
 })
 
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(packageDir, 'lib', 'assets', 'images', 'unbranded.ico'))
+})
+
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error(`Page not found: ${req.path}`)
@@ -154,7 +158,9 @@ app.use(function (req, res, next) {
 // Display error
 app.use(function (err, req, res, next) {
   console.error(err.message)
-  console.error(err.stack)
+  if (err.status !== 404) {
+    console.error(err.stack)
+  }
   res.status(err.status || 500)
   res.send(err.message)
 })
