@@ -1,9 +1,8 @@
 // Run this code when a form is submitted to 'juggling-balls-answer'
 // eslint-disable-next-line
 
-router.post('/juggling-balls-answer', middlewareFunctions, function (req, res) {
+router.post('/juggling-balls-answer', function (req, res) {
   // Make a variable and give it the value from 'how-many-balls'
-  console.log(middlewareFunctions)
   const howManyBalls = req.session.data['how-many-balls']
 
   // Check whether the variable matches a condition
