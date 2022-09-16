@@ -1,4 +1,5 @@
 /* eslint-disable-next-line no-unused-vars */
-const router = require('govuk-prototype-kit').requests.setupRouter()
+const { setupRouter, middlewareFunctions } = require('govuk-prototype-kit').requests
+const router = setupRouter()
 
 // Add your routes here

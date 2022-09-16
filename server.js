@@ -20,10 +20,11 @@ const config = require('./lib/config.js').getConfig()
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const routesApi = require('./lib/routes/api.js')
+const { getSessionMiddleware, autoStoreData, addCheckedFunction } = require('./lib/sessionUtils')
 
 const middlewareFunctions = [
   require('./lib/middleware/authentication/authentication.js')(),
-  utils.getSessionMiddleware()
+  getSessionMiddleware()
 ]
 
 const app = express()
@@ -84,8 +85,8 @@ app.use(bodyParser.urlencoded({
 
 // Automatically store all data users enter
 if (config.useAutoStoreData) {
-  middlewareFunctions.push(utils.autoStoreData)
-  utils.addCheckedFunction(nunjucksAppEnv)
+  middlewareFunctions.push(autoStoreData)
+  addCheckedFunction(nunjucksAppEnv)
 }
 
 // Prevent search indexing

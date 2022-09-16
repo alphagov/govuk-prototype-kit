@@ -18,11 +18,11 @@ describe('Branching journey', async () => {
     waitForApplication()
   })
 
-  after(() => {
-    cleanUpPages()
-    cleanUpBranchingPages()
-    restoreRoutes()
-  })
+  // after(() => {
+  //   cleanUpPages()
+  //   cleanUpBranchingPages()
+  //   restoreRoutes()
+  // })
 
   it('eligible journey', () => {
     // Visit Juggling balls page, click continue
@@ -37,16 +37,16 @@ describe('Branching journey', async () => {
     cy.get('h1').should('contains.text', 'What is your most impressive juggling trick?')
   })
 
-  it('Ineligible journey', () => {
-    // Visit Juggling balls page, click continue
-    cy.visit(jugglingBallsPath)
-    cy.task('log', 'The juggling balls page should be displayed')
-    cy.get('h1').should('contains.text', 'How many balls can you juggle?')
-    cy.get(`input[value="${ineligibleHowManyBalls}"]`).check()
-    cy.get('button.govuk-button').should('contains.text', 'Continue').click()
-
-    // Juggling trick page should be displayed correctly
-    cy.task('log', 'The juggling trick page should be displayed')
-    cy.get('h1').should('contains.text', 'Sorry, you are ineligible for juggling tricks')
-  })
+  // it('Ineligible journey', () => {
+  //   // Visit Juggling balls page, click continue
+  //   cy.visit(jugglingBallsPath)
+  //   cy.task('log', 'The juggling balls page should be displayed')
+  //   cy.get('h1').should('contains.text', 'How many balls can you juggle?')
+  //   cy.get(`input[value="${ineligibleHowManyBalls}"]`).check()
+  //   cy.get('button.govuk-button').should('contains.text', 'Continue').click()
+  //
+  //   // Juggling trick page should be displayed correctly
+  //   cy.task('log', 'The juggling trick page should be displayed')
+  //   cy.get('h1').should('contains.text', 'Sorry, you are ineligible for juggling tricks')
+  // })
 })
