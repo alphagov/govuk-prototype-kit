@@ -20,7 +20,8 @@ const config = require('./lib/config.js').getConfig()
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const routesApi = require('./lib/routes/api.js')
-const { autoStoreData, addCheckedFunction } = require('./lib/sessionUtils')
+const {getConfig} = require("./lib/config");
+const {addCheckedFunction} = require("./lib/sessionUtils");
 const middlewareFunctions = []
 
 const app = express()
@@ -59,6 +60,11 @@ if (config.isDevelopment) {
   nunjucksConfig.watch = true
 }
 
+
+if (getConfig().useAutoStoreData) {
+  addCheckedFunction()
+}
+
 nunjucksConfig.express = app
 
 var nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
@@ -78,12 +84,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
-
-// Automatically store all data users enter
-if (config.useAutoStoreData) {
-  middlewareFunctions.push(autoStoreData)
-  addCheckedFunction(nunjucksAppEnv)
-}
 
 // Prevent search indexing
 app.use(function (req, res, next) {
