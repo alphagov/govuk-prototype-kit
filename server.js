@@ -20,12 +20,8 @@ const config = require('./lib/config.js').getConfig()
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const routesApi = require('./lib/routes/api.js')
-const { getSessionMiddleware, autoStoreData, addCheckedFunction } = require('./lib/sessionUtils')
-
-const middlewareFunctions = [
-  require('./lib/middleware/authentication/authentication.js')(),
-  getSessionMiddleware()
-]
+const { autoStoreData, addCheckedFunction } = require('./lib/sessionUtils')
+const middlewareFunctions = []
 
 const app = express()
 routesApi.setApp(app)
@@ -96,8 +92,9 @@ app.use(function (req, res, next) {
   next()
 })
 
-require('./lib/routes/prototype-admin-routes.js')
-require('./lib/routes/extensions.js')
+require('./lib/routes/passwordRoutes')
+require('./lib/routes/managePrototypeRoutes')
+require('./lib/routes/extensions')
 utils.addRouters(app)
 
 app.get('/robots.txt', function (req, res) {
