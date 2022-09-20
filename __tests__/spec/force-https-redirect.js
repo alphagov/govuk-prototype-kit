@@ -2,8 +2,10 @@
 const request = require('supertest')
 
 /* Setup Environment Variables before setting App */
+console.log('setting config')
 process.env.NODE_ENV = 'production'
 process.env.USE_HTTPS = 'true'
+console.log('config set')
 const app = require('../../server.js')
 
 describe('The Prototype Kit - force HTTPS redirect functionality', () => {

@@ -16,20 +16,20 @@ dotenv.config()
 
 // Local dependencies
 const { projectDir, packageDir } = require('./lib/path-utils')
-const config = require('./lib/config.js').getConfig()
 const utils = require('./lib/utils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const routesApi = require('./lib/routes/api.js')
-const {getConfig} = require("./lib/config");
-const {addCheckedFunction} = require("./lib/sessionUtils");
+const { getConfig } = require('./lib/config')
 const middlewareFunctions = []
+
+// process.on('warning', e => console.warn(e.stack))
 
 const app = express()
 routesApi.setApp(app)
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-if (config.isSecure) {
+if (getConfig().isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
@@ -56,13 +56,8 @@ var nunjucksConfig = {
   watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
 }
 
-if (config.isDevelopment) {
+if (getConfig().isDevelopment) {
   nunjucksConfig.watch = true
-}
-
-
-if (getConfig().useAutoStoreData) {
-  addCheckedFunction()
 }
 
 nunjucksConfig.express = app
@@ -118,14 +113,14 @@ app.get(/^([^.]+)$/, middlewareFunctions, async function (req, res, next) {
   await utils.matchRoutes(req, res, next)
 })
 
-console.log(middlewareFunctions.map(x => x.toString().substr(0,100)))
+console.log(middlewareFunctions.map(x => x.toString().substr(0, 100)))
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, middlewareFunctions, function (req, res) {
   res.redirect(url.format({
-      pathname: '/' + req.params[0],
-      query: req.query
-    })
+    pathname: '/' + req.params[0],
+    query: req.query
+  })
   )
 })
 
