@@ -79,11 +79,11 @@ const setUpPages = () => {
 }
 
 const setUpData = () => {
-  cy.task('createFile', { filename: appDataFile, data: `module.exports = {"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"}` })
+  cy.task('replaceTextInFile', { filename: appDataFile, originalText: '// Insert values here', newText: `"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"` })
 }
 
 const clearUpData = () => {
-  cy.task('deleteFile', { filename: appDataFile })
+  cy.task('replaceTextInFile', { filename: appDataFile, originalText: `"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"`, newText: '// Insert values here' })
 }
 
 const setUpBranchingPages = () => {

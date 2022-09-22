@@ -13,8 +13,7 @@ usage-data-config.json
 /cypress/screenshots
 /cypress/temp
 /cypress/videos
-/cypress/fixtures/extensions/extension-bar/package-lock.json
-/cypress/fixtures/extensions/extension-foo/package-lock.json
+/cypress/fixtures/extensions/*/package-lock.json
 /govuk-prototype-kit*.zip
 /govuk-prototype-kit*.tgz
 tmp/
