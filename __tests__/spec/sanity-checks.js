@@ -68,7 +68,7 @@ describe('The Prototype Kit', () => {
 
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
-        .get('/govuk/assets/images/favicon.ico')
+        .get('/extension-assets/govuk-frontend/govuk/assets/images/favicon.ico')
         .expect('Content-Type', /image\/x-icon/)
         .expect(200)
         .end(function (err, res) {
