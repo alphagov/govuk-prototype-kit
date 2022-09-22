@@ -48,7 +48,7 @@ function createSessionDataDefaults () {
   }
 }
 
-console.log(`GOVV.UK Prototype Kit ${kitVersion}`)
+console.log(`GOV.UK Prototype Kit ${kitVersion}`)
 console.log('')
 console.log('starting...')
 
