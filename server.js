@@ -2,6 +2,7 @@
 const path = require('path')
 const url = require('url')
 const os = require('os')
+const { existsSync } = require('fs')
 const fs = require('fs').promises
 
 // NPM dependencies
@@ -48,8 +49,12 @@ app.locals.useCookieSessionStore = config.useCookieSessionStore
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
+const scripts = []
+if (existsSync(path.join(projectDir, 'app', 'assets', 'javascripts', 'application.js'))) {
+  scripts.push('/public/javascripts/application.js')
+}
 app.locals.extensionConfig = extensions.getAppConfig({
-  scripts: ['/public/javascripts/application.js'],
+  scripts: scripts,
   stylesheets: ['/public/stylesheets/application.css']
 })
 
