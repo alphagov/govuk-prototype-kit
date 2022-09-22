@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs-extra')
+const os = require('os')
 const path = require('path')
+
 const { exec } = require('../lib/exec')
 const { runUpgrade } = require('../lib/upgradeToV13')
 
@@ -28,6 +30,12 @@ public/
 .DS_Store
 .idea
 `
+
+const packageJson = {
+  scripts: {
+    start: 'govuk-prototype-kit start'
+  }
+}
 
 function usage () {
   const prog = 'npx govuk-prototype-kit'
@@ -99,6 +107,7 @@ const getChosenKitDependency = () => {
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
       fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
+      fs.writeJson(path.join(installDirectory, 'package.json'), packageJson, { encoding: 'utf8', EOL: os.EOL, spaces: 2 }),
       copyFile('LICENCE.txt')
     ])
 
