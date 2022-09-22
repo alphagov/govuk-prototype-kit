@@ -27,7 +27,7 @@
     "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm start",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
     "start:package": "KIT_TEST_DIR=tmp/test-prototype-package node cypress/scripts/run-starter-prototype",
-    "lint": "standard '**/*.js' scripts/create-release-archive scripts/cli lib/build/dev-server lib/build/generate-assets",
+    "lint": "standard '**/*.js' bin/cli scripts/create-release-archive lib/build/dev-server lib/build/generate-assets",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
     "test:heroku": "echo 'test:heroku' needs to be implemented",

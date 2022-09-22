@@ -111,7 +111,6 @@ const getChosenKitDependency = () => {
       cwd: installDirectory
     }, console.log)
     clearInterval(dots)
-
   } else if (command === 'start') {
     require('../start')
   } else if (command === 'upgrade') {
