@@ -1,10 +1,9 @@
 // Core dependencies
 const path = require('path')
-const fs = require('fs')
 
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
-const { projectDir, packageDir } = require('./lib/path-utils')
+const { packageDir } = require('./lib/path-utils')
 const kitVersion = require(path.join(packageDir, 'package.json')).version
 
 async function collectDataUsage () {
@@ -31,29 +30,11 @@ async function collectDataUsage () {
   }
 }
 
-function createSessionDataDefaults () {
-// Create template session data defaults file if it doesn't exist
-  const dataDirectory = path.join(projectDir, '/app/data')
-  const sessionDataDefaultsFile = path.join(dataDirectory, '/session-data-defaults.js')
-  const sessionDataDefaultsFileExists = fs.existsSync(sessionDataDefaultsFile)
-
-  if (!sessionDataDefaultsFileExists) {
-    console.log('Creating session data defaults file')
-    if (!fs.existsSync(dataDirectory)) {
-      fs.mkdirSync(dataDirectory)
-    }
-
-    fs.createReadStream(path.join(__dirname, '/lib/template.session-data-defaults.js'))
-      .pipe(fs.createWriteStream(sessionDataDefaultsFile))
-  }
-}
-
 console.log(`GOV.UK Prototype Kit ${kitVersion}`)
 console.log('')
 console.log('starting...')
 
 ;(async () => {
-  createSessionDataDefaults()
   await collectDataUsage()
   await buildWatchAndServe()
 })()
