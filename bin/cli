@@ -57,9 +57,9 @@ const getInstallLocation = () => {
 
 const getChosenKitDependency = () => {
   const defaultValue = 'govuk-prototype-kit'
-  let versionFlagIndex = additionalOptions.indexOf('--version')
+  let versionFlagIndex = additionalOptions.indexOf('--kit-version')
   if (versionFlagIndex === -1) {
-    versionFlagIndex = additionalOptions.indexOf('-v')
+    versionFlagIndex = additionalOptions.indexOf('-kv')
   }
   if (versionFlagIndex === -1) {
     return defaultValue
