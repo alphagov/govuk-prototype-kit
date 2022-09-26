@@ -96,69 +96,71 @@ const getChosenKitDependency = () => {
   if (command === 'create') {
     // Install as a two-stage bootstrap process.
     //
-    // In stage one we create an empty project folder and install
+    // In stage one (`create`) we create an empty project folder and install
     // govuk-prototype-kit and govuk-frontend, then bootstrap stage two from
     // the newly installed package.
     //
-    // In stage two we do the actual setup of the starter files.
+    // In stage two (`init`) we do the actual setup of the starter files.
     //
     // Doing it this way means we can be sure the version of the cli matches
     // the version of the kit the user ends up with. Try to put as much logic
     // as possible into stage two; stage one should ideally be able to install
     // any future version of the kit.
 
-    const stage = additionalOptions[0] === '--' ? 'two' : 'one'
+    const installDirectory = getInstallLocation()
+    const kitDependency = getChosenKitDependency()
 
-    if (stage === 'one') {
-      const installDirectory = getInstallLocation()
-      const kitDependency = getChosenKitDependency()
-
-      await fs.ensureDir(installDirectory)
-      if ((await fs.readdir(installDirectory)).length > 0) {
-        console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
-        process.exitCode = 3
-        return
-      }
-
-      await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
-
-      console.log('Creating your prototype')
-      const dots = setInterval(() => {
-        process.stdout.write('.')
-      }, 500)
-
-      await exec(`npm install ${kitDependency} govuk-frontend`, {
-        stdio: 'inherit',
-        cwd: installDirectory
-      }, console.log)
-
-      clearInterval(dots)
-
-      await exec(`npx govuk-prototype-kit create -- ${installDirectory}`, {
-        stdio: 'inherit',
-        cwd: installDirectory
-      }, console.log)
-    } else if (stage === 'two') {
-      const installDirectory = additionalOptions[1]
-
-      const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
-      const updatePackageJson = async (packageJsonPath) => {
-        let newPackageJson = Object.assign({}, packageJson)
-        newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
-        await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
-      }
-
-      await Promise.all([
-        fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
-        fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
-        fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
-        copyFile('LICENCE.txt'),
-        updatePackageJson(path.join(installDirectory, 'package.json'))
-      ])
-    } else {
-      usage()
-      process.exitCode = 1
+    await fs.ensureDir(installDirectory)
+    if ((await fs.readdir(installDirectory)).length > 0) {
+      console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
+      process.exitCode = 3
+      return
     }
+
+    await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
+
+    console.log('Creating your prototype')
+    const dots = setInterval(() => {
+      process.stdout.write('.')
+    }, 500)
+
+    await exec(`npm install ${kitDependency} govuk-frontend`, {
+      stdio: 'inherit',
+      cwd: installDirectory
+    }, console.log)
+
+    clearInterval(dots)
+
+    await exec(`npx govuk-prototype-kit init -- ${installDirectory}`, {
+      stdio: 'inherit',
+      cwd: installDirectory
+    }, console.log)
+  } else if (command === 'init') {
+    // `init` is stage two of the install process (see above), it should be
+    // called by `create` with the correct arguments.
+
+    if (additionalOptions[0] !== '--') {
+      usage()
+      process.exitCode = 2
+      return
+    }
+
+    const installDirectory = additionalOptions[1]
+
+    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+    const updatePackageJson = async (packageJsonPath) => {
+      let newPackageJson = Object.assign({}, packageJson)
+      newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
+      await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+    }
+
+    await Promise.all([
+      fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
+      fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
+      fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
+      copyFile('LICENCE.txt'),
+      updatePackageJson(path.join(installDirectory, 'package.json'))
+    ])
   } else if (command === 'start') {
     require('../start')
   } else if (command === 'upgrade') {
