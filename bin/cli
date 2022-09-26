@@ -6,12 +6,12 @@ const path = require('path')
 
 const { exec } = require('../lib/exec')
 const { runUpgrade } = require('../lib/upgradeToV13')
+const { parse } = require('./utils/argvParser')
 
 const currentDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
 
-const additionalOptions = [].concat(...process.argv).splice(2)
-const command = additionalOptions.shift()
+const argv = parse(process.argv)
 
 const npmrc = `
 audit=false
@@ -55,27 +55,23 @@ ${prog} start`
 }
 
 const getInstallLocation = () => {
-  const lastOption = ('' + additionalOptions[additionalOptions.length - 2]).startsWith('-') ? undefined : additionalOptions[additionalOptions.length - 1]
-  if (lastOption) {
-    if (lastOption.startsWith('/')) {
-      return lastOption
+  const chosenPath = argv.paths[0]
+  if (chosenPath) {
+    if (chosenPath.startsWith('/')) {
+      return chosenPath
     }
-    return path.join(currentDirectory, lastOption)
+    return path.join(currentDirectory, chosenPath)
   }
   return currentDirectory
 }
 
 const getChosenKitDependency = () => {
   const defaultValue = 'govuk-prototype-kit'
-  let versionFlagIndex = additionalOptions.indexOf('--version')
-  if (versionFlagIndex === -1) {
-    versionFlagIndex = additionalOptions.indexOf('-v')
-  }
-  if (versionFlagIndex === -1) {
+  const versionRequested = argv.options.version || argv.options.v
+
+  if (!versionRequested) {
     return defaultValue
   }
-
-  const versionRequested = additionalOptions[versionFlagIndex + 1]
 
   if (versionRequested === 'local') {
     return kitRoot
@@ -93,7 +89,7 @@ const getChosenKitDependency = () => {
 };
 
 (async () => {
-  if (command === 'create') {
+  if (argv.command === 'create') {
     // Install as a two-stage bootstrap process.
     //
     // In stage one (`create`) we create an empty project folder and install
@@ -135,17 +131,17 @@ const getChosenKitDependency = () => {
       stdio: 'inherit',
       cwd: installDirectory
     }, console.log)
-  } else if (command === 'init') {
+  } else if (argv.command === 'init') {
     // `init` is stage two of the install process (see above), it should be
     // called by `create` with the correct arguments.
 
-    if (additionalOptions[0] !== '--') {
+    if (process.argv[3] !== '--') {
       usage()
       process.exitCode = 2
       return
     }
 
-    const installDirectory = additionalOptions[1]
+    const installDirectory = getInstallLocation()
 
     const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
     const updatePackageJson = async (packageJsonPath) => {
@@ -161,9 +157,9 @@ const getChosenKitDependency = () => {
       copyFile('LICENCE.txt'),
       updatePackageJson(path.join(installDirectory, 'package.json'))
     ])
-  } else if (command === 'start') {
+  } else if (argv.command === 'start') {
     require('../start')
-  } else if (command === 'upgrade') {
+  } else if (argv.command === 'upgrade') {
     await runUpgrade()
   } else {
     usage()
