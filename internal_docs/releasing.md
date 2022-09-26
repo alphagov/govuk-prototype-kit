@@ -31,6 +31,8 @@ v8.0.0 // After implementing backwards incompatible changes
 
 4. Checkout a new branch called release-[new version number].
 
+5. If the major version has changed make sure it's updated for the plugins in `GOVUKPrototypeKit.majorVersion` (JS) and `$govuk-prototype-kit-major-version` (SASS).
+
 5. Update the [CHANGELOG.md](/CHANGELOG.md) by:
 
   - changing the 'Unreleased' heading to the new version-number and release-type - for example, '12.0.1 (Fix release)'
