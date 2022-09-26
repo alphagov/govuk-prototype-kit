@@ -37,6 +37,8 @@ const packageJson = {
   }
 }
 
+const packageJsonFormat = { encoding: 'utf8', EOL: os.EOL, spaces: 2 }
+
 function usage () {
   const prog = 'npx govuk-prototype-kit'
   console.log(`
@@ -95,21 +97,13 @@ const getChosenKitDependency = () => {
     const installDirectory = getInstallLocation()
     const kitDependency = getChosenKitDependency()
 
-    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
-
     await fs.ensureDir(installDirectory)
     if ((await fs.readdir(installDirectory)).length > 0) {
       console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
       process.exit(3)
     }
 
-    await Promise.all([
-      fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
-      fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
-      fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
-      fs.writeJson(path.join(installDirectory, 'package.json'), packageJson, { encoding: 'utf8', EOL: os.EOL, spaces: 2 }),
-      copyFile('LICENCE.txt')
-    ])
+    await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
 
     console.log('Creating your prototype')
     const dots = setInterval(() => {
@@ -120,6 +114,21 @@ const getChosenKitDependency = () => {
       cwd: installDirectory
     }, console.log)
     clearInterval(dots)
+
+    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+    const updatePackageJson = async (packageJsonPath) => {
+      let newPackageJson = Object.assign({}, packageJson)
+      newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
+      await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+    }
+
+    await Promise.all([
+      fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
+      fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
+      fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
+      copyFile('LICENCE.txt'),
+      updatePackageJson(path.join(installDirectory, 'package.json'))
+    ])
   } else if (command === 'start') {
     require('../start')
   } else if (command === 'upgrade') {
