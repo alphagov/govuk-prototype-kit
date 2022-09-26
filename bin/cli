@@ -157,6 +157,9 @@ const getChosenKitDependency = () => {
       copyFile('LICENCE.txt'),
       updatePackageJson(path.join(installDirectory, 'package.json'))
     ])
+
+    const version = require(path.join(installDirectory, 'package.json')).version
+    await exec(`git init . && git add -A . && git commit -am "GOV.UK Prototype Kit ${version} starter files."`)
   } else if (argv.command === 'start') {
     require('../start')
   } else if (argv.command === 'upgrade') {
