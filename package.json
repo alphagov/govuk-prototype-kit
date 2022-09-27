@@ -26,16 +26,16 @@
   "scripts": {
     "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm start",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
-    "start:package": "KIT_TEST_DIR=tmp/test-prototype-package node cypress/scripts/run-starter-prototype",
+    "start:package": "cross-env KIT_TEST_DIR=tmp/test-prototype-package node cypress/scripts/run-starter-prototype",
     "lint": "standard '**/*.js' bin/cli",
     "rapidtest": "jest --bail",
     "cypress:open": "cypress open",
     "test:heroku": "echo 'test:heroku' needs to be implemented",
-    "test:acceptance": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress run'",
-    "test:acceptance:open": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-starter-prototype' 3000 'cypress open'",
+    "test:acceptance": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test \"node cypress/scripts/run-starter-prototype\" 3000 \"cypress run\"",
+    "test:acceptance:open": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test \"node cypress/scripts/run-starter-prototype\" 3000 \"cypress open\"",
     "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
     "test:unit": "jest --detectOpenHandles lib bin",
-    "test:integration": "CREATE_KIT_TIMEOUT=90000 IS_INTEGRATION_TEST=true jest --detectOpenHandles --testTimeout=60000 __tests__",
+    "test:integration": "cross-env CREATE_KIT_TIMEOUT=90000 IS_INTEGRATION_TEST=true jest --detectOpenHandles --testTimeout=60000 __tests__",
     "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
   "dependencies": {
@@ -69,6 +69,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "cypress": "^10.6.0",
     "eslint-plugin-cypress": "^2.12.1",
     "extract-zip": "^2.0.1",
