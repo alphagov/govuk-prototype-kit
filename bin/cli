@@ -141,7 +141,7 @@ const getChosenKitDependency = () => {
       return
     }
 
-    const installDirectory = getInstallLocation()
+    const installDirectory = process.argv[4]
 
     const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
     const updatePackageJson = async (packageJsonPath) => {
