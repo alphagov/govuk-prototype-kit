@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs-extra')
+const os = require('os')
 const path = require('path')
+
 const { exec } = require('../lib/exec')
 const { runUpgrade } = require('../lib/upgradeToV13')
 
@@ -28,6 +30,14 @@ public/
 .DS_Store
 .idea
 `
+
+const packageJson = {
+  scripts: {
+    start: 'govuk-prototype-kit start'
+  }
+}
+
+const packageJsonFormat = { encoding: 'utf8', EOL: os.EOL, spaces: 2 }
 
 function usage () {
   const prog = 'npx govuk-prototype-kit'
@@ -84,34 +94,73 @@ const getChosenKitDependency = () => {
 
 (async () => {
   if (command === 'create') {
+    // Install as a two-stage bootstrap process.
+    //
+    // In stage one (`create`) we create an empty project folder and install
+    // govuk-prototype-kit and govuk-frontend, then bootstrap stage two from
+    // the newly installed package.
+    //
+    // In stage two (`init`) we do the actual setup of the starter files.
+    //
+    // Doing it this way means we can be sure the version of the cli matches
+    // the version of the kit the user ends up with. Try to put as much logic
+    // as possible into stage two; stage one should ideally be able to install
+    // any future version of the kit.
+
     const installDirectory = getInstallLocation()
     const kitDependency = getChosenKitDependency()
-
-    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 
     await fs.ensureDir(installDirectory)
     if ((await fs.readdir(installDirectory)).length > 0) {
       console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
-      process.exit(3)
+      process.exitCode = 3
+      return
+    }
+
+    await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
+
+    console.log('Creating your prototype')
+    const dots = setInterval(() => {
+      process.stdout.write('.')
+    }, 500)
+
+    await exec(`npm install ${kitDependency} govuk-frontend`, {
+      stdio: 'inherit',
+      cwd: installDirectory
+    }, console.log)
+
+    clearInterval(dots)
+
+    await exec(`npx govuk-prototype-kit init -- ${installDirectory}`, {
+      stdio: 'inherit',
+      cwd: installDirectory
+    }, console.log)
+  } else if (command === 'init') {
+    // `init` is stage two of the install process (see above), it should be
+    // called by `create` with the correct arguments.
+
+    if (additionalOptions[0] !== '--') {
+      usage()
+      process.exitCode = 2
+      return
+    }
+
+    const installDirectory = additionalOptions[1]
+
+    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+    const updatePackageJson = async (packageJsonPath) => {
+      let newPackageJson = Object.assign({}, packageJson)
+      newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
+      await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
     }
 
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
       fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
-      copyFile('LICENCE.txt')
+      copyFile('LICENCE.txt'),
+      updatePackageJson(path.join(installDirectory, 'package.json'))
     ])
-
-    console.log('Creating your prototype')
-    const dots = setInterval(() => {
-      process.stdout.write('.')
-    }, 500)
-    await exec(`npm install ${kitDependency} govuk-frontend`, {
-      stdio: 'inherit',
-      cwd: installDirectory
-    }, console.log)
-    clearInterval(dots)
-
   } else if (command === 'start') {
     require('../start')
   } else if (command === 'upgrade') {
