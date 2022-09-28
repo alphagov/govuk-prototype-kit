@@ -15,7 +15,6 @@ const argv = parse(process.argv)
 
 const npmrc = `
 audit=false
-script-shell=bash
 `
 
 const gitignore = `
