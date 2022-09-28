@@ -117,10 +117,17 @@ const getChosenKitDependency = () => {
 
     console.log('Creating your prototype')
 
-    await spawn('npm', ['install', kitDependency, 'govuk-frontend'], {
-      stdio: 'inherit',
-      cwd: installDirectory
-    })
+    await spawn(
+      'npm', [
+        'install',
+        '--no-audit',
+        '--loglevel', 'error',
+        kitDependency,
+        'govuk-frontend'
+      ], {
+        stdio: 'inherit',
+        cwd: installDirectory
+      })
 
     await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory], {
       stdio: 'inherit',
