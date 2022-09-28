@@ -1,6 +1,11 @@
-const { waitForApplication } = require('../utils')
+const { waitForApplication, deleteFile, copyFile } = require('../utils')
 const path = require('path')
+const templates = path.join(Cypress.config('fixturesFolder'), 'views')
+const contentTemplate = path.join(templates, 'content.html')
+const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
+const contentView = path.join(appViews, 'content.html')
 const managePluginsPagePath = '/manage-prototype/plugins'
+const contentPagePath = '/content'
 const plugin = 'hmrc-frontend'
 const pluginName = 'HMRC Frontend'
 
@@ -9,7 +14,12 @@ const pluginPackageJson = path.join(Cypress.env('projectFolder'), 'node_modules'
 describe('install available plugin', () => {
   before(() => {
     cy.task('log', 'Visit the manage prototype plugins page')
+    deleteFile(contentView)
     waitForApplication(managePluginsPagePath)
+  })
+
+  after(() => {
+    deleteFile(contentView)
   })
 
   it(`Install and uninstall the ${plugin} plugin from the management plugins page`, () => {
@@ -33,7 +43,22 @@ describe('install available plugin', () => {
 
     cy.wait(5000)
 
-    waitForApplication(managePluginsPagePath)
+    cy.task('log', `Test the ${plugin} plugin in a page`)
+
+    copyFile(contentTemplate, contentView)
+
+    cy.task('replaceTextInFile', {
+      filename: contentView,
+      originalText: '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}',
+      newText: '{% extends "hmrc/layouts/account-header.html" %}'
+    })
+
+    waitForApplication(contentPagePath)
+
+    cy.get('nav.hmrc-account-menu', { timeout: 20000 })
+      .should('contains.text', 'Account menu')
+
+    cy.visit(managePluginsPagePath)
 
     cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(0)
       .should('contains.text', 'Installed')
