@@ -25,6 +25,7 @@ const { projectDir, packageDir } = require('./lib/path-utils')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
+const sessionUtils = require('./lib/sessionUtils.js')
 const extensions = require('./lib/extensions/extensions.js')
 const routesApi = require('./lib/routes/api.js')
 
@@ -133,8 +134,8 @@ app.use(bodyParser.urlencoded({
 
 // Automatically store all data users enter
 if (config.useAutoStoreData) {
-  app.use(utils.autoStoreData)
-  utils.addCheckedFunction(nunjucksAppEnv)
+  app.use(sessionUtils.autoStoreData)
+  sessionUtils.addCheckedFunction(nunjucksAppEnv)
 }
 
 // Prevent search indexing
