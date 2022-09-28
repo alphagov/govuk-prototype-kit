@@ -125,13 +125,15 @@ const getChosenKitDependency = () => {
         kitDependency,
         'govuk-frontend'
       ], {
-        stdio: 'inherit',
-        cwd: installDirectory
+        cwd: installDirectory,
+        shell: true,
+        stdio: 'inherit'
       })
 
     await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory], {
-      stdio: 'inherit',
-      cwd: installDirectory
+      cwd: installDirectory,
+      shell: true,
+      stdio: 'inherit'
     })
   } else if (argv.command === 'init') {
     // `init` is stage two of the install process (see above), it should be
