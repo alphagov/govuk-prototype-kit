@@ -1,8 +1,9 @@
-const child_process = require('child_process') // eslint-disable-line camelcase
-
-const fs = require('fs-extra')
 const os = require('os')
 const path = require('path')
+
+const fs = require('fs-extra')
+
+const { exec } = require('../../lib/exec')
 
 /**
  * An ID that will be shared between all process in the same Jest test run,
@@ -71,6 +72,8 @@ async function mkPrototype (prototypePath, {
     }
   }
 
+  const startTime = Date.now()
+
   try {
     // Remove previous test starter project
     await fs.remove(prototypePath)
@@ -79,20 +82,21 @@ async function mkPrototype (prototypePath, {
     await fs.mkdirp(prototypePath)
 
     // Generate starter project and start
-    child_process.execSync(
-      'npm i -g',
-      { stdio: 'inherit' }
+    await exec(
+      'npm i -g'
     )
 
     // Generate starter project and start
-    child_process.execSync(
+    await exec(
       'govuk-prototype-kit create --version local',
-      { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+      { cwd: prototypePath, env: { ...process.env, env: 'test' } }
     )
 
     if (allowTracking !== undefined) {
-      await fs.writeFile(path.join(prototypePath, 'usage-data-config.json'), `{ "collectUsageData": ${allowTracking}}`)
+      await fs.writeFile(path.join(prototypePath, 'usage-data-config.json'), `{ "collectUsageData": ${!!allowTracking}}`)
     }
+
+    console.log(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds`)
   } catch (error) {
     console.error(error.message)
     console.error(error.stack)
@@ -102,28 +106,28 @@ async function mkPrototype (prototypePath, {
   }
 }
 
-function installExtensions (prototypePath, extensionNames) {
+async function installExtensions (prototypePath, extensionNames) {
   let extensionNamesProcessed = extensionNames || []
   if (!Array.isArray(extensionNames)) {
     extensionNamesProcessed = [extensionNames]
   }
-  child_process.execSync(
+  return exec(
     `npm install ${extensionNamesProcessed.join(' ')}`,
-    { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+    { cwd: prototypePath, env: { ...process.env, env: 'test' } }
   )
 }
 
-function npmInstall (pathToRunInstallIn) {
-  return child_process.exec(
+async function npmInstall (pathToRunInstallIn) {
+  return exec(
     'npm install',
-    { cwd: pathToRunInstallIn, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+    { cwd: pathToRunInstallIn, env: { ...process.env, env: 'test' } }
   )
 }
 
-function startPrototype (prototypePath) {
-  child_process.execSync(
+async function startPrototype (prototypePath) {
+  return exec(
     'npm start',
-    { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+    { cwd: prototypePath, env: { ...process.env, env: 'test' } }
   )
 }
 
