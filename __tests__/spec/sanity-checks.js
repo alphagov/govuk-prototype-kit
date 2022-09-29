@@ -15,6 +15,8 @@ const { generateAssetsSync } = require('../../lib/build/tasks')
 const fse = require('fs-extra')
 const { projectDir } = require('../../lib/path-utils')
 
+const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
+
 function readFile (pathFromRoot) {
   return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
 }
@@ -29,7 +31,7 @@ describe('The Prototype Kit', () => {
     jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
     generateAssetsSync()
-  })
+  }, createKitTimeout)
 
   it('should call writeFileSync with result css from sass.compile', () => {
     expect(fse.writeFileSync).toHaveBeenCalledWith(
