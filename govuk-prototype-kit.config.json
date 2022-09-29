@@ -2,14 +2,12 @@
   "assets": "/lib/assets/images",
   "nunjucksPaths": "/lib/nunjucks",
   "nunjucksFilters": "/lib/filters/coreFilters",
+  "sass": "/lib/assets/sass/internal/manage-prototype.scss",
   "scripts": [
     "/lib/assets/javascripts/kit.js",
     "/lib/assets/javascripts/auto-store-data.js"
   ],
-  "sass": [
-    "/lib/assets/sass/internal/manage-prototype.scss"
-  ],
-  "autoImportNunjucksComponents": [
+  "importNunjucksMacrosInto": [
     "/lib/nunjucks/govuk-prototype-kit/layouts/govuk-branded.html",
     "/lib/nunjucks/govuk-prototype-kit/layouts/unbranded.html"
   ],
