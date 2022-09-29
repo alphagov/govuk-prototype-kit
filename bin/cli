@@ -4,7 +4,7 @@ const fs = require('fs-extra')
 const os = require('os')
 const path = require('path')
 
-const { exec } = require('../lib/exec')
+const { spawn } = require('../lib/exec')
 const { runUpgrade } = require('../lib/upgradeToV13')
 const { parse } = require('./utils/argvParser')
 
@@ -116,21 +116,25 @@ const getChosenKitDependency = () => {
     await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
 
     console.log('Creating your prototype')
-    const dots = setInterval(() => {
-      process.stdout.write('.')
-    }, 500)
 
-    await exec(`npm install ${kitDependency} govuk-frontend`, {
-      stdio: 'inherit',
-      cwd: installDirectory
-    }, console.log)
+    await spawn(
+      'npm', [
+        'install',
+        '--no-audit',
+        '--loglevel', 'error',
+        kitDependency,
+        'govuk-frontend'
+      ], {
+        cwd: installDirectory,
+        shell: true,
+        stdio: 'inherit'
+      })
 
-    clearInterval(dots)
-
-    await exec(`npx govuk-prototype-kit init -- ${installDirectory}`, {
-      stdio: 'inherit',
-      cwd: installDirectory
-    }, console.log)
+    await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory], {
+      cwd: installDirectory,
+      shell: true,
+      stdio: 'inherit'
+    })
   } else if (argv.command === 'init') {
     // `init` is stage two of the install process (see above), it should be
     // called by `create` with the correct arguments.
