@@ -57,9 +57,7 @@ function mkdtempSync () {
 async function mkPrototype (prototypePath, {
   kitPath,
   overwrite = false,
-  allowTracking = undefined,
-  extensions = ['govuk-frontend'],
-  additionalExtensions = []
+  allowTracking = undefined
 } = {}) { // TODO: Use kitPath if provided
   if (fs.existsSync(prototypePath)) {
     if (!overwrite) {
