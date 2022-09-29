@@ -1,4 +1,4 @@
-const { waitForApplication, deleteFile, copyFile } = require('../utils')
+const { waitForApplication, deleteFile, copyFile, uninstallPlugin } = require('../utils')
 const path = require('path')
 const templates = path.join(Cypress.config('fixturesFolder'), 'views')
 const contentTemplate = path.join(templates, 'content.html')
@@ -8,18 +8,23 @@ const managePluginsPagePath = '/manage-prototype/plugins'
 const contentPagePath = '/content'
 const plugin = 'hmrc-frontend'
 const pluginName = 'HMRC Frontend'
+const WHITE = 'rgb(255, 255, 255)'
 
 const pluginPackageJson = path.join(Cypress.env('projectFolder'), 'node_modules', plugin, 'package.json')
 
+const cleanup = () => {
+  deleteFile(contentView)
+  uninstallPlugin(plugin)
+}
 describe('install available plugin', () => {
   before(() => {
     cy.task('log', 'Visit the manage prototype plugins page')
-    deleteFile(contentView)
+    cleanup()
     waitForApplication(managePluginsPagePath)
   })
 
   after(() => {
-    deleteFile(contentView)
+    cleanup()
   })
 
   it(`Install and uninstall the ${plugin} plugin from the management plugins page`, () => {
@@ -56,7 +61,8 @@ describe('install available plugin', () => {
     waitForApplication(contentPagePath)
 
     cy.get('nav.hmrc-account-menu', { timeout: 20000 })
-      .should('contains.text', 'Account menu')
+      .should('contain.text', 'Account home')
+      .should('have.css', 'background-color', WHITE)
 
     cy.visit(managePluginsPagePath)
 

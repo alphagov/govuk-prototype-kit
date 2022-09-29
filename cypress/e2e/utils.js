@@ -18,9 +18,19 @@ const deleteFile = (filename) => {
   cy.task('deleteFile', { filename })
 }
 
+function uninstallPlugin (plugin) {
+  cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
+}
+
+function installPlugin (plugin) {
+  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}`)
+}
+
 module.exports = {
   sleep,
   waitForApplication,
   copyFile,
-  deleteFile
+  deleteFile,
+  installPlugin,
+  uninstallPlugin
 }
