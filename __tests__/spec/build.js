@@ -1,6 +1,5 @@
 /* eslint-env jest */
 
-const child_process = require('child_process') // eslint-disable-line camelcase
 const fse = require('fs-extra')
 const fs = require('graceful-fs') // fs-extra uses graceful-fs, so we need to mock that instead of fs
 const path = require('path')
@@ -37,17 +36,6 @@ describe('the build pipeline', () => {
       jest.restoreAllMocks()
 
       del([path.join('app', 'assets', 'test')])
-    })
-
-    it('can be run from the command line', () => {
-      const proc = child_process.spawnSync(
-        'node', ['lib/build/generate-assets'],
-        { cwd: path.resolve(__dirname, '..', '..'), encoding: 'utf8' }
-      )
-
-      expect(proc).toEqual(expect.objectContaining(
-        { status: 0 }
-      ))
     })
 
     it('makes the extensions sass file', () => {
