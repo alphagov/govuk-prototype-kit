@@ -1,4 +1,4 @@
-const { waitForApplication, deleteFile, copyFile, uninstallPlugin } = require('../utils')
+const { waitForApplication, deleteFile, copyFile, uninstallPlugin, installPlugin } = require('../utils')
 const path = require('path')
 const templates = path.join(Cypress.config('fixturesFolder'), 'views')
 const contentTemplate = path.join(templates, 'content.html')
@@ -16,6 +16,7 @@ const cleanup = () => {
   deleteFile(contentView)
   uninstallPlugin(plugin)
 }
+
 describe('install available plugin', () => {
   before(() => {
     cy.task('log', 'Visit the manage prototype plugins page')
@@ -42,11 +43,9 @@ describe('install available plugin', () => {
     cy.get('code')
       .should('have.text', `npm install ${plugin}`)
 
-    cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}`)
+    installPlugin(plugin)
 
     cy.task('existsFile', { filename: pluginPackageJson, timeout: 15000 })
-
-    cy.wait(5000)
 
     cy.task('log', `Test the ${plugin} plugin in a page`)
 
@@ -61,7 +60,7 @@ describe('install available plugin', () => {
     waitForApplication(contentPagePath)
 
     cy.get('nav.hmrc-account-menu', { timeout: 20000 })
-      .should('contain.text', 'Account home')
+      .should('contains.text', 'Account home')
       .should('have.css', 'background-color', WHITE)
 
     cy.visit(managePluginsPagePath)
@@ -80,11 +79,9 @@ describe('install available plugin', () => {
     cy.get('code')
       .should('have.text', `npm uninstall ${plugin}`)
 
-    cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
+    uninstallPlugin(plugin)
 
     cy.task('notExistsFile', { filename: pluginPackageJson, timeout: 15000 })
-
-    cy.wait(5000)
 
     waitForApplication(managePluginsPagePath)
 
