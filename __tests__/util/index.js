@@ -81,14 +81,10 @@ async function mkPrototype (prototypePath, {
     // Create test starter project folder
     await fs.mkdirp(prototypePath)
 
-    // Generate starter project and start
+    // Generate starter project
+    const repoDir = path.resolve(__dirname, '..', '..')
     await exec(
-      'npm i -g'
-    )
-
-    // Generate starter project and start
-    await exec(
-      'govuk-prototype-kit create --version local',
+      `${process.execPath} ${repoDir}/bin/cli create --version local`,
       { cwd: prototypePath, env: { ...process.env, env: 'test' } }
     )
 
