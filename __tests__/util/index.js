@@ -57,9 +57,7 @@ function mkdtempSync () {
 async function mkPrototype (prototypePath, {
   kitPath,
   overwrite = false,
-  allowTracking = undefined,
-  extensions = ['govuk-frontend'],
-  additionalExtensions = []
+  allowTracking = undefined
 } = {}) { // TODO: Use kitPath if provided
   if (fs.existsSync(prototypePath)) {
     if (!overwrite) {
@@ -68,35 +66,27 @@ async function mkPrototype (prototypePath, {
       err.code = 'EEXIST'
       throw err
     } else {
-      fs.rmdir(prototypePath, { recursive: true })
+      fs.remove(prototypePath)
     }
   }
+
+  process.stderr.write(`Creating test kit at ${prototypePath}\n`)
 
   const startTime = Date.now()
 
   try {
-    // Remove previous test starter project
-    await fs.remove(prototypePath)
-
-    // Create test starter project folder
-    await fs.mkdirp(prototypePath)
-
-    // Generate starter project and start
+    // Generate starter project
+    const repoDir = path.resolve(__dirname, '..', '..')
     await exec(
-      'npm i -g'
-    )
-
-    // Generate starter project and start
-    await exec(
-      'govuk-prototype-kit create --version local',
-      { cwd: prototypePath, env: { ...process.env, env: 'test' } }
+      `${process.execPath} bin/cli create --version local ${prototypePath}`,
+      { cwd: repoDir, env: { ...process.env, env: 'test' } }
     )
 
     if (allowTracking !== undefined) {
-      await fs.writeFile(path.join(prototypePath, 'usage-data-config.json'), `{ "collectUsageData": ${!!allowTracking}}`)
+      await fs.writeJson(path.join(prototypePath, 'usage-data-config.json'), { collectUsageData: !!allowTracking })
     }
 
-    console.log(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds`)
+    process.stderr.write(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds\n`)
   } catch (error) {
     console.error(error.message)
     console.error(error.stack)

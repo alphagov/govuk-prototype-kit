@@ -57,10 +57,10 @@ ${prog} start`
 const getInstallLocation = () => {
   const chosenPath = argv.paths[0]
   if (chosenPath) {
-    if (chosenPath.startsWith('/')) {
+    if (path.isAbsolute(chosenPath)) {
       return chosenPath
     }
-    return path.join(currentDirectory, chosenPath)
+    return path.resolve(chosenPath)
   }
   return currentDirectory
 }
