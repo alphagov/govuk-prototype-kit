@@ -34,7 +34,7 @@ describe('Single Extension Test', async () => {
   before(() => {
     waitForApplication()
     cleanup()
-    createFile(extensionBazView, {data: extensionBazViewMarkup})
+    createFile(extensionBazView, { data: extensionBazViewMarkup })
     cy.task('createFile', { filename: extensionBazView, data: extensionBazViewMarkup })
     installPlugin(`file:${extensionLocation}`)
   })
