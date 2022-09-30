@@ -24,7 +24,7 @@
     "start.js"
   ],
   "scripts": {
-    "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm start",
+    "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm run dev",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
     "start:package": "npm run tmp-kit",
     "lint": "standard '**/*.js' bin/cli",
@@ -32,7 +32,7 @@
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
     "test:heroku": "start-server-and-test test:heroku:start 3000 test:smoke",
-    "test:heroku:start": "node scripts/create-prototype-and-start 'npx --yes heroku local --port 3000'",
+    "test:heroku:start": "cross-env USE_AUTH=false USE_HTTPS=false node scripts/create-prototype-and-start 'npx --yes heroku local --port 3000'",
     "test:acceptance": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test test:acceptance:start 3000 cypress:run",
     "test:acceptance:open": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test test:acceptance:start 3000 cypress:open",
     "test:acceptance:start": "node cypress/scripts/run-starter-prototype",

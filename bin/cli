@@ -166,9 +166,9 @@ const getChosenKitDependency = () => {
       copyFile('LICENCE.txt'),
       updatePackageJson(path.join(installDirectory, 'package.json'))
     ])
-  } else if (argv.command === 'start' || argv.command === 'dev') {
+  } else if (argv.command === 'dev') {
     require('../start')
-  } else if (argv.command === 'serve') {
+  } else if (argv.command === 'start' || argv.command === 'serve') {
     process.env.NODE_ENV = process.env.NODE_ENV || 'production'
     require('../lib/build/tasks.js').generateAssetsSync()
     require('../listen-on-port')

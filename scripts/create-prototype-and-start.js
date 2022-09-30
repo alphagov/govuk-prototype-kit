@@ -13,7 +13,7 @@ if (process.argv.length > 3) {
   process.exit(2)
 }
 
-const command = process.argv.length === 3 ? process.argv[2] : 'npm start'
+const command = process.argv.length === 3 ? process.argv[2] : 'npm run dev'
 
 console.log(`creating test prototype in ${testDir}`)
 console.log('and after changing directory')
