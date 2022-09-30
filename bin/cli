@@ -91,9 +91,27 @@ const getChosenKitDependency = () => {
     }
   }
   return defaultValue
-};
+}
 
-(async () => {
+// do some heuristics to try and catch situations where a user has run
+// `npm start` (the wrong command) locally and warn them.
+function warnIfNpmStart (argv, env) {
+  if (
+    argv.command === 'start' && // if user ran serve script then assume they know what they want
+    env.NODE_ENV !== 'production' && // some hosting services set NODE_ENV
+    env.PORT === undefined && // some hosting services set PORT
+    env.PASSWORD === undefined // user should have set PASSWORD when setting up hosting
+  ) {
+    console.warn('Warning: It looks like you may have run the command `npm start` locally.')
+    console.warn('try running `npm run dev`')
+    console.warn()
+    console.warn('If you see the above warning when trying to host your prototype online,')
+    console.warn('it may be that your hosting service needs further configuration.')
+    console.warn()
+  }
+}
+
+;(async () => {
   if (argv.command === 'create') {
     // Install as a two-stage bootstrap process.
     //
@@ -169,6 +187,7 @@ const getChosenKitDependency = () => {
   } else if (argv.command === 'dev') {
     require('../start')
   } else if (argv.command === 'start' || argv.command === 'serve') {
+    warnIfNpmStart(argv, process.env)
     process.env.NODE_ENV = process.env.NODE_ENV || 'production'
     require('../lib/build/tasks.js').generateAssetsSync()
     require('../listen-on-port')
