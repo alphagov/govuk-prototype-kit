@@ -23,6 +23,9 @@
 
 ### New Features
 
+- [#1637: Add serve and dev scripts](https://github.com/alphagov/govuk-prototype-kit/pull/1637)
+  - Add `govuk-prototype-kit dev` and `govuk-prototype-kit serve` commands
+  - After creating prototype with starter files user can run `npm run dev` or `npm run serve`
 - [#1476: Update to GOV.UK Frontend 4.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/1476)
 - [#1624: V13 pre refactor](https://github.com/alphagov/govuk-prototype-kit/pull/1624)
   - Add support for globals
