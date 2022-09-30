@@ -47,6 +47,7 @@
     "require-dir": "^1.0.0",
     "sass": "^1.49.10",
     "sync-request": "^6.0.0",
+    "task-list-component": "^0.0.2",
     "universal-analytics": "^0.5.3",
     "uuid": "^8.3.2"
   },
