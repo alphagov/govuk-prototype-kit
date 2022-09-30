@@ -13,12 +13,14 @@
 // the project's config changing)
 const fs = require('fs')
 const fsp = fs.promises
+const os = require('os')
 const path = require('path')
 
 const waitOn = require('wait-on')
 const extract = require('extract-zip')
 const https = require('https')
 
+const { getKitTestDir } = require('../../__tests__/util')
 const { sleep } = require('../e2e/utils')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
@@ -57,8 +59,8 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
-  config.env.tempFolder = path.join(__dirname, '..', 'temp')
+  config.env.projectFolder = getKitTestDir()
+  config.env.tempFolder = path.resolve(os.tmpdir(), 'cypress', 'temp')
 
   const packagePath = path.join(config.env.projectFolder, 'package.json')
   const packageContent = fs.readFileSync(packagePath, 'utf8')

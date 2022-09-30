@@ -41,6 +41,13 @@ function mkdtempSync () {
   return tempdir
 }
 
+function getKitTestDir () {
+  return path.resolve(
+    process.env.KIT_TEST_DIR ||
+    path.join(os.tmpdir(), 'govuk-prototype-kit-test')
+  )
+}
+
 /**
  * Create a test prototype from the current release archive
  *
@@ -122,6 +129,7 @@ async function startPrototype (prototypePath) {
 }
 
 module.exports = {
+  getKitTestDir,
   mkdtemp,
   npmInstall,
   mkdtempSync,
