@@ -5,6 +5,7 @@ const os = require('os')
 const path = require('path')
 
 const { spawn } = require('../lib/exec')
+const { generateAssetsSync } = require('../lib/build/tasks.js')
 const { runUpgrade } = require('../lib/upgradeToV13')
 const { parse } = require('./utils/argvParser')
 
@@ -32,6 +33,8 @@ public/
 
 const packageJson = {
   scripts: {
+    dev: 'govuk-prototype-kit dev',
+    serve: 'govuk-prototype-kit serve',
     start: 'govuk-prototype-kit start'
   }
 }
@@ -49,6 +52,8 @@ ${prog} create
 ${prog} create /exact/location/to/create/in
 ${prog} create relative/location/to/create/in
 ${prog}
+${prog} dev
+${prog} serve
 ${prog} start`
   )
 }
@@ -160,8 +165,12 @@ const getChosenKitDependency = () => {
       copyFile('LICENCE.txt'),
       updatePackageJson(path.join(installDirectory, 'package.json'))
     ])
-  } else if (argv.command === 'start') {
+  } else if (argv.command === 'start' || argv.command === 'dev') {
     require('../start')
+  } else if (argv.command === 'serve') {
+    process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+    generateAssetsSync()
+    require('../listen-on-port')
   } else if (argv.command === 'upgrade') {
     await runUpgrade()
   } else {
