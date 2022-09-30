@@ -70,7 +70,7 @@ async function mkPrototype (prototypePath, {
     }
   }
 
-  process.stderr.write(`Creating test kit at ${prototypePath}\n`)
+  process.stderr.write(`Creating test prototype at ${prototypePath}\n`)
 
   const startTime = Date.now()
 
