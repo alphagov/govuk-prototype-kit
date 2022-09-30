@@ -79,7 +79,7 @@ async function mkPrototype (prototypePath, {
     const repoDir = path.resolve(__dirname, '..', '..')
     await exec(
       `"${process.execPath}" bin/cli create --version local ${prototypePath}`,
-      { cwd: repoDir, env: { ...process.env, env: 'test' } }
+      { cwd: repoDir, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
     )
 
     if (allowTracking !== undefined) {
@@ -103,21 +103,21 @@ async function installExtensions (prototypePath, extensionNames) {
   }
   return exec(
     `npm install ${extensionNamesProcessed.join(' ')}`,
-    { cwd: prototypePath, env: { ...process.env, env: 'test' } }
+    { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
 
 async function npmInstall (pathToRunInstallIn) {
   return exec(
     'npm install',
-    { cwd: pathToRunInstallIn, env: { ...process.env, env: 'test' } }
+    { cwd: pathToRunInstallIn, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
 
 async function startPrototype (prototypePath) {
   return exec(
     'npm start',
-    { cwd: prototypePath, env: { ...process.env, env: 'test' } }
+    { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
 
