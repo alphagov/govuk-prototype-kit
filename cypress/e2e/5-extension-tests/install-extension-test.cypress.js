@@ -5,6 +5,7 @@ const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const extensionBazView = path.join(appViews, 'extension-baz.html')
 const fixtures = path.join(Cypress.config('fixturesFolder'))
 const extensionLocation = path.join(fixtures, 'extensions', 'extension-baz')
+const extensionPackageJson = path.join(extensionLocation, 'package.json')
 
 const CYAN = 'rgb(0, 255, 255)'
 const MAGENTA = 'rgb(255, 0, 255)'
@@ -34,9 +35,13 @@ describe('Single Extension Test', async () => {
   before(() => {
     waitForApplication()
     cleanup()
+    cy.task('notExistsFile', { filename: extensionPackageJson, timeout: 15000 })
+    cy.wait(5000)
     createFile(extensionBazView, { data: extensionBazViewMarkup })
     cy.task('createFile', { filename: extensionBazView, data: extensionBazViewMarkup })
     installPlugin(`file:${extensionLocation}`)
+    cy.task('existsFile', { filename: extensionPackageJson, timeout: 15000 })
+    cy.wait(5000)
   })
 
   after(() => {

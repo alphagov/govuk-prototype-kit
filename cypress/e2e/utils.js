@@ -26,11 +26,17 @@ const createFile = (filename, options) => {
 function uninstallPlugin (plugin) {
   cy.task('log', `Uninstalling ${plugin}`)
   cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
+  cy.task('pluginUninstalled', { plugin, timeout: 15000 })
 }
 
-function installPlugin (plugin) {
-  cy.task('log', `Installing ${plugin}`)
-  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}`)
+function installPlugin (plugin, version = '') {
+  cy.task('log', `Installing ${plugin}${version}`)
+  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}${version}`)
+  if (plugin.startsWith('file:')) {
+    plugin = plugin.substring(plugin.lastIndexOf('/') + 1)
+  }
+  cy.task('log', `Waiting for ${plugin}${version} to be installed`)
+  cy.task('pluginInstalled', { plugin, timeout: 15000 })
 }
 
 module.exports = {

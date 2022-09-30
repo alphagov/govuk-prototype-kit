@@ -1,23 +1,17 @@
-const { waitForApplication, deleteFile, copyFile, uninstallPlugin, installPlugin } = require('../utils')
-const path = require('path')
-const templates = path.join(Cypress.config('fixturesFolder'), 'views')
-const contentTemplate = path.join(templates, 'content.html')
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
-const contentView = path.join(appViews, 'content.html')
+const { waitForApplication, uninstallPlugin, installPlugin } = require('../utils')
 const managePluginsPagePath = '/manage-prototype/plugins'
-const contentPagePath = '/content'
-const plugin = 'hmrc-frontend'
-const pluginName = 'HMRC Frontend'
-const WHITE = 'rgb(255, 255, 255)'
-
-const pluginPackageJson = path.join(Cypress.env('projectFolder'), 'node_modules', plugin, 'package.json')
+const plugin = '@govuk-prototype-kit/step-by-step'
+const version1 = '@1.0.0'
+const version2 = '@2.0.0'
+const pluginName = 'Step By Step'
 
 const cleanup = () => {
-  deleteFile(contentView)
-  uninstallPlugin(plugin)
+  // Make sure plugin version 1 is installed
+  installPlugin(plugin, version1)
+  cy.wait(5000)
 }
 
-describe('install available plugin', () => {
+describe('Management plugins: ', () => {
   before(() => {
     cy.task('log', 'Visit the manage prototype plugins page')
     cleanup()
@@ -28,48 +22,34 @@ describe('install available plugin', () => {
     cleanup()
   })
 
-  it(`Install and uninstall the ${plugin} plugin from the management plugins page`, () => {
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(1)
-      .should('contains.text', 'Available')
+  it(`Make sure ${plugin}${version1} is installed and it can be upgraded to ${plugin}${version2} and then uninstalled`, () => {
+    cy.task('log', `Make sure ${plugin}${version1} is installed and it can be upgraded to ${plugin}${version2} and then uninstalled`)
+    cy.get(`a[href*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
+      .should('contains.text', 'Uninstall')
+    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}&mode=upgrade"]`)
+      .should('contains.text', 'Upgrade')
+  })
 
-    cy.task('log', `Install the ${plugin} plugin`)
-    cy.get(`a[href*="/install?package=${plugin}"]`)
-      .should('contains.text', 'Install').click()
+  it(`Upgrade the ${plugin} plugin to ${plugin}${version2}`, () => {
+    cy.task('log', `Upgrade the ${plugin} plugin`)
+    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}&mode=upgrade"]`)
+      .should('contains.text', 'Upgrade').click()
 
     cy.task('log', `The ${plugin} plugin should be displayed`)
     cy.get('h1')
-      .should('contains.text', `Install ${pluginName}`)
+      .should('contains.text', `Upgrade ${pluginName}`)
 
     cy.get('code')
-      .should('have.text', `npm install ${plugin}`)
+      .should('have.text', `npm install ${plugin}${version2}`)
 
-    installPlugin(plugin)
+    installPlugin(plugin, version2)
 
-    cy.task('existsFile', { filename: pluginPackageJson, timeout: 15000 })
+    cy.wait(10000)
 
-    cy.task('log', `Test the ${plugin} plugin in a page`)
+    waitForApplication(managePluginsPagePath)
 
-    copyFile(contentTemplate, contentView)
-
-    cy.task('replaceTextInFile', {
-      filename: contentView,
-      originalText: '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}',
-      newText: '{% extends "hmrc/layouts/account-header.html" %}'
-    })
-
-    waitForApplication(contentPagePath)
-
-    cy.get('nav.hmrc-account-menu', { timeout: 20000 })
-      .should('contains.text', 'Account home')
-      .should('have.css', 'background-color', WHITE)
-
-    cy.visit(managePluginsPagePath)
-
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(0)
-      .should('contains.text', 'Installed')
-
-    cy.task('log', `Uninstall the ${plugin} plugin`)
-    cy.get(`a[href*="/uninstall?package=${plugin}"]`)
+    cy.task('log', `Uninstall the ${plugin}${version2} plugin`)
+    cy.get(`a[href*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Uninstall').click()
 
     cy.task('log', `The ${plugin} plugin should be displayed`)
@@ -81,15 +61,12 @@ describe('install available plugin', () => {
 
     uninstallPlugin(plugin)
 
-    cy.task('notExistsFile', { filename: pluginPackageJson, timeout: 15000 })
+    cy.wait(5000)
 
     waitForApplication(managePluginsPagePath)
 
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(1)
-      .should('contains.text', 'Available')
-
     cy.task('log', `Install the ${plugin} plugin`)
-    cy.get(`a[href*="/install?package=${plugin}"]`)
+    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Install')
   })
 })
