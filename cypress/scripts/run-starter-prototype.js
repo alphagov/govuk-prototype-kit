@@ -20,5 +20,5 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
     `"file:${fooLocation}"`,
     `"file:${barLocation}"`]
   )
-  startPrototype(testDir)
+  await startPrototype(testDir)
 })()
