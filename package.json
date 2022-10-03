@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm start",
-    "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
+    "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli or run \"npm run tmp-kit\".'",
     "start:package": "npm run tmp-kit",
     "lint": "standard '**/*.js' bin/cli",
     "rapidtest": "jest --bail",

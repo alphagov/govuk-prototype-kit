@@ -29,9 +29,9 @@ describe('edit home page', () => {
   it(`The home page heading should change to "${newText}" and the task should be set to "Done"`, () => {
     cy.task('log', 'Visit the manage prototype templates page')
 
-    cy.get('.app-task-list__item')
+    cy.get('.govuk-prototype-kit-task-list__item')
       .eq(1).should('contains.text', appHomePath)
-      .get('.app-task-list__tag').should('contains.text', 'To do')
+      .get('.govuk-prototype-kit-task-list__tag').should('contains.text', 'To do')
 
     cy.visit('/index')
     cy.get('.govuk-heading-xl').should('contains.text', originalText)
@@ -40,9 +40,9 @@ describe('edit home page', () => {
 
     waitForApplication(managePagePath)
 
-    cy.get('.app-task-list__item')
+    cy.get('.govuk-prototype-kit-task-list__item')
       .eq(1).should('contains.text', appHomePath)
-      .get('.app-task-list__tag').should('contains.text', 'Done')
+      .get('.govuk-prototype-kit-task-list__tag').should('contains.text', 'Done')
 
     cy.visit('/index')
     cy.get('.govuk-heading-xl').should('contains.text', newText)
