@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Breaking changes
+- [#1648: Change default session store to cookie store when in production mode](https://github.com/alphagov/govuk-prototype-kit/pull/1648) When hosted online the kit will now preserve user session data between server restarts by default.
 - [#1617: Making most files optional](https://github.com/alphagov/govuk-prototype-kit/pull/1617) This alongside other work we've been doing allows users of the kit to delete files they're not using.
 - [#1589: Create management pages](https://github.com/alphagov/govuk-prototype-kit/issues/1589) Providing pages for the user to manage their prototype.
 - [#1615: Removing GOVUK Frontend specific integration](https://github.com/alphagov/govuk-prototype-kit/pull/1615) GOV.UK Frontend now integrates in the same way as any other plugin can.  We're allowing SASS settings to be set before the plugins run if they're put in app/assets/sass/settings.scss.
