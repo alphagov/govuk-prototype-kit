@@ -116,7 +116,7 @@ async function npmInstall (pathToRunInstallIn) {
 
 async function startPrototype (prototypePath) {
   return exec(
-    'npm start',
+    'npm run dev',
     { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
