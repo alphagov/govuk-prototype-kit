@@ -44,7 +44,6 @@ if (isSecure) {
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = config.useAutoStoreData
-app.locals.useCookieSessionStore = config.useCookieSessionStore
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.

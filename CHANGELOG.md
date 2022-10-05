@@ -3,7 +3,7 @@
 ## Unreleased
 
 ### Breaking changes
-- [#1648: Change default session store to cookie store when in production mode](https://github.com/alphagov/govuk-prototype-kit/pull/1648) When hosted online the kit will now preserve user session data between server restarts by default.
+- [#1658: Remove support for cookie session store](https://github.com/alphagov/govuk-prototype-kit/pull/1658) Option `useCookieSessionStore` is no longer supported.
 - [#1638: Make serve default command](https://github.com/alphagov/govuk-prototype-kit/pull/1638)
   - Running `npm start` after creating starter prototype will now run 'production' command
   - Users now need to run `npm run dev` when they want to start their prototype on their local machine
