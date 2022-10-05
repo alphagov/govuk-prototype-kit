@@ -40,7 +40,7 @@ v8.0.0 // After implementing backwards incompatible changes
 
 7. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
 
-8. Run `npm install` to update `package-lock.json`.
+8. Run `npm install` to update `npm-shrinkwrap.json`.
 
 9. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
 
