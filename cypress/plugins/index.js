@@ -94,7 +94,7 @@ module.exports = (on, config) => {
 
   const makeSureCypressCanInterpretTheResult = () => null
 
-  const existsFile = (filename, timeout = 0) => fsp.access(filename)
+  const existsFile = (filename) => fsp.access(filename)
 
   const notExistsFile = (filename, timeout = 0) => fsp.access(filename)
     .then(() => sleep(timeout))
@@ -148,6 +148,29 @@ module.exports = (on, config) => {
     })
   }
 
+  const getPathFromProjectRoot = (...all) => path.join(...[config.env.projectFolder].concat(all))
+  const pathToPackageConfigFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'govuk-prototype-kit.config.json')
+
+  const pluginInstalled = (plugin, timeout) => {
+    const delay = 1000
+    return new Promise((resolve) => {
+      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
+      console.log(`Looking for ${plugin} in ${pkgConfigFilePath}`)
+      if (pkgConfigFilePath) {
+        existsFile(pkgConfigFilePath)
+          .then(() => resolve(makeSureCypressCanInterpretTheResult))
+      } else {
+        if (timeout < delay) {
+          resolve()
+        } else {
+          setTimeout(() => {
+            return pluginInstalled(plugin, timeout - delay)
+          }, delay)
+        }
+      }
+    })
+  }
+
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)
       .then(() => fsp.copyFile(source, target))
@@ -173,6 +196,15 @@ module.exports = (on, config) => {
 
     notExistsFile: ({ filename, timeout }) => notExistsFile(filename, timeout)
       .then(makeSureCypressCanInterpretTheResult),
+
+    pluginInstalled: ({ plugin, timeout }) => pluginInstalled(plugin, timeout)
+      .then(makeSureCypressCanInterpretTheResult),
+
+    pluginUninstalled: ({ plugin, timeout }) => {
+      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
+      return notExistsFile(pkgConfigFilePath, timeout)
+        .then(makeSureCypressCanInterpretTheResult)
+    },
 
     waitUntilAppRestarts: (config) => {
       const { timeout = 20000 } = config || {}

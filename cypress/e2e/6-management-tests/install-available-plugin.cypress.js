@@ -1,45 +1,55 @@
-const { waitForApplication } = require('../utils')
-const path = require('path')
+const { waitForApplication, uninstallPlugin, installPlugin } = require('../utils')
 const managePluginsPagePath = '/manage-prototype/plugins'
-const plugin = 'hmrc-frontend'
-const pluginName = 'HMRC Frontend'
+const plugin = '@govuk-prototype-kit/step-by-step'
+const version1 = '@1.0.0'
+const version2 = '@2.0.0'
+const pluginName = 'Step By Step'
 
-const pluginPackageJson = path.join(Cypress.env('projectFolder'), 'node_modules', plugin, 'package.json')
+const cleanup = () => {
+  // Make sure plugin version 1 is installed
+  installPlugin(plugin, version1)
+  cy.wait(5000)
+}
 
-describe('install available plugin', () => {
+describe('Management plugins: ', () => {
   before(() => {
     cy.task('log', 'Visit the manage prototype plugins page')
+    cleanup()
     waitForApplication(managePluginsPagePath)
   })
 
-  it(`Install and uninstall the ${plugin} plugin from the management plugins page`, () => {
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(1)
-      .should('contains.text', 'Available')
+  after(() => {
+    cleanup()
+  })
 
-    cy.task('log', `Install the ${plugin} plugin`)
-    cy.get(`a[href*="/install?package=${plugin}"]`)
-      .should('contains.text', 'Install').click()
+  it(`Make sure ${plugin}${version1} is installed and it can be upgraded to ${plugin}${version2} and then uninstalled`, () => {
+    cy.task('log', `Make sure ${plugin}${version1} is installed and it can be upgraded to ${plugin}${version2} and then uninstalled`)
+    cy.get(`a[href*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
+      .should('contains.text', 'Uninstall')
+    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}&mode=upgrade"]`)
+      .should('contains.text', 'Upgrade')
+  })
+
+  it(`Upgrade the ${plugin} plugin to ${plugin}${version2}`, () => {
+    cy.task('log', `Upgrade the ${plugin} plugin`)
+    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}&mode=upgrade"]`)
+      .should('contains.text', 'Upgrade').click()
 
     cy.task('log', `The ${plugin} plugin should be displayed`)
     cy.get('h1')
-      .should('contains.text', `Install ${pluginName}`)
+      .should('contains.text', `Upgrade ${pluginName}`)
 
     cy.get('code')
-      .should('have.text', `npm install ${plugin}`)
+      .should('have.text', `npm install ${plugin}${version2}`)
 
-    cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}`)
+    installPlugin(plugin, version2)
 
-    cy.task('existsFile', { filename: pluginPackageJson, timeout: 15000 })
-
-    cy.wait(5000)
+    cy.wait(10000)
 
     waitForApplication(managePluginsPagePath)
 
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(0)
-      .should('contains.text', 'Installed')
-
-    cy.task('log', `Uninstall the ${plugin} plugin`)
-    cy.get(`a[href*="/uninstall?package=${plugin}"]`)
+    cy.task('log', `Uninstall the ${plugin}${version2} plugin`)
+    cy.get(`a[href*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Uninstall').click()
 
     cy.task('log', `The ${plugin} plugin should be displayed`)
@@ -49,19 +59,14 @@ describe('install available plugin', () => {
     cy.get('code')
       .should('have.text', `npm uninstall ${plugin}`)
 
-    cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
-
-    cy.task('notExistsFile', { filename: pluginPackageJson, timeout: 15000 })
+    uninstallPlugin(plugin)
 
     cy.wait(5000)
 
     waitForApplication(managePluginsPagePath)
 
-    cy.get('h2.govuk-heading-m', { timeout: 20000 }).eq(1)
-      .should('contains.text', 'Available')
-
     cy.task('log', `Install the ${plugin} plugin`)
-    cy.get(`a[href*="/install?package=${plugin}"]`)
+    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Install')
   })
 })
