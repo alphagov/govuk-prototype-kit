@@ -11,8 +11,6 @@ const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
 const nunjucks = require('nunjucks')
-const sessionInCookie = require('client-sessions')
-const sessionInMemory = require('express-session')
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
@@ -62,31 +60,8 @@ app.locals.extensionConfig = extensions.getAppConfig({
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
 
-// Session uses service name to avoid clashes with other prototypes
-const sessionName = 'govuk-prototype-kit-' + (Buffer.from(app.locals.serviceName, 'utf8')).toString('hex')
-const sessionHours = 4
-const sessionOptions = {
-  secret: sessionName,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * sessionHours,
-    secure: isSecure
-  }
-}
-
-// Support session data in cookie or memory
-if (config.useCookieSessionStore) {
-  app.use(sessionInCookie(Object.assign(sessionOptions, {
-    cookieName: sessionName,
-    proxy: true,
-    requestKey: 'session'
-  })))
-} else {
-  app.use(sessionInMemory(Object.assign(sessionOptions, {
-    name: sessionName,
-    resave: false,
-    saveUninitialized: false
-  })))
-}
+// Support session data storage
+middlewareFunctions.push(sessionUtils.getSessionMiddleware())
 
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
