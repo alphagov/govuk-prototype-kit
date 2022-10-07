@@ -13,11 +13,17 @@
         {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
       </h1>
       <p>
-        In terminal, run:</p>
-      <p><code>{{ command }}</code></p>
+        In terminal, press <strong>ctrl + c</strong> to stop your prototype, then run:
+      </p>
       <p>
-        When you've {{ verb.status }} the plug-in, restart your prototype in the terminal by typing: npx govuk-prototype-kit start</p>
+        <code>{{ command }}</code>
+      </p>
       <p>
+        When you've {{ verb.status }} the plug-in, restart your prototype in the terminal by typing:
+      </p>
+      <p>
+        <code>npm run dev</code>
+      </p>
     </div>
   </div>
 {% endblock %}
