@@ -24,6 +24,14 @@
       <p>
         <code>npm run dev</code>
       </p>
+
+      <p>Or use the {{ verb.para }} button below</p>
+
+      <form action="{{ currentUrl }}" method="post">
+        {{ govukButton({
+          text: verb.title + " " + chosenPlugin.name
+        }) }}
+      </form>
     </div>
   </div>
 {% endblock %}

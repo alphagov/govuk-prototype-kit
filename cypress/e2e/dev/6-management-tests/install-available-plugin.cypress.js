@@ -1,9 +1,10 @@
-const { waitForApplication, uninstallPlugin, installPlugin } = require('../../utils')
+const { waitForApplication, installPlugin } = require('../../utils')
 const managePluginsPagePath = '/manage-prototype/plugins'
 const plugin = '@govuk-prototype-kit/step-by-step'
 const version1 = '@1.0.0'
 const version2 = '@2.1.0'
 const pluginName = 'Step By Step'
+const pluginScope = 'GOV.UK Prototype Kit'
 
 const cleanup = () => {
   // Make sure plugin version 1 is installed
@@ -42,14 +43,18 @@ describe('Management plugins: ', () => {
     cy.get('code').eq(0)
       .should('have.text', `npm install ${plugin}${version2}`)
 
-    installPlugin(plugin, version2)
+    cy.get('button').eq(0)
+      .should('contains.text', `Upgrade ${pluginName}`).click()
 
-    cy.wait(10000)
+    cy.get('h1')
+      .should('contains.text', `Upgrading ${pluginName}  from ${pluginScope}`)
 
-    waitForApplication(managePluginsPagePath)
+    cy.task('log', `Waiting for ${pluginName} to be upgraded`)
+
+    cy.task('pluginInstalled', { plugin, timeout: 15000 })
 
     cy.task('log', `Uninstall the ${plugin}${version2} plugin`)
-    cy.get(`a[href*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
+    cy.get(`a[href*="/uninstall?package=${encodeURIComponent(plugin)}"]`, { timeout: 20000 })
       .should('contains.text', 'Uninstall').click()
 
     cy.task('log', `The ${plugin} plugin should be displayed`)
@@ -59,14 +64,18 @@ describe('Management plugins: ', () => {
     cy.get('code').eq(0)
       .should('have.text', `npm uninstall ${plugin}`)
 
-    uninstallPlugin(plugin)
+    cy.get('button').eq(0)
+      .should('contains.text', `Uninstall ${pluginName}`).click()
 
-    cy.wait(5000)
+    cy.get('h1')
+      .should('contains.text', `Uninstalling ${pluginName}  from ${pluginScope}`)
 
-    waitForApplication(managePluginsPagePath)
+    cy.task('log', `Waiting for ${pluginName} to be uninstalled`)
+
+    cy.task('pluginUninstalled', { plugin, timeout: 15000 })
 
     cy.task('log', `Install the ${plugin} plugin`)
-    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}"]`)
+    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}"]`, { timeout: 20000 })
       .should('contains.text', 'Install')
   })
 })
