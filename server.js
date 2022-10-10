@@ -78,11 +78,6 @@ var appViews = extensions.getAppViews([
   path.join(projectDir, '/app/views/')
 ])
 
-if (process.env.IS_INTEGRATION_TEST) {
-  appViews.push(path.join(packageDir, 'lib', 'nunjucks'))
-  appViews.push(path.join(packageDir, 'prototype-starter', 'app', 'views'))
-}
-
 var nunjucksConfig = {
   autoescape: true,
   noCache: true,
