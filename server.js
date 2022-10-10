@@ -49,6 +49,10 @@ app.locals.useAutoStoreData = config.useAutoStoreData
 app.locals.useCookieSessionStore = config.useCookieSessionStore
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
+app.locals.GOVUKPrototypeKit = {}
+if (extensions.legacyGovukFrontendFixesNeeded()) {
+  app.locals.GOVUKPrototypeKit.legacyGovukFrontendFixesNeeded = true
+}
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 const scripts = []
 if (existsSync(path.join(projectDir, 'app', 'assets', 'javascripts', 'application.js'))) {
