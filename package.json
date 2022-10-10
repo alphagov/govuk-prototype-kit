@@ -48,7 +48,6 @@
     "body-parser": "^1.14.1",
     "browser-sync": "^2.27.10",
     "chokidar": "^3.5.3",
-    "client-sessions": "^0.8.0",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.2",
     "del": "^6.0.0",
@@ -67,6 +66,7 @@
     "portscanner": "^2.1.1",
     "require-dir": "^1.0.0",
     "sass": "^1.49.10",
+    "session-file-store": "^1.5.0",
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.5.3",
     "uuid": "^8.3.2"
