@@ -39,7 +39,7 @@ describe('Management plugins: ', () => {
     cy.get('h1')
       .should('contains.text', `Upgrade ${pluginName}`)
 
-    cy.get('code')
+    cy.get('code').eq(0)
       .should('have.text', `npm install ${plugin}${version2}`)
 
     installPlugin(plugin, version2)
@@ -56,7 +56,7 @@ describe('Management plugins: ', () => {
     cy.get('h1')
       .should('contains.text', `Uninstall ${pluginName}`)
 
-    cy.get('code')
+    cy.get('code').eq(0)
       .should('have.text', `npm uninstall ${plugin}`)
 
     uninstallPlugin(plugin)

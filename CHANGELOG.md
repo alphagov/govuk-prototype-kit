@@ -5,6 +5,13 @@
 ### Breaking changes
 - [#1640: Fixing govuk frontend until they release update](https://github.com/alphagov/govuk-prototype-kit/pull/1640) We have made the plugin framework powerful enough to handle everything govuk-frontend needs but they haven't yet implemented their side of this, this change allows current and previous versions of govuk-frontend to work with the kit.  You'll need to import components before you can use them until govuk-frontend release a version which imports them automatically.  
 - [#1648: Change default session store to cookie store when in production mode](https://github.com/alphagov/govuk-prototype-kit/pull/1648) When hosted online the kit will now preserve user session data between server restarts by default.
+- [#1658: Use file store for session data](https://github.com/alphagov/govuk-prototype-kit/pull/1658)
+  - When running locally the kit will now preserve user session data between restarts
+  - Option `useCookieSessionStore` is no longer supported
+- [#1638: Make serve default command](https://github.com/alphagov/govuk-prototype-kit/pull/1638)
+  - Running `npm start` after creating starter prototype will now run 'production' command
+  - Users now need to run `npm run dev` when they want to start their prototype on their local machine
+  - We try and warn users in some circumstances where we think they may have run `npm start` accidentally
 - [#1617: Making most files optional](https://github.com/alphagov/govuk-prototype-kit/pull/1617) This alongside other work we've been doing allows users of the kit to delete files they're not using.
 - [#1589: Create management pages](https://github.com/alphagov/govuk-prototype-kit/issues/1589) Providing pages for the user to manage their prototype.
 - [#1615: Removing GOVUK Frontend specific integration](https://github.com/alphagov/govuk-prototype-kit/pull/1615) GOV.UK Frontend now integrates in the same way as any other plugin can.  We're allowing SASS settings to be set before the plugins run if they're put in app/assets/sass/settings.scss.
