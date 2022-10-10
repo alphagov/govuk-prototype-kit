@@ -1,5 +1,8 @@
 {
-  "assets": "/lib/assets/images",
+  "assets": [
+    "/lib/assets/images",
+    "/lib/assets/javascripts/optional"
+  ],
   "nunjucksPaths": "/lib/nunjucks",
   "nunjucksFilters": "/lib/filters/coreFilters",
   "sass": "/lib/assets/sass/internal/manage-prototype.scss",
