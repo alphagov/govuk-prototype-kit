@@ -194,7 +194,7 @@ function warnIfNpmStart (argv, env) {
     require('../lib/build/tasks.js').generateAssetsSync()
     require('../listen-on-port')
   } else if (argv.command === 'migrate') {
-    await require('../lib/migrator').runUpgrade()
+    await require('../lib/migrator').migrate()
   } else {
     usage()
     process.exitCode = 2
