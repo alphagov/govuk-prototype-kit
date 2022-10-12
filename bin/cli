@@ -52,10 +52,12 @@ Usage:
 ${prog} create
 ${prog} create /exact/location/to/create/in
 ${prog} create relative/location/to/create/in
-${prog}
+
 ${prog} dev
 ${prog} serve
-${prog} start`
+${prog} start
+
+${prog} migrate`
   )
 }
 
@@ -191,8 +193,8 @@ function warnIfNpmStart (argv, env) {
     process.env.NODE_ENV = process.env.NODE_ENV || 'production'
     require('../lib/build/tasks.js').generateAssetsSync()
     require('../listen-on-port')
-  } else if (argv.command === 'upgrade') {
-    await require('../lib/upgradeToV13').runUpgrade()
+  } else if (argv.command === 'migrate') {
+    await require('../lib/migrator').migrate()
   } else {
     usage()
     process.exitCode = 2
