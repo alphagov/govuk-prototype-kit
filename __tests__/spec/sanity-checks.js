@@ -1,9 +1,9 @@
 /* eslint-env jest */
 
 const assert = require('assert')
-const fs = require('fs')
 const path = require('path')
 
+const fs = require('fs-extra')
 const request = require('supertest')
 const sass = require('sass')
 
@@ -11,15 +11,12 @@ const { mkPrototype, mkdtempSync } = require('../util')
 const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
 let app
 
-const { generateAssetsSync } = require('../../lib/build/tasks')
-const fse = require('fs-extra')
-const { projectDir } = require('../../lib/path-utils')
+process.env.KIT_PROJECT_DIR = tmpDir
+process.env.IS_INTEGRATION_TEST = 'true'
+
+const { packageDir, projectDir } = require('../../lib/path-utils')
 
 const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
-
-function readFile (pathFromRoot) {
-  return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
-}
 
 /**
  * Basic sanity checks on the dev server
@@ -28,15 +25,17 @@ describe('The Prototype Kit', () => {
   beforeAll(async () => {
     await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
     app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
-    jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
+
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {})
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
-    generateAssetsSync()
+
+    require('../../lib/build/tasks').generateAssetsSync()
   }, createKitTimeout)
 
   it('should call writeFileSync with result css from sass.compile', () => {
-    expect(fse.writeFileSync).toHaveBeenCalledWith(
-      path.join('.tmp', 'public', 'stylesheets', 'application.css'),
-      path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      path.join(projectDir, '.tmp', 'public', 'stylesheets', 'application.css'),
+      path.join(packageDir, 'lib', 'assets', 'sass', 'prototype.scss')
     )
   })
 
@@ -56,13 +55,16 @@ describe('The Prototype Kit', () => {
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
         .get('/extension-assets/govuk-frontend/govuk/all.js')
-        .expect('Content-Type', /application\/javascript; charset=UTF-8/)
         .expect(200)
+        .expect('Content-Type', /application\/javascript; charset=UTF-8/)
         .end(function (err, res) {
           if (err) {
             done(err)
           } else {
-            assert.strictEqual('' + res.text, readFile('node_modules/govuk-frontend/govuk/all.js'))
+            assert.strictEqual(
+              '' + res.text,
+              fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
+            )
             done()
           }
         })
@@ -71,13 +73,16 @@ describe('The Prototype Kit', () => {
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
         .get('/extension-assets/govuk-frontend/govuk/assets/images/favicon.ico')
-        .expect('Content-Type', /image\/x-icon/)
         .expect(200)
+        .expect('Content-Type', /image\/x-icon/)
         .end(function (err, res) {
           if (err) {
             done(err)
           } else {
-            assert.strictEqual('' + res.body, readFile('node_modules/govuk-frontend/govuk/assets/images/favicon.ico'))
+            assert.strictEqual(
+              '' + res.body,
+              fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'assets', 'images', 'favicon.ico'), 'utf8')
+            )
             done()
           }
         })
@@ -103,13 +108,16 @@ describe('The Prototype Kit', () => {
       it('should still allow known assets to be loaded from node_modules', (done) => {
         request(app)
           .get('/extension-assets/govuk-frontend/govuk/all.js')
-          .expect('Content-Type', /application\/javascript; charset=UTF-8/)
           .expect(200)
+          .expect('Content-Type', /application\/javascript; charset=UTF-8/)
           .end(function (err, res) {
             if (err) {
               done(err)
             } else {
-              assert.strictEqual('' + res.text, readFile('node_modules/govuk-frontend/govuk/all.js'))
+              assert.strictEqual(
+                '' + res.text,
+                fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
+              )
               done()
             }
           })

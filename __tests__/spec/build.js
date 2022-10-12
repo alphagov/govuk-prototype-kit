@@ -7,7 +7,13 @@ const path = require('path')
 const del = require('del')
 const sass = require('sass')
 
-const { projectDir } = require('../../lib/path-utils')
+const { mkdtempSync } = require('../util')
+const testDir = path.join(mkdtempSync(), 'build')
+
+process.env.KIT_PROJECT_DIR = testDir
+process.env.IS_INTEGRATION_TEST = 'true'
+
+const { packageDir, projectDir } = require('../../lib/path-utils')
 const { generateAssetsSync } = require('../../lib/build/tasks')
 
 describe('the build pipeline', () => {
@@ -61,11 +67,14 @@ describe('the build pipeline', () => {
         sourceMap: true,
         style: 'expanded'
       }
-      expect(sass.compile).toHaveBeenCalledWith(expect.stringContaining(path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')), expect.objectContaining(options))
+      expect(sass.compile).toHaveBeenCalledWith(
+        expect.stringContaining(path.join(packageDir, 'lib', 'assets', 'sass', 'prototype.scss')),
+        expect.objectContaining(options)
+      )
 
       expect(fse.writeFileSync).toHaveBeenCalledWith(
-        path.join('.tmp', 'public', 'stylesheets', 'application.css'),
-        path.join(projectDir, 'lib', 'assets', 'sass', 'prototype.scss')
+        path.join(projectDir, '.tmp', 'public', 'stylesheets', 'application.css'),
+        path.join(packageDir, 'lib', 'assets', 'sass', 'prototype.scss')
       )
 
       expect(sass.compile).not.toHaveBeenCalledWith(expect.stringContaining(path.join('app', 'assets', 'sass', 'application.scss')), expect.objectContaining(options))

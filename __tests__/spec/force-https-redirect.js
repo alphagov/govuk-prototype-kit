@@ -1,9 +1,17 @@
 /* eslint-env jest */
+const path = require('path')
+
 const request = require('supertest')
 
+const { mkdtempSync } = require('../util')
+const testDir = path.join(mkdtempSync(), 'force-https-redirect')
+
 /* Setup Environment Variables before setting App */
+process.env.IS_INTEGRATION_TEST = 'true'
+process.env.KIT_PROJECT_DIR = testDir
 process.env.NODE_ENV = 'production'
 process.env.USE_HTTPS = 'true'
+
 const app = require('../../server.js')
 
 describe('The Prototype Kit - force HTTPS redirect functionality', () => {
