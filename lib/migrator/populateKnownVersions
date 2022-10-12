@@ -8,7 +8,7 @@ const execHelper = require('./exec')
 const { packageDir } = require('../path-utils')
 const fileToAnalyse = path.join(process.argv[2])
 const tmpDir = path.join(os.tmpdir(), 'govuk-prototype-kit', 'finding-known-files', '' + Date.now())
-const outputDir = path.join(packageDir, 'lib', 'upgradeToV13', 'known-old-versions', fileToAnalyse.split('/').join('-'))
+const outputDir = path.join(packageDir, 'lib', 'migrator', 'known-old-versions', fileToAnalyse.split('/').join('-'))
 
 ;(async () => {
   const exec = command => execHelper.exec(command, { cwd: tmpDir })
