@@ -4,7 +4,7 @@ const path = require('path')
 const os = require('os')
 const fs = require('fs-extra')
 
-const execHelper = require('./exec')
+const execHelper = require('../exec')
 const { packageDir } = require('../path-utils')
 const fileToAnalyse = path.join(process.argv[2])
 const tmpDir = path.join(os.tmpdir(), 'govuk-prototype-kit', 'finding-known-files', '' + Date.now())
