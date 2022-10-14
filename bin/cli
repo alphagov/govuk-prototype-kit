@@ -172,7 +172,6 @@ function warnIfNpmStart (argv, env) {
 
     const installDirectory = process.argv[4]
 
-    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
     const updatePackageJson = async (packageJsonPath) => {
       let newPackageJson = Object.assign({}, packageJson)
       newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
@@ -183,7 +182,6 @@ function warnIfNpmStart (argv, env) {
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
       fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
       fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
-      copyFile('LICENCE.txt'),
       updatePackageJson(path.join(installDirectory, 'package.json'))
     ])
   } else if (argv.command === 'dev') {
