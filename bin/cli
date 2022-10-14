@@ -32,14 +32,6 @@ public/
 .idea
 `
 
-const packageJson = {
-  scripts: {
-    dev: 'govuk-prototype-kit dev',
-    serve: 'govuk-prototype-kit serve',
-    start: 'govuk-prototype-kit start'
-  }
-}
-
 const packageJsonFormat = { encoding: 'utf8', EOL: os.EOL, spaces: 2 }
 
 async function updatePackageJson (packageJsonPath) {
@@ -179,6 +171,14 @@ function warnIfNpmStart (argv, env) {
     const installDirectory = process.argv[4]
 
     const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+    const prototypeStarterDir = path.join(kitRoot, 'prototype-starter')
+    const packageJson = require(path.join(prototypeStarterDir, 'package.json'))
+
+    const updatePackageJson = async (packageJsonPath) => {
+      let newPackageJson = Object.assign({}, packageJson)
+      newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
+      await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+    }
 
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
