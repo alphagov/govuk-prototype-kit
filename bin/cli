@@ -42,6 +42,12 @@ const packageJson = {
 
 const packageJsonFormat = { encoding: 'utf8', EOL: os.EOL, spaces: 2 }
 
+async function updatePackageJson (packageJsonPath) {
+  let newPackageJson = Object.assign({}, packageJson)
+  newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
+  await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+}
+
 function usage () {
   const prog = 'npx govuk-prototype-kit'
   console.log(`
@@ -173,11 +179,6 @@ function warnIfNpmStart (argv, env) {
     const installDirectory = process.argv[4]
 
     const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
-    const updatePackageJson = async (packageJsonPath) => {
-      let newPackageJson = Object.assign({}, packageJson)
-      newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
-      await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
-    }
 
     await Promise.all([
       fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
@@ -194,7 +195,57 @@ function warnIfNpmStart (argv, env) {
     require('../lib/build/tasks.js').generateAssetsSync()
     require('../listen-on-port')
   } else if (argv.command === 'migrate') {
-    await require('../lib/migrator').migrate()
+    // migrate as a two-stage bootstrap process.
+    //
+    // In stage one we install govuk-prototype-kit, then bootstrap stage two
+    // from the newly installed package.
+    //
+    // In stage two (with the magic arguments) we do the actual migration with
+    // the starter files.
+    //
+    // Doing it this way means we can be sure the version of the cli matches
+    // the version of the kit the user ends up with. Try to put as much logic
+    // as possible into stage two; stage one should ideally be able to migrate
+    // to any future version of the kit.
+    if (process.argv[3] !== '--') {
+      // stage one
+      const kitDependency = getChosenKitDependency()
+      const projectDirectory = process.cwd()
+
+      await fs.writeJson(path.join(projectDirectory, 'package.json'), {}, packageJsonFormat)
+
+      console.log('Migrating your prototype to v13')
+
+      await spawn(
+        'npm', [
+          'install',
+          '--no-audit',
+          '--loglevel', 'error',
+          kitDependency,
+          'govuk-frontend'
+        ], {
+          shell: true,
+          stdio: 'inherit'
+        })
+
+      await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
+        shell: true,
+        stdio: 'inherit'
+      })
+    } else {
+      // stage two
+      if (process.argv.length !== 5) {
+        usage()
+        process.exitCode = 2
+        return
+      }
+
+      const projectDirectory = process.argv[4]
+
+      await updatePackageJson(path.join(projectDirectory, 'package.json'))
+
+      await require('../lib/migrator').migrate()
+    }
   } else {
     usage()
     process.exitCode = 2
