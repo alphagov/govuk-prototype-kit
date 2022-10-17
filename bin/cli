@@ -242,7 +242,11 @@ function warnIfNpmStart (argv, env) {
 
       const projectDirectory = process.argv[4]
 
-      await updatePackageJson(path.join(projectDirectory, 'package.json'))
+      await Promise.all([
+        updatePackageJson(path.join(projectDirectory, 'package.json')),
+        fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'),
+        fs.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8')
+      ])
 
       await require('../lib/migrator').migrate()
     }
