@@ -83,7 +83,9 @@ async function mkPrototype (prototypePath, {
     )
 
     if (allowTracking !== undefined) {
-      await fs.writeJson(path.join(prototypePath, 'usage-data-config.json'), { collectUsageData: !!allowTracking })
+      await fs.mkdir(path.join(prototypePath, '.tmp'))
+      await fs.writeFile(path.join(prototypePath, '.tmp', '.gitignore'), '*', 'utf8')
+      await fs.writeJson(path.join(prototypePath, '.tmp', 'usage-data-config.json'), { collectUsageData: !!allowTracking })
     }
 
     process.stderr.write(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds\n`)

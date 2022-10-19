@@ -6,7 +6,6 @@ node_modules/
 .port.tmp
 lib/extensions/_extensions.scss
 public/
-usage-data-config.json
 
 # Prototype Kit ignores - developer tools
 /cypress/downloads
