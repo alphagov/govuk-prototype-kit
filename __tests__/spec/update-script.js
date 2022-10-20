@@ -334,7 +334,7 @@ describe('update.sh', () => {
       const ret = runScriptSyncAndExpectSuccess('fetch', { testDir, trace: true })
 
       expect(ret.trace).toEqual(expect.arrayContaining([
-        expect.stringMatching('curl( -[fLJO]*)? https://github.com/alphagov/govuk-prototype-kit/releases/download/v12.1.1/govuk-prototype-kit-12.1.1.zip')
+        expect.stringMatching('curl( -[fLJO]*)? https://github.com/alphagov/govuk-prototype-kit/releases/download/v12.2.0/govuk-prototype-kit-12.2.0.zip')
       ]))
 
       expect(fs.readdirSync(path.join(testDir, 'update'))).toEqual([
