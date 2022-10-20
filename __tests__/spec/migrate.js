@@ -11,7 +11,7 @@ const { sleep } = require('../../lib/utils')
 const projectDirectory = path.join(mkdtempSync(), 'migrate-checks')
 const appDirectory = path.join(projectDirectory, 'app')
 const assetsDirectory = path.join(appDirectory, 'assets')
-const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'test-prototype')
+const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'test-v11-prototype')
 const cliPath = path.join(__dirname, '..', '..', 'bin', 'cli')
 
 const pkg = {
@@ -31,7 +31,7 @@ describe('migrate test prototype', () => {
       cwd: projectDirectory,
       env: process.env,
       shell: true,
-      stdio: 'inherit'
+      stdio: 'ignore'
     })
     await sleep(500)
   })
@@ -44,6 +44,7 @@ describe('migrate test prototype', () => {
     const config = fse.readJsonSync(path.join(appDirectory, 'config.json'))
 
     expect(config).toEqual({
+      port: 3010,
       serviceName: 'Migrate test prototype'
     })
   })

@@ -1,6 +1,6 @@
 module.exports = {
   serviceName: 'Migrate test prototype',
-  port: '3000',
+  port: '3010',
   useAuth: 'true',
   useAutoStoreData: 'true',
   useCookieSessionStore: 'false',
