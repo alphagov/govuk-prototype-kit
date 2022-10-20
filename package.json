@@ -97,6 +97,8 @@
     "globalSetup": "<rootDir>/__tests__/util/globalSetup.js",
     "testPathIgnorePatterns": [
       "__tests__/util/",
+      "__tests__/fixtures/",
+      "__tests__/tmp/",
       "/node_modules/",
       "/tmp/"
     ],
