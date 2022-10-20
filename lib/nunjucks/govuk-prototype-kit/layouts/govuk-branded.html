@@ -3,7 +3,10 @@
 {% extends "govuk/template.njk" %}
 
 {% block head %}
-  {% include "govuk-prototype-kit/includes/stylesheets.html" %}
+  {% block meta %}{% endblock %}
+  {% block stylesheets %}
+    {% include "govuk-prototype-kit/includes/stylesheets.html" %}
+  {% endblock %}
 {% endblock %}
 
 {% block pageTitle %}
