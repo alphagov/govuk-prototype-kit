@@ -12,7 +12,9 @@ const dotenv = require('dotenv')
 const express = require('express')
 const nunjucks = require('nunjucks')
 
-// Run before other code to make sure variables from .env are available
+// We want users to be able to keep api keys, config variables and other
+// envvars in a `.env` file, run dotenv before other code to make sure those
+// variables are available
 dotenv.config()
 
 // Local dependencies
