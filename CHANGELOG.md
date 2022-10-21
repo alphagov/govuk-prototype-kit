@@ -38,6 +38,11 @@
 - [#1476: Update to GOV.UK Frontend 4.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/1476)
 - [#1624: V13 pre refactor](https://github.com/alphagov/govuk-prototype-kit/pull/1624)
   - Add support for globals
+- [#1693: Add stylesheets block](https://github.com/alphagov/govuk-prototype-kit/pull/1693)
+  - You can now add stylesheets to your layout or page by using the new `stylesheets` block
+  - You can now add meta elements to your layout or page by using the new `meta` block
+  - You can still use the `head` block, but we recommend you use one of the new
+    blocks mentioned above to keep your layouts simpler
 
 ### Fixes
 
