@@ -61,8 +61,7 @@ if (extensions.legacyGovukFrontendFixesNeeded()) {
   scripts.push('/extension-assets/govuk-prototype-kit/lib/assets/javascripts/optional/legacy-govuk-frontend-init.js')
 }
 app.locals.extensionConfig = extensions.getAppConfig({
-  scripts: scripts,
-  stylesheets: ['/public/stylesheets/application.css']
+  scripts: scripts
 })
 
 // use cookie middleware for reading authentication cookie
