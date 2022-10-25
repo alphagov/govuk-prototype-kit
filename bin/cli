@@ -23,7 +23,7 @@ const gitignore = `
 node_modules/
 
 # Prototype ignores - per-user
-public/
+.tmp/
 .env
 usage-data-config.json
 
