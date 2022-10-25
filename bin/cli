@@ -17,7 +17,7 @@ const argv = parse(process.argv)
 
 const npmrc = `
 audit=false
-`
+`.trimStart()
 
 const gitignore = `
 # Node.js ignores
@@ -30,7 +30,7 @@ public/
 # General ignores
 .DS_Store
 .idea
-`
+`.trimStart()
 
 const packageJson = {
   scripts: {
