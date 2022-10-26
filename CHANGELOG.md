@@ -2,9 +2,17 @@
 
 ## Unreleased
 
-### New features
+## 12.3.0
 
-- [Pull request #1700: Allow Node 18 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/1700)
+### New feature
+
+#### Support for Node 18
+
+The GOV.UK Prototype Kit now supports Node 18 LTS (long term support). 
+
+[How to update to the latest version](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit)
+
+This change was added in [#1700: Allow Node 18 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/1700).
 
 ## 12.2.0
 
