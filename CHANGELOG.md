@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [Pull request #1700: Allow Node 18 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/1700)
+
 ## 12.2.0
 
 This release updates the step by step pattern and ensures the GOV.UK Prototype Kit reflects the latest release of the GOV.UK Frontend, v4.3.1.
