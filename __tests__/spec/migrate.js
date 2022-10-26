@@ -44,6 +44,9 @@ describe('migrate test prototype', () => {
     const config = fse.readJsonSync(path.join(appDirectory, 'config.json'))
 
     expect(config).toEqual({
+      basePlugins: [
+        'govuk-prototype-kit'
+      ],
       port: 3010,
       serviceName: 'Migrate test prototype'
     })
