@@ -22,19 +22,29 @@
   }) }}
 {% endblock %}
 
+{% if (GOVUKPrototypeKit.isDevelopment) %}
+  {% set footerItems = [
+    {
+      href: "/manage-prototype",
+      text: "Manage your prototype"
+    }, {
+      href: "/manage-prototype/clear-data",
+      text: "Clear data"
+    }
+  ] %}
+{% else %}
+  {% set footerItems = [
+    {
+      href: "/manage-prototype/clear-data",
+      text: "Clear data"
+    }
+  ] %}
+{% endif %}
+
 {% block footer %}
   {{ govukFooter({
     meta: {
-      items: [
-        {
-          href: "/manage-prototype",
-          text: "Manage your prototype"
-        },
-        {
-          href: "/manage-prototype/clear-data",
-          text: "Clear data"
-        }
-      ],
+      items: footerItems,
       visuallyHiddenTitle: "Footer links"
     }
   }) }}

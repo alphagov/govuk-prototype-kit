@@ -48,7 +48,10 @@ app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = config.useAutoStoreData
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
-app.locals.GOVUKPrototypeKit = {}
+app.locals.GOVUKPrototypeKit = {
+  isProduction: config.isProduction,
+  isDevelopment: config.isDevelopment
+}
 if (extensions.legacyGovukFrontendFixesNeeded()) {
   app.locals.GOVUKPrototypeKit.legacyGovukFrontendFixesNeeded = true
 }
