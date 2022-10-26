@@ -1,5 +1,5 @@
 const path = require('path')
-const { copyFile, deleteFile } = require('../utils')
+const { copyFile, deleteFile } = require('../../utils')
 
 const templates = path.join(Cypress.config('fixturesFolder'), 'views')
 const startTemplate = path.join(templates, 'start.html')

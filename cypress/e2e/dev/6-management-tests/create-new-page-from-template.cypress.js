@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 const { urlencode } = require('nunjucks/src/filters')
 
 const startPageView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'start.html')

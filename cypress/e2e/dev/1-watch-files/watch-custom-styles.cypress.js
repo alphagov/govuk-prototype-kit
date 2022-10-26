@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 
 const customStylesFixture = 'custom-styles'
 const customStylesFixtureName = `${customStylesFixture}.scss`

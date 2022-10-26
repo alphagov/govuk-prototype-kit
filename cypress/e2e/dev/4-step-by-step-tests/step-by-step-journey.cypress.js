@@ -1,7 +1,7 @@
 import path from 'path'
-import { deleteFile } from '../utils'
+import { deleteFile } from '../../utils'
 
-const { waitForApplication, copyFile } = require('../utils')
+const { waitForApplication, copyFile } = require('../../utils')
 
 const projectFolder = Cypress.env('projectFolder')
 

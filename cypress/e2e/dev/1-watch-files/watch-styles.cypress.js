@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 
 const appStyles = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'sass')
 const appStylesheet = path.join(appStyles, 'application.scss')

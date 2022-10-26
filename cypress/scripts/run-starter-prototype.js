@@ -22,5 +22,10 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
     `"file:${fooLocation}"`,
     `"file:${barLocation}"`]
   )
-  await startPrototype(testDir)
+
+  if (process.argv.includes('--prodtest')) {
+    await startPrototype(testDir, 'production')
+  } else {
+    await startPrototype(testDir)
+  }
 })()
