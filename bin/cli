@@ -248,7 +248,7 @@ function warnIfNpmStart (argv, env) {
         updatePackageJson(path.join(projectDirectory, 'package.json')),
         fs.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8'),
         fs.access(path.join(projectDirectory, '.gitignore'))
-          .catch(fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
+          .catch(() => fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
       ])
 
       await require('../lib/migrator').migrate()
