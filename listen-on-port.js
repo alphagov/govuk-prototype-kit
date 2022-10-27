@@ -10,9 +10,11 @@ if (process.env.IS_INTEGRATION_TEST === 'true') {
   server.listen()
 } else {
   utils.findAvailablePort(server, function (port) {
-    console.log('You can manage your prototype at:')
-    console.log(`http://localhost:${port}/manage-prototype`)
-    console.log('')
+    if (config.isDevelopment) {
+      console.log('You can manage your prototype at:')
+      console.log(`http://localhost:${port}/manage-prototype`)
+      console.log('')
+    }
     console.log('The Prototype Kit is now running at:')
     console.log(`http://localhost:${port}`)
     console.log('')
