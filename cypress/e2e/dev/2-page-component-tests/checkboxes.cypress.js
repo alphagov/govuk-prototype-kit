@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 
 const templatesView = path.join(Cypress.config('fixturesFolder'), 'views', 'checkbox-test.html')
 const appView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'checkbox-test.html')

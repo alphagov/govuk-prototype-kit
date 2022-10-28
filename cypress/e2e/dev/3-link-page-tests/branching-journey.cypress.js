@@ -1,5 +1,5 @@
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 const { setUpPages, setUpBranchingPages, cleanUpPages, cleanUpBranchingPages, backUpRoutes, restoreRoutes } = require('./link-page-utils')
 
 const jugglingBallsPath = '/juggling-balls'

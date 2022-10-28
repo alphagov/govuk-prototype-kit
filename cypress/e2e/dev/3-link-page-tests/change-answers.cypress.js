@@ -1,5 +1,5 @@
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 const { setUpPages, setUpData, cleanUpPages, clearUpData } = require('./link-page-utils')
 
 const checkAnswersPath = '/check-answers'

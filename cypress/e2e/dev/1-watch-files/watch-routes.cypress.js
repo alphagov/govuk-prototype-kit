@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 
 const routesFixture = path.join(Cypress.config('fixturesFolder'), 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), 'app', 'routes.js')

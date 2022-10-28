@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 
 const appJs = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'javascripts', 'application.js')
 const backupAppJs = path.join(Cypress.env('tempFolder'), 'temp-application.js')

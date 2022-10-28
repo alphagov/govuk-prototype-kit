@@ -46,16 +46,3 @@ jobs:
       env:
         CI: true
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - run: npm run test:acceptance
-      env:
-        CYPRESS_REQUEST_TIMEOUT: 20000
-        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
-        CYPRESS_PAGE_LOAD_TIMEOUT: 120000
-        CYPRESS_RETRIES: 3
-
-    - if: ${{ failure() }}
-      uses: actions/upload-artifact@v3
-      with:
-        name: cypress-screenshots-${{ runner.os }}-${{ matrix.node-version }}
-        path: cypress/screenshots/

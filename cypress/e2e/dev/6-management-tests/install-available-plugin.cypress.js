@@ -1,4 +1,4 @@
-const { waitForApplication, uninstallPlugin, installPlugin } = require('../utils')
+const { waitForApplication, uninstallPlugin, installPlugin } = require('../../utils')
 const managePluginsPagePath = '/manage-prototype/plugins'
 const plugin = '@govuk-prototype-kit/step-by-step'
 const version1 = '@1.0.0'

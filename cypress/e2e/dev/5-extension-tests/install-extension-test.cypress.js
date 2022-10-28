@@ -1,4 +1,4 @@
-const { waitForApplication, installPlugin, uninstallPlugin, deleteFile, createFile } = require('../utils')
+const { waitForApplication, installPlugin, uninstallPlugin, deleteFile, createFile } = require('../../utils')
 const path = require('path')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')

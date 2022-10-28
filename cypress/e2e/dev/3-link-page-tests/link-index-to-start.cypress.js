@@ -1,5 +1,5 @@
 const path = require('path')
-const { waitForApplication, copyFile, deleteFile } = require('../utils')
+const { waitForApplication, copyFile, deleteFile } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const indexView = path.join(appViews, 'index.html')

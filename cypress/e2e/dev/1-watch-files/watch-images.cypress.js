@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { waitForApplication } = require('../utils')
+const { waitForApplication } = require('../../utils')
 
 const imageFile = 'larry-the-cat.jpg'
 const cypressImages = path.join(Cypress.config('fixturesFolder'), 'images')
