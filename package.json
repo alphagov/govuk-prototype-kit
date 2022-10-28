@@ -45,7 +45,6 @@
     "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
   "dependencies": {
-    "@govuk-prototype-kit/step-by-step": "^2.0.0",
     "acorn": "^8.5.0",
     "ansi-colors": "^4.1.1",
     "body-parser": "^1.14.1",
