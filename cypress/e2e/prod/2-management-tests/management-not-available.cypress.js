@@ -10,6 +10,21 @@ describe('management not available', () => {
     cy.get('h1').should('contain.text', 'How to manage your prototype')
   })
 
+  it('when attempting to visit "/manage-prototype/templates" page', () => {
+    cy.visit('/manage-prototype/templates')
+    cy.get('h1').should('contain.text', 'How to manage your prototype')
+  })
+
+  it('when attempting to visit "/manage-prototype/plugins" page', () => {
+    cy.visit('/manage-prototype/plugins')
+    cy.get('h1').should('contain.text', 'How to manage your prototype')
+  })
+
+  it('when attempting to visit "/manage-prototype/foo" page', () => {
+    cy.visit('/manage-prototype/foo')
+    cy.get('h1').should('contain.text', 'How to manage your prototype')
+  })
+
   it('manage prototype link should not exist on the home page', () => {
     cy.visit('/')
     cy.get('main a[href="/manage-prototype"]').should('not.exist')
