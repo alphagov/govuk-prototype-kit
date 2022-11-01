@@ -4,7 +4,6 @@ const path = require('path')
 const fs = require('fs')
 const fse = require('fs-extra')
 const { spawn } = require('../../lib/exec')
-const os = require('os')
 const { mkdtempSync } = require('../util')
 const { sleep } = require('../../lib/utils')
 
@@ -57,9 +56,9 @@ describe('migrate test prototype', () => {
 
     expect(routesFileContents).toEqual(
       'const router = require(\'govuk-prototype-kit\').requests.setupRouter()' +
-      os.EOL + os.EOL +
+      '\n\n' +
       '// Add your routes here' +
-      os.EOL + os.EOL + os.EOL
+      '\n\n\n'
     )
   })
 
@@ -67,7 +66,7 @@ describe('migrate test prototype', () => {
     const filtersFileContents = fs.readFileSync(path.join(appDirectory, 'filters.js'), 'utf8')
 
     expect(filtersFileContents).toEqual(
-      'const addFilter = require(\'govuk-prototype-kit\').views.addFilter' + os.EOL
+      'const addFilter = require(\'govuk-prototype-kit\').views.addFilter' + '\n'
     )
   })
 
@@ -75,9 +74,9 @@ describe('migrate test prototype', () => {
     const jsFileContents = fs.readFileSync(path.join(assetsDirectory, 'javascripts', 'application.js'), 'utf8')
 
     expect(jsFileContents).toEqual(
-      'window.GOVUKPrototypeKit.documentReady(() => {' + os.EOL +
-      '  // Add JavaScript here' + os.EOL +
-      '})' + os.EOL
+      'window.GOVUKPrototypeKit.documentReady(() => {' + '\n' +
+      '  // Add JavaScript here' + '\n' +
+      '})' + '\n'
     )
   })
 
@@ -86,7 +85,7 @@ describe('migrate test prototype', () => {
 
     expect(sassFileContents).toEqual(
       '// Add extra styles here' +
-      os.EOL + os.EOL + os.EOL
+      '\n\n\n'
     )
   })
 
@@ -94,7 +93,7 @@ describe('migrate test prototype', () => {
     const layoutFileContents = fs.readFileSync(path.join(appDirectory, 'views', 'layout.html'), 'utf8')
 
     expect(layoutFileContents).toEqual(
-      '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}' + os.EOL
+      '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}' + '\n'
     )
   })
 })
