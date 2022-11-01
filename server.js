@@ -1,7 +1,6 @@
 // Core dependencies
 const path = require('path')
 const url = require('url')
-const os = require('os')
 const { existsSync } = require('fs')
 const fs = require('fs').promises
 
@@ -167,7 +166,7 @@ app.get('/docs/tutorials-and-examples', function (req, res) {
 app.get('/', async (req, res) => {
   const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
   res.render('govuk-prototype-kit/backup-homepage', {
-    starterHomepageCodeLines: starterHomepageCode.split(os.EOL)
+    starterHomepageCodeLines: starterHomepageCode.split('\n')
   })
 })
 

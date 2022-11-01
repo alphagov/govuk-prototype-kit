@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const fs = require('fs-extra')
-const os = require('os')
 const path = require('path')
 
 const { spawn } = require('../lib/exec')
@@ -40,7 +39,7 @@ const packageJson = {
   }
 }
 
-const packageJsonFormat = { encoding: 'utf8', EOL: os.EOL, spaces: 2 }
+const packageJsonFormat = { encoding: 'utf8', spaces: 2 }
 
 async function updatePackageJson (packageJsonPath) {
   let newPackageJson = Object.assign({}, packageJson)
