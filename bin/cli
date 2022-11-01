@@ -23,8 +23,9 @@ const gitignore = `
 node_modules/
 
 # Prototype ignores - per-user
-.env
 public/
+.env
+usage-data-config.json
 
 # General ignores
 .DS_Store
