@@ -57,7 +57,8 @@ function mkdtempSync () {
 async function mkPrototype (prototypePath, {
   kitPath,
   overwrite = false,
-  allowTracking = undefined
+  allowTracking = undefined,
+  npmInstallLinks = undefined
 } = {}) { // TODO: Use kitPath if provided
   if (fs.existsSync(prototypePath)) {
     if (!overwrite) {
@@ -72,6 +73,12 @@ async function mkPrototype (prototypePath, {
 
   process.stderr.write(`Creating test prototype at ${prototypePath}\n`)
 
+  const execEnv = { ...process.env, env: 'test' }
+  if (npmInstallLinks !== undefined) {
+    // make sure that any packages installed from folders are installed fully (not as symlinks)
+    execEnv.npm_config_install_links = npmInstallLinks ? 'true' : 'false'
+  }
+
   const startTime = Date.now()
 
   try {
@@ -79,7 +86,7 @@ async function mkPrototype (prototypePath, {
     const repoDir = path.resolve(__dirname, '..', '..')
     await exec(
       `"${process.execPath}" bin/cli create --version local ${prototypePath}`,
-      { cwd: repoDir, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
+      { cwd: repoDir, env: execEnv, stdio: 'inherit' }
     )
 
     if (allowTracking !== undefined) {
@@ -93,6 +100,16 @@ async function mkPrototype (prototypePath, {
     if (error.status > 0) {
       process.exitCode = error.status
     }
+  }
+
+  if (npmInstallLinks !== undefined) {
+    // setting an environment variable is fine for the install above, but to
+    // ensure future npm commands don't reorganise the node_modules folder, let's
+    // save the config variables to the project npmrc
+    await exec(
+      `npm config --location=project set install-links=${npmInstallLinks ? 'true' : 'false'}`,
+      { cwd: prototypePath }
+    )
   }
 }
 
