@@ -9,6 +9,7 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
 
 ;(async () => {
   await mkPrototype(testDir, { overwrite: true, allowTracking: false })
+
   const fooLocation = path.join(__dirname, '..', 'fixtures', 'extensions', 'extension-foo')
   const barLocation = path.join(__dirname, '..', 'fixtures', 'extensions', 'extension-bar')
   const bazLocation = path.join(__dirname, '..', 'fixtures', 'extensions', 'extension-baz')

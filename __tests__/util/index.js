@@ -66,7 +66,7 @@ async function mkPrototype (prototypePath, {
       err.code = 'EEXIST'
       throw err
     } else {
-      fs.remove(prototypePath)
+      await fs.remove(prototypePath)
     }
   }
 
