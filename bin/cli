@@ -253,6 +253,9 @@ function warnIfNpmStart (argv, env) {
 
       await require('../lib/migrator').migrate()
     }
+  } else if (argv.command === 'version') {
+    const version = require('../package.json').version
+    console.log(version)
   } else {
     usage()
     process.exitCode = 2
