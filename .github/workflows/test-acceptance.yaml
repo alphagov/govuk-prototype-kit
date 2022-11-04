@@ -42,6 +42,19 @@ jobs:
 
     - run: npm ci
 
+    - run: npm run test:acceptance:smoke
+      env:
+        CYPRESS_REQUEST_TIMEOUT: 20000
+        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
+        CYPRESS_PAGE_LOAD_TIMEOUT: 120000
+        CYPRESS_RETRIES: 3
+
+    - if: ${{ failure() }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-screenshots-smoke-${{ runner.os }}-${{ matrix.node-version }}
+        path: cypress/screenshots/
+
     - run: npm run test:acceptance:prod
       env:
         CYPRESS_REQUEST_TIMEOUT: 20000
