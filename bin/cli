@@ -5,6 +5,8 @@ const path = require('path')
 
 const { spawn } = require('../lib/exec')
 const { parse } = require('./utils/argvParser')
+const { prepareMigration, preflightChecks } = require('../lib/migrator')
+const { packageJsonFormat } = require('./utils')
 
 // Avoid requiring any kit server code at the top-level as we might want to
 // change environment variables below.
@@ -39,8 +41,6 @@ const packageJson = {
     start: 'govuk-prototype-kit start'
   }
 }
-
-const packageJsonFormat = { encoding: 'utf8', spaces: 2 }
 
 async function updatePackageJson (packageJsonPath) {
   let newPackageJson = Object.assign({}, packageJson)
@@ -212,23 +212,14 @@ function warnIfNpmStart (argv, env) {
       const kitDependency = getChosenKitDependency()
       const projectDirectory = process.cwd()
 
-      await fs.writeJson(path.join(projectDirectory, 'package.json'), {}, packageJsonFormat)
+      const preflightChecksPassed = await preflightChecks()
 
-      console.log('Migrating your prototype to v13')
+      if (!preflightChecksPassed) {
+        process.exitCode = 1
+        return
+      }
 
-      await spawn(
-        'npm', [
-          'install',
-          '--no-audit',
-          '--loglevel', 'error',
-          kitDependency,
-          'govuk-frontend',
-          // older versions of kit came with GOV.UK Notify support, keep it
-          'notifications-node-client@5'
-        ], {
-          shell: true,
-          stdio: 'inherit'
-        })
+      await prepareMigration(kitDependency, projectDirectory)
 
       await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
         shell: true,
