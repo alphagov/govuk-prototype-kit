@@ -77,9 +77,9 @@ middlewareFunctions.push(sessionUtils.getSessionMiddleware())
 middlewareFunctions.forEach(func => app.use(func))
 
 // Set up App
-var appViews = extensions.getAppViews([
+var appViews = [
   path.join(projectDir, '/app/views/')
-])
+].concat(extensions.getAppViews())
 
 var nunjucksConfig = {
   autoescape: true,
