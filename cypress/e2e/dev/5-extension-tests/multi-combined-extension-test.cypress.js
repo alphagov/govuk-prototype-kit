@@ -10,7 +10,7 @@ const YELLOW = 'rgb(255, 255, 0)'
 const BLUE = 'rgb(0, 0, 255)'
 
 const extensionFooBarCombinedViewMarkup = `
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block content %}
 {% set testVar="Hello" %}

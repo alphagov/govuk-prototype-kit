@@ -11,7 +11,7 @@ const CYAN = 'rgb(0, 255, 255)'
 const MAGENTA = 'rgb(255, 0, 255)'
 
 const extensionBazViewMarkup = `
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block content %}
 {% include "baz.njk" %}
