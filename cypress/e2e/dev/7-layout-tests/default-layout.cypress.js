@@ -1,0 +1,34 @@
+const path = require('path')
+
+const { waitForApplication } = require('../../utils')
+
+const defaultLayoutFilePath = path.join('app', 'views', 'layouts', 'main.html')
+const backupLayoutComment = '<!-- could not find layouts/main.html in prototype, using backup default template -->'
+
+const comments = el => cy.wrap(
+  [...el.childNodes]
+    .filter(node => node.nodeName === '#comment')
+    .map(commentNode => '<!--' + commentNode.data + '-->')
+)
+
+after(() => {
+  cy.task('copyFromStarterFiles', { filename: defaultLayoutFilePath })
+  waitForApplication()
+})
+
+specify('deleting default layout does not cause pages to fail to render', () => {
+  cy.visit('/')
+
+  cy.document().then(doc =>
+    comments(doc.head).should('not.contain', backupLayoutComment)
+  )
+
+  cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), defaultLayoutFilePath) })
+
+  cy.visit('/', { failOnStatusCode: false })
+  cy.get('body').should('not.contains.text', 'Error: template not found')
+
+  cy.document().then(doc =>
+    comments(doc.head).should('contain', backupLayoutComment)
+  )
+})
