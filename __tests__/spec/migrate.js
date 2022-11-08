@@ -30,7 +30,7 @@ describe('migrate test prototype', () => {
       env: process.env,
       stdio: 'ignore'
     })
-  }, 120000)
+  }, 240000)
 
   it('config.js to config.json', () => {
     const config = fse.readJsonSync(path.join(appDirectory, 'config.json'))
@@ -78,7 +78,11 @@ describe('migrate test prototype', () => {
 
     expect(sassFileContents).toEqual(
       '// Add extra styles here' +
-      '\n\n\n'
+      '\n\n\n' +
+      '.my-style {\n' +
+      '  font-size: large;\n' +
+      '}\n' +
+      '\n'
     )
   })
 
