@@ -32,10 +32,6 @@ describe('migrate test prototype', () => {
     })
   }, 120000)
 
-  afterAll(() => {
-    fse.removeSync(projectDirectory)
-  })
-
   it('config.js to config.json', () => {
     const config = fse.readJsonSync(path.join(appDirectory, 'config.json'))
 

@@ -19,6 +19,7 @@ const waitOn = require('wait-on')
 const extract = require('extract-zip')
 const https = require('https')
 
+const { starterDir } = require('../../lib/path-utils')
 const { sleep } = require('../e2e/utils')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
@@ -192,6 +193,17 @@ module.exports = (on, config) => {
       // it from not existing when the file is needed in a subsequent step
       .then(() => sleep(2000)) // pause after the copy
       .then(makeSureCypressCanInterpretTheResult),
+
+    copyFromStarterFiles: ({ starterFilename = undefined, filename }) => {
+      const src = path.join(starterDir, starterFilename || filename)
+      const dest = path.join(config.env.projectFolder, filename)
+      return createFolderForFile(dest)
+        .then(() => fsp.copyFile(src, dest))
+        // The sleep of 2 seconds allows for the file to be copied completely to prevent
+        // it from not existing when the file is needed in a subsequent step
+        .then(() => sleep(2000)) // pause after the copy
+        .then(makeSureCypressCanInterpretTheResult)
+    },
 
     createFile: ({ filename, data, replace = false }) => createFolderForFile(filename)
       .then(() => fsp.writeFile(filename, data, {
