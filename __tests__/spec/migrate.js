@@ -5,7 +5,6 @@ const fs = require('fs')
 const fse = require('fs-extra')
 const { spawn } = require('../../lib/exec')
 const { mkdtempSync } = require('../util')
-const { sleep } = require('../../lib/utils')
 
 const projectDirectory = path.join(mkdtempSync(), 'migrate-checks')
 const appDirectory = path.join(projectDirectory, 'app')
@@ -26,14 +25,12 @@ describe('migrate test prototype', () => {
   beforeAll(async () => {
     fse.copySync(fixtureProjectDirectory, projectDirectory, { clobber: true })
     fse.writeJsonSync(path.join(projectDirectory, 'package.json'), pkg, { clobber: true })
-    await spawn('node', [cliPath, 'migrate', '--', projectDirectory], {
+    await spawn(process.execPath, [cliPath, 'migrate', projectDirectory], {
       cwd: projectDirectory,
       env: process.env,
-      shell: true,
       stdio: 'ignore'
     })
-    await sleep(500)
-  })
+  }, 120000)
 
   afterAll(() => {
     fse.removeSync(projectDirectory)
