@@ -2,7 +2,7 @@ const { waitForApplication, uninstallPlugin, installPlugin } = require('../../ut
 const managePluginsPagePath = '/manage-prototype/plugins'
 const plugin = '@govuk-prototype-kit/step-by-step'
 const version1 = '@1.0.0'
-const version2 = '@2.0.0'
+const version2 = '@2.1.0'
 const pluginName = 'Step By Step'
 
 const cleanup = () => {
