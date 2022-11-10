@@ -62,7 +62,7 @@ However, this approach has risks. For example, it creates a messy commit history
 
 6. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
 
-7. Run `npm install` to update `package-lock.json`.
+7. Run `npm install` to update `npm-shrinkwrap.json`.
 
 8. Update `VERSION` in [update.sh](/update.sh#L5) (if it is present).
 
