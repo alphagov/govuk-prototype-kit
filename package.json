@@ -18,6 +18,7 @@
     "LICENCE.txt",
     "README.md",
     "govuk-prototype-kit.config.json",
+    "known-plugins.json",
     "index.js",
     "listen-on-port.js",
     "server.js",
