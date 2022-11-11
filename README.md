@@ -19,6 +19,12 @@ You must protect user privacy at all times, even when using prototypes. Prototyp
 - [Installation guide for new users (non technical)](https://govuk-prototype-kit.herokuapp.com/docs/install/introduction)
 - [Installation guide for developers (technical)](https://govuk-prototype-kit.herokuapp.com/docs/install/developer-install-instructions)
 
+## Node version requirements
+
+We always recommend you use the [current long term support (LTS) version of Node.js](https://github.com/nodejs/release#release-schedule).
+
+The Prototype Kit always supports at least the current and previous LTS releases.
+
 ## Support
 
 The GOV.UK Prototype Kit is maintained by the Government Digital Service. If you’ve got a question or need support you can:
