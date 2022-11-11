@@ -25,10 +25,10 @@ describe('migrate test prototype', () => {
   beforeAll(async () => {
     fse.copySync(fixtureProjectDirectory, projectDirectory, { clobber: true })
     fse.writeJsonSync(path.join(projectDirectory, 'package.json'), pkg, { clobber: true })
-    await spawn(process.execPath, [cliPath, 'migrate', projectDirectory], {
+    await spawn(process.execPath, [cliPath, 'migrate', '--version', 'local', projectDirectory], {
       cwd: projectDirectory,
       env: process.env,
-      stdio: 'ignore'
+      stdio: 'inherit'
     })
   }, 240000)
 
