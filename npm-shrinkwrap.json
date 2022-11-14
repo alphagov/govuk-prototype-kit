@@ -5576,9 +5576,9 @@
       }
     },
     "node_modules/govuk-frontend": {
-      "version": "4.3.1",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-4.3.1.tgz",
-      "integrity": "sha512-uD0KVFds7drOwLEvfp4zRBOXuHCxkWLYDQcYvlbG+2baZ9po2TGZz8WjfzhfueYjo9+Uwk+bM0NQT6g4cg/Q+A==",
+      "version": "4.4.0",
+      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-4.4.0.tgz",
+      "integrity": "sha512-3Hg4GePCdlynd7F6a3YPOEJx0lDPPP6iBv1S893tv3+efYGWLGvsSFdCG0uob8Xc1O7ckL19dSsFpFhBWUkTNA==",
       "peer": true,
       "engines": {
         "node": ">= 4.2.0"
@@ -15727,9 +15727,9 @@
       }
     },
     "govuk-frontend": {
-      "version": "4.3.1",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-4.3.1.tgz",
-      "integrity": "sha512-uD0KVFds7drOwLEvfp4zRBOXuHCxkWLYDQcYvlbG+2baZ9po2TGZz8WjfzhfueYjo9+Uwk+bM0NQT6g4cg/Q+A==",
+      "version": "4.4.0",
+      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-4.4.0.tgz",
+      "integrity": "sha512-3Hg4GePCdlynd7F6a3YPOEJx0lDPPP6iBv1S893tv3+efYGWLGvsSFdCG0uob8Xc1O7ckL19dSsFpFhBWUkTNA==",
       "peer": true
     },
     "graceful-fs": {
