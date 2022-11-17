@@ -1,3 +1,4 @@
-const router = require('govuk-prototype-kit').requests.setupRouter()
+const govukPrototypeKit = require('govuk-prototype-kit')
+const router = govukPrototypeKit.requests.setupRouter()
 
 // Add your routes here
