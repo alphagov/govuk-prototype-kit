@@ -48,10 +48,11 @@ describe('migrate test prototype', () => {
     const routesFileContents = fs.readFileSync(path.join(appDirectory, 'routes.js'), 'utf8')
 
     expect(routesFileContents).toEqual(
-      'const router = require(\'govuk-prototype-kit\').requests.setupRouter()' +
-      '\n\n' +
-      '// Add your routes here' +
-      '\n\n\n'
+      'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
+      'const router = govukPrototypeKit.requests.setupRouter()\n' +
+      '\n' +
+      '// Add your routes here\n' +
+      '\n\n'
     )
   })
 
@@ -59,7 +60,8 @@ describe('migrate test prototype', () => {
     const filtersFileContents = fs.readFileSync(path.join(appDirectory, 'filters.js'), 'utf8')
 
     expect(filtersFileContents).toEqual(
-      'const addFilter = require(\'govuk-prototype-kit\').views.addFilter' + '\n'
+      'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
+      'const addFilter = govukPrototypeKit.views.addFilter' + '\n'
     )
   })
 
