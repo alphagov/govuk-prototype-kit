@@ -48,6 +48,11 @@ describe('migrate test prototype', () => {
     const routesFileContents = fs.readFileSync(path.join(appDirectory, 'routes.js'), 'utf8')
 
     expect(routesFileContents).toEqual(
+      '// \n' +
+      '// For guidance on how to create routes see:\n' +
+      '// https://prototype-kit.service.gov.uk/docs/routes\n' +
+      '// \n' +
+      '\n' +
       'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
       'const router = govukPrototypeKit.requests.setupRouter()\n' +
       '\n' +
@@ -69,6 +74,11 @@ describe('migrate test prototype', () => {
     const jsFileContents = fs.readFileSync(path.join(assetsDirectory, 'javascripts', 'application.js'), 'utf8')
 
     expect(jsFileContents).toEqual(
+      '//\n' +
+      '// For guidance on how to add JavaScript see:\n' +
+      '// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images\n' +
+      '// \n' +
+      '\n' +
       'window.GOVUKPrototypeKit.documentReady(() => {' + '\n' +
       '  // Add JavaScript here' + '\n' +
       '})' + '\n'
@@ -79,6 +89,11 @@ describe('migrate test prototype', () => {
     const sassFileContents = fs.readFileSync(path.join(assetsDirectory, 'sass', 'application.scss'), 'utf8')
 
     expect(sassFileContents).toEqual(
+      '//\n' +
+      '// For guidance on how to add CSS and SCSS see:\n' +
+      '// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images\n' +
+      '// \n' +
+      '\n' +
       '// Add extra styles here' +
       '\n\n\n' +
       '.my-style {\n' +
@@ -92,6 +107,11 @@ describe('migrate test prototype', () => {
     const layoutFileContents = fs.readFileSync(path.join(appDirectory, 'views', 'layout.html'), 'utf8')
 
     expect(layoutFileContents).toEqual(
+      '{#\n' +
+      'For guidance on how to use layouts see:\n' +
+      'https://prototype-kit.service.gov.uk/docs/layouts\n' +
+      '#}\n' +
+      '\n' +
       '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}' + '\n'
     )
   })
