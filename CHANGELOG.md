@@ -58,6 +58,65 @@
 
 - [#866: Remove docs from the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/866)
 
+## 12.3.0
+
+### New feature
+
+#### Support for Node 18
+
+The GOV.UK Prototype Kit now supports Node 18 LTS (long term support). 
+
+[How to update to the latest version](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit)
+
+This change was added in [#1700: Allow Node 18 to be used](https://github.com/alphagov/govuk-prototype-kit/pull/1700).
+
+## 12.2.0
+
+This release updates the step by step pattern and ensures the GOV.UK Prototype Kit reflects the latest release of the GOV.UK Frontend, v4.3.1.
+
+### Breaking change
+
+#### Update the step by step pattern
+
+The step by step navigation pattern presents an end to end journey in logical steps, with links to content that helps users complete each step.
+
+The changes to step by step bring the pattern in line with what is currently used on GOV.UK and make it into an extension.
+
+If you are working on an old prototype and want to update the step by step pattern, update `app/assets/sass/application.scss` to remove the old step by step pattern imports.
+
+[How to update to the latest version](https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit)
+
+##### To continue using the old pattern
+
+It can be hard to update step by step if you currently use an older version of the pattern in your prototype.
+
+You can keep the older version by installing the step by step extension version 1. In terminal type:
+
+`npm install @govuk-prototype-kit/step-by-step@1.0.0`
+
+This change was added in [#1471: Update step by step and install it as an extension](https://github.com/alphagov/govuk-prototype-kit/pull/1471).
+
+### New feature
+
+#### Update to GOV.UK Frontend v4.3.1
+
+The new release of the GOV.UK Frontend contains:
+
+- a new Pagination component, which can help users to navigate backwards and forwards through a series of pages
+- pass HTML directly into compatible components
+- improvements to the ‘Checkboxes’, ‘Radios’ and ‘Select’ components to let services select answers when the page loads by using the ‘values’ option.
+- several fixes: some of these are to address issues with the component ES module JavaScript (introduced in v4.3.0)
+
+If you want to use the new Pagination component, you will also need to update the `layout.html` file in your prototype.
+
+Check the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases) for changes you may need to make to ensure your prototype works.
+
+These changes was added in:
+
+- [#2222: Update the Design System to use GOV.UK Frontend v4.2.0](https://github.com/alphagov/govuk-design-system/issues/2222) 
+- [#2271 Update the Design System to use GOV.UK Frontend v4.3.0](https://github.com/alphagov/govuk-design-system/issues/2271)
+- [#2309: Update the Design System to use GOV.UK Front end v4.3.1](https://github.com/alphagov/govuk-design-system/issues/2309)
+
 ## 12.1.1 (Fix release)
 
 ### Fixes
