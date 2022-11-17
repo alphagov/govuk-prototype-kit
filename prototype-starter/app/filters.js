@@ -1,1 +1,2 @@
-const addFilter = require('govuk-prototype-kit').views.addFilter
+const govukPrototypeKit = require('govuk-prototype-kit')
+const addFilter = govukPrototypeKit.views.addFilter
