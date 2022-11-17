@@ -80,11 +80,13 @@ However, this approach has risks. For example, it creates a messy commit history
 
 4. Check out the `support/<MAJOR VERSION NUMBER>.x` branch and pull the latest changes.
 
-5. Run `node scripts/create-release-archive`, which will generate a ZIP in the root of this project.
+5. Sign in to npm (`npm login`), using the credentials for the govuk-prototype-kit npm user from Bitwarden.
 
-6. Attach the generated ZIP to the release.
+6. Run `npm publish --tag latest-<MAJOR VERSION NUMBER>` and enter the one-time password when prompted.
 
-7. Click 'Publish release'.
+7. Run `npm logout` to log out from npm.
+
+8. Click 'Publish release'.
 
 ## After you publish the new release
 

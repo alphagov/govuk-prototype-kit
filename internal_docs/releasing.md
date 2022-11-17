@@ -52,13 +52,15 @@ v8.0.0 // After implementing backwards incompatible changes
 
 13. Checkout the *main* branch and pull the latest changes.
 
-14. Run `node scripts/create-release-archive`, which will generate a ZIP in the root of this project.
+14. Sign in to npm (`npm login`), using the credentials for the govuk-prototype-kit npm user from Bitwarden.
 
-15. Attach the generated ZIP to the release.
+15. Run `npm publish` and enter the one-time password when prompted.
 
-16. Click 'Publish release'.
+16. Run `npm logout` to log out from npm.
 
-17. Let the community know about the release
+17. On GitHub, click 'Publish release'.
+
+18. Let the community know about the release
 
 Write a brief summary with highlights from the release then send it to the following slack channels:
 
