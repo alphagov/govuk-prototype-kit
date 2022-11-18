@@ -13,7 +13,7 @@ const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'test-v11
 const cliPath = path.join(__dirname, '..', '..', 'bin', 'cli')
 
 const pkg = {
-  name: 'govuk-prototype-kit',
+  name: 'test-prototype',
   version: '11.0.0',
   dependencies: {
     'govuk-frontend': '^4.3.1',
@@ -42,6 +42,28 @@ describe('migrate test prototype', () => {
       port: 3010,
       serviceName: 'Migrate test prototype'
     })
+  })
+
+  it('package.json', () => {
+    const pkgJson = fse.readJsonSync(path.join(projectDirectory, 'package.json'))
+
+    const { dependencies, name, scripts } = pkgJson
+
+    expect(Object.keys(dependencies)).toEqual([
+      '@govuk-prototype-kit/step-by-step',
+      'govuk-frontend',
+      'govuk-prototype-kit',
+      'jquery',
+      'notifications-node-client'
+    ])
+
+    expect(scripts).toEqual({
+      dev: 'govuk-prototype-kit dev',
+      serve: 'govuk-prototype-kit serve',
+      start: 'govuk-prototype-kit start'
+    })
+
+    expect(name).toEqual('test-prototype')
   })
 
   it('routes.js', () => {
