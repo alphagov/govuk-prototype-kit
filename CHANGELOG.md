@@ -6,7 +6,6 @@
 - [#1753: Drop support for Node.js 12, 14](https://github.com/alphagov/govuk-prototype-kit/pull/1753)
 - [#1752: Move default user template to app/views/layouts/main.html](https://github.com/alphagov/govuk-prototype-kit/pull/1752)
 - [#1640: Fixing govuk frontend until they release update](https://github.com/alphagov/govuk-prototype-kit/pull/1640) We have made the plugin framework powerful enough to handle everything govuk-frontend needs but they haven't yet implemented their side of this, this change allows current and previous versions of govuk-frontend to work with the kit.  You'll need to import components before you can use them until govuk-frontend release a version which imports them automatically.  
-- [#1648: Change default session store to cookie store when in production mode](https://github.com/alphagov/govuk-prototype-kit/pull/1648) When hosted online the kit will now preserve user session data between server restarts by default.
 - [#1658: Use file store for session data](https://github.com/alphagov/govuk-prototype-kit/pull/1658)
   - When running locally the kit will now preserve user session data between restarts
   - Option `useCookieSessionStore` is no longer supported
