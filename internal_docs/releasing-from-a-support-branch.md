@@ -96,7 +96,7 @@ Write a brief summary with highlights from the release then send it to the follo
 - X-GOV #prototype-kit
 - GDS #govuk-design-system
 
-Include a link to the install page: https://govuk-prototype-kit.herokuapp.com/docs/install.
+Include a link to the install page: https://prototype-kit.service.gov.uk/docs/install.
 
 Include a link to the GitHub release page if there are actions for users that are not covered in the release notes.
 

@@ -160,7 +160,7 @@ app.post(/^\/([^.]+)$/, function (req, res) {
 
 // redirect old local docs to the docs site
 app.get('/docs/tutorials-and-examples', function (req, res) {
-  res.redirect('https://govuk-prototype-kit.herokuapp.com/docs')
+  res.redirect('https://prototype-kit.service.gov.uk/docs')
 })
 
 app.get('/', async (req, res) => {
