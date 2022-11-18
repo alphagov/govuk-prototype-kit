@@ -10,7 +10,7 @@ Read the [project principles](https://prototype-kit.service.gov.uk/docs/principl
 
 ## Make sure prototypes are password-protected
 
-If you publish your prototypes online, they **must** be protected by a [username and password](https://prototype-kit.service.gov.uk/docs/publishing-on-heroku). This is to prevent members of the public finding prototypes and thinking they are real services.
+If you publish your prototypes online, they **must** be [protected by a password](https://prototype-kit.service.gov.uk/docs/publishing). This is to prevent members of the public finding prototypes and thinking they are real services.
 
 You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.
 
