@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "available": [
+      "govuk-frontend",
+      "@govuk-prototype-kit/step-by-step",
+      "hmrc-frontend",
+      "jquery"
+    ]
+  }
+}

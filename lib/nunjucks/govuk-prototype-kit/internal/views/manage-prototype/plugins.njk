@@ -1,0 +1,73 @@
+{% extends "govuk-prototype-kit/internal/views/manage-prototype/layout.njk" %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {{ successBanner | log }}
+      {% if successBanner %}
+
+        {% set html %}
+          <h3 class="govuk-notification-banner__heading">
+            Successfully {{ successBanner.verb }} {{ successBanner.package.name }} {% if successBanner.package.scope %} from {{ successBanner.package.scope }} {% endif %}
+          </h3>
+          <p class="govuk-body">The list below shows the current status of your plugins and has been updated since you {{ successBanner.verb }} {{ successBanner.package.name }}.</p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: html,
+          type: 'success'
+        }) }}
+      {% endif %}
+
+      <h1 class="govuk-heading-l">Plugins</h1>
+
+      <p class="govuk-body">
+        Plugins provide you with new components, styles and other features
+      </p>
+
+      {% for group in groupsOfPlugins %}
+        <h2 class="govuk-heading-m">{{ group.name }}</h2>
+
+        <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list-plugin-list">
+          {% for plugin in group.plugins %}
+            <li class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item">
+              <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name">
+                {{ plugin.name }}
+                {% if plugin.scope %}
+                <br/>
+                  <span class="govuk-caption-m">From {{ plugin.scope }}</span>
+                {% endif %}
+                {% if plugin.upgradeLink %}
+                  <br/>
+                  v{{ plugin.latestVersion }} available
+                {% endif %}
+              </div>
+              <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version">
+                {{ plugin.installedVersion or plugin.latestVersion }}
+              </div>
+              <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-links">
+                {% if not plugin.installedVersion %}
+                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
+                     href="{{ plugin.installLink }}">Install<span class="govuk-visually-hidden"> {{ plugin.name }}</span></a>
+                {% endif %}
+                {% if plugin.uninstallLink %}
+                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
+                     href="{{ plugin.uninstallLink }}">Uninstall<span class="govuk-visually-hidden"> {{ plugin.name }}</span></a>
+                {% endif %}
+                {% if plugin.upgradeLink %}
+                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
+                     href="{{ plugin.upgradeLink }}">Upgrade<span class="govuk-visually-hidden"> {{ plugin.name }}</span></a>
+                {% endif %}
+                {% if plugin.helpLink %}
+                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
+                     href="{{ plugin.helpLink }}">Help<span class="govuk-visually-hidden"> - {{ plugin.name }}</span></a>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,36 +1,42 @@
 /* eslint-env jest */
 
 const assert = require('assert')
-const fs = require('fs')
 const path = require('path')
 
-const glob = require('glob')
+const fs = require('fs-extra')
 const request = require('supertest')
 const sass = require('sass')
 
-const app = require('../../server.js')
-const buildConfig = require('../../lib/build/config.json')
-const utils = require('../../lib/utils')
-const { generateAssets } = require('../../lib/build/tasks')
+const { mkPrototype, mkdtempSync } = require('../util')
+const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
+let app
 
-function readFile (pathFromRoot) {
-  return fs.readFileSync(path.join(__dirname, '../../' + pathFromRoot), 'utf8')
-}
+process.env.KIT_PROJECT_DIR = tmpDir
+process.env.IS_INTEGRATION_TEST = 'true'
+
+const { packageDir, projectDir } = require('../../lib/path-utils')
+
+const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
 
 /**
  * Basic sanity checks on the dev server
  */
 describe('The Prototype Kit', () => {
-  beforeAll(() => {
-    generateAssets()
-  })
+  beforeAll(async () => {
+    await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
+    app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
 
-  it('should generate assets into the /public folder', () => {
-    assert.doesNotThrow(async function () {
-      await utils.waitUntilFileExists(path.resolve(__dirname, '../../public/javascripts/application.js'), 5000)
-      await utils.waitUntilFileExists(path.resolve(__dirname, '../../public/images/unbranded.ico'), 5000)
-      await utils.waitUntilFileExists(path.resolve(__dirname, '../../public/stylesheets/application.css'), 5000)
-    })
+    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {})
+    jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
+
+    require('../../lib/build/tasks').generateAssetsSync()
+  }, createKitTimeout)
+
+  it('should call writeFileSync with result css from sass.compile', () => {
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      path.join(projectDir, '.tmp', 'public', 'stylesheets', 'application.css'),
+      path.join(packageDir, 'lib', 'assets', 'sass', 'prototype.scss')
+    )
   })
 
   describe('index page', () => {
@@ -45,29 +51,20 @@ describe('The Prototype Kit', () => {
     })
   })
 
-  describe('docs index page', () => {
-    it('should send a well formed response', async () => {
-      const response = await request(app).get('/docs')
-      expect(response.statusCode).toBe(200)
-    })
-
-    it('should return html file', async () => {
-      const response = await request(app).get('/docs')
-      expect(response.type).toBe('text/html')
-    })
-  })
-
   describe('extensions', () => {
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
         .get('/extension-assets/govuk-frontend/govuk/all.js')
-        .expect('Content-Type', /application\/javascript; charset=UTF-8/)
         .expect(200)
+        .expect('Content-Type', /application\/javascript; charset=UTF-8/)
         .end(function (err, res) {
           if (err) {
             done(err)
           } else {
-            assert.strictEqual('' + res.text, readFile('node_modules/govuk-frontend/govuk/all.js'))
+            assert.strictEqual(
+              '' + res.text,
+              fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
+            )
             done()
           }
         })
@@ -75,14 +72,17 @@ describe('The Prototype Kit', () => {
 
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
-        .get('/govuk/assets/images/favicon.ico')
-        .expect('Content-Type', /image\/x-icon/)
+        .get('/extension-assets/govuk-frontend/govuk/assets/images/favicon.ico')
         .expect(200)
+        .expect('Content-Type', /image\/x-icon/)
         .end(function (err, res) {
           if (err) {
             done(err)
           } else {
-            assert.strictEqual('' + res.body, readFile('node_modules/govuk-frontend/govuk/assets/images/favicon.ico'))
+            assert.strictEqual(
+              '' + res.body,
+              fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'assets', 'images', 'favicon.ico'), 'utf8')
+            )
             done()
           }
         })
@@ -107,46 +107,21 @@ describe('The Prototype Kit', () => {
     describe('misconfigured prototype kit - while upgrading kit developer did not copy over changes in /app folder', () => {
       it('should still allow known assets to be loaded from node_modules', (done) => {
         request(app)
-          .get('/node_modules/govuk-frontend/govuk/all.js')
-          .expect('Content-Type', /application\/javascript; charset=UTF-8/)
+          .get('/extension-assets/govuk-frontend/govuk/all.js')
           .expect(200)
+          .expect('Content-Type', /application\/javascript; charset=UTF-8/)
           .end(function (err, res) {
             if (err) {
               done(err)
             } else {
-              assert.strictEqual('' + res.text, readFile('node_modules/govuk-frontend/govuk/all.js'))
+              assert.strictEqual(
+                '' + res.text,
+                fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
+              )
               done()
             }
           })
       })
-    })
-  })
-
-  const sassFiles = glob.sync(buildConfig.paths.assets + '/sass/*.scss')
-
-  describe(`${buildConfig.paths.assets}sass/`, () => {
-    it.each(sassFiles)('%s renders to CSS without errors', async (file) => {
-      return new Promise((resolve, reject) => {
-        sass.render({
-          file,
-          quietDeps: true
-        }, (err, result) => {
-          if (err) {
-            reject(err)
-          } else {
-            expect(result.css.length).toBeGreaterThan(1000)
-            resolve()
-          }
-        })
-      })
-    })
-  })
-
-  describe('Documentation markdown page titles', () => {
-    const markdownFiles = glob.sync('docs/documentation/**/*.md')
-    it.each(markdownFiles)('%s has a title', (filepath) => {
-      const file = readFile(filepath)
-      utils.getRenderOptions(file, filepath)
     })
   })
 })

@@ -1,6 +1,169 @@
 # Changelog
 
-## Unreleased
+## 13.0.0
+
+In this release we’ve made some significant changes to how the GOV.UK Prototype Kit works.
+
+These changes make the kit:
+- more secure
+- easier to use
+- easier to update in the future
+
+If you have an existing prototype and want to make the changes in this release, we recommend using the migration script to help with any breaking changes.
+
+[Migrate an existing prototype to version 13](https://prototype-kit.service.gov.uk/docs/migrate-an-existing-prototype)
+
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://prototype-kit.service.gov.uk/docs/support).
+
+
+### Breaking changes
+
+#### The Prototype Kit is now an npm package
+
+The 2 biggest breaking changes to the Prototype Kit are you can now create a prototype:
+
+- without downloading a zip file
+- by using an npm command in the terminal
+
+To run the kit, use `npm run dev` (not `npm start`).
+
+- #1638: Make serve default command
+
+To make the kit easier to update in the future, we have moved essential Prototype Kit files out of the users prototype folder and into the npm package.
+
+- #1617: Making most files optional
+
+This is alongside other work we've been doing that allows users to delete files they're not using.
+
+#### Using Node.js
+
+The Prototype Kit no longer supports versions 12 or 14 of Node.js. We recommend you update to the latest LTS version Node.js 18
+
+- #1753: Drop support for Node.js 12 and 14
+
+#### Creating routes, filters, templates and layouts
+
+How you create routes, filters and templates has changed. There is also a new approach to layouts.
+
+[Create routes](https://prototype-kit.service.gov.uk/docs/create-routes)
+
+[Create pages from templates](https://prototype-kit.service.gov.uk/docs/create-pages-from-templates)
+
+[How to use layouts](https://prototype-kit.service.gov.uk/docs/how-to-use-layouts)
+
+#### Default user template
+
+The default user template for a new prototype has moved to `app/views/layouts/main.html`.
+
+- #1752
+
+To help make these changes to an existing prototype, we have a migration script
+
+[How to migrate an existing prototype to version 13](https://prototype-kit.service.gov.uk/docs/migrate-existing-prototype)
+
+#### Other breaking changes
+
+You can no longer use the Prototype Kit with Internet Explorer 8
+- #1394: Remove Internet Explorer 8 support
+
+The Prototype Kit no longer includes the step by step pattern by default
+- #1471: Update step by step and install it as an extension
+
+The Prototype Kit no longer includes jQuery by default
+- #1478: Remove jQuery from default installation
+
+You can no longer use v6 compatibility mode
+- #1432: Remove v6 backwards compatibility support
+
+### New features
+
+#### Manage your Prototype
+
+There is a new Manage your Prototype page in the kit. From this page you can:
+
+- add and change your service name
+- create new pages using templates
+- find and install plugins that work with the Prototype Kit
+
+- #1589: Create management pages
+
+#### GOV.UK Frontend
+
+When creating a new prototype, you will always have the latest version of GOV.UK Frontend.
+
+The latest version of GOV.UK Frontend is version 4.4.0.
+
+Read the [release notes](https://github.com/alphagov/govuk-frontend/releases/tag/v4.4.0)
+
+### Other changes
+
+- Guidance and documentation for the Prototype Kit is now at prototype-kit.service.gov.uk
+
+- There are 2 sets of guidance to support users:
+  - Using version 13: prototype-kit.service.gov.uk/docs/
+  - Using version 12 or before: prototype-kit.service.gov.uk/v12/docs/
+
+- You can no longer see the docs folder in your prototype 
+  - #866: Remove docs from the Prototype Kit
+
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://prototype-kit.service.gov.uk/docs/support).
+
+### Pull requests
+
+#### Breaking changes
+- [#1753: Drop support for Node.js 12, 14](https://github.com/alphagov/govuk-prototype-kit/pull/1753)
+- [#1752: Move default user template to app/views/layouts/main.html](https://github.com/alphagov/govuk-prototype-kit/pull/1752)
+- [#1640: Fixing govuk frontend until they release update](https://github.com/alphagov/govuk-prototype-kit/pull/1640) We have made the plugin framework powerful enough to handle everything govuk-frontend needs but they haven't yet implemented their side of this, this change allows current and previous versions of govuk-frontend to work with the kit.  You'll need to import components before you can use them until govuk-frontend release a version which imports them automatically.  
+- [#1658: Use file store for session data](https://github.com/alphagov/govuk-prototype-kit/pull/1658)
+  - When running locally the kit will now preserve user session data between restarts
+  - Option `useCookieSessionStore` is no longer supported
+- [#1638: Make serve default command](https://github.com/alphagov/govuk-prototype-kit/pull/1638)
+  - Running `npm start` after creating starter prototype will now run 'production' command
+  - Users now need to run `npm run dev` when they want to start their prototype on their local machine
+  - We try and warn users in some circumstances where we think they may have run `npm start` accidentally
+- [#1617: Making most files optional](https://github.com/alphagov/govuk-prototype-kit/pull/1617) This alongside other work we've been doing allows users of the kit to delete files they're not using.
+- [#1589: Create management pages](https://github.com/alphagov/govuk-prototype-kit/issues/1589) Providing pages for the user to manage their prototype.
+- [#1615: Removing GOVUK Frontend specific integration](https://github.com/alphagov/govuk-prototype-kit/pull/1615) GOV.UK Frontend now integrates in the same way as any other plugin can.  We're allowing SASS settings to be set before the plugins run if they're put in app/assets/sass/settings.scss.
+- [#1572: Set up router](https://github.com/alphagov/govuk-prototype-kit/pull/1572) Providing a way for users who want to set up routers now that the kit is a package.
+- [#1550: Allow extensions to add filters](https://github.com/alphagov/govuk-prototype-kit/issues/1550) Adding the ability for extensions to add filters, providing an API for filters.
+- [#1522: Create govuk-branded.html template](https://github.com/alphagov/govuk-prototype-kit/pull/1522) This changes the way layouts are used, it also means you'll need to import nunjucks macros before using them (code snippets from the design system have the import in them).
+- [#1533: Generate Starter Files](https://github.com/alphagov/govuk-prototype-kit/pull/1533) This is a major change to the way the kit is used including:
+  - The kit is used as an NPM Module
+  - The public folder is no longer generated
+  - Assets and Javascript are served from their location in the app folder rather than being copied to a public folder
+  - Generated assets are all inside .tmp
+  - The core prototype-kit files have been moved into the package
+  - The start script uses the new govuk-prototype-kit cli
+  - To start a new kit the user will need to either run `npx govuk-prototype-kit create` or be provided the results of running this command in a zip format
+- [#1478: Remove jQuery from default installation](https://github.com/alphagov/govuk-prototype-kit/pull/1478)
+  - A new prototype will no longer include jQuery
+  - If you need jQuery you can use it with `npm install jquery`
+  - The kit will automatically add the jQuery script to all pages if it is installed as an npm package
+- [#1471: Update step by step and install it as an extension](https://github.com/alphagov/govuk-prototype-kit/pull/1471)
+- [#1394: Remove Internet Explorer 8 support](https://github.com/alphagov/govuk-prototype-kit/issues/1394)
+- [#1432: Remove v6 backwards compatibility support](https://github.com/alphagov/govuk-prototype-kit/pull/1432)
+
+#### New Features
+
+- [#1637: Add serve and dev scripts](https://github.com/alphagov/govuk-prototype-kit/pull/1637)
+  - Add `govuk-prototype-kit dev` and `govuk-prototype-kit serve` commands
+  - After creating prototype with starter files user can run `npm run dev` or `npm run serve`
+- [#1476: Update to GOV.UK Frontend 4.2.0](https://github.com/alphagov/govuk-prototype-kit/pull/1476)
+- [#1624: V13 pre refactor](https://github.com/alphagov/govuk-prototype-kit/pull/1624)
+  - Add support for globals
+- [#1693: Add stylesheets block](https://github.com/alphagov/govuk-prototype-kit/pull/1693)
+  - You can now add stylesheets to your layout or page by using the new `stylesheets` block
+  - You can now add meta elements to your layout or page by using the new `meta` block
+  - You can still use the `head` block, but we recommend you use one of the new
+    blocks mentioned above to keep your layouts simpler
+
+#### Fixes
+
+- [#1491: Fix page reloads when prototype assets are changed](https://github.com/alphagov/govuk-prototype-kit/pull/1491)
+
+#### Other changes
+
+- [#866: Remove docs from the Prototype Kit](https://github.com/alphagov/govuk-prototype-kit/issues/866)
 
 ## 12.3.0
 

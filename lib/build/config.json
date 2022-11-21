@@ -1,11 +1,11 @@
 {
   "paths": {
-    "public": "public",
+    "public": ".tmp/public",
     "cypress": "cypress",
     "assets" : "app/assets",
-    "docsAssets" : "docs/assets",
-    "v6Assets": "app/v6/assets",
+    "libAssets" : "lib/assets",
     "nodeModules": "node_modules",
-    "lib": "lib"
+    "lib": "lib",
+    "shadowNunjucks": ".tmp/shadow-nunjucks"
   }
 }

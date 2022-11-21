@@ -1,32 +1,57 @@
 {
   "name": "govuk-prototype-kit",
   "description": "Rapidly create HTML prototypes of GOV.UK services",
-  "version": "12.3.0",
-  "private": true,
+  "version": "13.0.0",
   "engines": {
-    "node": ">=12.0.0 <19.0.0"
+    "node": "^16.x || >= 18.x"
   },
+  "main": "index.js",
+  "bin": {
+    "govuk-prototype-kit": "bin/cli"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "prototype-starter/",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENCE.txt",
+    "README.md",
+    "govuk-prototype-kit.config.json",
+    "known-plugins.json",
+    "index.js",
+    "listen-on-port.js",
+    "server.js",
+    "start.js"
+  ],
   "scripts": {
-    "start": "node start",
-    "build": "node lib/build/generate-assets",
-    "serve": "node listen-on-port",
-    "lint": "standard",
+    "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm run dev",
+    "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
+    "start:package": "node cypress/scripts/run-starter-prototype",
+    "start:package:prodtest": "node cypress/scripts/run-starter-prototype --prodtest",
+    "start:package:heroku": "cross-env USE_AUTH=false USE_HTTPS=false node scripts/create-prototype-and-start 'npx --yes heroku local --port 3000'",
+    "lint": "standard '**/*.js' bin/cli",
     "rapidtest": "jest --bail",
+    "cypress:run": "cypress run",
     "cypress:open": "cypress open",
-    "test:heroku": "start-server-and-test 'npx --yes heroku local --port 3000' 3000 test:smoke",
-    "test:integration": "KIT_TEST_DIR=tmp/test-prototype start-server-and-test 'node cypress/scripts/run-from-release' 3000 'cypress run'",
-    "test:integration:package": "KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test 'node cypress/scripts/run-as-package' 3000 'cypress run'",
-    "test:smoke": "cypress run --spec \"cypress/integration/0-smoke-tests/*\"",
-    "test": "jest && npm run lint"
+    "cypress:e2e:dev": "cypress run --spec \"cypress/e2e/dev/*/*\"",
+    "cypress:e2e:prod": "cypress run --spec \"cypress/e2e/prod/*/*\"",
+    "cypress:e2e:smoke": "cypress run --spec \"cypress/e2e/smoke/*/*\"",
+    "test:heroku": "start-server-and-test start:package:heroku 3000 cypress:e2e:smoke",
+    "test:acceptance:dev": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test start:package 3000 cypress:e2e:dev",
+    "test:acceptance:prod": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test start:package:prodtest 3000 cypress:e2e:prod",
+    "test:acceptance:smoke": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test start:package 3000 cypress:e2e:smoke",
+    "test:acceptance:open": "cross-env KIT_TEST_DIR=tmp/test-prototype-package start-server-and-test start:package 3000 cypress:open",
+    "test:unit": "jest --detectOpenHandles lib bin",
+    "test:integration": "cross-env CREATE_KIT_TIMEOUT=90000 IS_INTEGRATION_TEST=true jest --detectOpenHandles --testTimeout=60000 __tests__",
+    "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
   "dependencies": {
-    "@govuk-prototype-kit/step-by-step": "^2.0.0",
     "acorn": "^8.5.0",
     "ansi-colors": "^4.1.1",
     "body-parser": "^1.14.1",
     "browser-sync": "^2.27.10",
     "chokidar": "^3.5.3",
-    "client-sessions": "^0.8.0",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.2",
     "del": "^6.0.0",
@@ -35,35 +60,39 @@
     "express-session": "^1.13.0",
     "fancy-log": "^1.3.3",
     "fs-extra": "^10.0.1",
-    "govuk_frontend_toolkit": "^7.5.0",
-    "govuk_template_jinja": "^0.24.1",
-    "govuk-elements-sass": "^3.1.3",
-    "govuk-frontend": "^4.3.1",
-    "gray-matter": "^4.0.3",
     "inquirer": "^8.2.0",
     "lodash": "^4.17.21",
     "marked": "^4.0.10",
-    "nodemon": "^2.0.15",
-    "notifications-node-client": "^5.1.0",
+    "nodemon": "^2.0.20",
     "nunjucks": "^3.2.1",
     "portscanner": "^2.1.1",
     "require-dir": "^1.0.0",
     "sass": "^1.49.10",
+    "session-file-store": "^1.5.0",
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.5.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "cypress": "^9.6.0",
+    "cross-env": "^7.0.3",
+    "cypress": "^10.6.0",
     "eslint-plugin-cypress": "^2.12.1",
+    "extract-zip": "^2.0.1",
     "glob": "^7.1.4",
     "jest": "^28.1.1",
+    "proper-lockfile": "^4.1.2",
     "standard": "^14.3.3",
     "start-server-and-test": "^1.14.0",
     "supertest": "^6.2.3",
     "wait-on": "^6.0.1"
   },
+  "peerDependencies": {
+    "govuk-frontend": ">=3"
+  },
   "standard": {
+    "ignore": [
+      "prototype-starter/**/*.js"
+    ],
     "plugins": [
       "cypress"
     ],
@@ -72,10 +101,14 @@
     }
   },
   "jest": {
+    "globalSetup": "<rootDir>/__tests__/util/globalSetup.js",
     "testPathIgnorePatterns": [
-      "__tests__/spec/utils.js",
+      "__tests__/util/",
+      "__tests__/fixtures/",
+      "__tests__/tmp/",
       "/node_modules/",
       "/tmp/"
-    ]
+    ],
+    "testTimeout": 30000
   }
 }

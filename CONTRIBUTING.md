@@ -30,7 +30,7 @@ This ensures they are discussed properly before any time is spent on them.
 
 ### Indentation and whitespace
 
-Your JavaScript code should pass [linting](docs/linting.md).
+Your JavaScript code should pass [linting](internal_docs/linting.md).
 
 For anything else, maintain 2-space, soft-tabs only indentation. No trailing whitespace.
 

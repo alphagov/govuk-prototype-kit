@@ -1,0 +1,73 @@
+{% extends "template.njk" %}
+
+{% from "accordion/macro.njk"        import govukAccordion %}
+{% from "back-link/macro.njk"        import govukBackLink %}
+{% from "breadcrumbs/macro.njk"      import govukBreadcrumbs %}
+{% from "button/macro.njk"           import govukButton %}
+{% from "character-count/macro.njk"  import govukCharacterCount %}
+{% from "checkboxes/macro.njk"       import govukCheckboxes %}
+{% from "date-input/macro.njk"       import govukDateInput %}
+{% from "details/macro.njk"          import govukDetails %}
+{% from "error-message/macro.njk"    import govukErrorMessage %}
+{% from "error-summary/macro.njk"    import govukErrorSummary %}
+{% from "fieldset/macro.njk"         import govukFieldset %}
+{% from "file-upload/macro.njk"      import govukFileUpload %}
+{% from "input/macro.njk"            import govukInput %}
+{% from "inset-text/macro.njk"       import govukInsetText %}
+{% from "panel/macro.njk"            import govukPanel %}
+{% from "phase-banner/macro.njk"     import govukPhaseBanner %}
+{% from "radios/macro.njk"           import govukRadios %}
+{% from "select/macro.njk"           import govukSelect %}
+{% from "skip-link/macro.njk"        import govukSkipLink %}
+{% from "summary-list/macro.njk"     import govukSummaryList %}
+{% from "table/macro.njk"            import govukTable %}
+{% from "tabs/macro.njk"             import govukTabs %}
+{% from "tag/macro.njk"              import govukTag %}
+{% from "textarea/macro.njk"         import govukTextarea %}
+{% from "warning-text/macro.njk"     import govukWarningText %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% if useAutoStoreData %}
+  {% block footer %}
+    {{ govukFooter({
+      meta: {
+        items: [
+          {
+            href: "https://govuk-prototype-kit.herokuapp.com/",
+            text: "GOV.UK Prototype Kit " + releaseVersion
+          },
+          {
+            href: "/prototype-admin/clear-data",
+            text: "Clear data"
+          }
+        ]
+      }
+    }) }}
+  {% endblock %}
+{% endif %}
+
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "includes/scripts.html" %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+  <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
+{% endblock %}

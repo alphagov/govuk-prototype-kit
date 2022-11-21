@@ -1,0 +1,58 @@
+{%- set assetPath = '/extension-assets/govuk-frontend/govuk/assets' -%}
+
+{% extends "govuk/template.njk" %}
+
+{% block head %}
+  {% block meta %}{% endblock %}
+  {% block stylesheets %}
+    {% include "govuk-prototype-kit/includes/stylesheets.html" %}
+  {% endblock %}
+{% endblock %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% if (GOVUKPrototypeKit.isDevelopment) %}
+  {% set footerItems = [
+    {
+      href: "/manage-prototype",
+      text: "Manage your prototype"
+    }, {
+      href: "/manage-prototype/clear-data",
+      text: "Clear data"
+    }
+  ] %}
+{% else %}
+  {% set footerItems = [
+    {
+      href: "/manage-prototype/clear-data",
+      text: "Clear data"
+    }
+  ] %}
+{% endif %}
+
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: footerItems,
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "govuk-prototype-kit/includes/scripts.html" %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+{% endblock %}

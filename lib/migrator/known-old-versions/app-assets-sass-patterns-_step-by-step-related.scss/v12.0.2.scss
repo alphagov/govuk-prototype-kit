@@ -1,0 +1,64 @@
+// Based on https://github.com/alphagov/govuk_publishing_components/blob/v22.0.0/app/assets/stylesheets/govuk_publishing_components/components/_step-by-step-related.scss
+// Note - this code for prototype purposes only. It is not production code.
+
+@use "sass:math";
+
+.app-step-nav-related {
+  @include govuk-text-colour;
+  border-top: 2px solid govuk-colour("blue");
+  margin-bottom: govuk-spacing(6);
+}
+
+.app-step-nav-related__heading {
+  margin-top: govuk-spacing(3);
+  margin-bottom: govuk-spacing(2);
+  @include govuk-font(19, $weight: bold);
+}
+
+.app-step-nav-related__links {
+  @include govuk-font(16, $weight: bold);
+  margin: 0;
+  padding: 0;
+}
+
+.app-step-nav-related--singular {
+  margin-bottom: govuk-spacing(2) + 3;
+
+  .app-step-nav-related__heading {
+    @include govuk-font(19, $weight: bold, $line-height: 1.4);
+    margin-top: govuk-spacing(4);
+
+    @include govuk-media-query($until: tablet) {
+      font-size: 19px;
+    }
+  }
+
+  .app-step-nav-related__pretitle {
+    margin-bottom: math.div(govuk-spacing(6), 4);
+  }
+}
+
+.app-step-nav-related__pretitle {
+  display: block;
+  margin-bottom: govuk-spacing(3);
+
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: govuk-spacing(1);
+  }
+}
+
+.app-step-nav-related__links {
+  list-style: none;
+}
+
+.app-step-nav-related__link-item {
+  margin-top: govuk-spacing(3);
+
+  @include govuk-media-query($from: tablet) {
+    margin-top: govuk-spacing(1);
+  }
+}
+
+.app-step-nav-related__link {
+  @extend %govuk-link;
+}

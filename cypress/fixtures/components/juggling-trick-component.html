@@ -1,0 +1,12 @@
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{{ govukTextarea({
+    name: "most-impressive-trick",
+    id: "most-impressive-trick",
+    value: data["most-impressive-trick"],
+    label: {
+        text: "What is your most impressive juggling trick?",
+        classes: "govuk-label--l",
+        isPageHeading: true
+    }
+}) }}

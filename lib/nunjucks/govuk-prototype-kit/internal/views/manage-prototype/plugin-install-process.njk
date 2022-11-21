@@ -1,0 +1,14 @@
+{% extends "govuk-prototype-kit/internal/views/manage-prototype/layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  <meta http-equiv="refresh" content="15;url=/manage-prototype/plugins" />
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-m">
+        {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
+      </h1>
+      <p>You'll be redirected back to the <a href="/manage-prototype/plugins">Plugins</a> page soon.</p>
+    </div>
+  </div>
+{% endblock %}

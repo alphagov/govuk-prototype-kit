@@ -1,6 +1,0 @@
-{
-  "baseUrl": "http://localhost:3000",
-  "testFiles": "**/*.cypress.js",
-  "video": false,
-  "chromeWebSecurity": false
-}

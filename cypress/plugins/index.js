@@ -11,22 +11,44 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-// const spawn = require('child_process').spawn
 const fs = require('fs')
+const fsp = fs.promises
 const path = require('path')
 
 const waitOn = require('wait-on')
+const extract = require('extract-zip')
+const https = require('https')
 
-const { sleep } = require('../integration/utils')
+const { starterDir } = require('../../lib/path-utils')
+const { sleep } = require('../e2e/utils')
 
-const createFolderForFile = (filepath) => {
+const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
+
+const createFolderForFile = async (filepath) => {
   const dir = filepath.substring(0, filepath.lastIndexOf('/'))
   if (dir && !fs.existsSync(dir)) {
-    fs.mkdirSync(dir, {
+    await fsp.mkdir(dir, {
       recursive: true
     })
   }
 }
+
+const validateExtractedVersion = async fullFilename => {
+  // Retrieve the name and version from the package.json from the extracted zip file
+  const extractFolder = path.resolve(fullFilename.substring(0, fullFilename.lastIndexOf('.zip')))
+  log(`validating extract => ${extractFolder}`)
+  const data = fs.readFileSync(path.join(extractFolder, 'package.json'))
+  const { name, version } = JSON.parse(data)
+  // Retrieve the directory name of the extracted files
+  const separator = (extractFolder.indexOf('/') > -1) ? '/' : '\\'
+  const dirname = extractFolder.substring(extractFolder.lastIndexOf(separator) + 1)
+  // Make sure they match
+  if (`${name}-${version}` !== dirname) {
+    throw new Error(`Extracted folder ${extractFolder} contains wrong version in package.json >> ${name}-${version}`)
+  }
+}
+
+const downloadsFolder = path.resolve('cypress', 'downloads')
 
 /**
  * @type {Cypress.PluginConfig}
@@ -36,7 +58,7 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  config.env.projectFolder = process.env.KIT_TEST_DIR || process.cwd()
+  config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
   config.env.tempFolder = path.join(__dirname, '..', 'temp')
 
   const packagePath = path.join(config.env.projectFolder, 'package.json')
@@ -49,78 +71,201 @@ module.exports = (on, config) => {
   }
 
   const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
+  const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
+  const replaceText = ({ text, originalText, newText, source }) => {
+    return getReplacementText(newText, source)
+      .then((replacementText) => {
+        if (text.includes(originalText)) {
+          return text.replace(originalText, replacementText)
+        } else {
+          throw new Error('Text to be replaced not found')
+        }
+      })
+  }
+
+  const replaceMultipleText = async (text, list) => {
+    let resultText = text
+    let index = 0
+    while (index < list.length) {
+      resultText = await replaceText({ text: resultText, ...list[index] })
+      index++
+    }
+    return resultText
+  }
+
+  const makeSureCypressCanInterpretTheResult = () => null
+
+  const existsFile = (filename, timeout = 0) => fsp.access(filename)
+    .catch((err) => err.code !== 'ENOENT' ? err : async () => {
+      if (timeout < 100) {
+        return null
+      } else {
+        await sleep(100)
+        return existsFile(filename, timeout - 100)
+      }
+    })
+
+  const notExistsFile = (filename, timeout = 0) => fsp.access(filename)
+    .then(async () => {
+      if (timeout < 100) {
+        return null
+      } else {
+        await sleep(100)
+        return notExistsFile(filename, timeout - 100)
+      }
+    })
+    .catch((err) => err.code !== 'ENOENT' ? err : null)
+
+  const deleteFile = (filename, timeout = 0) => fsp.unlink(filename)
+    .then(() => sleep(timeout))
+    .catch((err) => err.code !== 'ENOENT' ? err : null
+    )
+
+  const deleteFolder = (folder, timeout = 0) => fsp.rmdir(folder, { recursive: true })
+    .then(() => sleep(timeout))
+    .catch((err) => err.code !== 'ENOENT' ? err : null
+    )
+
+  const download = async (url, zipFile) => {
+    return new Promise((resolve, reject) => {
+      log(`downloading => ${url}`)
+      const request = https.get(url, response => {
+        if (response.statusCode === 200) {
+          const filename = path.join(downloadsFolder, zipFile)
+          log(`writing => ${filename}`)
+          const file = fs.createWriteStream(filename, { flags: 'wx' })
+          file.on('finish', () => resolve(filename))
+          file.on('error', (err) => {
+            file.close()
+            fs.unlink(downloadsFolder, () => {
+              log(`writing => ${filename} => ${err.message}`)
+              reject(err.message)
+            }) // Delete temp file
+          })
+          response.pipe(file)
+        } else if (response.statusCode === 302 || response.statusCode === 301) {
+          // Recursively follow redirects, only a 200 will resolve.
+          const { location } = response.headers
+          if (!zipFile && location.endsWith('.zip')) {
+            const uri = new URL(location)
+            zipFile = uri.pathname.split('/').pop()
+          }
+          return download(location, zipFile).then((filename) =>
+            resolve(filename))
+        } else {
+          reject(new Error(`Server responded with ${response.statusCode}: ${response.statusMessage}`))
+        }
+      })
+
+      request.on('error', err => {
+        reject(err.message)
+      })
+    })
+  }
+
+  const getPathFromProjectRoot = (...all) => path.join(...[config.env.projectFolder].concat(all))
+  const pathToPackageConfigFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'govuk-prototype-kit.config.json')
+
+  const pluginInstalled = (plugin, timeout) => {
+    const delay = 1000
+    return new Promise((resolve) => {
+      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
+      console.log(`Looking for ${plugin} in ${pkgConfigFilePath}`)
+      if (pkgConfigFilePath) {
+        existsFile(pkgConfigFilePath)
+          .then(() => resolve(makeSureCypressCanInterpretTheResult))
+      } else {
+        if (timeout < delay) {
+          resolve()
+        } else {
+          setTimeout(() => {
+            return pluginInstalled(plugin, timeout - delay)
+          }, delay)
+        }
+      }
+    })
+  }
 
   on('task', {
-    copyFile: async ({ source, target }) => {
-      try {
-        createFolderForFile(target)
-        fs.copyFileSync(source, target)
+    copyFile: ({ source, target }) => createFolderForFile(target)
+      .then(() => fsp.copyFile(source, target))
+      // The sleep of 2 seconds allows for the file to be copied completely to prevent
+      // it from not existing when the file is needed in a subsequent step
+      .then(() => sleep(2000)) // pause after the copy
+      .then(makeSureCypressCanInterpretTheResult),
+
+    copyFromStarterFiles: ({ starterFilename = undefined, filename }) => {
+      const src = path.join(starterDir, starterFilename || filename)
+      const dest = path.join(config.env.projectFolder, filename)
+      return createFolderForFile(dest)
+        .then(() => fsp.copyFile(src, dest))
         // The sleep of 2 seconds allows for the file to be copied completely to prevent
         // it from not existing when the file is needed in a subsequent step
-        await sleep(2000) // pause after the copy
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+        .then(() => sleep(2000)) // pause after the copy
+        .then(makeSureCypressCanInterpretTheResult)
+    },
 
-  on('task', {
-    createFile: async ({ filename, data, replace = false }) => {
-      try {
-        createFolderForFile(filename)
-        fs.writeFileSync(filename, data, {
-          flag: replace ? 'w' : '' // Flag of w will overwrite
-        })
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+    createFile: ({ filename, data, replace = false }) => createFolderForFile(filename)
+      .then(() => fsp.writeFile(filename, data, {
+        flag: replace ? 'w' : '' // Flag of w will overwrite
+      }))
+      .then(makeSureCypressCanInterpretTheResult),
 
-  on('task', {
-    appendFile: async ({ filename, data }) => {
-      try {
-        fs.appendFileSync(filename, data)
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+    appendFile: ({ filename, data }) => fsp.appendFile(filename, data)
+      .then(makeSureCypressCanInterpretTheResult),
 
-  on('task', {
-    deleteFile: async ({ filename, timeout }) => {
-      try {
-        fs.unlinkSync(filename)
-        await sleep(timeout)
-        return Promise.resolve(null)
-      } catch (err) {
-        if (err.code !== 'ENOENT') {
-          return Promise.reject(err)
-        }
-        return Promise.resolve(null)
-      }
-    }
-  })
+    deleteFile: ({ filename, timeout }) => deleteFile(filename, timeout)
+      .then(makeSureCypressCanInterpretTheResult),
 
-  on('task', {
-    waitUntilAppRestarts: async (config) => {
+    existsFile: ({ filename, timeout }) => existsFile(filename, timeout)
+      .then(makeSureCypressCanInterpretTheResult),
+
+    notExistsFile: ({ filename, timeout }) => notExistsFile(filename, timeout)
+      .then(makeSureCypressCanInterpretTheResult),
+
+    pluginInstalled: ({ plugin, timeout }) => pluginInstalled(plugin, timeout)
+      .then(makeSureCypressCanInterpretTheResult),
+
+    pluginUninstalled: ({ plugin, timeout }) => {
+      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
+      return notExistsFile(pkgConfigFilePath, timeout)
+        .then(makeSureCypressCanInterpretTheResult)
+    },
+
+    waitUntilAppRestarts: (config) => {
       const { timeout = 20000 } = config || {}
-      try {
-        await waitUntilAppRestarts(timeout)
-        return Promise.resolve(null)
-      } catch (err) {
-        return Promise.reject(err)
-      }
-    }
-  })
+      return waitUntilAppRestarts(timeout)
+        .then(makeSureCypressCanInterpretTheResult)
+    },
 
-  on('task', {
-    log (message) {
-      console.log(`${new Date().toLocaleTimeString()} => ${message}`)
-      return null
+    replaceTextInFile: ({ filename, ...options }) => fsp.readFile(filename)
+      .then((buffer) => replaceText({ text: buffer.toString(), ...options }))
+      .then((text) => fsp.writeFile(filename, text.toString()))
+      .then(makeSureCypressCanInterpretTheResult),
+
+    replaceMultipleTextInFile: ({ filename, list }) => fsp.readFile(filename)
+      .then((buffer) => replaceMultipleText(buffer.toString(), list))
+      .then((text) => fsp.writeFile(filename, text.toString()))
+      .then(makeSureCypressCanInterpretTheResult),
+
+    download: async ({ filename }) => {
+      log(`deleting folder => ${downloadsFolder}`)
+      return deleteFolder(downloadsFolder, 2000)
+        .then(() => fsp.mkdir(downloadsFolder, { recursive: true }))
+        .then(() => download(filename))
+        .then((fullFilename) => {
+          log(`extracting => ${fullFilename}`)
+          return extract(fullFilename, { dir: downloadsFolder })
+            .then(() => {
+              return validateExtractedVersion(fullFilename)
+            })
+        })
+        .then(makeSureCypressCanInterpretTheResult)
+    },
+
+    log: (message) => {
+      log(message)
+      return makeSureCypressCanInterpretTheResult()
     }
   })
 

@@ -1,0 +1,13 @@
+@import "node_modules/govuk-frontend/settings/all";
+$govuk-global-styles: true;
+
+// Override the govuk-frontend font stack
+$govuk-font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+
+// Remove canvas background colour, as is used with the GOV.UK Footer.
+$govuk-canvas-background-colour: $govuk-body-background-colour;
+
+@import "node_modules/govuk-frontend/all";
+
+// If you need to create a page as part of your journey, but without GOV.UK branding
+// See localhost:3000/docs/examples/blank-unbranded

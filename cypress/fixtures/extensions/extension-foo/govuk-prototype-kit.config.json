@@ -1,0 +1,14 @@
+{
+  "nunjucksFilters": [
+    "/filters.js"
+  ],
+  "nunjucksPaths": [
+    "/views"
+  ],
+  "scripts": [
+    "/scripts/foo.js"
+  ],
+  "sass": [
+    "/sass/foo.scss"
+  ]
+}

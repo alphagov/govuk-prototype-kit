@@ -1,0 +1,29 @@
+{% extends "govuk-prototype-kit/internal/views/manage-prototype/layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ super() }}
+  <a class="govuk-back-link" href="/manage-prototype/plugins">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-m">
+        {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
+      </h1>
+      <p>
+        In terminal, press <strong>ctrl + c</strong> to stop your prototype, then run:
+      </p>
+      <p>
+        <code>{{ command }}</code>
+      </p>
+      <p>
+        When you've {{ verb.status }} the plugin, restart your prototype in the terminal by typing:
+      </p>
+      <p>
+        <code>npm run dev</code>
+      </p>
+    </div>
+  </div>
+{% endblock %}

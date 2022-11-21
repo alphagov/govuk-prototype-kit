@@ -1,0 +1,15 @@
+// SASS settings should be brought in before plugins so the user can configure settings for their plugins
+@import ".tmp/sass/user/settings";
+
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import ".tmp/sass/extensions";
+
+// Patterns that aren't in Frontend
+@import "patterns/contents-list";
+@import "patterns/mainstream-guide";
+@import "patterns/pagination";
+@import "patterns/related-items";
+@import "patterns/task-list";
+
+// SASS that is user defined
+@import ".tmp/sass/user/application";
