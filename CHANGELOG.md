@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- [#1796: Fix link to docs in routes.js](https://github.com/alphagov/govuk-prototype-kit/pull/1796)
+
 ## 13.0.0
 
 In this release we’ve made some significant changes to how the GOV.UK Prototype Kit works.

@@ -50,7 +50,7 @@ describe('migrate test prototype', () => {
     expect(routesFileContents).toEqual(
       '// \n' +
       '// For guidance on how to create routes see:\n' +
-      '// https://prototype-kit.service.gov.uk/docs/routes\n' +
+      '// https://prototype-kit.service.gov.uk/docs/create-routes\n' +
       '// \n' +
       '\n' +
       'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
