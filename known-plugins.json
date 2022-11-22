@@ -5,6 +5,12 @@
       "@govuk-prototype-kit/step-by-step",
       "hmrc-frontend",
       "jquery"
-    ]
+    ],
+    "interned": {
+      "jquery": {
+        "scripts": ["/dist/jquery.js"],
+        "assets": ["/dist"]
+      }
+    }
   }
 }
