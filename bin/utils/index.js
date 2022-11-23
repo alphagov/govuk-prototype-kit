@@ -9,6 +9,7 @@ async function npmInstall (cwd, dependencies) {
       'install',
       '--no-audit',
       '--loglevel=error',
+      '--omit=dev',
       ...dependencies
     ], {
       cwd: cwd,
