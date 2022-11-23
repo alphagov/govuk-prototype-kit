@@ -124,7 +124,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-require('./lib/routes/prototype-admin-routes.js')
+require('./lib/routes/prototype-admin-routes.js')(scripts)
 require('./lib/routes/extensions.js')
 utils.addRouters(app)
 
