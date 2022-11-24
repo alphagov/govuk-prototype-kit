@@ -55,7 +55,7 @@ if (extensions.legacyGovukFrontendFixesNeeded()) {
 }
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.extensionConfig = extensions.getAppConfig({
-  scripts: utils.scripts
+  scripts: utils.prototypeAppScripts
 })
 
 // use cookie middleware for reading authentication cookie
