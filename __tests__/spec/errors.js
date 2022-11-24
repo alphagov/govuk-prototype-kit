@@ -1,6 +1,8 @@
 /* eslint-env jest */
 const request = require('supertest')
 
+const { sleep } = require('../../lib/utils')
+
 // with NODE_ENV=test express hides error messages
 process.env.NODE_ENV = 'development'
 process.env.IS_INTEGRATION_TEST = 'true'
@@ -52,5 +54,26 @@ describe('error handling', () => {
 
     expect(response.status).toBe(500)
     expect(response.text).toEqual('template not found: test-page.html')
+  })
+
+  it('non-fatal errors are not shown in the browser', async () => {
+    testRouter.get('/non-fatal-error', (req, res, next) => {
+      // an error in a background thread
+      setImmediate(next, new Error('test non-fatal error'))
+      res.send('OK')
+    })
+
+    const app = require('../../server.js')
+    const response = await request(app).get('/non-fatal-error')
+
+    await sleep(500) // wait for next(err) to be called
+
+    expect(console.error).toHaveBeenCalledTimes(1)
+    expect(console.error).toHaveBeenCalledWith(expect.stringMatching(
+      /^Error: test non-fatal error/
+    ))
+
+    expect(response.status).toBe(200)
+    expect(response.text).toEqual('OK')
   })
 })

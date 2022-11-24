@@ -4,6 +4,7 @@
 
 ### Fixes
 
+- [#1814: Stop express complaining if error occurs after res has been sent](https://github.com/alphagov/govuk-prototype-kit/pull/1814)
 - [#1804: Fix previewing templates with JavaScript in management pages](https://github.com/alphagov/govuk-prototype-kit/pull/1804)
 - [#1803: Stop installing dev dependencies when creating prototype](https://github.com/alphagov/govuk-prototype-kit/pull/1803)
 - [#1796: Fix link to docs in routes.js](https://github.com/alphagov/govuk-prototype-kit/pull/1796)
