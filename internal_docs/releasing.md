@@ -55,7 +55,7 @@ v8.0.0 // After implementing backwards incompatible changes
 
 14. Sign in to npm (`npm login`), using the credentials for the govuk-prototype-kit npm user from Bitwarden.
 
-15. Run `npm publish` and enter the one-time password when prompted.
+15. Run `npm run clean-publish` and enter the one-time password when prompted.
 
 16. Run `npm logout` to log out from npm.
 
