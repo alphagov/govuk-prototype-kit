@@ -27,7 +27,7 @@ v8.0.0 // After implementing backwards incompatible changes
 
 (From [jvandemo.com](https://www.jvandemo.com/a-simple-guide-to-semantic-versioning/))
 
-3. Draft release notes in a Google Doc. 
+3. Draft release notes in a Google Doc.
 
 4. Checkout a new branch called release-[new version number].
 
@@ -35,14 +35,15 @@ v8.0.0 // After implementing backwards incompatible changes
 
 6. Update the [CHANGELOG.md](/CHANGELOG.md) by:
 
-  - changing the 'Unreleased' heading to the new version-number and release-type - for example, '12.0.1 (Fix release)'
-  - adding a new 'Unreleased' heading above the new version-number and release-type, so users will know where to add PRs to the changelog
+  - adding the text of the release notes under the 'Unreleased' heading
+  - changing the 'Unreleased' heading to the new version-number - for example, '12.0.1'
+  - adding a new 'Unreleased' heading above the new version-number, so users will know where to add PRs to the changelog
 
-7. Update the version number in [VERSION.txt](/VERSION.txt) and update "version" in [package.json](/package.json#L4).
+7. Update the version number in [package.json](/package.json#L4).
 
 8. Run `npm install` to update `npm-shrinkwrap.json`.
 
-9. Commit your changes and open a new pull request on GitHub - copy the relevant Changelog section into the description.
+9. Commit your changes and open a new pull request on GitHub - copy the release notes into the description.
 
 10. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
 
@@ -68,4 +69,4 @@ Write a brief summary with highlights from the release then send it to the follo
 - X-GOV #prototype-kit
 - GDS #govuk-design-system
 
-Make sure to send a link to the install page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/install.
+Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-a-new-prototype.
