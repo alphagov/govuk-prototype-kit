@@ -1,17 +1,11 @@
 const path = require('path')
 
-const { waitForApplication } = require('../../utils')
-const { urlencode } = require('nunjucks/src/filters')
+const { waitForApplication, getTemplateLink } = require('../../utils')
 
 const startPageView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'start.html')
 const startPagePath = '/start'
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
-
-const getTemplateLink = (type, packageName, path) => {
-  const queryString = `?package=${urlencode(packageName)}&template=${urlencode(path)}`
-  return `/manage-prototype/templates/${type}${queryString}`
-}
 
 describe('create new start page', () => {
   before(() => {

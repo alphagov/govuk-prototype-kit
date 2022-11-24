@@ -1,7 +1,6 @@
 // Core dependencies
 const path = require('path')
 const url = require('url')
-const { existsSync } = require('fs')
 const fs = require('fs').promises
 
 // NPM dependencies
@@ -55,15 +54,8 @@ if (extensions.legacyGovukFrontendFixesNeeded()) {
   app.locals.GOVUKPrototypeKit.legacyGovukFrontendFixesNeeded = true
 }
 // extensionConfig sets up variables used to add the scripts and stylesheets to each page.
-const scripts = []
-if (existsSync(path.join(projectDir, 'app', 'assets', 'javascripts', 'application.js'))) {
-  scripts.push('/public/javascripts/application.js')
-}
-if (extensions.legacyGovukFrontendFixesNeeded()) {
-  scripts.push('/extension-assets/govuk-prototype-kit/lib/assets/javascripts/optional/legacy-govuk-frontend-init.js')
-}
 app.locals.extensionConfig = extensions.getAppConfig({
-  scripts: scripts
+  scripts: utils.prototypeAppScripts
 })
 
 // use cookie middleware for reading authentication cookie
