@@ -12,7 +12,6 @@ const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
 let app
 
 process.env.KIT_PROJECT_DIR = tmpDir
-process.env.IS_INTEGRATION_TEST = 'true'
 
 const { packageDir, projectDir } = require('../../lib/path-utils')
 
