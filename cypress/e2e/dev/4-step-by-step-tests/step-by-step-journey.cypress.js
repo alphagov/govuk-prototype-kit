@@ -1,27 +1,18 @@
 import path from 'path'
 import { deleteFile } from '../../utils'
+import {
+  assertHidden,
+  assertVisible,
+  showHideAllLinkQuery,
+  titleQuery,
+  toggleButtonQuery
+} from '../../step-by-step-utils'
 
 const { waitForApplication, copyFile } = require('../../utils')
 
 const projectFolder = Cypress.env('projectFolder')
 
 const appViews = path.join(projectFolder, 'app', 'views')
-
-const showHideAllLinkQuery = '.app-step-nav__controls button'
-const toggleButtonQuery = (step) => `[data-position="${step}"]`
-const showHideLinkQuery = (step) => `[data-position="${step}"]`
-const panelQuery = (step) => `[data-position="${step}.1"]`
-const titleQuery = (step) => `[data-position="${step}"] .js-step-title-text`
-
-const assertVisible = (step) => {
-  cy.get(showHideLinkQuery(step)).should('contains.text', 'Hide')
-  cy.get(panelQuery(step)).should('be.visible')
-}
-
-const assertHidden = (step) => {
-  cy.get(panelQuery(step)).should('not.be.visible')
-  cy.get(showHideLinkQuery(step)).should('contains.text', 'Show')
-}
 
 const stepByStepTestData = [{
   name: 'step-by-step-navigation',

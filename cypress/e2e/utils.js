@@ -1,3 +1,4 @@
+const { urlencode } = require('nunjucks/src/filters')
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const waitForApplication = async (path = '/index') => {
@@ -23,6 +24,11 @@ const createFile = (filename, options) => {
   cy.task('createFile', { filename, ...options })
 }
 
+const getTemplateLink = (type, packageName, path) => {
+  const queryString = `?package=${urlencode(packageName)}&template=${urlencode(path)}`
+  return `/manage-prototype/templates/${type}${queryString}`
+}
+
 function uninstallPlugin (plugin) {
   cy.task('log', `Uninstalling ${plugin}`)
   cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
@@ -42,6 +48,7 @@ function installPlugin (plugin, version = '') {
 module.exports = {
   sleep,
   waitForApplication,
+  getTemplateLink,
   copyFile,
   deleteFile,
   createFile,
