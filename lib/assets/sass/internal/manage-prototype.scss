@@ -419,3 +419,23 @@ body .govuk-prototype-kit-manage-prototype-govuk-tag {
 .govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link {
   margin-right: 1em;
 }
+
+.govuk-prototype-kit-manage-prototype-plugin-instructions {
+  &.js-hidden {
+    display: initial;
+  }
+  &.js-visible {
+    display: none;
+  }
+}
+
+.js-enabled {
+  .govuk-prototype-kit-manage-prototype-plugin-instructions {
+    &.js-hidden {
+      display: none;
+    }
+    &.js-visible {
+      display: initial;
+    }
+  }
+}

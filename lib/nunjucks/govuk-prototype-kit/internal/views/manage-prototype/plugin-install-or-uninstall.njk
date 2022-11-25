@@ -12,26 +12,80 @@
       <h1 class="govuk-heading-m">
         {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
       </h1>
-      <p>
-        In terminal, press <strong>ctrl + c</strong> to stop your prototype, then run:
-      </p>
-      <p>
-        <code>{{ command }}</code>
-      </p>
-      <p>
-        When you've {{ verb.status }} the plugin, restart your prototype in the terminal by typing:
-      </p>
-      <p>
-        <code>npm run dev</code>
-      </p>
 
-      <p>Or use the {{ verb.para }} button below</p>
+      <div class="govuk-prototype-kit-manage-prototype-plugin-instructions js-hidden">
+        <p>
+          In terminal, press <strong>ctrl + c</strong> to stop your prototype, then run:
+        </p>
+        <p>
+          <code>{{ command }}</code>
+        </p>
+        <p>
+          When you've {{ verb.status }} the plugin, restart your prototype in the terminal by typing:
+        </p>
+        <p>
+          <code>npm run dev</code>
+        </p>
+      </div>
 
-      <form action="{{ currentUrl }}" method="post">
-        {{ govukButton({
-          text: verb.title + " " + chosenPlugin.name
-        }) }}
-      </form>
+      <div class="govuk-prototype-kit-manage-prototype-plugin-instructions js-visible">
+        <p>Use the {{ verb.para }} button below</p>
+
+        <form action="{{ currentUrl }}" method="post">
+          {{ govukButton({
+            text: verb.title + " " + chosenPlugin.name
+          }) }}
+        </form>
+      </div>
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    let params = new URLSearchParams(window.location.search)
+    const packageName = params.get('package')
+    const mode = params.get('mode') || window.location.pathname.split('/').pop()
+    let startTimestamp = ''
+
+    const postRequest = (url) => fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        package: packageName,
+      })
+    })
+
+    const pollStatus = (callback) => {
+      postRequest('/manage-prototype/plugins/status')
+              .then(response => response.json())
+              .then(data => {
+                setTimeout(() => {
+                  // poll status again if prototype hasn't restarted
+                  if (data.startTimestamp === startTimestamp) {
+                    pollStatus(callback)
+                  } else {
+                    callback()
+                  }
+                }, 2000)
+              })
+              .catch(() => pollStatus(callback))
+    }
+
+    const onSubmit = (event) => {
+      event.preventDefault()
+      postRequest(`/manage-prototype/plugins/${mode}`)
+              .then(response => response.json())
+              .then(data => {
+                startTimestamp = data.startTimestamp
+                pollStatus(() => setTimeout(() => window.location.href = `/manage-prototype/plugins?mode=${mode}&package=${packageName}`, 4000))
+              })
+    }
+
+    const form = document.querySelector('form')
+    form.addEventListener('submit', onSubmit)
+  </script>
 {% endblock %}

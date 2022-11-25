@@ -4,7 +4,6 @@ const path = require('path')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const managePluginsPagePath = '/manage-prototype/plugins'
-const manageTemplatesPagePath = '/manage-prototype/templates'
 const plugin = '@govuk-prototype-kit/step-by-step'
 const version1 = '@1.0.0'
 const version2 = '@2.1.0'
@@ -17,34 +16,23 @@ const cleanup = () => {
   deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
   // Make sure plugin version 1 is installed
   installPlugin(plugin, version1)
-  cy.wait(5000)
+  cy.wait(8000)
 }
 
-const getVerbAction = (action) => {
-  switch (action) {
-    case 'upgrade': return 'Upgrading'
-    case 'install': return 'Installing'
-    case 'uninstall': return 'Uninstalling'
-  }
-}
-
-const performPluginAction = (action, version = '') => {
+const performPluginAction = (action) => {
   cy.task('log', `The ${plugin} plugin should be displayed`)
   cy.get('h1')
     .should('contains.text', `${capitalize(action)} ${pluginName}`)
 
-  cy.get('code').eq(0)
-    .should('have.text', `npm ${action === 'upgrade' ? 'install' : action} ${plugin}${version}`)
-
   cy.get('button.govuk-button')
     .should('contains.text', `${capitalize(action)} ${pluginName}`).click()
-
-  cy.get('h1').should('contain.text', `${getVerbAction(action)} ${pluginName}`)
 
   cy.get('h1', { timeout: 20000 }).should('have.text', 'Plugins')
 }
 
 const provePluginFunctionalityWorks = () => {
+  cy.wait(2000)
+
   cy.task('log', `Prove ${pluginName} functionality works`)
 
   cy.visit(pluginPagePath)
@@ -61,7 +49,9 @@ const provePluginFunctionalityWorks = () => {
 }
 
 const provePluginFunctionalityFails = () => {
-  cy.task('log', `Prove ${pluginName} functionality works`)
+  cy.wait(2000)
+
+  cy.task('log', `Prove ${pluginName} functionality fails`)
 
   cy.visit(pluginPagePath)
 
@@ -79,16 +69,21 @@ describe('Management plugins: ', () => {
     cleanup()
   })
 
+  beforeEach(() => {
+    cy.wait(2000)
+  })
+
   it(`Upgrade the ${plugin}${version1} plugin to ${plugin}${version2}`, () => {
     cy.task('log', `Upgrade the ${plugin} plugin`)
-    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}&mode=upgrade"]`)
+    cy.get(`a[href*="/upgrade?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Upgrade').click()
 
     performPluginAction('upgrade', version2)
   })
 
   it(`Create a page using a template from the ${plugin} plugin`, () => {
-    cy.visit(manageTemplatesPagePath)
+    cy.get('a[href*="/templates"]')
+      .should('contains.text', 'Templates').click()
 
     cy.get('h2').eq(2).should('contain.text', pluginName)
 
