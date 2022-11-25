@@ -170,7 +170,13 @@ app.use(function (req, res, next) {
 })
 
 // Display error
+// We override the default handler because we want to customise
+// how the error appears to users, we want to show a simplified
+// message without the stack trace.
 app.use(function (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err)
+  }
   console.error(err.message)
   res.status(err.status || 500)
   res.send(err.message)

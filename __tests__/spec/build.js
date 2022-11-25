@@ -11,7 +11,6 @@ const { mkdtempSync } = require('../util')
 const testDir = path.join(mkdtempSync(), 'build')
 
 process.env.KIT_PROJECT_DIR = testDir
-process.env.IS_INTEGRATION_TEST = 'true'
 
 const { packageDir, projectDir } = require('../../lib/path-utils')
 const { generateAssetsSync } = require('../../lib/build/tasks')

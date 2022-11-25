@@ -6,7 +6,7 @@ const server = require('./server.js')
 const config = require('./lib/config.js').getConfig()
 const utils = require('./lib/utils.js')
 
-if (process.env.IS_INTEGRATION_TEST === 'true') {
+if (config.isTest) {
   server.listen()
 } else {
   utils.findAvailablePort(server, function (port) {
