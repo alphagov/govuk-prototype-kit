@@ -1,16 +1,15 @@
 /// <reference types="cypress" />
-// ***********************************************************
-// This example plugins/index.js can be used to load plugins
-//
-// You can change the location of this file or turn off loading
-// the plugins file with the 'pluginsFile' configuration option.
+// ***********************************************************************************************
+// The setupNodeEvents function is where node events can be registered and config can be modified.
+// This takes the place of the (removed) pluginFile option.
 //
 // You can read more here:
-// https://on.cypress.io/plugins-guide
-// ***********************************************************
+// https://docs.cypress.io/guides/references/configuration#setupNodeEvents
+// ***********************************************************************************************
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
+
 const fs = require('fs')
 const fsp = fs.promises
 const path = require('path')
@@ -50,11 +49,7 @@ const validateExtractedVersion = async fullFilename => {
 
 const downloadsFolder = path.resolve('cypress', 'downloads')
 
-/**
- * @type {Cypress.PluginConfig}
- */
-// eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
+module.exports = function setupNodeEvents (on, config) {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 

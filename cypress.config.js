@@ -1,14 +1,12 @@
 const { defineConfig } = require('cypress')
-const plugins = require('./cypress/plugins')
+const setupNodeEvents = require('./cypress/events')
 
 module.exports = defineConfig({
   video: false,
   chromeWebSecurity: false,
   trashAssetsBeforeRun: true,
   e2e: {
-    setupNodeEvents (on, config) {
-      return plugins(on, config)
-    },
+    setupNodeEvents,
     baseUrl: 'http://localhost:3000',
     specPattern: 'cypress/e2e/**/*.cypress.js'
   }
