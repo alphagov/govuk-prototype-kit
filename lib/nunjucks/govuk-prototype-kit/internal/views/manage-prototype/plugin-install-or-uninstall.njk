@@ -1,14 +1,11 @@
 {% extends "govuk-prototype-kit/internal/views/manage-prototype/layout.njk" %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
-
-{% block beforeContent %}
-  {{ super() }}
-  <a class="govuk-back-link" href="/manage-prototype/plugins">Back</a>
-{% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row govuk-prototype-kit-manage-prototype-plugin-processing">
     <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Plugins</h1>
+
       <h1 class="govuk-heading-m">
         {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
       </h1>
@@ -28,9 +25,44 @@
         </p>
       </div>
 
-      <div class="govuk-prototype-kit-manage-prototype-plugin-instructions js-visible">
-        <p class="js-plugin-action">{{ verb.progressive|capitalize }} {{ chosenPlugin.name }} ...</p>
+      <div class="js-visible" aria-live="polite">
+
+        <div class="panel-processing govuk-panel govuk-panel--confirmation" id="panel-processing">
+          <div class="govuk-panel__title govuk-!-font-size-27">
+            {{ verb.progressive|capitalize }} ...
+          </div>
+        </div>
+
+        <div class="govuk-panel govuk-panel--confirmation govuk-!-display-none" id="panel-complete">
+          <div class="govuk-panel__title govuk-!-font-size-27">
+            {{ verb.title }} complete
+          </div>
+        </div>
+
+        <div class="panel-error govuk-panel govuk-panel--confirmation govuk-!-display-none" id="panel-error">
+          <div class="govuk-panel__title govuk-!-font-size-27">
+            There was a problem {{ verb.progressive }}
+          </div>
+          <div class="govuk-panel__body govuk-!-font-size-19">
+            <a href="https://prototype-kit.service.gov.uk/docs/support">
+              Please contact support
+            </a>
+          </div>
+        </div>
+
+        <div class="govuk-!-display-none" id="instructions-complete">
+          <p class="govuk-body">
+            If you are using Git you can commit this change.
+          </p>
+          <p class="govuk-body">
+            <a href="/manage-prototype/plugins">
+              Back to plugins
+            </a>
+          </p>
+        </div>
+
       </div>
+
     </div>
   </div>
 {% endblock %}
