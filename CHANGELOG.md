@@ -4,6 +4,7 @@
 
 ### Fixes
 
+- [#1833: Update content of backup homepage](https://github.com/alphagov/govuk-prototype-kit/pull/1833)
 - [#1821: Always delete IE8 Sass files when migrating existing prototype](https://github.com/alphagov/govuk-prototype-kit/pull/1821)
 - [#1818: Fix heading sizes in templates](https://github.com/alphagov/govuk-prototype-kit/pull/1818)
 - [#1814: Stop express complaining if error occurs after res has been sent](https://github.com/alphagov/govuk-prototype-kit/pull/1814)
