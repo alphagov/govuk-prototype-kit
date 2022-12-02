@@ -9,29 +9,23 @@ Home – GOV.UK Prototype Kit
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
-      Prototype your service using GOV.UK Prototype Kit
+      Your prototype homepage is missing
       <span class="govuk-caption-xl">{{releaseVersion}}</span>
     </h1>{{releaseVersion | log }}
-    <p>
-      This kit lets you rapidly create HTML prototypes of GOV.UK services.
-    </p>
 
-    <p>
-      It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-    </p>
+    <p>Your homepage file does not exist or may have been deleted.</p>
 
-    <h2 class="govuk-heading-m">About this page</h2>
+    <p>To create a standard template homepage:</p>
 
-    <p>You're seeing this page because you don't have a homepage.  This homepage would exist in '/app/views/index.html'.</p>
+    <ol class="govuk-list govuk-list--number">
+      <li>Create a new file in app/views folder.</li>
+      <li>Name it index.html.</li>
+      <li>Copy the code below and paste it into the index.html file.</li>
+    </ol>
 
-    <p>You can copy the code below and create a file called 'app/views/index.html' if want to use the standard homepage.</p>
-    
-    <code>
-      {% for line in starterHomepageCodeLines %}
-        <br/>
-        {{ line }}
-      {% endfor %}
-    </code>
+    <pre><code>
+      {{- starterHomepageCode }}
+    </code></pre>
 
   </div>
 </div>
