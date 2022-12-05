@@ -131,7 +131,7 @@ describe('migrate test prototype', () => {
     expect(layoutFileContents).toEqual(
       '{#\n' +
       'For guidance on how to use layouts see:\n' +
-      'https://prototype-kit.service.gov.uk/docs/layouts\n' +
+      'https://prototype-kit.service.gov.uk/docs/how-to-use-layouts\n' +
       '#}\n' +
       '\n' +
       '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}' + '\n'
