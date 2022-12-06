@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.0.1
+
 ### Fixes
 
 - [#1836: Update broken link to layouts guidance](https://github.com/alphagov/govuk-prototype-kit/pull/1836)
