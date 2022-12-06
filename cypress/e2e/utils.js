@@ -1,6 +1,15 @@
 const { urlencode } = require('nunjucks/src/filters')
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+const authenticate = () => {
+  const password = Cypress.env('PASSWORD')
+  if (password) {
+    cy.task('log', `Authenticating with ${password}`)
+    cy.get('input#password').type(password)
+    cy.get('form').submit()
+  }
+}
+
 const waitForApplication = async (path = '/index') => {
   cy.task('log', `Waiting for app to restart and load ${path} page`)
   cy.task('waitUntilAppRestarts')
@@ -46,6 +55,7 @@ function installPlugin (plugin, version = '') {
 }
 
 module.exports = {
+  authenticate,
   sleep,
   waitForApplication,
   getTemplateLink,
