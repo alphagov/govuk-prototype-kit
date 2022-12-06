@@ -13,7 +13,6 @@ async function npmInstall (cwd, dependencies) {
       ...dependencies
     ], {
       cwd: cwd,
-      shell: true,
       stdio: 'inherit'
     })
 }

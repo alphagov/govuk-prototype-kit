@@ -153,7 +153,6 @@ function warnIfNpmStart (argv, env) {
 
     await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory], {
       cwd: installDirectory,
-      shell: true,
       stdio: 'inherit'
     })
   } else if (argv.command === 'init') {
@@ -212,7 +211,6 @@ function warnIfNpmStart (argv, env) {
       await prepareMigration(kitDependency, projectDirectory)
 
       await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
-        shell: true,
         stdio: 'inherit'
       })
     } else {
