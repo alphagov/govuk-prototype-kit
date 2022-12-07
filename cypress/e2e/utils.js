@@ -2,7 +2,7 @@ const { urlencode } = require('nunjucks/src/filters')
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const authenticate = () => {
-  const password = Cypress.env('PASSWORD')
+  const password = Cypress.env('password')
   if (password) {
     cy.task('log', `Authenticating with ${password}`)
     cy.get('input#password').type(password)

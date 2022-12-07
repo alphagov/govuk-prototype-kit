@@ -13,7 +13,7 @@ describe('password page', () => {
     cy.url().then(passwordUrl => {
       const urlObject = new URL(passwordUrl)
       expect(passwordUrl).equal(`${urlObject.origin + passwordPath}?${returnURLQuery}`)
-      cy.get('input#password').type(Cypress.env('PASSWORD'))
+      cy.get('input#password').type(Cypress.env('password'))
       cy.get('form').submit()
       cy.url().should('eq', urlObject.origin + homePath)
     })
