@@ -33,6 +33,10 @@ const createFile = (filename, options) => {
   cy.task('createFile', { filename, ...options })
 }
 
+const replaceInFile = (filename, originalText, source, newText) => {
+  cy.task('replaceTextInFile', { filename, originalText, source, newText })
+}
+
 const getTemplateLink = (type, packageName, path) => {
   const queryString = `?package=${urlencode(packageName)}&template=${urlencode(path)}`
   return `/manage-prototype/templates/${type}${queryString}`
@@ -62,6 +66,7 @@ module.exports = {
   copyFile,
   deleteFile,
   createFile,
+  replaceInFile,
   installPlugin,
   uninstallPlugin
 }
