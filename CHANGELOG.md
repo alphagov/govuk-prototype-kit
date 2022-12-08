@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [Fix crashes when path to prototype contains spaces](https://github.com/alphagov/govuk-prototype-kit/pull/1841)
+
 ## 13.0.1
 
 ### Fixes
