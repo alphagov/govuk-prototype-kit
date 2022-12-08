@@ -71,4 +71,82 @@ describe('create new start page', () => {
     cy.task('log', 'Confirm the view of the page exists where expected')
     cy.task('existsFile', { filename: startPageView })
   })
+
+  describe('Invalid urls entered', () => {
+    const errors = {
+      exists: 'The chosen URL already exists',
+      missing: 'The URL cannot be blank',
+      singleSlash: 'The URL cannot be a single forward slash (/)',
+      endsWithSlash: 'The URL cannot end in a forward slash (/)',
+      slash: 'The URL must begin with a forward slash (/)',
+      invalid: 'The URL entered is not a valid prototype url'
+    }
+
+    beforeEach(() => {
+      cy.visit(manageTemplatesPagePath)
+      cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
+    })
+
+    it('already exists', () => {
+      cy.get('input').type(startPagePath)
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.exists)
+      cy.get('#chosen-url-error').should('contains.text', errors.exists)
+    })
+
+    it('empty', () => {
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.missing)
+      cy.get('#chosen-url-error').should('contains.text', errors.missing)
+    })
+
+    it('empty (multiple spaces)', () => {
+      cy.get('input').type('         ')
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.missing)
+      cy.get('#chosen-url-error').should('contains.text', errors.missing)
+    })
+
+    it('single slash only', () => {
+      cy.get('input').type('/')
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.singleSlash)
+      cy.get('#chosen-url-error').should('contains.text', errors.singleSlash)
+    })
+
+    it('missing starting slash', () => {
+      cy.get('input').type('foo/bar')
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.slash)
+      cy.get('#chosen-url-error').should('contains.text', errors.slash)
+    })
+
+    it('ends with a slash', () => {
+      cy.get('input').type('/foo/bar/')
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.endsWithSlash)
+      cy.get('#chosen-url-error').should('contains.text', errors.endsWithSlash)
+    })
+
+    it('invalid (contains a search parameter)', () => {
+      cy.get('input').type('/?param=true')
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.invalid)
+      cy.get('#chosen-url-error').should('contains.text', errors.invalid)
+    })
+
+    it('invalid (contains spaces in the url)', () => {
+      cy.get('input').type('/foo bar/baz bar')
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.invalid)
+      cy.get('#chosen-url-error').should('contains.text', errors.invalid)
+    })
+
+    it('invalid (random)', () => {
+      cy.get('input').type('/$$fr%%"pp')
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', errors.invalid)
+      cy.get('#chosen-url-error').should('contains.text', errors.invalid)
+    })
+  })
 })
