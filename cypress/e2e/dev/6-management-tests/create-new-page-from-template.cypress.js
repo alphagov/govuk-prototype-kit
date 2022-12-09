@@ -1,13 +1,20 @@
 const path = require('path')
 
-const { waitForApplication, getTemplateLink } = require('../../utils')
+const { waitForApplication, getTemplateLink, deleteFile } = require('../../utils')
 
-const startPageView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'start.html')
+const viewFolder = path.join(Cypress.env('projectFolder'), 'app', 'views')
+
+const startPageView = path.join(viewFolder, 'start.html')
 const startPagePath = '/start'
+
+const validUnicodePageView = path.join(viewFolder, '/^-café/£10©.html')
+const validUnicodePagePath = '/^-café/£10©'
+const validUnicodePageView = path.join(viewFolder, 'café.html')
+const validUnicodePagePath = '/café'
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
 
-describe('create new start page', () => {
+describe('create new page', () => {
   before(() => {
     waitForApplication(manageTemplatesPagePath)
     Cypress.on('uncaught:exception', (err, runnable) => {
@@ -19,7 +26,8 @@ describe('create new start page', () => {
       // we still want to ensure there are no other unexpected
       // errors, so we let them fail the test
     })
-    cy.task('deleteFile', { filename: startPageView })
+    deleteFile(startPageView)
+    deleteFile(validUnicodePageView)
     waitForApplication(manageTemplatesPagePath)
   })
 
@@ -36,40 +44,46 @@ describe('create new start page', () => {
       .should('contains.text', 'Start now')
   })
 
-  it('Create the start page from the management page', () => {
-    cy.task('log', 'The start page should not be found')
-    cy.visit(startPagePath, { failOnStatusCode: false })
-    cy.get('body')
-      .should('contains.text', `Page not found: ${startPagePath}`)
+  describe('Create the start page from the management page', () => {
+    const testCreatePage = (pagePath, pageView) => () => {
+      cy.task('log', 'The start page should not be found')
+      cy.visit(pagePath, { failOnStatusCode: false })
+      cy.get('body')
+        .should('contains.text', `Page not found: ${pagePath}`)
 
-    cy.task('log', 'Visit the manage prototype templates page')
-    cy.visit(manageTemplatesPagePath)
+      cy.task('log', 'Visit the manage prototype templates page')
+      cy.visit(manageTemplatesPagePath)
 
-    cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
+      cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
 
-    cy.task('log', 'Create the page')
-    cy.get('.govuk-heading-l')
-      .should('contains.text', 'Create new Start page')
-    cy.get('.govuk-label')
-      .should('contains.text', 'Path for the new page')
-    cy.get('#chosen-url')
-      .type(startPagePath)
-    cy.get('.govuk-button')
-      .should('contains.text', 'Create page').click()
+      cy.task('log', 'Create the page')
+      cy.get('.govuk-heading-l')
+        .should('contains.text', 'Create new Start page')
+      cy.get('.govuk-label')
+        .should('contains.text', 'Path for the new page')
+      cy.get('#chosen-url')
+        .type(pagePath)
+      cy.get('.govuk-button')
+        .should('contains.text', 'Create page').click()
 
-    cy.task('log', 'Confirmation page')
-    cy.get('.govuk-heading-l')
-      .should('contains.text', 'Page created')
+      cy.task('log', 'Confirmation page')
+      cy.get('.govuk-heading-l')
+        .should('contains.text', 'Page created')
 
-    cy.task('log', 'Confirm the page exists')
-    cy.get(`a[href="${startPagePath}"]`)
-      .should('contains.text', startPagePath).click()
-    cy.task('log', 'The start page should be displayed')
-    cy.get('.govuk-button--start')
-      .should('contains.text', 'Start now')
+      cy.task('log', 'Confirm the page exists')
+      cy.get(`a[href="${pagePath}"]`)
+        .should('contains.text', pagePath).click()
+      cy.task('log', 'The start page should be displayed')
+      cy.get('.govuk-button--start')
+        .should('contains.text', 'Start now')
 
-    cy.task('log', 'Confirm the view of the page exists where expected')
-    cy.task('existsFile', { filename: startPageView })
+      cy.task('log', 'Confirm the view of the page exists where expected')
+      cy.task('existsFile', { filename: pageView })
+    }
+
+    it(`where url is ${startPagePath}`, testCreatePage(startPagePath, startPageView))
+
+    it(`where url is ${validUnicodePagePath}`, testCreatePage(validUnicodePagePath, validUnicodePageView))
   })
 
   describe('Invalid urls entered', () => {
