@@ -7,10 +7,8 @@ const viewFolder = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const startPageView = path.join(viewFolder, 'start.html')
 const startPagePath = '/start'
 
-const validUnicodePageView = path.join(viewFolder, '/^-café/£10©.html')
-const validUnicodePagePath = '/^-café/£10©'
-const validUnicodePageView = path.join(viewFolder, 'café.html')
-const validUnicodePagePath = '/café'
+const validUnicodePageView = path.join(viewFolder, 'brontë.html')
+const validUnicodePagePath = '/brontë'
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
 
