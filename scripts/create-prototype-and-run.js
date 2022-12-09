@@ -8,7 +8,7 @@ const { exec } = require('../lib/exec')
 const { mkPrototype } = require('../__tests__/utils')
 
 const testDir = path.resolve(
-  process.env.KIT_TEST_DIR || path.join(os.tmpdir(), 'govuk-prototype-kit-test'))
+  process.env.KIT_TEST_DIR || path.join(os.tmpdir(), 'test-prototype'))
 
 if (process.argv.length > 3) {
   console.log('Usage: create-prototype-and-run [command]')
