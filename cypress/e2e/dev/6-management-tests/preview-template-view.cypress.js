@@ -12,13 +12,13 @@ describe('Management plugins: ', () => {
   before(() => {
     cy.task('log', 'Visit the manage prototype plugins page')
     installPlugin(plugin, version2)
-    cy.wait(5000)
+    cy.wait(8000)
     waitForApplication(manageTemplatesPagePath)
   })
 
   after(() => {
     installPlugin(plugin, version1)
-    cy.wait(5000)
+    cy.wait(8000)
   })
 
   it(`Preview a ${plugin}${version2} template`, () => {

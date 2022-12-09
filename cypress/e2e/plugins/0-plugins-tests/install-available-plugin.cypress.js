@@ -19,12 +19,35 @@ const cleanup = () => {
   cy.wait(8000)
 }
 
+const panelProcessingQuery = '[aria-live="polite"] #panel-processing'
+const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
+const panelErrorQuery = '[aria-live="polite"] #panel-error'
+
 const performPluginAction = (action) => {
   cy.task('log', `The ${plugin} plugin should be displayed`)
-  cy.get('h1')
+  cy.get('h2')
     .should('contains.text', `${capitalize(action)} ${pluginName}`)
 
-  cy.get('.js-plugin-action a', { timeout: 20000 })
+  cy.get(panelCompleteQuery)
+    .should('not.be.visible')
+  cy.get(panelCompleteQuery)
+    .should('not.be.visible')
+  cy.get(panelErrorQuery)
+    .should('not.be.visible')
+  cy.get(panelProcessingQuery)
+    .should('be.visible')
+    .should('contain.text', `${capitalize(action === 'upgrade' ? 'Upgrad' : action)}ing ...`)
+
+  cy.get(panelProcessingQuery, { timeout: 20000 })
+    .should('not.be.visible')
+  cy.get(panelErrorQuery)
+    .should('not.be.visible')
+  cy.get(panelCompleteQuery)
+    .should('be.visible')
+    .should('contain.text', `${capitalize(action)} complete`)
+
+  cy.get('#instructions-complete a')
+    .should('contain.text', 'Back to plugins')
     .wait(3000)
     .click()
 
@@ -50,6 +73,13 @@ const provePluginFunctionalityWorks = () => {
 }
 
 const provePluginFunctionalityFails = () => {
+  cy.on('uncaught:exception', (err, runnable) => {
+    console.log(err)
+    // returning false here prevents Cypress from
+    // failing a test when javascript in the browser fails
+    return false
+  })
+
   cy.wait(2000)
 
   cy.task('log', `Prove ${pluginName} functionality fails`)
@@ -71,12 +101,26 @@ describe('Management plugins: ', () => {
   })
 
   beforeEach(() => {
-    cy.wait(2000)
+    cy.wait(4000)
+  })
+
+  it('CSRF Protection on POST action', () => {
+    const installUrl = `${managePluginsPagePath}/install`
+    cy.task('log', `Posting to ${installUrl} without csrf protection`)
+    cy.request({
+      url: `${managePluginsPagePath}/install`,
+      method: 'POST',
+      failOnStatusCode: false,
+      body: { package: plugin }
+    }).then(response => {
+      expect(response.status).to.eq(403)
+      expect(response.body).to.eq('invalid csrf token')
+    })
   })
 
   it(`Upgrade the ${plugin}${version1} plugin to ${plugin}${version2}`, () => {
     cy.task('log', `Upgrade the ${plugin} plugin`)
-    cy.get(`a[href*="/upgrade?package=${encodeURIComponent(plugin)}"]`)
+    cy.get(`button[formaction*="/upgrade?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Upgrade').click()
 
     performPluginAction('upgrade', version2)
@@ -106,7 +150,7 @@ describe('Management plugins: ', () => {
   it(`Uninstall the ${plugin} plugin`, () => {
     cy.visit(managePluginsPagePath)
     cy.task('log', `Uninstall the ${plugin} plugin`)
-    cy.get(`a[href*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
+    cy.get(`button[formaction*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Uninstall').click()
 
     performPluginAction('uninstall')
@@ -117,11 +161,52 @@ describe('Management plugins: ', () => {
   it(`Install the ${plugin} plugin`, () => {
     cy.visit(managePluginsPagePath)
     cy.task('log', `Install the ${plugin} plugin`)
-    cy.get(`a[href*="/install?package=${encodeURIComponent(plugin)}"]`)
+    cy.get(`button[formaction*="/install?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Install').click()
 
     performPluginAction('install')
 
     provePluginFunctionalityWorks()
+  })
+
+  describe('Get plugin page directly', () => {
+    it('Pass when installing a plugin already installed', () => {
+      cy.task('log', `Simulate refreshing the install ${plugin} plugin confirmation page`)
+      cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}`)
+
+      cy.get('#plugin-action-button').click()
+
+      performPluginAction('install')
+    })
+
+    it('Fail when installing a non existent plugin', () => {
+      const pkg = 'invalid-prototype-kit-plugin'
+      const pluginName = 'Invalid Prototype Kit Plugin'
+      cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(pkg)}`)
+      cy.get('h2')
+        .should('contains.text', `Install ${pluginName}`)
+
+      cy.get('#plugin-action-button').click()
+
+      cy.get(panelCompleteQuery)
+        .should('not.be.visible')
+      cy.get(panelErrorQuery)
+        .should('not.be.visible')
+      cy.get(panelProcessingQuery)
+        .should('be.visible')
+        .should('contain.text', 'Installing ...')
+
+      cy.get(panelProcessingQuery, { timeout: 40000 })
+        .should('not.be.visible')
+      cy.get(panelCompleteQuery)
+        .should('not.be.visible')
+      cy.get(panelErrorQuery)
+        .should('be.visible')
+
+      cy.get(`${panelErrorQuery} .govuk-panel__title`)
+        .should('contain.text', 'There was a problem installing')
+      cy.get(`${panelErrorQuery} a`)
+        .should('contain.text', 'Please contact support')
+    })
   })
 })

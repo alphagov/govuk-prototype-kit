@@ -18,10 +18,3 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
-
-Cypress.on('uncaught:exception', (err, runnable) => {
-  console.log(err)
-  // returning false here prevents Cypress from
-  // failing a test when javascript in the browser fails
-  return false
-})
