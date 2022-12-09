@@ -11,7 +11,7 @@ const testDir = path.resolve(
   process.env.KIT_TEST_DIR || path.join(os.tmpdir(), 'govuk-prototype-kit-test'))
 
 if (process.argv.length > 3) {
-  console.log('Usage: create-prototype-and-test <NPM script name that starts prototype>')
+  console.log('Usage: create-prototype-and-run [command]')
   process.exit(2)
 }
 
