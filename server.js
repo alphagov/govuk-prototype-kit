@@ -164,7 +164,7 @@ app.get('/', async (req, res) => {
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error(`Page not found: ${req.path}`)
+  const err = new Error(`Page not found: ${decodeURI(req.path)}`)
   err.status = 404
   next(err)
 })
