@@ -73,6 +73,13 @@ describe('create new start page', () => {
   })
 
   describe('Invalid urls entered', () => {
+    const testError = (url, error) => () => {
+      url && cy.get('input').type(url)
+      cy.get('form').submit()
+      cy.get('.govuk-error-summary__list').should('contains.text', error)
+      cy.get('#chosen-url-error').should('contains.text', error)
+    }
+
     const errors = {
       exists: 'The chosen URL already exists',
       missing: 'The URL cannot be blank',
@@ -87,66 +94,22 @@ describe('create new start page', () => {
       cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
     })
 
-    it('already exists', () => {
-      cy.get('input').type(startPagePath)
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.exists)
-      cy.get('#chosen-url-error').should('contains.text', errors.exists)
-    })
+    it('already exists', testError(startPagePath, errors.exists))
 
-    it('empty', () => {
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.missing)
-      cy.get('#chosen-url-error').should('contains.text', errors.missing)
-    })
+    it('empty', testError('', errors.missing))
 
-    it('empty (multiple spaces)', () => {
-      cy.get('input').type('         ')
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.missing)
-      cy.get('#chosen-url-error').should('contains.text', errors.missing)
-    })
+    it('empty (multiple spaces)', testError('         ', errors.missing))
 
-    it('single slash only', () => {
-      cy.get('input').type('/')
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.singleSlash)
-      cy.get('#chosen-url-error').should('contains.text', errors.singleSlash)
-    })
+    it('single slash only', testError('/', errors.singleSlash))
 
-    it('missing starting slash', () => {
-      cy.get('input').type('foo/bar')
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.slash)
-      cy.get('#chosen-url-error').should('contains.text', errors.slash)
-    })
+    it('missing starting slash', testError('foo/bar', errors.slash))
 
-    it('ends with a slash', () => {
-      cy.get('input').type('/foo/bar/')
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.endsWithSlash)
-      cy.get('#chosen-url-error').should('contains.text', errors.endsWithSlash)
-    })
+    it('ends with a slash', testError('/foo/bar/', errors.endsWithSlash))
 
-    it('invalid (contains a search parameter)', () => {
-      cy.get('input').type('/?param=true')
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.invalid)
-      cy.get('#chosen-url-error').should('contains.text', errors.invalid)
-    })
+    it('invalid (contains a search parameter)', testError('/?param=true', errors.invalid))
 
-    it('invalid (contains spaces in the url)', () => {
-      cy.get('input').type('/foo bar/baz bar')
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.invalid)
-      cy.get('#chosen-url-error').should('contains.text', errors.invalid)
-    })
+    it('invalid (contains spaces in the url)', testError('/foo bar/baz bar', errors.invalid))
 
-    it('invalid (random)', () => {
-      cy.get('input').type('/$$fr%%"pp')
-      cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', errors.invalid)
-      cy.get('#chosen-url-error').should('contains.text', errors.invalid)
-    })
+    it('invalid (random)', testError('/$$fr%%"pp', errors.invalid))
   })
 })
