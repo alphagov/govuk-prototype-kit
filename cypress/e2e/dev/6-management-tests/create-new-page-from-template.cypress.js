@@ -93,12 +93,12 @@ describe('create new page', () => {
     }
 
     const errors = {
-      exists: 'The chosen URL already exists',
-      missing: 'The URL cannot be blank',
-      singleSlash: 'The URL cannot be a single forward slash (/)',
-      endsWithSlash: 'The URL cannot end in a forward slash (/)',
-      slash: 'The URL must begin with a forward slash (/)',
-      invalid: 'The URL entered is not a valid prototype url'
+      exists: 'Path already exists',
+      missing: 'Enter a path',
+      singleSlash: 'Path must not be a single forward slash (/)',
+      endsWithSlash: 'Path must not end in a forward slash (/)',
+      slash: 'Path must begin with a forward slash (/)',
+      invalid: 'Path must not include !$&\'()*+,;=:?#[]@.% or space'
     }
 
     beforeEach(() => {
