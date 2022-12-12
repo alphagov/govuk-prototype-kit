@@ -1,12 +1,16 @@
 /* eslint-env jest */
 
-const path = require('path')
 const fs = require('fs')
+const os = require('os')
+const path = require('path')
+
 const fse = require('fs-extra')
+
 const { spawn } = require('../../lib/exec')
 const { mkdtempSync } = require('../util')
 
-const projectDirectory = path.join(mkdtempSync(), 'migrate-checks')
+const testDirectory = mkdtempSync()
+const projectDirectory = path.join(testDirectory, 'migrate-checks')
 const appDirectory = path.join(projectDirectory, 'app')
 const assetsDirectory = path.join(appDirectory, 'assets')
 const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'test-v11-prototype')
@@ -136,5 +140,19 @@ describe('migrate test prototype', () => {
       '\n' +
       '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}' + '\n'
     )
+  })
+
+  it('migrate.log does not contain user home directory', () => {
+    const migrateLog = fs.readFileSync(path.join(projectDirectory, 'migrate.log'), 'utf8')
+
+    expect(migrateLog).not.toContain(os.homedir())
+
+    // Because we don't run the test in the home directory, we also have to do
+    // a slightly different check, we make sure all paths except for the
+    // metadata in the header lines are relative to the prototype directory.
+    // If this is true then this should mean we won't get the home dir path.
+    expect(migrateLog.split('\n').filter(
+      line => line.includes(testDirectory) && !line.startsWith('argv:') && !line.startsWith('cwd:')
+    )).toEqual([])
   })
 })

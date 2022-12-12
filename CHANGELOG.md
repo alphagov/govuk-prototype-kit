@@ -4,7 +4,8 @@
 
 ### Fixes
 
-- [Fix crashes when path to prototype contains spaces](https://github.com/alphagov/govuk-prototype-kit/pull/1841)
+- [#1847: Stop user's home path from being printed in migration script log](https://github.com/alphagov/govuk-prototype-kit/pull/1847)
+- [#1841: Fix crashes when path to prototype contains spaces](https://github.com/alphagov/govuk-prototype-kit/pull/1841)
 
 ## 13.0.1
 
