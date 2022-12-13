@@ -97,6 +97,7 @@ describe('create new page', () => {
       missing: 'Enter a path',
       singleSlash: 'Path must not be a single forward slash (/)',
       endsWithSlash: 'Path must not end in a forward slash (/)',
+      multipleSlashes: 'must not include a slash followed by another slash (//)',
       slash: 'Path must begin with a forward slash (/)',
       invalid: 'Path must not include !$&\'()*+,;=:?#[]@.% or space'
     }
@@ -117,6 +118,8 @@ describe('create new page', () => {
     it('missing starting slash', testError('foo/bar', errors.slash))
 
     it('ends with a slash', testError('/foo/bar/', errors.endsWithSlash))
+
+    it('contains consecutive slashes', testError('//bar/foo', errors.multipleSlashes))
 
     it('invalid (contains a search parameter)', testError('/?param=true', errors.invalid))
 
