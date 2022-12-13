@@ -3,18 +3,18 @@ window.FOO = window.FOO || {}
 window.FOO.Modules = window.FOO.Modules || {};
 
 ((Modules) => {
-  class ExtensionFoo {
+  class PluginFoo {
     constructor (query) {
-      console.log('Instantiate Extension Foo')
+      console.log('Instantiate Plugin Foo')
       const foo = document.querySelector(query)
-      foo.classList.add('extension-foo')
+      foo.classList.add('plugin-foo')
       foo.addEventListener('click', () => this.onClick(foo))
     }
 
     onClick (foo) {
-      foo.classList.add('extension-foo-clicked')
+      foo.classList.add('plugin-foo-clicked')
     }
   }
 
-  Modules.ExtensionFoo = ExtensionFoo
+  Modules.PluginFoo = PluginFoo
 })(window.FOO.Modules)

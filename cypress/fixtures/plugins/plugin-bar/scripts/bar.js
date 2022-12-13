@@ -3,18 +3,18 @@ window.BAR = window.BAR || {}
 window.BAR.Modules = window.BAR.Modules || {};
 
 ((Modules) => {
-  class ExtensionBar {
+  class PluginBar {
     constructor (query) {
-      console.log('Instantiate Extension Bar')
+      console.log('Instantiate Plugin Bar')
       const bar = document.querySelector(query)
-      bar.classList.add('extension-bar')
+      bar.classList.add('plugin-bar')
       bar.addEventListener('click', () => this.onClick(bar))
     }
 
     onClick (bar) {
-      bar.classList.add('extension-bar-clicked')
+      bar.classList.add('plugin-bar-clicked')
     }
   }
 
-  Modules.ExtensionBar = ExtensionBar
+  Modules.PluginBar = PluginBar
 })(window.BAR.Modules)

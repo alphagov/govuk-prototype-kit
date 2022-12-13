@@ -43,7 +43,7 @@ describe('the build pipeline', () => {
       del([path.join('app', 'assets', 'test')])
     })
 
-    it('makes the extensions sass file', () => {
+    it('makes the plugins sass file', () => {
       expect(fse.ensureDirSync).toHaveBeenCalledWith(
         path.join(projectDir, '.tmp', 'sass'), { recursive: true }
       )
@@ -54,8 +54,8 @@ describe('the build pipeline', () => {
       )
 
       expect(fse.writeFileSync).toHaveBeenCalledWith(
-        path.join(projectDir, '.tmp', 'sass', '_extensions.scss'),
-        expect.stringContaining('$govuk-extensions-url-context')
+        path.join(projectDir, '.tmp', 'sass', '_plugins.scss'),
+        expect.stringContaining('$govuk-plugins-url-context')
       )
     })
 

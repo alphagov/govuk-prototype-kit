@@ -24,7 +24,7 @@ const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
 const sessionUtils = require('./lib/sessionUtils.js')
-const extensions = require('./lib/plugins/plugins.js')
+const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
@@ -50,13 +50,16 @@ app.locals.GOVUKPrototypeKit = {
   isProduction: config.isProduction,
   isDevelopment: config.isDevelopment
 }
-if (extensions.legacyGovukFrontendFixesNeeded()) {
+if (plugins.legacyGovukFrontendFixesNeeded()) {
   app.locals.GOVUKPrototypeKit.legacyGovukFrontendFixesNeeded = true
 }
-// extensionConfig sets up variables used to add the scripts and stylesheets to each page.
-app.locals.extensionConfig = extensions.getAppConfig({
+// pluginConfig sets up variables used to add the scripts and stylesheets to each page.
+app.locals.pluginConfig = plugins.getAppConfig({
   scripts: utils.prototypeAppScripts
 })
+// keep extensionConfig around for backwards compatibility
+// TODO: remove in v14
+app.locals.extensionConfig = app.locals.pluginConfig
 
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
@@ -71,7 +74,7 @@ middlewareFunctions.forEach(func => app.use(func))
 // Set up App
 var appViews = [
   path.join(projectDir, '/app/views/')
-].concat(extensions.getAppViews())
+].concat(plugins.getAppViews())
 
 var nunjucksConfig = {
   autoescape: true,

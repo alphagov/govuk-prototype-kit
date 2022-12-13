@@ -2,15 +2,15 @@ const { waitForApplication, installPlugin, uninstallPlugin, deleteFile, createFi
 const path = require('path')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
-const extensionBazView = path.join(appViews, 'extension-baz.html')
+const pluginBazView = path.join(appViews, 'plugin-baz.html')
 const fixtures = path.join(Cypress.config('fixturesFolder'))
-const extensionLocation = path.join(fixtures, 'extensions', 'extension-baz')
-const extensionPackageJson = path.join(extensionLocation, 'package.json')
+const pluginLocation = path.join(fixtures, 'plugins', 'plugin-baz')
+const pluginPackageJson = path.join(pluginLocation, 'package.json')
 
 const CYAN = 'rgb(0, 255, 255)'
 const MAGENTA = 'rgb(255, 0, 255)'
 
-const extensionBazViewMarkup = `
+const pluginBazViewMarkup = `
 {% extends "layouts/main.html" %}
 
 {% block content %}
@@ -20,27 +20,27 @@ const extensionBazViewMarkup = `
 {% block pageScripts %}
 <script>
   window.GOVUKPrototypeKit.documentReady(function () {
-    new window.BAZ.Modules.ExtensionBaz('.test-baz')
+    new window.BAZ.Modules.PluginBaz('.test-baz')
   })
 </script>
 {% endblock %}
 `
 
 const cleanup = () => {
-  deleteFile(extensionBazView)
-  uninstallPlugin('extension-baz')
+  deleteFile(pluginBazView)
+  uninstallPlugin('plugin-baz')
 }
 
-describe('Single Extension Test', async () => {
+describe('Single Plugin Test', async () => {
   before(() => {
     waitForApplication()
     cleanup()
-    cy.task('notExistsFile', { filename: extensionPackageJson, timeout: 15000 })
+    cy.task('notExistsFile', { filename: pluginPackageJson, timeout: 15000 })
     cy.wait(5000)
-    createFile(extensionBazView, { data: extensionBazViewMarkup })
-    cy.task('createFile', { filename: extensionBazView, data: extensionBazViewMarkup })
-    installPlugin(`file:${extensionLocation}`)
-    cy.task('existsFile', { filename: extensionPackageJson, timeout: 15000 })
+    createFile(pluginBazView, { data: pluginBazViewMarkup })
+    cy.task('createFile', { filename: pluginBazView, data: pluginBazViewMarkup })
+    installPlugin(`file:${pluginLocation}`)
+    cy.task('existsFile', { filename: pluginPackageJson, timeout: 15000 })
     cy.wait(5000)
   })
 
@@ -48,23 +48,23 @@ describe('Single Extension Test', async () => {
     cleanup()
   })
 
-  it('Loads extension-baz view correctly', () => {
-    waitForApplication('/extension-baz')
-    cy.get('.extension-baz')
-      .should('contains.text', 'Extension Baz')
+  it('Loads plugin-baz view correctly', () => {
+    waitForApplication('/plugin-baz')
+    cy.get('.plugin-baz')
+      .should('contains.text', 'Plugin Baz')
   })
 
-  it('Loads extension-baz style correctly', () => {
-    waitForApplication('/extension-baz')
-    cy.get('.extension-baz')
+  it('Loads plugin-baz style correctly', () => {
+    waitForApplication('/plugin-baz')
+    cy.get('.plugin-baz')
       .should('have.css', 'background-color', MAGENTA)
       .should('have.css', 'border-color', CYAN)
   })
 
-  it('Loads extension-baz script correctly', () => {
-    waitForApplication('/extension-baz')
-    cy.get('.extension-baz').click()
-    cy.get('.extension-baz')
+  it('Loads plugin-baz script correctly', () => {
+    waitForApplication('/plugin-baz')
+    cy.get('.plugin-baz').click()
+    cy.get('.plugin-baz')
       .should('have.css', 'background-color', CYAN)
       .should('have.css', 'border-color', MAGENTA)
   })

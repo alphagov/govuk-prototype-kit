@@ -3,18 +3,18 @@ window.BAZ = window.BAZ || {}
 window.BAZ.Modules = window.BAZ.Modules || {};
 
 ((Modules) => {
-  class ExtensionBaz {
+  class PluginBaz {
     constructor (query) {
-      console.log('Instantiate Extension Baz')
+      console.log('Instantiate Plugin Baz')
       const baz = document.querySelector(query)
-      baz.classList.add('extension-baz')
+      baz.classList.add('plugin-baz')
       baz.addEventListener('click', () => this.onClick(baz))
     }
 
     onClick (baz) {
-      baz.classList.add('extension-baz-clicked')
+      baz.classList.add('plugin-baz-clicked')
     }
   }
 
-  Modules.ExtensionBaz = ExtensionBaz
+  Modules.PluginBaz = PluginBaz
 })(window.BAZ.Modules)
