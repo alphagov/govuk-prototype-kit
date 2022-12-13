@@ -24,7 +24,7 @@ const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
 const sessionUtils = require('./lib/sessionUtils.js')
-const extensions = require('./lib/extensions/extensions.js')
+const extensions = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
@@ -117,7 +117,7 @@ app.use(function (req, res, next) {
 })
 
 require('./lib/routes/prototype-admin-routes.js')
-require('./lib/routes/extensions.js')
+require('./lib/routes/plugins.js')
 utils.addRouters(app)
 
 app.get('/robots.txt', function (req, res) {
