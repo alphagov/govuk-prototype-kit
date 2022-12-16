@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#1824: Add feature to manage plugins without using the command line](https://github.com/alphagov/govuk-prototype-kit/pull/1824)
+
 ### Fixes
 
 - [#1849: Update dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/1849)

@@ -1,7 +1,8 @@
 {
   "assets": [
     "/lib/assets/images",
-    "/lib/assets/javascripts/optional"
+    "/lib/assets/javascripts/optional",
+    "/lib/assets/javascripts/manage-prototype"
   ],
   "nunjucksPaths": "/lib/nunjucks",
   "nunjucksFilters": "/lib/filters/coreFilters",

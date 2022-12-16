@@ -2,23 +2,9 @@
 {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
 {% block content %}
+<form method="post">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {{ successBanner | log }}
-      {% if successBanner %}
-
-        {% set html %}
-          <h3 class="govuk-notification-banner__heading">
-            Successfully {{ successBanner.verb }} {{ successBanner.package.name }} {% if successBanner.package.scope %} from {{ successBanner.package.scope }} {% endif %}
-          </h3>
-          <p class="govuk-body">The list below shows the current status of your plugins and has been updated since you {{ successBanner.verb }} {{ successBanner.package.name }}.</p>
-        {% endset %}
-
-        {{ govukNotificationBanner({
-          html: html,
-          type: 'success'
-        }) }}
-      {% endif %}
 
       <h1 class="govuk-heading-l">Plugins</h1>
 
@@ -32,42 +18,52 @@
         <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list-plugin-list">
           {% for plugin in group.plugins %}
             <li class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item">
-              <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name">
+              <span class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name">
                 {{ plugin.name }}
                 {% if plugin.scope %}
-                <br/>
+                  <br/>
                   <span class="govuk-caption-m">From {{ plugin.scope }}</span>
                 {% endif %}
                 {% if plugin.upgradeLink %}
                   <br/>
                   v{{ plugin.latestVersion }} available
                 {% endif %}
-              </div>
-              <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version">
+              </span>
+              <span class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version">
                 {{ plugin.installedVersion or plugin.latestVersion }}
-              </div>
-              <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-links">
+              </span>
+              <span class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons">
                 {% if not plugin.installedVersion %}
-                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
-                     href="{{ plugin.installLink }}">Install<span class="govuk-visually-hidden"> {{ plugin.name }}</span></a>
+                    {{ govukButton({
+                        html: 'Install <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                        classes: "govuk-button--secondary",
+                        attributes: { id: "install-" + plugin.packageName, formaction: plugin.installLink }
+                    }) }}
                 {% endif %}
                 {% if plugin.uninstallLink %}
-                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
-                     href="{{ plugin.uninstallLink }}">Uninstall<span class="govuk-visually-hidden"> {{ plugin.name }}</span></a>
+                    {{ govukButton({
+                        html: 'Uninstall <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                        classes: "govuk-button--secondary",
+                        attributes: { id: "uninstall-" + plugin.packageName, formaction: plugin.uninstallLink }
+                    }) }}
                 {% endif %}
                 {% if plugin.upgradeLink %}
-                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
-                     href="{{ plugin.upgradeLink }}">Upgrade<span class="govuk-visually-hidden"> {{ plugin.name }}</span></a>
+                    {{ govukButton({
+                        html: 'Upgrade <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                        classes: "govuk-button--secondary",
+                        attributes: { id: "upgrade-" + plugin.packageName, formaction: plugin.upgradeLink }
+                    }) }}
                 {% endif %}
                 {% if plugin.helpLink %}
-                  <a class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link"
+                  <a class=""
                      href="{{ plugin.helpLink }}">Help<span class="govuk-visually-hidden"> - {{ plugin.name }}</span></a>
                 {% endif %}
-              </div>
+              </span>
             </li>
           {% endfor %}
         </ul>
       {% endfor %}
     </div>
   </div>
+</form>
 {% endblock %}
