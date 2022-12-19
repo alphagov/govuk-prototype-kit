@@ -15,8 +15,9 @@ jobs:
       matrix:
         node-version: [18.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
+        env: [smoke, dev, prod]
 
-    name: Acceptance test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
+    name: Acceptance ${{ matrix.env }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
 
@@ -42,7 +43,7 @@ jobs:
 
     - run: npm ci
 
-    - run: npm run test:acceptance:smoke
+    - run: npm run test:acceptance:${{ matrix.env }}
       env:
         CYPRESS_REQUEST_TIMEOUT: 20000
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
@@ -52,34 +53,6 @@ jobs:
     - if: ${{ failure() }}
       uses: actions/upload-artifact@v3
       with:
-        name: cypress-screenshots-smoke-${{ runner.os }}-${{ matrix.node-version }}
+        name: cypress-screenshots-${{ matrix.env }}-${{ runner.os }}-${{ matrix.node-version }}
         path: cypress/screenshots/
 
-    - run: npm run test:acceptance:prod
-      env:
-        CYPRESS_REQUEST_TIMEOUT: 20000
-        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
-        CYPRESS_PAGE_LOAD_TIMEOUT: 120000
-        CYPRESS_RETRIES: 3
-        PASSWORD: password
-        USE_AUTH: true
-        NODE_ENV: production
-
-    - if: ${{ failure() }}
-      uses: actions/upload-artifact@v3
-      with:
-        name: cypress-screenshots-prod-${{ runner.os }}-${{ matrix.node-version }}
-        path: cypress/screenshots/
-
-    - run: npm run test:acceptance:dev
-      env:
-        CYPRESS_REQUEST_TIMEOUT: 20000
-        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
-        CYPRESS_PAGE_LOAD_TIMEOUT: 120000
-        CYPRESS_RETRIES: 3
-
-    - if: ${{ failure() }}
-      uses: actions/upload-artifact@v3
-      with:
-        name: cypress-screenshots-dev-${{ runner.os }}-${{ matrix.node-version }}
-        path: cypress/screenshots/
