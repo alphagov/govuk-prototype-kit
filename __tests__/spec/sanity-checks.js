@@ -50,10 +50,10 @@ describe('The Prototype Kit', () => {
     })
   })
 
-  describe('extensions', () => {
+  describe('plugins', () => {
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
-        .get('/extension-assets/govuk-frontend/govuk/all.js')
+        .get('/plugin-assets/govuk-frontend/govuk/all.js')
         .expect(200)
         .expect('Content-Type', /application\/javascript; charset=UTF-8/)
         .end(function (err, res) {
@@ -71,7 +71,7 @@ describe('The Prototype Kit', () => {
 
     it('should allow known assets to be loaded from node_modules', (done) => {
       request(app)
-        .get('/extension-assets/govuk-frontend/govuk/assets/images/favicon.ico')
+        .get('/plugin-assets/govuk-frontend/govuk/assets/images/favicon.ico')
         .expect(200)
         .expect('Content-Type', /image\/x-icon/)
         .end(function (err, res) {
@@ -106,7 +106,7 @@ describe('The Prototype Kit', () => {
     describe('misconfigured prototype kit - while upgrading kit developer did not copy over changes in /app folder', () => {
       it('should still allow known assets to be loaded from node_modules', (done) => {
         request(app)
-          .get('/extension-assets/govuk-frontend/govuk/all.js')
+          .get('/plugin-assets/govuk-frontend/govuk/all.js')
           .expect(200)
           .expect('Content-Type', /application\/javascript; charset=UTF-8/)
           .end(function (err, res) {

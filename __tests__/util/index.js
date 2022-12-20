@@ -113,13 +113,13 @@ async function mkPrototype (prototypePath, {
   }
 }
 
-async function installExtensions (prototypePath, extensionNames) {
-  let extensionNamesProcessed = extensionNames || []
-  if (!Array.isArray(extensionNames)) {
-    extensionNamesProcessed = [extensionNames]
+async function installPlugins (prototypePath, pluginNames) {
+  let pluginNamesProcessed = pluginNames || []
+  if (!Array.isArray(pluginNames)) {
+    pluginNamesProcessed = [pluginNames]
   }
   return exec(
-    `npm install ${extensionNamesProcessed.join(' ')}`,
+    `npm install ${pluginNamesProcessed.join(' ')}`,
     { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
@@ -144,5 +144,5 @@ module.exports = {
   mkdtempSync,
   mkPrototype,
   startPrototype,
-  installExtensions
+  installPlugins
 }

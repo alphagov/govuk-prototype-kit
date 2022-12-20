@@ -6,7 +6,7 @@ specify('index page', () => {
 specify('GOV.UK Frontend fonts loaded', () => {
   cy.visit('/')
 
-  const fontUrl = '/extension-assets/govuk-frontend/govuk/assets/fonts/bold-b542beb274-v2.woff2'
+  const fontUrl = '/plugin-assets/govuk-frontend/govuk/assets/fonts/bold-b542beb274-v2.woff2'
 
   cy.task('log', 'Requesting govuk-frontend font')
   cy.request(`/${fontUrl}`, { retryOnStatusCodeFailure: true })
