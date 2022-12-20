@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#1954: Add Plugin progress indicator](https://github.com/alphagov/govuk-prototype-kit/pull/1954)
+
 ## 13.16.0
 
 ### New features

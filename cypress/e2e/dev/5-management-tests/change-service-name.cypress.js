@@ -18,10 +18,8 @@ describe('change service name', () => {
   afterEach(restoreStarterFiles)
 
   it('The service name should change to "cypress test" and the task should be set to "Done"', () => {
-    waitForApplication()
+    waitForApplication('/')
 
-    cy.task('log', 'Visit the index page and navigate to the manage your prototype page')
-    cy.visit('/')
     cy.get('.govuk-heading-xl').contains(originalText)
     cy.get('p strong').contains(appConfigPath)
     cy.get(`main a[href="${managePagePath}"]`).contains('Manage your prototype').click()
