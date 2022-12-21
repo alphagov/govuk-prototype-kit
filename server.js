@@ -26,6 +26,24 @@ const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
+
+app.use((req, res, next) => {
+  res.myTestData = {
+    url: req.url,
+    start: Date.now(),
+    log: (type) => {
+      const { url, start } = res.myTestData
+      if (url === '/') {
+        console.log(`REQUEST ${url} (${type}) => ${Date.now() - start} milliseconds`)
+      }
+    }
+  }
+  if (req.url === '/') {
+    res.on('finish', () => res.myTestData.log('finish'))
+  }
+  next()
+})
+
 routesApi.setApp(app)
 
 // Set up configuration variables
@@ -147,8 +165,7 @@ app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
     pathname: '/' + req.params[0],
     query: req.query
-  })
-  )
+  }))
 })
 
 // redirect old local docs to the docs site
