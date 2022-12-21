@@ -31,11 +31,11 @@ const app = express()
 routesApi.setApp(app)
 
 // Set up configuration variables
-var releaseVersion = packageJson.version
+const releaseVersion = packageJson.version
 
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
-var isSecure = (config.isProduction && config.useHttps)
+const isSecure = (config.isProduction && config.useHttps)
 if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
@@ -72,11 +72,11 @@ middlewareFunctions.push(sessionUtils.getSessionMiddleware())
 middlewareFunctions.forEach(func => app.use(func))
 
 // Set up App
-var appViews = [
+const appViews = [
   path.join(projectDir, '/app/views/')
 ].concat(plugins.getAppViews())
 
-var nunjucksConfig = {
+const nunjucksConfig = {
   autoescape: true,
   noCache: true,
   watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
@@ -88,7 +88,7 @@ if (config.isDevelopment) {
 
 nunjucksConfig.express = app
 
-var nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
+const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
@@ -130,8 +130,8 @@ app.get('/robots.txt', function (req, res) {
 
 // Strip .html and .htm if provided
 app.get(/\.html?$/i, function (req, res) {
-  var path = req.path
-  var parts = path.split('.')
+  let path = req.path
+  const parts = path.split('.')
   parts.pop()
   path = parts.join('.')
   res.redirect(path)
@@ -161,7 +161,7 @@ app.get('/docs/tutorials-and-examples', function (req, res) {
 app.get('/', async (req, res) => {
   const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
   res.render('govuk-prototype-kit/backup-homepage', {
-    starterHomepageCode: starterHomepageCode
+    starterHomepageCode
   })
 })
 

@@ -92,14 +92,17 @@ module.exports = function setupNodeEvents (on, config) {
   const makeSureCypressCanInterpretTheResult = () => null
 
   const existsFile = (filename, timeout = 0) => fsp.access(filename)
-    .catch((err) => err.code !== 'ENOENT' ? err : async () => {
-      if (timeout < 100) {
-        return null
-      } else {
-        await sleep(100)
-        return existsFile(filename, timeout - 100)
+    .catch((err) => err.code !== 'ENOENT'
+      ? err
+      : async () => {
+        if (timeout < 100) {
+          return null
+        } else {
+          await sleep(100)
+          return existsFile(filename, timeout - 100)
+        }
       }
-    })
+    )
 
   const notExistsFile = (filename, timeout = 0) => fsp.access(filename)
     .then(async () => {

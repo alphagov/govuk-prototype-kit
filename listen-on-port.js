@@ -25,7 +25,7 @@ if (config.isTest) {
       server.listen(port - 50, function () {
         browserSync({
           proxy: 'localhost:' + (port - 50),
-          port: port,
+          port,
           ui: false,
           files: ['.tmp/public/**/*.*', 'app/views/**/*.*', 'app/assets/**/*.*', 'app/config.json'],
           ghostMode: false,
