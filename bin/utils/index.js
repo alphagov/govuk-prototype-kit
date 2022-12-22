@@ -12,7 +12,7 @@ async function npmInstall (cwd, dependencies) {
       '--omit=dev',
       ...dependencies
     ], {
-      cwd: cwd,
+      cwd,
       stdio: 'inherit'
     })
 }
