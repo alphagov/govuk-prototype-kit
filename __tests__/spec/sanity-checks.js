@@ -14,7 +14,7 @@ let app
 process.env.KIT_PROJECT_DIR = tmpDir
 
 const { packageDir, projectDir } = require('../../lib/path-utils')
-
+const { exec } = require('../../lib/exec')
 const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
 
 /**
@@ -36,6 +36,18 @@ describe('The Prototype Kit', () => {
       path.join(projectDir, '.tmp', 'public', 'stylesheets', 'application.css'),
       path.join(packageDir, 'lib', 'assets', 'sass', 'prototype.scss')
     )
+  })
+
+  it('should initialise git out of the box', async () => {
+    const outputLines = []
+    await exec('git log', { cwd: tmpDir }, (data) => outputLines.push(data.toString()))
+
+    function getLastMeaningfulLineTrimmed (outputLines) {
+      const meaningulLines = outputLines.join('').split('\n').filter(line => line !== '')
+      return meaningulLines.pop().trim()
+    }
+
+    expect(getLastMeaningfulLineTrimmed(outputLines)).toBe('Created prototype kit')
   })
 
   describe('index page', () => {

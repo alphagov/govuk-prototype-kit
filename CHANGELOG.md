@@ -4,6 +4,7 @@
 
 ### New features
 
+- [#1860: Create a git repository for new prototypes (when git is present)](https://github.com/alphagov/govuk-prototype-kit/pull/1860)
 - [#1824: Add feature to manage plugins without using the command line](https://github.com/alphagov/govuk-prototype-kit/pull/1824)
 
 ### Fixes
