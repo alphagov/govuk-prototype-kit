@@ -8,6 +8,8 @@
 
 ### Fixes
 
+- [#1859: Allow sass to live update when there are square brackets in the path](https://github.com/alphagov/govuk-prototype-kit/pull/1859)
+- [#1857: Migration will now report head and script failures](https://github.com/alphagov/govuk-prototype-kit/pull/1857)
 - [#1849: Update dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/1849)
 - [#1847: Stop user's home path from being printed in migration script log](https://github.com/alphagov/govuk-prototype-kit/pull/1847)
 - [#1846: Stop showing messages from session-file-store about deleting expired sessions](https://github.com/alphagov/govuk-prototype-kit/pull/1846)
