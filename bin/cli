@@ -3,7 +3,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 
-const { spawn } = require('../lib/exec')
+const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argvParser')
 const { prepareMigration, preflightChecks } = require('../lib/migrator')
 const { npmInstall, packageJsonFormat } = require('./utils')
@@ -47,6 +47,21 @@ async function updatePackageJson (packageJsonPath) {
   let newPackageJson = Object.assign({}, packageJson)
   newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
   await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+}
+
+async function initialiseGitRepo () {
+  const presenceCheckOutput = []
+  const notPresentText = 'not present'
+  await exec(`which git || echo "${notPresentText}"`, {}, data => presenceCheckOutput.push(data))
+  if (presenceCheckOutput.join('').trim() === notPresentText) {
+    return
+  }
+
+  await exec('git init && git add -A .')
+
+  const overrideParams = '-c "user.email=gov.uk-prototype@digital.cabinet-office.gov.uk" -c "user.name=GOV.UK Prototype Kit"'
+  const commitMessage = 'Created prototype kit'
+  await exec(`git commit -am "${commitMessage}" || git ${overrideParams} commit -am "${commitMessage}"`)
 }
 
 function usage () {
@@ -175,7 +190,7 @@ function warnIfNpmStart (argv, env) {
       fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
       copyFile('LICENCE.txt'),
       updatePackageJson(path.join(installDirectory, 'package.json'))
-    ])
+    ]).then(initialiseGitRepo)
   } else if (argv.command === 'dev') {
     require('../start')
   } else if (argv.command === 'start' || argv.command === 'serve') {
