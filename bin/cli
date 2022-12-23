@@ -4,7 +4,7 @@ const fs = require('fs-extra')
 const path = require('path')
 
 const { spawn, exec } = require('../lib/exec')
-const { parse } = require('./utils/argvParser')
+const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../lib/migrator')
 const { npmInstall, packageJsonFormat } = require('./utils')
 

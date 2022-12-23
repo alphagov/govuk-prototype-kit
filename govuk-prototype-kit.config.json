@@ -5,7 +5,7 @@
     "/lib/assets/javascripts/manage-prototype"
   ],
   "nunjucksPaths": "/lib/nunjucks",
-  "nunjucksFilters": "/lib/filters/coreFilters",
+  "nunjucksFilters": "/lib/filters/core-filters",
   "sass": "/lib/assets/sass/internal/manage-prototype.scss",
   "scripts": [
     "/lib/assets/javascripts/kit.js",

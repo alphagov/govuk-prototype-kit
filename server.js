@@ -23,7 +23,7 @@ const { projectDir, packageDir } = require('./lib/path-utils')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils.js')
-const sessionUtils = require('./lib/sessionUtils.js')
+const sessionUtils = require('./lib/session-utils.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 

@@ -8,7 +8,7 @@ const kitVersion = require(path.join(packageDir, 'package.json')).version
 
 async function collectDataUsage () {
 // Local dependencies
-  const usageData = require('./lib/usage_data')
+  const usageData = require('./lib/usage-data')
 
   // Get usageDataConfig from file, if exists
   const usageDataConfig = usageData.getUsageDataConfig()

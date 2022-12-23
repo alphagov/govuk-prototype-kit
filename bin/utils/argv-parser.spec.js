@@ -1,4 +1,4 @@
-const parser = require('./argvParser')
+const parser = require('./argv-parser')
 
 const addStandardArgs = arr => [
   '/Users/user.name/.nvm/versions/node/node.version/bin/node',
