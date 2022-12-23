@@ -3,7 +3,7 @@ const path = require('path')
 
 // Local dependencies
 const { buildWatchAndServe } = require('./lib/build/tasks')
-const { packageDir } = require('./lib/path-utils')
+const { packageDir } = require('./lib/utils/paths')
 const kitVersion = require(path.join(packageDir, 'package.json')).version
 
 async function collectDataUsage () {

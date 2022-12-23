@@ -1,7 +1,7 @@
 const os = require('os')
 const path = require('path')
 
-const { mkPrototype, startPrototype, installPlugins } = require('../../__tests__/util')
+const { mkPrototype, startPrototype, installPlugins } = require('../../__tests__/utils')
 
 const defaultKitPath = path.join(os.tmpdir(), 'cypress/temp/test-project')
 

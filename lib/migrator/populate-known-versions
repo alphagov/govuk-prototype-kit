@@ -5,7 +5,7 @@ const os = require('os')
 const fs = require('fs-extra')
 
 const execHelper = require('../exec')
-const { packageDir } = require('../path-utils')
+const { packageDir } = require('../utils/paths')
 const fileToAnalyse = path.join(process.argv[2])
 const tmpDir = path.join(os.tmpdir(), 'govuk-prototype-kit', 'finding-known-files', '' + Date.now())
 const outputDir = path.join(packageDir, 'lib', 'migrator', 'known-old-versions', fileToAnalyse.split('/').join('-'))

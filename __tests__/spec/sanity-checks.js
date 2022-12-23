@@ -7,13 +7,13 @@ const fs = require('fs-extra')
 const request = require('supertest')
 const sass = require('sass')
 
-const { mkPrototype, mkdtempSync } = require('../util')
+const { mkPrototype, mkdtempSync } = require('../utils')
 const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
 let app
 
 process.env.KIT_PROJECT_DIR = tmpDir
 
-const { packageDir, projectDir } = require('../../lib/path-utils')
+const { packageDir, projectDir } = require('../../lib/utils/paths')
 const { exec } = require('../../lib/exec')
 const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
 

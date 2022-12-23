@@ -18,7 +18,7 @@ const waitOn = require('wait-on')
 const extract = require('extract-zip')
 const https = require('https')
 
-const { starterDir } = require('../../lib/path-utils')
+const { starterDir } = require('../../lib/utils/paths')
 const { sleep } = require('../e2e/utils')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)

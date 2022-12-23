@@ -108,7 +108,7 @@
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "__tests__/util/",
+      "__tests__/utils/",
       "__tests__/fixtures/",
       "__tests__/tmp/",
       "/node_modules/",

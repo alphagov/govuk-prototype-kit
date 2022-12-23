@@ -3,7 +3,7 @@ const path = require('path')
 
 const request = require('supertest')
 
-const { mkdtempSync } = require('../util')
+const { mkdtempSync } = require('../utils')
 const testDir = path.join(mkdtempSync(), 'force-https-redirect')
 
 // Setup Environment Variables before setting App

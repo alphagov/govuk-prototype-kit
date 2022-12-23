@@ -4,7 +4,7 @@ const browserSync = require('browser-sync')
 // Local dependencies
 const server = require('./server.js')
 const config = require('./lib/config.js').getConfig()
-const utils = require('./lib/utils.js')
+const utils = require('./lib/utils')
 
 if (config.isTest) {
   server.listen()

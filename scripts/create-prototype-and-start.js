@@ -3,7 +3,7 @@ const path = require('path')
 
 const { exec } = require('../lib/exec')
 
-const { mkPrototype } = require('../__tests__/util')
+const { mkPrototype } = require('../__tests__/utils')
 
 const testDir = path.resolve(
   process.env.KIT_TEST_DIR || path.join(os.tmpdir(), 'govuk-prototype-kit-test'))

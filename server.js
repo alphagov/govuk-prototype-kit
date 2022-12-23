@@ -19,11 +19,11 @@ dotenv.config()
 const middlewareFunctions = [
   require('./lib/middleware/authentication/authentication.js')()
 ]
-const { projectDir, packageDir } = require('./lib/path-utils')
+const { projectDir, packageDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
-const utils = require('./lib/utils.js')
-const sessionUtils = require('./lib/session-utils.js')
+const utils = require('./lib/utils')
+const sessionUtils = require('./lib/utils/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 

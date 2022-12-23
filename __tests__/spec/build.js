@@ -7,12 +7,12 @@ const path = require('path')
 const del = require('del')
 const sass = require('sass')
 
-const { mkdtempSync } = require('../util')
+const { mkdtempSync } = require('../utils')
 const testDir = path.join(mkdtempSync(), 'build')
 
 process.env.KIT_PROJECT_DIR = testDir
 
-const { packageDir, projectDir } = require('../../lib/path-utils')
+const { packageDir, projectDir } = require('../../lib/utils/paths')
 const { generateAssetsSync } = require('../../lib/build/tasks')
 
 describe('the build pipeline', () => {

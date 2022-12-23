@@ -7,7 +7,7 @@ const path = require('path')
 const fse = require('fs-extra')
 
 const { spawn } = require('../../lib/exec')
-const { mkdtempSync } = require('../util')
+const { mkdtempSync } = require('../utils')
 
 const testDirectory = mkdtempSync()
 const projectDirectory = path.join(testDirectory, 'migrate-checks')
