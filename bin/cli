@@ -13,6 +13,7 @@ const { npmInstall, packageJsonFormat } = require('./utils')
 
 const currentDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
+const kitVersion = require('../package.json').version
 
 const argv = parse(process.argv)
 
@@ -135,123 +136,151 @@ function warnIfNpmStart (argv, env) {
   }
 }
 
-;(async () => {
-  if (argv.command === 'create') {
-    // Install as a two-stage bootstrap process.
-    //
-    // In stage one (`create`) we create an empty project folder and install
-    // govuk-prototype-kit and govuk-frontend, then bootstrap stage two from
-    // the newly installed package.
-    //
-    // In stage two (`init`) we do the actual setup of the starter files.
-    //
-    // Doing it this way means we can be sure the version of the cli matches
-    // the version of the kit the user ends up with. Try to put as much logic
-    // as possible into stage two; stage one should ideally be able to install
-    // any future version of the kit.
+async function runCreate () {
+  // Install as a two-stage bootstrap process.
+  //
+  // In stage one (`create`) we create an empty project folder and install
+  // govuk-prototype-kit and govuk-frontend, then bootstrap stage two from
+  // the newly installed package.
+  //
+  // In stage two (`init`) we do the actual setup of the starter files.
+  //
+  // Doing it this way means we can be sure the version of the cli matches
+  // the version of the kit the user ends up with. Try to put as much logic
+  // as possible into stage two; stage one should ideally be able to install
+  // any future version of the kit.
 
-    const installDirectory = getInstallLocation()
+  const installDirectory = getInstallLocation()
+  const kitDependency = getChosenKitDependency()
+
+  await fs.ensureDir(installDirectory)
+  if ((await fs.readdir(installDirectory)).length > 0) {
+    console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
+    process.exitCode = 3
+    return
+  }
+
+  await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
+
+  console.log('Creating your prototype')
+
+  await npmInstall(installDirectory, [kitDependency, 'govuk-frontend'])
+
+  await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory], {
+    cwd: installDirectory,
+    stdio: 'inherit'
+  })
+}
+
+async function runInit () {
+  // `init` is stage two of the install process (see above), it should be
+  // called by `create` with the correct arguments.
+
+  if (process.argv[3] !== '--') {
+    usage()
+    process.exitCode = 2
+    return
+  }
+
+  const installDirectory = process.argv[4]
+
+  const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+
+  await Promise.all([
+    fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
+    fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
+    fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
+    copyFile('LICENCE.txt'),
+    updatePackageJson(path.join(installDirectory, 'package.json'))
+  ]).then(initialiseGitRepo)
+}
+
+async function runMigrate () {
+  // migrate as a two-stage bootstrap process.
+  //
+  // In stage one we install govuk-prototype-kit, then bootstrap stage two
+  // from the newly installed package.
+  //
+  // In stage two (with the magic arguments) we do the actual migration with
+  // the starter files.
+  //
+  // Doing it this way means we can be sure the version of the cli matches
+  // the version of the kit the user ends up with. Try to put as much logic
+  // as possible into stage two; stage one should ideally be able to migrate
+  // to any future version of the kit.
+  if (process.argv[3] !== '--') {
+    // stage one
     const kitDependency = getChosenKitDependency()
+    const projectDirectory = process.cwd()
 
-    await fs.ensureDir(installDirectory)
-    if ((await fs.readdir(installDirectory)).length > 0) {
-      console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
-      process.exitCode = 3
+    const preflightChecksPassed = await preflightChecks()
+
+    if (!preflightChecksPassed) {
+      process.exitCode = 1
       return
     }
 
-    await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
+    await prepareMigration(kitDependency, projectDirectory)
 
-    console.log('Creating your prototype')
-
-    await npmInstall(installDirectory, [kitDependency, 'govuk-frontend'])
-
-    await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory], {
-      cwd: installDirectory,
+    await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
       stdio: 'inherit'
     })
-  } else if (argv.command === 'init') {
-    // `init` is stage two of the install process (see above), it should be
-    // called by `create` with the correct arguments.
-
-    if (process.argv[3] !== '--') {
+  } else {
+    // stage two
+    if (process.argv.length !== 5) {
       usage()
       process.exitCode = 2
       return
     }
 
-    const installDirectory = process.argv[4]
-
-    const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+    const projectDirectory = process.argv[4]
 
     await Promise.all([
-      fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
-      fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
-      fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
-      copyFile('LICENCE.txt'),
-      updatePackageJson(path.join(installDirectory, 'package.json'))
-    ]).then(initialiseGitRepo)
-  } else if (argv.command === 'dev') {
-    require('../start')
-  } else if (argv.command === 'start' || argv.command === 'serve') {
-    warnIfNpmStart(argv, process.env)
-    process.env.NODE_ENV = process.env.NODE_ENV || 'production'
-    require('../lib/build/tasks.js').generateAssetsSync()
-    require('../listen-on-port')
-  } else if (argv.command === 'migrate') {
-    // migrate as a two-stage bootstrap process.
-    //
-    // In stage one we install govuk-prototype-kit, then bootstrap stage two
-    // from the newly installed package.
-    //
-    // In stage two (with the magic arguments) we do the actual migration with
-    // the starter files.
-    //
-    // Doing it this way means we can be sure the version of the cli matches
-    // the version of the kit the user ends up with. Try to put as much logic
-    // as possible into stage two; stage one should ideally be able to migrate
-    // to any future version of the kit.
-    if (process.argv[3] !== '--') {
-      // stage one
-      const kitDependency = getChosenKitDependency()
-      const projectDirectory = process.cwd()
+      updatePackageJson(path.join(projectDirectory, 'package.json')),
+      fs.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8'),
+      fs.access(path.join(projectDirectory, '.gitignore'))
+        .catch(() => fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
+    ])
 
-      const preflightChecksPassed = await preflightChecks()
+    await require('../lib/migrator').migrate()
+  }
+}
 
-      if (!preflightChecksPassed) {
-        process.exitCode = 1
-        return
-      }
+async function runDev () {
+  console.log(`GOV.UK Prototype Kit ${kitVersion}`)
+  console.log('')
+  console.log('starting...')
 
-      await prepareMigration(kitDependency, projectDirectory)
+  await require('../lib/usage-data').collectDataUsage()
+  await require('../lib/build/tasks.js').buildWatchAndServe()
+}
 
-      await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
-        stdio: 'inherit'
-      })
-    } else {
-      // stage two
-      if (process.argv.length !== 5) {
-        usage()
-        process.exitCode = 2
-        return
-      }
+function runServe () {
+  warnIfNpmStart(argv, process.env)
+  process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+  require('../lib/build/tasks.js').generateAssetsSync()
+  require('../listen-on-port')
+}
 
-      const projectDirectory = process.argv[4]
-
-      await Promise.all([
-        updatePackageJson(path.join(projectDirectory, 'package.json')),
-        fs.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8'),
-        fs.access(path.join(projectDirectory, '.gitignore'))
-          .catch(() => fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
-      ])
-
-      await require('../lib/migrator').migrate()
-    }
-  } else if (argv.command === 'version') {
-    const version = require('../package.json').version
-    console.log(version)
-  } else {
-    usage()
-    process.exitCode = 2
+;(async () => {
+  switch (argv.command) {
+    case 'create':
+      return runCreate()
+    case 'init':
+      return runInit()
+    case 'dev':
+      return runDev()
+    case 'start':
+      return runServe()
+    case 'serve':
+      return runServe()
+    case 'migrate':
+      return runMigrate()
+    case 'version':
+      console.log(kitVersion)
+      break
+    default:
+      usage()
+      process.exitCode = 2
   }
 })()
