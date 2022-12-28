@@ -16,9 +16,6 @@ const nunjucks = require('nunjucks')
 dotenv.config()
 
 // Local dependencies
-const middlewareFunctions = [
-  require('./lib/authentication.js')()
-]
 const { projectDir, packageDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
@@ -64,12 +61,12 @@ app.locals.extensionConfig = app.locals.pluginConfig
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
 
-// Support session data storage
-middlewareFunctions.push(sessionUtils.getSessionMiddleware())
-
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
-middlewareFunctions.forEach(func => app.use(func))
+app.use(require('./lib/authentication.js')())
+
+// Support session data storage
+app.use(sessionUtils.getSessionMiddleware())
 
 // Set up App
 const appViews = [
