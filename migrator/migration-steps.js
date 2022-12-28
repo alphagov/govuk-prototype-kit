@@ -20,7 +20,7 @@ const {
 } = require('./file-helpers')
 
 // Allows mocking of getOldConfig
-module.exports.getOldConfig = (oldConfigPath) => config.getConfig(require(path.join(projectDir, oldConfigPath)))
+const getOldConfig = (oldConfigPath) => config.getConfig(require(path.join(projectDir, oldConfigPath)))
 
 const preFlightChecksFilesExist = async (filesToCheck) => {
   const results = await Promise.all(filesToCheck.map(async (filename) => fse.pathExists(path.join(projectDir, filename))))
@@ -37,7 +37,7 @@ const preFlightChecksValidVersion = async (minimumVersion) => {
   }
 }
 
-module.exports.preflightChecks = async (filesToCheck, v6Folder, minimumVersion) => {
+const preflightChecks = async (filesToCheck, v6Folder, minimumVersion) => {
   const reporter = await addReporter('Check migration is being applied to a pre v13 prototype')
   const checksPass = (
     !await fse.pathExists(v6Folder) &&
@@ -48,7 +48,7 @@ module.exports.preflightChecks = async (filesToCheck, v6Folder, minimumVersion) 
   return checksPass
 }
 
-module.exports.migrateConfig = async (oldConfigPath) => {
+const migrateConfig = async (oldConfigPath) => {
   const newConfigPath = path.join(appDir, 'config.json')
   const reporter = await addReporter('Migrate config.js to config.json')
   let result = false
@@ -77,7 +77,7 @@ module.exports.migrateConfig = async (oldConfigPath) => {
   return result
 }
 
-module.exports.prepareAppRoutes = async (routesFile) => {
+const prepareAppRoutes = async (routesFile) => {
   const reportTag = 'Update routes file'
   const filePath = path.join(projectDir, routesFile)
   const exportLine = 'module.exports = router'
@@ -95,7 +95,7 @@ module.exports.prepareAppRoutes = async (routesFile) => {
   return finalResult
 }
 
-module.exports.prepareSass = async (sassFile) => {
+const prepareSass = async (sassFile) => {
   const reporter = await addReporter('Update application SCSS file')
   const filePath = path.join(projectDir, sassFile)
   const contents = await fse.readFile(path.join(packageDir, 'prototype-starter', sassFile), 'utf8')
@@ -108,7 +108,7 @@ module.exports.prepareSass = async (sassFile) => {
   return result
 }
 
-module.exports.removeOldPatternIncludesFromSassFile = async (patterns, sassFile) => {
+const removeOldPatternIncludesFromSassFile = async (patterns, sassFile) => {
   const reporter = await addReporter('Remove old pattern includes from application SCSS file')
   const deletedPatterns = (await Promise.all(patterns.map(async file => await fse.pathExists(file) ? undefined : file)))
     .filter((file) => file)
@@ -123,7 +123,7 @@ module.exports.removeOldPatternIncludesFromSassFile = async (patterns, sassFile)
   return succeeded
 }
 
-module.exports.deleteUnusedFiles = async (filesToDelete) => {
+const deleteUnusedFiles = async (filesToDelete) => {
   const reporter = await addReporter('Deleted files that are no longer needed')
   const results = await Promise.all(filesToDelete.map(async file => {
     const filePath = path.join(projectDir, file)
@@ -142,7 +142,7 @@ module.exports.deleteUnusedFiles = async (filesToDelete) => {
   return allSucceeded
 }
 
-module.exports.deleteUnusedDirectories = async (directoriesToDelete) => {
+const deleteUnusedDirectories = async (directoriesToDelete) => {
   const reporter = await addReporter('Deleted directories that are no longer needed')
   const results = await Promise.all(directoriesToDelete.map(async dir => {
     const dirPath = path.join(projectDir, dir)
@@ -161,7 +161,7 @@ module.exports.deleteUnusedDirectories = async (directoriesToDelete) => {
   return allSucceeded
 }
 
-module.exports.deleteEmptyDirectories = (directoriesToDelete) => Promise.all(directoriesToDelete.map(async (dirPath) => {
+const deleteEmptyDirectories = (directoriesToDelete) => Promise.all(directoriesToDelete.map(async (dirPath) => {
   if (!await fse.pathExists(path.join(projectDir, dirPath))) {
     // Do not report directories that don't exist
     return true
@@ -176,7 +176,7 @@ module.exports.deleteEmptyDirectories = (directoriesToDelete) => Promise.all(dir
   return true
 }))
 
-module.exports.deleteIfUnchanged = (filePaths) => Promise.all(filePaths.map(async filePath => {
+const deleteIfUnchanged = (filePaths) => Promise.all(filePaths.map(async filePath => {
   if (!await fse.pathExists(path.join(projectDir, filePath))) {
     // Do not report files that don't exist
     return true
@@ -194,7 +194,7 @@ module.exports.deleteIfUnchanged = (filePaths) => Promise.all(filePaths.map(asyn
   return result
 }))
 
-module.exports.upgradeIfUnchanged = (filePaths, starterFilePath, additionalStep) => Promise.all(filePaths.map(async filePath => {
+const upgradeIfUnchanged = (filePaths, starterFilePath, additionalStep) => Promise.all(filePaths.map(async filePath => {
   const matchFound = await matchAgainstOldVersions(filePath)
 
   const reporter = await addReporter(`Overwrite ${filePath}`)
@@ -219,3 +219,17 @@ module.exports.upgradeIfUnchanged = (filePaths, starterFilePath, additionalStep)
   await reporter(result)
   return result
 }))
+
+module.exports = {
+  getOldConfig,
+  preflightChecks,
+  migrateConfig,
+  prepareAppRoutes,
+  prepareSass,
+  removeOldPatternIncludesFromSassFile,
+  deleteUnusedFiles,
+  deleteUnusedDirectories,
+  deleteEmptyDirectories,
+  deleteIfUnchanged,
+  upgradeIfUnchanged
+}
