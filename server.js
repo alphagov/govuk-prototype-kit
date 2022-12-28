@@ -119,8 +119,8 @@ app.use(function (req, res, next) {
   next()
 })
 
-require('./lib/routes/prototype-admin-routes.js')
-require('./lib/routes/plugins.js')
+require('./lib/manage-prototype-routes.js')
+require('./lib/plugins/plugins-routes.js')
 utils.addRouters(app)
 
 app.get('/robots.txt', function (req, res) {
