@@ -93,7 +93,7 @@ const patternsToDeleteIfUnchanged = [
   'app/assets/sass/patterns/_task-list.scss'
 ]
 
-const prepareMigration = async (kitDependency, projectDirectory) => {
+async function prepareMigration (kitDependency, projectDirectory) {
   await logger.setup()
 
   // extract the name from the original package.json if it exists
@@ -116,7 +116,7 @@ const prepareMigration = async (kitDependency, projectDirectory) => {
 
 // Special case app/views/layout.html, as it has moved in prototype
 // starter files, but we don't want to move for existing users
-const upgradeLayoutIfUnchanged = async () => {
+async function upgradeLayoutIfUnchanged () {
   const results = await upgradeIfUnchanged(
     ['app/views/layout.html'],
     'app/views/layouts/main.html',
@@ -127,7 +127,7 @@ const upgradeLayoutIfUnchanged = async () => {
   return results.flat()
 }
 
-const migrate = async () => {
+async function migrate () {
   await logger.setup()
 
   let success = false
@@ -177,7 +177,7 @@ const migrate = async () => {
   return success
 }
 
-const performPreflightChecks = async () => {
+async function performPreflightChecks () {
   await logger.setup()
   const success = await preflightChecks(
     filesToIdentifyPreV13Prototype,

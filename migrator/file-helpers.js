@@ -6,7 +6,7 @@ const fse = require('fs-extra')
 const { packageDir, projectDir } = require('../lib/utils/paths')
 const { log, sanitisePaths } = require('./logger')
 
-const verboseLog = async function () {
+async function verboseLog () {
   await log(...arguments)
   if (process.env.GPK_UPGRADE_DEBUG !== 'true') {
     return
@@ -14,7 +14,7 @@ const verboseLog = async function () {
   console.log(...arguments)
 }
 
-const verboseLogError = async (e) => {
+async function verboseLogError (e) {
   await verboseLog('----')
   if (e.code) {
     await verboseLog(e.code)
@@ -29,12 +29,12 @@ const joinLines = arr => arr.join('\n')
 const splitIntoLines = fileContents => fileContents.split('\n')
 const successOutput = () => true
 
-const getFileAsLines = async (filePath) => {
+async function getFileAsLines (filePath) {
   const fileContents = await fs.readFile(filePath, 'utf8')
   return splitIntoLines(fileContents)
 }
 
-const writeFileLinesToFile = async (filePath, updatedFileLines) => {
+async function writeFileLinesToFile (filePath, updatedFileLines) {
   try {
     await fs.writeFile(filePath, joinLines(updatedFileLines))
     return true
@@ -50,7 +50,7 @@ const handleNotFound = resultIfFileNotFound => e => {
   throw e
 }
 
-const replaceStartOfFile = async ({ filePath, lineToFind, replacement }) => {
+async function replaceStartOfFile ({ filePath, lineToFind, replacement }) {
   const prettyFilePath = path.relative(projectDir, filePath)
   const fileLines = await getFileAsLines(filePath)
   const replacementLineNumber = fileLines.indexOf(lineToFind)
@@ -65,7 +65,7 @@ const replaceStartOfFile = async ({ filePath, lineToFind, replacement }) => {
   return false
 }
 
-const removeLineFromFile = async ({ filePath, lineToRemove }) => {
+async function removeLineFromFile ({ filePath, lineToRemove }) {
   const prettyFilePath = path.relative(projectDir, filePath)
   const linesToRemove = Array.isArray(lineToRemove) ? lineToRemove : [lineToRemove]
   const fileLines = await getFileAsLines(filePath)
@@ -79,17 +79,19 @@ const removeLineFromFile = async ({ filePath, lineToRemove }) => {
   return false
 }
 
-const deleteFile = async (filePath) =>
-  (fs.rm || fs.unlink)(filePath)
+async function deleteFile (filePath) {
+  return (fs.rm || fs.unlink)(filePath)
     .then(successOutput)
     .catch(handleNotFound(true))
+}
 
-const deleteDirectory = async (dirPath) =>
-  (fs.rm || fs.rmdir)(dirPath, { recursive: true })
+async function deleteDirectory (dirPath) {
+  return (fs.rm || fs.rmdir)(dirPath, { recursive: true })
     .then(successOutput)
     .catch(handleNotFound(true))
+}
 
-const deleteDirectoryIfEmpty = async (partialPath) => {
+async function deleteDirectoryIfEmpty (partialPath) {
   const dirPath = path.join(projectDir, partialPath)
   const exists = await fse.pathExists(dirPath)
   if (!exists) {
@@ -102,7 +104,7 @@ const deleteDirectoryIfEmpty = async (partialPath) => {
   return false
 }
 
-const copyFileFromStarter = async (starterPath, newPath) => {
+async function copyFileFromStarter (starterPath, newPath) {
   const src = path.join(packageDir, 'prototype-starter', starterPath)
   const dest = path.join(projectDir, newPath || starterPath)
   const prettySrc = src.startsWith(projectDir) ? path.relative(projectDir, src) : sanitisePaths(src)
@@ -118,9 +120,11 @@ const copyFileFromStarter = async (starterPath, newPath) => {
     })
 }
 
-const ignoreWhitespace = (str) => str.replace(/\s\s+/g, ' ')
+function ignoreWhitespace (str) {
+  return str.replace(/\s\s+/g, ' ')
+}
 
-const matchAgainstOldVersions = async (filePath) => {
+async function matchAgainstOldVersions (filePath) {
   const oldVersionsDir = path.join(__dirname, 'known-old-versions', filePath.split('/').join('-'))
   const userPath = path.join(projectDir, filePath)
 

@@ -1,4 +1,4 @@
-const parse = (argvInput) => {
+function parse (argvInput) {
   const args = [...argvInput].splice(2)
   const options = {}
   const paths = []

@@ -42,9 +42,9 @@ describe('The Prototype Kit', () => {
     const outputLines = []
     await exec('git log', { cwd: tmpDir }, (data) => outputLines.push(data.toString()))
 
-    function getLastMeaningfulLineTrimmed (outputLines) {
-      const meaningulLines = outputLines.join('').split('\n').filter(line => line !== '')
-      return meaningulLines.pop().trim()
+    const getLastMeaningfulLineTrimmed = (outputLines) => {
+      const meaningfulLines = outputLines.join('').split('\n').filter(line => line !== '')
+      return meaningfulLines.pop().trim()
     }
 
     expect(getLastMeaningfulLineTrimmed(outputLines)).toBe('Created prototype kit')
@@ -68,7 +68,7 @@ describe('The Prototype Kit', () => {
         .get('/plugin-assets/govuk-frontend/govuk/all.js')
         .expect(200)
         .expect('Content-Type', /application\/javascript; charset=UTF-8/)
-        .end(function (err, res) {
+        .end((err, res) => {
           if (err) {
             done(err)
           } else {
@@ -86,7 +86,7 @@ describe('The Prototype Kit', () => {
         .get('/plugin-assets/govuk-frontend/govuk/assets/images/favicon.ico')
         .expect(200)
         .expect('Content-Type', /image\/x-icon/)
-        .end(function (err, res) {
+        .end((err, res) => {
           if (err) {
             done(err)
           } else {
@@ -99,13 +99,13 @@ describe('The Prototype Kit', () => {
         })
     })
 
-    it('should not expose everything', function (done) {
+    it('should not expose everything', (done) => {
       const consoleErrorMock = jest.spyOn(global.console, 'error').mockImplementation()
 
       request(app)
         .get('/govuk/assets/common.js')
         .expect(404)
-        .end(function (err, res) {
+        .end((err, res) => {
           consoleErrorMock.mockRestore()
           if (err) {
             done(err)
@@ -121,7 +121,7 @@ describe('The Prototype Kit', () => {
           .get('/plugin-assets/govuk-frontend/govuk/all.js')
           .expect(200)
           .expect('Content-Type', /application\/javascript; charset=UTF-8/)
-          .end(function (err, res) {
+          .end((err, res) => {
             if (err) {
               done(err)
             } else {

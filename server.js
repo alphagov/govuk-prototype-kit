@@ -110,7 +110,7 @@ if (config.useAutoStoreData) {
 }
 
 // Prevent search indexing
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   // Setting headers stops pages being indexed even if indexed pages link to them.
   res.setHeader('X-Robots-Tag', 'noindex')
   next()
@@ -120,13 +120,13 @@ require('./lib/manage-prototype-routes.js')
 require('./lib/plugins/plugins-routes.js')
 utils.addRouters(app)
 
-app.get('/robots.txt', function (req, res) {
+app.get('/robots.txt', (req, res) => {
   res.type('text/plain')
   res.send('User-agent: *\nDisallow: /')
 })
 
 // Strip .html and .htm if provided
-app.get(/\.html?$/i, function (req, res) {
+app.get(/\.html?$/i, (req, res) => {
   let path = req.path
   const parts = path.split('.')
   parts.pop()
@@ -137,12 +137,12 @@ app.get(/\.html?$/i, function (req, res) {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, function (req, res, next) {
+app.get(/^([^.]+)$/, (req, res, next) => {
   utils.matchRoutes(req, res, next)
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
-app.post(/^\/([^.]+)$/, function (req, res) {
+app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
     pathname: '/' + req.params[0],
     query: req.query
@@ -151,7 +151,7 @@ app.post(/^\/([^.]+)$/, function (req, res) {
 })
 
 // redirect old local docs to the docs site
-app.get('/docs/tutorials-and-examples', function (req, res) {
+app.get('/docs/tutorials-and-examples', (req, res) => {
   res.redirect('https://prototype-kit.service.gov.uk/docs')
 })
 
@@ -163,7 +163,7 @@ app.get('/', async (req, res) => {
 })
 
 // Catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   const err = new Error(`Page not found: ${decodeURI(req.path)}`)
   err.status = 404
   next(err)
@@ -173,7 +173,7 @@ app.use(function (req, res, next) {
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
 // message without the stack trace.
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }

@@ -17,7 +17,7 @@ const pluginFooViewMarkup = `
 
 {% block pageScripts %}
 <script>
-  window.GOVUKPrototypeKit.documentReady(function () {
+  window.GOVUKPrototypeKit.documentReady(() => {
     new window.FOO.Modules.PluginFoo('.test-foo')
   })
 </script>

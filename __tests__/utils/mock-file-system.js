@@ -10,7 +10,7 @@ function throwNotFound (filePath) {
   throw err
 }
 
-const mockFileSystem = (rootPath) => {
+function mockFileSystem (rootPath) {
   const spiesToTearDown = []
   const files = {}
   const directories = {}
@@ -62,7 +62,7 @@ const mockFileSystem = (rootPath) => {
       return (filePath).replace(rootPath + path.sep, '').split(path.sec)
     }
 
-    const readFileImplementation = function (filePath, encoding) {
+    const readFileImplementation = (filePath, encoding) => {
       if (filePath.includes('node_modules/jest-worker')) {
         return originalFsFunctions.promises.readFile.apply(null, arguments)
       }

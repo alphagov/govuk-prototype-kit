@@ -19,7 +19,7 @@ const pluginBazViewMarkup = `
 
 {% block pageScripts %}
 <script>
-  window.GOVUKPrototypeKit.documentReady(function () {
+  window.GOVUKPrototypeKit.documentReady(() => {
     new window.BAZ.Modules.PluginBaz('.test-baz')
   })
 </script>

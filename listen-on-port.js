@@ -9,7 +9,7 @@ const utils = require('./lib/utils')
 if (config.isTest) {
   server.listen()
 } else {
-  utils.findAvailablePort(server, function (port) {
+  utils.findAvailablePort(server, (port) => {
     if (config.isDevelopment) {
       console.log('You can manage your prototype at:')
       console.log(`http://localhost:${port}/manage-prototype`)
@@ -22,7 +22,7 @@ if (config.isTest) {
     if (config.isProduction || !config.useBrowserSync) {
       server.listen(port)
     } else {
-      server.listen(port - 50, function () {
+      server.listen(port - 50, () => {
         browserSync({
           proxy: 'localhost:' + (port - 50),
           port,

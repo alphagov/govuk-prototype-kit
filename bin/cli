@@ -84,7 +84,7 @@ ${prog} migrate`
   )
 }
 
-const getInstallLocation = () => {
+function getInstallLocation () {
   const chosenPath = argv.paths[0]
   if (chosenPath) {
     if (path.isAbsolute(chosenPath)) {
@@ -95,7 +95,7 @@ const getInstallLocation = () => {
   return currentDirectory
 }
 
-const getChosenKitDependency = () => {
+function getChosenKitDependency () {
   const defaultValue = 'govuk-prototype-kit'
   const versionRequested = argv.options.version || argv.options.v
 

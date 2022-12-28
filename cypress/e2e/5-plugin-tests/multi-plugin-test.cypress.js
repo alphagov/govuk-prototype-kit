@@ -20,7 +20,7 @@ const pluginFooBarSeparatedViewMarkup = `
 
 {% block pageScripts %}
 <script>
-  window.GOVUKPrototypeKit.documentReady(function () {
+  window.GOVUKPrototypeKit.documentReady(() => {
     new window.FOO.Modules.PluginFoo('.test-foo')
     new window.BAR.Modules.PluginBar('.test-bar')
   })
