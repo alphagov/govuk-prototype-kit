@@ -5,7 +5,7 @@ const path = require('path')
 
 const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
-const { prepareMigration, preflightChecks } = require('../lib/migrator')
+const { prepareMigration, preflightChecks } = require('../migrator')
 const { npmInstall, packageJsonFormat } = require('./utils')
 
 // Avoid requiring any kit server code at the top-level as we might want to
@@ -242,7 +242,7 @@ async function runMigrate () {
         .catch(() => fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
     ])
 
-    await require('../lib/migrator').migrate()
+    await require('../migrator').migrate()
   }
 }
 

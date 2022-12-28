@@ -3,7 +3,7 @@ const fs = require('fs').promises
 
 const fse = require('fs-extra')
 
-const { packageDir, projectDir } = require('../utils/paths')
+const { packageDir, projectDir } = require('../lib/utils/paths')
 const { log, sanitisePaths } = require('./logger')
 
 const verboseLog = async function () {

@@ -1,10 +1,10 @@
 const os = require('os')
 const path = require('path')
 
-const { projectDir } = require('../utils/paths')
+const { projectDir } = require('../lib/utils/paths')
 const fs = require('fs').promises
 
-const packageVersion = require('../../package.json').version
+const packageVersion = require('../package.json').version
 
 const migrateLogFilePath = path.join(projectDir, 'migrate.log')
 let migrateLogFileHandle

@@ -17,8 +17,8 @@ const {
 
 const fs = require('fs-extra')
 const path = require('path')
-const { npmInstall, packageJsonFormat } = require('../../bin/utils')
-const { projectDir } = require('../utils/paths')
+const { npmInstall, packageJsonFormat } = require('../bin/utils')
+const { projectDir } = require('../lib/utils/paths')
 
 const minimumPrototypeVersionForMigration = 8
 

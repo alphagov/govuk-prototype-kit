@@ -38,8 +38,8 @@ jest.mock('./file-helpers', () => {
 const fse = require('fs-extra')
 const reporter = require('./reporter')
 const fileHelpers = require('./file-helpers')
-const config = require('./../config')
-const { projectDir, starterDir, appDir } = require('../utils/paths')
+const config = require('../lib/config')
+const { projectDir, starterDir, appDir } = require('../lib/utils/paths')
 
 const migrationSteps = require('./migration-steps')
 const { preflightChecks, deleteIfUnchanged, removeOldPatternIncludesFromSassFile } = require('./migration-steps')

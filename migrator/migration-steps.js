@@ -1,8 +1,8 @@
 const path = require('path')
 const lodash = require('lodash')
 const fse = require('fs-extra')
-const { appDir, projectDir, packageDir } = require('../utils/paths')
-const config = require('../config')
+const { appDir, projectDir, packageDir } = require('../lib/utils/paths')
+const config = require('../lib/config')
 const logger = require('./logger')
 const { addReporter, reportSuccess, reportFailure } = require('./reporter')
 const {

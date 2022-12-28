@@ -12,6 +12,7 @@
   "files": [
     "bin/",
     "lib/",
+    "migrator/",
     "prototype-starter/",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
@@ -96,7 +97,7 @@
   "standard": {
     "ignore": [
       "__tests__/fixtures/",
-      "lib/migrator/known-old-versions/",
+      "migrator/known-old-versions/",
       "prototype-starter/"
     ],
     "plugins": [

@@ -5,8 +5,8 @@ const path = require('path')
 
 jest.mock('./logger')
 
-const { mockFileSystem } = require('../../__tests__/utils/mock-file-system')
-const { projectDir } = require('../utils/paths')
+const { mockFileSystem } = require('../__tests__/utils/mock-file-system')
+const { projectDir } = require('../lib/utils/paths')
 const { getFileAsLines, removeLineFromFile, replaceStartOfFile, deleteFile, deleteDirectory } = require('./file-helpers')
 
 describe('file helpers', () => {
