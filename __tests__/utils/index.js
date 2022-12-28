@@ -24,17 +24,6 @@ function _mkdtempPath () {
  *
  * @returns {string}
  */
-async function mkdtemp () {
-  const tempdir = _mkdtempPath()
-  await fs.promises.mkdir(tempdir, { recursive: true })
-  return tempdir
-}
-
-/**
- * Synchronous version of `mkdtemp()`.
- *
- * @returns {string}
- */
 function mkdtempSync () {
   const tempdir = _mkdtempPath()
   fs.mkdirSync(tempdir, { recursive: true })
@@ -124,13 +113,6 @@ async function installPlugins (prototypePath, pluginNames) {
   )
 }
 
-async function npmInstall (pathToRunInstallIn) {
-  return exec(
-    'npm install',
-    { cwd: pathToRunInstallIn, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
-  )
-}
-
 async function startPrototype (prototypePath, nodeEnv = 'development') {
   return exec(
     nodeEnv === 'production' ? 'npm start' : 'npm run dev',
@@ -139,8 +121,6 @@ async function startPrototype (prototypePath, nodeEnv = 'development') {
 }
 
 module.exports = {
-  mkdtemp,
-  npmInstall,
   mkdtempSync,
   mkPrototype,
   startPrototype,
