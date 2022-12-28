@@ -17,13 +17,13 @@ dotenv.config()
 
 // Local dependencies
 const middlewareFunctions = [
-  require('./lib/middleware/authentication/authentication.js')()
+  require('./lib/authentication.js')()
 ]
 const { projectDir, packageDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
-const sessionUtils = require('./lib/utils/session.js')
+const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 

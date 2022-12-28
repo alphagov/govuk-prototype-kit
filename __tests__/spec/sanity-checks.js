@@ -28,7 +28,7 @@ describe('The Prototype Kit', () => {
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {})
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
 
-    require('../../lib/build/tasks').generateAssetsSync()
+    require('../../lib/build').generateAssetsSync()
   }, createKitTimeout)
 
   it('should call writeFileSync with result css from sass.compile', () => {

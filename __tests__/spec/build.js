@@ -13,7 +13,7 @@ const testDir = path.join(mkdtempSync(), 'build')
 process.env.KIT_PROJECT_DIR = testDir
 
 const { packageDir, projectDir } = require('../../lib/utils/paths')
-const { generateAssetsSync } = require('../../lib/build/tasks')
+const { generateAssetsSync } = require('../../lib/build')
 
 describe('the build pipeline', () => {
   describe('generate assets', () => {

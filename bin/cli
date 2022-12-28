@@ -252,13 +252,13 @@ async function runDev () {
   console.log('starting...')
 
   await require('../lib/usage-data').collectDataUsage()
-  await require('../lib/build/tasks.js').buildWatchAndServe()
+  await require('../lib/build.js').buildWatchAndServe()
 }
 
 function runServe () {
   warnIfNpmStart(argv, process.env)
   process.env.NODE_ENV = process.env.NODE_ENV || 'production'
-  require('../lib/build/tasks.js').generateAssetsSync()
+  require('../lib/build.js').generateAssetsSync()
   require('../listen-on-port')
 }
 
