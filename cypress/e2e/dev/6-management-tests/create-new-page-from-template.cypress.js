@@ -35,7 +35,7 @@ describe('create new page', () => {
 
   it('View the start page from the management page', () => {
     cy.task('log', 'Visit the manage prototype templates page')
-    cy.get(`a[href="${getTemplateLink('view', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
+    cy.get(`a[href="${getTemplateLink('view', 'govuk-prototype-kit', '/lib/nunjucks/templates/start.html')}"]`).click()
 
     cy.task('log', 'The start page template should be displayed')
     cy.get('.govuk-button--start')
@@ -52,7 +52,7 @@ describe('create new page', () => {
       cy.task('log', 'Visit the manage prototype templates page')
       cy.visit(manageTemplatesPagePath)
 
-      cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
+      cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/nunjucks/templates/start.html')}"]`).click()
 
       cy.task('log', 'Create the page')
       cy.get('.govuk-heading-l')
@@ -104,7 +104,7 @@ describe('create new page', () => {
 
     beforeEach(() => {
       cy.visit(manageTemplatesPagePath)
-      cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/templates/start.html')}"]`).click()
+      cy.get(`a[href="${getTemplateLink('install', 'govuk-prototype-kit', '/lib/nunjucks/templates/start.html')}"]`).click()
     })
 
     it('already exists', testError(startPagePath, errors.exists))
