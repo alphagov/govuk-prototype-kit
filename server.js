@@ -160,7 +160,7 @@ app.get('/docs/tutorials-and-examples', function (req, res) {
 
 app.get('/', async (req, res) => {
   const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
-  res.render('govuk-prototype-kit/backup-homepage', {
+  res.render('views/backup-homepage', {
     starterHomepageCode
   })
 })
