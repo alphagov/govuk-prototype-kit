@@ -6,7 +6,7 @@ This document is for Prototype team developers who need to publish a support bra
 - release, after the team has started to merge changes for a new breaking release into the `main` branch - for example, a 12.x.x release once we've started merging changes for 13.0.0
 - release for a previous major version - for example, a 12.x.x release after we've released 13.0.0
 
-If you want to publish the `main` branch for the Prototype Kit, [follow the steps in releasing a new version of the Prototype Kit](/internal_docs/releasing.md).
+If you want to publish the `main` branch for the Prototype Kit, [follow the steps in releasing a new version of the Prototype Kit](./releasing.md).
 
 If the `main` branch only has a few unreleasable changes, you can temporarily revert these changes.
 
