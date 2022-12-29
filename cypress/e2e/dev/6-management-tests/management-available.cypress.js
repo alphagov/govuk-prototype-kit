@@ -1,3 +1,5 @@
+
+// local dependencies
 const { waitForApplication } = require('../../utils')
 
 describe('management available', () => {

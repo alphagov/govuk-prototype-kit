@@ -1,13 +1,17 @@
 /* eslint-env jest */
 
+// core dependencies
 const assert = require('assert')
 const path = require('path')
 
+// npm dependencies
 const fs = require('fs-extra')
 const request = require('supertest')
 const sass = require('sass')
 
+// local dependencies
 const { mkPrototype, mkdtempSync } = require('../utils')
+
 const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
 let app
 

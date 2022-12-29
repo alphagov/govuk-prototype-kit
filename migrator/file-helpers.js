@@ -1,8 +1,12 @@
+
+// core dependencies
 const path = require('path')
 const fs = require('fs').promises
 
+// npm dependencies
 const fse = require('fs-extra')
 
+// local dependencies
 const { packageDir, projectDir } = require('../lib/utils/paths')
 const { log, sanitisePaths } = require('./logger')
 

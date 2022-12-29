@@ -1,3 +1,6 @@
+/* eslint-env jest */
+
+// local dependencies
 const parser = require('./argv-parser')
 
 const addStandardArgs = arr => [

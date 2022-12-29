@@ -1,3 +1,5 @@
+
+// local dependencies
 const { addFilter } = require('govuk-prototype-kit').views
 
 addFilter('bar__link',

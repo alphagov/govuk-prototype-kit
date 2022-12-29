@@ -1,3 +1,4 @@
+
 const showHideAllLinkQuery = '.app-step-nav__controls button'
 const toggleButtonQuery = (step) => `[data-position="${step}"]`
 const showHideLinkQuery = (step) => `[data-position="${step}"]`

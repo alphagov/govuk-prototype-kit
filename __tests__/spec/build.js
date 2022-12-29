@@ -1,13 +1,17 @@
 /* eslint-env jest */
 
-const fse = require('fs-extra')
-const fs = require('graceful-fs') // fs-extra uses graceful-fs, so we need to mock that instead of fs
+// core dependencies
 const path = require('path')
 
+// npm dependencies
 const del = require('del')
+const fse = require('fs-extra')
+const fs = require('graceful-fs') // fs-extra uses graceful-fs, so we need to mock that instead of fs
 const sass = require('sass')
 
+// local dependencies
 const { mkdtempSync } = require('../utils')
+
 const testDir = path.join(mkdtempSync(), 'build')
 
 process.env.KIT_PROJECT_DIR = testDir

@@ -1,9 +1,10 @@
-// Core dependencies
+
+// core dependencies
+const fs = require('fs').promises
 const path = require('path')
 const url = require('url')
-const fs = require('fs').promises
 
-// NPM dependencies
+// npm dependencies
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')

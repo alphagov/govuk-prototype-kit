@@ -1,8 +1,11 @@
+
+// core dependencies
+const fs = require('fs').promises
 const os = require('os')
 const path = require('path')
 
+// local dependencies
 const { projectDir } = require('../lib/utils/paths')
-const fs = require('fs').promises
 
 const packageVersion = require('../package.json').version
 

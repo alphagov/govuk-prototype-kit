@@ -1,8 +1,10 @@
+
+// core dependencies
 const os = require('os')
 const path = require('path')
 
+// local dependencies
 const { exec } = require('../lib/exec')
-
 const { mkPrototype } = require('../__tests__/utils')
 
 const testDir = path.resolve(

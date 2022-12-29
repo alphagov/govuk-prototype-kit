@@ -1,13 +1,14 @@
 /* eslint-env jest */
 
-const util = require('util')
+// core dependencies
 const path = require('path')
+const util = require('util')
 
+// local dependencies
 jest.mock('./logger')
-
-const { mockFileSystem } = require('../__tests__/utils/mock-file-system')
 const { projectDir } = require('../lib/utils/paths')
 const { getFileAsLines, removeLineFromFile, replaceStartOfFile, deleteFile, deleteDirectory } = require('./file-helpers')
+const { mockFileSystem } = require('../__tests__/utils/mock-file-system')
 
 describe('file helpers', () => {
   const joinLines = arr => arr.join('\n')

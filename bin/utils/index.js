@@ -1,4 +1,5 @@
 
+// local dependencies
 const { spawn } = require('../../lib/exec')
 
 const packageJsonFormat = { encoding: 'utf8', spaces: 2 }

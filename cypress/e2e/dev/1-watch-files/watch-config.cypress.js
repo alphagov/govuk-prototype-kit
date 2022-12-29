@@ -1,5 +1,8 @@
+
+// core dependencies
 const path = require('path')
 
+// local dependencies
 const { waitForApplication } = require('../../utils')
 
 const appConfig = path.join(Cypress.env('projectFolder'), 'app', 'config.json')

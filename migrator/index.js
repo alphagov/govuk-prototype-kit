@@ -1,7 +1,12 @@
+
+// core dependencies
+const fs = require('fs-extra')
+const path = require('path')
+
+// local dependencies
 const logger = require('./logger')
-
-const supportPage = 'https://prototype-kit.service.gov.uk/docs/support'
-
+const { projectDir } = require('../lib/utils/paths')
+const { npmInstall, packageJsonFormat } = require('../bin/utils')
 const {
   preflightChecks,
   migrateConfig,
@@ -15,10 +20,7 @@ const {
   removeOldPatternIncludesFromSassFile
 } = require('./migration-steps')
 
-const fs = require('fs-extra')
-const path = require('path')
-const { npmInstall, packageJsonFormat } = require('../bin/utils')
-const { projectDir } = require('../lib/utils/paths')
+const supportPage = 'https://prototype-kit.service.gov.uk/docs/support'
 
 const minimumPrototypeVersionForMigration = 8
 

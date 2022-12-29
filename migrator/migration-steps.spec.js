@@ -1,5 +1,6 @@
 /* eslint-env jest */
 
+// core dependencies
 const path = require('path')
 
 jest.mock('fs-extra', () => {

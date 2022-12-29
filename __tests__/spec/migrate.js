@@ -1,11 +1,14 @@
 /* eslint-env jest */
 
+// core dependencies
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
+// npm dependencies
 const fse = require('fs-extra')
 
+// local dependencies
 const { spawn } = require('../../lib/exec')
 const { mkdtempSync } = require('../utils')
 

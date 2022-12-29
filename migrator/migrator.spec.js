@@ -1,5 +1,6 @@
 /* eslint-env jest */
 
+// local dependencies
 const { migrate, preflightChecks } = require('./index')
 
 jest.mock('./logger', () => {

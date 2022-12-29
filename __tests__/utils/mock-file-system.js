@@ -1,6 +1,7 @@
 /* eslint-env jest */
 /* eslint-disable no-prototype-builtins */
 
+// core dependencies
 const path = require('path')
 const fs = require('fs')
 

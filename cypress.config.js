@@ -1,3 +1,5 @@
+
+// npm dependencies
 const { defineConfig } = require('cypress')
 const setupNodeEvents = require('./cypress/events')
 

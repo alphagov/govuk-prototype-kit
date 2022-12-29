@@ -1,4 +1,5 @@
 
+// local dependencies
 const { waitForApplication } = require('../../utils')
 const { setUpPages, setUpData, cleanUpPages, clearUpData } = require('./link-page-utils')
 

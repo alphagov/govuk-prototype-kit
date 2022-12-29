@@ -1,8 +1,12 @@
+
+// core dependencies
 const os = require('os')
 const path = require('path')
 
+// npm dependencies
 const fs = require('fs-extra')
 
+// local dependencies
 const { exec } = require('../../lib/exec')
 
 /**

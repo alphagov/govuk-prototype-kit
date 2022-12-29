@@ -1,14 +1,16 @@
-import path from 'path'
-import { deleteFile } from '../../utils'
-import {
+
+// core dependencies
+const path = require('path')
+
+// local dependencies
+const { copyFile, deleteFile, waitForApplication } = require('../../utils')
+const {
   assertHidden,
   assertVisible,
   showHideAllLinkQuery,
   titleQuery,
   toggleButtonQuery
-} from '../../step-by-step-utils'
-
-const { waitForApplication, copyFile } = require('../../utils')
+} = require('../../step-by-step-utils')
 
 const projectFolder = Cypress.env('projectFolder')
 

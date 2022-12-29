@@ -1,6 +1,12 @@
+
+// core dependencies
 const path = require('path')
-const lodash = require('lodash')
+
+// npm dependencies
 const fse = require('fs-extra')
+const lodash = require('lodash')
+
+// local dependencies
 const { appDir, projectDir, packageDir } = require('../lib/utils/paths')
 const config = require('../lib/config')
 const logger = require('./logger')

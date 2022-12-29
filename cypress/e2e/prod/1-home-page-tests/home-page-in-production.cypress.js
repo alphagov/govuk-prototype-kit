@@ -1,3 +1,5 @@
+
+// local dependencies
 const { authenticate } = require('../../utils')
 
 describe('home page in production', () => {

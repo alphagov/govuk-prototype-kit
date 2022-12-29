@@ -1,7 +1,8 @@
-// NPM dependencies
+
+// npm dependencies
 const browserSync = require('browser-sync')
 
-// Local dependencies
+// local dependencies
 const server = require('./server.js')
 const config = require('./lib/config.js').getConfig()
 const utils = require('./lib/utils')

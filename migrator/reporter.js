@@ -1,5 +1,9 @@
-const logger = require('./logger')
+
+// npm dependencies
 const c = require('ansi-colors')
+
+// local dependencies
+const logger = require('./logger')
 
 async function reportSuccess (tag) {
   const message = `Succeeded [${tag}]`

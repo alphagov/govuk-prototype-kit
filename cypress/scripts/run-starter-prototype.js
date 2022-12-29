@@ -1,6 +1,9 @@
+
+// core dependencies
 const os = require('os')
 const path = require('path')
 
+// local dependencies
 const { mkPrototype, startPrototype, installPlugins } = require('../../__tests__/utils')
 
 const defaultKitPath = path.join(os.tmpdir(), 'cypress/temp/test-project')

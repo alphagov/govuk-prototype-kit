@@ -1,8 +1,10 @@
 /* eslint-env jest */
 
+// core dependencies
 const fs = require('fs')
 const path = require('path')
 
+// local dependencies
 const utils = require('../utils')
 const { exec } = require('../../lib/exec')
 

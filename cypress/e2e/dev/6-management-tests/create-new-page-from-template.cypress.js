@@ -1,5 +1,8 @@
+
+// core dependencies
 const path = require('path')
 
+// local dependencies
 const { waitForApplication, getTemplateLink, deleteFile } = require('../../utils')
 
 const viewFolder = path.join(Cypress.env('projectFolder'), 'app', 'views')

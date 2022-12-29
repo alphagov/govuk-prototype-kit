@@ -1,9 +1,14 @@
 /* eslint-env jest */
+
+// core dependencies
 const path = require('path')
 
+// npm dependencies
 const request = require('supertest')
 
+// local dependencies
 const { mkdtempSync } = require('../utils')
+
 const testDir = path.join(mkdtempSync(), 'force-https-redirect')
 
 // Setup Environment Variables before setting App
