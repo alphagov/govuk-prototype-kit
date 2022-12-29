@@ -10,15 +10,18 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+// core dependencies
 const fs = require('fs')
 const fsp = fs.promises
 const path = require('path')
 
+// npm dependencies
 const waitOn = require('wait-on')
 const extract = require('extract-zip')
 const https = require('https')
 
-const { starterDir } = require('../../lib/path-utils')
+// local dependencies
+const { starterDir } = require('../../lib/utils/paths')
 const { sleep } = require('../e2e/utils')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)

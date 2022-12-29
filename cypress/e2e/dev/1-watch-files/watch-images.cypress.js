@@ -1,5 +1,8 @@
+
+// core dependencies
 const path = require('path')
 
+// local dependencies
 const { waitForApplication } = require('../../utils')
 
 const imageFile = 'larry-the-cat.jpg'

@@ -1,0 +1,15 @@
+{% extends "views/manage-prototype/layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Page created</h1>
+
+      <p class="govuk-body">View your page at
+        <a class="govuk-link" href="{{ url }}">{{ url }}</a></p>
+
+      <p class="govuk-body">To edit the file in your code editor, open <strong>{{ filePath }}</strong></p>
+    </div>
+  </div>
+{% endblock %}

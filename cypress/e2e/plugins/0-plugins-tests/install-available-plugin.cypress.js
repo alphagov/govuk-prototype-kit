@@ -1,7 +1,14 @@
-const { waitForApplication, installPlugin, getTemplateLink, deleteFile } = require('../../utils')
-const { capitalize } = require('lodash')
+
+// core dependencies
 const path = require('path')
+
+// npm dependencies
+const { capitalize } = require('lodash')
+
+// local dependencies
+const { waitForApplication, installPlugin, getTemplateLink, deleteFile } = require('../../utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
+
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const managePluginsPagePath = '/manage-prototype/plugins'
 const plugin = '@govuk-prototype-kit/step-by-step'

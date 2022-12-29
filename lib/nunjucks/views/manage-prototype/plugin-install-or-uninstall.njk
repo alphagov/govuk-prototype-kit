@@ -1,0 +1,88 @@
+{% extends "views/manage-prototype/layout.njk" %}
+
+{% block meta %}
+  <meta name="csrf-token" content="{{ csrfToken }}">
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row govuk-prototype-kit-manage-prototype-plugin-processing">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Plugins</h1>
+
+      <h2 class="govuk-heading-m">
+        {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
+      </h2>
+
+      <div id="panel-manual-instructions" class="govuk-prototype-kit-manage-prototype-plugin-instructions js-hidden">
+        <p>
+          In terminal, press <strong>ctrl + c</strong> to stop your prototype, then run:
+        </p>
+        <p>
+          <code>{{ command }}</code>
+        </p>
+        <p>
+          When you've {{ verb.status }} the plugin, restart your prototype in the terminal by typing:
+        </p>
+        <p>
+          <code>npm run dev</code>
+        </p>
+      </div>
+
+      <div class="js-visible" aria-live="polite">
+
+        {% if not isSameOrigin %}
+          <div id="plugin-action-confirmation">
+            <p class="govuk-body">
+              Are you sure you want to {{ verb.para }} this plugin?
+            </p>
+            {{ govukButton({
+              text: verb.title,
+              attributes: { id: "plugin-action-button" }
+            }) }}
+          </div>
+        {% endif %}
+
+        <div hidden class="panel-processing govuk-panel govuk-panel--confirmation" id="panel-processing">
+          <div class="govuk-panel__title govuk-!-font-size-27">
+            {{ verb.progressive|capitalize }} ...
+          </div>
+        </div>
+
+        <div hidden class="govuk-panel govuk-panel--confirmation" id="panel-complete">
+          <div class="govuk-panel__title govuk-!-font-size-27">
+            {{ verb.title }} complete
+          </div>
+        </div>
+
+        <div hidden class="panel-error govuk-panel govuk-panel--confirmation" id="panel-error">
+          <div class="govuk-panel__title govuk-!-font-size-27">
+            There was a problem {{ verb.progressive }}
+          </div>
+          <div class="govuk-panel__body govuk-!-font-size-19">
+            <a href="https://prototype-kit.service.gov.uk/docs/support">
+              Please contact support
+            </a>
+          </div>
+        </div>
+
+        <div hidden class="" id="instructions-complete">
+          <p class="govuk-body">
+            If you are using Git you can commit this change.
+          </p>
+          <p class="govuk-body">
+            <a href="/manage-prototype/plugins">
+              Back to plugins
+            </a>
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/extension-assets/govuk-prototype-kit/lib/assets/javascripts/manage-prototype/manage-plugins.js"></script>
+{% endblock %}

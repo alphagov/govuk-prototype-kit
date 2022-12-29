@@ -1,0 +1,54 @@
+{% extends "views/manage-prototype/layout.njk" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% block beforeContent %}
+  {{ super() }}
+  <a class="govuk-back-link" href="/manage-prototype/templates">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if error %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: error,
+              href: "#chosen-url"
+            }
+          ]
+        }) }}
+      {% endif %}
+
+      <h1 class="govuk-heading-l">Create new {{ templateName }}</h1>
+
+      <form action="{{ currentUrl }}" method="post">
+
+        {{ govukInput({
+          errorMessage: {
+            text: error
+          } if error,
+          label: {
+            text: "Path for the new page",
+
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "For example: /my-useful-page"
+          },
+          id: "chosen-url",
+          name: "chosen-url",
+          value: chosenUrl
+        }) }}
+
+        {{ govukButton({
+          text: "Create page"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

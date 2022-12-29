@@ -1,0 +1,65 @@
+{% extends "views/manage-prototype/layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-!-margin-bottom-8">
+        <h1 class="govuk-heading-l">
+          Manage your prototype
+        </h1>
+        <p class="govuk-prototype-kit-manage-prototype-version">
+          GOV.UK Prototype Kit {{ releaseVersion }}
+        </p>
+        {% if kitUpgradeAvailable %}
+          <p>
+            <a href="{{ currentUrl }}/plugins">
+              New version available: {{ latestAvailableKit }}
+            </a>
+          </p>
+        {% endif %}
+        <p>
+          <a href="https://prototype-kit.service.gov.uk/">Prototype Kit website</a>
+          for guidance and tutorials
+        </p>
+      </div>
+
+      {% if tasks.length > 0 %}
+        <h2 class="govuk-heading-m">
+          Start a new prototype
+        </h2>
+        <ul class="app-task-list__items govuk-prototype-kit-manage-prototype-task-list__items">
+          {% for task in tasks %}
+          <li class="app-task-list__item">
+          <span class="app-task-list__task-name">
+            {{ task.html | safe }}
+          </span>
+            <strong class="govuk-tag govuk-prototype-kit-manage-prototype-govuk-tag app-task-list__tag">
+              {% if task.done %}Done{% else %}To do{% endif %}
+            </strong>
+          </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <h2 class="govuk-heading-m">
+        <a href="{{ currentUrl }}/templates">Templates</a>
+      </h2>
+      <p>
+        Create pages from templates
+      </p>
+
+      <h2 class="govuk-heading-m">
+        <a href="{{ currentUrl }}/plugins">Plugins</a>
+      </h2>
+      <p>
+        Plugins provide you with new components, styles and other features
+      </p>
+
+      <a class="govuk-heading-m" href="{{ currentUrl }}/clear-data">
+        Clear session data
+      </a>
+
+    </div>
+  </div>
+
+{% endblock %}

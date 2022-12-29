@@ -1,6 +1,9 @@
 /* eslint-env jest */
+
+// npm dependencies
 const request = require('supertest')
 
+// local dependencies
 const { sleep } = require('../../lib/utils')
 
 // with NODE_ENV=test express hides error messages

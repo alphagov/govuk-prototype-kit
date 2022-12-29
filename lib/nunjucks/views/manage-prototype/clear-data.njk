@@ -1,0 +1,39 @@
+{% extends "views/manage-prototype/layout.njk" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Clear session data – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Clear session data
+      </h1>
+      {{ govukWarningText({
+        text: "This will clear all of the data entered in this session",
+        iconFallbackText: "Warning"
+      }) }}
+
+      {{ govukButton({
+        text: "Clear the data"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% endblock %}

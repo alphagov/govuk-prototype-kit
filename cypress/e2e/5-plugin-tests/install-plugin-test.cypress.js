@@ -1,5 +1,9 @@
-const { waitForApplication, installPlugin, uninstallPlugin, deleteFile, createFile } = require('../../utils')
+
+// core dependencies
 const path = require('path')
+
+// local dependencies
+const { waitForApplication, installPlugin, uninstallPlugin, deleteFile, createFile } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const pluginBazView = path.join(appViews, 'plugin-baz.html')
@@ -19,7 +23,7 @@ const pluginBazViewMarkup = `
 
 {% block pageScripts %}
 <script>
-  window.GOVUKPrototypeKit.documentReady(function () {
+  window.GOVUKPrototypeKit.documentReady(() => {
     new window.BAZ.Modules.PluginBaz('.test-baz')
   })
 </script>

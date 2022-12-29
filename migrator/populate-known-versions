@@ -1,0 +1,109 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const os = require('os')
+const fs = require('fs-extra')
+
+const execHelper = require('../lib/exec')
+const { packageDir } = require('../lib/utils/paths')
+const fileToAnalyse = path.join(process.argv[2])
+const tmpDir = path.join(os.tmpdir(), 'govuk-prototype-kit', 'finding-known-files', '' + Date.now())
+const outputDir = path.join(packageDir, 'lib', 'migrator', 'known-old-versions', fileToAnalyse.split('/').join('-'))
+
+;(async () => {
+  const exec = command => execHelper.exec(command, { cwd: tmpDir })
+
+  await fs.remove(tmpDir).catch(e => {
+    console.log(e)
+  })
+
+  await fs.ensureDir(tmpDir)
+  await fs.ensureDir(outputDir)
+
+  const versions = [
+    '12.3.0',
+    '12.2.0',
+    '12.1.1',
+    '12.1.0',
+    '12.0.4',
+    '12.0.3',
+    '12.0.2',
+    '12.0.1',
+    '12.0.0',
+    '11.0.0',
+    '10.0.0',
+    '9.15.0',
+    '9.14.2',
+    '9.14.1',
+    '9.14.0',
+    '9.13.0',
+    '9.12.1',
+    '9.12.0',
+    '9.11.2',
+    '9.11.1',
+    '9.11.0',
+    '9.10.1',
+    '9.10.0',
+    '9.9.0',
+    '9.8.0',
+    '9.7.0',
+    '9.6.1',
+    '9.6.0',
+    '9.5.0',
+    '9.4.0',
+    '9.3.0',
+    '9.2.0',
+    '9.1.0',
+    '9.0.0',
+    '8.12.1',
+    '8.12.0',
+    '8.11.0',
+    '8.10.0',
+    '8.9.0',
+    '8.8.0',
+    '8.7.0',
+    '8.6.0',
+    '8.5.0',
+    '8.4.0',
+    '8.3.0',
+    '8.2.0',
+    '8.1.0',
+    '8.0.0',
+    '7.1.0',
+    '7.0.0']
+
+  await Promise.all(versions.map(version => {
+      const filePath = path.join(tmpDir, `govuk-prototype-kit-${version}`, fileToAnalyse)
+      return exec(`wget https://github.com/alphagov/govuk-prototype-kit/archive/refs/tags/v${version}.tar.gz`)
+          .then(() => exec(`tar -xzpf v${version}.tar.gz`))
+          .then(() => fs.readFile(filePath, 'utf8'))
+          .then(contents => ({ version, contents }))
+          .catch(() => {
+            console.log(`File did not exist in version ${version}`)
+          })
+      }
+    )
+  ).then(allFiles => {
+    const allPromises = []
+    allFiles.forEach((item, index, arr) => {
+      if (!item) {
+        return
+      }
+      const nextContents = (arr[index + 1] || {}).contents
+      const currentContents = item.contents
+      if (currentContents !== nextContents) {
+        const filePath = path.join(outputDir, `v${item.version}${path.extname(fileToAnalyse)}`)
+        allPromises.push(
+          fs.writeFile(filePath, currentContents)
+            .then(() => item.version)
+        )
+      }
+    })
+    return Promise.all(allPromises)
+  }).then(allWrites => {
+    console.log(`Written ${allWrites.length} unique files`)
+    allWrites.map(x => {console.log(x)})
+  })
+    .then(() => fs.remove(tmpDir))
+
+})()

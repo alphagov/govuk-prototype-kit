@@ -1,19 +1,23 @@
 /* eslint-env jest */
 
+// core dependencies
 const assert = require('assert')
 const path = require('path')
 
+// npm dependencies
 const fs = require('fs-extra')
 const request = require('supertest')
 const sass = require('sass')
 
-const { mkPrototype, mkdtempSync } = require('../util')
+// local dependencies
+const { mkPrototype, mkdtempSync } = require('../utils')
+
 const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
 let app
 
 process.env.KIT_PROJECT_DIR = tmpDir
 
-const { packageDir, projectDir } = require('../../lib/path-utils')
+const { packageDir, projectDir } = require('../../lib/utils/paths')
 const { exec } = require('../../lib/exec')
 const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
 
@@ -28,7 +32,7 @@ describe('The Prototype Kit', () => {
     jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {})
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
 
-    require('../../lib/build/tasks').generateAssetsSync()
+    require('../../lib/build').generateAssetsSync()
   }, createKitTimeout)
 
   it('should call writeFileSync with result css from sass.compile', () => {
@@ -42,9 +46,9 @@ describe('The Prototype Kit', () => {
     const outputLines = []
     await exec('git log', { cwd: tmpDir }, (data) => outputLines.push(data.toString()))
 
-    function getLastMeaningfulLineTrimmed (outputLines) {
-      const meaningulLines = outputLines.join('').split('\n').filter(line => line !== '')
-      return meaningulLines.pop().trim()
+    const getLastMeaningfulLineTrimmed = (outputLines) => {
+      const meaningfulLines = outputLines.join('').split('\n').filter(line => line !== '')
+      return meaningfulLines.pop().trim()
     }
 
     expect(getLastMeaningfulLineTrimmed(outputLines)).toBe('Created prototype kit')
@@ -68,7 +72,7 @@ describe('The Prototype Kit', () => {
         .get('/plugin-assets/govuk-frontend/govuk/all.js')
         .expect(200)
         .expect('Content-Type', /application\/javascript; charset=UTF-8/)
-        .end(function (err, res) {
+        .end((err, res) => {
           if (err) {
             done(err)
           } else {
@@ -86,7 +90,7 @@ describe('The Prototype Kit', () => {
         .get('/plugin-assets/govuk-frontend/govuk/assets/images/favicon.ico')
         .expect(200)
         .expect('Content-Type', /image\/x-icon/)
-        .end(function (err, res) {
+        .end((err, res) => {
           if (err) {
             done(err)
           } else {
@@ -99,13 +103,13 @@ describe('The Prototype Kit', () => {
         })
     })
 
-    it('should not expose everything', function (done) {
+    it('should not expose everything', (done) => {
       const consoleErrorMock = jest.spyOn(global.console, 'error').mockImplementation()
 
       request(app)
         .get('/govuk/assets/common.js')
         .expect(404)
-        .end(function (err, res) {
+        .end((err, res) => {
           consoleErrorMock.mockRestore()
           if (err) {
             done(err)
@@ -121,7 +125,7 @@ describe('The Prototype Kit', () => {
           .get('/plugin-assets/govuk-frontend/govuk/all.js')
           .expect(200)
           .expect('Content-Type', /application\/javascript; charset=UTF-8/)
-          .end(function (err, res) {
+          .end((err, res) => {
             if (err) {
               done(err)
             } else {

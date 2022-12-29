@@ -1,9 +1,10 @@
-// Core dependencies
+
+// core dependencies
+const fs = require('fs').promises
 const path = require('path')
 const url = require('url')
-const fs = require('fs').promises
 
-// NPM dependencies
+// npm dependencies
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
@@ -16,14 +17,11 @@ const nunjucks = require('nunjucks')
 dotenv.config()
 
 // Local dependencies
-const middlewareFunctions = [
-  require('./lib/middleware/authentication/authentication.js')()
-]
-const { projectDir, packageDir } = require('./lib/path-utils')
+const { projectDir, packageDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
-const utils = require('./lib/utils.js')
-const sessionUtils = require('./lib/sessionUtils.js')
+const utils = require('./lib/utils')
+const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
@@ -64,12 +62,12 @@ app.locals.extensionConfig = app.locals.pluginConfig
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
 
-// Support session data storage
-middlewareFunctions.push(sessionUtils.getSessionMiddleware())
-
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
-middlewareFunctions.forEach(func => app.use(func))
+app.use(require('./lib/authentication.js')())
+
+// Support session data storage
+app.use(sessionUtils.getSessionMiddleware())
 
 // Set up App
 const appViews = [
@@ -113,23 +111,23 @@ if (config.useAutoStoreData) {
 }
 
 // Prevent search indexing
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   // Setting headers stops pages being indexed even if indexed pages link to them.
   res.setHeader('X-Robots-Tag', 'noindex')
   next()
 })
 
-require('./lib/routes/prototype-admin-routes.js')
-require('./lib/routes/plugins.js')
+require('./lib/manage-prototype-routes.js')
+require('./lib/plugins/plugins-routes.js')
 utils.addRouters(app)
 
-app.get('/robots.txt', function (req, res) {
+app.get('/robots.txt', (req, res) => {
   res.type('text/plain')
   res.send('User-agent: *\nDisallow: /')
 })
 
 // Strip .html and .htm if provided
-app.get(/\.html?$/i, function (req, res) {
+app.get(/\.html?$/i, (req, res) => {
   let path = req.path
   const parts = path.split('.')
   parts.pop()
@@ -140,12 +138,12 @@ app.get(/\.html?$/i, function (req, res) {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, function (req, res, next) {
+app.get(/^([^.]+)$/, (req, res, next) => {
   utils.matchRoutes(req, res, next)
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
-app.post(/^\/([^.]+)$/, function (req, res) {
+app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
     pathname: '/' + req.params[0],
     query: req.query
@@ -154,19 +152,19 @@ app.post(/^\/([^.]+)$/, function (req, res) {
 })
 
 // redirect old local docs to the docs site
-app.get('/docs/tutorials-and-examples', function (req, res) {
+app.get('/docs/tutorials-and-examples', (req, res) => {
   res.redirect('https://prototype-kit.service.gov.uk/docs')
 })
 
 app.get('/', async (req, res) => {
   const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
-  res.render('govuk-prototype-kit/backup-homepage', {
+  res.render('views/backup-homepage', {
     starterHomepageCode
   })
 })
 
 // Catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   const err = new Error(`Page not found: ${decodeURI(req.path)}`)
   err.status = 404
   next(err)
@@ -176,7 +174,7 @@ app.use(function (req, res, next) {
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
 // message without the stack trace.
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }

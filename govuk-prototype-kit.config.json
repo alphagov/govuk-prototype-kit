@@ -5,7 +5,7 @@
     "/lib/assets/javascripts/manage-prototype"
   ],
   "nunjucksPaths": "/lib/nunjucks",
-  "nunjucksFilters": "/lib/filters/coreFilters",
+  "nunjucksFilters": "/lib/filters/core-filters",
   "sass": "/lib/assets/sass/internal/manage-prototype.scss",
   "scripts": [
     "/lib/assets/javascripts/kit.js",
@@ -18,47 +18,47 @@
   "templates": [
     {
       "name": "Blank GOV.UK page",
-      "path": "/lib/templates/blank-govuk.html",
+      "path": "/lib/nunjucks/templates/blank-govuk.html",
       "type": "nunjucks"
     },
     {
       "name": "Blank unbranded page",
-      "path": "/lib/templates/blank-unbranded.html",
+      "path": "/lib/nunjucks/templates/blank-unbranded.html",
       "type":  "nunjucks"
     },
     {
       "name": "Start page",
-      "path": "/lib/templates/start.html",
+      "path": "/lib/nunjucks/templates/start.html",
       "type":  "nunjucks"
     },
     {
       "name": "Question page",
-      "path": "/lib/templates/question.html",
+      "path": "/lib/nunjucks/templates/question.html",
       "type":  "nunjucks"
     },
     {
       "name": "Content page",
-      "path": "/lib/templates/content.html",
+      "path": "/lib/nunjucks/templates/content.html",
       "type":  "nunjucks"
     },
     {
       "name": "Task list page",
-      "path": "/lib/templates/task-list.html",
+      "path": "/lib/nunjucks/templates/task-list.html",
       "type":  "nunjucks"
     },
     {
       "name": "Check answers page",
-      "path": "/lib/templates/check-answers.html",
+      "path": "/lib/nunjucks/templates/check-answers.html",
       "type":  "nunjucks"
     },
     {
       "name": "Confirmation page",
-      "path": "/lib/templates/confirmation.html",
+      "path": "/lib/nunjucks/templates/confirmation.html",
       "type":  "nunjucks"
     },
     {
       "name": "Mainstream guide page",
-      "path": "/lib/templates/mainstream-guide.html",
+      "path": "/lib/nunjucks/templates/mainstream-guide.html",
       "type":  "nunjucks"
     }
   ]

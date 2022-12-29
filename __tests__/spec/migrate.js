@@ -1,13 +1,16 @@
 /* eslint-env jest */
 
+// core dependencies
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
+// npm dependencies
 const fse = require('fs-extra')
 
+// local dependencies
 const { spawn } = require('../../lib/exec')
-const { mkdtempSync } = require('../util')
+const { mkdtempSync } = require('../utils')
 
 const testDirectory = mkdtempSync()
 const projectDirectory = path.join(testDirectory, 'migrate-checks')
@@ -74,10 +77,10 @@ describe('migrate test prototype', () => {
     const routesFileContents = fs.readFileSync(path.join(appDirectory, 'routes.js'), 'utf8')
 
     expect(routesFileContents).toEqual(
-      '// \n' +
+      '//\n' +
       '// For guidance on how to create routes see:\n' +
       '// https://prototype-kit.service.gov.uk/docs/create-routes\n' +
-      '// \n' +
+      '//\n' +
       '\n' +
       'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
       'const router = govukPrototypeKit.requests.setupRouter()\n' +
@@ -103,7 +106,7 @@ describe('migrate test prototype', () => {
       '//\n' +
       '// For guidance on how to add JavaScript see:\n' +
       '// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images\n' +
-      '// \n' +
+      '//\n' +
       '\n' +
       'window.GOVUKPrototypeKit.documentReady(() => {' + '\n' +
       '  // Add JavaScript here' + '\n' +

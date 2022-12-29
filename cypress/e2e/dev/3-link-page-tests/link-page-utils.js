@@ -1,4 +1,8 @@
+
+// core dependencies
 const path = require('path')
+
+// local dependencies
 const { copyFile, deleteFile } = require('../../utils')
 
 const templates = path.join(Cypress.config('fixturesFolder'), 'views')

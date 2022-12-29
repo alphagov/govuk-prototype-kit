@@ -1,4 +1,7 @@
+
+// npm dependencies
 const { urlencode } = require('nunjucks/src/filters')
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const authenticate = () => {
