@@ -80,7 +80,7 @@ const provePluginFunctionalityWorks = () => {
 }
 
 const provePluginFunctionalityFails = () => {
-  cy.on('uncaught:exception', (err, runnable) => {
+  cy.on('uncaught:exception', (err) => {
     console.log(err)
     // returning false here prevents Cypress from
     // failing a test when javascript in the browser fails
@@ -99,8 +99,6 @@ const provePluginFunctionalityFails = () => {
 describe('Management plugins: ', () => {
   before(() => {
     cleanup()
-    cy.task('log', 'Visit the manage prototype plugins page')
-    waitForApplication(managePluginsPagePath)
   })
 
   after(() => {
@@ -111,7 +109,13 @@ describe('Management plugins: ', () => {
     cy.wait(4000)
   })
 
+  const loadPluginsPage = async () => {
+    cy.task('log', 'Visit the manage prototype plugins page')
+    await waitForApplication(managePluginsPagePath)
+  }
+
   it('CSRF Protection on POST action', () => {
+    loadPluginsPage()
     const installUrl = `${managePluginsPagePath}/install`
     cy.task('log', `Posting to ${installUrl} without csrf protection`)
     cy.request({
@@ -126,6 +130,7 @@ describe('Management plugins: ', () => {
   })
 
   it(`Upgrade the ${plugin}${version1} plugin to ${plugin}${version2}`, () => {
+    loadPluginsPage()
     cy.task('log', `Upgrade the ${plugin} plugin`)
     cy.get(`button[formaction*="/upgrade?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Upgrade').click()
@@ -134,6 +139,7 @@ describe('Management plugins: ', () => {
   })
 
   it(`Create a page using a template from the ${plugin} plugin`, () => {
+    loadPluginsPage()
     cy.get('a[href*="/templates"]')
       .should('contains.text', 'Templates').click()
 
@@ -155,7 +161,7 @@ describe('Management plugins: ', () => {
   })
 
   it(`Uninstall the ${plugin} plugin`, () => {
-    cy.visit(managePluginsPagePath)
+    loadPluginsPage()
     cy.task('log', `Uninstall the ${plugin} plugin`)
     cy.get(`button[formaction*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Uninstall').click()
@@ -166,7 +172,7 @@ describe('Management plugins: ', () => {
   })
 
   it(`Install the ${plugin} plugin`, () => {
-    cy.visit(managePluginsPagePath)
+    loadPluginsPage()
     cy.task('log', `Install the ${plugin} plugin`)
     cy.get(`button[formaction*="/install?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Install').click()
