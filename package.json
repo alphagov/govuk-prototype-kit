@@ -80,7 +80,7 @@
   "devDependencies": {
     "clean-publish": "^4.0.1",
     "cross-env": "^7.0.3",
-    "cypress": "^11.2.0",
+    "cypress": "^12.2.0",
     "eslint-plugin-cypress": "^2.12.1",
     "extract-zip": "^2.0.1",
     "glob": "^7.1.4",

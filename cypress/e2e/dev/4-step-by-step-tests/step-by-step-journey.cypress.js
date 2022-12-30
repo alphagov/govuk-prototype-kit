@@ -38,15 +38,19 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
       waitForApplication()
       copyFile(stepByStepTemplateView, stepByStepView)
       waitForApplication()
-      cy.visit(stepByStepPath)
-      cy.get('h1').should('contains.text', heading)
     })
 
     after(() => {
       deleteFile(stepByStepView)
     })
 
+    const loadPage = async () => {
+      cy.visit(stepByStepPath)
+      cy.get('h1').should('contains.text', heading)
+    }
+
     it('renders ok', () => {
+      loadPage()
       cy.get(titleQuery(1)).should('contain.text', title1)
       cy.get(titleQuery(2)).should('contain.text', title2)
       assertHidden(1)
@@ -54,6 +58,7 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle step 1', () => {
+      loadPage()
       // click toggle button and check that only step 1 details are visible
       cy.get(toggleButtonQuery(1)).click()
       assertVisible(1)
@@ -66,6 +71,7 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle step 2', () => {
+      loadPage()
       // click toggle button and check that only step 1 details are visible
       cy.get(toggleButtonQuery(2)).click()
       assertHidden(1)
@@ -78,6 +84,7 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle all steps', () => {
+      loadPage()
       // click toggle button and check that all steps details are visible
       cy.get(showHideAllLinkQuery).should('contains.text', 'Show all').click()
       assertVisible(1)
