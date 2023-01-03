@@ -168,4 +168,34 @@ describe('argv parser', () => {
       paths: ['/tmp/hello-world']
     })
   })
+  it('should support speech marks when using equals to set an option', () => {
+    const result = parser.parse(addStandardArgs([
+      '--version="this is a multi-word option"',
+      'create',
+      '/tmp/hello-world'
+    ]))
+
+    expect(result).toEqual({
+      command: 'create',
+      options: {
+        version: 'this is a multi-word option'
+      },
+      paths: ['/tmp/hello-world']
+    })
+  })
+  it('should support quote marks when using equals to set an option', () => {
+    const result = parser.parse(addStandardArgs([
+      '--version=\'this is a multi-word option\'',
+      'create',
+      '/tmp/hello-world'
+    ]))
+
+    expect(result).toEqual({
+      command: 'create',
+      options: {
+        version: 'this is a multi-word option'
+      },
+      paths: ['/tmp/hello-world']
+    })
+  })
 })

@@ -14,11 +14,18 @@ function parse (argvInput) {
     }
   }
 
+  const prepareArg = (arg) => {
+    if ((arg.startsWith('"') && arg.endsWith('"')) || (arg.startsWith('\'') && arg.endsWith('\''))) {
+      return arg.substring(1, arg.length - 1)
+    }
+    return arg
+  }
+
   args.forEach(arg => {
     if (arg.startsWith('-')) {
       if (arg.includes('=')) {
         const parts = arg.split('=')
-        options[processOptionName(parts[0])] = parts[1]
+        options[processOptionName(parts[0])] = prepareArg(parts[1])
         return
       }
       contextFromPrevious = {
