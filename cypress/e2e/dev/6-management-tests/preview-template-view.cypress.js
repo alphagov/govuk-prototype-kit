@@ -1,6 +1,6 @@
 
 // local dependencies
-const { installPlugin, waitForApplication, getTemplateLink } = require('../../utils')
+const { installPlugins, waitForApplication, getTemplateLink } = require('../../utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
@@ -13,15 +13,13 @@ const pluginPageTitle = 'Step by step navigation'
 
 describe('Management plugins: ', () => {
   before(() => {
+    installPlugins(`${plugin}${version2}`)
     cy.task('log', 'Visit the manage prototype plugins page')
-    installPlugin(plugin, version2)
-    cy.wait(8000)
     waitForApplication(manageTemplatesPagePath)
   })
 
   after(() => {
-    installPlugin(plugin, version1)
-    cy.wait(8000)
+    installPlugins(`${plugin}${version1}`)
   })
 
   it(`Preview a ${plugin}${version2} template`, () => {

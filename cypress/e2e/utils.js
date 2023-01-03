@@ -54,20 +54,51 @@ const getTemplateLink = (type, packageName, path) => {
   return `/manage-prototype/templates/${type}${queryString}`
 }
 
-function uninstallPlugin (plugin) {
-  cy.task('log', `Uninstalling ${plugin}`)
-  cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
-  cy.task('pluginUninstalled', { plugin, timeout: 15000 })
+function installedPlugins () {
+  return cy.visit('/manage-prototype/plugins', { retryOnStatusFailure: true })
+    .get('[data-plugin-group-status="installed"] li')
+    .then(($elements) => {
+      const installedPlugins = $elements.map((i, el) => {
+        return Cypress.$(el).attr('data-plugin-package-name')
+      })
+
+      return installedPlugins.get()
+    })
 }
 
-function installPlugin (plugin, version = '') {
-  cy.task('log', `Installing ${plugin}${version}`)
-  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}${version}`)
-  if (plugin.startsWith('file:')) {
-    plugin = plugin.substring(plugin.lastIndexOf('/') + 1)
-  }
-  cy.task('log', `Waiting for ${plugin}${version} to be installed`)
-  cy.task('pluginInstalled', { plugin, timeout: 15000 })
+function installPlugins (...plugins) {
+  const installString = plugins.join(' ')
+  cy.task('log', `Installing ${installString}`)
+  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${installString}`)
+
+  const pluginPackageNames = plugins.map((plugin) => {
+    if (plugin.startsWith('file:')) {
+      plugin = plugin.substring(plugin.lastIndexOf('/') + 1)
+    }
+    if (plugin.includes('@', 1)) {
+      plugin = plugin.substring(0, plugin.indexOf('@', 1))
+    }
+    return plugin
+  })
+
+  cy.task('log', `Waiting for ${pluginPackageNames.join(' ')} to be installed`)
+  cy.task('waitUntilAppRestarts', { timeout: 60000 })
+  installedPlugins().should('include.members',
+    pluginPackageNames
+  )
+  cy.task('log', `Plugins ${pluginPackageNames.join(' ')} successfully installed`)
+}
+
+function uninstallPlugins (...plugins) {
+  const uninstallString = plugins.join(' ')
+  cy.task('log', `Uninstalling ${uninstallString}`)
+  cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${uninstallString}`)
+
+  cy.task('waitUntilAppRestarts', { timeout: 60000 })
+  installedPlugins().should('not.include.members',
+    plugins
+  )
+  cy.task('log', `Plugins ${plugins.join(' ')} successfully uninstalled`)
 }
 
 module.exports = {
@@ -80,6 +111,6 @@ module.exports = {
   deleteFile,
   createFile,
   replaceInFile,
-  installPlugin,
-  uninstallPlugin
+  installPlugins,
+  uninstallPlugins
 }

@@ -13,12 +13,12 @@
 // core dependencies
 const fs = require('fs')
 const fsp = fs.promises
+const https = require('https')
 const path = require('path')
 
 // npm dependencies
 const waitOn = require('wait-on')
 const extract = require('extract-zip')
-const https = require('https')
 
 // local dependencies
 const { starterDir } = require('../../lib/utils/paths')
@@ -189,29 +189,6 @@ module.exports = function setupNodeEvents (on, config) {
     })
   }
 
-  const getPathFromProjectRoot = (...all) => path.join(...[config.env.projectFolder].concat(all))
-  const pathToPackageConfigFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'govuk-prototype-kit.config.json')
-
-  const pluginInstalled = (plugin, timeout) => {
-    const delay = 1000
-    return new Promise((resolve) => {
-      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
-      console.log(`Looking for ${plugin} in ${pkgConfigFilePath}`)
-      if (pkgConfigFilePath) {
-        existsFile(pkgConfigFilePath)
-          .then(() => resolve(makeSureCypressCanInterpretTheResult))
-      } else {
-        if (timeout < delay) {
-          resolve()
-        } else {
-          setTimeout(() => {
-            return pluginInstalled(plugin, timeout - delay)
-          }, delay)
-        }
-      }
-    })
-  }
-
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)
       .then(() => fsp.copyFile(source, target))
@@ -248,15 +225,6 @@ module.exports = function setupNodeEvents (on, config) {
 
     notExistsFile: ({ filename, timeout }) => notExistsFile(filename, timeout)
       .then(makeSureCypressCanInterpretTheResult),
-
-    pluginInstalled: ({ plugin, timeout }) => pluginInstalled(plugin, timeout)
-      .then(makeSureCypressCanInterpretTheResult),
-
-    pluginUninstalled: ({ plugin, timeout }) => {
-      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
-      return notExistsFile(pkgConfigFilePath, timeout)
-        .then(makeSureCypressCanInterpretTheResult)
-    },
 
     waitUntilAppReady: (config) => {
       const { timeout = 20000 } = config || {}
