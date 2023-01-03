@@ -166,7 +166,9 @@ async function runCreate () {
 
   await npmInstall(installDirectory, [kitDependency, 'govuk-frontend'])
 
-  await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory], {
+  const additionalArgs = Object.keys(argv.options).map(name => `--${name}="${argv.options[name]}"`)
+
+  await spawn('npx', ['govuk-prototype-kit', 'init', '--', ...additionalArgs, installDirectory], {
     cwd: installDirectory,
     stdio: 'inherit'
   })
@@ -182,7 +184,7 @@ async function runInit () {
     return
   }
 
-  const installDirectory = process.argv[4]
+  const installDirectory = getInstallLocation()
 
   const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 
