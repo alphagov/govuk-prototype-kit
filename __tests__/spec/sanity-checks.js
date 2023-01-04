@@ -51,7 +51,7 @@ describe('The Prototype Kit', () => {
       return meaningfulLines.pop().trim()
     }
 
-    expect(getLastMeaningfulLineTrimmed(outputLines)).toBe('Created prototype kit')
+    expect(getLastMeaningfulLineTrimmed(outputLines)).toBe('Create prototype')
   })
 
   describe('index page', () => {

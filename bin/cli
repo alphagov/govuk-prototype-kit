@@ -51,18 +51,23 @@ async function updatePackageJson (packageJsonPath) {
 }
 
 async function initialiseGitRepo () {
-  const presenceCheckOutput = []
-  const notPresentText = 'not present'
-  await exec(`which git || echo "${notPresentText}"`, {}, data => presenceCheckOutput.push(data))
-  if (presenceCheckOutput.join('').trim() === notPresentText) {
+  if (argv.options['version-control'] === 'none') {
+    return
+  }
+  try {
+    await exec('git init && git checkout -b main && git add -A .', {})
+  } catch (e) {
     return
   }
 
-  await exec('git init && git add -A .')
+  const failSilently = () => {}
 
-  const overrideParams = '-c "user.email=gov.uk-prototype@digital.cabinet-office.gov.uk" -c "user.name=GOV.UK Prototype Kit"'
-  const commitMessage = 'Created prototype kit'
-  await exec(`git commit -am "${commitMessage}" || git ${overrideParams} commit -am "${commitMessage}"`)
+  const commitMessage = 'Create prototype'
+  await exec(`git commit -am "${commitMessage}"`)
+    .catch(() =>
+      exec(`git -c "user.email=gov.uk-prototype@digital.cabinet-office.gov.uk" -c "user.name=GOV.UK Prototype Kit" commit -am "${commitMessage}"`)
+    )
+    .catch(failSilently)
 }
 
 function usage () {
