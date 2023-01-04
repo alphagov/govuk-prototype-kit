@@ -10,7 +10,7 @@ const utils = require('./lib/utils')
 if (config.isTest) {
   server.listen()
 } else {
-  utils.findAvailablePort(server, (port) => {
+  utils.findAvailablePort((port) => {
     if (config.isDevelopment) {
       console.log('You can manage your prototype at:')
       console.log(`http://localhost:${port}/manage-prototype`)
