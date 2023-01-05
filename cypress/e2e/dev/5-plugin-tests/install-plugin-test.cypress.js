@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, installPlugin, uninstallPlugin, deleteFile, createFile } = require('../../utils')
+const { waitForApplication, installPlugin, uninstallPlugin, createFile } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const pluginBazView = path.join(appViews, 'plugin-baz.html')
@@ -30,26 +30,15 @@ const pluginBazViewMarkup = `
 {% endblock %}
 `
 
-const cleanup = () => {
-  deleteFile(pluginBazView)
-  uninstallPlugin('plugin-baz')
-}
-
 describe('Single Plugin Test', async () => {
   before(() => {
-    waitForApplication()
-    cleanup()
+    uninstallPlugin('plugin-baz')
     cy.task('notExistsFile', { filename: pluginPackageJson, timeout: 15000 })
     cy.wait(5000)
     createFile(pluginBazView, { data: pluginBazViewMarkup })
-    cy.task('createFile', { filename: pluginBazView, data: pluginBazViewMarkup })
     installPlugin(`file:${pluginLocation}`)
     cy.task('existsFile', { filename: pluginPackageJson, timeout: 15000 })
     cy.wait(5000)
-  })
-
-  after(() => {
-    cleanup()
   })
 
   it('Loads plugin-baz view correctly', () => {

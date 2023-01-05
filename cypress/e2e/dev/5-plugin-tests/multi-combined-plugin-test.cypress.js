@@ -35,13 +35,8 @@ const pluginFooBarCombinedViewMarkup = `
 
 describe('Multiple Plugin test', async () => {
   before(() => {
-    waitForApplication()
     cy.task('createFile', { filename: pluginFooBarView, data: pluginFooBarCombinedViewMarkup })
-  })
-
-  after(() => {
-    // clean up
-    cy.task('deleteFile', { filename: pluginFooBarView })
+    waitForApplication()
   })
 
   describe('Plugin Bar', () => {

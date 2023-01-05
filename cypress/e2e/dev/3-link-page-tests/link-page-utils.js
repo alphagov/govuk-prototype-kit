@@ -29,8 +29,8 @@ const checkAnswersView = path.join(appViews, 'check-answers.html')
 const confirmationView = path.join(appViews, 'confirmation.html')
 const ineligibleView = path.join(appViews, 'ineligible.html')
 
-const appRoutes = path.join(Cypress.env('projectFolder'), 'app', 'routes.js')
-const backedUpRoutes = path.join(Cypress.env('tempFolder'), 'temp-routes.js')
+const appRoutesPath = path.join('app', 'routes.js')
+const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 
 const appDataFile = path.join(Cypress.env('projectFolder'), 'app', 'data', 'session-data-defaults.js')
 
@@ -113,13 +113,8 @@ const cleanUpBranchingPages = () => {
   deleteFile(ineligibleView)
 }
 
-const backUpRoutes = () => {
-  copyFile(appRoutes, backedUpRoutes)
-}
-
 const restoreRoutes = () => {
-  copyFile(backedUpRoutes, appRoutes)
-  deleteFile(backedUpRoutes)
+  cy.task('copyFromStarterFiles', { filename: appRoutesPath })
 }
 
 module.exports = {
@@ -129,6 +124,5 @@ module.exports = {
   cleanUpPages,
   cleanUpBranchingPages,
   clearUpData,
-  backUpRoutes,
   restoreRoutes
 }

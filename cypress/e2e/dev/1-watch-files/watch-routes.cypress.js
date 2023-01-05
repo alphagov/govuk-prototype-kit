@@ -5,22 +5,17 @@ const path = require('path')
 // local dependencies
 const { waitForApplication } = require('../../utils')
 
+const appRoutesPath = path.join('app', 'routes.js')
+
 const routesFixture = path.join(Cypress.config('fixturesFolder'), 'routes.js')
-const appRoutes = path.join(Cypress.env('projectFolder'), 'app', 'routes.js')
-const backupRoutes = path.join(Cypress.env('tempFolder'), 'temp-routes.js')
+const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 const pagePath = '/cypress-test'
 
 describe('watch route file', () => {
   before(() => {
+    // Restore routes file from prototype starter
+    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
     waitForApplication()
-    // backup routes
-    cy.task('copyFile', { source: appRoutes, target: backupRoutes })
-    waitForApplication()
-  })
-
-  after(() => {
-    // delete backup routes
-    cy.task('deleteFile', { filename: backupRoutes })
   })
 
   it(`add and remove ${pagePath} route`, () => {
@@ -39,8 +34,8 @@ describe('watch route file', () => {
     cy.get('h1')
       .should('contains.text', 'CYPRESS TEST PAGE')
 
-    cy.task('log', `Restore ${appRoutes}`)
-    cy.task('copyFile', { source: backupRoutes, target: appRoutes })
+    cy.task('log', `Restore ${appRoutesPath}`)
+    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
 
     waitForApplication()
 

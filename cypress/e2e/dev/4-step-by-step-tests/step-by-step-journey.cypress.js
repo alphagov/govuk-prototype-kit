@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { copyFile, deleteFile, waitForApplication } = require('../../utils')
+const { copyFile, waitForApplication } = require('../../utils')
 const {
   assertHidden,
   assertVisible,
@@ -35,13 +35,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
 
   describe(`${name} journey`, async () => {
     before(() => {
-      waitForApplication()
       copyFile(stepByStepTemplateView, stepByStepView)
       waitForApplication()
-    })
-
-    after(() => {
-      deleteFile(stepByStepView)
     })
 
     const loadPage = async () => {

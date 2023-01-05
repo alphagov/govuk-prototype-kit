@@ -17,7 +17,6 @@ const manageTemplatesPagePath = '/manage-prototype/templates'
 
 describe('create new page', () => {
   before(() => {
-    waitForApplication(manageTemplatesPagePath)
     Cypress.on('uncaught:exception', (err, runnable) => {
       // we expect an error with message 'Cannot read properties of undefined (reading 'documentReady')'
       // and don't want to fail the test so we return false
@@ -30,10 +29,6 @@ describe('create new page', () => {
     deleteFile(startPageView)
     deleteFile(validUnicodePageView)
     waitForApplication(manageTemplatesPagePath)
-  })
-
-  after(() => {
-    cy.task('deleteFile', { filename: startPageView })
   })
 
   it('View the start page from the management page', () => {

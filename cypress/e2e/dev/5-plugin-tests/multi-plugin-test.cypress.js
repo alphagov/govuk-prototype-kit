@@ -34,13 +34,8 @@ const pluginFooBarSeparatedViewMarkup = `
 
 describe('Plugins test', async () => {
   before(() => {
-    waitForApplication()
     cy.task('createFile', { filename: pluginFooBarView, data: pluginFooBarSeparatedViewMarkup })
-  })
-
-  after(() => {
-    // clean up
-    cy.task('deleteFile', { filename: pluginFooBarView })
+    waitForApplication()
   })
 
   describe('Plugin Bar', () => {

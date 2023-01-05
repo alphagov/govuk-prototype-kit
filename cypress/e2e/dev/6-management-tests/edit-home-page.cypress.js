@@ -6,9 +6,8 @@ const path = require('path')
 const { waitForApplication } = require('../../utils')
 
 const appHomePath = path.join('app', 'views', 'index.html')
-
+const appConfigPath = path.join('app', 'config.json')
 const appHome = path.join(Cypress.env('projectFolder'), appHomePath)
-const backupAppHome = path.join(Cypress.env('tempFolder'), 'temp-home.html')
 
 const originalText = 'Service name goes here'
 const newText = 'Cypress test service'
@@ -17,16 +16,10 @@ const managePagePath = '/manage-prototype'
 
 describe('edit home page', () => {
   before(() => {
+    // Restore index.html and config.json from prototype starter
+    cy.task('copyFromStarterFiles', { filename: appHomePath })
+    cy.task('copyFromStarterFiles', { filename: appConfigPath })
     waitForApplication(managePagePath)
-    // backup home.js
-    cy.task('copyFile', { source: appHome, target: backupAppHome })
-    waitForApplication(managePagePath)
-  })
-
-  after(() => {
-    // restore home.js
-    cy.task('copyFile', { source: backupAppHome, target: appHome })
-    cy.task('deleteFile', { filename: backupAppHome })
   })
 
   it(`The home page heading should change to "${newText}" and the task should be set to "Done"`, () => {

@@ -3,7 +3,12 @@
 const path = require('path')
 
 // local dependencies
-const { copyFile, deleteFile, createFile, replaceInFile } = require('../../utils')
+const {
+  copyFile,
+  createFile,
+  replaceInFile,
+  waitForApplication
+} = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const templates = path.join(Cypress.config('fixturesFolder'), 'views')
@@ -47,12 +52,8 @@ describe('clear data page', () => {
     replaceInFile(questionView, '<p>[Insert question content here]</p>', questionComponent)
     replaceInFile(questionView, '/url/of/next/page', '', '/question-check')
     createFile(questionCheckView, { data: questionTestMarkUp })
-    cy.task('waitUntilAppRestarts')
-  })
-
-  after(() => {
-    deleteFile(questionView)
-    deleteFile(questionCheckView)
+    cy.task('copyFromStarterFiles', { filename: 'app/data/session-data-defaults.js' })
+    waitForApplication()
   })
 
   it('save and clear data', () => {

@@ -1,7 +1,7 @@
 
 // local dependencies
 const { waitForApplication } = require('../../utils')
-const { setUpPages, setUpData, cleanUpPages, clearUpData } = require('./link-page-utils')
+const { setUpPages, setUpData, cleanUpPages } = require('./link-page-utils')
 
 const checkAnswersPath = '/check-answers'
 
@@ -13,16 +13,10 @@ const defaultMostImpressiveTrick = 'None - I cannot do tricks'
 
 describe('Change answers', async () => {
   before(() => {
-    waitForApplication()
     cleanUpPages()
     setUpPages()
     setUpData()
     waitForApplication()
-  })
-
-  after(() => {
-    clearUpData()
-    cleanUpPages()
   })
 
   it('Change juggling balls journey', () => {

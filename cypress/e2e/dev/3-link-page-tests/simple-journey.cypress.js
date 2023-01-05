@@ -10,21 +10,16 @@ const mostImpressiveTrick = 'Standing on my head'
 
 describe('Question journey', async () => {
   before(() => {
-    waitForApplication()
     cleanUpPages()
     setUpPages()
     waitForApplication()
-  })
-
-  after(() => {
-    cleanUpPages()
   })
 
   it('Happy path journey', () => {
     // Visit start page and click start
     cy.task('log', 'The start page should be displayed')
     cy.visit(startPath)
-    cy.get('h1').should('contains.text', 'Service name goes here')
+    cy.get('body').should('contains.text', 'Start now')
     cy.get('a.govuk-button--start').click()
 
     // On Juggling balls page, click continue
