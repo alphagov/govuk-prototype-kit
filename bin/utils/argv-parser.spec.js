@@ -198,7 +198,7 @@ describe('argv parser', () => {
       paths: ['/tmp/hello-world']
     })
   })
-  it.only('should allow a boolean option', () => {
+  it('should allow a boolean option', () => {
     const result = parser.parse(addStandardArgs([
       'create',
       '--no-version-control',
