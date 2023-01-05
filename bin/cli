@@ -57,7 +57,7 @@ async function initialiseGitRepo () {
     return
   }
   try {
-    await exec('git init && git checkout -b main && git add -A .', {})
+    await exec('git init --initial-branch=main && git add -A .', {})
   } catch (e) {
     return
   }
