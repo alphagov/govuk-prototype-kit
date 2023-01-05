@@ -251,8 +251,7 @@ async function runDev () {
   console.log('')
   console.log('starting...')
 
-  await require('../lib/usage-data').collectDataUsage()
-  await require('../lib/build.js').buildWatchAndServe()
+  await require('../lib/dev-server').runDevServer()
 }
 
 function runServe () {
