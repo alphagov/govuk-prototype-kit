@@ -4,10 +4,8 @@ const os = require('os')
 const path = require('path')
 
 // npm dependencies
+const execa = require('execa')
 const fs = require('fs-extra')
-
-// local dependencies
-const { exec } = require('../../lib/exec')
 
 /**
  * An ID that will be shared between all process in the same Jest test run,
@@ -74,32 +72,24 @@ async function mkPrototype (prototypePath, {
 
   const startTime = Date.now()
 
-  try {
-    // Generate starter project
-    const repoDir = path.resolve(__dirname, '..', '..')
-    await exec(
-      `"${process.execPath}" bin/cli create --version local ${prototypePath}`,
-      { cwd: repoDir, env: execEnv, stdio: 'inherit' }
-    )
+  // Generate starter project
+  const repoDir = path.resolve(__dirname, '..', '..')
+  await execa(
+    process.execPath, ['bin/cli', 'create', '--version', 'local', prototypePath],
+    { cwd: repoDir, env: execEnv, stdio: 'inherit' }
+  )
 
-    if (allowTracking !== undefined) {
-      await fs.writeJson(path.join(prototypePath, 'usage-data-config.json'), { collectUsageData: !!allowTracking })
-    }
-
-    process.stderr.write(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds\n`)
-  } catch (error) {
-    console.error(error.message)
-    console.error(error.stack)
-    if (error.status > 0) {
-      process.exitCode = error.status
-    }
+  if (allowTracking !== undefined) {
+    await fs.writeJson(path.join(prototypePath, 'usage-data-config.json'), { collectUsageData: !!allowTracking })
   }
+
+  process.stderr.write(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds\n`)
 
   if (npmInstallLinks !== undefined) {
     // setting an environment variable is fine for the install above, but to
     // ensure future npm commands don't reorganise the node_modules folder, let's
     // save the config variables to the project npmrc
-    await exec(
+    await execa.command(
       `npm config --location=project set install-links=${npmInstallLinks ? 'true' : 'false'}`,
       { cwd: prototypePath }
     )
@@ -111,14 +101,14 @@ async function installPlugins (prototypePath, pluginNames) {
   if (!Array.isArray(pluginNames)) {
     pluginNamesProcessed = [pluginNames]
   }
-  return exec(
-    `npm install ${pluginNamesProcessed.join(' ')}`,
+  return execa(
+    'npm', ['install', ...pluginNamesProcessed],
     { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }
 
-async function startPrototype (prototypePath, nodeEnv = 'development') {
-  return exec(
+async function startPrototype (prototypePath, { nodeEnv = 'development', logFile }) {
+  return execa.command(
     nodeEnv === 'production' ? 'npm start' : 'npm run dev',
     { cwd: prototypePath, env: { USE_AUTH: 'false', USE_HTTPS: 'false', ...process.env, env: 'test' }, stdio: 'inherit' }
   )

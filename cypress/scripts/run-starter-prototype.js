@@ -18,8 +18,8 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
 
   await installPlugins(testDir, [
     '@govuk-prototype-kit/step-by-step@1',
-    `"file:${fooLocation}"`,
-    `"file:${barLocation}"`]
+    `file:${fooLocation}`,
+    `file:${barLocation}`]
   )
 
   if (process.argv.includes('--prodtest')) {
