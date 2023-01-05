@@ -4,7 +4,7 @@ const { authenticate } = require('../../utils')
 
 describe('management not available', () => {
   before(() => {
-    cy.task('waitUntilAppRestarts')
+    cy.task('waitUntilAppReady')
   })
 
   it('when attempting to visit "/manage-prototype" page', () => {

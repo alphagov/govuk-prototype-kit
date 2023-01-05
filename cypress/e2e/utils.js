@@ -14,9 +14,18 @@ const authenticate = () => {
 }
 
 const waitForApplication = async (path = '/index') => {
+  cy.task('log', `Waiting for app to be ready to load ${path} page`)
+  cy.task('waitUntilAppReady')
+  cy.visit(path)
+  cy.get('.govuk-header__logotype-text')
+    .should('contains.text', 'GOV.UK')
+}
+
+const waitForAppRestart = async (path = '/index') => {
   cy.task('log', `Waiting for app to restart and load ${path} page`)
   cy.task('waitUntilAppRestarts')
-  cy.visit(path)
+  cy.task('log', 'App restarted')
+  cy.visit(path, { retryOnStatusCodeFailure: true })
   cy.get('.govuk-header__logotype-text')
     .should('contains.text', 'GOV.UK')
 }
@@ -65,6 +74,7 @@ module.exports = {
   authenticate,
   sleep,
   waitForApplication,
+  waitForAppRestart,
   getTemplateLink,
   copyFile,
   deleteFile,

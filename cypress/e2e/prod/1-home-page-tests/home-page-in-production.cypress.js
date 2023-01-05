@@ -4,7 +4,7 @@ const { authenticate } = require('../../utils')
 
 describe('home page in production', () => {
   before(() => {
-    cy.task('waitUntilAppRestarts')
+    cy.task('waitUntilAppReady')
   })
 
   it('should load as expected', () => {

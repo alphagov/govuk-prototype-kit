@@ -5,7 +5,7 @@ const returnURLQuery = `returnURL=${encodeURIComponent(homePath)}`
 
 describe('password page', () => {
   before(() => {
-    cy.task('waitUntilAppRestarts')
+    cy.task('waitUntilAppReady')
   })
 
   it('valid password', () => {

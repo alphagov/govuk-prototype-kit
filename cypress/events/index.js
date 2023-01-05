@@ -23,6 +23,9 @@ const https = require('https')
 // local dependencies
 const { starterDir } = require('../../lib/utils/paths')
 const { sleep } = require('../e2e/utils')
+const { followLog } = require('./follow-log')
+
+let appLogEvents
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
 
@@ -65,11 +68,32 @@ module.exports = function setupNodeEvents (on, config) {
   const packageObject = JSON.parse(packageContent)
   const dependencies = packageObject.dependencies || {}
 
+  const logFilePath = path.join(config.env.projectFolder, 'govuk-prototype-kit.log')
+  if (fs.existsSync(logFilePath)) {
+    appLogEvents = followLog(logFilePath)
+  }
+
   if ('govuk-prototype-kit' in dependencies) {
     config.env.packageFolder = path.join(config.env.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
-  const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
+  const waitUntilTimeout = (message, promise) => async (timeout) => timeout > 0
+    ? Promise.race([
+      promise,
+      sleep(timeout).then(
+        (resolve, reject) => { throw new Error(`Timed out waiting for ${message}`) }
+      )
+    ])
+    : promise
+
+  const waitUntilAppReady = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
+  const waitUntilAppRestarts = async (timeout) => waitUntilTimeout(
+    'app restart',
+    new Promise((resolve) => {
+      appLogEvents.once('restart', resolve)
+    }).then(() => waitUntilAppReady())
+  )(timeout)
+
   const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
   const replaceText = ({ text, originalText, newText, source }) => {
     return getReplacementText(newText, source)
@@ -231,6 +255,12 @@ module.exports = function setupNodeEvents (on, config) {
     pluginUninstalled: ({ plugin, timeout }) => {
       const pkgConfigFilePath = pathToPackageConfigFile(plugin)
       return notExistsFile(pkgConfigFilePath, timeout)
+        .then(makeSureCypressCanInterpretTheResult)
+    },
+
+    waitUntilAppReady: (config) => {
+      const { timeout = 20000 } = config || {}
+      return waitUntilAppReady(timeout)
         .then(makeSureCypressCanInterpretTheResult)
     },
 
