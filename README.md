@@ -1,6 +1,6 @@
 # GOV.UK Prototype Kit
 
-Go to the [GOV.UK Prototype Kit site](https://prototype-kit.service.gov.uk/docs) to download the latest version and read the documentation.
+Go to the [GOV.UK Prototype Kit site](https://prototype-kit.service.gov.uk/docs) to get the latest version and read the documentation.
 
 ## About the Prototype Kit
 
@@ -16,8 +16,8 @@ You must protect user privacy at all times, even when using prototypes. Prototyp
 
 ## Installation instructions
 
-- [Installation guide for new users (non technical)](https://prototype-kit.service.gov.uk/docs/install/introduction)
-- [Installation guide for developers (technical)](https://prototype-kit.service.gov.uk/docs/install/developer-install-instructions)
+- [Installation guide for new users (non technical)](https://prototype-kit.service.gov.uk/docs/install/getting-started)
+- [Installation guide for developers (technical)](https://prototype-kit.service.gov.uk/docs/install/getting-started-advanced)
 
 ## Node version requirements
 
