@@ -168,4 +168,51 @@ describe('argv parser', () => {
       paths: ['/tmp/hello-world']
     })
   })
+  it('should support speech marks when using equals to set an option', () => {
+    const result = parser.parse(addStandardArgs([
+      '--version="this is a multi-word option"',
+      'create',
+      '/tmp/hello-world'
+    ]))
+
+    expect(result).toEqual({
+      command: 'create',
+      options: {
+        version: 'this is a multi-word option'
+      },
+      paths: ['/tmp/hello-world']
+    })
+  })
+  it('should support quote marks when using equals to set an option', () => {
+    const result = parser.parse(addStandardArgs([
+      '--version=\'this is a multi-word option\'',
+      'create',
+      '/tmp/hello-world'
+    ]))
+
+    expect(result).toEqual({
+      command: 'create',
+      options: {
+        version: 'this is a multi-word option'
+      },
+      paths: ['/tmp/hello-world']
+    })
+  })
+  it('should allow a boolean option', () => {
+    const result = parser.parse(addStandardArgs([
+      'create',
+      '--no-version-control',
+      '/tmp/hello-world'
+    ]), {
+      booleans: ['no-version-control']
+    })
+
+    expect(result).toEqual({
+      command: 'create',
+      options: {
+        'no-version-control': true
+      },
+      paths: ['/tmp/hello-world']
+    })
+  })
 })
