@@ -1,7 +1,8 @@
-function parse (argvInput) {
+function parse (argvInput, config = {}) {
   const args = [...argvInput].splice(2)
   const options = {}
   const paths = []
+  const booleanOptions = config.booleans || []
   let command
   let contextFromPrevious
 
@@ -23,6 +24,11 @@ function parse (argvInput) {
 
   args.forEach(arg => {
     if (arg.startsWith('-')) {
+      const processedArgName = processOptionName(arg)
+      if (booleanOptions.includes(processedArgName)) {
+        options[processedArgName] = true
+        return
+      }
       if (arg.includes('=')) {
         const parts = arg.split('=')
         options[processOptionName(parts[0])] = prepareArg(parts[1])

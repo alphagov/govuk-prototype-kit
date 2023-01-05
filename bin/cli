@@ -15,7 +15,9 @@ const currentDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
 const kitVersion = require('../package.json').version
 
-const argv = parse(process.argv)
+const argv = parse(process.argv, {
+  booleans: ['no-version-control']
+})
 
 const npmrc = `
 audit=false
@@ -51,7 +53,7 @@ async function updatePackageJson (packageJsonPath) {
 }
 
 async function initialiseGitRepo () {
-  if (argv.options['version-control'] === 'none') {
+  if (argv.options['no-version-control']) {
     return
   }
   try {

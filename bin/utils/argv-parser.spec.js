@@ -198,4 +198,21 @@ describe('argv parser', () => {
       paths: ['/tmp/hello-world']
     })
   })
+  it.only('should allow a boolean option', () => {
+    const result = parser.parse(addStandardArgs([
+      'create',
+      '--no-version-control',
+      '/tmp/hello-world'
+    ]), {
+      booleans: ['no-version-control']
+    })
+
+    expect(result).toEqual({
+      command: 'create',
+      options: {
+        'no-version-control': true
+      },
+      paths: ['/tmp/hello-world']
+    })
+  })
 })
