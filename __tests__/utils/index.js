@@ -108,10 +108,19 @@ async function installPlugins (prototypePath, pluginNames) {
 }
 
 async function startPrototype (prototypePath, { nodeEnv = 'development', logFile }) {
-  return execa.command(
+  const subprocess = execa.command(
     nodeEnv === 'production' ? 'npm start' : 'npm run dev',
-    { cwd: prototypePath, env: { USE_AUTH: 'false', USE_HTTPS: 'false', ...process.env, env: 'test' }, stdio: 'inherit' }
+    { cwd: prototypePath, env: { USE_AUTH: 'false', USE_HTTPS: 'false', ...process.env, env: 'test' }, all: !!logFile }
   )
+  // echo to console
+  subprocess.stdout.pipe(process.stdout)
+  subprocess.stdin.pipe(process.stdin)
+  // log to file
+  if (logFile) {
+    await fs.ensureDir(path.dirname(logFile))
+    const logStream = fs.createWriteStream(logFile)
+    subprocess.all.pipe(logStream)
+  }
 }
 
 module.exports = {

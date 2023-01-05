@@ -22,9 +22,13 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
     `file:${barLocation}`]
   )
 
-  if (process.argv.includes('--prodtest')) {
-    await startPrototype(testDir, 'production')
-  } else {
-    await startPrototype(testDir)
+  const startOptions = {
+    logFile: path.join(testDir, 'govuk-prototype-kit.log')
   }
+
+  if (process.argv.includes('--prodtest')) {
+    startOptions.nodeEnv = 'production'
+  }
+
+  await startPrototype(testDir, startOptions)
 })()
