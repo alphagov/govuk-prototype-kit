@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#1887: You no longer need to press ctrl-c to exit if you say no to a new port](https://github.com/alphagov/govuk-prototype-kit/pull/1887)
+
 ## 13.1.0
 
 ### New features
