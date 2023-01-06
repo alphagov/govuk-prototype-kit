@@ -11,13 +11,8 @@ const pagePath = '/start'
 
 describe('watching start page', () => {
   before(() => {
-    waitForApplication()
     cy.task('deleteFile', { filename: appView })
     waitForApplication()
-  })
-
-  after(() => {
-    cy.task('deleteFile', { filename: appView })
   })
 
   it('Add and remove the start page', () => {

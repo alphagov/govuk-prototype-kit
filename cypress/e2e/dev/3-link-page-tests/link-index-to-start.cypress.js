@@ -3,11 +3,13 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, copyFile, deleteFile } = require('../../utils')
+const { waitForApplication, copyFile } = require('../../utils')
 
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
-const indexView = path.join(appViews, 'index.html')
-const startView = path.join(appViews, 'start.html')
+const appViewsPath = path.join('app', 'views')
+const indexViewPath = path.join(appViewsPath, 'index.html')
+
+const indexView = path.join(Cypress.env('projectFolder'), indexViewPath)
+const startView = path.join(Cypress.env('projectFolder'), appViewsPath, 'start.html')
 const templateStartView = path.join(Cypress.config('fixturesFolder'), 'views', 'start.html')
 
 const commentText = '{% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}'
@@ -18,23 +20,14 @@ const linkText = `<a href="/start">${startText}</a>`
 
 describe('Link index page to start page', async () => {
   before(() => {
-    waitForApplication()
     copyFile(templateStartView, startView)
+    cy.task('copyFromStarterFiles', { filename: indexViewPath })
     cy.task('replaceTextInFile', {
       filename: indexView,
       originalText: commentText,
       newText: linkText
     })
     waitForApplication()
-  })
-
-  after(() => {
-    cy.task('replaceTextInFile', {
-      filename: indexView,
-      originalText: linkText,
-      newText: commentText
-    })
-    deleteFile(startView)
   })
 
   it('click start link', () => {

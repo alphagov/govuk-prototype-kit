@@ -12,16 +12,9 @@ const pagePath = '/checkbox-test'
 
 describe('checkbox tests', () => {
   before(() => {
-    waitForApplication()
-    cy.task('deleteFile', { filename: appView })
     cy.task('log', `Copy ${templatesView} to ${appView}`)
     cy.task('copyFile', { source: templatesView, target: appView })
     waitForApplication()
-  })
-
-  after(() => {
-    waitForApplication()
-    cy.task('deleteFile', { filename: appView })
   })
 
   const loadTestView = async () => {

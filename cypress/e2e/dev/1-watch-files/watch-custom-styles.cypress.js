@@ -16,25 +16,18 @@ const pageFixtureName = `${pageFixture}.html`
 const pageFixturePath = path.join(Cypress.config('fixturesFolder'), 'views', pageFixtureName)
 const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
 
-function cleanUp () {
-  cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), customStylesPublicPath) })
-  cy.task('deleteFile', { filename: customStylesAppPath })
-  cy.task('deleteFile', { filename: pageAppPath })
-}
-
 describe('watch custom sass files', () => {
   describe(`sass file ${customStylesFixtureName} should be created and linked within ${pageFixturePath} and accessible from the browser as /${customStylesPublicPath}`, () => {
     beforeEach(() => {
+      cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), customStylesPublicPath) })
+      cy.task('deleteFile', { filename: customStylesAppPath })
+      cy.task('deleteFile', { filename: pageAppPath })
       waitForApplication()
-      cleanUp()
-      waitForApplication()
-    })
-
-    afterEach(() => {
-      cleanUp()
     })
 
     it('The colour of the paragraph should be changed to green', () => {
+      cy.visit('/')
+
       // FIXME: the expected behaviour is that it shouldn't make a difference
       // whether the stylesheet exists or not, but currently for Browsersync to
       // update the page properly the stylesheet has to be created first, so we

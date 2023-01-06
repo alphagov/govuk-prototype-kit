@@ -5,10 +5,9 @@ const path = require('path')
 // local dependencies
 const { waitForApplication } = require('../../utils')
 
+const appIndexPath = path.join('app', 'views', 'index.html')
 const appConfigPath = path.join('app', 'config.json')
-
 const appConfig = path.join(Cypress.env('projectFolder'), appConfigPath)
-const backupAppConfig = path.join(Cypress.env('tempFolder'), 'temp-config.js')
 
 const originalText = 'Service name goes here'
 const newText = 'Cypress test'
@@ -19,20 +18,15 @@ const managePagePath = '/manage-prototype'
 
 describe('change service name', () => {
   before(() => {
+    // Restore index.html and config.json from prototype starter
+    cy.task('copyFromStarterFiles', { filename: appConfigPath })
+    cy.task('copyFromStarterFiles', { filename: appIndexPath })
     waitForApplication()
-    // backup config.js
-    cy.task('copyFile', { source: appConfig, target: backupAppConfig })
-    waitForApplication()
-  })
-
-  after(() => {
-    // restore config.js
-    cy.task('copyFile', { source: backupAppConfig, target: appConfig })
-    cy.task('deleteFile', { filename: backupAppConfig })
   })
 
   it('The service name should change to "cypress test" and the task should be set to "Done"', () => {
     cy.task('log', 'Visit the index page and navigate to the manage your prototype page')
+    cy.visit('/')
     cy.get('.govuk-heading-xl').should('contains.text', originalText)
     cy.get('p strong').should('contains.text', appConfigPath)
     cy.get(`main a[href="${managePagePath}"]`).should('contains.text', 'Manage your prototype').click()

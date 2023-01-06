@@ -19,13 +19,6 @@ const pluginPageTemplate = '/templates/step-by-step-navigation.html'
 const pluginPageTitle = 'Step by step navigation'
 const pluginPagePath = '/step-by-step-navigation'
 
-const cleanup = () => {
-  deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
-  // Make sure plugin version 1 is installed
-  installPlugin(plugin, version1)
-  cy.wait(8000)
-}
-
 const panelProcessingQuery = '[aria-live="polite"] #panel-processing'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 const panelErrorQuery = '[aria-live="polite"] #panel-error'
@@ -98,11 +91,10 @@ const provePluginFunctionalityFails = () => {
 
 describe('Management plugins: ', () => {
   before(() => {
-    cleanup()
-  })
-
-  after(() => {
-    cleanup()
+    deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
+    // Make sure plugin version 1 is installed
+    installPlugin(plugin, version1)
+    cy.wait(8000)
   })
 
   beforeEach(() => {

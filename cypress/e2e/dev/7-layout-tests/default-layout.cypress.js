@@ -14,7 +14,7 @@ const comments = el => cy.wrap(
     .map(commentNode => '<!--' + commentNode.data + '-->')
 )
 
-after(() => {
+before(() => {
   cy.task('copyFromStarterFiles', { filename: defaultLayoutFilePath })
   waitForApplication()
 })

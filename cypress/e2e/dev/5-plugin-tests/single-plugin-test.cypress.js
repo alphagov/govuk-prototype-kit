@@ -30,13 +30,8 @@ const pluginFooViewMarkup = `
 
 describe('Single Plugin Test', async () => {
   before(() => {
-    waitForApplication()
     cy.task('createFile', { filename: pluginFooView, data: pluginFooViewMarkup })
-  })
-
-  after(() => {
-    // clean up
-    cy.task('deleteFile', { filename: pluginFooView })
+    waitForApplication()
   })
 
   it('Loads plugin-foo view correctly', () => {

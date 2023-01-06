@@ -5,12 +5,14 @@ const path = require('path')
 // local dependencies
 const { waitForApplication } = require('../../utils')
 
-const appStyles = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'sass')
-const appStylesheet = path.join(appStyles, 'application.scss')
+const appStylesPath = path.join('app', 'assets', 'sass')
+const appStylesheetPath = path.join(appStylesPath, 'application.scss')
+const appStylesFolder = path.join(Cypress.env('projectFolder'), appStylesPath)
+const appStylesheet = path.join(Cypress.env('projectFolder'), appStylesheetPath)
+
 const cypressTestStyles = 'cypress-test'
-const cypressTestStylePattern = `${appStyles}/patterns/_${cypressTestStyles}.scss`
+const cypressTestStylePattern = path.join(appStylesFolder, 'patterns', `_${cypressTestStyles}.scss`)
 const publicStylesheet = 'public/stylesheets/application.css'
-const backupAppStylesheet = path.join(Cypress.env('tempFolder'), 'temp-application.scss')
 
 const RED = 'rgb(255, 0, 0)'
 const BLACK = 'rgb(11, 12, 12)'
@@ -22,20 +24,11 @@ describe('watch sass files', () => {
     `
 
     before(() => {
-      waitForApplication()
-      // backup application.scss
-      cy.task('copyFile', { source: appStylesheet, target: backupAppStylesheet })
-      waitForApplication()
-    })
-
-    after(() => {
-      // restore files
-      cy.task('copyFile', { source: backupAppStylesheet, target: appStylesheet })
-
       cy.task('deleteFile', { filename: cypressTestStylePattern })
 
-      cy.get('.govuk-header').should('have.css', 'background-color', BLACK)
-      cy.task('deleteFile', { filename: backupAppStylesheet })
+      // Restore application.scss from prototype starter
+      cy.task('copyFromStarterFiles', { filename: appStylesheetPath })
+      waitForApplication()
     })
 
     it('The colour of the header should be changed to red then back to black', () => {

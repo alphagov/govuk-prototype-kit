@@ -1,7 +1,7 @@
 
 // local dependencies
 const { waitForApplication } = require('../../utils')
-const { setUpPages, setUpBranchingPages, cleanUpPages, cleanUpBranchingPages, backUpRoutes, restoreRoutes } = require('./link-page-utils')
+const { setUpPages, setUpBranchingPages, cleanUpPages, cleanUpBranchingPages, restoreRoutes } = require('./link-page-utils')
 
 const jugglingBallsPath = '/juggling-balls'
 
@@ -10,19 +10,12 @@ const ineligibleHowManyBalls = '1 or 2'
 
 describe('Branching journey', async () => {
   before(() => {
-    waitForApplication()
-    cleanUpPages()
-    cleanUpBranchingPages()
-    backUpRoutes()
-    setUpPages()
-    setUpBranchingPages()
-    waitForApplication()
-  })
-
-  after(() => {
     cleanUpPages()
     cleanUpBranchingPages()
     restoreRoutes()
+    setUpPages()
+    setUpBranchingPages()
+    waitForApplication()
   })
 
   it('eligible journey', () => {
