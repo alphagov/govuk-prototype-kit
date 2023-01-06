@@ -2,13 +2,16 @@
 
 ## Unreleased
 
+## 13.1.0
+
 ### New features
 
-- [#1860: Create a git repository for new prototypes (when git is present)](https://github.com/alphagov/govuk-prototype-kit/pull/1860)
-- [#1824: Add feature to manage plugins without using the command line](https://github.com/alphagov/govuk-prototype-kit/pull/1824)
+- [#1860: Create a git repository for new prototypes (when git is present)](https://github.com/alphagov/govuk-prototype-kit/pull/1860) When creating a prototype, the kit now makes an initial Git commit for you. That saves you time, and makes a separation between the initial prototype files and any changes you make yourself. If you do not want the kit to do this, you can add --no-version-control to the create command.
+- [#1824: Add feature to manage plugins without using the command line](https://github.com/alphagov/govuk-prototype-kit/pull/1824) You can now install, update and uninstall plugins in the Manage your prototype section, without having to use the terminal.
 
 ### Fixes
 
+- [#1876: Speed up performance by removing data encryption](https://github.com/alphagov/govuk-prototype-kit/pull/1876)
 - [#1859: Allow sass to live update when there are square brackets in the path](https://github.com/alphagov/govuk-prototype-kit/pull/1859)
 - [#1857: Migration will now report head and script failures](https://github.com/alphagov/govuk-prototype-kit/pull/1857)
 - [#1849: Update dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/1849)
