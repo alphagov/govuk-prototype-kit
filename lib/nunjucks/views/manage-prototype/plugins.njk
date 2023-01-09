@@ -15,9 +15,9 @@
       {% for group in groupsOfPlugins %}
         <h2 class="govuk-heading-m">{{ group.name }}</h2>
 
-        <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list-plugin-list">
+        <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list-plugin-list" data-plugin-group-status="{{ group.status }}">
           {% for plugin in group.plugins %}
-            <li class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item">
+            <li class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item" data-plugin-package-name="{{ plugin.packageName }}">
               <span class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name">
                 {{ plugin.name }}
                 {% if plugin.scope %}

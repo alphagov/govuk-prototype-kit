@@ -6,14 +6,14 @@ const path = require('path')
 const { capitalize } = require('lodash')
 
 // local dependencies
-const { waitForApplication, installPlugin, getTemplateLink, deleteFile } = require('../../utils')
+const { waitForApplication, getTemplateLink, deleteFile } = require('../../utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const managePluginsPagePath = '/manage-prototype/plugins'
 const plugin = '@govuk-prototype-kit/step-by-step'
-const version1 = '@1.0.0'
-const version2 = '@2.1.0'
+const version1 = '1.0.0'
+const version2 = '2.1.0'
 const pluginName = 'Step By Step'
 const pluginPageTemplate = '/templates/step-by-step-navigation.html'
 const pluginPageTitle = 'Step by step navigation'
@@ -92,9 +92,6 @@ const provePluginFunctionalityFails = () => {
 describe('Management plugins: ', () => {
   before(() => {
     deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
-    // Make sure plugin version 1 is installed
-    installPlugin(plugin, version1)
-    cy.wait(8000)
   })
 
   beforeEach(() => {
@@ -107,7 +104,6 @@ describe('Management plugins: ', () => {
   }
 
   it('CSRF Protection on POST action', () => {
-    loadPluginsPage()
     const installUrl = `${managePluginsPagePath}/install`
     cy.task('log', `Posting to ${installUrl} without csrf protection`)
     cy.request({
@@ -121,13 +117,21 @@ describe('Management plugins: ', () => {
     })
   })
 
-  it(`Upgrade the ${plugin}${version1} plugin to ${plugin}${version2}`, () => {
+  it(`Install ${plugin}@${version1} directly`, () => {
+    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version1}`)
+
+    cy.get('#plugin-action-button').click()
+
+    performPluginAction('install')
+  })
+
+  it(`Upgrade the ${plugin}@${version1} plugin to ${plugin}@${version2}`, () => {
     loadPluginsPage()
     cy.task('log', `Upgrade the ${plugin} plugin`)
     cy.get(`button[formaction*="/upgrade?package=${encodeURIComponent(plugin)}"]`)
       .should('contains.text', 'Upgrade').click()
 
-    performPluginAction('upgrade', version2)
+    performPluginAction('upgrade')
   })
 
   it(`Create a page using a template from the ${plugin} plugin`, () => {
@@ -184,34 +188,46 @@ describe('Management plugins: ', () => {
       performPluginAction('install')
     })
 
-    it('Fail when installing a non existent plugin', () => {
-      const pkg = 'invalid-prototype-kit-plugin'
-      const pluginName = 'Invalid Prototype Kit Plugin'
-      cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(pkg)}`)
-      cy.get('h2')
-        .should('contains.text', `Install ${pluginName}`)
+    describe('fail', () => {
+      const failAction = () => {
+        cy.get('#plugin-action-button').click()
 
-      cy.get('#plugin-action-button').click()
+        cy.get(panelCompleteQuery)
+          .should('not.be.visible')
+        cy.get(panelErrorQuery)
+          .should('not.be.visible')
+        cy.get(panelProcessingQuery)
+          .should('be.visible')
+          .should('contain.text', 'Installing ...')
 
-      cy.get(panelCompleteQuery)
-        .should('not.be.visible')
-      cy.get(panelErrorQuery)
-        .should('not.be.visible')
-      cy.get(panelProcessingQuery)
-        .should('be.visible')
-        .should('contain.text', 'Installing ...')
+        cy.get(panelProcessingQuery, { timeout: 40000 })
+          .should('not.be.visible')
+        cy.get(panelCompleteQuery)
+          .should('not.be.visible')
+        cy.get(panelErrorQuery)
+          .should('be.visible')
 
-      cy.get(panelProcessingQuery, { timeout: 40000 })
-        .should('not.be.visible')
-      cy.get(panelCompleteQuery)
-        .should('not.be.visible')
-      cy.get(panelErrorQuery)
-        .should('be.visible')
+        cy.get(`${panelErrorQuery} .govuk-panel__title`)
+          .should('contain.text', 'There was a problem installing')
+        cy.get(`${panelErrorQuery} a`)
+          .should('contain.text', 'Please contact support')
+      }
 
-      cy.get(`${panelErrorQuery} .govuk-panel__title`)
-        .should('contain.text', 'There was a problem installing')
-      cy.get(`${panelErrorQuery} a`)
-        .should('contain.text', 'Please contact support')
+      it('Fail when installing a non existent plugin', () => {
+        const pkg = 'invalid-prototype-kit-plugin'
+        const pluginName = 'Invalid Prototype Kit Plugin'
+        cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(pkg)}`)
+        cy.get('h2')
+          .should('contains.text', `Install ${pluginName}`)
+        failAction()
+      })
+
+      it('Fail when installing a plugin with a non existent version', () => {
+        cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=0.0.1`)
+        cy.get('h2')
+          .should('contains.text', `Install ${pluginName}`)
+        failAction()
+      })
     })
   })
 })
