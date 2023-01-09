@@ -2,6 +2,7 @@
 
 const fs = require('fs-extra')
 const path = require('path')
+const crypto = require('crypto')
 
 const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
@@ -50,6 +51,12 @@ async function updatePackageJson (packageJsonPath) {
   let newPackageJson = Object.assign({}, packageJson)
   newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
   await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+}
+
+async function setupAuthToken (configJsonPath) {
+  const config = await fs.readJson(configJsonPath)
+  config.authToken = crypto.randomUUID()
+  await fs.writeJson(configJsonPath, config, packageJsonFormat)
 }
 
 async function initialiseGitRepo () {
@@ -196,7 +203,8 @@ async function runInit () {
   const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 
   await Promise.all([
-    fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
+    fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory)
+      .then(() => setupAuthToken(path.join(installDirectory, 'app', 'config.json'))),
     fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
     fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
     copyFile('LICENCE.txt'),
