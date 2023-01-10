@@ -6,12 +6,14 @@ const passwordPath = '/manage-prototype/password'
 const errorQuery = 'error=wrong-password'
 const returnURLQuery = `returnURL=${encodeURIComponent(homePath)}`
 
+async function getAuthToken () {
+  const filename = path.join(Cypress.env('projectFolder'), 'app', 'config.json')
+  return cy.task('retrieveAuthToken', { filename })
+}
+
 describe('password page', () => {
-  let authToken
   before(() => {
     cy.task('waitUntilAppRestarts')
-    authToken = JSON.parse(fs.readFileSync(path.join(Cypress.env('projectFolder'), 'app', 'config.json'), 'utf8')).authToken
-    console.log('auth token', authToken)
   })
 
   it('valid password', () => {
@@ -39,18 +41,22 @@ describe('password page', () => {
   })
 
   it('valid token', () => {
-    cy.visit(homePath + `?loginToken=${encodeURIComponent(authToken)}`)
-    cy.url().then(homeUrl => {
-      const urlObject = new URL(homeUrl)
-      expect(homeUrl).equal(`${urlObject.origin + homePath}`)
+    getAuthToken().then(authToken => {
+      cy.visit(homePath + `?loginToken=${encodeURIComponent(authToken)}`)
+      cy.url().then(homeUrl => {
+        const urlObject = new URL(homeUrl)
+        expect(homeUrl).equal(`${urlObject.origin + homePath}`)
+      })
     })
   })
 
   it('invalid token', () => {
-    cy.visit(homePath + `?loginToken=${encodeURIComponent(authToken.substr(0, -1))}`)
-    cy.url().then(passwordUrl => {
-      const urlObject = new URL(passwordUrl)
-      expect(passwordUrl).equal(`${urlObject.origin + passwordPath}?${returnURLQuery}`)
+    getAuthToken().then(authToken => {
+      cy.visit(homePath + `?loginToken=${encodeURIComponent(authToken + 'x')}`)
+      cy.url().then(passwordUrl => {
+        const urlObject = new URL(passwordUrl)
+        expect(passwordUrl).equal(`${urlObject.origin + passwordPath}?${returnURLQuery}`)
+      })
     })
   })
 })

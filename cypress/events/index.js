@@ -250,6 +250,11 @@ module.exports = function setupNodeEvents (on, config) {
       .then((text) => fsp.writeFile(filename, text.toString()))
       .then(makeSureCypressCanInterpretTheResult),
 
+    retrieveAuthToken: ({filename}) => {
+      const obj = JSON.parse(fs.readFileSync(filename, 'utf8'))
+      return obj.authToken
+    },
+
     download: async ({ filename }) => {
       log(`deleting folder => ${downloadsFolder}`)
       return deleteFolder(downloadsFolder, 2000)
