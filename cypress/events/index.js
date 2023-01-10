@@ -250,7 +250,7 @@ module.exports = function setupNodeEvents (on, config) {
       .then((text) => fsp.writeFile(filename, text.toString()))
       .then(makeSureCypressCanInterpretTheResult),
 
-    retrieveAuthToken: ({filename}) => {
+    retrieveAuthToken: ({ filename }) => {
       const obj = JSON.parse(fs.readFileSync(filename, 'utf8'))
       return obj.authToken
     },
