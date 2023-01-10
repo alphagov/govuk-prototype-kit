@@ -61,9 +61,6 @@ jobs:
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
         CYPRESS_PAGE_LOAD_TIMEOUT: 120000
         CYPRESS_RETRIES: 3
-        PASSWORD: password
-        USE_AUTH: true
-        NODE_ENV: production
 
     - if: ${{ failure() }}
       uses: actions/upload-artifact@v3
