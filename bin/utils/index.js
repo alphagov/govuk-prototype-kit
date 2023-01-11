@@ -9,12 +9,13 @@ async function npmInstall (cwd, dependencies) {
     'npm', [
       'install',
       '--no-audit',
+      '--no-fund',
       '--loglevel=error',
       '--omit=dev',
       ...dependencies
     ], {
       cwd,
-      stdio: 'inherit'
+      stderr: 'inherit'
     })
 }
 
