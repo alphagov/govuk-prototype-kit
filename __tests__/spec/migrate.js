@@ -11,6 +11,7 @@ const fse = require('fs-extra')
 // local dependencies
 const { spawn } = require('../../lib/exec')
 const { mkdtempSync } = require('../utils')
+const { normaliseLineEndings } = require('../../migrator/file-helpers')
 
 const testDirectory = mkdtempSync()
 const projectDirectory = path.join(testDirectory, 'migrate-checks')
@@ -28,6 +29,10 @@ const pkg = {
   }
 }
 
+function getNormalisedFileContent (path) {
+  return normaliseLineEndings(fs.readFileSync(path, 'utf8'))
+}
+
 describe('migrate test prototype', () => {
   beforeAll(async () => {
     fse.copySync(fixtureProjectDirectory, projectDirectory, { clobber: true })
@@ -39,7 +44,9 @@ describe('migrate test prototype', () => {
     })
   }, 240000)
 
-  it('config.js to config.json', () => {
+  it('config.js should be replaced with config.json', () => {
+    expect(fs.existsSync(path.join(appDirectory, 'config.js'))).toBe(false)
+
     const config = fse.readJsonSync(path.join(appDirectory, 'config.json'))
 
     expect(config).toEqual({
@@ -51,7 +58,7 @@ describe('migrate test prototype', () => {
     })
   })
 
-  it('package.json', () => {
+  it('package.json should be created correctly', () => {
     const pkgJson = fse.readJsonSync(path.join(projectDirectory, 'package.json'))
 
     const { dependencies, name, scripts } = pkgJson
@@ -73,8 +80,8 @@ describe('migrate test prototype', () => {
     expect(name).toEqual('test-prototype')
   })
 
-  it('routes.js', () => {
-    const routesFileContents = fs.readFileSync(path.join(appDirectory, 'routes.js'), 'utf8')
+  it('routes.js should be updated correctly', () => {
+    const routesFileContents = getNormalisedFileContent(path.join(appDirectory, 'routes.js'))
 
     expect(routesFileContents).toEqual(
       '//\n' +
@@ -90,8 +97,8 @@ describe('migrate test prototype', () => {
     )
   })
 
-  it('filters.js', () => {
-    const filtersFileContents = fs.readFileSync(path.join(appDirectory, 'filters.js'), 'utf8')
+  it('filters.js should be overwritten', () => {
+    const filtersFileContents = getNormalisedFileContent(path.join(appDirectory, 'filters.js'))
 
     expect(filtersFileContents).toEqual(
       'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
@@ -99,8 +106,12 @@ describe('migrate test prototype', () => {
     )
   })
 
-  it('application.js', () => {
-    const jsFileContents = fs.readFileSync(path.join(assetsDirectory, 'javascripts', 'application.js'), 'utf8')
+  it('separator-2x.png should be deleted', () => {
+    expect(fs.existsSync(path.join(assetsDirectory, 'images', 'separator-2x.png'))).toBe(false)
+  })
+
+  it('application.js should be overwritten', () => {
+    const jsFileContents = getNormalisedFileContent(path.join(assetsDirectory, 'javascripts', 'application.js'))
 
     expect(jsFileContents).toEqual(
       '//\n' +
@@ -114,8 +125,8 @@ describe('migrate test prototype', () => {
     )
   })
 
-  it('application.scss', () => {
-    const sassFileContents = fs.readFileSync(path.join(assetsDirectory, 'sass', 'application.scss'), 'utf8')
+  it('application.scss should be updated correctly', () => {
+    const sassFileContents = getNormalisedFileContent(path.join(assetsDirectory, 'sass', 'application.scss'))
 
     expect(sassFileContents).toEqual(
       '//\n' +
@@ -132,8 +143,8 @@ describe('migrate test prototype', () => {
     )
   })
 
-  it('layout.html', () => {
-    const layoutFileContents = fs.readFileSync(path.join(appDirectory, 'views', 'layout.html'), 'utf8')
+  it('layout.html should be overwritten', () => {
+    const layoutFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'layout.html'))
 
     expect(layoutFileContents).toEqual(
       '{#\n' +
@@ -146,7 +157,7 @@ describe('migrate test prototype', () => {
   })
 
   it('migrate.log does not contain user home directory', () => {
-    const migrateLog = fs.readFileSync(path.join(projectDirectory, 'migrate.log'), 'utf8')
+    const migrateLog = getNormalisedFileContent(path.join(projectDirectory, 'migrate.log'))
 
     expect(migrateLog).not.toContain(os.homedir())
 

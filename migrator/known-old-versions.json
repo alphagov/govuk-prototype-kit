@@ -1,0 +1,118 @@
+{
+  "LICENCE.txt": [
+    "d32bd30697a15f572a0f1d10dc84e652bc3c1b1612662ae16528adf042c2dfc9"
+  ],
+  "app/assets/images/separator-2x.png": [
+    "0f5dd845e8ede886d52af9a928c22a3d3126c036afaf8459f398d28af04f96e6"
+  ],
+  "app/assets/images/separator.png": [
+    "871ef28abf1920b1b8050934ebec4366c18e3cba6ddb704392935e076a7e744d"
+  ],
+  "app/assets/images/unbranded.ico": [
+    "47fb748190b01be55b752d0944d303ab52949c541bdbb16579ef619c7b08335b"
+  ],
+  "app/assets/javascripts/application.js": [
+    "3854a48a1cf0fc98895d36601892906e40df12538f36758cdb56046b23b956aa"
+  ],
+  "app/assets/javascripts/auto-store-data.js": [
+    "665c1b6b542348fbd48d08889ca336082d526418551db94e7b79dbdc6703ae5b"
+  ],
+  "app/assets/javascripts/jquery-1.11.3.js": [
+    "94770bd0adc35024a9aeb96f213de1bdbf565bcfda0214d1a309a4c38f383e75"
+  ],
+  "app/assets/sass/application.scss": [
+    "89cbb8ce39f504c31b7b410b7eb1422a0f051d65376ada2ae8e2f5b54f433115",
+    "9835759d55910b5bc8807989a9ac1776957b9a0e53267c7b59e415c2566f2dc2",
+    "a136c88349ea9c4c04b838be0b3e31198af01be8c380c755da5194b7b4d70c41",
+    "0bde77888d3b79d8275fc0edf1fea9ca882d7af13a310dd64ea4ad7d2893f93a",
+    "346d1d8801d3cb9c3dc145925542209277547b416429e25ab5cbd25923e90dcf",
+    "f40c303a284b70c449f8f5fea0ff3b8fd858cc3ac41cb4ad94c57229e2daac7b",
+    "29ef5a0199d228ed9cbf4dbef57368ec46cda5fc4ccecaae3c423caa67ca5937",
+    "3bc886a4b13568193a8b32948872b65abb21b8c5202c4fc006f6287435b09c5f",
+    "f229447f0c428fe6bf3ebf6e58a4c13312b81b12adbc0f08d17b158ed64bcb87",
+    "cbd60de4aa96ed6b466790ff4b40f280eaff89f896b0211a703d0fbbc6a5576f",
+    "300378fc45b5814dbd0d54a91f3676e15a56d2d3523b2f3cf0b8ac775786360e"
+  ],
+  "app/assets/sass/patterns/_contents-list.scss": [
+    "0aff4e45281791fd8aa9a5137244bc9469921a0688daf55434374a1393dda521"
+  ],
+  "app/assets/sass/patterns/_mainstream-guide.scss": [
+    "1bfd4cb326ca9c5d4eb2c2085634acfa3b88a50e7d49f69819587438206aabc7"
+  ],
+  "app/assets/sass/patterns/_pagination.scss": [
+    "a20cfaeccfeab2b4dbbf14b4a4a460242243f3f0b7b27f1353520191e00baebb"
+  ],
+  "app/assets/sass/patterns/_related-items.scss": [
+    "7b2ac595c61df3fea9822b7e4a1b23813ddf08eb1307dd53837bbf3102fa5985",
+    "1608bc8c59f96ff3c14465a5d854997297659d5a8741c2ee03c865e0c5f8ce82"
+  ],
+  "app/assets/sass/patterns/_task-list.scss": [
+    "fb63864f51fa735a256ef68c7f46eb574c2b908e210e4681eb5d724483e0ddb2",
+    "b86345a4b1392825362ccd04dee8279076e3c3bd5b521d4907b72b7493597411",
+    "5ad789aaf96e64712eb39248f051538ea97eee2e6b0f77b0f2e7a7d0f602657b"
+  ],
+  "app/assets/sass/unbranded.scss": [
+    "57252ac05c525d40854cba9562189cf48789a9d989dba55c3376158287c9faad",
+    "4f29e7073922f0d63b689f0d66977efa45b1a66534f08a4e9ad3cc5dc0135d31",
+    "e299065fcdeff8c4d30418bb42021a85113875a7e48d0dc995899a626ea4dd12",
+    "ea08adb0f9c98ac5ffbfc3dc2a1bb06cc8583d912eb7bb81536c131f77b40007",
+    "6997c97e5ffca7889093f6647c3420e9e82e092d18eb1bef25f8e1ebd0557572",
+    "c2541d046a5b7113d29cb7abb0ba92f18780258113e8f9eddee5e31a364162a1"
+  ],
+  "app/filters.js": [
+    "30556e3927342de3f9e9446529a3cc65015996b149bb1996cf127dfdf2963c91"
+  ],
+  "app/views/includes/breadcrumb_examples.html": [
+    "4df27e7ebb09dd32e102007a1b78d987231bb7910d598a15432089b9896475dc"
+  ],
+  "app/views/includes/head.html": [
+    "5b3c33361028f846bc87ea890dafb59a78c9c125a64c1226a7fe3d1d1403dc9c",
+    "b1a0b21a447011e7fe48811fde1c4707f168c48f567282d4699b27d349880fc2",
+    "9a17bea0f0b41b31f9354e98ef7b7861cb1b13a567d4f212ad64b7213d0ffd97"
+  ],
+  "app/views/includes/scripts.html": [
+    "ad8f4886842e6aa25dbe2d15a26af849cf8cce87d3d623145d94f79f9e66393c",
+    "0f6291eaa392811df8b288863e2ea859563a28024e9b98996bb86db032b423f1"
+  ],
+  "app/views/layout.html": [
+    "f135269ef3fb12ae9c5dff2117a8398c87d44f868d703e3ff37d36ae625012dc",
+    "f0cf334214999d327df0693f7c51ed241c1c6b7c391156cefaf5c78093d3f977",
+    "6de460cf90e37334f463dd1f4d3619c8c1421a8c095a9b22496d0af3e3fbad92",
+    "4c45f7c296cbfcf9843d26dcde2f77e20bee522cb76ce2a9135a37e5f3ae28ac",
+    "c0f933c65542145ed5326a34c667443265d33583c8ab2380033ed05e19aab867",
+    "7b93a145b56afd57cc349a49fd48b4c7a8965266efc1cd8cb540d71e48cf96da",
+    "5c60878514ae3f66fa89b4f71da30116143516e84cbf0ccb95719f59e6de5532",
+    "ca7d7e652cb050750ccac06fa36dfb04b33c3b0d67b0596e0430b520749a3f20",
+    "0aa3cd435c4ba08bac80d03aca17515c97dbca21f1056ce0f2e82aeced260e9f",
+    "3e58ab679f9d001a40d33023c8b1f9ffa4ae52a130641a5861d678a1c3ce2c77",
+    "69871b6a2d42f4f83c02da3e2d5aafea23aba09cf08e9745f38d13e38078d5b1"
+  ],
+  "app/views/layout_unbranded.html": [
+    "86500c1cb99279d901c00439502fcd68e241a8cbcc061eb75da4756448e423ab",
+    "eed631e32c2f2292626878261bd1b459c6ae345c7d55078a77c0ca4b6176a9a5",
+    "552ce56dafb39719fb5c92875a9132b2a9ca445c9107bd013392b3a4b90f8d29"
+  ],
+  "app/assets/sass/patterns/_step-by-step-header.scss": [
+    "6f5a7fd0e47fbc4c3fe7ad11976bfaf37e49f4721643d6296306fa0fe43a1ba7"
+  ],
+  "app/assets/sass/patterns/_step-by-step-nav.scss": [
+    "5c47b6b59ff43242e593e9b72171a3064df01dd263e069de835e02ce645b6d34",
+    "9d43e51aff047c05bb119265610509ceda3b59f232fb826119a6e3c340bcb8d0",
+    "8204d4ec55f459f290ab755a9358b9669fefee66db38300d4106c54e10a4abc6"
+  ],
+  "app/assets/sass/patterns/_step-by-step-related.scss": [
+    "883be8b605cb42cfc452d355d8ef62880489c7951855fcf2f60c46892644ff99",
+    "844d5272e5789505875f83b246b24cc227ffe843ff76951c53048be18212b3ea"
+  ],
+  "app/views/includes/cookie-banner.html": [
+    "e59a923de95b9a8f8c23cc5066d70f30578a2448cfbb2e1b15842dc6e3d3e9aa"
+  ],
+  "app/assets/sass/patterns/_step-by-step-navigation.scss": [
+    "a1a9c43353d8550d9a783519a5b903f63e622767fd6032bcfb1a10b7f01b505c",
+    "ba3e39b150e1b04929a8d53ec3945f64ca11d0f1cb0e21c44db4a4c071bcfcb5",
+    "11e20cdc030367d057d5eb15c16118b2f09fe28d6c39d26ceab386f0cee6ed05"
+  ],
+  "app/assets/sass/patterns/_check-your-answers.scss": [
+    "3d0cd5ce244c9cf9dd16e768070719a06892fbc8066058f77cf175afd3c06bbf"
+  ]
+}
