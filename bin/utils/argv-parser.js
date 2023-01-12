@@ -23,6 +23,9 @@ function parse (argvInput, config = {}) {
   }
 
   args.forEach(arg => {
+    if (arg === '--') {
+      return
+    }
     if (arg.startsWith('-')) {
       const processedArgName = processOptionName(arg)
       if (booleanOptions.includes(processedArgName)) {

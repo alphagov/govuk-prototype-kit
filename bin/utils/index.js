@@ -8,10 +8,6 @@ async function npmInstall (cwd, dependencies) {
   return spawn(
     'npm', [
       'install',
-      '--no-audit',
-      '--no-fund',
-      '--loglevel=error',
-      '--omit=dev',
       ...dependencies
     ], {
       cwd,

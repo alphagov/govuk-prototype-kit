@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#1906: Improved messaging when creating a prototype](https://github.com/alphagov/govuk-prototype-kit/pull/1906)
+
 ### Fixes
 
 - [#1887: You no longer need to press ctrl-c to exit if you say no to a new port](https://github.com/alphagov/govuk-prototype-kit/pull/1887)
