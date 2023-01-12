@@ -9,13 +9,18 @@ const fse = require('fs-extra')
 // local dependencies
 const { packageDir, projectDir } = require('../lib/utils/paths')
 const { log, sanitisePaths } = require('./logger')
+const { parse } = require('../bin/utils/argv-parser')
+
+const argv = parse(process.argv, {
+  booleans: ['no-version-control', 'verbose']
+})
 
 async function verboseLog () {
   await log(...arguments)
-  if (process.env.GPK_UPGRADE_DEBUG !== 'true') {
+  if (process.env.GPK_UPGRADE_DEBUG !== 'true' || argv.options.verbose) {
     return
   }
-  console.log(...arguments)
+  console.log('[debug]', ...arguments)
 }
 
 async function verboseLogError (e) {

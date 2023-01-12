@@ -16,8 +16,18 @@ const kitRoot = path.join(__dirname, '..')
 const kitVersion = require('../package.json').version
 
 const argv = parse(process.argv, {
-  booleans: ['no-version-control']
+  booleans: ['no-version-control', 'verbose', 'running-within-create-script']
 })
+
+const verboseLogger = !argv.options.verbose
+  ? () => {}
+  : function () {
+    console.log('[verbose]', ...arguments)
+  }
+
+const progressLogger = function () {
+  console.log(' - ', ...arguments)
+}
 
 const npmrc = `
 audit=false
@@ -52,13 +62,33 @@ async function updatePackageJson (packageJsonPath) {
   await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
 }
 
+function displaySuccessMessage () {
+  console.log('')
+  console.log('Prototype created')
+  if (argv.paths.length > 0) {
+    console.log('')
+    console.log('Change to your prototype directory:')
+    console.log(`  cd ${argv.paths[0]}`)
+  }
+  console.log('')
+  console.log('To run your prototype:')
+  console.log('  npm run dev')
+  console.log('')
+}
+
 async function initialiseGitRepo () {
-  if (argv.options['no-version-control']) {
+  const noVersionControlArg = 'no-version-control'
+  if (argv.options[noVersionControlArg]) {
+    verboseLogger(`User specified --${noVersionControlArg}, skipping.`)
     return
   }
+  progressLogger('Initialising git')
   try {
     await exec('git init --initial-branch=main && git add -A .', {})
   } catch (e) {
+    verboseLogger('Failed to initialise git')
+    verboseLogger(e.message)
+    verboseLogger(e.errorOutput)
     return
   }
 
@@ -143,6 +173,23 @@ function warnIfNpmStart (argv, env) {
   }
 }
 
+function writeEmptyPackageJson (installDirectory) {
+  return fs.writeJson(path.join(installDirectory, 'package.json'), {})
+}
+
+function getArgumentsToPassThrough () {
+  const additionalArgs = Object.keys(argv.options).map(name => `--${name}="${argv.options[name]}"`)
+  return additionalArgs
+}
+
+function initialiserRequiresOldInitSyntax () {
+  const dependencies = require(path.join(getInstallLocation(), 'package.json')).dependencies || {}
+  const kitVersionParts = (dependencies['govuk-prototype-kit'] || '').split('.')
+
+  const requiresOldInitSyntax = kitVersionParts[0].endsWith('13') && Number(kitVersionParts[1]) <= 2
+  return requiresOldInitSyntax
+}
+
 async function runCreate () {
   // Install as a two-stage bootstrap process.
   //
@@ -157,6 +204,7 @@ async function runCreate () {
   // as possible into stage two; stage one should ideally be able to install
   // any future version of the kit.
 
+  console.log('')
   const installDirectory = getInstallLocation()
   const kitDependency = getChosenKitDependency()
 
@@ -167,25 +215,34 @@ async function runCreate () {
     return
   }
 
-  await fs.writeJson(path.join(installDirectory, 'package.json'), {}, packageJsonFormat)
-
   console.log('Creating your prototype')
+
+  await writeEmptyPackageJson(installDirectory)
+
+  progressLogger('Installing dependencies')
 
   await npmInstall(installDirectory, [kitDependency, 'govuk-frontend'])
 
-  const additionalArgs = Object.keys(argv.options).map(name => `--${name}="${argv.options[name]}"`)
+  let runningWithinCreateScriptFlag = '--running-within-create-script'
 
-  await spawn('npx', ['govuk-prototype-kit', 'init', '--', installDirectory, ...additionalArgs], {
+  if (initialiserRequiresOldInitSyntax()) {
+    runningWithinCreateScriptFlag = '--'
+  }
+
+  progressLogger('Setting up your prototype')
+
+  await spawn('npx', ['govuk-prototype-kit', 'init', runningWithinCreateScriptFlag, installDirectory, `--created-from-version=${kitVersion}`, ...(getArgumentsToPassThrough())], {
     cwd: installDirectory,
     stdio: 'inherit'
   })
+    .then(displaySuccessMessage)
 }
 
 async function runInit () {
   // `init` is stage two of the install process (see above), it should be
   // called by `create` with the correct arguments.
 
-  if (process.argv[3] !== '--') {
+  if (!argv.options['running-within-create-script'] && process.argv[3] !== '--') {
     usage()
     process.exitCode = 2
     return
@@ -201,7 +258,8 @@ async function runInit () {
     fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
     copyFile('LICENCE.txt'),
     updatePackageJson(path.join(installDirectory, 'package.json'))
-  ]).then(initialiseGitRepo)
+  ])
+    .then(initialiseGitRepo)
 }
 
 async function runMigrate () {
@@ -271,6 +329,8 @@ function runServe () {
 }
 
 ;(async () => {
+  verboseLogger(`Using kit version [${kitVersion}] for command [${argv.command}]`)
+  verboseLogger('Argv:', argv)
   switch (argv.command) {
     case 'create':
       return runCreate()
