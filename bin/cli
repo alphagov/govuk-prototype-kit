@@ -6,7 +6,7 @@ const path = require('path')
 const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../migrator')
-const { npmInstall, packageJsonFormat } = require('./utils')
+const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemvarVersion } = require('./utils')
 
 // Avoid requiring any kit server code at the top-level as we might want to
 // change environment variables below.
@@ -26,6 +26,13 @@ const verboseLogger = !argv.options.verbose
   }
 
 const progressLogger = function () {
+  if (argv.options['created-from-version']) {
+    const version = splitSemvarVersion(argv.options['created-from-version'])
+    if (version.major === 13 && version.minor < 2) {
+      return
+    }
+  }
+
   console.log(' - ', ...arguments)
 }
 
@@ -182,11 +189,10 @@ function getArgumentsToPassThrough () {
   return additionalArgs
 }
 
-function initialiserRequiresOldInitSyntax () {
-  const dependencies = require(path.join(getInstallLocation(), 'package.json')).dependencies || {}
-  const kitVersionParts = (dependencies['govuk-prototype-kit'] || '').split('.')
+async function initialiserRequiresOldInitSyntax () {
+  const version = await getPackageVersionFromPackageJson(path.join(getInstallLocation(), 'node_modules', 'govuk-prototype-kit', 'package.json'))
 
-  const requiresOldInitSyntax = kitVersionParts[0].endsWith('13') && Number(kitVersionParts[1]) <= 2
+  const requiresOldInitSyntax = version.major === 13 && version.minor < 2
   return requiresOldInitSyntax
 }
 
@@ -204,7 +210,10 @@ async function runCreate () {
   // as possible into stage two; stage one should ideally be able to install
   // any future version of the kit.
 
+  verboseLogger('Cli running from', __filename)
+
   console.log('')
+
   const installDirectory = getInstallLocation()
   const kitDependency = getChosenKitDependency()
 
@@ -225,7 +234,7 @@ async function runCreate () {
 
   let runningWithinCreateScriptFlag = '--running-within-create-script'
 
-  if (initialiserRequiresOldInitSyntax()) {
+  if (await initialiserRequiresOldInitSyntax()) {
     runningWithinCreateScriptFlag = '--'
   }
 
