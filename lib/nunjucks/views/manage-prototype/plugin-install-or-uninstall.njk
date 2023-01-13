@@ -11,7 +11,7 @@
       <h1 class="govuk-heading-l">Plugins</h1>
 
       <h2 class="govuk-heading-m">
-        {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
+        {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.version %} version {{ chosenPlugin.version }} {% endif %} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
       </h2>
 
       <div id="panel-manual-instructions" class="govuk-prototype-kit-manage-prototype-plugin-instructions js-hidden">
