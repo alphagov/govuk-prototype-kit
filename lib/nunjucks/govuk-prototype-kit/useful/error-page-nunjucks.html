@@ -1,0 +1,61 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% block pageTitle %}
+An error occurred – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .code {
+    overflow: scroll;
+  }
+  code {
+    display: block;
+    width: 2000px;
+  }
+  .code-line {
+    line-height: 1.5;
+    font-family: monospace;
+    font-size: 1.2em;
+  }
+  .line-number {
+    display: inline-block;
+    width: 40px;
+  }
+  {% for highlightLine in highlightLines %}
+  .line-{{highlightLine}} {
+    background: red;
+    color: white;
+  }
+  {% endfor %}
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      An error occurred
+    </h1>
+
+    <p>{{codeArea}}</p>
+    
+    <hr/>
+    
+    <p>The error was in the file:</p>
+    <p>{{pathFromAppRoot}}</p>
+    
+    <hr/>
+
+    <p>The error message was:</p>
+    <p>{{message}}</p>
+    
+    <hr/>
+    
+    <p>This is where the error occurred:</p>
+    <p>{{fileContents | safe}}</p><hr/>
+    
+    <hr/>
+    
+  </div>
+
+  {% endblock %}

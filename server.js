@@ -1,4 +1,3 @@
-
 // core dependencies
 const fs = require('fs').promises
 const path = require('path')
@@ -74,6 +73,8 @@ const appViews = [
   path.join(projectDir, '/app/views/')
 ].concat(plugins.getAppViews())
 
+console.log(appViews)
+
 const nunjucksConfig = {
   autoescape: true,
   noCache: true,
@@ -145,9 +146,9 @@ app.get(/^([^.]+)$/, (req, res, next) => {
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
-    pathname: '/' + req.params[0],
-    query: req.query
-  })
+      pathname: '/' + req.params[0],
+      query: req.query
+    })
   )
 })
 
@@ -173,14 +174,60 @@ app.use((req, res, next) => {
 // Display error
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
+function formatForNunjucksSafe (input) {
+  return input.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/  /g, '&nbsp;&nbsp;').split('\n').map((x, index) => `<div class="line-${index + 1} code-line"><span class="line-number">${index+1}</span>${x}</div>`).join('\n')
+}
+
 // message without the stack trace.
-app.use((err, req, res, next) => {
+app.use(async (err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  console.error(err.message)
+  console.log('found')
   res.status(err.status || 500)
-  res.send(err.message)
+  const input = err.stack
+  let codeArea = 'This is an error in your code'
+  const formattedStack = formatForNunjucksSafe(input)
+  const nunjucksMatcher = /\((\/[^)]+)\) \[Line (\d+), Column (\d+)]\s+(.+)$/
+  const nunjucksMatches = nunjucksMatcher.exec(err.message)
+  if (nunjucksMatches) {
+    const [, filePath, line, column, message] = nunjucksMatches
+    const pathFromAppRoot = path.relative(projectDir, filePath)
+    
+    if (pathFromAppRoot.startsWith('node_modules')) {
+      const pluginName = pathFromAppRoot.split('/')[1]
+      codeArea = `This error comes from the "${pluginName}" plug-in. Please contact them to report the issue.  This is not an error in your code but you might be able to change your code to work around it.`
+    }
+    
+    const originalFileContents = await fs.readFile(filePath, 'utf8')
+    
+    const fileContents = formatForNunjucksSafe(originalFileContents)
+    const rawLines = originalFileContents.split('\n')
+    
+    const highlightLines = [line]
+    if (message.startsWith('unexpected token') || message.endsWith('expected')) {
+      let currentLine = line
+      do {
+        currentLine--
+        highlightLines.push(Number(currentLine))
+      } while (rawLines[currentLine-1].replace(/\s/g, '').length === 0)
+      console.log('found', highlightLines)
+    } else {
+      console.log(JSON.stringify(message))
+    }
+    return res.render('govuk-prototype-kit/useful/error-page-nunjucks', {
+      pathFromAppRoot,
+      codeArea,
+      fileContents,
+      highlightLines: highlightLines,
+      column,
+      message
+    })
+  }
+  res.render('govuk-prototype-kit/useful/error-page', {
+    message: err.message,
+    stack: formattedStack
+  })
 })
 
 module.exports = app
