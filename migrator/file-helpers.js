@@ -43,7 +43,7 @@ const successOutput = () => true
 
 async function getFileAsLines (filePath) {
   const fileContents = await fs.readFile(filePath, 'utf8')
-  return splitIntoLines(fileContents)
+  return splitIntoLines(normaliseLineEndings(fileContents))
 }
 
 async function writeFileLinesToFile (filePath, updatedFileLines) {
