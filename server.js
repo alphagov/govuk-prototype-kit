@@ -175,7 +175,7 @@ app.use((req, res, next) => {
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
 function formatForNunjucksSafe (input) {
-  return input.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/  /g, '&nbsp;&nbsp;').split('\n').map((x, index) => `<div class="line-${index + 1} code-line"><span class="line-number">${index+1}</span>${x}</div>`).join('\n')
+  return input.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/  /g, '&nbsp;&nbsp;').split('\n').map((x, index) => `<div class="line-${index + 1} code-line"><span class="line-number">${index + 1}</span>${x}</div>`).join('\n')
 }
 
 async function displayNiceError (filePath, line, message, res, column) {
@@ -190,18 +190,19 @@ async function displayNiceError (filePath, line, message, res, column) {
   const originalFileContents = await fs.readFile(filePath, 'utf8')
 
   const fileContents = formatForNunjucksSafe(originalFileContents)
-  const rawLines = originalFileContents.split('\n')
+  const highlightLines = []
+  if (line && column) {
 
-  const highlightLines = [line]
-  if (message.startsWith('unexpected token') || message.endsWith('expected')) {
-    let currentLine = line
-    do {
-      currentLine--
-      highlightLines.push(Number(currentLine))
-    } while (rawLines[currentLine - 1].replace(/\s/g, '').length === 0)
-    console.log('found', highlightLines)
-  } else {
-    console.log(JSON.stringify(message))
+    const rawLines = originalFileContents.split('\n')
+
+    highlightLines.push(line)
+    if (message.startsWith('unexpected token') || message.endsWith('expected')) {
+      let currentLine = line
+      do {
+        currentLine--
+        highlightLines.push(Number(currentLine))
+      } while (rawLines[currentLine - 1].replace(/\s/g, '').length === 0)
+    }
   }
   return res.render('govuk-prototype-kit/useful/error-page-nunjucks', {
     pathFromAppRoot,
@@ -221,11 +222,18 @@ app.use(async (err, req, res, next) => {
   res.status(err.status || 500)
   const input = err.stack
   const formattedStack = formatForNunjucksSafe(input)
-  const nunjucksMatcher = /\((\/[^)]+)\) \[Line (\d+), Column (\d+)]\s+(.+)$/
+  const nunjucksMatcherWithLineAndColumn = /\((\/[^)]+)\) \[Line (\d+), Column (\d+)]\s+(.+)$/
+  const nunjucksMatchesWithLineAndColumn = nunjucksMatcherWithLineAndColumn.exec(err.message)
+  if (nunjucksMatchesWithLineAndColumn) {
+    console.log(err.message)
+    const [, filePath, line, column, message] = nunjucksMatchesWithLineAndColumn
+    return await displayNiceError(filePath, line, message, res, column)
+  }
+  const nunjucksMatcher = /\((\/[^)]+)\)\s+(.+)$/
   const nunjucksMatches = nunjucksMatcher.exec(err.message)
   if (nunjucksMatches) {
-    const [, filePath, line, column, message] = nunjucksMatches
-    return await displayNiceError(filePath, line, message, res, column)
+    const [, filePath, message] = nunjucksMatches
+    return await displayNiceError(filePath, undefined, message, res, undefined)
   }
   const [stackLine1, stackLine2] = err.stack.split('\n')
   const stackLine2Matcher = /^\s*at (\/[^:]+):(\d+):(\d+)$/
