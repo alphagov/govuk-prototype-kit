@@ -1,6 +1,6 @@
-
 // core dependencies
 const path = require('path')
+const os = require('os')
 const fs = require('fs').promises
 
 // npm dependencies
@@ -9,7 +9,10 @@ const fse = require('fs-extra')
 // local dependencies
 const { packageDir, projectDir } = require('../lib/utils/paths')
 const { log, sanitisePaths } = require('./logger')
+const crypto = require('crypto')
 const { parse } = require('../bin/utils/argv-parser')
+
+let knowOldVersions
 
 const argv = parse(process.argv, {
   booleans: ['no-version-control', 'verbose']
@@ -40,7 +43,7 @@ const successOutput = () => true
 
 async function getFileAsLines (filePath) {
   const fileContents = await fs.readFile(filePath, 'utf8')
-  return splitIntoLines(fileContents)
+  return splitIntoLines(normaliseLineEndings(fileContents))
 }
 
 async function writeFileLinesToFile (filePath, updatedFileLines) {
@@ -133,23 +136,42 @@ function ignoreWhitespace (str) {
   return str.replace(/\s\s+/g, ' ')
 }
 
+function normaliseLineEndings (str) {
+  return str.split(os.EOL).join('\n')
+}
+
+function normaliseContent (str) {
+  return ignoreWhitespace(normaliseLineEndings(str))
+}
+
+async function getFileHash (filePath) {
+  const fileBuffer = await fs.readFile(filePath)
+  const hashSum = crypto.createHash('sha256')
+
+  if (filePath.endsWith('png')) {
+    hashSum.update(fileBuffer)
+  } else {
+    hashSum.update(normaliseContent(fileBuffer.toString()))
+  }
+
+  return hashSum.digest('hex')
+}
+
 async function matchAgainstOldVersions (filePath) {
-  const oldVersionsDir = path.join(__dirname, 'known-old-versions', filePath.split('/').join('-'))
+  if (!knowOldVersions) {
+    knowOldVersions = await fse.readJson(path.join(__dirname, 'known-old-versions.json'))
+  }
   const userPath = path.join(projectDir, filePath)
+  const userFileHash = await getFileHash(userPath)
+    .catch(handleNotFound(false))
 
-  const [userFile, listOfKnownReleaseVersions] = await Promise.all([
-    fs.readFile(userPath, 'utf8').catch(handleNotFound(false)),
-    fs.readdir(oldVersionsDir)
-      .then(files => Promise.all(
-        files.map(fileName => fs.readFile(path.join(oldVersionsDir, fileName), 'utf8'))
-      ))
-  ])
-
-  if (userFile === false) {
+  if (userFileHash === false) {
     return
   }
 
-  return userFile && listOfKnownReleaseVersions.some(knownVersion => ignoreWhitespace(knownVersion) === ignoreWhitespace(userFile))
+  return knowOldVersions[filePath].some(hash => {
+    return hash === userFileHash
+  })
 }
 
 module.exports = {
@@ -161,8 +183,10 @@ module.exports = {
   deleteDirectory,
   deleteDirectoryIfEmpty,
   copyFileFromStarter,
+  getFileHash,
   matchAgainstOldVersions,
   joinLines,
   verboseLog,
-  handleNotFound
+  handleNotFound,
+  normaliseLineEndings
 }

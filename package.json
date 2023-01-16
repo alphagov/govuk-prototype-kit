@@ -99,7 +99,6 @@
   "standard": {
     "ignore": [
       "__tests__/fixtures/",
-      "migrator/known-old-versions/",
       "prototype-starter/"
     ],
     "plugins": [

@@ -43,6 +43,7 @@
         "eslint-plugin-cypress": "^2.12.1",
         "extract-zip": "^2.0.1",
         "glob": "^8.0.3",
+        "isbinaryfile": "^5.0.0",
         "jest": "^29.3.1",
         "proper-lockfile": "^4.1.2",
         "standard": "^17.0.0",
@@ -6572,6 +6573,18 @@
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz",
       "integrity": "sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE="
+    },
+    "node_modules/isbinaryfile": {
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/isbinaryfile/-/isbinaryfile-5.0.0.tgz",
+      "integrity": "sha512-UDdnyGvMajJUWCkib7Cei/dvyJrrvo4FIrsvSFWdPpXSUorzXrDJ0S+X5Q4ZlasfPjca4yqCNNsjbCeiy8FFeg==",
+      "dev": true,
+      "engines": {
+        "node": ">= 14.0.0"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/gjtorikian/"
+      }
     },
     "node_modules/isexe": {
       "version": "2.0.0",
@@ -16627,6 +16640,12 @@
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz",
       "integrity": "sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE="
+    },
+    "isbinaryfile": {
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/isbinaryfile/-/isbinaryfile-5.0.0.tgz",
+      "integrity": "sha512-UDdnyGvMajJUWCkib7Cei/dvyJrrvo4FIrsvSFWdPpXSUorzXrDJ0S+X5Q4ZlasfPjca4yqCNNsjbCeiy8FFeg==",
+      "dev": true
     },
     "isexe": {
       "version": "2.0.0",
