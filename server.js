@@ -178,51 +178,61 @@ function formatForNunjucksSafe (input) {
   return input.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/  /g, '&nbsp;&nbsp;').split('\n').map((x, index) => `<div class="line-${index + 1} code-line"><span class="line-number">${index+1}</span>${x}</div>`).join('\n')
 }
 
+async function displayNiceError (filePath, line, message, res, column) {
+  const pathFromAppRoot = path.relative(projectDir, filePath)
+  let codeArea = 'This is an error in your code'
+
+  if (pathFromAppRoot.startsWith('node_modules')) {
+    const pluginName = pathFromAppRoot.split('/')[1]
+    codeArea = `This error comes from the "${pluginName}" plug-in. Please contact them to report the issue.  This is not an error in your code but you might be able to change your code to work around it.`
+  }
+
+  const originalFileContents = await fs.readFile(filePath, 'utf8')
+
+  const fileContents = formatForNunjucksSafe(originalFileContents)
+  const rawLines = originalFileContents.split('\n')
+
+  const highlightLines = [line]
+  if (message.startsWith('unexpected token') || message.endsWith('expected')) {
+    let currentLine = line
+    do {
+      currentLine--
+      highlightLines.push(Number(currentLine))
+    } while (rawLines[currentLine - 1].replace(/\s/g, '').length === 0)
+    console.log('found', highlightLines)
+  } else {
+    console.log(JSON.stringify(message))
+  }
+  return res.render('govuk-prototype-kit/useful/error-page-nunjucks', {
+    pathFromAppRoot,
+    codeArea,
+    fileContents,
+    highlightLines: highlightLines,
+    column,
+    message
+  })
+}
+
 // message without the stack trace.
 app.use(async (err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  console.log('found')
   res.status(err.status || 500)
   const input = err.stack
-  let codeArea = 'This is an error in your code'
   const formattedStack = formatForNunjucksSafe(input)
   const nunjucksMatcher = /\((\/[^)]+)\) \[Line (\d+), Column (\d+)]\s+(.+)$/
   const nunjucksMatches = nunjucksMatcher.exec(err.message)
   if (nunjucksMatches) {
     const [, filePath, line, column, message] = nunjucksMatches
-    const pathFromAppRoot = path.relative(projectDir, filePath)
-    
-    if (pathFromAppRoot.startsWith('node_modules')) {
-      const pluginName = pathFromAppRoot.split('/')[1]
-      codeArea = `This error comes from the "${pluginName}" plug-in. Please contact them to report the issue.  This is not an error in your code but you might be able to change your code to work around it.`
-    }
-    
-    const originalFileContents = await fs.readFile(filePath, 'utf8')
-    
-    const fileContents = formatForNunjucksSafe(originalFileContents)
-    const rawLines = originalFileContents.split('\n')
-    
-    const highlightLines = [line]
-    if (message.startsWith('unexpected token') || message.endsWith('expected')) {
-      let currentLine = line
-      do {
-        currentLine--
-        highlightLines.push(Number(currentLine))
-      } while (rawLines[currentLine-1].replace(/\s/g, '').length === 0)
-      console.log('found', highlightLines)
-    } else {
-      console.log(JSON.stringify(message))
-    }
-    return res.render('govuk-prototype-kit/useful/error-page-nunjucks', {
-      pathFromAppRoot,
-      codeArea,
-      fileContents,
-      highlightLines: highlightLines,
-      column,
-      message
-    })
+    return await displayNiceError(filePath, line, message, res, column)
+  }
+  const [stackLine1, stackLine2] = err.stack.split('\n')
+  const stackLine2Matcher = /^\s*at (\/[^:]+):(\d+):(\d+)$/
+  const stackLine2Matches = stackLine2Matcher.exec(stackLine2)
+  if (stackLine2Matches) {
+    const [, filePath, line, column] = stackLine2Matches
+    return await displayNiceError(filePath, line, stackLine1, res, column)
   }
   res.render('govuk-prototype-kit/useful/error-page', {
     message: err.message,
