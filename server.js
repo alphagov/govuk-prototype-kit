@@ -73,8 +73,6 @@ const appViews = [
   path.join(projectDir, '/app/views/')
 ].concat(plugins.getAppViews())
 
-console.log(appViews)
-
 const nunjucksConfig = {
   autoescape: true,
   noCache: true,
