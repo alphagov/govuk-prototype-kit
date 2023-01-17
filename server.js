@@ -23,6 +23,7 @@ const utils = require('./lib/utils')
 const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
+const errorHandlingUtils = require('./lib/error-handling-utils')
 
 const app = express()
 routesApi.setApp(app)
@@ -172,43 +173,21 @@ app.use((req, res, next) => {
 // Display error
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
-function formatForNunjucksSafe (input) {
-  return input.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/  /g, '&nbsp;&nbsp;').split('\n').map((x, index) => `<div class="line-${index + 1} code-line"><span class="line-number">${index + 1}</span>${x}</div>`).join('\n')
-}
 
 async function displayNiceError (filePath, line, message, res, column) {
-  const pathFromAppRoot = path.relative(projectDir, filePath)
-  let codeArea = 'This is an error in your code'
-
-  if (pathFromAppRoot.startsWith('node_modules')) {
-    const pluginName = pathFromAppRoot.split('/')[1]
-    codeArea = `This error comes from the "${pluginName}" plug-in. Please contact them to report the issue.  This is not an error in your code but you might be able to change your code to work around it.`
-  }
-
-  const originalFileContents = await fs.readFile(filePath, 'utf8')
-
-  const fileContents = formatForNunjucksSafe(originalFileContents)
-  const highlightLines = []
-  if (line && column) {
-
-    const rawLines = originalFileContents.split('\n')
-
-    highlightLines.push(line)
-    if (message.startsWith('unexpected token') || message.endsWith('expected')) {
-      let currentLine = line
-      do {
-        currentLine--
-        highlightLines.push(Number(currentLine))
-      } while (rawLines[currentLine - 1].replace(/\s/g, '').length === 0)
-    }
-  }
+  const {
+    pathFromAppRoot,
+    codeArea,
+    formattedFileContents,
+    highlightLines,
+    preparedMessage
+  } = errorHandlingUtils.prepareNiceError(filePath, line, column)
   return res.render('govuk-prototype-kit/useful/error-page-nunjucks', {
     pathFromAppRoot,
     codeArea,
-    fileContents,
-    highlightLines: highlightLines,
-    column,
-    message
+    formattedFileContents,
+    styles: errorHandlingUtils.getErrorStyles(highlightLines),
+    preparedMessage
   })
 }
 
@@ -219,7 +198,7 @@ app.use(async (err, req, res, next) => {
   }
   res.status(err.status || 500)
   const input = err.stack
-  const formattedStack = formatForNunjucksSafe(input)
+  const formattedStack = errorHandlingUtils.formatForHtml(input)
   const nunjucksMatcherWithLineAndColumn = /\((\/[^)]+)\) \[Line (\d+), Column (\d+)]\s+(.+)$/
   const nunjucksMatchesWithLineAndColumn = nunjucksMatcherWithLineAndColumn.exec(err.message)
   if (nunjucksMatchesWithLineAndColumn) {

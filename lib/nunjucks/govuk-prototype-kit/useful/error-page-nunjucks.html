@@ -6,30 +6,7 @@ An error occurred – GOV.UK Prototype Kit
 
 {% block content %}
 
-<style>
-  .code {
-    overflow: scroll;
-  }
-  code {
-    display: block;
-    width: 2000px;
-  }
-  .code-line {
-    line-height: 1.5;
-    font-family: monospace;
-    font-size: 1.2em;
-  }
-  .line-number {
-    display: inline-block;
-    width: 40px;
-  }
-  {% for highlightLine in highlightLines %}
-  .line-{{highlightLine}} {
-    background: red;
-    color: white;
-  }
-  {% endfor %}
-</style>
+{{ styles | safe}}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
