@@ -174,21 +174,22 @@ app.use((req, res, next) => {
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
 
-async function displayNiceError (filePath, line, message, res, column) {
+async function displayNiceError (filePath, line, message, res, column, stack) {
   const {
     pathFromAppRoot,
     codeArea,
     formattedFileContents,
-    highlightLines,
-    preparedMessage
-  } = errorHandlingUtils.prepareNiceError(filePath, line, column)
-  return res.render('govuk-prototype-kit/useful/error-page-nunjucks', {
+    highlightLines
+  } = await errorHandlingUtils.prepareNiceError(filePath, message, line, column)
+  const model = {
     pathFromAppRoot,
     codeArea,
     formattedFileContents,
     styles: errorHandlingUtils.getErrorStyles(highlightLines),
-    preparedMessage
-  })
+    message,
+    preparedStack: errorHandlingUtils.formatForHtml(stack)
+  }
+  return res.render('govuk-prototype-kit/useful/error-page-nunjucks', model)
 }
 
 // message without the stack trace.
