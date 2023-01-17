@@ -198,6 +198,12 @@ app.use(async (err, req, res, next) => {
     return next(err)
   }
   res.status(err.status || 500)
+  if (err.status === 404) {
+    res.render('govuk-prototype-kit/useful/error-page', {
+      message: 'Page not found'
+    })
+    return 
+  }
   const input = err.stack
   const formattedStack = errorHandlingUtils.formatForHtml(input)
   const nunjucksMatcherWithLineAndColumn = /\((\/[^)]+)\) \[Line (\d+), Column (\d+)]\s+(.+)$/
