@@ -199,9 +199,7 @@ app.use(async (err, req, res, next) => {
   }
   res.status(err.status || 500)
   if (err.status === 404) {
-    res.render('govuk-prototype-kit/useful/error-page', {
-      message: 'Page not found'
-    })
+    res.render('govuk-prototype-kit/useful/not-found')
     return 
   }
   const input = err.stack
