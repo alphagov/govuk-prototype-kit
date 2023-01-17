@@ -187,7 +187,7 @@ async function displayNiceError (filePath, line, message, res, column, stack) {
     formattedFileContents,
     styles: errorHandlingUtils.getErrorStyles(highlightLines),
     message,
-    preparedStack: ''
+    preparedStack: errorHandlingUtils.formatForHtml(stack)
   }
   return res.render('govuk-prototype-kit/useful/error-page-nunjucks', model)
 }
