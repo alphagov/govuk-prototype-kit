@@ -13,6 +13,9 @@
 ### New features
 
 - [#1906: Improved messaging when creating a prototype](https://github.com/alphagov/govuk-prototype-kit/pull/1906)
+- [#1915: Move Task list template to Task list plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1915)
+  The Task list template has been moved to the new
+  [Task list plugin](https://github.com/alphagov/govuk-prototype-kit-task-list)
 
 ### Fixes
 
