@@ -33,13 +33,13 @@ v8.0.0 // After implementing backwards incompatible changes
 
 5. If the major version has changed make sure it's updated for the plugins in `GOVUKPrototypeKit.majorVersion` (JS) and `$govuk-prototype-kit-major-version` (SASS).
 
-6. Update the [CHANGELOG.md](/CHANGELOG.md) by:
+6. Update the [CHANGELOG.md](../../CHANGELOG.md) by:
 
   - adding the text of the release notes under the 'Unreleased' heading
   - changing the 'Unreleased' heading to the new version-number - for example, '12.0.1'
   - adding a new 'Unreleased' heading above the new version-number, so users will know where to add PRs to the changelog
 
-7. Update the version number in [package.json](/package.json#L4).
+7. Update the version number in [package.json](../../package.json).
 
 8. Run `npm install` to update `npm-shrinkwrap.json`.
 
