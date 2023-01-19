@@ -16,7 +16,7 @@ async function npmInstall (cwd, dependencies) {
     })
 }
 
-function splitSemvarVersion (version) {
+function splitSemverVersion (version) {
   const versionParts = version.split('.').map(Number)
 
   return {
@@ -28,12 +28,12 @@ function splitSemvarVersion (version) {
 
 async function getPackageVersionFromPackageJson (packageJsonPath) {
   const version = (await fse.readJson(packageJsonPath)).version
-  return splitSemvarVersion(version)
+  return splitSemverVersion(version)
 }
 
 module.exports = {
   npmInstall,
   packageJsonFormat,
   getPackageVersionFromPackageJson,
-  splitSemvarVersion
+  splitSemverVersion
 }

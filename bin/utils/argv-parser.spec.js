@@ -137,7 +137,7 @@ describe('argv parser', () => {
       paths: ['/tmp/hello-world']
     })
   })
-  it('should support semvar numbers as values', () => {
+  it('should support semver numbers as values', () => {
     const result = parser.parse(addStandardArgs([
       '--version',
       '13.0.1',
