@@ -26,11 +26,13 @@ const verboseLogger = !argv.options.verbose
   }
 
 const progressLogger = function () {
-  if (argv.options['created-from-version']) {
-    const version = splitSemverVersion(argv.options['created-from-version'])
-    if (version.major === 13 && version.minor < 2) {
-      return
-    }
+  const versionOfInstaller = argv.options['created-from-version']
+  if (!versionOfInstaller) {
+    return
+  }
+  const version = splitSemverVersion(versionOfInstaller)
+  if (version.major === 13 && version.minor < 2) {
+    return
   }
 
   console.log(' - ', ...arguments)
