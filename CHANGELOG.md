@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.2.0
+
 ### New features
 
 - [#1906: Improved messaging when creating a prototype](https://github.com/alphagov/govuk-prototype-kit/pull/1906)
