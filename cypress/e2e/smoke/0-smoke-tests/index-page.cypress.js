@@ -1,6 +1,6 @@
 specify('index page', () => {
   cy.visit('/')
-  cy.contains('GOV.UK Prototype Kit')
+  cy.get('h2').contains('GOV.UK Prototype Kit')
 })
 
 specify('GOV.UK Frontend fonts loaded', () => {

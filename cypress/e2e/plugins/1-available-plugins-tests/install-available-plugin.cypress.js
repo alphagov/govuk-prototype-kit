@@ -139,7 +139,7 @@ describe('Management plugins: ', () => {
     cy.get('a[href*="/templates"]')
       .should('contains.text', 'Templates').click()
 
-    cy.get('h2').eq(2).should('contain.text', pluginName)
+    cy.get('h2').contains(pluginName)
 
     cy.task('log', `Create a new ${pluginPageTitle} page`)
 
@@ -150,8 +150,7 @@ describe('Management plugins: ', () => {
       .should('contains.text', `Create new ${pluginPageTitle} page`)
     cy.get('#chosen-url')
       .type(pluginPagePath)
-    cy.get('.govuk-button')
-      .should('contains.text', 'Create page').click()
+    cy.get('.govuk-button').contains('Create page').click()
 
     provePluginFunctionalityWorks()
   })
@@ -217,8 +216,7 @@ describe('Management plugins: ', () => {
         const pkg = 'invalid-prototype-kit-plugin'
         const pluginName = 'Invalid Prototype Kit Plugin'
         cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(pkg)}`)
-        cy.get('h2')
-          .should('contains.text', `Install ${pluginName}`)
+        cy.get('h2').contains(`Install ${pluginName}`)
         failAction()
       })
 
