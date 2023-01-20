@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 13.2.1
+
+### Fixes
+
+- [#1921: Cleaning up creation messages for users who have an older installer (v13.1.0 and before)](https://github.com/alphagov/govuk-prototype-kit/pull/1921)
+
 ## 13.2.0
 
 ### New features
