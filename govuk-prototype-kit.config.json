@@ -42,11 +42,6 @@
       "type":  "nunjucks"
     },
     {
-      "name": "Task list page",
-      "path": "/lib/nunjucks/templates/task-list.html",
-      "type":  "nunjucks"
-    },
-    {
       "name": "Check answers page",
       "path": "/lib/nunjucks/templates/check-answers.html",
       "type":  "nunjucks"
