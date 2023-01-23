@@ -91,4 +91,10 @@ describe('Plugin tests', () => {
       { name: 'Question', filename: 'question.html' }
     ]
   })
+
+  installPluginTests({
+    plugin: '@govuk-prototype-kit/task-list',
+    version: '1.0.0',
+    templates: [{ name: 'Task list', filename: 'task-list.html' }]
+  })
 })
