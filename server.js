@@ -26,6 +26,11 @@ const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
+
+// Middleware to serve static assets
+app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
+app.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
+
 routesApi.setApp(app)
 
 // Set up configuration variables
@@ -93,10 +98,6 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 
 // Set views engine
 app.set('view engine', 'html')
-
-// Middleware to serve static assets
-app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
-app.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
 
 // Support for parsing data in POSTs
 app.use(bodyParser.json())
