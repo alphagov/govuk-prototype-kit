@@ -17,7 +17,7 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
         type: [smoke, plugins, dev, prod]
 
-    name: Acceptance ${{ matrix.type }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
+    name: Acceptance [${{ matrix.type }}] test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
 
