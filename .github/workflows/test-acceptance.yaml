@@ -15,11 +15,11 @@ jobs:
       matrix:
         node-version: [18.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
-        env: [smoke, dev, prod]
+        type: [smoke, plugins, dev, prod]
 
-    name: Acceptance ${{ matrix.env }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
+    name: Acceptance ${{ matrix.type }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    timeout-minutes: 20
 
     env:
       CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
@@ -43,7 +43,7 @@ jobs:
 
     - run: npm ci
 
-    - run: npm run test:acceptance:${{ matrix.env }}
+    - run: npm run test:acceptance:${{ matrix.type }}
       env:
         CYPRESS_REQUEST_TIMEOUT: 20000
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
@@ -53,6 +53,6 @@ jobs:
     - if: ${{ failure() }}
       uses: actions/upload-artifact@v3
       with:
-        name: cypress-screenshots-${{ matrix.env }}-${{ runner.os }}-${{ matrix.node-version }}
+        name: cypress-screenshots-${{ matrix.type }}-${{ runner.os }}-${{ matrix.node-version }}
         path: cypress/screenshots/
 

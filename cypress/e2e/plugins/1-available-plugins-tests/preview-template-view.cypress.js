@@ -25,7 +25,7 @@ describe('Management plugins: ', () => {
   })
 
   it(`Preview a ${plugin}${version2} template`, () => {
-    cy.get('h2').eq(2).should('contain.text', pluginName)
+    cy.get('h2').contains(pluginName)
 
     cy.task('log', `Preview the ${pluginPageTitle} template`)
 
