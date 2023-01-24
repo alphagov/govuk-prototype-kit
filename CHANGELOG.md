@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 13.2.2
+
+### Fixes
+
+- [#1929: Fixing create message](https://github.com/alphagov/govuk-prototype-kit/pull/1929)
+
 ## 13.2.1
 
 ### Fixes
