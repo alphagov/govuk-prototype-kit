@@ -8,6 +8,12 @@
   The Task list template has been moved to the new
   [Task list plugin](https://github.com/alphagov/govuk-prototype-kit-task-list)
 
+## 13.2.2
+
+### Fixes
+
+- [#1929: Fixing create message](https://github.com/alphagov/govuk-prototype-kit/pull/1929)
+
 ## 13.2.1
 
 ### Fixes
