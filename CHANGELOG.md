@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 13.2.3
+
+### Fixes
+
+- [#1935: Fix upgrade prototype kit error](https://github.com/alphagov/govuk-prototype-kit/pull/1935)
+
 ### New features
 
 - [#1915: Move Task list template to Task list plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1915)
