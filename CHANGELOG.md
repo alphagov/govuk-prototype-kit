@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 13.2.3
+
+### Fixes
+
+- [#1935: Fix upgrade prototype kit error](https://github.com/alphagov/govuk-prototype-kit/pull/1935)
+
 ## 13.2.2
 
 ### Fixes
