@@ -1,9 +1,9 @@
 
 // local dependencies
-const { installPlugin, waitForApplication, getTemplateLink } = require('../../utils')
+const { installPlugin, waitForApplication } = require('../../utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
+const { manageTemplatesPagePath, getTemplateLink } = require('../plugin-utils')
 
-const manageTemplatesPagePath = '/manage-prototype/templates'
 const plugin = '@govuk-prototype-kit/step-by-step'
 const version1 = '@1.0.0'
 const version2 = '@2.1.0'

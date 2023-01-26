@@ -1,19 +1,8 @@
 // local dependencies
-const { waitForApplication, uninstallPlugin } = require('../../utils')
+const { uninstallPlugin } = require('../../utils')
+const { managePluginsPagePath, loadTemplatesPage, loadPluginsPage } = require('../plugin-utils')
 
-const managePluginsPagePath = '/manage-prototype/plugins'
-const manageTemplatesPagePath = '/manage-prototype/templates'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
-
-async function loadPluginsPage () {
-  cy.task('log', 'Visit the manage prototype plugins page')
-  await waitForApplication(managePluginsPagePath)
-}
-
-async function loadTemplatesPage () {
-  cy.task('log', 'Visit the manage prototype templates page')
-  await waitForApplication(manageTemplatesPagePath)
-}
 
 async function installPluginTests ({ plugin, templates, version }) {
   describe(plugin, () => {
