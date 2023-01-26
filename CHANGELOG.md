@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#1942: Allow smooth upgrade from 13.1.0 to 13.2.4](https://github.com/alphagov/govuk-prototype-kit/pull/1942)
+
 ## 13.2.3
 
 ### Fixes
