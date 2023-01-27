@@ -2,21 +2,19 @@
 
 ## Unreleased
 
-### Fixes
-
-- [#1942: Allow smooth upgrade from 13.1.0 to 13.2.4](https://github.com/alphagov/govuk-prototype-kit/pull/1942)
-
-## 13.2.3
-
-### Fixes
-
-- [#1935: Fix upgrade prototype kit error](https://github.com/alphagov/govuk-prototype-kit/pull/1935)
-
 ### New features
 
 - [#1915: Move Task list template to Task list plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1915)
   The Task list template has been moved to the new
   [Task list plugin](https://github.com/alphagov/govuk-prototype-kit-task-list)
+
+## 13.2.4
+
+### Fixes
+
+- [#1942: Allow smooth upgrade from 13.1.0 to 13.2.4](https://github.com/alphagov/govuk-prototype-kit/pull/1942)
+
+## 13.2.3
 
 ### Fixes
 
