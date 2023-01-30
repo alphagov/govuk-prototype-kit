@@ -234,7 +234,7 @@ async function runCreate () {
 
   progressLogger('Installing dependencies')
 
-  await npmInstall(installDirectory, [kitDependency, 'govuk-frontend'])
+  await npmInstall(installDirectory, [kitDependency, 'govuk-frontend', '@govuk-prototype-kit/common-templates'])
 
   let runningWithinCreateScriptFlag = '--running-within-create-script'
 
