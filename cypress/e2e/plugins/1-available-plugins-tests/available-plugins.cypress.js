@@ -15,7 +15,7 @@ async function loadTemplatesPage () {
   await waitForApplication(manageTemplatesPagePath)
 }
 
-async function installPluginTests ({ plugin, templates }) {
+async function installPluginTests ({ plugin, templates, version }) {
   describe(plugin, () => {
     before(() => {
       uninstallPlugin(plugin)
@@ -32,17 +32,21 @@ async function installPluginTests ({ plugin, templates }) {
     })
 
     it(`Install the ${plugin} plugin`, () => {
-      loadPluginsPage()
-      cy.task('log', `Install the ${plugin} plugin`)
-      cy.get(`button[formaction*="/install?package=${encodeURIComponent(plugin)}"]`)
-        .contains('Install').click()
+      if (version) {
+        cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version}`)
+
+        cy.get('#plugin-action-button').click()
+      } else {
+        loadPluginsPage()
+        cy.task('log', `Install the ${plugin} plugin`)
+        cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Install').click()
+      }
 
       cy.get(panelCompleteQuery, { timeout: 20000 })
         .should('be.visible')
       cy.get('a').contains('Back to plugins').click()
 
-      cy.get(`button[formaction*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
-        .contains('Uninstall')
+      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall')
     })
 
     it(`The ${plugin} plugin templates are available`, () => {
@@ -61,15 +65,13 @@ async function installPluginTests ({ plugin, templates }) {
     it(`Uninstall the ${plugin} plugin`, () => {
       loadPluginsPage()
       cy.task('log', `Uninstall the ${plugin} plugin`)
-      cy.get(`button[formaction*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
-        .contains('Uninstall').click()
+      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall').click()
 
       cy.get(panelCompleteQuery, { timeout: 20000 })
         .should('be.visible')
       cy.get('a').contains('Back to plugins').click()
 
-      cy.get(`button[formaction*="/install?package=${encodeURIComponent(plugin)}"]`)
-        .contains('Install')
+      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Install')
     })
   })
 }
@@ -77,6 +79,7 @@ async function installPluginTests ({ plugin, templates }) {
 describe('Plugin tests', () => {
   installPluginTests({
     plugin: '@govuk-prototype-kit/common-templates',
+    version: '1.0.0',
     templates: [
       { name: 'Blank GOV.UK', filename: 'blank-govuk.html' },
       { name: 'Blank unbranded', filename: 'blank-unbranded.html' },

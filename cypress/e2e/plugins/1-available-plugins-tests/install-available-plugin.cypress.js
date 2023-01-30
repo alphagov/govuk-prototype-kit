@@ -128,8 +128,7 @@ describe('Management plugins: ', () => {
   it(`Upgrade the ${plugin}@${version1} plugin to ${plugin}@${version2}`, () => {
     loadPluginsPage()
     cy.task('log', `Upgrade the ${plugin} plugin`)
-    cy.get(`button[formaction*="/upgrade?package=${encodeURIComponent(plugin)}"]`)
-      .should('contains.text', 'Upgrade').click()
+    cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Upgrade').click()
 
     performPluginAction('upgrade')
   })
@@ -158,8 +157,7 @@ describe('Management plugins: ', () => {
   it(`Uninstall the ${plugin} plugin`, () => {
     loadPluginsPage()
     cy.task('log', `Uninstall the ${plugin} plugin`)
-    cy.get(`button[formaction*="/uninstall?package=${encodeURIComponent(plugin)}"]`)
-      .should('contains.text', 'Uninstall').click()
+    cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall').click()
 
     performPluginAction('uninstall')
 
@@ -169,8 +167,7 @@ describe('Management plugins: ', () => {
   it(`Install the ${plugin} plugin`, () => {
     loadPluginsPage()
     cy.task('log', `Install the ${plugin} plugin`)
-    cy.get(`button[formaction*="/install?package=${encodeURIComponent(plugin)}"]`)
-      .should('contains.text', 'Install').click()
+    cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Install').click()
 
     performPluginAction('install')
 
