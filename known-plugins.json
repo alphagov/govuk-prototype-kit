@@ -2,6 +2,7 @@
   "plugins": {
     "available": [
       "govuk-frontend",
+      "@govuk-prototype-kit/common-templates",
       "@govuk-prototype-kit/step-by-step",
       "@govuk-prototype-kit/task-list",
       "hmrc-frontend",

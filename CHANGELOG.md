@@ -7,6 +7,9 @@
 - [#1915: Move Task list template to Task list plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1915)
   The Task list template has been moved to the new
   [Task list plugin](https://github.com/alphagov/govuk-prototype-kit-task-list)
+- [#1923: Move Common templates to Common templates plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1923)
+  The Common templates have been moved to the new
+  [Common templates plugin](https://github.com/alphagov/govuk-prototype-kit-common-templates)
 
 ## 13.2.4
 

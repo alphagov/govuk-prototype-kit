@@ -14,47 +14,5 @@
   "importNunjucksMacrosInto": [
     "/lib/nunjucks/govuk-prototype-kit/layouts/govuk-branded.html",
     "/lib/nunjucks/govuk-prototype-kit/layouts/unbranded.html"
-  ],
-  "templates": [
-    {
-      "name": "Blank GOV.UK page",
-      "path": "/lib/nunjucks/templates/blank-govuk.html",
-      "type": "nunjucks"
-    },
-    {
-      "name": "Blank unbranded page",
-      "path": "/lib/nunjucks/templates/blank-unbranded.html",
-      "type":  "nunjucks"
-    },
-    {
-      "name": "Start page",
-      "path": "/lib/nunjucks/templates/start.html",
-      "type":  "nunjucks"
-    },
-    {
-      "name": "Question page",
-      "path": "/lib/nunjucks/templates/question.html",
-      "type":  "nunjucks"
-    },
-    {
-      "name": "Content page",
-      "path": "/lib/nunjucks/templates/content.html",
-      "type":  "nunjucks"
-    },
-    {
-      "name": "Check answers page",
-      "path": "/lib/nunjucks/templates/check-answers.html",
-      "type":  "nunjucks"
-    },
-    {
-      "name": "Confirmation page",
-      "path": "/lib/nunjucks/templates/confirmation.html",
-      "type":  "nunjucks"
-    },
-    {
-      "name": "Mainstream guide page",
-      "path": "/lib/nunjucks/templates/mainstream-guide.html",
-      "type":  "nunjucks"
-    }
   ]
 }
