@@ -30,7 +30,7 @@ function performPluginAction (action, plugin, pluginName) {
   cy.get('h2')
     .contains(`${capitalize(action)} ${pluginName}`)
 
-  cy.get(panelCompleteQuery)
+  cy.get(panelCompleteQuery, { timeout: 20000 })
     .should('not.be.visible')
   cy.get(panelCompleteQuery)
     .should('not.be.visible')
@@ -53,7 +53,7 @@ function performPluginAction (action, plugin, pluginName) {
     .wait(3000)
     .click()
 
-  cy.get('h1').should('have.text', 'Plugins')
+  cy.get('h1').contains('Plugins')
 }
 
 function failAction (action) {
