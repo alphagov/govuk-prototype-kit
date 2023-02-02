@@ -23,6 +23,7 @@ const https = require('https')
 // local dependencies
 const { starterDir } = require('../../lib/utils/paths')
 const { sleep } = require('../e2e/utils')
+const { requestHttpsJson } = require('../../lib/utils')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
 
@@ -69,7 +70,7 @@ module.exports = function setupNodeEvents (on, config) {
     config.env.packageFolder = path.join(config.env.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
-  const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 2000, resources: [config.baseUrl], timeout })
+  const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 3000, resources: [config.baseUrl], timeout })
   const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
   const replaceText = ({ text, originalText, newText, source }) => {
     return getReplacementText(newText, source)
@@ -95,6 +96,7 @@ module.exports = function setupNodeEvents (on, config) {
   const makeSureCypressCanInterpretTheResult = () => null
 
   const existsFile = (filename, timeout = 0) => fsp.access(filename)
+    .then(makeSureCypressCanInterpretTheResult)
     .catch((err) => err.code !== 'ENOENT'
       ? err
       : async () => {
@@ -110,13 +112,13 @@ module.exports = function setupNodeEvents (on, config) {
   const notExistsFile = (filename, timeout = 0) => fsp.access(filename)
     .then(async () => {
       if (timeout < 100) {
-        return null
+        return makeSureCypressCanInterpretTheResult()
       } else {
         await sleep(100)
         return notExistsFile(filename, timeout - 100)
       }
     })
-    .catch((err) => err.code !== 'ENOENT' ? err : null)
+    .catch((err) => err.code !== 'ENOENT' ? err : makeSureCypressCanInterpretTheResult())
 
   const deleteFile = (filename, timeout = 0) => fsp.unlink(filename)
     .then(() => sleep(timeout))
@@ -166,25 +168,41 @@ module.exports = function setupNodeEvents (on, config) {
   }
 
   const getPathFromProjectRoot = (...all) => path.join(...[config.env.projectFolder].concat(all))
-  const pathToPackageConfigFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'govuk-prototype-kit.config.json')
+  const pathToPackageFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'package.json')
 
-  const pluginInstalled = (plugin, timeout) => {
+  const pluginInstalled = async (plugin, version, timeout) => {
     const delay = 1000
+
+    if (version === '@latest') {
+      const packageInfo = await requestHttpsJson(`https://registry.npmjs.org/${encodeURIComponent(plugin)}`)
+      const { latest } = packageInfo['dist-tags']
+      version = '@' + latest
+    }
+
+    const retry = async () => {
+      console.log(`Will retry in ${delay} milliseconds`)
+      await sleep(delay)
+      await pluginInstalled(plugin, version, timeout - delay)
+    }
+
     return new Promise((resolve) => {
-      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
-      console.log(`Looking for ${plugin} in ${pkgConfigFilePath}`)
-      if (pkgConfigFilePath) {
-        existsFile(pkgConfigFilePath)
-          .then(() => resolve(makeSureCypressCanInterpretTheResult))
-      } else {
-        if (timeout < delay) {
-          resolve()
+      const pkgFilePath = pathToPackageFile(plugin)
+      console.log(`Waiting for ${pkgFilePath} to exist`)
+      return existsFile(pkgFilePath, timeout).then(() => {
+        if (version) {
+          const packageContent = fs.readFileSync(pkgFilePath, 'utf8')
+          const { version: currentVersion } = JSON.parse(packageContent)
+          console.log(`Current version of ${plugin} is @${currentVersion}`)
+          if (version === '@' + currentVersion) {
+            resolve(makeSureCypressCanInterpretTheResult)
+          } else {
+            retry().then(() => resolve(makeSureCypressCanInterpretTheResult))
+          }
         } else {
-          setTimeout(() => {
-            return pluginInstalled(plugin, timeout - delay)
-          }, delay)
+          console.log('Skip version test')
+          resolve(makeSureCypressCanInterpretTheResult)
         }
-      }
+      })
     })
   }
 
@@ -225,12 +243,12 @@ module.exports = function setupNodeEvents (on, config) {
     notExistsFile: ({ filename, timeout }) => notExistsFile(filename, timeout)
       .then(makeSureCypressCanInterpretTheResult),
 
-    pluginInstalled: ({ plugin, timeout }) => pluginInstalled(plugin, timeout)
+    pluginInstalled: ({ plugin, version, timeout }) => pluginInstalled(plugin, version, timeout)
       .then(makeSureCypressCanInterpretTheResult),
 
     pluginUninstalled: ({ plugin, timeout }) => {
-      const pkgConfigFilePath = pathToPackageConfigFile(plugin)
-      return notExistsFile(pkgConfigFilePath, timeout)
+      const pkgFilePath = pathToPackageFile(plugin)
+      return notExistsFile(pkgFilePath, timeout)
         .then(makeSureCypressCanInterpretTheResult)
     },
 

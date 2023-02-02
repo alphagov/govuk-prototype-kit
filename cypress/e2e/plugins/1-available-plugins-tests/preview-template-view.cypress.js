@@ -1,12 +1,9 @@
-
 // local dependencies
 const { installPlugin, waitForApplication } = require('../../utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 const { manageTemplatesPagePath, getTemplateLink } = require('../plugin-utils')
 
 const plugin = '@govuk-prototype-kit/step-by-step'
-const version1 = '@1.0.0'
-const version2 = '@2.1.0'
 const pluginName = 'Step By Step'
 const pluginPageTemplate = '/templates/step-by-step-navigation.html'
 const pluginPageTitle = 'Step by step navigation'
@@ -14,17 +11,12 @@ const pluginPageTitle = 'Step by step navigation'
 describe('Management plugins: ', () => {
   before(() => {
     cy.task('log', 'Visit the manage prototype plugins page')
-    installPlugin(plugin, version2)
-    cy.wait(8000)
+    installPlugin(plugin, 'latest')
+  })
+
+  it(`Preview a ${plugin} template`, () => {
     waitForApplication(manageTemplatesPagePath)
-  })
 
-  after(() => {
-    installPlugin(plugin, version1)
-    cy.wait(8000)
-  })
-
-  it(`Preview a ${plugin}${version2} template`, () => {
     cy.get('h2').contains(pluginName)
 
     cy.task('log', `Preview the ${pluginPageTitle} template`)

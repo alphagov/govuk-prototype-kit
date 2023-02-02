@@ -9,7 +9,6 @@ const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const pluginBazView = path.join(appViews, 'plugin-baz.html')
 const fixtures = path.join(Cypress.config('fixturesFolder'))
 const pluginLocation = path.join(fixtures, 'plugins', 'plugin-baz')
-const pluginPackageJson = path.join(pluginLocation, 'package.json')
 
 const CYAN = 'rgb(0, 255, 255)'
 const MAGENTA = 'rgb(255, 0, 255)'
@@ -33,12 +32,8 @@ const pluginBazViewMarkup = `
 describe('Single Plugin Test', async () => {
   before(() => {
     uninstallPlugin('plugin-baz')
-    cy.task('notExistsFile', { filename: pluginPackageJson, timeout: 15000 })
-    cy.wait(5000)
     createFile(pluginBazView, { data: pluginBazViewMarkup })
     installPlugin(`file:${pluginLocation}`)
-    cy.task('existsFile', { filename: pluginPackageJson, timeout: 15000 })
-    cy.wait(5000)
   })
 
   it('Loads plugin-baz view correctly', () => {

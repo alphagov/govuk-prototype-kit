@@ -56,7 +56,6 @@ function performPluginAction (action, plugin, pluginName) {
 
   cy.get('#instructions-complete a')
     .contains('Back to plugins')
-    .wait(3000)
     .click()
 
   cy.task('log', 'Returning to plugins page')

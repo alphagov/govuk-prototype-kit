@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { copyFile, waitForApplication } = require('../../utils')
+const { copyFile, waitForApplication, installPlugin } = require('../../utils')
 const {
   assertHidden,
   assertVisible,
@@ -11,6 +11,8 @@ const {
   titleQuery,
   toggleButtonQuery
 } = require('../../step-by-step-utils')
+
+const plugin = '@govuk-prototype-kit/step-by-step'
 
 const projectFolder = Cypress.env('projectFolder')
 
@@ -45,6 +47,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     }
 
     it('renders ok', () => {
+      installPlugin(plugin)
+
       loadPage()
       cy.get(titleQuery(1)).should('contain.text', title1)
       cy.get(titleQuery(2)).should('contain.text', title2)
