@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { deleteFile } = require('../../utils')
+const { deleteFile, uninstallPlugin } = require('../../utils')
 const {
   failAction,
   performPluginAction,
@@ -58,6 +58,8 @@ const provePluginFunctionalityFails = () => {
 
 describe('Management plugins: ', () => {
   before(() => {
+    uninstallPlugin(plugin)
+    cy.wait(8000)
     deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
   })
 
