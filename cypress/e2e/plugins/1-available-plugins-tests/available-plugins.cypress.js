@@ -8,11 +8,6 @@ async function installPluginTests ({ plugin, templates, version }) {
   describe(plugin, () => {
     before(() => {
       uninstallPlugin(plugin)
-      cy.wait(4000)
-    })
-
-    beforeEach(() => {
-      cy.wait(4000)
     })
 
     it(`The ${plugin} plugin templates are not available`, () => {
@@ -22,6 +17,7 @@ async function installPluginTests ({ plugin, templates, version }) {
 
     it(`Install the ${plugin} plugin`, () => {
       if (version) {
+        cy.task('waitUntilAppRestarts')
         cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version}`)
 
         cy.get('#plugin-action-button').click()

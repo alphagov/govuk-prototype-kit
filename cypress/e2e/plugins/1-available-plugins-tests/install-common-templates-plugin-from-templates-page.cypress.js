@@ -12,7 +12,6 @@ async function loadTemplatesPage () {
 describe('Install common templates from templates page', () => {
   before(() => {
     uninstallPlugin(plugin)
-    cy.wait(4000)
   })
 
   it('install', () => {

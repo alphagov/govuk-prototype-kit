@@ -44,13 +44,16 @@ function uninstallPlugin (plugin) {
 }
 
 function installPlugin (plugin, version = '') {
+  if (version) {
+    version = '@' + version
+  }
   cy.task('log', `Installing ${plugin}${version}`)
   cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}${version}`)
   if (plugin.startsWith('file:')) {
     plugin = plugin.substring(plugin.lastIndexOf('/') + 1)
   }
   cy.task('log', `Waiting for ${plugin}${version} to be installed`)
-  cy.task('pluginInstalled', { plugin, timeout: 15000 })
+  cy.task('pluginInstalled', { plugin, version, timeout: 15000 })
 }
 
 module.exports = {
