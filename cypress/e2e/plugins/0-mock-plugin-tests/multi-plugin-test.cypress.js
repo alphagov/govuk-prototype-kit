@@ -35,17 +35,18 @@ const pluginFooBarSeparatedViewMarkup = `
 describe('Plugins test', async () => {
   before(() => {
     cy.task('createFile', { filename: pluginFooBarView, data: pluginFooBarSeparatedViewMarkup })
-    waitForApplication()
   })
 
   describe('Plugin Bar', () => {
     it('Loads plugin-bar view correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-bar')
         .should('contains.text', 'Plugin Bar')
     })
 
     it('Loads plugin-bar style correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-bar')
         .should('have.css', 'background-color', RED)
@@ -53,6 +54,7 @@ describe('Plugins test', async () => {
     })
 
     it('Loads plugin-bar script correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-bar').click()
       cy.get('.plugin-bar').should('have.css', 'background-color', GREEN)
@@ -62,12 +64,14 @@ describe('Plugins test', async () => {
 
   describe('Plugin Foo', () => {
     it('Loads plugin-foo view correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-foo')
         .should('contains.text', 'Plugin Foo')
     })
 
     it('Loads plugin-foo style correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-foo')
         .should('have.css', 'background-color', YELLOW)
@@ -75,6 +79,7 @@ describe('Plugins test', async () => {
     })
 
     it('Loads plugin-foo script correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-foo').click()
       cy.get('.plugin-foo')

@@ -4,11 +4,8 @@ const errorQuery = 'error=wrong-password'
 const returnURLQuery = `returnURL=${encodeURIComponent(homePath)}`
 
 describe('password page', () => {
-  before(() => {
-    cy.task('waitUntilAppRestarts')
-  })
-
   it('valid password', () => {
+    cy.task('waitUntilAppRestarts')
     cy.visit(homePath)
     cy.url().then(passwordUrl => {
       const urlObject = new URL(passwordUrl)
@@ -20,14 +17,15 @@ describe('password page', () => {
   })
 
   it('invalid password', () => {
+    cy.task('waitUntilAppRestarts')
     cy.visit(homePath)
     cy.url().then(passwordUrl => {
       const urlObject = new URL(passwordUrl)
       expect(passwordUrl).equal(`${urlObject.origin + passwordPath}?${returnURLQuery}`)
       cy.get('input#password').type('invalid')
       cy.get('form').submit()
-      cy.get('.govuk-error-summary__list').should('contains.text', 'The password is not correct')
-      cy.get('#password-error').should('contains.text', 'The password is not correct')
+      cy.get('.govuk-error-summary__list').contains('The password is not correct')
+      cy.get('#password-error').contains('The password is not correct')
       cy.url().should('eq', `${urlObject.origin + passwordPath}?${errorQuery}&${returnURLQuery}`)
     })
   })

@@ -18,15 +18,15 @@ describe('watch config file', () => {
     before(() => {
       // Restore config.json from prototype starter
       cy.task('copyFromStarterFiles', { filename: appConfigPath })
-      waitForApplication()
     })
 
     it('The service name should change to "cypress test"', () => {
+      waitForApplication()
       cy.visit('/')
-      cy.get(serverNameQuery).should('contains.text', originalText)
+      cy.get(serverNameQuery).contains(originalText)
       cy.task('replaceTextInFile', { filename: appConfig, originalText, newText })
       waitForApplication()
-      cy.get(serverNameQuery).should('contains.text', newText)
+      cy.get(serverNameQuery).contains(newText)
     })
   })
 })

@@ -36,17 +36,18 @@ const pluginFooBarCombinedViewMarkup = `
 describe('Multiple Plugin test', async () => {
   before(() => {
     cy.task('createFile', { filename: pluginFooBarView, data: pluginFooBarCombinedViewMarkup })
-    waitForApplication()
   })
 
   describe('Plugin Bar', () => {
     it('Loads plugin-bar view correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-bar')
         .should('contains.text', 'Plugin Foo Bar')
     })
 
     it('Loads plugin-bar style correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-bar')
         .should('have.css', 'background-color', YELLOW)
@@ -54,6 +55,7 @@ describe('Multiple Plugin test', async () => {
     })
 
     it('Loads plugin-bar script correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-bar').click()
       cy.get('.plugin-bar')
@@ -61,6 +63,7 @@ describe('Multiple Plugin test', async () => {
         .should('have.css', 'border-color', RED)
     })
     it('Uses the foo filter correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('#filter-test-bar')
         .should('contain.html', '<a href="https://gov.uk/">Hello</a>')
@@ -69,12 +72,14 @@ describe('Multiple Plugin test', async () => {
 
   describe('Plugin Foo', () => {
     it('Loads plugin-foo view correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-foo')
         .should('contains.text', 'Plugin Foo Bar')
     })
 
     it('Loads plugin-foo style correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-foo')
         .should('have.css', 'background-color', YELLOW)
@@ -82,12 +87,14 @@ describe('Multiple Plugin test', async () => {
     })
 
     it('Loads plugin-foo script correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-foo').click()
       cy.get('.plugin-foo').should('have.css', 'background-color', BLUE)
         .should('have.css', 'border-color', RED)
     })
     it('Uses the bar filter correctly', () => {
+      waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('#filter-test-foo')
         .should('contain.html', '<strong>Hello</strong>')

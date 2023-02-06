@@ -38,15 +38,16 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
   describe(`${name} journey`, async () => {
     before(() => {
       copyFile(stepByStepTemplateView, stepByStepView)
-      waitForApplication()
     })
 
     const loadPage = async () => {
       cy.visit(stepByStepPath)
-      cy.get('h1').should('contains.text', heading)
+      cy.get('h1').contains(heading)
     }
 
     it('renders ok', () => {
+      waitForApplication()
+
       installPlugin(plugin)
 
       loadPage()
@@ -57,6 +58,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle step 1', () => {
+      waitForApplication()
+
       loadPage()
       // click toggle button and check that only step 1 details are visible
       cy.get(toggleButtonQuery(1)).click()
@@ -70,6 +73,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle step 2', () => {
+      waitForApplication()
+
       loadPage()
       // click toggle button and check that only step 1 details are visible
       cy.get(toggleButtonQuery(2)).click()
@@ -83,14 +88,16 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle all steps', () => {
+      waitForApplication()
+
       loadPage()
       // click toggle button and check that all steps details are visible
-      cy.get(showHideAllLinkQuery).should('contains.text', 'Show all').click()
+      cy.get(showHideAllLinkQuery).contains('Show all').click()
       assertVisible(1)
       assertVisible(2)
 
       // click toggle button and check that all steps details are hidden
-      cy.get(showHideAllLinkQuery).should('contains.text', 'Hide all').click()
+      cy.get(showHideAllLinkQuery).contains('Hide all').click()
       assertHidden(1)
       assertHidden(2)
     })

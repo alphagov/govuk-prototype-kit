@@ -19,28 +19,29 @@ describe('edit home page', () => {
     // Restore index.html and config.json from prototype starter
     cy.task('copyFromStarterFiles', { filename: appHomePath })
     cy.task('copyFromStarterFiles', { filename: appConfigPath })
-    waitForApplication(managePagePath)
   })
 
   it(`The home page heading should change to "${newText}" and the task should be set to "Done"`, () => {
+    waitForApplication(managePagePath)
+
     cy.task('log', 'Visit the manage prototype templates page')
 
     cy.get('.app-task-list__item')
-      .eq(1).should('contains.text', appHomePath)
-      .get('.app-task-list__tag').should('contains.text', 'To do')
+      .contains(appHomePath)
+      .get('.app-task-list__tag').contains('To do')
 
     cy.visit('/index')
-    cy.get('.govuk-heading-xl').should('contains.text', originalText)
+    cy.get('.govuk-heading-xl').contains(originalText)
 
     cy.task('replaceTextInFile', { filename: appHome, originalText: '{{ serviceName }}', newText })
 
     waitForApplication(managePagePath)
 
     cy.get('.app-task-list__item')
-      .eq(1).should('contains.text', appHomePath)
-      .get('.app-task-list__tag').should('contains.text', 'Done')
+      .contains(appHomePath)
+      .get('.app-task-list__tag').contains('Done')
 
     cy.visit('/index')
-    cy.get('.govuk-heading-xl').should('contains.text', newText)
+    cy.get('.govuk-heading-xl').contains(newText)
   })
 })

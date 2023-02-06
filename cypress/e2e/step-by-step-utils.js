@@ -6,13 +6,13 @@ const panelQuery = (step) => `[data-position="${step}.1"]`
 const titleQuery = (step) => `[data-position="${step}"] .js-step-title-text`
 
 const assertVisible = (step) => {
-  cy.get(showHideLinkQuery(step)).should('contains.text', 'Hide')
+  cy.get(showHideLinkQuery(step)).contains('Hide')
   cy.get(panelQuery(step)).should('be.visible')
 }
 
 const assertHidden = (step) => {
   cy.get(panelQuery(step)).should('not.be.visible')
-  cy.get(showHideLinkQuery(step)).should('contains.text', 'Show')
+  cy.get(showHideLinkQuery(step)).contains('Show')
 }
 
 module.exports = {

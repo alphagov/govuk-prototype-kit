@@ -28,10 +28,11 @@ describe('watch sass files', () => {
 
       // Restore application.scss from prototype starter
       cy.task('copyFromStarterFiles', { filename: appStylesheetPath })
-      waitForApplication()
     })
 
     it('The colour of the header should be changed to red then back to black', () => {
+      waitForApplication()
+
       cy.task('log', 'The colour of the header should be black')
       cy.get('.govuk-header').should('have.css', 'background-color', BLACK)
 

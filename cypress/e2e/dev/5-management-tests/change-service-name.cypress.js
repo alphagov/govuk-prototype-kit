@@ -21,33 +21,34 @@ describe('change service name', () => {
     // Restore index.html and config.json from prototype starter
     cy.task('copyFromStarterFiles', { filename: appConfigPath })
     cy.task('copyFromStarterFiles', { filename: appIndexPath })
-    waitForApplication()
   })
 
   it('The service name should change to "cypress test" and the task should be set to "Done"', () => {
+    waitForApplication()
+
     cy.task('log', 'Visit the index page and navigate to the manage your prototype page')
     cy.visit('/')
-    cy.get('.govuk-heading-xl').should('contains.text', originalText)
-    cy.get('p strong').should('contains.text', appConfigPath)
-    cy.get(`main a[href="${managePagePath}"]`).should('contains.text', 'Manage your prototype').click()
+    cy.get('.govuk-heading-xl').contains(originalText)
+    cy.get('p strong').contains(appConfigPath)
+    cy.get(`main a[href="${managePagePath}"]`).contains('Manage your prototype').click()
 
     cy.task('log', 'Visit the manage prototype page')
 
-    cy.get(serverNameQuery).should('contains.text', originalText)
+    cy.get(serverNameQuery).contains(originalText)
     cy.get('.app-task-list__item')
-      .eq(0).should('contains.text', appConfigPath)
-      .get('.app-task-list__tag').should('contains.text', 'To do')
+      .contains(appConfigPath)
+      .get('.app-task-list__tag').contains('To do')
 
     cy.task('replaceTextInFile', { filename: appConfig, originalText, newText })
 
     waitForApplication(managePagePath)
 
-    cy.get(serverNameQuery).should('contains.text', newText)
+    cy.get(serverNameQuery).contains(newText)
     cy.get('.app-task-list__item')
-      .eq(0).should('contains.text', appConfigPath)
-      .get('.app-task-list__tag').should('contains.text', 'Done')
+      .contains(appConfigPath)
+      .get('.app-task-list__tag').contains('Done')
 
     cy.visit('/index')
-    cy.get('.govuk-heading-xl').should('contains.text', newText)
+    cy.get('.govuk-heading-xl').contains(newText)
   })
 })

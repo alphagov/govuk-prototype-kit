@@ -15,10 +15,11 @@ describe('watch route file', () => {
   before(() => {
     // Restore routes file from prototype starter
     cy.task('copyFromStarterFiles', { filename: appRoutesPath })
-    waitForApplication()
   })
 
   it(`add and remove ${pagePath} route`, () => {
+    waitForApplication()
+
     cy.task('log', 'The cypress test page should not be found')
     cy.visit(pagePath, { failOnStatusCode: false })
     cy.get('body')

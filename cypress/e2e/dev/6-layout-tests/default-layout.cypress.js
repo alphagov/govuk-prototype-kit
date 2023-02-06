@@ -16,10 +16,10 @@ const comments = el => cy.wrap(
 
 before(() => {
   cy.task('copyFromStarterFiles', { filename: defaultLayoutFilePath })
-  waitForApplication()
 })
 
-specify('deleting default layout does not cause pages to fail to render', () => {
+it('deleting default layout does not cause pages to fail to render', () => {
+  waitForApplication()
   cy.visit('/')
 
   cy.document().then(doc =>

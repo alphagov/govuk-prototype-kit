@@ -14,7 +14,6 @@ describe('checkbox tests', () => {
   before(() => {
     cy.task('log', `Copy ${templatesView} to ${appView}`)
     cy.task('copyFile', { source: templatesView, target: appView })
-    waitForApplication()
   })
 
   const loadTestView = async () => {
@@ -40,11 +39,13 @@ describe('checkbox tests', () => {
   }
 
   it('request should include the _unchecked option only', () => {
+    waitForApplication()
     loadTestView()
     submitAndCheck(['vehicle1[vehicle-features]=_unchecked'])
   })
 
   it('when the GPS checkbox is selected, the request should include the GPS option', () => {
+    waitForApplication()
     loadTestView()
     cy.get('input[value="GPS"]').check()
     submitAndCheck(['vehicle1[vehicle-features]=_unchecked', 'vehicle1[vehicle-features]=GPS'])
