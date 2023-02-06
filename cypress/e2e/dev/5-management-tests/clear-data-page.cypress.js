@@ -53,10 +53,11 @@ describe('clear data page', () => {
     replaceInFile(questionView, '/url/of/next/page', '', '/question-check')
     createFile(questionCheckView, { data: questionTestMarkUp })
     cy.task('copyFromStarterFiles', { filename: 'app/data/session-data-defaults.js' })
-    waitForApplication()
   })
 
   it('save and clear data', () => {
+    waitForApplication()
+
     cy.task('log', 'Check data is cleared initially')
     cy.visit('/index')
     clearData()

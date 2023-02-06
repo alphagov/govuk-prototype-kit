@@ -12,10 +12,10 @@ describe('Question journey', async () => {
   before(() => {
     cleanUpPages()
     setUpPages()
-    waitForApplication()
   })
 
   it('Happy path journey', () => {
+    waitForApplication()
     // Visit start page and click start
     cy.task('log', 'The start page should be displayed')
     cy.visit(startPath)

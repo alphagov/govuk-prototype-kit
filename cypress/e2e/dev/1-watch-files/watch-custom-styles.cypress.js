@@ -22,10 +22,10 @@ describe('watch custom sass files', () => {
       cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), customStylesPublicPath) })
       cy.task('deleteFile', { filename: customStylesAppPath })
       cy.task('deleteFile', { filename: pageAppPath })
-      waitForApplication()
     })
 
     it('The colour of the paragraph should be changed to green', () => {
+      waitForApplication()
       cy.visit('/')
 
       // FIXME: the expected behaviour is that it shouldn't make a difference

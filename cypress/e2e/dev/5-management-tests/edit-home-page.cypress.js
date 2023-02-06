@@ -19,10 +19,11 @@ describe('edit home page', () => {
     // Restore index.html and config.json from prototype starter
     cy.task('copyFromStarterFiles', { filename: appHomePath })
     cy.task('copyFromStarterFiles', { filename: appConfigPath })
-    waitForApplication(managePagePath)
   })
 
   it(`The home page heading should change to "${newText}" and the task should be set to "Done"`, () => {
+    waitForApplication(managePagePath)
+
     cy.task('log', 'Visit the manage prototype templates page')
 
     cy.get('.app-task-list__item')

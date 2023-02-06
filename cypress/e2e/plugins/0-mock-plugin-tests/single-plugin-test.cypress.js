@@ -31,16 +31,17 @@ const pluginFooViewMarkup = `
 describe('Single Plugin Test', async () => {
   before(() => {
     cy.task('createFile', { filename: pluginFooView, data: pluginFooViewMarkup })
-    waitForApplication()
   })
 
   it('Loads plugin-foo view correctly', () => {
+    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('.plugin-foo')
       .should('contains.text', 'Plugin Foo')
   })
 
   it('Loads plugin-foo style correctly', () => {
+    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('.plugin-foo')
       .should('have.css', 'background-color', YELLOW)
@@ -48,6 +49,7 @@ describe('Single Plugin Test', async () => {
   })
 
   it('Loads plugin-foo script correctly', () => {
+    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('.plugin-foo').click()
     cy.get('.plugin-foo').should('have.css', 'background-color', BLUE)

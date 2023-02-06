@@ -38,7 +38,6 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
   describe(`${name} journey`, async () => {
     before(() => {
       copyFile(stepByStepTemplateView, stepByStepView)
-      waitForApplication()
     })
 
     const loadPage = async () => {
@@ -47,6 +46,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     }
 
     it('renders ok', () => {
+      waitForApplication()
+
       installPlugin(plugin)
 
       loadPage()
@@ -57,6 +58,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle step 1', () => {
+      waitForApplication()
+
       loadPage()
       // click toggle button and check that only step 1 details are visible
       cy.get(toggleButtonQuery(1)).click()
@@ -70,6 +73,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle step 2', () => {
+      waitForApplication()
+
       loadPage()
       // click toggle button and check that only step 1 details are visible
       cy.get(toggleButtonQuery(2)).click()
@@ -83,6 +88,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     })
 
     it('toggle all steps', () => {
+      waitForApplication()
+
       loadPage()
       // click toggle button and check that all steps details are visible
       cy.get(showHideAllLinkQuery).contains('Show all').click()

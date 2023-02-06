@@ -16,11 +16,11 @@ describe('Change answers', async () => {
     cleanUpPages()
     setUpPages()
     setUpData()
-    waitForApplication()
   })
 
   it('Change juggling balls journey', () => {
     // Visit Check answers page, click change juggling balls
+    waitForApplication()
     cy.task('log', 'The check answers page should be displayed')
     cy.visit(checkAnswersPath)
     cy.get('h1').contains('Check your answers before sending your application')
@@ -50,6 +50,7 @@ describe('Change answers', async () => {
 
   it('Change juggling trick journey', () => {
     // Visit Check answers page, click change juggling trick
+    waitForApplication()
     cy.task('log', 'The check answers page should be displayed')
     cy.visit(checkAnswersPath)
     cy.get('h1').contains('Check your answers before sending your application')

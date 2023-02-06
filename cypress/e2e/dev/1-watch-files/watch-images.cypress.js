@@ -20,7 +20,6 @@ describe('watch image files', () => {
     cy.task('deleteFile', { filename: path.join(appImages, imageFile) })
     cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), publicImages, imageFile) })
     cy.task('deleteFile', { filename: pageAppPath })
-    waitForApplication()
   })
 
   it(`image created in ${appImages} should be copied to ${publicImages} and accessible from the browser`, () => {
@@ -32,6 +31,8 @@ describe('watch image files', () => {
     cy.task('copyFile', { source: pageFixturePath, target: pageAppPath })
 
     cy.task('log', 'Our page should be missing its image')
+
+    waitForApplication()
     cy.visit(`/${pageFixture}`)
     cy.get('img#larry')
       .should('be.visible')

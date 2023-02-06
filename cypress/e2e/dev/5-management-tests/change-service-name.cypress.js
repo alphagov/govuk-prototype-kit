@@ -21,10 +21,11 @@ describe('change service name', () => {
     // Restore index.html and config.json from prototype starter
     cy.task('copyFromStarterFiles', { filename: appConfigPath })
     cy.task('copyFromStarterFiles', { filename: appIndexPath })
-    waitForApplication()
   })
 
   it('The service name should change to "cypress test" and the task should be set to "Done"', () => {
+    waitForApplication()
+
     cy.task('log', 'Visit the index page and navigate to the manage your prototype page')
     cy.visit('/')
     cy.get('.govuk-heading-xl').contains(originalText)

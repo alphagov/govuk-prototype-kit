@@ -4,11 +4,8 @@ const errorQuery = 'error=wrong-password'
 const returnURLQuery = `returnURL=${encodeURIComponent(homePath)}`
 
 describe('password page', () => {
-  before(() => {
-    cy.task('waitUntilAppRestarts')
-  })
-
   it('valid password', () => {
+    cy.task('waitUntilAppRestarts')
     cy.visit(homePath)
     cy.url().then(passwordUrl => {
       const urlObject = new URL(passwordUrl)
@@ -20,6 +17,7 @@ describe('password page', () => {
   })
 
   it('invalid password', () => {
+    cy.task('waitUntilAppRestarts')
     cy.visit(homePath)
     cy.url().then(passwordUrl => {
       const urlObject = new URL(passwordUrl)

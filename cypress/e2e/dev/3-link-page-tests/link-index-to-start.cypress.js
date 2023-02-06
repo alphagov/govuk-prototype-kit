@@ -27,10 +27,10 @@ describe('Link index page to start page', async () => {
       originalText: commentText,
       newText: linkText
     })
-    waitForApplication()
   })
 
   it('click start link', () => {
+    waitForApplication()
     cy.get('a[href="/start"]').contains(startText).click()
     cy.get('a[role="button"]')
       .should('contains.text', 'Start')
