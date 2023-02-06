@@ -27,7 +27,7 @@ describe('Management plugins: ', () => {
 
     assertHidden(1)
     assertHidden(2)
-    cy.get(showHideAllLinkQuery).should('contains.text', 'Show all').click()
+    cy.get(showHideAllLinkQuery).contains('Show all').click()
     assertVisible(1)
     assertVisible(2)
   })

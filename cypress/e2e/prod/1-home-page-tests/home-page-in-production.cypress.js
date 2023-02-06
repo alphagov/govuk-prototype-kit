@@ -10,6 +10,6 @@ describe('home page in production', () => {
   it('should load as expected', () => {
     cy.visit('/')
     authenticate()
-    cy.get('h1').should('contains.text', 'Service name goes here')
+    cy.get('h1').contains('Service name goes here')
   })
 })

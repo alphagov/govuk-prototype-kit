@@ -23,10 +23,10 @@ describe('watch config file', () => {
 
     it('The service name should change to "cypress test"', () => {
       cy.visit('/')
-      cy.get(serverNameQuery).should('contains.text', originalText)
+      cy.get(serverNameQuery).contains(originalText)
       cy.task('replaceTextInFile', { filename: appConfig, originalText, newText })
       waitForApplication()
-      cy.get(serverNameQuery).should('contains.text', newText)
+      cy.get(serverNameQuery).contains(newText)
     })
   })
 })

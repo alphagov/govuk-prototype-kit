@@ -22,25 +22,25 @@ describe('Branching journey', async () => {
     // Visit Juggling balls page, click continue
     cy.visit(jugglingBallsPath)
     cy.task('log', 'The juggling balls page should be displayed')
-    cy.get('h1').should('contains.text', 'How many balls can you juggle?')
+    cy.get('h1').contains('How many balls can you juggle?')
     cy.get(`input[value="${eligibleHowManyBalls}"]`).check()
-    cy.get('button.govuk-button').should('contains.text', 'Continue').click()
+    cy.get('button.govuk-button').contains('Continue').click()
 
     // Juggling trick page should be displayed correctly
     cy.task('log', 'The juggling trick page should be displayed')
-    cy.get('h1').should('contains.text', 'What is your most impressive juggling trick?')
+    cy.get('h1').contains('What is your most impressive juggling trick?')
   })
 
   it('Ineligible journey', () => {
     // Visit Juggling balls page, click continue
     cy.visit(jugglingBallsPath)
     cy.task('log', 'The juggling balls page should be displayed')
-    cy.get('h1').should('contains.text', 'How many balls can you juggle?')
+    cy.get('h1').contains('How many balls can you juggle?')
     cy.get(`input[value="${ineligibleHowManyBalls}"]`).check()
-    cy.get('button.govuk-button').should('contains.text', 'Continue').click()
+    cy.get('button.govuk-button').contains('Continue').click()
 
     // Juggling trick page should be displayed correctly
     cy.task('log', 'The juggling trick page should be displayed')
-    cy.get('h1').should('contains.text', 'Sorry, you are ineligible for juggling tricks')
+    cy.get('h1').contains('Sorry, you are ineligible for juggling tricks')
   })
 })
