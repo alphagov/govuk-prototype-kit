@@ -41,6 +41,7 @@ function uninstallPlugin (plugin) {
   cy.task('log', `Uninstalling ${plugin}`)
   cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
   cy.task('pluginUninstalled', { plugin, timeout: 15000 })
+  cy.wait(2000)
 }
 
 function installPlugin (plugin, version = '') {
