@@ -6,7 +6,8 @@
       "@govuk-prototype-kit/step-by-step",
       "@govuk-prototype-kit/task-list",
       "hmrc-frontend",
-      "jquery"
+      "jquery",
+      "notifications-node-client"
     ]
   }
 }

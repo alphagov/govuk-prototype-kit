@@ -9,12 +9,15 @@ const utils = require('../utils')
 const { exec } = require('../../lib/exec')
 
 describe('npm install', () => {
-  const tmpDir = utils.mkdtempSync()
+  let testDir
+
+  beforeAll(async () => {
+    const tmpDir = utils.mkdtempSync()
+    testDir = path.join(tmpDir, 'install-no-optional')
+    await utils.mkPrototype(testDir)
+  })
 
   it('does not install dev dependencies by default', async () => {
-    const testDir = path.join(tmpDir, 'install-no-optional')
-    await utils.mkPrototype(testDir)
-
     await exec(
       'npm install',
       { cwd: testDir }
