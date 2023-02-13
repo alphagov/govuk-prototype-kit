@@ -6,7 +6,9 @@
       "@govuk-prototype-kit/step-by-step",
       "@govuk-prototype-kit/task-list",
       "hmrc-frontend",
-      "jquery"
+      "jquery",
+      "node-sass",
+      "/Users/natalie.carey/projects/tmp/slow-npm"
     ]
   }
 }
