@@ -71,9 +71,9 @@ describe('migrate test prototype', () => {
     ])
 
     expect(scripts).toEqual({
-      dev: 'govuk-prototype-kit dev',
-      serve: 'govuk-prototype-kit serve',
-      start: 'govuk-prototype-kit start'
+      dev: 'node node_modules/govuk-prototype-kit/bin/cli dev',
+      serve: 'node node_modules/govuk-prototype-kit/bin/cli serve',
+      start: 'node node_modules/govuk-prototype-kit/bin/cli start'
     })
 
     expect(name).toEqual('test-prototype')
