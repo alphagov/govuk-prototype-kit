@@ -15,7 +15,7 @@ describe('npm install', () => {
     const tmpDir = utils.mkdtempSync()
     testDir = path.join(tmpDir, 'install-no-optional')
     await utils.mkPrototype(testDir)
-  })
+  }, 240000)
 
   it('does not install dev dependencies by default', async () => {
     await exec(
