@@ -70,3 +70,5 @@ Write a brief summary with highlights from the release then send it to the follo
 - GDS #govuk-design-system
 
 Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-a-new-prototype.
+
+19. On the sprint board, move everything that's been released from the Ready for release column to the Done column
