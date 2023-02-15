@@ -11,6 +11,10 @@
   The Common templates have been moved to the new
   [Common templates plugin](https://github.com/alphagov/govuk-prototype-kit-common-templates)
 
+### Fixes
+
+- [#1972: Fix permissions bug on managed devices by calling Node directly](https://github.com/alphagov/govuk-prototype-kit/pull/1972)
+
 ## 13.2.4
 
 ### Fixes
