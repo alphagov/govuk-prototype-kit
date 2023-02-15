@@ -10,6 +10,7 @@
 - [#1923: Move Common templates to Common templates plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1923)
   The Common templates have been moved to the new
   [Common templates plugin](https://github.com/alphagov/govuk-prototype-kit-common-templates)
+- [#1962: Make GOV.UK Notify client available as a plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1962)
 
 ### Fixes
 
