@@ -15,6 +15,8 @@ if (process.argv.length > 3) {
   process.exit(2)
 }
 
+console.log("hello this is a test")
+
 const command = process.argv.length === 3 ? process.argv[2] : 'npm run dev'
 
 console.log(`creating test prototype in ${testDir}`)
