@@ -17,7 +17,7 @@ const nunjucks = require('nunjucks')
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir } = require('./lib/utils/paths')
+const { projectDir, packageDir, backupNunjucksDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
@@ -72,7 +72,7 @@ app.use(sessionUtils.getSessionMiddleware())
 // Set up App
 const appViews = [
   path.join(projectDir, '/app/views/')
-].concat(plugins.getAppViews())
+].concat(plugins.getAppViews(backupNunjucksDir))
 
 const nunjucksConfig = {
   autoescape: true,
@@ -92,7 +92,7 @@ const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
 utils.addNunjucksFilters(nunjucksAppEnv)
 
 // Set views engine
-app.set('view engine', 'html')
+app.set('view engine', 'njk')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
@@ -126,8 +126,8 @@ app.get('/robots.txt', (req, res) => {
   res.send('User-agent: *\nDisallow: /')
 })
 
-// Strip .html and .htm if provided
-app.get(/\.html?$/i, (req, res) => {
+// Strip .html, .htm and .njk if provided
+app.get(/\.(html|htm|njk)$/i, (req, res) => {
   let path = req.path
   const parts = path.split('.')
   parts.pop()
@@ -138,8 +138,8 @@ app.get(/\.html?$/i, (req, res) => {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, (req, res, next) => {
-  utils.matchRoutes(req, res, next)
+app.get(/^([^.]+)$/, async (req, res, next) => {
+  await utils.matchRoutes(req, res, next)
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
@@ -157,7 +157,7 @@ app.get('/docs/tutorials-and-examples', (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
+  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.njk'), 'utf8')
   res.render('views/backup-homepage', {
     starterHomepageCode
   })

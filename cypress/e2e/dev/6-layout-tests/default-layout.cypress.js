@@ -35,3 +35,24 @@ it('deleting default layout does not cause pages to fail to render', () => {
     comments(doc.head).should('contain', backupLayoutComment)
   )
 })
+
+it('should still render user\'s layout when renamed to .njk', () => {
+  waitForApplication()
+  cy.visit('/')
+
+  cy.document().then(doc =>
+    comments(doc.head).should('not.contain', backupLayoutComment)
+  )
+
+  const originalFilePath = path.join(Cypress.env('projectFolder'), defaultLayoutFilePath)
+
+  cy.task('copyFile', { source: originalFilePath, target: originalFilePath.replace('.html', '.njk') })
+  cy.task('deleteFile', { filename: originalFilePath })
+
+  cy.visit('/', { failOnStatusCode: false })
+  cy.get('body').should('not.contains.text', 'Error: template not found')
+
+  cy.document().then(doc =>
+    comments(doc.head).should('not.contain', backupLayoutComment)
+  )
+})
