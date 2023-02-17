@@ -10,7 +10,8 @@ pathToDependency=$(getpath "$0")
 
 if [[ -L $pathToDependency ]]; then
   echo "It's a symlink."
-  pathToCli="/this-is-not-correct/cli-core.js"
+  pathToDir=$(readlink -f $pathToDependency)
+  pathToCli="$pathToDir/bin/cli-core.js"
 else
   pathToCli="$pathToDependency-core.js"
 fi
