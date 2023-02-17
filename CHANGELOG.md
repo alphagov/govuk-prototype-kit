@@ -12,10 +12,6 @@
   [Common templates plugin](https://github.com/alphagov/govuk-prototype-kit-common-templates)
 - [#1962: Make GOV.UK Notify client available as a plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1962)
 
-### Fixes
-
-- [#1972: Fix permissions bug on managed devices by calling Node directly](https://github.com/alphagov/govuk-prototype-kit/pull/1972)
-
 ## 13.2.4
 
 ### Fixes
