@@ -2,6 +2,12 @@
 
 echo "Running via /bin/sh"
 
+getpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+realpath "$0"
+
 pathToCli="$(realpath "$0")-core.js"
 
 node $pathToCli "$@"
