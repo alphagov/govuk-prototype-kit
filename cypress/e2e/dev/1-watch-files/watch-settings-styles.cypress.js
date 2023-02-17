@@ -14,31 +14,15 @@ const settingsStyle = path.join(appStylesFolder, `settings.scss`)
 
 const RED = 'rgb(255, 0, 0)'
 
-const oldSettingsContent = `
-h1.govuk-heading-xl { 
-    background-color: ${RED};
-}
-`
-
-const newContent = `
-  {% block stylesheets %}
-    {{ super() }}
-    <link href="/public/stylesheets/settings.css" rel="stylesheet" type="text/css" />
-  {% endblock %}
-  {% block content %}
-  `
-
-const oldContent = '{% block content %}'
+const oldSettingsContent = `$govuk-brand-colour: ${RED}`
 
 describe('watching settings.scss', () => {
 
     before(() => {
         cy.task('deleteFile', { filename: settingsStyle })
-        replaceInFile(indexView, oldContent, '', newContent)
     })
 
     after('', () => {
-        replaceInFile(indexView, newContent, '', oldContent)
         cy.task('deleteFile', { filename: settingsStyle })
     })
 
@@ -50,7 +34,7 @@ describe('watching settings.scss', () => {
         createFile(settingsStyle, { data: oldSettingsContent })
 
         cy.task('log', 'The colour of the header should be changed to red')
-        cy.get('h1.govuk-heading-xl').should('have.css', 'background-color', RED)
+        cy.get('.govuk-header__container').should('have.css', 'border-bottom-color', RED)
     })
 
 })
