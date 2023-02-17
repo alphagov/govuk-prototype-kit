@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#1986: Using a wrapper to work around restrictions of (some) managed laptops](https://github.com/alphagov/govuk-prototype-kit/pull/1986)
+
 ## 13.3.0
 
 ### New features
