@@ -12,6 +12,7 @@ const fse = require('fs-extra')
 const { exec } = require('../../lib/exec')
 const { mkdtempSync } = require('../utils')
 const { normaliseLineEndings } = require('../../migrator/file-helpers')
+const { appViewsDir } = require('../../lib/utils/paths')
 
 const testDirectory = mkdtempSync()
 const projectDirectory = path.join(testDirectory, 'migrate-checks')

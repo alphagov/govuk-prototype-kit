@@ -17,7 +17,7 @@ const nunjucks = require('nunjucks')
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir, backupNunjucksDir } = require('./lib/utils/paths')
+const { projectDir, packageDir, backupNunjucksDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
@@ -26,6 +26,7 @@ const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
+
 routesApi.setApp(app)
 
 // Set up configuration variables
@@ -72,7 +73,7 @@ app.use(sessionUtils.getSessionMiddleware())
 // Set up App
 const appViews = [
   path.join(projectDir, '/app/views/')
-].concat(plugins.getAppViews(backupNunjucksDir))
+].concat(plugins.getAppViews([backupNunjucksDir, finalBackupNunjucksDir]))
 
 const nunjucksConfig = {
   autoescape: true,
