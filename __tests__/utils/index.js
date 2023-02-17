@@ -78,7 +78,7 @@ async function mkPrototype (prototypePath, {
     // Generate starter project
     const repoDir = path.resolve(__dirname, '..', '..')
     await exec(
-      `"${process.execPath}" bin/cli create --version local ${prototypePath}`,
+      `"${process.execPath}" bin/cli-core.js create --version local ${prototypePath}`,
       { cwd: repoDir, env: execEnv, stdio: 'inherit' }
     )
 

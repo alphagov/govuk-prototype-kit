@@ -18,7 +18,7 @@ const projectDirectory = path.join(testDirectory, 'migrate-checks')
 const appDirectory = path.join(projectDirectory, 'app')
 const assetsDirectory = path.join(appDirectory, 'assets')
 const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'test-v11-prototype')
-const cliPath = path.join(__dirname, '..', '..', 'bin', 'cli')
+const cliPath = path.join(__dirname, '..', '..', 'bin', 'cli-core.js')
 
 const pkg = {
   name: 'test-prototype',
