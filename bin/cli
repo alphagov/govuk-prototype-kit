@@ -6,7 +6,7 @@ getpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-pathToCli="$(getpath "$0")-core.js"
+pathToCli="$( dirname $(getpath "$0") )/cli-core.js"
 
 echo "Path to CLI: $pathToCli"
 
