@@ -129,8 +129,8 @@ app.get('/robots.txt', (req, res) => {
   res.send('User-agent: *\nDisallow: /')
 })
 
-// Strip .html and .htm if provided
-app.get(/\.html?$/i, (req, res) => {
+// Strip .html, .htm and .njk if provided
+app.get(/\.(html|htm|njk)$/i, (req, res) => {
   let path = req.path
   const parts = path.split('.')
   parts.pop()
