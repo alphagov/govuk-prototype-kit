@@ -59,13 +59,11 @@ usage-data-config.json
 .idea
 `.trimStart()
 
-const cliPath = 'node_modules/govuk-prototype-kit/bin/cli'
-
 const packageJson = {
   scripts: {
-    dev: `node ${cliPath} dev`,
-    serve: `node ${cliPath} serve`,
-    start: `node ${cliPath} start`
+    dev: 'govuk-prototype-kit dev',
+    serve: 'govuk-prototype-kit serve',
+    start: 'govuk-prototype-kit start'
   }
 }
 
@@ -246,7 +244,7 @@ async function runCreate () {
 
   progressLogger('Setting up your prototype')
 
-  await spawn('node', [cliPath, 'init', runningWithinCreateScriptFlag, installDirectory, `--created-from-version=${kitVersion}`, ...(getArgumentsToPassThrough())], {
+  await spawn('npx', ['govuk-prototype-kit', 'init', runningWithinCreateScriptFlag, installDirectory, `--created-from-version=${kitVersion}`, ...(getArgumentsToPassThrough())], {
     cwd: installDirectory,
     stdio: 'inherit'
   })
@@ -304,7 +302,7 @@ async function runMigrate () {
 
     await prepareMigration(kitDependency, projectDirectory)
 
-    await spawn('node', [cliPath, 'migrate', '--', projectDirectory], {
+    await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
       stdio: 'inherit'
     })
   } else {
