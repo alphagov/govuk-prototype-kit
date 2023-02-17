@@ -138,8 +138,8 @@ app.get(/\.(html|htm|njk)$/i, (req, res) => {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, (req, res, next) => {
-  utils.matchRoutes(req, res, next)
+app.get(/^([^.]+)$/, async (req, res, next) => {
+  await utils.matchRoutes(req, res, next)
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
@@ -158,7 +158,7 @@ app.get('/docs/tutorials-and-examples', (req, res) => {
 
 app.get('/', async (req, res) => {
   const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
-  res.render('views/backup-homepage', {
+  res.render('views/backup-homepage.njk', {
     starterHomepageCode
   })
 })
