@@ -26,6 +26,7 @@ const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
+
 routesApi.setApp(app)
 
 // Set up configuration variables
@@ -92,7 +93,7 @@ const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
 utils.addNunjucksFilters(nunjucksAppEnv)
 
 // Set views engine
-app.set('view engine', 'html')
+app.set('view engine', 'njk')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
@@ -157,8 +158,8 @@ app.get('/docs/tutorials-and-examples', (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
-  res.render('views/backup-homepage.njk', {
+  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.njk'), 'utf8')
+  res.render('views/backup-homepage', {
     starterHomepageCode
   })
 })
