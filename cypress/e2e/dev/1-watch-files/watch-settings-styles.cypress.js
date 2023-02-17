@@ -11,26 +11,30 @@ const appStylesPath = path.join('app', 'assets', 'sass')
 const appStylesFolder = path.join(Cypress.env('projectFolder'), appStylesPath)
 
 const settingsStyle = path.join(appStylesFolder, `settings.scss`)
-const styleContent = `
-body { 
-    color: green; 
-    background: pink;
+
+const RED = 'rgb(255, 0, 0)'
+
+const oldSettingsContent = `
+h1.govuk-heading-xl { 
+    background-color: ${RED};
 }
 `
-const newContent = `<link href="/public/stylesheets/settings.css" rel="stylesheet" type="text/css" />
 
-{% include "./stylesheets-plugins.njk" %}`
+const newContent = `
+  {% block stylesheets %}
+    {{ super() }}
+    <link href="/public/stylesheets/settings.css" rel="stylesheet" type="text/css" />
+  {% endblock %}
+  {% block content %}
+  `
 
-const oldContent = `{% include "./stylesheets-plugins.njk" %}`
+const oldContent = '{% block content %}'
 
 describe('watching settings.scss', () => {
-    
+
     before(() => {
         cy.task('deleteFile', { filename: settingsStyle })
-        console.log(indexView)
-        createFile(settingsStyle, { data: styleContent })
         replaceInFile(indexView, oldContent, '', newContent)
-
     })
 
     after('', () => {
@@ -38,12 +42,15 @@ describe('watching settings.scss', () => {
         cy.task('deleteFile', { filename: settingsStyle })
     })
 
-    it('Successfully reloaed changes', () => {
+    it('Successfully reloaded changes', () => {
         waitForApplication()
 
-        cy.task('log', `Hello Ben!`)
+        cy.wait(2000)
 
-        
+        createFile(settingsStyle, { data: oldSettingsContent })
+
+        cy.task('log', 'The colour of the header should be changed to red')
+        cy.get('h1.govuk-heading-xl').should('have.css', 'background-color', RED)
     })
 
 })
