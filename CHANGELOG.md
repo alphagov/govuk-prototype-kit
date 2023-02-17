@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.3.0
+
 ### New features
 
 - [#1915: Move Task list template to Task list plugin](https://github.com/alphagov/govuk-prototype-kit/pull/1915)
