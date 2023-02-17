@@ -6,7 +6,13 @@ getpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-pathToCli="$( dirname $(getpath "$0") )/cli-core.js"
+pathToDependency=$(getpath "$0")
+
+if [[ -L $pathToDependency ]]; then
+  echo "It's a symlink."
+fi
+
+pathToCli="/cli-core.js"
 
 echo "Path to CLI: $pathToCli"
 
