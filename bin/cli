@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Running via /bin/sh"
 
@@ -15,8 +15,6 @@ if [[ -L $pathToDependency ]]; then
 else
   pathToCli="$pathToDependency-core.js"
 fi
-
-
 
 echo "Path to CLI: $pathToCli"
 
