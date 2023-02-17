@@ -6,8 +6,8 @@ getpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-realpath "$0"
+pathToCli="$(getpath "$0")-core.js"
 
-pathToCli="$(realpath "$0")-core.js"
+echo "Path to CLI: $pathToCli"
 
 node $pathToCli "$@"
