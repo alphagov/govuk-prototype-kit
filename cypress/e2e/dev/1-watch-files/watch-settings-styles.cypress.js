@@ -2,39 +2,49 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, replaceInFile, createFile } = require('../../utils')
-
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
-const indexView = path.join(appViews, 'index.html')
+const { waitForApplication, createFile, deleteFile, replaceInFile } = require('../../utils')
 
 const appStylesPath = path.join('app', 'assets', 'sass')
 const appStylesFolder = path.join(Cypress.env('projectFolder'), appStylesPath)
 
-const settingsStyle = path.join(appStylesFolder, `settings.scss`)
+const settingsStyle = path.join(appStylesFolder, 'settings.scss')
 
 const RED = 'rgb(255, 0, 0)'
+const GREEN = 'rgb(0, 255, 0)'
 
-const oldSettingsContent = `$govuk-brand-colour: ${RED}`
+const settingsContent = `$govuk-brand-colour: ${RED}`
+const changedSettingsContent = `$govuk-brand-colour: ${GREEN}`
 
 describe('watching settings.scss', () => {
+  before(() => {
+    cy.task('deleteFile', { filename: settingsStyle })
+  })
 
-    before(() => {
-        cy.task('deleteFile', { filename: settingsStyle })
-    })
+  it('Successfully reload settings changes', () => {
+    waitForApplication()
 
-    after('', () => {
-        cy.task('deleteFile', { filename: settingsStyle })
-    })
+    cy.task('log', 'The colour of the header bottom border should be as designed')
+    cy.get('.govuk-header__container').should('not.have.css', 'border-bottom-color', RED)
 
-    it('Successfully reloaded changes', () => {
-        waitForApplication()
+    createFile(settingsStyle, { data: settingsContent })
 
-        cy.wait(2000)
+    waitForApplication()
 
-        createFile(settingsStyle, { data: oldSettingsContent })
+    cy.task('log', 'The colour of the header bottom border should be changed to red')
+    cy.get('.govuk-header__container').should('have.css', 'border-bottom-color', RED)
 
-        cy.task('log', 'The colour of the header should be changed to red')
-        cy.get('.govuk-header__container').should('have.css', 'border-bottom-color', RED)
-    })
+    replaceInFile(settingsStyle, settingsContent, '', changedSettingsContent)
 
+    waitForApplication()
+
+    cy.task('log', 'The colour of the header bottom border should be changed to green')
+    cy.get('.govuk-header__container').should('have.css', 'border-bottom-color', GREEN)
+
+    deleteFile(settingsStyle)
+
+    waitForApplication()
+
+    cy.task('log', 'The colour of the header bottom border should be as designed')
+    cy.get('.govuk-header__container').should('not.have.css', 'border-bottom-color', GREEN)
+  })
 })
