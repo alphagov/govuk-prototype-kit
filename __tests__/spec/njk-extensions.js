@@ -25,7 +25,7 @@ const notHomepageContents = '<h1>This is not the homepage!</h1>'
 
 describe('views', () => {
   beforeAll(async () => {
-    await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
+    await mkPrototype(tmpDir, { allowTracking: false, overwrite: true, commandLineParameters: '--use-njk-extensions' })
     app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
 
     jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
@@ -34,46 +34,10 @@ describe('views', () => {
     require('../../lib/build').generateAssetsSync()
   }, createKitTimeout)
 
-  it('should load the homepage from index.html', (done) => {
-    fse.writeFile(path.join(tmpDir, 'app', 'views', 'index.html'), homepageContents)
-    request(app)
-      .get('/')
-      .expect(200)
-      .end((err, res) => {
-        if (err) {
-          done(err)
-        } else {
-          assert.strictEqual(
-            '' + res.text,
-            homepageContents
-          )
-          done()
-        }
-      })
-  })
-
-  it('should load the homepage from index.njk', (done) => {
-    fse.rmSync(path.join(tmpDir, 'app', 'views', 'index.html'))
+  it('should have index.njk as a default when using njk extensions', (done) => {
+    fse.writeFile(path.join(tmpDir, 'app', 'views', 'index.html'), notHomepageContents)
     fse.writeFile(path.join(tmpDir, 'app', 'views', 'index.njk'), homepageContents)
-    request(app)
-      .get('/')
-      .expect(200)
-      .end((err, res) => {
-        if (err) {
-          done(err)
-        } else {
-          assert.strictEqual(
-            '' + res.text,
-            homepageContents
-          )
-          done()
-        }
-      })
-  })
-
-  it('should have index.html as default', (done) => {
-    fse.writeFile(path.join(tmpDir, 'app', 'views', 'index.html'), homepageContents)
-    fse.writeFile(path.join(tmpDir, 'app', 'views', 'index.njk'), notHomepageContents)
+    fse.writeJson(path.join(tmpDir, 'app', 'config.json'), { useNjkExtensions: true })
     request(app)
       .get('/')
       .expect(200)
