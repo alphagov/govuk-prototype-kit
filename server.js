@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
-const nunjucks = require('nunjucks')
+const { expressNunjucks, getNunjucksAppEnv } = require('./lib/nunjucks/nunjucksLoader')
 
 // We want users to be able to keep api keys, config variables and other
 // envvars in a `.env` file, run dotenv before other code to make sure those
@@ -86,46 +86,7 @@ if (config.isDevelopment) {
 
 nunjucksConfig.express = app
 
-const NunjucksLoader = nunjucks.Loader.extend({
-  init: function () {
-    // setup a process which watches templates here
-    // and call `this.emit('update', name)` when a template
-    // is changed
-  },
-
-  getSource: function (name) {
-    console.log('name', name)
-    return {
-      src: '<h1>Hello Jupiter!</h1>',
-      path: '/abc/def',
-      noCache: this.noCache
-    }
-  }
-})
-
-const nunjucksAppEnv = new nunjucks.Environment(new NunjucksLoader())
-function expressNunjucks(env, app) {
-  function NunjucksView(name, opts) {
-    this.name = name;
-    this.path = name;
-    this.defaultEngine = opts.defaultEngine;
-    this.ext = path.extname(name);
-    if (!this.ext && !this.defaultEngine) {
-      throw new Error('No default engine was specified and no extension was provided.');
-    }
-    if (!this.ext) {
-      this.name += (this.ext = (this.defaultEngine[0] !== '.' ? '.' : '') + this.defaultEngine);
-    }
-  }
-
-  NunjucksView.prototype.render = function render(opts, cb) {
-    env.render(this.name, opts, cb);
-  };
-
-  app.set('view', NunjucksView);
-  app.set('nunjucksEnv', env);
-  return env;
-}
+const nunjucksAppEnv = getNunjucksAppEnv(appViews)
 
 expressNunjucks(nunjucksAppEnv, app)
 
