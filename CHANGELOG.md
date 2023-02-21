@@ -2,8 +2,6 @@
 
 ## Unreleased
 
-## 13.3.1
-
 ### Fixes
 
 - [#1982: Remove require leading slash](https://github.com/alphagov/govuk-prototype-kit/pull/1982)
