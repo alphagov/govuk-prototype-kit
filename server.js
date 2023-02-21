@@ -1,4 +1,3 @@
-
 // core dependencies
 const fs = require('fs').promises
 const path = require('path')
@@ -87,7 +86,48 @@ if (config.isDevelopment) {
 
 nunjucksConfig.express = app
 
-const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
+const NunjucksLoader = nunjucks.Loader.extend({
+  init: function () {
+    // setup a process which watches templates here
+    // and call `this.emit('update', name)` when a template
+    // is changed
+  },
+
+  getSource: function (name) {
+    console.log('name', name)
+    return {
+      src: '<h1>Hello Jupiter!</h1>',
+      path: '/abc/def',
+      noCache: this.noCache
+    }
+  }
+})
+
+const nunjucksAppEnv = new nunjucks.Environment(new NunjucksLoader())
+function expressNunjucks(env, app) {
+  function NunjucksView(name, opts) {
+    this.name = name;
+    this.path = name;
+    this.defaultEngine = opts.defaultEngine;
+    this.ext = path.extname(name);
+    if (!this.ext && !this.defaultEngine) {
+      throw new Error('No default engine was specified and no extension was provided.');
+    }
+    if (!this.ext) {
+      this.name += (this.ext = (this.defaultEngine[0] !== '.' ? '.' : '') + this.defaultEngine);
+    }
+  }
+
+  NunjucksView.prototype.render = function render(opts, cb) {
+    env.render(this.name, opts, cb);
+  };
+
+  app.set('view', NunjucksView);
+  app.set('nunjucksEnv', env);
+  return env;
+}
+
+expressNunjucks(nunjucksAppEnv, app)
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
@@ -149,9 +189,9 @@ app.get(/^([^.]+)$/, async (req, res, next) => {
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
-    pathname: '/' + req.params[0],
-    query: req.query
-  })
+      pathname: '/' + req.params[0],
+      query: req.query
+    })
   )
 })
 
