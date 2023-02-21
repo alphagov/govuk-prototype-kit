@@ -8,6 +8,8 @@
 
 - [#1982: Remove require leading slash](https://github.com/alphagov/govuk-prototype-kit/pull/1982)
   A leading slash is no longer required when creating a page from a template
+- [#1988: Auto update when settings created and removed](https://github.com/alphagov/govuk-prototype-kit/pull/1988)
+  The styling in a page will update automatically when the settings.scss file is created or removed
 
 ## 13.3.0
 
