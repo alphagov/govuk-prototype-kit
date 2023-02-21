@@ -12,7 +12,7 @@ const sass = require('sass')
 // local dependencies
 const { mkPrototype, mkdtempSync } = require('../utils')
 
-const tmpDir = path.join(mkdtempSync(), 'sanity-checks')
+const tmpDir = path.join(mkdtempSync(), 'views')
 let app
 
 process.env.KIT_PROJECT_DIR = tmpDir
