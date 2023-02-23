@@ -1,0 +1,10 @@
+{
+    "eslint.options": {
+        
+    },
+
+    "standard.options": {
+        "enable": true,
+        "autoFixOnSave": true
+    }
+}

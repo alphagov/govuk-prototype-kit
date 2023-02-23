@@ -13,6 +13,7 @@
 // core dependencies
 const fs = require('fs')
 const fsp = fs.promises
+const fse = require('fs-extra')
 const path = require('path')
 
 // npm dependencies
@@ -206,6 +207,15 @@ module.exports = function setupNodeEvents (on, config) {
     })
   }
 
+  const cleanJson = ({ ...data }) => {
+    for (const key in data) {
+      if (data[key] === null) {
+        delete data[key]
+      }
+    }
+    return data
+  }
+
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)
       .then(() => fsp.copyFile(source, target))
@@ -266,6 +276,10 @@ module.exports = function setupNodeEvents (on, config) {
     replaceMultipleTextInFile: ({ filename, list }) => fsp.readFile(filename)
       .then((buffer) => replaceMultipleText(buffer.toString(), list))
       .then((text) => fsp.writeFile(filename, text.toString()))
+      .then(makeSureCypressCanInterpretTheResult),
+
+    mergePropertiesIntoJsonFile: ({ filename, newProperties }) => fse.readJSON(filename)
+      .then((jsonContent) => fse.writeJSON(filename, cleanJson({ ...jsonContent, ...newProperties })))
       .then(makeSureCypressCanInterpretTheResult),
 
     download: async ({ filename }) => {
