@@ -84,7 +84,14 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/extension-assets/govuk-prototype-kit/lib/assets/javascripts/manage-prototype/manage-plugins.js"></script>
+  <script src="/plugin-assets/govuk-prototype-kit/lib/assets/javascripts/manage-prototype/manage-plugins.js"></script>
 
-  <script>window.GOVUKPrototypeKit.documentReady(window.GOVUKPrototypeKit.internal.managePlugins.init)</script>
+  <script>
+    if (window.Promise) {
+      window.GOVUKPrototypeKit.documentReady(window.GOVUKPrototypeKit.internal.managePlugins.init)
+    } else {
+      // Display the page as if javascript was not enabled
+      document.body.classList.remove('js-enabled')
+    }
+  </script>
 {% endblock %}
