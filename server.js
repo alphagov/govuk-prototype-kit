@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
-const { expressNunjucks, getNunjucksAppEnv } = require('./lib/nunjucks/nunjucksConfiguration')
+const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
 // envvars in a `.env` file, run dotenv before other code to make sure those
@@ -16,7 +16,7 @@ const { expressNunjucks, getNunjucksAppEnv } = require('./lib/nunjucks/nunjucksC
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir, backupNunjucksDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
+const { projectDir, packageDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
@@ -159,7 +159,7 @@ app.get('/docs/tutorials-and-examples', (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.njk'), 'utf8')
+  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
   res.render('views/backup-homepage', {
     starterHomepageCode
   })
@@ -184,5 +184,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500)
   res.send(err.message)
 })
+
+app.close = stopWatchingNunjucks
 
 module.exports = app
