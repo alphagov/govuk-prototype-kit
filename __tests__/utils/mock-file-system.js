@@ -64,7 +64,7 @@ function mockFileSystem (rootPath) {
     }
 
     const readFileImplementation = (filePath, encoding) => {
-      if (filePath.includes('node_modules/jest-worker')) {
+      if (filePath.includes('node_modules/jest-worker') || filePath.includes('node_modules/chalk')) {
         return originalFsFunctions.promises.readFile.apply(null, arguments)
       }
       if (encoding !== 'utf8') {
