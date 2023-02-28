@@ -18,7 +18,7 @@ const pluginFooViewMarkup = `
 {% block content %}
 {% include "foo.njk" %}
 <div id="test-foo-strong-filter">{{ 'abc' | foo__strong }}</div>
-<div id="test-foo-emphasize-function">{{ fooEmphasize('def') }}</div>
+<div id="test-foo-emphasize-function">{{ foo.styles.emphasize('def') }}</div>
 <div id="test-foo-field-macro">{{ fooField('pass', value='ghi') }}</div>
 {% endblock %}
 
