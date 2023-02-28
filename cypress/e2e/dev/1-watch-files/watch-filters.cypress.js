@@ -1,4 +1,8 @@
-const appFiltersPath = path.join('app', 'filters.js')
+const path = require("path")
+const { waitForApplication } = require("../../utils")
+
+const appFiltersPath = path.join(Cypress.env('projectFolder'), 'app', 'filters.js')
+const appFiltersViewPath = path.join(Cypress.env('projectFolder'), 'app', 'views', 'filters.html')
 
 const filtersViewMarkup = `
 {% extends "layouts/main.html" %}
@@ -7,14 +11,19 @@ const filtersViewMarkup = `
 {% endblock %}
 `
 const filtersAddition = `
-addFilter('foo__strong', (content) => '<strong>' + '${content}' + '</strong>', { renderAsHtml: true })
+addFilter('foo__strong', (content) => '<strong>' + content + '</strong>', { renderAsHtml: true })
 `
-
 describe('Filters Test', () => {
   before(() => {
     // Restore filters file from prototype starter
-    cy.task('copyFromStarterFiles', { filename: appFiltersPath })
-    cy.task('appendFile', { filename: appFiltersPath, data: filtersViewMarkup })
-    cy.task('createFile', { filename: filtersView, data: filtersViewMarkup })
+    cy.task('copyFromStarterFiles', { filename: path.join('app', 'filters.js') })
+    cy.task('appendFile', { filename: appFiltersPath, data: filtersAddition })
+    cy.task('createFile', { filename: appFiltersViewPath, data: filtersViewMarkup })
+  })
+
+  it('view the filters html file', () => {
+    waitForApplication('/filters')
+    cy.get('#test-foo-strong-filter')
+      .should('have.html', '<strong>abc</strong>')
   })
 })
