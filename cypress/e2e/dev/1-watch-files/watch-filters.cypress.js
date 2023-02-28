@@ -1,5 +1,5 @@
-const path = require("path")
-const { waitForApplication } = require("../../utils")
+const path = require('path')
+const { waitForApplication } = require('../../utils')
 
 const appFiltersPath = path.join(Cypress.env('projectFolder'), 'app', 'filters.js')
 const appFiltersViewPath = path.join(Cypress.env('projectFolder'), 'app', 'views', 'filters.html')
