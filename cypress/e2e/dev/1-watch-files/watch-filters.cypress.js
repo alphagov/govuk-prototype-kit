@@ -11,10 +11,10 @@ addFilter('foo__strong', (content) => '<strong>' + '${content}' + '</strong>', {
 `
 
 describe('Filters Test', () => {
-    before(() => {
-        // Restore filters file from prototype starter
-        cy.task('copyFromStarterFiles', { filename: appFiltersPath })
-        cy.task('appendFile', { filename: appFiltersPath, data: filtersViewMarkup })
-        cy.task('createFile', { filename: filtersView, data: filtersViewMarkup })
-    })
+  before(() => {
+    // Restore filters file from prototype starter
+    cy.task('copyFromStarterFiles', { filename: appFiltersPath })
+    cy.task('appendFile', { filename: appFiltersPath, data: filtersViewMarkup })
+    cy.task('createFile', { filename: filtersView, data: filtersViewMarkup })
+  })
 })
