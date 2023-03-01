@@ -43,7 +43,7 @@ describe('error handling', () => {
 
     expect(response.status).toBe(500)
     expect(response.text).toEqual('test error')
-    
+
     app.close()
   })
 
