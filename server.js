@@ -25,7 +25,6 @@ const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
-
 routesApi.setApp(app)
 
 // Set up configuration variables
