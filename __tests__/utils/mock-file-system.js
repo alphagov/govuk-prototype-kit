@@ -58,13 +58,14 @@ function mockFileSystem (rootPath) {
       spiesToTearDown.pop().mockClear()
     }
   }
+  const getRootPath = () => rootPath
   const setupSpies = () => {
     const prepFilePath = filePath => {
       return (filePath).replace(rootPath + path.sep, '').split(path.sep)
     }
 
     const readFileImplementation = (filePath, encoding) => {
-      if (filePath.includes('node_modules/jest-worker') || filePath.includes('node_modules/chalk')) {
+      if (filePath.includes('node_modules/jest-') || filePath.includes('node_modules/chalk')) {
         return originalFsFunctions.promises.readFile.apply(null, arguments)
       }
       if (encoding !== 'utf8') {
@@ -173,7 +174,8 @@ function mockFileSystem (rootPath) {
     createDirectory,
     doesDirectoryExist,
     teardown,
-    setupSpies
+    setupSpies,
+    getRootPath
   }
 }
 
