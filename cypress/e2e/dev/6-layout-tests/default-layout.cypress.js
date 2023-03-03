@@ -31,7 +31,8 @@ it('deleting default layout does not cause pages to fail to render', () => {
   cy.visit('/', { failOnStatusCode: false })
   cy.get('body').should('not.contains.text', 'Error: template not found')
 
-  cy.document().then(doc =>
+  cy.document().then(doc => {
+    cy.log('head content', doc.head.innerHTML)
     comments(doc.head).should('contain', backupLayoutComment)
-  )
+  })
 })
