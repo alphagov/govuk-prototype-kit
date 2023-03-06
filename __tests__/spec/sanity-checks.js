@@ -35,6 +35,10 @@ describe('The Prototype Kit', () => {
     require('../../lib/build').generateAssetsSync()
   }, createKitTimeout)
 
+  afterAll(() => {
+    app.close()
+  })
+
   it('should call writeFileSync with result css from sass.compile', () => {
     expect(fs.writeFileSync).toHaveBeenCalledWith(
       path.join(projectDir, '.tmp', 'public', 'stylesheets', 'application.css'),

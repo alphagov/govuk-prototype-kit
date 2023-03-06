@@ -27,6 +27,7 @@ describe('error handling', () => {
 
   afterEach(() => {
     jest.restoreAllMocks()
+    require('../../lib/nunjucks/nunjucksLoader.js').stopWatchingNunjucks()
   })
 
   it('should show errors to the user in both the terminal and the browser', async () => {
@@ -42,6 +43,8 @@ describe('error handling', () => {
 
     expect(response.status).toBe(500)
     expect(response.text).toEqual('test error')
+
+    app.close()
   })
 
   it('shows an error if a template cannot be found', async () => {

@@ -6,7 +6,7 @@ const path = require('path')
 const { waitForApplication } = require('../../utils')
 
 const defaultLayoutFilePath = path.join('app', 'views', 'layouts', 'main.html')
-const backupLayoutComment = '<!-- could not find layouts/main.html in prototype, using backup default template -->'
+const backupLayoutComment = '<!-- could not find layouts/main.html or layouts/main.njk in prototype, using backup default template -->'
 
 const comments = el => cy.wrap(
   [...el.childNodes]
@@ -31,7 +31,8 @@ it('deleting default layout does not cause pages to fail to render', () => {
   cy.visit('/', { failOnStatusCode: false })
   cy.get('body').should('not.contains.text', 'Error: template not found')
 
-  cy.document().then(doc =>
+  cy.document().then(doc => {
+    cy.log('head content', doc.head.innerHTML)
     comments(doc.head).should('contain', backupLayoutComment)
-  )
+  })
 })
