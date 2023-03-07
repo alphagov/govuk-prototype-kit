@@ -1,16 +1,24 @@
 #!/bin/sh
 
+rm -Rf tmp/performance-testing
 mkdir -p tmp/performance-testing
+if [ -n "$1" ]; then
+  dependency=$1
+else
+  echo "We don't yet support running against your local version.  Please run against a branch or release."
+  echo "e.g."
+  echo "$0 13.0.0"
+  echo "$0 alphagov/govuk-prototype-kit#main"
+  
+  exit 1
+#  tar -cpf tmp/performance-testing/kit-dependency.tar --exclude="tmp" .
+#  dependency="kit-dependency.tar"
+fi
 cd tmp/performance-testing
 rm -Rf govuk-prototype-kit-performance-kit 
 git clone git@github.com:alphagov/govuk-prototype-kit-performance-kit.git
 cd govuk-prototype-kit-performance-kit
 echo '{"collectUsageData": false}' > usage-data-config.json
+npm install $dependency
 npm install
-if [ -n "$1" ]; then
-  npm install $1
-else
-  tar -czpf kit-dependency.tar.gz --exclude="tmp" ../..
-  npm install kit-dependency.tar.gz
-fi
 npm run dev
