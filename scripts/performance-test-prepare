@@ -1,0 +1,18 @@
+#!/bin/sh
+
+mkdir -p tmp/performance-testing
+cd tmp/performance-testing
+rm -Rf govuk-prototype-kit-performance-kit 
+git clone git@github.com:alphagov/govuk-prototype-kit-performance-kit.git
+cd govuk-prototype-kit-performance-kit
+echo '{"collectUsageData": false}' > usage-data-config.json
+
+if [ -n "$1" ]; then
+  npm install $1
+else
+  npm install ../..
+  rm -Rf node_modules/govuk-prototype-kit
+  cp -R ../../ node_modules/govuk-prototype-kit
+fi
+npm install
+npm run dev

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -n "$1" ]; then
+  port=$1
+else
+  port=3000
+fi
+
+ab -n 1000 -c 10 http://localhost:$port/
