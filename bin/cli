@@ -14,6 +14,7 @@ const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSe
 const currentDirectory = process.cwd()
 const kitRoot = path.join(__dirname, '..')
 const kitVersion = require('../package.json').version
+const kitProjectName = require('../package.json').name
 
 const argv = parse(process.argv, {
   booleans: ['no-version-control', 'verbose', 'running-within-create-script']
@@ -151,7 +152,7 @@ function getChosenKitDependency () {
     return defaultValue
   }
 
-  if (versionRequested === 'local') {
+  if (versionRequested === 'local' || versionRequested === 'local-symlink') {
     return kitRoot
   } else if (versionRequested) {
     if (versionRequested.match(/\d+\.\d+\.\d+/) ||
@@ -235,6 +236,12 @@ async function runCreate () {
   progressLogger('Installing dependencies')
 
   await npmInstall(installDirectory, [kitDependency, 'govuk-frontend', '@govuk-prototype-kit/common-templates'])
+
+  if ((argv.options.version || argv.options.v) === 'local-symlink') {
+    const dependencyInstallLocation = path.join(installDirectory, 'node_modules', kitProjectName)
+    await fs.remove(dependencyInstallLocation)
+    await fs.ensureSymlink(kitDependency, dependencyInstallLocation)
+  }
 
   let runningWithinCreateScriptFlag = '--running-within-create-script'
 
