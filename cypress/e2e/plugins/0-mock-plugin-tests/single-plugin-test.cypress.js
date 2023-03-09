@@ -57,7 +57,7 @@ describe('Single Plugin Test', async () => {
       .should('have.html', '<strong>abc</strong>')
   })
 
-  it('Loads plugin-foo global correctly', () => {
+  it('Loads plugin-foo function correctly', () => {
     waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('#test-foo-emphasize-global-function')
