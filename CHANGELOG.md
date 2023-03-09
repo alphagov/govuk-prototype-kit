@@ -4,10 +4,13 @@
 
 ### Fixes
 
+
 - [#1982: Remove require leading slash](https://github.com/alphagov/govuk-prototype-kit/pull/1982)
   A leading slash is no longer required when creating a page from a template
 - [#1988: Auto update when settings created and removed](https://github.com/alphagov/govuk-prototype-kit/pull/1988)
   The styling in a page will update automatically when the settings.scss file is created or removed
+- [#1974: Make sure install, upgrade and uninstall complete successfully.](https://github.com/alphagov/govuk-prototype-kit/pull/1974)
+- [#2021: Fixing errors about session file store](https://github.com/alphagov/govuk-prototype-kit/pull/2021)
 
 ## 13.3.0
 
