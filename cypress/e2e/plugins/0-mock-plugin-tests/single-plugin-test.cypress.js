@@ -18,7 +18,7 @@ const pluginFooViewMarkup = `
 {% block content %}
 {% include "foo.njk" %}
 <div id="test-foo-strong-filter">{{ 'abc' | foo__strong }}</div>
-<div id="test-foo-emphasize-global-function">{{ fooEmphasize('def') }}</div>
+<div id="test-foo-emphasize-function">{{ fooEmphasize('def') }}</div>
 {% endblock %}
 
 {% block pageScripts %}
@@ -60,7 +60,7 @@ describe('Single Plugin Test', async () => {
   it('Loads plugin-foo function correctly', () => {
     waitForApplication()
     cy.visit('/plugin-foo')
-    cy.get('#test-foo-emphasize-global-function')
+    cy.get('#test-foo-emphasize-function')
       .should('have.html', '<em>def</em>')
   })
 
