@@ -6,3 +6,7 @@
   <!-- could not find layouts/main.html or layouts/main.njk in prototype, using backup default template -->
   {{ super() }}
 {% endblock %}
+
+{% block beforeContent %}
+  <h1>Congratulations, you win the prize.</h1>
+{% endblock %}
