@@ -122,7 +122,6 @@ require('./lib/manage-prototype-routes.js')
 require('./lib/plugins/plugins-routes.js')
 utils.addRouters(app)
 
-
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain')
   res.send('User-agent: *\nDisallow: /')
