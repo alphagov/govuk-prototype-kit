@@ -11,13 +11,14 @@ const globalsViewMarkup = `
 {% endblock %}
 `
 const globalsAddition = `
+const govukPrototypeKit = require('govuk-prototype-kit')
+const addGlobal = govukPrototypeKit.views.addFunction
 addGlobal('fooEmphasize', (content) => '<em>' + content + '</em>', { renderAsHtml: true })
 `
 describe('Globals Test', () => {
   before(() => {
     // Restore globals file from prototype starter
-    cy.task('copyFromStarterFiles', { filename: path.join('app', 'globals.js') })
-    cy.task('appendFile', { filename: appGlobalsPath, data: globalsAddition })
+    cy.task('createFile', { filename: appGlobalsPath, data: globalsAddition })
     cy.task('createFile', { filename: appFiltersViewPath, data: globalsViewMarkup })
   })
 

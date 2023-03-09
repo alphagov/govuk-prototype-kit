@@ -11,13 +11,14 @@ const filtersViewMarkup = `
 {% endblock %}
 `
 const filtersAddition = `
+const govukPrototypeKit = require('govuk-prototype-kit')
+const addFilter = govukPrototypeKit.views.addFilter
 addFilter('foo__strong', (content) => '<strong>' + content + '</strong>', { renderAsHtml: true })
 `
 describe('Filters Test', () => {
   before(() => {
     // Restore filters file from prototype starter
-    cy.task('copyFromStarterFiles', { filename: path.join('app', 'filters.js') })
-    cy.task('appendFile', { filename: appFiltersPath, data: filtersAddition })
+    cy.task('createFile', { filename: appFiltersPath, data: filtersAddition })
     cy.task('createFile', { filename: appFiltersViewPath, data: filtersViewMarkup })
   })
 
