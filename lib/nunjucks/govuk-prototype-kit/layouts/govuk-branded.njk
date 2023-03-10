@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  {% if title %}{{ title }} - {% endif %}{{ serviceName }} - GOV.UK
+  {% if title %}{{ title }} - {% endif %}{{ serviceName }} - {% if titleOrganisation %}{{ titleOrganisation }}{% else %}GOV.UK Prototype Kit{% endif %}
 {% endblock %}
 
 {% block header %}
