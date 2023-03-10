@@ -2,13 +2,14 @@
 
 ## Unreleased
 
+## 13.4.0
+
 ### New features
 
 - [#2005: Support user defined global functions](https://github.com/alphagov/govuk-prototype-kit/pull/2005)
   Added support for user defined functions
 
 ### Fixes
-
 
 - [#1982: Remove require leading slash](https://github.com/alphagov/govuk-prototype-kit/pull/1982)
   A leading slash is no longer required when creating a page from a template
