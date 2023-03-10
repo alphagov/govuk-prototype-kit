@@ -1,4 +1,3 @@
-
 // core dependencies
 const fs = require('fs').promises
 const path = require('path')
@@ -9,7 +8,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
-const nunjucks = require('nunjucks')
+const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
 // envvars in a `.env` file, run dotenv before other code to make sure those
@@ -17,7 +16,7 @@ const nunjucks = require('nunjucks')
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir } = require('./lib/utils/paths')
+const { projectDir, packageDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
@@ -72,7 +71,7 @@ app.use(sessionUtils.getSessionMiddleware())
 // Set up App
 const appViews = [
   path.join(projectDir, '/app/views/')
-].concat(plugins.getAppViews())
+].concat(plugins.getAppViews([finalBackupNunjucksDir]))
 
 const nunjucksConfig = {
   autoescape: true,
@@ -86,7 +85,9 @@ if (config.isDevelopment) {
 
 nunjucksConfig.express = app
 
-const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
+const nunjucksAppEnv = getNunjucksAppEnv(appViews)
+
+expressNunjucks(nunjucksAppEnv, app)
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
@@ -95,7 +96,7 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 utils.addNunjucksFunctions(nunjucksAppEnv)
 
 // Set views engine
-app.set('view engine', 'html')
+app.set('view engine', 'njk')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
@@ -129,8 +130,8 @@ app.get('/robots.txt', (req, res) => {
   res.send('User-agent: *\nDisallow: /')
 })
 
-// Strip .html and .htm if provided
-app.get(/\.html?$/i, (req, res) => {
+// Strip .html, .htm and .njk if provided
+app.get(/\.(html|htm|njk)$/i, (req, res) => {
   let path = req.path
   const parts = path.split('.')
   parts.pop()
@@ -141,8 +142,8 @@ app.get(/\.html?$/i, (req, res) => {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, (req, res, next) => {
-  utils.matchRoutes(req, res, next)
+app.get(/^([^.]+)$/, async (req, res, next) => {
+  await utils.matchRoutes(req, res, next)
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
@@ -185,5 +186,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500)
   res.send(err.message)
 })
+
+app.close = stopWatchingNunjucks
 
 module.exports = app

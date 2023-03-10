@@ -6,7 +6,7 @@ const path = require('path')
 const { waitForApplication } = require('../../utils')
 
 const defaultLayoutFilePath = path.join('app', 'views', 'layouts', 'main.html')
-const backupLayoutComment = '<!-- could not find layouts/main.html in prototype, using backup default template -->'
+const backupLayoutComment = '<!-- could not find layouts/main.html or layouts/main.njk in prototype, using backup default template -->'
 
 const comments = el => cy.wrap(
   [...el.childNodes]

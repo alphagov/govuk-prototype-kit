@@ -7,6 +7,8 @@ const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../migrator')
 const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
+const { recursiveDirectoryContentsSync } = require('../lib/utils')
+const { appViewsDir } = require('../lib/utils/paths')
 
 // Avoid requiring any kit server code at the top-level as we might want to
 // change environment variables below.
@@ -17,7 +19,7 @@ const kitVersion = require('../package.json').version
 const kitProjectName = require('../package.json').name
 
 const argv = parse(process.argv, {
-  booleans: ['no-version-control', 'verbose', 'running-within-create-script']
+  booleans: ['no-version-control', 'verbose', 'running-within-create-script', 'use-njk-extensions']
 })
 
 const verboseLogger = !argv.options.verbose
@@ -258,6 +260,33 @@ async function runCreate () {
     .then(displaySuccessMessage)
 }
 
+async function createStarterFiles (installDirectory) {
+  await fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory)
+
+  async function addToConfigFile (key, value) {
+    const configFileLocation = path.join(installDirectory, 'app', 'config.json')
+    const config = await fs.readJson(configFileLocation)
+    config[key] = value
+    await fs.writeJson(configFileLocation, config, { spaces: 2 })
+  }
+
+  function renameAllHtmlFilesToNjk () {
+    return recursiveDirectoryContentsSync(appViewsDir)
+      .filter(filePath => filePath.endsWith('.html'))
+      .map(filePath => fs.move(
+        path.join(appViewsDir, filePath),
+        path.join(appViewsDir, filePath.substring(0, filePath.length - '.html'.length) + '.njk')
+      ))
+  }
+
+  if (argv.options['use-njk-extensions']) {
+    await Promise.all([
+      addToConfigFile('useNjkExtensions', true),
+      ...renameAllHtmlFilesToNjk()
+    ])
+  }
+}
+
 async function runInit () {
   // `init` is stage two of the install process (see above), it should be
   // called by `create` with the correct arguments.
@@ -273,7 +302,7 @@ async function runInit () {
   const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 
   await Promise.all([
-    fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory),
+    createStarterFiles(installDirectory),
     fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
     fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
     copyFile('LICENCE.txt'),

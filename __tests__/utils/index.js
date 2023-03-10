@@ -51,7 +51,8 @@ async function mkPrototype (prototypePath, {
   kitPath,
   overwrite = false,
   allowTracking = undefined,
-  npmInstallLinks = undefined
+  npmInstallLinks = undefined,
+  commandLineParameters = ''
 } = {}) { // TODO: Use kitPath if provided
   if (fs.existsSync(prototypePath)) {
     if (!overwrite) {
@@ -78,7 +79,7 @@ async function mkPrototype (prototypePath, {
     // Generate starter project
     const repoDir = path.resolve(__dirname, '..', '..')
     await exec(
-      `"${process.execPath}" bin/cli create --version local ${prototypePath}`,
+      `"${process.execPath}" bin/cli create --version local ${commandLineParameters} ${prototypePath}`,
       { cwd: repoDir, env: execEnv, stdio: 'inherit' }
     )
 
