@@ -25,16 +25,6 @@ const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
-
-// let lastTimestamp = Date.now()
-
-// setInterval(() => {
-//   const currentDate = Date.now()
-//   const difference = currentDate - lastTimestamp
-//   if (difference >= 340) console.log(difference)
-//   lastTimestamp = currentDate
-// }, 300)
-
 routesApi.setApp(app)
 
 // Set up configuration variables
