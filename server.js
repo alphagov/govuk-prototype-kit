@@ -91,6 +91,9 @@ const nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig)
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
 
+// Add Nunjucks functions
+utils.addNunjucksFunctions(nunjucksAppEnv)
+
 // Set views engine
 app.set('view engine', 'html')
 

@@ -21,5 +21,6 @@ tmp/
 # General ignores
 .DS_Store
 .idea
+.vscode
 .tmuxp.*
 /coverage

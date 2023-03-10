@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### New features
+
+- [#2005: Support user defined global functions](https://github.com/alphagov/govuk-prototype-kit/pull/2005)
+  Added support for user defined functions
+
 ### Fixes
 
 - [#1982: Remove require leading slash](https://github.com/alphagov/govuk-prototype-kit/pull/1982)

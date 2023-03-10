@@ -2,6 +2,9 @@
   "nunjucksFilters": [
     "/filters.js"
   ],
+  "nunjucksFunctions": [
+    "/functions.js"
+  ],
   "nunjucksPaths": [
     "/views"
   ],
