@@ -68,6 +68,7 @@ Write a brief summary with highlights from the release then send it to the follo
 - X-GOV #govuk-design-system
 - X-GOV #prototype-kit
 - GDS #govuk-design-system
+- GDS #product-and-technology
 
 Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-a-new-prototype.
 
