@@ -43,6 +43,16 @@ function mockFileSystem (rootPath) {
     return path.join(rootPath, partialPath)
   }
 
+  const deleteFile = (pathParts) => {
+    const partialPath = path.join(...pathParts)
+    delete files[partialPath]
+  }
+
+  const deleteDirectory = (pathParts) => {
+    const partialPath = path.join(...pathParts)
+    delete directories[partialPath]
+  }
+
   const doesDirectoryExist = (pathParts) => {
     return directories.hasOwnProperty(path.join(...pathParts))
   }
@@ -169,9 +179,11 @@ function mockFileSystem (rootPath) {
   }
   return {
     writeFile,
+    deleteFile,
     readFile,
     doesFileExist,
     createDirectory,
+    deleteDirectory,
     doesDirectoryExist,
     teardown,
     setupSpies,

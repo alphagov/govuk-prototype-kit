@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
-const { expressNunjucks, getNunjucksAppEnv } = require('./lib/nunjucks/nunjucksConfiguration')
+const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
 // envvars in a `.env` file, run dotenv before other code to make sure those
@@ -81,7 +81,7 @@ app.use(sessionUtils.getSessionMiddleware())
 // Set up App
 const appViews = [
   path.join(projectDir, '/app/views/')
-].concat(plugins.getAppViews())
+].concat(plugins.getAppViews([path.join(packageDir, '/lib/final-backup-nunjucks')]))
 
 const nunjucksConfig = {
   autoescape: true,
@@ -196,5 +196,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500)
   res.send(err.message)
 })
+
+app.close = stopWatchingNunjucks
 
 module.exports = app
