@@ -17,6 +17,7 @@ function mockFileSystem (rootPath) {
   const directories = {}
 
   const originalFsFunctions = {
+    readFileSync: fs.readFileSync,
     promises: {
       readFile: fs.promises.readFile
     }
@@ -43,6 +44,16 @@ function mockFileSystem (rootPath) {
     return path.join(rootPath, partialPath)
   }
 
+  const deleteFile = (pathParts) => {
+    const partialPath = path.join(...pathParts)
+    delete files[partialPath]
+  }
+
+  const deleteDirectory = (pathParts) => {
+    const partialPath = path.join(...pathParts)
+    delete directories[partialPath]
+  }
+
   const doesDirectoryExist = (pathParts) => {
     return directories.hasOwnProperty(path.join(...pathParts))
   }
@@ -64,12 +75,9 @@ function mockFileSystem (rootPath) {
       return (filePath).replace(rootPath + path.sep, '').split(path.sep)
     }
 
-    const readFileImplementation = (filePath, encoding) => {
-      if (filePath.includes('node_modules/jest-') || filePath.includes('node_modules/chalk')) {
-        return originalFsFunctions.promises.readFile.apply(null, arguments)
-      }
+    function readFileCore (filePath, encoding) {
       if (encoding !== 'utf8') {
-        throw new Error(`In this project we always read as UTF8 - if that changes please update the mock. [${encoding}] was provided`)
+        throw new Error(`In this project we always read as UTF8 - if that changes please update the mock. [${encoding}] was provided for path [${filePath}]`)
       }
       const trimmedPath = prepFilePath(filePath)
       if (doesFileExist(trimmedPath)) {
@@ -77,6 +85,20 @@ function mockFileSystem (rootPath) {
       } else {
         throwNotFound(filePath)
       }
+    }
+
+    const readFileImplementationForPromise = (filePath, encoding) => {
+      if (filePath.includes('node_modules/jest-') || filePath.includes('node_modules/chalk')) {
+        return originalFsFunctions.promises.readFile.apply(null, arguments)
+      }
+      return readFileCore(filePath, encoding)
+    }
+
+    const readFileImplementation = (filePath, encoding) => {
+      if (filePath.includes('node_modules/jest-') || filePath.includes('node_modules/chalk')) {
+        return originalFsFunctions.readFileSync.apply(null, arguments)
+      }
+      return readFileCore(filePath, encoding)
     }
 
     const existsImplementation = filePath => doesFileExist(prepFilePath(filePath)) || doesDirectoryExist(prepFilePath(filePath))
@@ -145,7 +167,7 @@ function mockFileSystem (rootPath) {
     jest.spyOn(fs, 'existsSync').mockImplementation(existsImplementation)
     jest.spyOn(fs, 'lstatSync').mockImplementation(lstatImplementation)
     jest.spyOn(fs, 'readdirSync').mockImplementation(readdirImplementation)
-    jest.spyOn(fs.promises, 'readFile').mockImplementation(promiseWrap(readFileImplementation))
+    jest.spyOn(fs.promises, 'readFile').mockImplementation(promiseWrap(readFileImplementationForPromise))
     jest.spyOn(fs.promises, 'writeFile').mockImplementation(promiseWrap(writeFileImplementation))
     jest.spyOn(fs.promises, 'lstat').mockImplementation(promiseWrap(lstatImplementation))
     jest.spyOn(fs.promises, 'readdir').mockImplementation(promiseWrap(readdirImplementation))
@@ -169,9 +191,11 @@ function mockFileSystem (rootPath) {
   }
   return {
     writeFile,
+    deleteFile,
     readFile,
     doesFileExist,
     createDirectory,
+    deleteDirectory,
     doesDirectoryExist,
     teardown,
     setupSpies,
