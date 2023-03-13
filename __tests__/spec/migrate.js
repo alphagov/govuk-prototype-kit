@@ -151,7 +151,7 @@ describe('migrate test prototype', () => {
       'https://prototype-kit.service.gov.uk/docs/how-to-use-layouts\n' +
       '#}\n' +
       '\n' +
-      '{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}' + '\n'
+      '{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}' + '\n'
     )
   })
 
