@@ -5,7 +5,7 @@
 {% block head %}
   {% block meta %}{% endblock %}
   {% block stylesheets %}
-    {% include "govuk-prototype-kit/includes/stylesheets.html" %}
+    {% include "govuk-prototype-kit/includes/stylesheets.njk" %}
   {% endblock %}
 {% endblock %}
 
@@ -52,7 +52,7 @@
 
 {% block bodyEnd %}
   {% block scripts %}
-    {% include "govuk-prototype-kit/includes/scripts.html" %}
+    {% include "govuk-prototype-kit/includes/scripts.njk" %}
     {% block pageScripts %}{% endblock %}
   {% endblock %}
 {% endblock %}
