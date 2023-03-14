@@ -310,7 +310,7 @@ describe('migration steps', () => {
     expect(reporter.addReporter).toHaveBeenCalledTimes(1)
     expect(reporter.addReporter).toHaveBeenCalledWith(`Overwrite ${layout}`)
 
-    expect(mockReporter).toHaveBeenCalledTimes(2)
+    expect(mockReporter).toHaveBeenCalledTimes(1)
     expect(mockReporter).toHaveBeenCalledWith(true)
   })
 
