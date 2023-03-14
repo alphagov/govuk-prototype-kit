@@ -117,9 +117,10 @@ describe('migrate test prototype', () => {
       '// For guidance on how to add JavaScript see:\n' +
       '// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images\n' +
       '//\n' +
-      '\n' +
+      '\n\n\n' +
       'window.GOVUKPrototypeKit.documentReady(() => {' + '\n' +
       '  // Add JavaScript here' + '\n' +
+      '  console.log(\'Hello\')' + '\n' +
       '})' + '\n'
     )
   })

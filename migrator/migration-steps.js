@@ -1,6 +1,7 @@
 
 // core dependencies
 const path = require('path')
+const fsp = require('fs').promises
 
 // npm dependencies
 const fse = require('fs-extra')
@@ -215,11 +216,9 @@ async function upgradeIfUnchanged (filePaths, starterFilePath, additionalStep) {
     try {
       if (matchFound) {
         await copyFileFromStarter(starterFilePath || filePath, filePath)
-      } else {
-        await reporter(false)
       }
       if (additionalStep) {
-        result = await additionalStep()
+        result = await additionalStep(filePath, matchFound)
       } else {
         result = matchFound
       }
@@ -242,6 +241,51 @@ async function updateUnbrandedLayouts (dir) {
   return results.flat()
 }
 
+async function upgradeIfPossible (filePath, matchFound) {
+  if (matchFound) {
+    return true
+  } else {
+    const fullPath = path.join(projectDir, filePath)
+    const filename = fullPath.split(path.sep).pop()
+    if (filename === 'application.js') {
+      const textToReplace = [
+        {
+          originalText: '/* global $ */',
+          replacementText:
+            `//
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//`
+        },
+        {
+          originalText:
+            `// Warn about using the kit in production
+if (window.console && window.console.info) {
+  window.console.info('GOV.UK Prototype Kit - do not use for production')
+}`
+        },
+        {
+          originalText: '$(document).ready(function () {',
+          replacementText: 'window.GOVUKPrototypeKit.documentReady(() => {'
+        },
+        {
+          originalText: 'window.GOVUKFrontend.initAll()',
+          replacementText: '// Add JavaScript here'
+        }
+      ]
+      const fileBuffer = await fsp.readFile(fullPath)
+      if (textToReplace.every(({ originalText }) => fileBuffer.toString().includes(originalText))) {
+        const content = textToReplace.reduce((currentContent, { originalText, replacementText }) => {
+          return currentContent.replace(originalText, replacementText || '')
+        }, fileBuffer.toString())
+        await fsp.writeFile(fullPath, content)
+        return true
+      }
+    }
+    return false
+  }
+}
+
 module.exports = {
   getOldConfig,
   preflightChecks,
@@ -254,5 +298,6 @@ module.exports = {
   deleteEmptyDirectories,
   deleteIfUnchanged,
   upgradeIfUnchanged,
-  updateUnbrandedLayouts
+  updateUnbrandedLayouts,
+  upgradeIfPossible
 }
