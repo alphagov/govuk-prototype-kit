@@ -21,6 +21,9 @@ process.env.USE_HTTPS = 'true'
 const app = require('../../server.js')
 
 describe('The Prototype Kit - force HTTPS redirect functionality', () => {
+  afterAll(() => {
+    require('../../lib/nunjucks/nunjucksLoader.js').stopWatchingNunjucks()
+  })
   describe('should in a production environment', () => {
     it('have HTTP header "location" field that begins with https', async () => {
       const response = await request(app).get('/')

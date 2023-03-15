@@ -43,6 +43,16 @@ function mockFileSystem (rootPath) {
     return path.join(rootPath, partialPath)
   }
 
+  const deleteFile = (pathParts) => {
+    const partialPath = path.join(...pathParts)
+    delete files[partialPath]
+  }
+
+  const deleteDirectory = (pathParts) => {
+    const partialPath = path.join(...pathParts)
+    delete directories[partialPath]
+  }
+
   const doesDirectoryExist = (pathParts) => {
     return directories.hasOwnProperty(path.join(...pathParts))
   }
@@ -58,13 +68,14 @@ function mockFileSystem (rootPath) {
       spiesToTearDown.pop().mockClear()
     }
   }
+  const getRootPath = () => rootPath
   const setupSpies = () => {
     const prepFilePath = filePath => {
-      return (filePath).replace(rootPath + path.sep, '').split(path.sec)
+      return (filePath).replace(rootPath + path.sep, '').split(path.sep)
     }
 
     const readFileImplementation = (filePath, encoding) => {
-      if (filePath.includes('node_modules/jest-worker')) {
+      if (filePath.includes('node_modules/jest-') || filePath.includes('node_modules/chalk')) {
         return originalFsFunctions.promises.readFile.apply(null, arguments)
       }
       if (encoding !== 'utf8') {
@@ -78,11 +89,35 @@ function mockFileSystem (rootPath) {
       }
     }
 
-    const existsImplementation = filePath => doesFileExist(prepFilePath(filePath))
+    const existsImplementation = filePath => doesFileExist(prepFilePath(filePath)) || doesDirectoryExist(prepFilePath(filePath))
 
     const writeFileImplementation = (filePath, content) => {
       const trimmedPath = prepFilePath(filePath)
       writeFile(trimmedPath, content)
+    }
+
+    const lstatImplementation = (filePath) => {
+      const fileExists = doesFileExist(prepFilePath(filePath))
+      const directoryExists = doesDirectoryExist(prepFilePath(filePath))
+      if (fileExists || directoryExists) {
+        return {
+          isDirectory: () => directoryExists
+        }
+      }
+    }
+
+    const readdirImplementation = (filePath) => {
+      const preppedPath = prepFilePath(filePath)
+      if (!doesDirectoryExist(preppedPath)) {
+        throw new Error('This is the wrong error, please make this error more accurate if you experience it.  The directory doesn\'t exist')
+      }
+      const dirPathString = preppedPath.join(path.sep)
+      return [...Object.keys(directories), ...Object.keys(files)].filter(file => {
+        if (!file.startsWith(dirPathString)) {
+          return false
+        }
+        return dirPathString.split(path.sep).length === file.split(path.sep).length - 1
+      }).map(filename => filename.split(path.sep).at(-1))
     }
 
     const promiseWrap = fn => function () {
@@ -118,8 +153,12 @@ function mockFileSystem (rootPath) {
     jest.spyOn(fs, 'readFileSync').mockImplementation(readFileImplementation)
     jest.spyOn(fs, 'writeFileSync').mockImplementation(writeFileImplementation)
     jest.spyOn(fs, 'existsSync').mockImplementation(existsImplementation)
+    jest.spyOn(fs, 'lstatSync').mockImplementation(lstatImplementation)
+    jest.spyOn(fs, 'readdirSync').mockImplementation(readdirImplementation)
     jest.spyOn(fs.promises, 'readFile').mockImplementation(promiseWrap(readFileImplementation))
     jest.spyOn(fs.promises, 'writeFile').mockImplementation(promiseWrap(writeFileImplementation))
+    jest.spyOn(fs.promises, 'lstat').mockImplementation(promiseWrap(lstatImplementation))
+    jest.spyOn(fs.promises, 'readdir').mockImplementation(promiseWrap(readdirImplementation))
     if (fs.promises.rm) {
       jest.spyOn(fs.promises, 'rm').mockImplementation(promiseWrap(rm))
       spiesToTearDown.push(fs.promises.rm)
@@ -133,17 +172,22 @@ function mockFileSystem (rootPath) {
     spiesToTearDown.push(fs.readFileSync)
     spiesToTearDown.push(fs.writeFileSync)
     spiesToTearDown.push(fs.existsSync)
+    spiesToTearDown.push(fs.lstatSync)
     spiesToTearDown.push(fs.promises.readFile)
     spiesToTearDown.push(fs.promises.writeFile)
+    spiesToTearDown.push(fs.promises.lstat)
   }
   return {
     writeFile,
+    deleteFile,
     readFile,
     doesFileExist,
     createDirectory,
+    deleteDirectory,
     doesDirectoryExist,
     teardown,
-    setupSpies
+    setupSpies,
+    getRootPath
   }
 }
 
