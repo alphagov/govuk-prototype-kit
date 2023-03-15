@@ -235,7 +235,6 @@ module.exports = function setupNodeEvents (on, config) {
       .then(makeSureCypressCanInterpretTheResult),
 
     deleteFile: ({ filename, timeout }) => deleteFile(filename, timeout)
-      .then(() => sleep(1000))
       .then(makeSureCypressCanInterpretTheResult),
 
     existsFile: ({ filename, timeout }) => existsFile(filename, timeout)
