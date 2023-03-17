@@ -1,0 +1,24 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Page not found</h1>
+        <p class="govuk-body">
+          If you typed the web address, check it is correct.
+        </p>
+        <p class="govuk-body">
+          If you pasted the web address, check you copied the entire address.
+        </p>
+        <p class="govuk-body">
+            Please contact the  <a class="govuk-link" href="slack://channel?team=T04V6EBTR&id=C0647LW4R">Prototype Kit team on Slack</a> if you need further assistance
+        </p>
+    </div>
+  </div>
+{% endblock %}

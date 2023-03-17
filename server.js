@@ -178,13 +178,24 @@ app.use((req, res, next) => {
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
 // message without the stack trace.
+
 app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  console.error(err.message)
-  res.status(err.status || 500)
-  res.send(err.message)
+  switch (err.status) {
+    case 404:
+      res.status(err.status) // if no status 
+      res.render("views/page-not-found")
+      break
+    default:
+      const errorStack = err.stack.replace("\n", "<br>")
+      res.status(500) // if no status 
+      res.render('views/server-error', {
+        errorStack
+      })
+      break
+  }
 })
 
 app.close = stopWatchingNunjucks
