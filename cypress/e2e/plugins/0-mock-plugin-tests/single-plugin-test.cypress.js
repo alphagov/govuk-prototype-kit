@@ -19,6 +19,7 @@ const pluginFooViewMarkup = `
 {% include "foo.njk" %}
 <div id="test-foo-strong-filter">{{ 'abc' | foo__strong }}</div>
 <div id="test-foo-emphasize-function">{{ fooEmphasize('def') }}</div>
+<div id="test-foo-field-macro">{{ fooField('pass', value='ghi') }}</div>
 {% endblock %}
 
 {% block pageScripts %}
@@ -62,6 +63,13 @@ describe('Single Plugin Test', async () => {
     cy.visit('/plugin-foo')
     cy.get('#test-foo-emphasize-function')
       .should('have.html', '<em>def</em>')
+  })
+
+  it('Loads plugin-foo foo-field macro correctly', () => {
+    waitForApplication()
+    cy.visit('/plugin-foo')
+    cy.get('#test-foo-field-macro input')
+      .should('have.value', 'ghi')
   })
 
   it('Loads plugin-foo script correctly', () => {
