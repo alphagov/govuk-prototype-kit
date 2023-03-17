@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Page not found</h1>
+      <p class="govuk-body">
+          If you typed the web address, check it is correct.
+        </p>
+      <p class="govuk-body">
+          If you pasted the web address, check you copied the entire address.
+        </p>
+      {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+      <h1 class="govuk-heading-l">Troubleshooting</h1>
+      
+{{ govukAccordion({
+  id: "accordion-default",
+  items: [
+     {
+            heading: {
+              text: "Check your start page is correctly linked to your index page"
+            },
+            content: {
+              html: "<p class='govuk-body'><a href='https://prototype-kit.service.gov.uk/docs/make-first-prototype/link-index-page-start-page'>Click here</a> to visit our guide on creating pages if you are unsure whether or not your start page is linked correctly to your index page.</p>"
+            }
+          },
+            {
+              heading: {
+                text: "Check your pages have the correct names"
+              },
+              content: {
+                html: "<p class='govuk-body'><a href='https://prototype-kit.service.gov.uk/docs/make-first-prototype/create-pages'>Click here</a> to view our guide on creating pages, the guide will show you how to create pages using an easy to page in the manage your site section of the kit.</p>"
+              }
+            },
+            {
+              heading: {
+                text: "Check your pages are linked correctly"
+              },
+              content: {
+                html: "<p class='govuk-body'><a href='https://prototype-kit.service.gov.uk/docs/make-first-prototype/link-pages-together'>Click here</a> to view our guide on linking pages together if you are unsure. Linking a page to a incorrectly spelt page will result in the page not being found, please also remember to include sub-folder names that house your pages in the views folder (for example. /views/pages/1 would result in linking to /pages/1).</p>"
+              }
+            },
+            {
+              heading: {
+                text: "Are you trying to show different pages depending on what a user has selected?"
+              },
+              content: {
+                html: "<p class='govuk-body'><a href='https://prototype-kit.service.gov.uk/docs/make-first-prototype/branching'>Click here</a> to view our guide on showing different pages depending on user input if you are unsure.</p>"
+              }
+            },
+            {
+              heading: {
+                text: "Check that you have set up your routes correctly"
+              },
+              content: {
+                html: "<p class='govuk-body'><a href='https://prototype-kit.service.gov.uk/docs/create-routes'>Click here</a> to view our guide on creating your own routes if you are unsure.</p>"
+              }
+            }
+  ]
+}) }}
+
+      <p class="govuk-body">
+            Please contact the  <a class="govuk-link" href="slack://channel?team=T04V6EBTR&id=C0647LW4R">Prototype Kit team on Slack</a> if you need further assistance
+        </p>
+    </div>
+  </div>
+{% endblock %}
+
+
+        
