@@ -183,19 +183,8 @@ app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  switch (err.status) {
-    case 404:
-      res.status(err.status) // if no status 
-      res.render("views/page-not-found")
-      break
-    default:
-      const errorStack = err.stack
-      res.status(500) // if no status 
-      res.render('views/server-error', {
-        errorStack
-      })
-      break
-  }
+  res.status(err.status || 500) // if no status 
+  res.send(err.status ? err.message : err.stack)
 })
 
 app.close = stopWatchingNunjucks
