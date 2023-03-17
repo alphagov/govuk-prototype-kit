@@ -7,6 +7,7 @@ const fse = require('fs-extra')
 const lodash = require('lodash')
 
 // local dependencies
+const { searchAndReplaceFiles } = require('../lib/utils')
 const { appDir, projectDir, packageDir } = require('../lib/utils/paths')
 const config = require('../lib/config')
 const logger = require('./logger')
@@ -232,6 +233,15 @@ async function upgradeIfUnchanged (filePaths, starterFilePath, additionalStep) {
   }))
 }
 
+async function updateUnbrandedLayouts (dir) {
+  const results = await searchAndReplaceFiles(
+    path.join(projectDir, dir),
+    '"layout_unbranded.html"',
+    '"govuk-prototype-kit/layouts/unbranded.html"',
+    ['.html', '.njk'])
+  return results.flat()
+}
+
 module.exports = {
   getOldConfig,
   preflightChecks,
@@ -243,5 +253,6 @@ module.exports = {
   deleteUnusedDirectories,
   deleteEmptyDirectories,
   deleteIfUnchanged,
-  upgradeIfUnchanged
+  upgradeIfUnchanged,
+  updateUnbrandedLayouts
 }

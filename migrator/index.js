@@ -17,7 +17,8 @@ const {
   deleteEmptyDirectories,
   upgradeIfUnchanged,
   deleteIfUnchanged,
-  removeOldPatternIncludesFromSassFile
+  removeOldPatternIncludesFromSassFile,
+  updateUnbrandedLayouts
 } = require('./migration-steps')
 
 const supportPage = 'https://prototype-kit.service.gov.uk/docs/support'
@@ -143,6 +144,7 @@ async function migrate () {
       deleteUnusedDirectories(directoriesToDelete),
       upgradeIfUnchanged(filesToUpdateIfUnchanged),
       upgradeLayoutIfUnchanged(),
+      updateUnbrandedLayouts('app/views'),
       deleteIfUnchanged(filesToDeleteIfUnchanged),
       deleteIfUnchanged(patternsToDeleteIfUnchanged)
     ])

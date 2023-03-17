@@ -155,6 +155,19 @@ describe('migrate test prototype', () => {
     )
   })
 
+  it('unbranded-test.html should replace unbranded extend', () => {
+    const unbrandedFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'nested-test-folder', 'unbranded-test.html'))
+
+    expect(unbrandedFileContents).toEqual(
+      '{% extends "govuk-prototype-kit/layouts/unbranded.html" %}\n' +
+      '{% block pageScripts %}\n' +
+      '  <script>\n' +
+      '    console.log(\'Hello Unbranded\')\n' +
+      '  </script>\n' +
+      '{% endblock %}'
+    )
+  })
+
   it('migrate.log does not contain user home directory', () => {
     const migrateLog = getNormalisedFileContent(path.join(projectDirectory, 'migrate.log'))
 
