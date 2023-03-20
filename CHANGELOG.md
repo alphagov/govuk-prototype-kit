@@ -9,6 +9,12 @@
   - The default for creating views from templates will be .html, but .njk will be used if the app/config.json contains `"useNjkExtensions": true`.
   - If two views are in the same location with the same name but with different suffixes (html or njk), the default suffix (determined by the existence of the useNjkExtensions setting above) will be matched first followed by the alternative.
 
+### Fixes
+
+- [#2050: Update extends unbranded correctly during migrate](https://github.com/alphagov/govuk-prototype-kit/pull/2050)  
+  All occurences of "layout_unbranded.html" within the nunjucks files in the users app folder will be replaced with "govuk-prototype-kit/layouts/unbranded.html" during the migration process.
+
+
 ## 13.4.0
 
 ### New features

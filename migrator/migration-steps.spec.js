@@ -21,6 +21,12 @@ jest.mock('./reporter', () => {
   }
 })
 
+jest.mock('../lib/utils', () => {
+  return {
+    searchAndReplaceFiles: jest.fn().mockResolvedValue([])
+  }
+})
+
 jest.mock('./file-helpers', () => {
   return {
     getFileAsLines: jest.fn().mockResolvedValue(true),
