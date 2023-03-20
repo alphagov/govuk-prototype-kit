@@ -245,6 +245,7 @@ async function upgradeIfPossible (filePath, matchFound) {
   if (matchFound) {
     return true
   } else {
+    const reporter = await addReporter(`Update ${filePath}`)
     const fullPath = path.join(projectDir, filePath)
     const filename = fullPath.split(path.sep).pop()
     if (filename === 'application.js') {
@@ -279,9 +280,11 @@ if (window.console && window.console.info) {
           return currentContent.replace(originalText, replacementText || '')
         }, fileBuffer.toString())
         await fsp.writeFile(fullPath, content)
+        await reporter(true)
         return true
       }
     }
+    await reporter(false)
     return false
   }
 }

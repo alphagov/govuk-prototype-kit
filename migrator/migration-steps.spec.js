@@ -11,6 +11,17 @@ jest.mock('fs-extra', () => {
   }
 })
 
+jest.mock('fs', () => {
+  const readFile = jest.fn().mockResolvedValue(true)
+  const writeFile = jest.fn().mockResolvedValue(true)
+  return {
+    promises: {
+      readFile,
+      writeFile
+    }
+  }
+})
+
 jest.mock('./reporter', () => {
   const mockReporter = jest.fn()
   return {
@@ -43,6 +54,7 @@ jest.mock('./file-helpers', () => {
 })
 
 const fse = require('fs-extra')
+const fsp = require('fs').promises
 const reporter = require('./reporter')
 const fileHelpers = require('./file-helpers')
 const config = require('../lib/config')
@@ -50,7 +62,7 @@ const { projectDir, starterDir, appDir } = require('../lib/utils/paths')
 
 const migrationSteps = require('./migration-steps')
 const { preflightChecks, deleteIfUnchanged, removeOldPatternIncludesFromSassFile } = require('./migration-steps')
-const { migrateConfig, prepareAppRoutes, prepareSass, deleteUnusedFiles, deleteUnusedDirectories, upgradeIfUnchanged } = migrationSteps
+const { migrateConfig, prepareAppRoutes, prepareSass, deleteUnusedFiles, deleteUnusedDirectories, upgradeIfUnchanged, upgradeIfPossible } = migrationSteps
 
 describe('migration steps', () => {
   const mockReporter = reporter.mockReporter
@@ -331,6 +343,57 @@ describe('migration steps', () => {
 
     expect(fileHelpers.deleteFile).toHaveBeenCalledTimes(1)
     expect(fileHelpers.deleteFile).toHaveBeenNthCalledWith(1, path.join(projectDir, unbrandedLayout))
+
+    expect(mockReporter).toHaveBeenCalledTimes(1)
+    expect(mockReporter).toHaveBeenCalledWith(true)
+  })
+
+  it('upgrade application file if possible', async () => {
+    const applicationJsFile = path.join('app', 'assets', 'javascripts', 'application.js')
+    const matchFound = false
+    const fileContents = `/* global $ */
+
+// Warn about using the kit in production
+if (window.console && window.console.info) {
+  window.console.info('GOV.UK Prototype Kit - do not use for production')
+}
+
+$(document).ready(function () {
+  window.GOVUKFrontend.initAll()
+  console.log('Hello')
+})
+`
+    const expectedFileContents =
+`//
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//
+
+
+
+window.GOVUKPrototypeKit.documentReady(() => {
+  // Add JavaScript here
+  console.log('Hello')
+})
+`
+
+    fsp.readFile.mockReturnValue(Buffer.from(fileContents, 'utf-8'))
+
+    // mock call upgradeIfPossible method (get this working first)
+    const result = await upgradeIfPossible(applicationJsFile, matchFound)
+    expect(result).toBeTruthy()
+    const expectedFileName = path.join(projectDir, applicationJsFile)
+
+    expect(fsp.readFile).toHaveBeenCalledTimes(1)
+    expect(fsp.readFile).toHaveBeenCalledWith(expectedFileName)
+
+    expect(fsp.writeFile).toHaveBeenCalledTimes(1)
+    const [actualFileName, actualFileContent] = fsp.writeFile.mock.calls[0]
+    expect(actualFileName).toEqual(expectedFileName)
+    expect(actualFileContent).toEqual(expectedFileContents)
+
+    expect(reporter.addReporter).toHaveBeenCalledTimes(1)
+    expect(reporter.addReporter).toHaveBeenCalledWith(`Update ${applicationJsFile}`)
 
     expect(mockReporter).toHaveBeenCalledTimes(1)
     expect(mockReporter).toHaveBeenCalledWith(true)
