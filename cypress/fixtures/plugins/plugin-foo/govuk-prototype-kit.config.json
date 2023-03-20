@@ -6,12 +6,19 @@
     "/functions.js"
   ],
   "nunjucksPaths": [
-    "/views"
+    "/views",
+    "/macros"
   ],
   "scripts": [
     "/scripts/foo.js"
   ],
   "sass": [
     "/sass/foo.scss"
+  ],
+  "nunjucksMacros": [
+    {
+      "importFrom": "foo-field.njk",
+      "macroName": "fooField"
+    }
   ]
 }
