@@ -133,19 +133,20 @@ function mockFileSystem (rootPath) {
       })
     }
 
-    const rm = (path, options) => {
-      const preparedPath = prepFilePath(path)
+    const rm = (filePath, options) => {
+      const preparedPath = prepFilePath(filePath)
+      const pathKey = path.join(...preparedPath)
       if ((options || {}).recursive) {
         if (doesDirectoryExist(preparedPath)) {
-          delete directories[preparedPath]
+          delete directories[pathKey]
         } else {
-          throwNotFound(path)
+          throwNotFound(filePath)
         }
       } else {
         if (doesFileExist(preparedPath)) {
-          delete files[preparedPath]
+          delete files[pathKey]
         } else {
-          throwNotFound(path)
+          throwNotFound(filePath)
         }
       }
     }

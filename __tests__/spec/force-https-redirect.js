@@ -21,6 +21,14 @@ process.env.USE_HTTPS = 'true'
 const app = require('../../server.js')
 
 describe('The Prototype Kit - force HTTPS redirect functionality', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'log').mockImplementation(jest.fn)
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   afterAll(() => {
     require('../../lib/nunjucks/nunjucksLoader.js').stopWatchingNunjucks()
   })

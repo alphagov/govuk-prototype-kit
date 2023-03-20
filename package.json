@@ -49,7 +49,7 @@
     "test:acceptance:smoke": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:smoke",
     "test:acceptance:plugins": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:plugins",
     "test:acceptance:open": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:open",
-    "test:unit": "jest --detectOpenHandles lib bin",
+    "test:unit": "jest --detectOpenHandles lib bin migrator",
     "test:integration": "cross-env CREATE_KIT_TIMEOUT=240000 jest --detectOpenHandles --testTimeout=60000 __tests__",
     "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
