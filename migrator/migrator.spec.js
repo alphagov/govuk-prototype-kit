@@ -30,6 +30,10 @@ jest.mock('./migration-steps', () => {
 const migrationSteps = require('./migration-steps')
 
 describe('migrator', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'log').mockImplementation(jest.fn)
+  })
+
   afterEach(() => {
     jest.clearAllMocks()
   })
