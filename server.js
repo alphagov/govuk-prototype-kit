@@ -189,11 +189,9 @@ app.use((err, req, res, next) => {
       res.render("views/error-handling/page-not-found")
       break
     default:
-      const errorStack = err.stack
+      const errorStack = err.stack.replaceAll('\n', '<br>')
       res.status(500) // if no status 
-      res.render('views/error-handling/server-error', {
-        errorStack
-      })
+      res.send(errorStack)
       break
   }
 })

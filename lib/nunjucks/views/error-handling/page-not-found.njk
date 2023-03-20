@@ -16,13 +16,12 @@
       <p class="govuk-body">
           If you pasted the web address, check you copied the entire address.
         </p>
-      {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
       <h1 class="govuk-heading-l">Troubleshooting</h1>
       
-{{ govukAccordion({
-  id: "accordion-default",
-  items: [
-     {
+      {{ govukAccordion({
+      id: "accordion-default",
+      items: [
+      {
             heading: {
               text: "Check your start page is linked to the index page"
             },
@@ -61,9 +60,8 @@
               content: {
                 html: "<p class='govuk-body'><a href='https://prototype-kit.service.gov.uk/docs/create-routes'>Click here</a> to view our guide on creating your own routes if you are unsure.</p>"
               }
-            }
-  ]
-}) }}
+            }]}) 
+          }}
 
       <p class="govuk-body">
             Please contact the  <a class="govuk-link" href="slack://channel?team=T04V6EBTR&id=C0647LW4R">Prototype Kit team on Slack</a> if you need further assistance
