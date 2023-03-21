@@ -249,43 +249,47 @@ async function upgradeIfPossible (filePath, matchFound) {
     const fullPath = path.join(projectDir, filePath)
     const filename = fullPath.split(path.sep).pop()
     if (filename === 'application.js') {
-      const textToReplace = [
-        {
-          originalText: '/* global $ */',
-          replacementText:
-            `//
-// For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
-//`
-        },
-        {
-          originalText:
-            `// Warn about using the kit in production
-if (window.console && window.console.info) {
-  window.console.info('GOV.UK Prototype Kit - do not use for production')
-}`
-        },
-        {
-          originalText: '$(document).ready(function () {',
-          replacementText: 'window.GOVUKPrototypeKit.documentReady(() => {'
-        },
-        {
-          originalText: 'window.GOVUKFrontend.initAll()',
-          replacementText: '// Add JavaScript here'
-        }
-      ]
-      const fileBuffer = await fsp.readFile(fullPath)
-      if (textToReplace.every(({ originalText }) => fileBuffer.toString().includes(originalText))) {
-        const content = textToReplace.reduce((currentContent, { originalText, replacementText }) => {
-          return currentContent.replace(originalText, replacementText || '')
-        }, fileBuffer.toString())
-        await fsp.writeFile(fullPath, content)
-        await reporter(true)
-        return true
-      }
+      upgradeApplicationJs(fullPath, reporter)
     }
     await reporter(false)
     return false
+  }
+}
+
+async function upgradeApplicationJs (fullPath, reporter) {
+  const textToReplace = [
+    {
+      originalText: '/* global $ */',
+      replacementText:
+        `//
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//`
+    },
+    {
+      originalText:
+        `// Warn about using the kit in production
+if (window.console && window.console.info) {
+window.console.info('GOV.UK Prototype Kit - do not use for production')
+}`
+    },
+    {
+      originalText: '$(document).ready(function () {',
+      replacementText: 'window.GOVUKPrototypeKit.documentReady(() => {'
+    },
+    {
+      originalText: 'window.GOVUKFrontend.initAll()',
+      replacementText: '// Add JavaScript here'
+    }
+  ]
+  const fileBuffer = await fsp.readFile(fullPath)
+  if (textToReplace.every(({ originalText }) => fileBuffer.toString().includes(originalText))) {
+    const content = textToReplace.reduce((currentContent, { originalText, replacementText }) => {
+      return currentContent.replace(originalText, replacementText || '')
+    }, fileBuffer.toString())
+    await fsp.writeFile(fullPath, content)
+    await reporter(true)
+    return true
   }
 }
 
