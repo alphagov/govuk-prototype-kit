@@ -14,34 +14,28 @@ it('should allow title to be set in multiple ways', () => {
   waitForApplication()
   cy.visit('/')
 
-  cy.title().should('eq', 'Home - Service name goes here - GOV.UK Prototype Kit')
+  cy.task('log', 'Should display standard home page title')
+
+  cy.title().should('eq', 'Home - Service name goes here - GOV.UK')
+
+  cy.task('log', 'Update index.html using "set pageName" to display customised page title')
 
   cy.task('createFile', {
     filename: path.join(Cypress.env('projectFolder'), indexFile),
     data: `
     {% extends "layouts/main.html" %}
 
-    {% set title="This is my custom title" %}`,
+    {% set pageName="This is my custom title" %}`,
     replace: true
   })
 
   cy.visit('/')
 
-  cy.title().should('eq', 'This is my custom title - Service name goes here - GOV.UK Prototype Kit')
-
-  cy.task('createFile', {
-    filename: path.join(Cypress.env('projectFolder'), indexFile),
-    data: `
-    {% extends "layouts/main.html" %}
-
-    {% set title="This is my custom title" %}
-    {% set titleOrganisation="GOV.UK" %}`,
-    replace: true
-  })
-
-  cy.visit('/')
+  cy.task('log', 'Should display customised page title')
 
   cy.title().should('eq', 'This is my custom title - Service name goes here - GOV.UK')
+
+  cy.task('log', 'Update index.html using "block pageTitle" to display overridden page title')
 
   cy.task('createFile', {
     filename: path.join(Cypress.env('projectFolder'), indexFile),
@@ -55,6 +49,8 @@ it('should allow title to be set in multiple ways', () => {
   })
 
   cy.visit('/')
+
+  cy.task('log', 'Should display overridden page title')
 
   cy.title().should('eq', 'This is my override title')
 })
