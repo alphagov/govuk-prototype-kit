@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  {% if pageName %}{{ pageName }} - {% endif %}{{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block header %}

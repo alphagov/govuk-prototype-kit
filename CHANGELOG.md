@@ -4,8 +4,12 @@
 
 ### New features
 
+- [#2030: Make it easier to set a page title](https://github.com/alphagov/govuk-prototype-kit/pull/2030)  
+  Set pageName variable on a page and the kit will make a GOV.UK page title for you.  
+  For example `{% set pageName="My example page" %}`
+
 - [#2035: Support html and njk extensions](https://github.com/alphagov/govuk-prototype-kit/pull/2035)  
-  Allows .html and .njk to be used interchangeably: 
+  Allows .html and .njk to be used interchangeably:
   - The default for creating views from templates will be .html, but .njk will be used if the app/config.json contains `"useNjkExtensions": true`.
   - If two views are in the same location with the same name but with different suffixes (html or njk), the default suffix (determined by the existence of the useNjkExtensions setting above) will be matched first followed by the alternative.
 
