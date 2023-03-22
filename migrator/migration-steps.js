@@ -258,7 +258,7 @@ async function updateUnbrandedLayouts (dir) {
   const results = await searchAndReplaceFiles(
     path.join(projectDir, dir),
     '"layout_unbranded.html"',
-    '"govuk-prototype-kit/layouts/unbranded.html"',
+    '"layouts/unbranded.html"',
     ['.html', '.njk'])
   return results.flat()
 }
