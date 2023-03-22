@@ -16,7 +16,7 @@
 ### Fixes
 
 - [#2050: Update extends unbranded correctly during migrate](https://github.com/alphagov/govuk-prototype-kit/pull/2050)  
-  All occurences of "layout_unbranded.html" within the nunjucks files in the users app folder will be replaced with "govuk-prototype-kit/layouts/unbranded.html" during the migration process.
+  All occurrences of "layout_unbranded.html" within the nunjucks files in the users app folder will be replaced with "govuk-prototype-kit/layouts/unbranded.html" during the migration process.
 
 
 ## 13.4.0
