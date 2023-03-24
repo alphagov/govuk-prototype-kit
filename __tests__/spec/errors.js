@@ -63,6 +63,7 @@ describe('error handling', () => {
 
     expect(response.status).toBe(200)
     expect(response.text).toEqual('OK')
+    app.close()
   })
   it('shows an error if a template cannot be found', async () => {
     testRouter.get('/test-page', (req, res, next) => {
@@ -76,6 +77,6 @@ describe('error handling', () => {
     expect(console.error).toHaveBeenCalledWith('template not found: test-page.html')
 
     expect(response.status).toBe(500)
-    // expect(response.text).toContain('Error: template not found: test-page.html<br>')
+    app.close()
   })
 })
