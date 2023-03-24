@@ -8,16 +8,11 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Sorry, there is a problem with the service</h1>
-      <p class="govuk-body">An error occured somewhere in your prototype, a stack trace has been shown below to help outline where the error may be.</p>
-      <pre>
-        <code>
-          {{ errorStack }}
-        </code>
-      </pre>  
+      <h1 class="govuk-heading-l">There is an error in your code</h1>
       <p class="govuk-body">
-          Please contact the  <a class="govuk-link" href="slack://channel?team=T04V6EBTR&id=C0647LW4R">Prototype Kit team on Slack</a> if you need further assistance
+          You can try and fix this yourself or <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">contact the GOV.UK Prototype Kit team</a> if you need help.
       </p>
+      <pre><code>{{ errorStack }}</code></pre>  
     </div>
   </div>
 
