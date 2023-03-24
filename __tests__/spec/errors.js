@@ -42,24 +42,7 @@ describe('error handling', () => {
     expect(console.error).toHaveBeenCalledWith('test error')
 
     expect(response.status).toBe(500)
-    
     app.close()
-  })
-
-  skip.it('shows an error if a template cannot be found', async () => {
-    testRouter.get('/test-page', (req, res, next) => {
-      res.render('test-page.html')
-    })
-
-    const app = require('../../server.js')
-    const response = await request(app).get('/test-page')
-
-
-    expect(console.error).toHaveBeenCalledTimes(1)
-    expect(console.error).toHaveBeenCalledWith('template not found: test-page.html')
-
-    expect(response.status).toBe(500)
-    // expect(response.text).toContain('Error: template not found: test-page.html<br>')
   })
 
   it('non-fatal errors are not shown in the browser', async () => {
@@ -72,7 +55,7 @@ describe('error handling', () => {
     const app = require('../../server.js')
     const response = await request(app).get('/non-fatal-error')
 
-    await sleep(500) // wait for next(err) to be called
+    await sleep(1000) // wait for next(err) to be called
 
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(console.error).toHaveBeenCalledWith(expect.stringMatching(
@@ -82,4 +65,20 @@ describe('error handling', () => {
     expect(response.status).toBe(200)
     expect(response.text).toEqual('OK')
   })
+  it('shows an error if a template cannot be found', async () => {
+    testRouter.get('/test-page', (req, res, next) => {
+      res.render('test-page.html')
+    })
+  
+    const app = require('../../server.js')
+    const response = await request(app).get('/test-page')
+  
+  
+    expect(console.error).toHaveBeenCalledTimes(1)
+    expect(console.error).toHaveBeenCalledWith('template not found: test-page.html')
+  
+    expect(response.status).toBe(500)
+    // expect(response.text).toContain('Error: template not found: test-page.html<br>')
+  })
 })
+
