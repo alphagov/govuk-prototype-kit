@@ -55,7 +55,7 @@ describe('error handling', () => {
     const app = require('../../server.js')
     const response = await request(app).get('/non-fatal-error')
 
-    await sleep(1000) // wait for next(err) to be called
+    await sleep(500) // wait for next(err) to be called
 
     expect(console.error).toHaveBeenCalledWith(expect.stringMatching(
       /^Error: test non-fatal error/
