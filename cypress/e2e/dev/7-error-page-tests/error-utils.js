@@ -15,15 +15,14 @@ router.get('/error', (req, res, next) => {
 const routesReplaceText = '// Add your routes here'
 
 const setupRouterForErrorTest = () => {
-    cy.task('replaceTextInFile', { filename: appRoutes, originalText: routesReplaceText, newText: errorRoutes })
-    }
-
+  cy.task('replaceTextInFile', { filename: appRoutes, originalText: routesReplaceText, newText: errorRoutes })
+}
 
 const setRouterBackToInitialState = () => {
-    cy.task('replaceTextInFile', { filename: appRoutes, originalText: errorRoutes, newText: routesReplaceText })
+  cy.task('replaceTextInFile', { filename: appRoutes, originalText: errorRoutes, newText: routesReplaceText })
 }
 
 module.exports = {
-    setRouterBackToInitialState,
-    setupRouterForErrorTest
+  setRouterBackToInitialState,
+  setupRouterForErrorTest
 }

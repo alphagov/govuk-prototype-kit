@@ -1,4 +1,3 @@
-const { forEach, after, before } = require('lodash')
 const { waitForApplication } = require('../../utils')
 const { setRouterBackToInitialState, setupRouterForErrorTest } = require('./error-utils')
 
@@ -8,26 +7,25 @@ const contactSupportText = 'You can try and fix this yourself or contact the GOV
 const templateNotFoundText = 'template not found: test-page.html'
 
 describe('Server Error Test', async () => {
+  it('internal server error results in 500 page being displayed correctly', () => {
+    setupRouterForErrorTest()
+    waitForApplication()
 
-    it('internal server error results in 500 page being displayed correctly', () => {
-        setupRouterForErrorTest()
-        waitForApplication()
+    cy.visit('/error', { failOnStatusCode: false })
+    cy.get('.govuk-heading-l').contains(pageName)
+    cy.get('.govuk-body').contains(contactSupportText)
 
-        cy.visit('/error', { failOnStatusCode: false })
-        cy.get('.govuk-heading-l').contains(pageName)
-        cy.get('.govuk-body').contains(contactSupportText)
+    setRouterBackToInitialState()
+  })
+  it('shows an error if a template cannot be found', () => {
+    setupRouterForErrorTest()
+    waitForApplication()
 
-        setRouterBackToInitialState()
-    })
-    it('shows an error if a template cannot be found', () => {
-        setupRouterForErrorTest()
-        waitForApplication()
+    cy.visit('/test-page', { failOnStatusCode: false })
+    cy.get('.govuk-heading-l').contains(pageName)
+    cy.get('.govuk-body').contains(contactSupportText)
+    cy.get('code').contains(templateNotFoundText)
 
-        cy.visit('/test-page', { failOnStatusCode: false })
-        cy.get('.govuk-heading-l').contains(pageName)
-        cy.get('.govuk-body').contains(contactSupportText)
-        cy.get('code').contains(templateNotFoundText)
-
-        setRouterBackToInitialState()
-    })
+    setRouterBackToInitialState()
+  })
 })

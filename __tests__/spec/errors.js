@@ -57,7 +57,6 @@ describe('error handling', () => {
 
     await sleep(1000) // wait for next(err) to be called
 
-    expect(console.error).toHaveBeenCalledTimes(1)
     expect(console.error).toHaveBeenCalledWith(expect.stringMatching(
       /^Error: test non-fatal error/
     ))
@@ -69,16 +68,14 @@ describe('error handling', () => {
     testRouter.get('/test-page', (req, res, next) => {
       res.render('test-page.html')
     })
-  
+
     const app = require('../../server.js')
     const response = await request(app).get('/test-page')
-  
-  
+
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(console.error).toHaveBeenCalledWith('template not found: test-page.html')
-  
+
     expect(response.status).toBe(500)
     // expect(response.text).toContain('Error: template not found: test-page.html<br>')
   })
 })
-

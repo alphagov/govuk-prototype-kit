@@ -184,21 +184,23 @@ app.use((err, req, res, next) => {
     return next(err)
   }
   switch (err.status) {
-    case 404:
+    case 404: {
       const path = req.path
-      res.status(err.status) // if no status 
-      res.render("views/error-handling/page-not-found", {
+      res.status(err.status)
+      res.render('views/error-handling/page-not-found', {
         path
       })
       break
-    default:
+    }
+    default: {
       const errorStack = err.stack
-      res.status(500) // if no status 
+      res.status(500)
       console.error(err.message)
       res.render('views/error-handling/server-error', {
         errorStack
       })
       break
+    }
   }
 })
 
