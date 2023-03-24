@@ -194,6 +194,7 @@ app.use((err, req, res, next) => {
     default:
       const errorStack = err.stack
       res.status(500) // if no status 
+      console.error(err.message)
       res.render('views/error-handling/server-error', {
         errorStack
       })
