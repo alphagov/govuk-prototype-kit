@@ -6,11 +6,8 @@ const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 
 async function installPluginTests ({ plugin, templates, version }) {
   describe(plugin, () => {
-    before(() => {
-      uninstallPlugin(plugin)
-    })
-
     it(`The ${plugin} plugin templates are not available`, () => {
+      uninstallPlugin(plugin)
       loadTemplatesPage()
       cy.get(`[data-plugin-package-name="${plugin}"]`).should('not.exist')
     })
@@ -64,7 +61,7 @@ async function installPluginTests ({ plugin, templates, version }) {
 describe('Plugin tests', () => {
   installPluginTests({
     plugin: '@govuk-prototype-kit/common-templates',
-    version: '1.0.0',
+    version: '1.1.1',
     templates: [
       { name: 'Blank GOV.UK', filename: 'blank-govuk.html' },
       { name: 'Blank unbranded', filename: 'blank-unbranded.html' },
