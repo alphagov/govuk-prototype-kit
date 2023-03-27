@@ -24,6 +24,7 @@ jest.mock('./migration-steps', () => {
     upgradeLayoutIfUnchanged: jest.fn().mockResolvedValue(true),
     upgradeIfPossible: jest.fn(),
     updateUnbrandedLayouts: jest.fn().mockResolvedValue(true),
+    updateGovUkBrandedLayouts: jest.fn().mockResolvedValue(true),
     deleteIfUnchanged: jest.fn().mockResolvedValue([true, true, true]),
     removeOldPatternIncludesFromSassFile: jest.fn().mockResolvedValue(true)
   }

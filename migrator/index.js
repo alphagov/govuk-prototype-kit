@@ -18,6 +18,7 @@ const {
   upgradeIfUnchanged,
   deleteIfUnchanged,
   removeOldPatternIncludesFromSassFile,
+  updateGovUkBrandedLayouts,
   updateUnbrandedLayouts,
   upgradeLayoutIfUnchanged,
   upgradeIfPossible
@@ -84,6 +85,7 @@ const filesToDeleteIfUnchanged = [
   'app/views/includes/cookie-banner.html',
   'app/views/includes/head.html',
   'app/views/includes/scripts.html',
+  'app/views/layout.html',
   'app/views/layout_unbranded.html'
 ]
 
@@ -135,6 +137,7 @@ async function migrate () {
       deleteUnusedDirectories(directoriesToDelete),
       upgradeIfUnchanged(filesToUpdateIfUnchanged, upgradeIfPossible),
       upgradeLayoutIfUnchanged('app/views/layout.html', 'app/views/layouts/main.html'),
+      updateGovUkBrandedLayouts('app/views'),
       updateUnbrandedLayouts('app/views'),
       deleteIfUnchanged(filesToDeleteIfUnchanged),
       deleteIfUnchanged(patternsToDeleteIfUnchanged)

@@ -254,11 +254,20 @@ async function upgradeIfUnchanged (filePaths, additionalStep) {
   return results
 }
 
+async function updateGovUkBrandedLayouts (dir) {
+  const results = await searchAndReplaceFiles(
+    path.join(projectDir, dir),
+    '"layouts.html"',
+    '"layouts/main.html"',
+    ['.html', '.njk'])
+  return results.flat()
+}
+
 async function updateUnbrandedLayouts (dir) {
   const results = await searchAndReplaceFiles(
     path.join(projectDir, dir),
     '"layout_unbranded.html"',
-    '"govuk-prototype-kit/layouts/unbranded.html"',
+    '"layouts/unbranded.html"',
     ['.html', '.njk'])
   return results.flat()
 }
@@ -276,6 +285,7 @@ module.exports = {
   deleteIfUnchanged,
   upgradeLayoutIfUnchanged,
   upgradeIfUnchanged,
+  updateGovUkBrandedLayouts,
   updateUnbrandedLayouts,
   upgradeIfPossible
 }
