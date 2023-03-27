@@ -7,6 +7,7 @@ const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../migrator')
 const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
+const { projectDir } = require('../lib/utils/paths')
 
 // Avoid requiring any kit server code at the top-level as we might want to
 // change environment variables below.
@@ -341,6 +342,32 @@ function runServe () {
   require('../listen-on-port')
 }
 
+async function uninstallGdsWorkaround () {
+  const packageJsonPath = path.join(projectDir, 'package.json')
+  const packageJson = await fs.readJson(packageJsonPath)
+  packageJson.scripts = packageJson.scripts || {}
+  packageJson.scripts.dev = 'govuk-prototype-kit dev'
+  packageJson.scripts.serve = 'govuk-prototype-kit serve'
+  packageJson.scripts.start = 'govuk-prototype-kit start'
+  await fs.writeJson(packageJsonPath, packageJson, packageJsonFormat)
+  console.log()
+  console.log('Updated package JSON to follow the usual standard (removing the workaround for managed macs).')
+  console.log()
+}
+
+async function installGdsWorkaround () {
+  const packageJsonPath = path.join(projectDir, 'package.json')
+  const packageJson = await fs.readJson(packageJsonPath)
+  packageJson.scripts = packageJson.scripts || {}
+  packageJson.scripts.dev = 'node node_modules/govuk-prototype-kit/bin/cli dev'
+  packageJson.scripts.serve = 'node node_modules/govuk-prototype-kit/bin/cli serve'
+  packageJson.scripts.start = 'node node_modules/govuk-prototype-kit/bin/cli start'
+  await fs.writeJson(packageJsonPath, packageJson, packageJsonFormat)
+  console.log()
+  console.log('Updated package JSON to work with GDS managed macs, it\'s recommended that you undo this when you\'re finished.')
+  console.log()
+}
+
 ;(async () => {
   verboseLogger(`Using kit version [${kitVersion}] for command [${argv.command}]`)
   verboseLogger('Argv:', argv)
@@ -357,6 +384,10 @@ function runServe () {
       return runServe()
     case 'migrate':
       return runMigrate()
+    case 'uninstall-gds-workaround':
+      return uninstallGdsWorkaround()
+    case 'install-gds-workaround':
+      return installGdsWorkaround()
     case 'version':
       console.log(kitVersion)
       break
