@@ -33,6 +33,7 @@ describe('error handling', () => {
     jest.resetModules()
 
     const pluginsApi = require('../../lib/plugins/plugins')
+    const sessionApi = require('../../lib/session')
     const originalGetAppViews = pluginsApi.getAppViews
 
     kitRoutesApi = require('../../lib/routes/api')
@@ -40,6 +41,10 @@ describe('error handling', () => {
     testRouter = kitRoutesApi.external.setupRouter()
 
     jest.spyOn(global.console, 'error').mockImplementation()
+    jest.spyOn(sessionApi, 'getSessionMiddleware').mockReturnValue((req, res, next) => {
+      req.session = {}
+      next()
+    })
     jest.spyOn(pluginsApi, 'getAppViews').mockImplementation(function () {
       const output = originalGetAppViews(...arguments)
       output.unshift(path.join(__dirname, '..', '..', 'lib', 'nunjucks'))
