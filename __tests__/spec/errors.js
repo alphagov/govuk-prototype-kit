@@ -111,7 +111,7 @@ describe('error handling', () => {
       // an error in a background thread
       setImmediate(next, new Error('test non-fatal error'))
       res.send('OK')
-  })
+    })
 
     const app = require('../../server.js')
     const response = await request(app).get('/non-fatal-error')
