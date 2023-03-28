@@ -311,7 +311,10 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
     while (lastPos < fileLines.length) {
       newContentLines.push(fileLines[lastPos++])
     }
-    const content = newContentLines.join('\n')
+    let content = newContentLines.join('\n')
+    if (content.includes('$(')) {
+      content = '/* global $ */\n' + content
+    }
     await fsp.writeFile(fullPath, content)
     await reporter(true)
     return true
