@@ -249,7 +249,8 @@ async function upgradeIfPossible (filePath, matchFound) {
     const fullPath = path.join(projectDir, filePath)
     const filename = fullPath.split(path.sep).pop()
     if (filename === 'application.js') {
-      upgradeApplicationJs(fullPath, reporter)
+      await upgradeApplicationJs(fullPath, reporter)
+      return true
     }
     await reporter(false)
     return false
@@ -283,10 +284,32 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
     }
   ]
   const fileBuffer = await fsp.readFile(fullPath)
-  if (textToReplace.every(({ originalText }) => fileBuffer.toString().includes(originalText))) {
-    const content = textToReplace.reduce((currentContent, { originalText, replacementText }) => {
-      return currentContent.replace(originalText, replacementText || '')
-    }, fileBuffer.toString())
+  const fileContent = fileBuffer.toString()
+  const fileLines = fileContent.split('\n')
+  const newContentLines = []
+  let lastPos = 0
+  const canReplace = textToReplace.every(({ originalText }) => {
+    const originalLines = originalText.split('\n')
+    // Find the original text in the file
+    const startPos = fileLines.findIndex((line) => line.trim() === originalLines[0].trim())
+    if (startPos === -1) {
+      return false
+    }
+    while (lastPos < startPos) {
+      newContentLines.push(fileLines[lastPos++])
+    }
+    if (originalLines.length > 1) {
+      return originalLines.every((originalLine, index) => {
+        newContentLines.push(originalLine)
+        return originalLine.trim() === fileLines[startPos + index].trim()
+      })
+    } else {
+      newContentLines.push(originalLines[0])
+      return true
+    }
+  })
+  if (canReplace) {
+    const content = newContentLines.join('\n')
     await fsp.writeFile(fullPath, content)
     await reporter(true)
     return true
