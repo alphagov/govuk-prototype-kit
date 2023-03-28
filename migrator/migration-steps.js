@@ -280,7 +280,7 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
     },
     {
       originalText: 'window.GOVUKFrontend.initAll()',
-      replacementText: '// Add JavaScript here'
+      replacementText: '  // Add JavaScript here'
     }
   ]
   const fileBuffer = await fsp.readFile(fullPath)
@@ -288,27 +288,29 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
   const fileLines = fileContent.split('\n')
   const newContentLines = []
   let lastPos = 0
-  const canReplace = textToReplace.every(({ originalText }) => {
+  textToReplace.forEach(({ originalText, replacementText }) => {
     const originalLines = originalText.split('\n')
     // Find the original text in the file
     const startPos = fileLines.findIndex((line) => line.trim() === originalLines[0].trim())
     if (startPos === -1) {
-      return false
+      return
     }
+    lastPos = lastPos + originalLines.length
     while (lastPos < startPos) {
       newContentLines.push(fileLines[lastPos++])
     }
-    if (originalLines.length > 1) {
-      return originalLines.every((originalLine, index) => {
-        newContentLines.push(originalLine)
-        return originalLine.trim() === fileLines[startPos + index].trim()
-      })
-    } else {
-      newContentLines.push(originalLines[0])
-      return true
+    if (replacementText) {
+      const replacementLines = replacementText.split('\n')
+      for (let i = 0; i < replacementLines.length; i++) {
+        newContentLines.push(replacementLines[i])
+      }
     }
   })
-  if (canReplace) {
+  if (newContentLines.length) {
+    lastPos++
+    while (lastPos < fileLines.length) {
+      newContentLines.push(fileLines[lastPos++])
+    }
     const content = newContentLines.join('\n')
     await fsp.writeFile(fullPath, content)
     await reporter(true)
