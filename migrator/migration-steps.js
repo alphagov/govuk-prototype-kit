@@ -299,10 +299,17 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
     while (lastPos < startPos) {
       newContentLines.push(fileLines[lastPos++])
     }
+
     if (replacementText) {
-      const replacementLines = replacementText.split('\n')
-      for (let i = 0; i < replacementLines.length; i++) {
-        newContentLines.push(replacementLines[i])
+      // Make sure all original lines exist in sequence within the file before replacing them
+      const canReplace = originalLines.every((originalLine, index) => {
+        return originalLine.trim() === fileLines[startPos + index].trim()
+      })
+      if (canReplace) {
+        const replacementLines = replacementText.split('\n')
+        for (let i = 0; i < replacementLines.length; i++) {
+          newContentLines.push(replacementLines[i])
+        }
       }
     }
   })
