@@ -312,8 +312,10 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
       newContentLines.push(fileLines[lastPos++])
     }
     let content = newContentLines.join('\n')
+
+    // Put back the global line to satisfy linter if jQuery is still necessary
     if (content.includes('$(')) {
-      content = '/* global $ */\n' + content
+      content = '/* global $ */\n\n' + content
     }
     await fsp.writeFile(fullPath, content)
     await reporter(true)
