@@ -20,7 +20,7 @@ describe('watching start page', () => {
     cy.task('log', 'The start page should not be found')
     cy.visit(pagePath, { failOnStatusCode: false })
     cy.get('body')
-      .should('contains.text', `Page not found: ${pagePath}`)
+      .should('contains.text', `There is no page at ${pagePath}`)
 
     cy.task('log', `Copy ${templatesView} to ${appView}`)
     cy.task('copyFile', { source: templatesView, target: appView })
