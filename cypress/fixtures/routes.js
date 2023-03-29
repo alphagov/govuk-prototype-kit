@@ -13,3 +13,11 @@ router.get('/cypress-test', (req, res) => {
     </html>
 `)
 })
+
+router.get('/error', (req, res, next) => {
+    next(new Error('test error'))
+  })
+
+  router.get('/test-page', (req, res, next) => {
+    res.render('test-page.html')
+  })
