@@ -183,6 +183,12 @@ app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
+  if (req.headers['content-type'] && req.headers['content-type'].indexOf('json') !== -1) {
+    console.error(err.message)
+    res.status(err.status || 500)
+    res.send(err.message)
+    return
+  }
   switch (err.status) {
     case 404: {
       const path = req.path
