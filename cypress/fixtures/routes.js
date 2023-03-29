@@ -15,9 +15,9 @@ router.get('/cypress-test', (req, res) => {
 })
 
 router.get('/error', (req, res, next) => {
-    next(new Error('test error'))
-  })
+  next(new Error('test error'))
+})
 
-  router.get('/test-page', (req, res, next) => {
-    res.render('test-page.html')
-  })
+router.get('/test-page', (req, res, next) => {
+  res.render('test-page.html')
+})
