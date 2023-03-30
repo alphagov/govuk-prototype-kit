@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head><title>{% block pageTitle %}{% endblock %}</title></head>
+<body><main{% if mainClasses %} class="{{ mainClasses }}"{% endif %}>{% block content %}{% endblock %}</main></body>
+</html>
+
+

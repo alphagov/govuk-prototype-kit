@@ -1,0 +1,20 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% block pageTitle %}
+  Error – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">There is an error in your code</h1>
+      <p class="govuk-body">
+          You can try and fix this yourself or <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">contact the GOV.UK Prototype Kit team</a> if you need help.
+      </p>
+      <pre><code>{{ errorStack }}</code></pre>  
+    </div>
+  </div>
+
+
+{% endblock %}

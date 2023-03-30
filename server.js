@@ -178,13 +178,36 @@ app.use((req, res, next) => {
 // We override the default handler because we want to customise
 // how the error appears to users, we want to show a simplified
 // message without the stack trace.
+
 app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  console.error(err.message)
-  res.status(err.status || 500)
-  res.send(err.message)
+  if (req.headers['content-type'] && req.headers['content-type'].indexOf('json') !== -1) {
+    console.error(err.message)
+    res.status(err.status || 500)
+    res.send(err.message)
+    return
+  }
+  switch (err.status) {
+    case 404: {
+      const path = req.path
+      res.status(err.status)
+      res.render('views/error-handling/page-not-found', {
+        path
+      })
+      break
+    }
+    default: {
+      const errorStack = err.stack
+      res.status(500)
+      console.error(err.message)
+      res.render('views/error-handling/server-error', {
+        errorStack
+      })
+      break
+    }
+  }
 })
 
 app.close = stopWatchingNunjucks

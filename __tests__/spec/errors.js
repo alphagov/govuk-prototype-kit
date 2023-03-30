@@ -2,6 +2,7 @@
 
 // npm dependencies
 const request = require('supertest')
+const path = require('path')
 
 // local dependencies
 const { sleep } = require('../../lib/utils')
@@ -12,17 +13,43 @@ process.env.IS_INTEGRATION_TEST = 'true'
 
 let kitRoutesApi
 
+const getPageTitle = html => {
+  const match = html.match(/<title>((.|\n|\r)*)<\/title>/)
+  if (match) return match[1].trim()
+}
+const getH1 = html => {
+  const match = html.match(/<h1.*>((.|\n|\r)*)<\/h1>/)
+  if (match) return match[1].trim()
+}
+const getFirstParagraph = html => {
+  const match = html.match(/<p .*>((.|\n|\r)*)<\/p>/)
+  if (match) return match[1].trim()
+}
+
 describe('error handling', () => {
   let testRouter
 
   beforeEach(() => {
     jest.resetModules()
 
+    const pluginsApi = require('../../lib/plugins/plugins')
+    const sessionApi = require('../../lib/session')
+    const originalGetAppViews = pluginsApi.getAppViews
+
     kitRoutesApi = require('../../lib/routes/api')
     kitRoutesApi.resetState()
     testRouter = kitRoutesApi.external.setupRouter()
 
     jest.spyOn(global.console, 'error').mockImplementation()
+    jest.spyOn(sessionApi, 'getSessionMiddleware').mockReturnValue((req, res, next) => {
+      req.session = {}
+      next()
+    })
+    jest.spyOn(pluginsApi, 'getAppViews').mockImplementation(() => [
+      path.join(__dirname, '..', 'fixtures', 'mockNunjucksIncludes'),
+      path.join(__dirname, '..', '..', 'lib', 'nunjucks'),
+      ...originalGetAppViews()
+    ])
   })
 
   afterEach(() => {
@@ -42,7 +69,9 @@ describe('error handling', () => {
     expect(console.error).toHaveBeenCalledWith('test error')
 
     expect(response.status).toBe(500)
-    expect(response.text).toEqual('test error')
+    expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
+    expect(getH1(response.text)).toEqual('There is an error in your code')
+    expect(getFirstParagraph(response.text)).toMatch(/^You can try and fix this yourself or/)
 
     app.close()
   })
@@ -59,7 +88,21 @@ describe('error handling', () => {
     expect(console.error).toHaveBeenCalledWith('template not found: test-page.html')
 
     expect(response.status).toBe(500)
-    expect(response.text).toEqual('template not found: test-page.html')
+    expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
+    expect(getH1(response.text)).toEqual('There is an error in your code')
+    expect(getFirstParagraph(response.text)).toMatch(/^You can try and fix this yourself or/)
+  })
+
+  it('shows a not found page', async () => {
+    const app = require('../../server.js')
+    const response = await request(app).get('/this-does-not-exist')
+
+    expect(console.error).not.toHaveBeenCalled()
+
+    expect(response.status).toBe(404)
+    expect(getPageTitle(response.text)).toEqual('Page not found – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
+    expect(getH1(response.text)).toEqual('Page not found')
+    expect(getFirstParagraph(response.text)).toMatch(/^There is no page at/)
   })
 
   it('non-fatal errors are not shown in the browser', async () => {

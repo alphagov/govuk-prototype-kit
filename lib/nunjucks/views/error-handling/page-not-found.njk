@@ -1,0 +1,29 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% block pageTitle %}
+  Page not found – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Page not found</h1>
+      <p class="govuk-body">
+        There is no page at <strong>{{ path }}</strong>
+      </p>
+      <p class="govuk-body">This may be because:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you typed or pasted the web address incorrectly</li>
+        <li>a link in your code is wrong</li>
+        <li>a form in your code is wrong</li>
+        <li>you have not created the page yet</li>
+      </ul>
+      <p class="govuk-body">
+            You can try and fix this yourself or <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">contact the GOV.UK Prototype Kit team</a> if you need help.
+        </p>
+    </div>
+  </div>
+{% endblock %}

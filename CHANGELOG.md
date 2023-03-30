@@ -1,6 +1,11 @@
 # Changelog
 
 ## Unreleased
+- [#2039: Design error handling](https://github.com/alphagov/govuk-prototype-kit/issues/2039)
+  - Implement new Error pages for 404 and 500 error's.
+
+- [#2039: Display stack trace in browser when there's an error](https://github.com/alphagov/govuk-prototype-kit/issues/2038)
+  - Display error stack for on Server Error page.
 
 ### New features
 
