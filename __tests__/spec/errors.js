@@ -45,12 +45,11 @@ describe('error handling', () => {
       req.session = {}
       next()
     })
-    jest.spyOn(pluginsApi, 'getAppViews').mockImplementation(function () {
-      const output = originalGetAppViews(...arguments)
-      output.unshift(path.join(__dirname, '..', '..', 'lib', 'nunjucks'))
-      output.unshift(path.join(__dirname, '..', 'fixtures', 'mockNunjucksIncludes'))
-      return output
-    })
+    jest.spyOn(pluginsApi, 'getAppViews').mockImplementation(() => [
+      path.join(__dirname, '..', 'fixtures', 'mockNunjucksIncludes'),
+      path.join(__dirname, '..', '..', 'lib', 'nunjucks'),
+      ...originalGetAppViews()
+    ])
   })
 
   afterEach(() => {

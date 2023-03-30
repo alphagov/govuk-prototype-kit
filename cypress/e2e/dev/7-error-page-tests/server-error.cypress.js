@@ -15,10 +15,10 @@ describe('Server Error Test', () => {
     cy.task('copyFile', { source: routesFixture, target: appRoutes })
   })
 
-  // after(() => {
-  //   cy.task('log', `Restore ${appRoutesPath}`)
-  //   cy.task('copyFromStarterFiles', { filename: appRoutesPath })
-  // })
+  after(() => {
+    cy.task('log', `Restore ${appRoutesPath}`)
+    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
+  })
 
   it('internal server error results in 500 page being displayed correctly', () => {
     waitForApplication()
@@ -36,8 +36,5 @@ describe('Server Error Test', () => {
     cy.get('.govuk-heading-l').contains(pageName)
     cy.get('.govuk-body').contains(contactSupportText)
     cy.get('code').contains(templateNotFoundText)
-
-    cy.task('log', `Restore ${appRoutesPath}`)
-    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
   })
 })
