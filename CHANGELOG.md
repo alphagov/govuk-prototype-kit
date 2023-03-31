@@ -1,22 +1,23 @@
 # Changelog
 
 ## Unreleased
-- [#2039: Design error handling](https://github.com/alphagov/govuk-prototype-kit/issues/2039)
-  - Implement new Error pages for 404 and 500 error's.
-
-- [#2039: Display stack trace in browser when there's an error](https://github.com/alphagov/govuk-prototype-kit/issues/2038)
-  - Display error stack for on Server Error page.
 
 ### New features
 
 - [#2030: Make it easier to set a page title](https://github.com/alphagov/govuk-prototype-kit/pull/2030)  
   Set pageName variable on a page and the kit will make a GOV.UK page title for you.  
-  For example `{% set pageName="My example page" %}`
+  - For example `{% set pageName="My example page" %}`
 
 - [#2035: Support html and njk extensions](https://github.com/alphagov/govuk-prototype-kit/pull/2035)  
   Allows .html and .njk to be used interchangeably:
   - The default for creating views from templates will be .html, but .njk will be used if the app/config.json contains `"useNjkExtensions": true`.
   - If two views are in the same location with the same name but with different suffixes (html or njk), the default suffix (determined by the existence of the useNjkExtensions setting above) will be matched first followed by the alternative.
+
+- [#2039: Design error handling](https://github.com/alphagov/govuk-prototype-kit/issues/2039)
+  - Implement new Error pages for 404 and 500 error's.
+
+- [#2039: Display stack trace in browser when there's an error](https://github.com/alphagov/govuk-prototype-kit/issues/2038)
+  - Display error stack for on Server Error page.
 
 ### Fixes
 
