@@ -283,26 +283,27 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
       replacementText: '  // Add JavaScript here'
     }
   ]
-  const fileBuffer = await fsp.readFile(fullPath)
-  const fileContent = fileBuffer.toString()
+  const fileContent = await fsp.readFile(fullPath, 'utf8')
   const fileLines = fileContent.split('\n')
   const newContentLines = []
-  let lastPos = 0
+  let currentPos = 0
   textToReplace.forEach(({ originalText, replacementText }) => {
-    const originalLines = originalText.split('\n')
-    // Find the original text in the file
-    const startPos = fileLines.findIndex((line) => line.trim() === originalLines[0].trim())
+    const linesToFind = originalText.split('\n')
+    // Find the start position of the original text in the file
+    const startPos = fileLines.findIndex((line) => line.trim() === linesToFind[0].trim())
     if (startPos === -1) {
+      // Original text wasn't found
       return
     }
-    lastPos = lastPos + originalLines.length
-    while (lastPos < startPos) {
-      newContentLines.push(fileLines[lastPos++])
+    currentPos = currentPos + linesToFind.length
+    // Include the lines in between each set of lines that are being replaced
+    while (currentPos < startPos) {
+      newContentLines.push(fileLines[currentPos++])
     }
 
     if (replacementText) {
       // Make sure all original lines exist in sequence within the file before replacing them
-      const canReplace = originalLines.every((originalLine, index) => {
+      const canReplace = linesToFind.every((originalLine, index) => {
         return originalLine.trim() === fileLines[startPos + index].trim()
       })
       if (canReplace) {
@@ -314,14 +315,14 @@ window.console.info('GOV.UK Prototype Kit - do not use for production')
     }
   })
   if (newContentLines.length) {
-    lastPos++
-    while (lastPos < fileLines.length) {
-      newContentLines.push(fileLines[lastPos++])
+    currentPos++
+    while (currentPos < fileLines.length) {
+      newContentLines.push(fileLines[currentPos++])
     }
     let content = newContentLines.join('\n')
 
     // Put back the global line to satisfy linter if jQuery is still necessary
-    if (content.includes('$(')) {
+    if (content.includes('$(') || content.includes('$.')) {
       content = '/* global $ */\n\n' + content
     }
     await fsp.writeFile(fullPath, content)

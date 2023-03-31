@@ -375,7 +375,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 })
 `
 
-    fsp.readFile.mockReturnValue(Buffer.from(fileContents, 'utf-8'))
+    fsp.readFile.mockReturnValue(fileContents)
 
     // mock call upgradeIfPossible method (get this working first)
     const result = await upgradeIfPossible(applicationJsFile, matchFound)
@@ -383,7 +383,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     const expectedFileName = path.join(projectDir, applicationJsFile)
 
     expect(fsp.readFile).toHaveBeenCalledTimes(1)
-    expect(fsp.readFile).toHaveBeenCalledWith(expectedFileName)
+    expect(fsp.readFile).toHaveBeenCalledWith(expectedFileName, 'utf8')
 
     expect(fsp.writeFile).toHaveBeenCalledTimes(1)
     const [actualFileName, actualFileContent] = fsp.writeFile.mock.calls[0]
