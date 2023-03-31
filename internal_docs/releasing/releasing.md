@@ -27,17 +27,13 @@ v8.0.0 // After implementing backwards incompatible changes
 
 (From [jvandemo.com](https://www.jvandemo.com/a-simple-guide-to-semantic-versioning/))
 
-3. Draft release notes in a Google Doc.
+3. Store the release notes (based on the notes in CHANGELOG.md) in a temporary text file (eg. in a Google Doc).
 
 4. Checkout a new branch called release-[new version number].
 
 5. If the major version has changed make sure it's updated for the plugins in `GOVUKPrototypeKit.majorVersion` (JS) and `$govuk-prototype-kit-major-version` (SASS).
 
-6. Update the [CHANGELOG.md](../../CHANGELOG.md) by:
-
-  - adding the text of the release notes under the 'Unreleased' heading
-  - changing the 'Unreleased' heading to the new version-number - for example, '12.0.1'
-  - adding a new 'Unreleased' heading above the new version-number, so users will know where to add PRs to the changelog
+6. Update the [CHANGELOG.md](../../CHANGELOG.md) by inserting the new release version title under 'Unreleased' - for example, '12.0.1'
 
 7. Update the version number in [package.json](../../package.json).
 
@@ -70,6 +66,6 @@ Write a brief summary with highlights from the release then send it to the follo
 - GDS #govuk-design-system
 - GDS #product-and-technology
 
-Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-a-new-prototype.
+Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-new-prototype.
 
 19. On the sprint board, move everything that's been released from the Ready for release column to the Done column
