@@ -62,7 +62,15 @@ const { projectDir, starterDir, appDir } = require('../lib/utils/paths')
 
 const migrationSteps = require('./migration-steps')
 const { preflightChecks, deleteIfUnchanged, removeOldPatternIncludesFromSassFile } = require('./migration-steps')
-const { migrateConfig, prepareAppRoutes, prepareSass, deleteUnusedFiles, deleteUnusedDirectories, upgradeIfUnchanged, upgradeIfPossible } = migrationSteps
+const {
+  migrateConfig,
+  prepareAppRoutes,
+  prepareSass,
+  deleteUnusedFiles,
+  deleteUnusedDirectories,
+  upgradeIfUnchanged,
+  upgradeIfPossible
+} = migrationSteps
 
 describe('migration steps', () => {
   const mockReporter = reporter.mockReporter
@@ -364,7 +372,7 @@ $(document).ready(function () {
 })
 `
     const expectedFileContents =
-`//
+      `//
 // For guidance on how to add JavaScript see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
@@ -388,6 +396,95 @@ window.GOVUKPrototypeKit.documentReady(() => {
     expect(fsp.writeFile).toHaveBeenCalledTimes(1)
     const [actualFileName, actualFileContent] = fsp.writeFile.mock.calls[0]
     expect(actualFileName).toEqual(expectedFileName)
+    expect(actualFileContent).toEqual(expectedFileContents)
+
+    expect(reporter.addReporter).toHaveBeenCalledTimes(1)
+    expect(reporter.addReporter).toHaveBeenCalledWith(`Update ${applicationJsFile}`)
+
+    expect(mockReporter).toHaveBeenCalledTimes(1)
+    expect(mockReporter).toHaveBeenCalledWith(true)
+  })
+
+  it('upgrade application file when there are no similarities', async () => {
+    const applicationJsFile = path.join('app', 'assets', 'javascripts', 'application.js')
+    const matchFound = false
+    const globalDefinition = '/* global $ */'
+    const mainFileContents = `$('a').on('click', function () {
+  console.log('Hello')
+})
+$('hr').on('click', function () {
+  console.log('why ware you even clicking this?')
+})
+`
+    const fileContents = [globalDefinition, mainFileContents].join('\n')
+    const expectedFileContents = `${globalDefinition}
+
+//
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//
+
+${mainFileContents}`
+
+    fsp.readFile.mockReturnValue(Buffer.from(fileContents, 'utf-8'))
+
+    // mock call upgradeIfPossible method (get this working first)
+    const result = await upgradeIfPossible(applicationJsFile, matchFound)
+    expect(result).toBeTruthy()
+
+    const actualFileContent = fsp.writeFile.mock.calls[0][1]
+    expect(actualFileContent).toEqual(expectedFileContents)
+
+    expect(reporter.addReporter).toHaveBeenCalledTimes(1)
+    expect(reporter.addReporter).toHaveBeenCalledWith(`Update ${applicationJsFile}`)
+
+    expect(mockReporter).toHaveBeenCalledTimes(1)
+    expect(mockReporter).toHaveBeenCalledWith(true)
+  })
+  
+  it('upgrade application file if possible when there are multiple examples ', async () => {
+    const applicationJsFile = path.join('app', 'assets', 'javascripts', 'application.js')
+    const matchFound = false
+    const fileContents = `/* global $ */
+
+$(document).ready(function () {
+  $.doSomething()
+})
+
+$(document).ready(function () {
+  $('a').data('my-custom-data', $('a').attr('href')
+})
+
+$(document).ready(function () {
+  console.log('document ready')
+})`
+    const expectedFileContents = `/* global $ */
+
+//
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//
+
+window.GOVUKPrototypeKit.documentReady(() => {
+  // Add JavaScript here
+  $.doSomething()
+})
+
+window.GOVUKPrototypeKit.documentReady(() => {
+  $('a').data('my-custom-data', $('a').attr('href')
+})
+
+window.GOVUKPrototypeKit.documentReady(() => {
+  console.log('document ready')
+})`
+
+    fsp.readFile.mockReturnValue(Buffer.from(fileContents, 'utf-8'))
+
+    // mock call upgradeIfPossible method (get this working first)
+    const result = await upgradeIfPossible(applicationJsFile, matchFound)
+    expect(result).toBeTruthy()
+
+    const actualFileContent = fsp.writeFile.mock.calls[0][1]
     expect(actualFileContent).toEqual(expectedFileContents)
 
     expect(reporter.addReporter).toHaveBeenCalledTimes(1)
