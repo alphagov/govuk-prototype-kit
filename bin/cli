@@ -377,6 +377,38 @@ function runServe () {
   require('../listen-on-port')
 }
 
+async function convertToEsm () {
+  const dir = getInstallLocation()
+  const packageJsonPath = path.join(dir, 'package.json')
+  if (!fs.exists(dir)) {
+    console.error(`There is no directory ${dir}`)
+    process.exit(10)
+  }
+  if (!fs.exists(packageJsonPath)) {
+    console.error(`There is no package json at ${packageJsonPath}`)
+    process.exit(10)
+  }
+  const jsFiles = await Promise.all(recursiveDirectoryContentsSync(dir)
+    .filter(filename => filename.endsWith('.js'))
+    .filter(filename => !filename.startsWith('node_modules'))
+    .map(async filename => ({
+      filename, 
+      contents: await fs.readFile(path.join(dir, filename), 'utf8')
+    }))
+  )
+  jsFiles.forEach(fileInfo => {
+    const contents = fileInfo.contents
+    if ()
+    console.log(contents)
+    process.exit(1)
+  })
+  console.log(jsFiles[10])
+  process.exit(1)
+  const packageContents = fs.readJson(packageJsonPath)
+  packageContents.type = 'module'
+  fs.writeJson(packageJsonPath, packageContents, packageJsonFormat)
+}
+
 ;(async () => {
   verboseLogger(`Using kit version [${kitVersion}] for command [${argv.command}]`)
   verboseLogger('Argv:', argv)
@@ -396,6 +428,8 @@ function runServe () {
     case 'version':
       console.log(kitVersion)
       break
+    case 'convert-to-esm':
+      return convertToEsm()
     default:
       usage()
       process.exitCode = 2
