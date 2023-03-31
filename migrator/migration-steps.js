@@ -9,7 +9,7 @@ const lodash = require('lodash')
 
 // local dependencies
 const { searchAndReplaceFiles } = require('../lib/utils')
-const { appDir, projectDir, packageDir } = require('../lib/utils/paths')
+const { appDir, projectDir, packageDir, starterDir } = require('../lib/utils/paths')
 const config = require('../lib/config')
 const logger = require('./logger')
 const { addReporter, reportSuccess, reportFailure } = require('./reporter')
@@ -258,77 +258,52 @@ async function upgradeIfPossible (filePath, matchFound) {
 }
 
 async function upgradeApplicationJs (fullPath, reporter) {
-  const textToReplace = [
-    {
-      originalText: '/* global $ */',
-      replacementText:
-        `//
-// For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
-//`
-    },
-    {
-      originalText:
-        `// Warn about using the kit in production
-if (window.console && window.console.info) {
-window.console.info('GOV.UK Prototype Kit - do not use for production')
-}`
-    },
-    {
-      originalText: '$(document).ready(function () {',
-      replacementText: 'window.GOVUKPrototypeKit.documentReady(() => {'
-    },
-    {
-      originalText: 'window.GOVUKFrontend.initAll()',
-      replacementText: '  // Add JavaScript here'
-    }
+  const searchText = '// Add JavaScript here'
+  const matchText = [
+    ['/* global $ */'],
+    [
+      '// Warn about using the kit in production',
+      'if (window.console && window.console.info) {',
+      'window.console.info(\'GOV.UK Prototype Kit - do not use for production\')',
+      '}'
+    ],
+    ['window.GOVUKFrontend.initAll()']
   ]
-  const fileContent = await fsp.readFile(fullPath, 'utf8')
-  const fileLines = fileContent.split('\n')
+  const starterFile = path.join(starterDir, 'app', 'assets', 'javascripts', 'application.js')
+  const starterContent = await fsp.readFile(starterFile, 'utf8')
   const newContentLines = []
-  let currentPos = 0
-  textToReplace.forEach(({ originalText, replacementText }) => {
-    const linesToFind = originalText.split('\n')
-    // Find the start position of the original text in the file
-    const startPos = fileLines.findIndex((line) => line.trim() === linesToFind[0].trim())
-    if (startPos === -1) {
-      // Original text wasn't found
-      return
-    }
-    currentPos = currentPos + linesToFind.length
-    // Include the lines in between each set of lines that are being replaced
-    while (currentPos < startPos) {
-      newContentLines.push(fileLines[currentPos++])
-    }
+  const originalContent = await fsp.readFile(fullPath, 'utf8')
+  const originalContentLines = originalContent.split('\n')
 
-    if (replacementText) {
-      // Make sure all original lines exist in sequence within the file before replacing them
-      const canReplace = linesToFind.every((originalLine, index) => {
-        return originalLine.trim() === fileLines[startPos + index].trim()
-      })
-      if (canReplace) {
-        const replacementLines = replacementText.split('\n')
-        for (let i = 0; i < replacementLines.length; i++) {
-          newContentLines.push(replacementLines[i])
-        }
+  // Remove the matchText from the original code
+  while (originalContentLines.length) {
+    const match = matchText.findIndex((text) => text.every((line, index) => {
+      const originalContentLine = originalContentLines[index]
+      return line === originalContentLine.trim()
+    }))
+    if (match === -1) {
+      let originalLine = originalContentLines.shift()
+      if (originalLine.trim().length) {
+        // indent line if the line isn't empty
+        originalLine = '  ' + originalLine
       }
+      newContentLines.unshift(originalLine)
+    } else {
+      matchText[match].forEach(() => originalContentLines.shift())
     }
-  })
-  if (newContentLines.length) {
-    currentPos++
-    while (currentPos < fileLines.length) {
-      newContentLines.push(fileLines[currentPos++])
-    }
-    let content = newContentLines.join('\n')
-
-    // Put back the global line to satisfy linter if jQuery is still necessary
-    if (content.includes('$(') || content.includes('$.')) {
-      content = '/* global $ */\n\n' + content
-    }
-    await fsp.writeFile(fullPath, content)
-    await reporter(true)
-    return true
   }
+
+  // Place the original code inside the starter code
+  let newContent = starterContent.replace(searchText, searchText + newContentLines.reverse().join('\n'))
+
+  // Put back the global line to satisfy linter if jQuery is still necessary
+  if (newContent.includes('$(') || newContent.includes('$.')) {
+    newContent = '/* global $ */\n\n' + newContent
+  }
+
+  await fsp.writeFile(fullPath, newContent)
+  await reporter(true)
+  return true
 }
 
 module.exports = {
