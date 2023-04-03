@@ -250,11 +250,9 @@ async function upgradeIfPossible (filePath, matchFound) {
     const filename = fullPath.split(path.sep).pop()
     switch (filename) {
       case 'application.js':
-        await upgradeApplicationJs(fullPath, reporter)
-        return true
+        return await upgradeApplicationJs(fullPath, reporter)
       case 'filters.js':
-        await upgradeFiltersJs(fullPath, reporter)
-        return true
+        return await upgradeFiltersJs(fullPath, reporter)
       default:
         await reporter(false)
         return false
@@ -318,18 +316,27 @@ async function upgradeApplicationJs (fullPath, reporter) {
 }
 
 async function upgradeFiltersJs (fullPath, reporter) {
+  const firstLine = 'module.exports = function (env) {'
+  const lastLine = 'return filters'
+  const originalContent = await fsp.readFile(fullPath, 'utf8')
+
+  // Only convert the filters if the first and last lines above are found in the file
+  if (![firstLine, lastLine].every(line => originalContent.includes(line))) {
+    await reporter(false)
+    return false
+  }
+
   const matchText = [
-    ['module.exports = function (env) {'],
+    [firstLine],
     [
       '/* ------------------------------------------------------------------',
       'keep the following line to return your filters to the app',
       '------------------------------------------------------------------ */'
     ],
-    ['return filters']
+    [lastLine]
   ]
-  const starterFile = path.join(starterDir, 'app', 'assets', 'javascripts', 'filters.js')
+  const starterFile = path.join(starterDir, 'app', 'filters.js')
   const starterContent = await fsp.readFile(starterFile, 'utf8')
-  const originalContent = await fsp.readFile(fullPath, 'utf8')
 
   // Remove the matchText from the original code
   const modifiedContent = removeMatchedText(originalContent, matchText)

@@ -482,8 +482,8 @@ Object.entries(filters).forEach(([name, fn]) => addFilter(name, fn))
 `
 
     fsp.readFile
-      .mockReturnValueOnce(starterFileContents) // For the first call
-      .mockReturnValueOnce(originalFileContents) // For the second call
+      .mockReturnValueOnce(originalFileContents) // For the first call
+      .mockReturnValueOnce(starterFileContents) // For the second call
 
     // mock call upgradeIfPossible method (get this working first)
     const result = await upgradeIfPossible(filtersJsFile, matchFound)
