@@ -248,13 +248,37 @@ async function upgradeIfPossible (filePath, matchFound) {
     const reporter = await addReporter(`Update ${filePath}`)
     const fullPath = path.join(projectDir, filePath)
     const filename = fullPath.split(path.sep).pop()
-    if (filename === 'application.js') {
-      await upgradeApplicationJs(fullPath, reporter)
-      return true
+    switch (filename) {
+      case 'application.js':
+        await upgradeApplicationJs(fullPath, reporter)
+        return true
+      case 'filters.js':
+        await upgradeFiltersJs(fullPath, reporter)
+        return true
+      default:
+        await reporter(false)
+        return false
     }
-    await reporter(false)
-    return false
   }
+}
+
+function removeMatchedText (originalContent, matchText) {
+  const originalContentLines = originalContent.split('\n')
+  const newContentLines = []
+
+  // Remove the matchText from the original code
+  while (originalContentLines.length) {
+    const match = matchText.findIndex((text) => text.every((line, index) => {
+      const originalContentLine = originalContentLines[index]
+      return line === originalContentLine.trim()
+    }))
+    if (match === -1) {
+      newContentLines.push(originalContentLines.shift())
+    } else {
+      matchText[match].forEach(() => originalContentLines.shift())
+    }
+  }
+  return newContentLines.join('\n')
 }
 
 async function upgradeApplicationJs (fullPath, reporter) {
@@ -271,36 +295,51 @@ async function upgradeApplicationJs (fullPath, reporter) {
   ]
   const starterFile = path.join(starterDir, 'app', 'assets', 'javascripts', 'application.js')
   const starterContent = await fsp.readFile(starterFile, 'utf8')
-  const newContentLines = []
   const originalContent = await fsp.readFile(fullPath, 'utf8')
-  const originalContentLines = originalContent.split('\n')
 
   // Remove the matchText from the original code
-  while (originalContentLines.length) {
-    const match = matchText.findIndex((text) => text.every((line, index) => {
-      const originalContentLine = originalContentLines[index]
-      return line === originalContentLine.trim()
-    }))
-    if (match === -1) {
-      let originalLine = originalContentLines.shift()
-      if (originalLine.trim().length) {
-        // indent line if the line isn't empty
-        originalLine = '  ' + originalLine
-      }
-      newContentLines.push(originalLine)
-    } else {
-      matchText[match].forEach(() => originalContentLines.shift())
-    }
-  }
+  const modifiedContent = removeMatchedText(originalContent, matchText)
+    // Indent each line that isn't blank
+    .split('\n')
+    .map((line) => line.trim().length ? '  ' + line : line)
+    .join('\n')
 
-  // Place the original code inside the starter code
-  let newContent = starterContent.replace(searchText, searchText + newContentLines.join('\n'))
+  // Place the modified code inside the starter code
+  let newContent = starterContent.replace(searchText, searchText + modifiedContent)
 
   // Put back the global line to satisfy linter if jQuery is still necessary
   if (newContent.includes('$(') || newContent.includes('$.')) {
     newContent = '/* global $ */\n\n' + newContent
   }
 
+  await fsp.writeFile(fullPath, newContent)
+  await reporter(true)
+  return true
+}
+
+async function upgradeFiltersJs (fullPath, reporter) {
+  const matchText = [
+    ['module.exports = function (env) {'],
+    [
+      '/* ------------------------------------------------------------------',
+      'keep the following line to return your filters to the app',
+      '------------------------------------------------------------------ */'
+    ],
+    ['return filters']
+  ]
+  const starterFile = path.join(starterDir, 'app', 'assets', 'javascripts', 'filters.js')
+  const starterContent = await fsp.readFile(starterFile, 'utf8')
+  const originalContent = await fsp.readFile(fullPath, 'utf8')
+
+  // Remove the matchText from the original code
+  const modifiedContent = removeMatchedText(originalContent, matchText)
+
+  // Remove the final bracket and add the addFilter conversion code
+  const newContent = starterContent + '\n' +
+    modifiedContent.substring(0, modifiedContent.lastIndexOf('}')).trimEnd() + '\n' + `
+// Add the filters using the addFilter function
+Object.entries(filters).forEach(([name, fn]) => addFilter(name, fn))
+`
   await fsp.writeFile(fullPath, newContent)
   await reporter(true)
   return true
