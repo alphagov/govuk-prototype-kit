@@ -4,11 +4,10 @@
 
 ### New features
 
-- [#2049: Migrate changed application.js if possible](https://github.com/alphagov/govuk-prototype-kit/pull/2049)  
-  Converts the application.js file if possible during migration
-
-- [#2079: Migrate changed filters if possible](https://github.com/alphagov/govuk-prototype-kit/pull/2079)  
-  Converts the filters.js file if possible during migration
+- [#2049: Migrate changed files if possible](https://github.com/alphagov/govuk-prototype-kit/pull/2049)  
+  Converts the following files if possible during migration:
+  - application.js
+  - filters.js
 
 ## 13.5.0
 
