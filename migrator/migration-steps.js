@@ -287,14 +287,14 @@ async function upgradeApplicationJs (fullPath, reporter) {
         // indent line if the line isn't empty
         originalLine = '  ' + originalLine
       }
-      newContentLines.unshift(originalLine)
+      newContentLines.push(originalLine)
     } else {
       matchText[match].forEach(() => originalContentLines.shift())
     }
   }
 
   // Place the original code inside the starter code
-  let newContent = starterContent.replace(searchText, searchText + newContentLines.reverse().join('\n'))
+  let newContent = starterContent.replace(searchText, searchText + newContentLines.join('\n'))
 
   // Put back the global line to satisfy linter if jQuery is still necessary
   if (newContent.includes('$(') || newContent.includes('$.')) {
