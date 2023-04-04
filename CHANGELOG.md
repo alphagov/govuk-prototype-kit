@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### New features
+
+- [#2049: Migrate changed files if possible](https://github.com/alphagov/govuk-prototype-kit/pull/2049)  
+  Converts the application.js file if possible during migration
+
 ## 13.5.0
 
 ### New features
