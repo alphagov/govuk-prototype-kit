@@ -348,7 +348,7 @@ describe('migration steps', () => {
     expect(mockReporter).toHaveBeenCalledWith(true)
   })
 
-  it('upgrade application file if possible', async () => {
+  it('upgrade application file if possible replacing jquery ready', async () => {
     const applicationJsFile = path.join('app', 'assets', 'javascripts', 'application.js')
     const matchFound = false
     const originalFileContents = `/* global $ */
@@ -363,13 +363,52 @@ $(document).ready(function () {
   console.log('Hello')
 })
 `
-    const starterFileContents = `//
+    const expectedFileContents = `//
 // For guidance on how to add JavaScript see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
-window.GOVUKPrototypeKit.documentReady(() => {
-  // Add JavaScript here
+window.GOVUKPrototypeKit.documentReady(function () {
+  console.log('Hello')
+})
+`
+
+    fsp.readFile
+      .mockReturnValueOnce(originalFileContents)
+
+    // mock call upgradeIfPossible method (get this working first)
+    const result = await upgradeIfPossible(applicationJsFile, matchFound)
+    expect(result).toBeTruthy()
+    const expectedFileName = path.join(projectDir, applicationJsFile)
+
+    expect(fsp.readFile).toHaveBeenCalledTimes(1)
+    expect(fsp.readFile).toHaveBeenCalledWith(expectedFileName, 'utf8')
+
+    expect(fsp.writeFile).toHaveBeenCalledTimes(1)
+    const [actualFileName, actualFileContent] = fsp.writeFile.mock.calls[0]
+    expect(actualFileName).toEqual(expectedFileName)
+    expect(actualFileContent).toEqual(expectedFileContents)
+
+    expect(reporter.addReporter).toHaveBeenCalledTimes(1)
+    expect(reporter.addReporter).toHaveBeenCalledWith(`Update ${applicationJsFile}`)
+
+    expect(mockReporter).toHaveBeenCalledTimes(1)
+    expect(mockReporter).toHaveBeenCalledWith(true)
+  })
+
+  it('upgrade application file if possible without replacing jquery ready', async () => {
+    const applicationJsFile = path.join('app', 'assets', 'javascripts', 'application.js')
+    const matchFound = false
+    const originalFileContents = `/* global $ */
+
+// Warn about using the kit in production
+if (window.console && window.console.info) {
+  window.console.info('GOV.UK Prototype Kit - do not use for production')
+}
+
+$(document).ready(function () {
+  window.GOVUKFrontend.initAll()
+  $('.my-button').click(() => console.log('clicked'))
 })
 `
     const expectedFileContents = `/* global $ */
@@ -379,26 +418,20 @@ window.GOVUKPrototypeKit.documentReady(() => {
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
-window.GOVUKPrototypeKit.documentReady(() => {
-  // Add JavaScript here
 
-  $(document).ready(function () {
-    console.log('Hello')
-  })
-
+$(document).ready(function () {
+  $('.my-button').click(() => console.log('clicked'))
 })
 `
 
-    fsp.readFile
-      .mockReturnValueOnce(starterFileContents) // For the first call
-      .mockReturnValueOnce(originalFileContents) // For the second call
+    fsp.readFile.mockReturnValue(originalFileContents) // For the second call
 
     // mock call upgradeIfPossible method (get this working first)
     const result = await upgradeIfPossible(applicationJsFile, matchFound)
     expect(result).toBeTruthy()
     const expectedFileName = path.join(projectDir, applicationJsFile)
 
-    expect(fsp.readFile).toHaveBeenCalledTimes(2)
+    expect(fsp.readFile).toHaveBeenCalledTimes(1)
     expect(fsp.readFile).toHaveBeenCalledWith(expectedFileName, 'utf8')
 
     expect(fsp.writeFile).toHaveBeenCalledTimes(1)

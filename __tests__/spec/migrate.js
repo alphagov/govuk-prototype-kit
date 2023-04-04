@@ -112,20 +112,13 @@ describe('migrate test prototype', () => {
   it('application.js should be overwritten', () => {
     const jsFileContents = getNormalisedFileContent(path.join(assetsDirectory, 'javascripts', 'application.js'))
 
-    expect(jsFileContents).toEqual(`/* global $ */
-
-//
+    expect(jsFileContents).toEqual(`//
 // For guidance on how to add JavaScript see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
-window.GOVUKPrototypeKit.documentReady(() => {
-  // Add JavaScript here
-
-  $(document).ready(function () {
-    console.log('Hello')
-  })
-
+window.GOVUKPrototypeKit.documentReady(function () {
+  console.log('Hello')
 })
 `)
   })

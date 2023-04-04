@@ -279,10 +279,16 @@ function removeMatchedText (originalContent, matchText) {
   return newContentLines.join('\n')
 }
 
+function occurencesOf (searchText, text) {
+  return text.split(searchText).length - 1
+}
+
 async function upgradeApplicationJs (fullPath, reporter) {
-  const searchText = '// Add JavaScript here'
+  const commentText = `//
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//`
   const matchText = [
-    ['/* global $ */'],
     [
       '// Warn about using the kit in production',
       'if (window.console && window.console.info) {',
@@ -291,26 +297,46 @@ async function upgradeApplicationJs (fullPath, reporter) {
     ],
     ['window.GOVUKFrontend.initAll()']
   ]
-  const starterFile = path.join(starterDir, 'app', 'assets', 'javascripts', 'application.js')
-  const starterContent = await fsp.readFile(starterFile, 'utf8')
+  const jqueryReadyText = '$(document).ready('
+  const kitReadyText = 'window.GOVUKPrototypeKit.documentReady('
   const originalContent = await fsp.readFile(fullPath, 'utf8')
 
   // Remove the matchText from the original code
-  const modifiedContent = removeMatchedText(originalContent, matchText)
-    // Indent each line that isn't blank
-    .split('\n')
-    .map((line) => line.trim().length ? '  ' + line : line)
-    .join('\n')
-
-  // Place the modified code inside the starter code
-  let newContent = starterContent.replace(searchText, searchText + modifiedContent)
-
-  // Put back the global line to satisfy linter if jQuery is still necessary
-  if (newContent.includes('$(') || newContent.includes('$.')) {
-    newContent = '/* global $ */\n\n' + newContent
+  let modifiedContent = removeMatchedText(originalContent, matchText)
+  if (occurencesOf(jqueryReadyText, modifiedContent) === occurencesOf('$.', modifiedContent) + occurencesOf('$(', modifiedContent)) {
+    modifiedContent = modifiedContent.replaceAll(jqueryReadyText, kitReadyText)
+    // Remove if jQuery is not necessary
+    if (!modifiedContent.includes('$(') && !modifiedContent.includes('$.')) {
+      modifiedContent = modifiedContent.replaceAll(/\/\*\s*global\s+\$\s?\*\/[\s\r\n]*/g, '')
+    }
   }
 
-  await fsp.writeFile(fullPath, newContent)
+  const newContentLines = []
+  let commentInserted = false
+
+  const modifiedContentLines = modifiedContent.split('\n')
+
+  modifiedContentLines.forEach((line, index) => {
+    if (!commentInserted) {
+      if (![
+        /\/\*\s*global\s+/,
+        /"use strict"/
+      ].some((regex) => line.search(regex) > -1)) {
+        if (index > 0) {
+          newContentLines.push('')
+        }
+        commentText.split('\n').forEach((commentLine) => newContentLines.push(commentLine))
+        // insert a blank line after the comments if it's not the first line
+        commentInserted = true
+        if (line.trim().length > 0) {
+          newContentLines.push('')
+        }
+      }
+    }
+    newContentLines.push(line)
+  })
+
+  await fsp.writeFile(fullPath, newContentLines.join('\n'))
   await reporter(true)
   return true
 }
