@@ -1,4 +1,7 @@
 {
+  "assets": [
+    "/scripts"
+  ],
   "nunjucksFilters": [
     "/filters.js"
   ],
@@ -10,7 +13,11 @@
     "/macros"
   ],
   "scripts": [
-    "/scripts/foo.js"
+    "/scripts/foo.js",
+    {
+      "path": "/scripts/foo-module.js",
+      "type": "module"
+    }
   ],
   "sass": [
     "/sass/foo.scss"
