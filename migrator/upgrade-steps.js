@@ -129,8 +129,7 @@ const oldFilterSecondCommentLines = `/* ----------------------------------------
 const oldFilterThirdCommentLines = `
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
-  ------------------------------------------------------------------ */
-  `.split('\n').map(line => line.trim())
+  ------------------------------------------------------------------ */`.split('\n').map(line => line.trim())
 
 async function upgradeFiltersJs (fullPath, reporter) {
   const firstLine = 'module.exports = function (env) {'
