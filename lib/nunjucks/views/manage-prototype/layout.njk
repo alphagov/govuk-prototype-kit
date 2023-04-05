@@ -1,8 +1,12 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
 {% block pageTitle %}
-  {% if currentPage !== "Home" %}{{ currentPage }}
-    - {% endif %}Manage your prototype
+  {% if pageName %}
+    {{ pageName }} -
+  {% elseif currentSection !== "Home" %}
+    {{ currentSection }} -
+  {% endif %}
+  Manage your prototype
   - {{ serviceName }}
   - GOV.UK Prototype Kit
 {% endblock %}
@@ -16,7 +20,7 @@
       
       {% for link in links %}
 
-        <li class="govuk-prototype-kit-manage-prototype-navigation__list-item {{ "govuk-prototype-kit-manage-prototype-navigation__list-item--current" if link.text === currentPage }}">
+        <li class="govuk-prototype-kit-manage-prototype-navigation__list-item {{ "govuk-prototype-kit-manage-prototype-navigation__list-item--current" if link.text === currentSection }}">
           <a
             class="govuk-link govuk-link--no-visited-state govuk-link--no-underline govuk-prototype-kit-manage-prototype-navigation__link js-govuk-prototype-kit-manage-prototype-navigation__link"
             href="{{ link.url }}">

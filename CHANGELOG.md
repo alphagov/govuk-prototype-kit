@@ -9,6 +9,10 @@
   - application.js
   - filters.js
 
+### Fixes
+
+-  [#2085: Update page titles for template pages](https://github.com/alphagov/govuk-prototype-kit/pull/2085)
+
 ## 13.5.0
 
 ### New features
