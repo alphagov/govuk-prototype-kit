@@ -1,7 +1,6 @@
 
 // core dependencies
 const path = require('path')
-const fsp = require('fs').promises
 
 // npm dependencies
 const fse = require('fs-extra')
@@ -9,7 +8,7 @@ const lodash = require('lodash')
 
 // local dependencies
 const { searchAndReplaceFiles } = require('../lib/utils')
-const { appDir, projectDir, packageDir, starterDir } = require('../lib/utils/paths')
+const { appDir, projectDir, packageDir } = require('../lib/utils/paths')
 const config = require('../lib/config')
 const logger = require('./logger')
 const { addReporter, reportSuccess, reportFailure } = require('./reporter')
@@ -26,6 +25,7 @@ const {
   deleteDirectoryIfEmpty,
   writeFileLinesToFile
 } = require('./file-helpers')
+const { upgradeIfPossible } = require('./upgrade-steps')
 
 // Allows mocking of getOldConfig
 const getOldConfig = (oldConfigPath) => config.getConfig(require(path.join(projectDir, oldConfigPath)))
@@ -239,143 +239,6 @@ async function updateUnbrandedLayouts (dir) {
     '"govuk-prototype-kit/layouts/unbranded.html"',
     ['.html', '.njk'])
   return results.flat()
-}
-
-async function upgradeIfPossible (filePath, matchFound) {
-  if (matchFound) {
-    return true
-  } else {
-    const reporter = await addReporter(`Update ${filePath}`)
-    const fullPath = path.join(projectDir, filePath)
-    const filename = fullPath.split(path.sep).pop()
-    switch (filename) {
-      case 'application.js':
-        return await upgradeApplicationJs(fullPath, reporter)
-      case 'filters.js':
-        return await upgradeFiltersJs(fullPath, reporter)
-      default:
-        await reporter(false)
-        return false
-    }
-  }
-}
-
-function removeMatchedText (originalContent, matchText) {
-  const originalContentLines = originalContent.split('\n')
-  const newContentLines = []
-
-  // Remove the matchText from the original code
-  while (originalContentLines.length) {
-    const match = matchText.findIndex((text) => text.every((line, index) => {
-      const originalContentLine = originalContentLines[index]
-      return line === originalContentLine.trim()
-    }))
-    if (match === -1) {
-      newContentLines.push(originalContentLines.shift())
-    } else {
-      matchText[match].forEach(() => originalContentLines.shift())
-    }
-  }
-  return newContentLines.join('\n')
-}
-
-function occurencesOf (searchText, text) {
-  return text.split(searchText).length - 1
-}
-
-async function upgradeApplicationJs (fullPath, reporter) {
-  const commentText = `//
-// For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
-//`
-  const matchText = [
-    [
-      '// Warn about using the kit in production',
-      'if (window.console && window.console.info) {',
-      'window.console.info(\'GOV.UK Prototype Kit - do not use for production\')',
-      '}'
-    ],
-    ['window.GOVUKFrontend.initAll()']
-  ]
-  const jqueryReadyText = '$(document).ready('
-  const kitReadyText = 'window.GOVUKPrototypeKit.documentReady('
-  const originalContent = await fsp.readFile(fullPath, 'utf8')
-
-  // Remove the matchText from the original code
-  let modifiedContent = removeMatchedText(originalContent, matchText)
-  if (occurencesOf(jqueryReadyText, modifiedContent) === occurencesOf('$.', modifiedContent) + occurencesOf('$(', modifiedContent)) {
-    modifiedContent = modifiedContent.replaceAll(jqueryReadyText, kitReadyText)
-    // Remove if jQuery is not necessary
-    if (!modifiedContent.includes('$(') && !modifiedContent.includes('$.')) {
-      modifiedContent = modifiedContent.replaceAll(/\/\*\s*global\s+\$\s?\*\/[\s\r\n]*/g, '')
-    }
-  }
-
-  const newContentLines = []
-  let commentInserted = false
-
-  const modifiedContentLines = modifiedContent.split('\n')
-
-  modifiedContentLines.forEach((line, index) => {
-    if (!commentInserted) {
-      if (![
-        /\/\*\s*global\s+/,
-        /"use strict"/
-      ].some((regex) => line.search(regex) > -1)) {
-        if (index > 0) {
-          newContentLines.push('')
-        }
-        commentText.split('\n').forEach((commentLine) => newContentLines.push(commentLine))
-        // insert a blank line after the comments if it's not the first line
-        commentInserted = true
-        if (line.trim().length > 0) {
-          newContentLines.push('')
-        }
-      }
-    }
-    newContentLines.push(line)
-  })
-
-  await fsp.writeFile(fullPath, newContentLines.join('\n'))
-  await reporter(true)
-  return true
-}
-
-async function upgradeFiltersJs (fullPath, reporter) {
-  const firstLine = 'module.exports = function (env) {'
-  const lastLine = 'return filters'
-  const originalContent = await fsp.readFile(fullPath, 'utf8')
-
-  // Only convert the filters if the first and last lines above are found in the file
-  if (![firstLine, lastLine].every(line => originalContent.includes(line))) {
-    await reporter(false)
-    return false
-  }
-
-  const matchText = [
-    [firstLine],
-    [
-      '/* ------------------------------------------------------------------',
-      'keep the following line to return your filters to the app',
-      '------------------------------------------------------------------ */'
-    ],
-    [lastLine]
-  ]
-  const starterFile = path.join(starterDir, 'app', 'filters.js')
-  const starterContent = await fsp.readFile(starterFile, 'utf8')
-
-  // Remove the matchText from the original code
-  const modifiedContent = removeMatchedText(originalContent, matchText)
-
-  // Remove the final bracket and add the addFilter conversion code
-  const newContent = starterContent + '\n' +
-    modifiedContent.substring(0, modifiedContent.lastIndexOf('}')).trimEnd() + '\n' + `
-// Add the filters using the addFilter function
-Object.entries(filters).forEach(([name, fn]) => addFilter(name, fn))
-`
-  await fsp.writeFile(fullPath, newContent)
-  await reporter(true)
-  return true
 }
 
 module.exports = {
