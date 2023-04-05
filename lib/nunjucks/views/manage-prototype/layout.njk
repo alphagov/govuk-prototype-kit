@@ -1,6 +1,9 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
 {% block pageTitle %}
+  {% if pageName %}
+    {{ pageName }} - 
+  {% endif %}
   {% if currentPage !== "Home" %}{{ currentPage }}
     - {% endif %}Manage your prototype
   - {{ serviceName }}
