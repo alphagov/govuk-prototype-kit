@@ -1,5 +1,7 @@
 # Releasing a new version of the prototype kit
 
+Before the release, the content designer needs to draft the release notes, based on the changelog but written to be clear for our audience.
+
 1. Checkout main and pull latest changes.
 
 2. Decide on a new version number. Do this by looking at the [current "Unreleased" CHANGELOG](../CHANGELOG.md) changes and updating the previous release number depending on the kind of entries:
@@ -27,41 +29,35 @@ v8.0.0 // After implementing backwards incompatible changes
 
 (From [jvandemo.com](https://www.jvandemo.com/a-simple-guide-to-semantic-versioning/))
 
-3. Draft release notes in a Google Doc.
+3. Checkout a new branch called release-[new version number].
 
-4. Checkout a new branch called release-[new version number].
+4. If the major version has changed make sure it's updated for the plugins in `GOVUKPrototypeKit.majorVersion` (JS) and `$govuk-prototype-kit-major-version` (SASS).
 
-5. If the major version has changed make sure it's updated for the plugins in `GOVUKPrototypeKit.majorVersion` (JS) and `$govuk-prototype-kit-major-version` (SASS).
+5. Update the [CHANGELOG.md](../../CHANGELOG.md) by inserting the new release version title under 'Unreleased' - for example, '12.0.1'
 
-6. Update the [CHANGELOG.md](../../CHANGELOG.md) by:
+6. Update the version number in [package.json](../../package.json).
 
-  - adding the text of the release notes under the 'Unreleased' heading
-  - changing the 'Unreleased' heading to the new version-number - for example, '12.0.1'
-  - adding a new 'Unreleased' heading above the new version-number, so users will know where to add PRs to the changelog
+7. Run `npm install` to update `npm-shrinkwrap.json`.
 
-7. Update the version number in [package.json](../../package.json).
+8. Commit your changes and open a new pull request on GitHub - copy the release notes into the description.
 
-8. Run `npm install` to update `npm-shrinkwrap.json`.
+9. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
 
-9. Commit your changes and open a new pull request on GitHub - copy the release notes into the description.
+10. In Tag version and Release title, put v[version number], for example `v7.0.0`.
 
-10. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
+11. In the description, paste the relevant section from the release notes.
 
-11. In Tag version and Release title, put v[version number], for example `v7.0.0`.
+12. Checkout the *main* branch and pull the latest changes.
 
-12. In the description, paste the relevant section from the release notes in the Google Doc.
+13. Sign in to npm (`npm login`), using the credentials for the govuk-prototype-kit npm user from Bitwarden.
 
-13. Checkout the *main* branch and pull the latest changes.
+14. Run `npm run clean-publish` and enter the one-time password when prompted.
 
-14. Sign in to npm (`npm login`), using the credentials for the govuk-prototype-kit npm user from Bitwarden.
+15. Run `npm logout` to log out from npm.
 
-15. Run `npm run clean-publish` and enter the one-time password when prompted.
+16. On GitHub, click 'Publish release'.
 
-16. Run `npm logout` to log out from npm.
-
-17. On GitHub, click 'Publish release'.
-
-18. Let the community know about the release
+17. Let the community know about the release
 
 Write a brief summary with highlights from the release then send it to the following slack channels:
 
@@ -70,6 +66,6 @@ Write a brief summary with highlights from the release then send it to the follo
 - GDS #govuk-design-system
 - GDS #product-and-technology
 
-Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-a-new-prototype.
+Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-new-prototype.
 
 19. On the sprint board, move everything that's been released from the Ready for release column to the Done column
