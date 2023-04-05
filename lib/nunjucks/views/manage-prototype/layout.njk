@@ -2,10 +2,11 @@
 
 {% block pageTitle %}
   {% if pageName %}
-    {{ pageName }} - 
+    {{ pageName }} -
+  {% elseif currentPage !== "Home" %}
+    {{ currentPage }} -
   {% endif %}
-  {% if currentPage !== "Home" %}{{ currentPage }}
-    - {% endif %}Manage your prototype
+  Manage your prototype
   - {{ serviceName }}
   - GOV.UK Prototype Kit
 {% endblock %}
