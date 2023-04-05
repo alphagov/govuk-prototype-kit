@@ -25,6 +25,7 @@ const {
   deleteDirectoryIfEmpty,
   writeFileLinesToFile
 } = require('./file-helpers')
+const { upgradeIfPossible } = require('./upgrade-steps')
 
 // Allows mocking of getOldConfig
 const getOldConfig = (oldConfigPath) => config.getConfig(require(path.join(projectDir, oldConfigPath)))
@@ -215,11 +216,9 @@ async function upgradeIfUnchanged (filePaths, starterFilePath, additionalStep) {
     try {
       if (matchFound) {
         await copyFileFromStarter(starterFilePath || filePath, filePath)
-      } else {
-        await reporter(false)
       }
       if (additionalStep) {
-        result = await additionalStep()
+        result = await additionalStep(filePath, matchFound)
       } else {
         result = matchFound
       }
@@ -254,5 +253,6 @@ module.exports = {
   deleteEmptyDirectories,
   deleteIfUnchanged,
   upgradeIfUnchanged,
-  updateUnbrandedLayouts
+  updateUnbrandedLayouts,
+  upgradeIfPossible
 }

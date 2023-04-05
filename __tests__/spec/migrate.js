@@ -112,16 +112,29 @@ describe('migrate test prototype', () => {
   it('application.js should be overwritten', () => {
     const jsFileContents = getNormalisedFileContent(path.join(assetsDirectory, 'javascripts', 'application.js'))
 
-    expect(jsFileContents).toEqual(
-      '//\n' +
-      '// For guidance on how to add JavaScript see:\n' +
-      '// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images\n' +
-      '//\n' +
-      '\n' +
-      'window.GOVUKPrototypeKit.documentReady(() => {' + '\n' +
-      '  // Add JavaScript here' + '\n' +
-      '})' + '\n'
-    )
+    expect(jsFileContents).toEqual(`/* global GOVUK */
+
+//
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//
+
+
+window.GOVUKPrototypeKit.documentReady(function () {
+  // Use GOV.UK shim-links-with-button-role.js to trigger a link styled to look like a button,
+  // with role="button" when the space key is pressed.
+  GOVUK.shimLinksWithButtonRole.init()
+
+  // Details/summary polyfill from frontend toolkit
+  GOVUK.details.init()
+
+  // Show and hide toggled content
+  // Where .multiple-choice uses the data-target attribute
+  // to toggle hidden content
+  var showHideContent = new GOVUK.ShowHideContent()
+  showHideContent.init()
+})
+`)
   })
 
   it('application.scss should be updated correctly', () => {

@@ -50,7 +50,14 @@ const { projectDir, starterDir, appDir } = require('../lib/utils/paths')
 
 const migrationSteps = require('./migration-steps')
 const { preflightChecks, deleteIfUnchanged, removeOldPatternIncludesFromSassFile } = require('./migration-steps')
-const { migrateConfig, prepareAppRoutes, prepareSass, deleteUnusedFiles, deleteUnusedDirectories, upgradeIfUnchanged } = migrationSteps
+const {
+  migrateConfig,
+  prepareAppRoutes,
+  prepareSass,
+  deleteUnusedFiles,
+  deleteUnusedDirectories,
+  upgradeIfUnchanged
+} = migrationSteps
 
 describe('migration steps', () => {
   const mockReporter = reporter.mockReporter
@@ -310,7 +317,7 @@ describe('migration steps', () => {
     expect(reporter.addReporter).toHaveBeenCalledTimes(1)
     expect(reporter.addReporter).toHaveBeenCalledWith(`Overwrite ${layout}`)
 
-    expect(mockReporter).toHaveBeenCalledTimes(2)
+    expect(mockReporter).toHaveBeenCalledTimes(1)
     expect(mockReporter).toHaveBeenCalledWith(true)
   })
 
