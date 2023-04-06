@@ -1,18 +1,20 @@
 # Changelog
 
 ## Unreleased
+## 13.6.0
 
 ### New features
+
+- [#2088: Plugin authors can now use scripts with type module](https://github.com/alphagov/govuk-prototype-kit/pull/2049)  
+
+### Fixes
+
+- [#2085: Update page titles for template pages](https://github.com/alphagov/govuk-prototype-kit/pull/2085)
 
 - [#2049: Migrate changed files if possible](https://github.com/alphagov/govuk-prototype-kit/pull/2049)  
   Converts the following files if possible during migration:
   - application.js
   - filters.js
-
-### Fixes
-
--  [#2085: Update page titles for template pages](https://github.com/alphagov/govuk-prototype-kit/pull/2085)
-
 ## 13.5.0
 
 ### New features
