@@ -79,4 +79,10 @@ describe('Single Plugin Test', async () => {
     cy.get('.plugin-foo').should('have.css', 'background-color', BLUE)
     cy.get('.plugin-foo').should('have.css', 'border-color', WHITE)
   })
+
+  it('Loads plugin-foo module correctly', () => {
+    waitForApplication()
+    cy.visit('/plugin-foo')
+    cy.get('#foo-module').contains('The foo result is: 3')
+  })
 })
