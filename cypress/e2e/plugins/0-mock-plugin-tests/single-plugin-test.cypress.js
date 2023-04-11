@@ -1,17 +1,10 @@
-
-// core dependencies
-const path = require('path')
-
-// local dependencies
-const { waitForApplication } = require('../../utils')
-
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
-const pluginFooView = path.join(appViews, 'plugin-foo.html')
-
-const WHITE = 'rgb(255, 255, 255)'
-const YELLOW = 'rgb(255, 255, 0)'
-const BLUE = 'rgb(0, 0, 255)'
-
+import path from "path";
+import { waitForApplication } from "../../utils.js";
+const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views');
+const pluginFooView = path.join(appViews, 'plugin-foo.html');
+const WHITE = 'rgb(255, 255, 255)';
+const YELLOW = 'rgb(255, 255, 0)';
+const BLUE = 'rgb(0, 0, 255)';
 const pluginFooViewMarkup = `
 {% extends "layouts/main.html" %}
 
@@ -29,60 +22,52 @@ const pluginFooViewMarkup = `
   })
 </script>
 {% endblock %}
-`
-
+`;
 describe('Single Plugin Test', async () => {
-  before(() => {
-    cy.task('createFile', { filename: pluginFooView, data: pluginFooViewMarkup })
-  })
-
-  it('Loads plugin-foo view correctly', () => {
-    waitForApplication()
-    cy.visit('/plugin-foo')
-    cy.get('.plugin-foo')
-      .should('contains.text', 'Plugin Foo')
-  })
-
-  it('Loads plugin-foo style correctly', () => {
-    waitForApplication()
-    cy.visit('/plugin-foo')
-    cy.get('.plugin-foo')
-      .should('have.css', 'background-color', YELLOW)
-      .should('have.css', 'border-color', WHITE)
-  })
-
-  it('Loads plugin-foo filter correctly', () => {
-    waitForApplication()
-    cy.visit('/plugin-foo')
-    cy.get('#test-foo-strong-filter')
-      .should('have.html', '<strong>abc</strong>')
-  })
-
-  it('Loads plugin-foo function correctly', () => {
-    waitForApplication()
-    cy.visit('/plugin-foo')
-    cy.get('#test-foo-emphasize-function')
-      .should('have.html', '<em>def</em>')
-  })
-
-  it('Loads plugin-foo foo-field macro correctly', () => {
-    waitForApplication()
-    cy.visit('/plugin-foo')
-    cy.get('#test-foo-field-macro input')
-      .should('have.value', 'ghi')
-  })
-
-  it('Loads plugin-foo script correctly', () => {
-    waitForApplication()
-    cy.visit('/plugin-foo')
-    cy.get('.plugin-foo').click()
-    cy.get('.plugin-foo').should('have.css', 'background-color', BLUE)
-    cy.get('.plugin-foo').should('have.css', 'border-color', WHITE)
-  })
-
-  it('Loads plugin-foo module correctly', () => {
-    waitForApplication()
-    cy.visit('/plugin-foo')
-    cy.get('#foo-module').contains('The foo result is: 3')
-  })
-})
+    before(() => {
+        cy.task('createFile', { filename: pluginFooView, data: pluginFooViewMarkup });
+    });
+    it('Loads plugin-foo view correctly', () => {
+        waitForApplication();
+        cy.visit('/plugin-foo');
+        cy.get('.plugin-foo')
+            .should('contains.text', 'Plugin Foo');
+    });
+    it('Loads plugin-foo style correctly', () => {
+        waitForApplication();
+        cy.visit('/plugin-foo');
+        cy.get('.plugin-foo')
+            .should('have.css', 'background-color', YELLOW)
+            .should('have.css', 'border-color', WHITE);
+    });
+    it('Loads plugin-foo filter correctly', () => {
+        waitForApplication();
+        cy.visit('/plugin-foo');
+        cy.get('#test-foo-strong-filter')
+            .should('have.html', '<strong>abc</strong>');
+    });
+    it('Loads plugin-foo function correctly', () => {
+        waitForApplication();
+        cy.visit('/plugin-foo');
+        cy.get('#test-foo-emphasize-function')
+            .should('have.html', '<em>def</em>');
+    });
+    it('Loads plugin-foo foo-field macro correctly', () => {
+        waitForApplication();
+        cy.visit('/plugin-foo');
+        cy.get('#test-foo-field-macro input')
+            .should('have.value', 'ghi');
+    });
+    it('Loads plugin-foo script correctly', () => {
+        waitForApplication();
+        cy.visit('/plugin-foo');
+        cy.get('.plugin-foo').click();
+        cy.get('.plugin-foo').should('have.css', 'background-color', BLUE);
+        cy.get('.plugin-foo').should('have.css', 'border-color', WHITE);
+    });
+    it('Loads plugin-foo module correctly', () => {
+        waitForApplication();
+        cy.visit('/plugin-foo');
+        cy.get('#foo-module').contains('The foo result is: 3');
+    });
+});

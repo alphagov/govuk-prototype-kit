@@ -1,8 +1,8 @@
-const router = require('govuk-prototype-kit').requests.setupRouter()
-
+import govukPrototypeKit from "govuk-prototype-kit";
+const router = govukPrototypeKit.requests.setupRouter();
 router.get('/cypress-test', (req, res) => {
-  const heading = 'CYPRESS TEST PAGE'
-  res.send(`<!DOCTYPE html>
+    const heading = 'CYPRESS TEST PAGE';
+    res.send(`<!DOCTYPE html>
     <html lang="en">
         <head>
             <title>${heading}</title>
@@ -11,13 +11,11 @@ router.get('/cypress-test', (req, res) => {
             <h1>${heading}</h1>
         </body>
     </html>
-`)
-})
-
+`);
+});
 router.get('/error', (req, res, next) => {
-  next(new Error('test error'))
-})
-
+    next(new Error('test error'));
+});
 router.get('/test-page', (req, res, next) => {
-  res.render('test-page.html')
-})
+    res.render('test-page.html');
+});

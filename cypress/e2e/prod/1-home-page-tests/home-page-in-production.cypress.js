@@ -1,12 +1,9 @@
-
-// local dependencies
-const { authenticate } = require('../../utils')
-
+import { authenticate } from "../../utils.js";
 describe('home page in production', () => {
-  it('should load as expected', () => {
-    cy.task('waitUntilAppRestarts')
-    cy.visit('/')
-    authenticate()
-    cy.get('h1').contains('Service name goes here')
-  })
-})
+    it('should load as expected', () => {
+        cy.task('waitUntilAppRestarts');
+        cy.visit('/');
+        authenticate();
+        cy.get('h1').contains('Service name goes here');
+    });
+});

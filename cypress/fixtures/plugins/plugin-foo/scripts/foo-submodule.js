@@ -1,3 +1,3 @@
-export default function fooSubmodule (x, y) {
-  return x + y
+export default function fooSubmodule(x, y) {
+    return x + y;
 }

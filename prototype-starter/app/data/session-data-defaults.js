@@ -1,5 +1,3 @@
-module.exports = {
-
-  // Insert values here
-
-}
+export default {
+// Insert values here
+};

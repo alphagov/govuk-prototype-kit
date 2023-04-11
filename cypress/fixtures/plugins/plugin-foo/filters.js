@@ -1,2 +1,3 @@
-const { addFilter } = require('govuk-prototype-kit').views
-addFilter('foo__strong', (content) => `<strong>${content}</strong>`, { renderAsHtml: true })
+import govukPrototypeKit from "govuk-prototype-kit";
+const { addFilter } = govukPrototypeKit.views;
+addFilter('foo__strong', (content) => `<strong>${content}</strong>`, { renderAsHtml: true });

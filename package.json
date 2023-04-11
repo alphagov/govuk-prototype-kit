@@ -5,6 +5,7 @@
   "engines": {
     "node": "^16.x || >= 18.x"
   },
+  "type": "module",
   "main": "index.js",
   "bin": {
     "govuk-prototype-kit": "bin/cli"
