@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+replaceInFile () {
+  local find=$1
+  local replace=$2
+  local file=$3
+  sed -i .bak "s/$1/$2/" $3
+  rm $3.bak
+}
+
+replaceInFile '"bin\/cli"'  '"bin\/cli.js"' ./package.json
+replaceInFile 'bin\/cli'  'bin\/cli.js' ./__tests__/utils/index.js
+replaceInFile 'bin\/cli'  'bin\/cli.js' ./scripts/refresh-companion-kit
+replaceInFile 'module.exports.getOldConfig(oldConfigPath)' 'getOldConfig(oldConfigPath)' ./migrator/migration-steps.js
+
+mv bin/cli bin/cli.js
+
+rm -Rf node_modules
+
+#sed -i '/govuk-prototype-kit\",/govuk-prototype-kit\",\n  \"type\": \"module\",/' package.json
+#sed -i '/module\.exports\.getOldConfig\(oldConfigPath)/getOldConfig(oldConfigPath)/' migrator/migration-steps.js  
+npx -p typescript@4.7.3 -p cjstoesm@2.1.2 cjstoesm "**/*.js"
+
+replaceInFile 'govuk-prototype-kit",'  'govuk-prototype-kit",\n  "type": "module",' ./package.json
+
+git checkout -- prototype-starter
+
+npm install
