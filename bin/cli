@@ -378,7 +378,7 @@ function runServe () {
 }
 
 async function convertToEsm () {
-  const dir = getInstallLocation()
+  const dir = path.join(getInstallLocation())
   const packageJsonPath = path.join(dir, 'package.json')
   if (!fs.exists(dir)) {
     console.error(`There is no directory ${dir}`)
@@ -388,25 +388,126 @@ async function convertToEsm () {
     console.error(`There is no package json at ${packageJsonPath}`)
     process.exit(10)
   }
+  await fs.move(path.join(dir, 'bin', 'cli'), path.join(dir, 'bin', 'cli.js'))
   const jsFiles = await Promise.all(recursiveDirectoryContentsSync(dir)
-    .filter(filename => filename.endsWith('.js'))
-    .filter(filename => !filename.startsWith('node_modules'))
+    .filter(filename => !filename.startsWith('node_modules') && !filename.startsWith('prototype-starter') && !filename.includes('assets/javascripts') && filename.endsWith('.js'))
     .map(async filename => ({
-      filename, 
+      filename,
       contents: await fs.readFile(path.join(dir, filename), 'utf8')
     }))
   )
-  jsFiles.forEach(fileInfo => {
-    const contents = fileInfo.contents
-    if ()
-    console.log(contents)
-    process.exit(1)
-  })
-  console.log(jsFiles[10])
-  process.exit(1)
-  const packageContents = fs.readJson(packageJsonPath)
+  const transformations = [
+    {
+      find: 'const config = require(\'../config\').getConfig()',
+      replace: 'const configInclude = require(\'../config\')\nconst config = configInclude.getConfig()'
+    },
+    {
+      find: /require\('(.*\/(migrator|utils))'\)/g,
+      replace: 'require(\'$1/index\')'
+    },
+    {
+      find: /require\('(\.[^']+)'\)/g,
+      replace: 'require(\'$1.js\')'
+    },
+    {
+      find: /require\('(\.[^']+\.json)\.js'\)/g,
+      replace: 'readJsonFileAsPartOfMigration(path.join(__dirname, \'$1\'))'
+    },
+    {
+      find: /const ([^{=]+) = require\((\'[\w\.\-\/]+\')\)/g,
+      replace: 'import * as $1 from $2'
+    },
+    {
+      find: /const \{([^}]+)} = require\((\'[\w\.\/\-]+\')\)/g,
+      replace: 'import {$1} from $2'
+    },
+    {
+      find: /import \{(.*)\s(\w+): (\w+)\s(.*)}/g,
+      replace: 'import {$1 $2 as $3}'
+    },
+    {
+      find: 'from \'fs\'.promises',
+      replace: 'from \'fs/promises\''
+    },
+    {
+      find: /module\.exports = (\{[^{}]+})/g,
+      replace: 'export default $1'
+    },
+    {
+      find: 'module.exports =',
+      replace: 'const exportValue ='
+    },
+    {
+      find: /(export\s+\{[^}]+)\s+(\w+)\s*:\s*(\w+)/g,
+      replace: '$1 $3 as $2'
+    },
+    {
+      find: /import \* as (\w+) (from '[^']+')\.(\w+)/g,
+      replace: 'import { $3 as $1 } $2'
+    },
+    {
+      find: /(from '[^']+\.json')/g,
+      replace: '$1 assert { type: \'json\' }'
+    },
+    {
+      find: /const (\w+) = export default/g,
+      replace: 'let $1\nexport default $1\n$1 =',
+    },
+    {
+      find: /(const \w+ = )const (exportValue =)/g,
+      replace: 'let exportValue\n$1$2'
+    }
+  ]
+  await Promise.all(jsFiles.map(async fileInfo => {
+    let contents = fileInfo.contents
+    const fullPath = path.join(dir, fileInfo.filename)
+    transformations.forEach(({ find, replace }) => {
+      contents = contents.replaceAll(find, replace)
+    })
+    if (fileInfo.filename === 'lib/utils/paths.js') {
+      let exportVars = [] 
+      const setExportRegex = /^exports\.(\w+) =/
+      const setExportReplace = 'const $1 ='
+      const useExportRegex = /exports\.(\w+)/
+      const useExportReplace = '$1'
+      contents = contents.split('\n').map(line => {
+        const result = line.match(setExportRegex)
+        if (result) {
+          exportVars.push(result[1])
+        }
+        return line.replace(setExportRegex, setExportReplace).replace(useExportRegex, useExportReplace)
+      }).join('\n')
+      contents += 'export {' + exportVars.map(varName => `\n  ${varName}`).join(',') + '\n}\n'
+    }
+    if (contents.includes('__dirname')) {
+      const polyfillLines = []
+      polyfillLines.push(`import path from 'node:path'`)
+      polyfillLines.push(`import { fileURLToPath } from 'node:url'`)
+      polyfillLines.push('')
+      polyfillLines.push(`const __filename = fileURLToPath(import.meta.url)`)
+      polyfillLines.push(`const __dirname = path.dirname(__filename)`)
+      if (contents.includes('readJsonFileAsPartOfMigration')) {
+        polyfillLines.push('import * as fsExtraAsPartOfMigration from \'fs-extra\'')
+        polyfillLines.push('const readJsonFileAsPartOfMigration = fsExtraAsPartOfMigration.readJsonSync')
+      }
+      let lines = contents.split('\n')
+      const startLines = []
+      while(lines[0].startsWith('#!') || lines[0].startsWith('"use')) {
+        startLines.push(lines.shift())
+      }
+      lines = lines.filter(line => line !== 'import * as path from \'path\'') 
+      contents = startLines.concat(polyfillLines).concat(lines).join('\n')
+    }
+    if (contents.includes('const exportValue =') && !fileInfo.filename.endsWith('migration-steps.js') && !fileInfo.filename.endsWith('upgrade-steps.js')) {
+      contents += 'export default exportValue\n'
+    }
+    await fs.writeFileSync(fullPath, contents)
+  }))
+  console.log(jsFiles.map(file => file.filename))
+  const packageContents = await fs.readJson(packageJsonPath)
   packageContents.type = 'module'
-  fs.writeJson(packageJsonPath, packageContents, packageJsonFormat)
+  packageContents.bin['govuk-prototype-kit'] = 'bin/cli.js'
+  await fs.writeJson(packageJsonPath, packageContents, packageJsonFormat)
 }
 
 ;(async () => {
