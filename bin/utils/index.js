@@ -6,6 +6,7 @@ const fse = require('fs-extra')
 const packageJsonFormat = { encoding: 'utf8', spaces: 2 }
 
 async function npmInstall (cwd, dependencies) {
+  dependencies.push('--save-exact')
   return spawn(
     'npm', [
       'install',

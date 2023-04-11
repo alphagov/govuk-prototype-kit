@@ -1,6 +1,11 @@
 # Changelog
 
 ## Unreleased
+
+### Fixes
+
+- [#2100: Make sure exact versions of plugins are installed from the kit](https://github.com/alphagov/govuk-prototype-kit/pull/2100)
+
 ## 13.6.0
 
 ### New features

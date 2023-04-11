@@ -113,7 +113,7 @@ async function installPlugins (prototypePath, pluginNames) {
     pluginNamesProcessed = [pluginNames]
   }
   return exec(
-    `npm install ${pluginNamesProcessed.join(' ')}`,
+    `npm install ${pluginNamesProcessed.join(' ')} --save-exact`,
     { cwd: prototypePath, env: { ...process.env, env: 'test' }, stdio: 'inherit' }
   )
 }

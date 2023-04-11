@@ -19,6 +19,6 @@ rm -Rf govuk-prototype-kit-performance-kit
 git clone git@github.com:alphagov/govuk-prototype-kit-performance-kit.git
 cd govuk-prototype-kit-performance-kit
 echo '{"collectUsageData": false}' > usage-data-config.json
-npm install $dependency
+npm install $dependency --save-exact
 npm install
 npm run dev
