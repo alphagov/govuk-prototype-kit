@@ -49,14 +49,17 @@ const config = require('../lib/config')
 const { projectDir, starterDir, appDir } = require('../lib/utils/paths')
 
 const migrationSteps = require('./migration-steps')
-const { preflightChecks, deleteIfUnchanged, removeOldPatternIncludesFromSassFile } = require('./migration-steps')
 const {
+  preflightChecks,
+  deleteIfUnchanged,
+  removeOldPatternIncludesFromSassFile,
+  upgradeIfUnchanged,
+  upgradeLayoutIfUnchanged,
   migrateConfig,
   prepareAppRoutes,
   prepareSass,
   deleteUnusedFiles,
-  deleteUnusedDirectories,
-  upgradeIfUnchanged
+  deleteUnusedDirectories
 } = migrationSteps
 
 describe('migration steps', () => {
@@ -277,19 +280,45 @@ describe('migration steps', () => {
     expect(mockReporter).toHaveBeenNthCalledWith(3, true)
   })
 
+  it('upgrade unchanged application.js and fail changed filters.js', async () => {
+    const appFile = 'application.js'
+    const filtersFile = 'filters.js'
+    const additionalStep = jest.fn()
+      .mockImplementationOnce(async () => true)
+      .mockImplementationOnce(async () => false)
+    const result = await upgradeIfUnchanged([appFile, filtersFile], additionalStep)
+
+    expect(result).toEqual([true, false])
+
+    expect(fileHelpers.matchAgainstOldVersions).toHaveBeenCalledTimes(2)
+    expect(fileHelpers.matchAgainstOldVersions.mock.calls).toEqual([
+      [appFile], // First call
+      [filtersFile] // Second call
+    ])
+
+    expect(reporter.addReporter).toHaveBeenCalledTimes(2)
+    expect(reporter.addReporter.mock.calls).toEqual([
+      [`Overwrite ${appFile}`], // First call
+      [`Overwrite ${filtersFile}`] // Second call
+    ])
+
+    expect(mockReporter).toHaveBeenCalledTimes(2)
+    expect(mockReporter.mock.calls).toEqual([
+      [true], // First call
+      [false] // Second call
+    ])
+  })
+
   it('upgrade if unchanged layout', async () => {
     const layout = 'app/views/layout.html'
-    const additionalStep = jest.fn().mockResolvedValue(true)
+    const starterLayout = 'app/views/layouts/main.html'
 
-    const result = await upgradeIfUnchanged([layout], layout, additionalStep)
+    const result = await upgradeLayoutIfUnchanged(layout, starterLayout)
 
     expect(result).toBeTruthy()
 
     expect(fileHelpers.matchAgainstOldVersions).toHaveBeenCalledTimes(1)
     expect(fileHelpers.matchAgainstOldVersions).toHaveBeenCalledWith(layout)
-
-    expect(additionalStep).toHaveBeenCalledTimes(1)
-    expect(additionalStep).toHaveBeenCalled()
 
     expect(reporter.addReporter).toHaveBeenCalledTimes(1)
     expect(reporter.addReporter).toHaveBeenCalledWith(`Overwrite ${layout}`)
@@ -300,25 +329,22 @@ describe('migration steps', () => {
 
   it('report if changed layout', async () => {
     const layout = 'app/views/layout.html'
-    const additionalStep = jest.fn().mockResolvedValue(true)
+    const starterLayout = 'app/views/layouts/main.html'
 
     fileHelpers.matchAgainstOldVersions.mockReturnValue(false)
 
-    const result = await upgradeIfUnchanged([layout], layout, additionalStep)
+    const result = await upgradeLayoutIfUnchanged(layout, starterLayout)
 
-    expect(result).toBeTruthy()
+    expect(result).toBeFalsy()
 
     expect(fileHelpers.matchAgainstOldVersions).toHaveBeenCalledTimes(1)
     expect(fileHelpers.matchAgainstOldVersions).toHaveBeenCalledWith(layout)
-
-    expect(additionalStep).toHaveBeenCalledTimes(1)
-    expect(additionalStep).toHaveBeenCalled()
 
     expect(reporter.addReporter).toHaveBeenCalledTimes(1)
     expect(reporter.addReporter).toHaveBeenCalledWith(`Overwrite ${layout}`)
 
     expect(mockReporter).toHaveBeenCalledTimes(1)
-    expect(mockReporter).toHaveBeenCalledWith(true)
+    expect(mockReporter).toHaveBeenCalledWith(false)
   })
 
   it('delete if unchanged unbranded layout', async () => {
