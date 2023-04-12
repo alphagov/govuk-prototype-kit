@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2101: Show an error in the browser when the kit couldn't start](https://github.com/alphagov/govuk-prototype-kit/pull/2101)
+
 ### Fixes
 
 - [#2100: Make sure exact versions of plugins are installed from the kit](https://github.com/alphagov/govuk-prototype-kit/pull/2100)
@@ -10,7 +14,7 @@
 
 ### New features
 
-- [#2088: Plugin authors can now use scripts with type module](https://github.com/alphagov/govuk-prototype-kit/pull/2049)  
+- [#2088: Plugin authors can now use scripts with type module](https://github.com/alphagov/govuk-prototype-kit/pull/2088)  
 
 ### Fixes
 
