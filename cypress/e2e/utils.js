@@ -48,7 +48,7 @@ function installPlugin (plugin, version = '') {
     version = '@' + version
   }
   cy.task('log', `Installing ${plugin}${version}`)
-  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}${version}`)
+  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}${version} --save-exact `)
   if (plugin.startsWith('file:')) {
     plugin = plugin.substring(plugin.lastIndexOf('/') + 1)
   }
