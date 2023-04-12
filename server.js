@@ -1,5 +1,5 @@
 // core dependencies
-const fs = require('fs').promises
+const fsp = require('fs').promises
 const path = require('path')
 const url = require('url')
 
@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
+const fse = require('fs-extra')
 const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
@@ -16,7 +17,7 @@ const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir } = require('./lib/utils/paths')
+const { projectDir, packageDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
@@ -68,10 +69,21 @@ app.use(require('./lib/authentication.js')())
 // Support session data storage
 app.use(sessionUtils.getSessionMiddleware())
 
+// Get internal govuk-frontend views
+let internalGovUkFrontendDir = path.join(packageDir, 'node_modules', 'govuk-frontend')
+if (!fse.pathExistsSync(internalGovUkFrontendDir)) {
+  internalGovUkFrontendDir = path.join(projectDir, 'node_modules', 'govuk-frontend')
+}
+const internalGovUkFrontendConfig = fse.readJsonSync(path.join(internalGovUkFrontendDir, 'govuk-prototype-kit.config.json'))
+const internalGovUkFrontendViews = internalGovUkFrontendConfig.nunjucksPaths.map(viewPath => path.join(internalGovUkFrontendDir, viewPath))
+
 // Set up App
 const appViews = [
   path.join(projectDir, '/app/views/')
-].concat(plugins.getAppViews([path.join(packageDir, '/lib/final-backup-nunjucks')]))
+].concat(plugins.getAppViews([
+  ...internalGovUkFrontendViews,
+  finalBackupNunjucksDir
+]))
 
 const nunjucksConfig = {
   autoescape: true,
@@ -156,7 +168,7 @@ app.get('/docs/tutorials-and-examples', (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-  const starterHomepageCode = await fs.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.njk'), 'utf8')
+  const starterHomepageCode = await fsp.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.njk'), 'utf8')
   res.render('views/backup-homepage', {
     starterHomepageCode
   })

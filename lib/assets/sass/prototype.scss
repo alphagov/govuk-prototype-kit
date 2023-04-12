@@ -4,12 +4,8 @@
 // Import GOV.UK Frontend and any plugin styles if plugins have been configured
 @import ".tmp/sass/plugins";
 
-// Patterns that aren't in Frontend
-@import "patterns/contents-list";
-@import "patterns/mainstream-guide";
-@import "patterns/pagination";
-@import "patterns/related-items";
-@import "patterns/task-list";
+// Patterns that support pages built with legacy templates
+@import ".tmp/sass/legacy-patterns";
 
 // SASS that is user defined
 @import ".tmp/sass/user/application";
