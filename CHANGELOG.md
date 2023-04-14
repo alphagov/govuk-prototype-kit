@@ -4,6 +4,9 @@
 
 ### Fixes
 
+- [#2120: View templates with default layout](https://github.com/alphagov/govuk-prototype-kit/pull/2120)  
+  Viewing templates in Manage Prototype now works even if app/views/layouts/main.html is missing
+
 - [#2100: Make sure exact versions of plugins are installed from the kit](https://github.com/alphagov/govuk-prototype-kit/pull/2100)
 
 ## 13.6.0
