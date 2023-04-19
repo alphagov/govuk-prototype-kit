@@ -19,6 +19,7 @@ const {
   deleteIfUnchanged,
   removeOldPatternIncludesFromSassFile,
   updateUnbrandedLayouts,
+  upgradeLayoutIfUnchanged,
   upgradeIfPossible
 } = require('./migration-steps')
 
@@ -81,6 +82,8 @@ const filesToDeleteIfUnchanged = [
   'app/assets/sass/unbranded.scss',
   'app/views/includes/breadcrumb_examples.html',
   'app/views/includes/cookie-banner.html',
+  'app/views/includes/head.html',
+  'app/views/includes/scripts.html',
   'app/views/layout_unbranded.html'
 ]
 
@@ -118,19 +121,6 @@ async function prepareMigration (kitDependency, projectDirectory) {
   ])
 }
 
-// Special case app/views/layout.html, as it has moved in prototype
-// starter files, but we don't want to move for existing users
-async function upgradeLayoutIfUnchanged () {
-  const results = await upgradeIfUnchanged(
-    ['app/views/layout.html'],
-    'app/views/layouts/main.html',
-    () => deleteIfUnchanged([
-      'app/views/includes/head.html',
-      'app/views/includes/scripts.html'
-    ]))
-  return results.flat()
-}
-
 async function migrate () {
   await logger.setup()
 
@@ -143,8 +133,8 @@ async function migrate () {
       prepareSass('app/assets/sass/application.scss'),
       deleteUnusedFiles(filesToDelete),
       deleteUnusedDirectories(directoriesToDelete),
-      upgradeIfUnchanged(filesToUpdateIfUnchanged, '', upgradeIfPossible),
-      upgradeLayoutIfUnchanged(),
+      upgradeIfUnchanged(filesToUpdateIfUnchanged, upgradeIfPossible),
+      upgradeLayoutIfUnchanged('app/views/layout.html', 'app/views/layouts/main.html'),
       updateUnbrandedLayouts('app/views'),
       deleteIfUnchanged(filesToDeleteIfUnchanged),
       deleteIfUnchanged(patternsToDeleteIfUnchanged)

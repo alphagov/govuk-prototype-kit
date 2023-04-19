@@ -206,8 +206,29 @@ async function deleteIfUnchanged (filePaths) {
   }))
 }
 
-async function upgradeIfUnchanged (filePaths, starterFilePath, additionalStep) {
-  return Promise.all(filePaths.map(async filePath => {
+// Special case app/views/layout.html, as it has moved in prototype
+// starter files, but we don't want to move for existing users
+async function upgradeLayoutIfUnchanged (filePath, starterFilePath) {
+  const matchFound = await matchAgainstOldVersions(filePath)
+  const reporter = await addReporter(`Overwrite ${filePath}`)
+
+  let result = false
+  try {
+    if (matchFound) {
+      await copyFileFromStarter(starterFilePath, filePath)
+      result = true
+    }
+  } catch (e) {
+    await verboseLog(e.message)
+    await verboseLog(e.stack)
+  }
+
+  await reporter(result)
+  return result
+}
+
+async function upgradeIfUnchanged (filePaths, additionalStep) {
+  const results = await Promise.all(filePaths.map(async filePath => {
     const matchFound = await matchAgainstOldVersions(filePath)
 
     const reporter = await addReporter(`Overwrite ${filePath}`)
@@ -215,7 +236,7 @@ async function upgradeIfUnchanged (filePaths, starterFilePath, additionalStep) {
     let result = false
     try {
       if (matchFound) {
-        await copyFileFromStarter(starterFilePath || filePath, filePath)
+        await copyFileFromStarter(filePath)
       }
       if (additionalStep) {
         result = await additionalStep(filePath, matchFound)
@@ -230,6 +251,7 @@ async function upgradeIfUnchanged (filePaths, starterFilePath, additionalStep) {
     await reporter(result)
     return result
   }))
+  return results
 }
 
 async function updateUnbrandedLayouts (dir) {
@@ -252,6 +274,7 @@ module.exports = {
   deleteUnusedDirectories,
   deleteEmptyDirectories,
   deleteIfUnchanged,
+  upgradeLayoutIfUnchanged,
   upgradeIfUnchanged,
   updateUnbrandedLayouts,
   upgradeIfPossible
