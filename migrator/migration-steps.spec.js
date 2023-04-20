@@ -6,6 +6,7 @@ const path = require('path')
 jest.mock('fs-extra', () => {
   return {
     pathExists: jest.fn().mockResolvedValue(true),
+    pathExistsSync: jest.fn().mockReturnValue(false),
     writeJsonSync: jest.fn().mockResolvedValue(true),
     readFile: jest.fn().mockResolvedValue('')
   }

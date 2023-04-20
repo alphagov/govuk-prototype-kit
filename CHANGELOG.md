@@ -7,6 +7,8 @@
 - [#2120: View templates with default layout](https://github.com/alphagov/govuk-prototype-kit/pull/2120)  
   Viewing templates in Manage Prototype now works even if app/views/layouts/main.html is missing
 
+- [#2118: Make the manage prototype pages independent of the govuk-frontend plugin](https://github.com/alphagov/govuk-prototype-kit/pull/2118)
+
 - [#2116: Fix migration script for layouts](https://github.com/alphagov/govuk-prototype-kit/pull/2116)
 
 - [#2100: Make sure exact versions of plugins are installed from the kit](https://github.com/alphagov/govuk-prototype-kit/pull/2100)
@@ -15,7 +17,7 @@
 
 ### New features
 
-- [#2088: Plugin authors can now use scripts with type module](https://github.com/alphagov/govuk-prototype-kit/pull/2049)  
+- [#2088: Plugin authors can now use scripts with type module](https://github.com/alphagov/govuk-prototype-kit/pull/2088)  
 
 ### Fixes
 

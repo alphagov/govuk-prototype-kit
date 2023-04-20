@@ -6,7 +6,6 @@
   ],
   "nunjucksPaths": "/lib/nunjucks",
   "nunjucksFilters": "/lib/filters/core-filters",
-  "sass": "/lib/assets/sass/internal/manage-prototype.scss",
   "scripts": [
     "/lib/assets/javascripts/kit.js",
     "/lib/assets/javascripts/auto-store-data.js"
