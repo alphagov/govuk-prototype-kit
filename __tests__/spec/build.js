@@ -37,6 +37,7 @@ describe('the build pipeline', () => {
       jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
       jest.spyOn(fse, 'readJsonSync').mockImplementation(() => ({
         sass: ['test.scss'],
+        assets: ['test/assets'],
         dependencies: { 'govuk-frontend': '4.0.0' },
         version: '13.0.1'
       }))
