@@ -24,6 +24,7 @@ const utils = require('./lib/utils')
 const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
+const { getInternalGovukFrontendDir } = require('./lib/utils')
 
 const app = express()
 routesApi.setApp(app)
@@ -70,10 +71,7 @@ app.use(require('./lib/authentication.js')())
 app.use(sessionUtils.getSessionMiddleware())
 
 // Get internal govuk-frontend views
-let internalGovUkFrontendDir = path.join(packageDir, 'node_modules', 'govuk-frontend')
-if (!fse.pathExistsSync(internalGovUkFrontendDir)) {
-  internalGovUkFrontendDir = path.join(projectDir, 'node_modules', 'govuk-frontend')
-}
+const internalGovUkFrontendDir = getInternalGovukFrontendDir()
 const internalGovUkFrontendConfig = fse.readJsonSync(path.join(internalGovUkFrontendDir, 'govuk-prototype-kit.config.json'))
 const internalGovUkFrontendViews = internalGovUkFrontendConfig.nunjucksPaths.map(viewPath => path.join(internalGovUkFrontendDir, viewPath))
 

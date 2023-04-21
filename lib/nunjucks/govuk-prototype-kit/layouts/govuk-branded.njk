@@ -1,4 +1,4 @@
-{%- set assetPath = '/plugin-assets/govuk-frontend/govuk/assets' -%}
+{%- set assetPath = assetPath | default('/plugin-assets/govuk-frontend/govuk/assets') -%}
 
 {% extends "govuk/template.njk" %}
 
