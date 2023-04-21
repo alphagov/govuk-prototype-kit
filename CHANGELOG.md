@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.6.1
+
 ### Fixes
 
 - [#2120: View templates with default layout](https://github.com/alphagov/govuk-prototype-kit/pull/2120)  
