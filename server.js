@@ -29,6 +29,8 @@ const { getInternalGovukFrontendDir } = require('./lib/utils')
 const app = express()
 routesApi.setApp(app)
 
+utils.confirmAssetsExistSync()
+
 // Set up configuration variables
 const releaseVersion = packageJson.version
 
