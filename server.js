@@ -171,9 +171,9 @@ app.get(/^([^.]+)$/, async (req, res, next) => {
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
-      pathname: '/' + req.params[0],
-      query: req.query
-    })
+    pathname: '/' + req.params[0],
+    query: req.query
+  })
   )
 })
 
