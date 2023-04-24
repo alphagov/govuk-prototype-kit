@@ -29,10 +29,18 @@ const routesApi = require('./lib/routes/api.js')
 const { getInternalGovukFrontendDir } = require('./lib/utils')
 
 if (!fs.existsSync(path.join(projectDir, '.tmp', 'sass', 'kit-frontend-dependency'))) {
-  console.log('found the problem.')
+  if (process.env.VERBOSE) {
+    console.log('found the problem - assets need rebuilding.')
+  }
   sassKitFrontendDependency()
   sassLegacyPatterns()
-  console.log('solved the problem ... maybe')
+  if (process.env.VERBOSE) {
+    console.log('solved the problem ... maybe - assets have been rebuilt')
+  }
+} else {
+  if (process.env.VERBOSE) {
+    console.log('no need to rebuild assets')
+  }
 }
 
 const app = express()
