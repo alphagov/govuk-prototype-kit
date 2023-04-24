@@ -1,5 +1,6 @@
 // core dependencies
-const fsp = require('fs').promises
+const fs = require('fs')
+const fsp = fs.promises
 const path = require('path')
 const url = require('url')
 
@@ -10,6 +11,7 @@ const dotenv = require('dotenv')
 const express = require('express')
 const fse = require('fs-extra')
 const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
+const { sassKitFrontendDependency, sassLegacyPatterns } = require('./lib/build')
 
 // We want users to be able to keep api keys, config variables and other
 // envvars in a `.env` file, run dotenv before other code to make sure those
@@ -25,6 +27,13 @@ const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 const { getInternalGovukFrontendDir } = require('./lib/utils')
+
+if (!fs.existsSync(path.join(projectDir, '.tmp', 'sass', 'kit-frontend-dependency'))) {
+  console.log('found the problem.')
+  sassKitFrontendDependency()
+  sassLegacyPatterns()
+  console.log('solved the problem ... maybe')
+}
 
 const app = express()
 routesApi.setApp(app)
@@ -154,9 +163,9 @@ app.get(/^([^.]+)$/, async (req, res, next) => {
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
-    pathname: '/' + req.params[0],
-    query: req.query
-  })
+      pathname: '/' + req.params[0],
+      query: req.query
+    })
   )
 })
 
