@@ -4,9 +4,12 @@ const browserSync = require('browser-sync')
 
 // local dependencies
 const server = require('./server.js')
+const { generateAssetsSync } = require('./lib/build')
 const config = require('./lib/config.js').getConfig()
 
 const port = config.port
+
+generateAssetsSync()
 
 if (config.isTest) {
   server.listen()
