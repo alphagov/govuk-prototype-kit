@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.6.2
+
 ### Fixes
 
 - [#2141: Fix upgrade kit issues when manage sass changes](https://github.com/alphagov/govuk-prototype-kit/pull/2141)  
