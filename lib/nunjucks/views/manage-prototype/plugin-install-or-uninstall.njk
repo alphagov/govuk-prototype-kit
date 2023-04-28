@@ -1,10 +1,6 @@
 {% extends "views/manage-prototype/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% block meta %}
-  <meta name="csrf-token" content="{{ csrfToken }}">
-{% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row govuk-prototype-kit-manage-prototype-plugin-processing">
     <div class="govuk-grid-column-two-thirds">
