@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2101: Show an error in the browser when the kit couldn't start](https://github.com/alphagov/govuk-prototype-kit/pull/2101)
+
 ## 13.6.2
 
 ### Fixes

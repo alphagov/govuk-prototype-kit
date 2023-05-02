@@ -70,7 +70,7 @@ describe('error handling', () => {
 
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
-    expect(getH1(response.text)).toEqual('There is an error in your code')
+    expect(getH1(response.text)).toEqual('There is an error')
     expect(getFirstParagraph(response.text)).toMatch(/^You can try and fix this yourself or/)
 
     app.close()
@@ -89,7 +89,7 @@ describe('error handling', () => {
 
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
-    expect(getH1(response.text)).toEqual('There is an error in your code')
+    expect(getH1(response.text)).toEqual('There is an error')
     expect(getFirstParagraph(response.text)).toMatch(/^You can try and fix this yourself or/)
   })
 
