@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [#2150: Prevent CSURF deprecated warning](https://github.com/alphagov/govuk-prototype-kit/pull/2150)
+
 ## 13.6.2
 
 ### Fixes

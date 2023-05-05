@@ -60,15 +60,15 @@ app.locals.pluginConfig = plugins.getAppConfig({
 // TODO: remove in v14
 app.locals.extensionConfig = app.locals.pluginConfig
 
+// Support session data storage
+app.use(sessionUtils.getSessionMiddleware())
+
 // use cookie middleware for reading authentication cookie
 app.use(cookieParser())
 
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
 app.use(require('./lib/authentication.js')())
-
-// Support session data storage
-app.use(sessionUtils.getSessionMiddleware())
 
 // Get internal govuk-frontend views
 const internalGovUkFrontendDir = getInternalGovukFrontendDir()
