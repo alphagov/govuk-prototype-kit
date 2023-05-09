@@ -63,7 +63,7 @@ describe('Management plugins: ', () => {
       body: { package: plugin }
     }).then(response => {
       expect(response.status).to.eq(403)
-      expect(response.body).to.eq('invalid csrf token')
+      expect(response.body).to.have.property('error', 'invalid csrf token')
     })
   })
 
