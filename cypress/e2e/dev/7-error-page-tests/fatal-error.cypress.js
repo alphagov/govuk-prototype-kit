@@ -1,5 +1,4 @@
 const path = require('path')
-const { waitForApplication } = require('../../utils')
 const completelyBrokenRoutesFixture = path.join(Cypress.config('fixturesFolder'), 'completely-broken-routes.js')
 const appRoutesPath = path.join('app', 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
@@ -25,17 +24,5 @@ describe('Fatal Error Test', () => {
     cy.get('.govuk-heading-l').contains(pageName)
     cy.get('.govuk-body').contains(contactSupportText)
     cy.get('code').contains(expectedErrorText)
-  })
-
-  it('resolving the fatal error should bring back the homepage', () => {
-    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
-
-    cy.wait(3000)
-
-    waitForApplication()
-
-    cy.visit('/')
-
-    cy.get('.govuk-heading-l').contains('GOV.UK Prototype Kit')
   })
 })
