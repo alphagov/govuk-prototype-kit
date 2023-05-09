@@ -30,6 +30,8 @@ describe('Fatal Error Test', () => {
   it('resolving the fatal error should bring back the homepage', () => {
     cy.task('copyFromStarterFiles', { filename: appRoutesPath })
 
+    cy.wait(3000)
+
     waitForApplication()
 
     cy.visit('/')
