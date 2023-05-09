@@ -13,11 +13,14 @@ const scriptToAdd = `
   document.querySelector("h1").innerHTML = "${heading}"
 `
 
+function restore () {
+  // Restore application.js from prototype starter
+  cy.task('copyFromStarterFiles', { filename: appJsPath })
+}
+
 describe('watch application.js', () => {
-  before(() => {
-    // Restore application.js from prototype starter
-    cy.task('copyFromStarterFiles', { filename: appJsPath })
-  })
+  before(restore)
+  after(restore)
 
   it('changes to application.js should be reflected in browser', () => {
     waitForApplication()

@@ -11,21 +11,23 @@ const appConfig = path.join(Cypress.env('projectFolder'), appConfigPath)
 const originalText = 'Service name goes here'
 const newText = 'Cypress test'
 
-const serverNameQuery = 'a.govuk-header__link.govuk-header__service-name, a.govuk-header__link--service-name'
+const serverNameQuery = 'h1.govuk-heading-xl'
+
+function restore () {
+  // Restore config.json from prototype starter
+  cy.task('copyFromStarterFiles', { filename: appConfigPath })
+}
 
 describe('watch config file', () => {
   describe(`service name in config file ${appConfig} should be changed and restored`, () => {
-    before(() => {
-      // Restore config.json from prototype starter
-      cy.task('copyFromStarterFiles', { filename: appConfigPath })
-    })
+    before(restore)
+    after(restore)
 
     it('The service name should change to "cypress test"', () => {
-      waitForApplication()
-      cy.visit('/')
+      waitForApplication('/')
       cy.get(serverNameQuery).contains(originalText)
       cy.task('replaceTextInFile', { filename: appConfig, originalText, newText })
-      waitForApplication()
+      cy.wait(5000)
       cy.get(serverNameQuery).contains(newText)
     })
   })

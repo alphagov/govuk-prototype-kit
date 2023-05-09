@@ -14,12 +14,15 @@ const newText = 'Cypress test service'
 
 const managePagePath = '/manage-prototype'
 
+function restore () {
+  // Restore index.html and config.json from prototype starter
+  cy.task('copyFromStarterFiles', { filename: appHomePath })
+  cy.task('copyFromStarterFiles', { filename: appConfigPath })
+}
+
 describe('edit home page', () => {
-  before(() => {
-    // Restore index.html and config.json from prototype starter
-    cy.task('copyFromStarterFiles', { filename: appHomePath })
-    cy.task('copyFromStarterFiles', { filename: appConfigPath })
-  })
+  before(restore)
+  after(restore)
 
   it(`The home page heading should change to "${newText}" and the task should be set to "Done"`, () => {
     waitForApplication(managePagePath)
