@@ -4,7 +4,7 @@ const routesFixture = path.join(Cypress.config('fixturesFolder'), 'routes.js')
 const appRoutesPath = path.join('app', 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 
-const pageName = 'There is an error in your code'
+const pageName = 'There is an error'
 const contactSupportText = 'You can try and fix this yourself or contact the GOV.UK Prototype Kit team if you need help.'
 
 const templateNotFoundText = 'template not found: test-page.html'
