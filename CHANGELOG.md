@@ -10,6 +10,8 @@
 
 - [#2150: Prevent CSURF deprecated warning](https://github.com/alphagov/govuk-prototype-kit/pull/2150)
 
+- [#2130: Create our own file store functionality in place of the session-file-store package](https://github.com/alphagov/govuk-prototype-kit/pull/2130)
+
 ## 13.6.2
 
 ### Fixes
