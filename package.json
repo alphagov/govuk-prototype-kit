@@ -83,6 +83,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "clean-publish": "^4.0.2",
     "cross-env": "^7.0.3",
     "cypress": "^12.3.0",

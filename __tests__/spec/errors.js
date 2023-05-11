@@ -3,6 +3,7 @@
 // npm dependencies
 const request = require('supertest')
 const path = require('path')
+const cheerio = require('cheerio')
 
 // local dependencies
 const { sleep } = require('../../lib/utils')
@@ -14,16 +15,24 @@ process.env.IS_INTEGRATION_TEST = 'true'
 let kitRoutesApi
 
 const getPageTitle = html => {
-  const match = html.match(/<title>((.|\n|\r)*)<\/title>/)
-  if (match) return match[1].trim()
+  const $ = cheerio.load(html)
+  return $('title').text().trim()
 }
 const getH1 = html => {
-  const match = html.match(/<h1.*>((.|\n|\r)*)<\/h1>/)
-  if (match) return match[1].trim()
+  const $ = cheerio.load(html)
+  return $('h1').text().trim()
 }
 const getFirstParagraph = html => {
-  const match = html.match(/<p .*>((.|\n|\r)*)<\/p>/)
-  if (match) return match[1].trim()
+  const $ = cheerio.load(html)
+  return $('p').text().trim()
+}
+const getErrorFile = html => {
+  const $ = cheerio.load(html)
+  return $('#govuk-prototype-kit-error-file').text().trim()
+}
+const getErrorMessage = html => {
+  const $ = cheerio.load(html)
+  return $('#govuk-prototype-kit-error-message').text().trim()
 }
 
 describe('error handling', () => {
@@ -71,13 +80,14 @@ describe('error handling', () => {
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
     expect(getH1(response.text)).toEqual('There is an error')
-    expect(getFirstParagraph(response.text)).toMatch(/^You can try and fix this yourself or/)
+    expect(getErrorFile(response.text)).toEqual('/__tests__/spec/errors.js (line 71)')
+    expect(getErrorMessage(response.text)).toEqual('test error')
 
     app.close()
   })
 
   it('shows an error if a template cannot be found', async () => {
-    testRouter.get('/test-page', (req, res, next) => {
+    testRouter.get('/test-page', (req, res) => {
       res.render('test-page.html')
     })
 
@@ -90,7 +100,8 @@ describe('error handling', () => {
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
     expect(getH1(response.text)).toEqual('There is an error')
-    expect(getFirstParagraph(response.text)).toMatch(/^You can try and fix this yourself or/)
+    expect(getErrorFile(response.text)).toEqual('/lib/nunjucks/nunjucksLoader.js (line 74)')
+    expect(getErrorMessage(response.text)).toEqual('template not found: test-page.html')
   })
 
   it('shows a not found page', async () => {

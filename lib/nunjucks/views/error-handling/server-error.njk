@@ -4,17 +4,57 @@
   Error {% if serviceName %}– {{ serviceName }}{% endif %} – GOV.UK Prototype Kit
 {% endblock %}
 
+{% block header %}
+  <div class="govuk-prototype-kit-error-page-header">
+  {{ super() }}
+  </div>
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">There is an error</h1>
-      <p class="govuk-body">
-          You can try and fix this yourself or <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">contact the GOV.UK Prototype Kit team</a> if you need help.
+      <p class="govuk-prototype-kit-error-info">
+        <strong>File:</strong> <span id="govuk-prototype-kit-error-file">{{ error.filePath }} (line {{ error.line }})</span>
       </p>
-      <pre><code>{{ errorStack }}</code></pre>
+      <p class="govuk-prototype-kit-error-info">
+        <strong>Error:</strong> <span id="govuk-prototype-kit-error-message">{{ error.message }}</span>
+      </p>
+
+      <pre id="govuk-prototype-kit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="govuk-prototype-kit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
+
+
+      <div id="govuk-prototype-kit-show-error-button-container" hidden>
+        <button id="govuk-prototype-kit-show-error-button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Show full error
+        </button>
+      </div>
+
+      <pre id="govuk-prototype-kit-error-stack" class="js-hidden"><code>{{ errorStack }}</code></pre>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">Get support</a>
+      </p>
+
     </div>
   </div>
 
 
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  ;(() => {
+    const toggleErrorStack = () => {
+      const element = document.getElementById('govuk-prototype-kit-error-stack')
+      element.className = element.className === 'js-hidden' ? '' : element.className = 'js-hidden'
+    }
+
+    document.getElementById('govuk-prototype-kit-show-error-button-container').hidden = false
+
+    document.getElementById('govuk-prototype-kit-show-error-button')
+            .addEventListener('click', toggleErrorStack)
+  })()
+</script>
 {% endblock %}
