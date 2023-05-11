@@ -5,6 +5,8 @@
 ### New features
 
 - [#2101: Show an error in the browser when the kit couldn't start](https://github.com/alphagov/govuk-prototype-kit/pull/2101)
+- 
+- [#2142: Node version checking](https://github.com/alphagov/govuk-prototype-kit/pull/2142) - We now make sure you are using a compatible version of Node.JS before creating, running or migrating a kit.
 
 ### Fixes
 

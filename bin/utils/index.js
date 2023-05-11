@@ -15,6 +15,11 @@ async function npmInstall (cwd, dependencies) {
       cwd,
       stderr: 'inherit'
     })
+    .catch(e => {
+      console.error('Failed to install dependencies: ', dependencies.join(', '))
+      console.error(e)
+      process.exit(0)
+    })
 }
 
 function splitSemverVersion (version) {

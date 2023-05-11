@@ -1,5 +1,24 @@
 #!/usr/bin/env node
 
+if (process.argv.indexOf('--suppress-node-version-warning') === -1 || (process.argv[2] === 'migrate' && process.argv[3] === '--')) {
+  const majorNodeVersion = parseInt(process.version.split('.')[0].substring(1), 10)
+  const versionIsWithinRecommendation = majorNodeVersion === 18 || majorNodeVersion === 16
+  if (!versionIsWithinRecommendation) {
+    const nodeVersionIsTooOldToUse = majorNodeVersion < 14
+    const upgradeOrDownload = majorNodeVersion < 18 ? 'upgrade to' : 'download'
+    const printLn = nodeVersionIsTooOldToUse ? console.error.bind(console) : console.warn.bind(console)
+    const additionalText = nodeVersionIsTooOldToUse ? '' : ' Some features may not work with your version.'
+
+    printLn('\nYou\'re using Node', process.version)
+    printLn('The GOV.UK Prototype Kit only supports Node v16 and v18.' + additionalText + '\n')
+    printLn('You can', upgradeOrDownload, 'Node v18 at https://nodejs.org/en/download\n')
+
+    if (nodeVersionIsTooOldToUse) {
+      process.exit(0)
+    }
+  }
+}
+
 const fs = require('fs-extra')
 const path = require('path')
 
@@ -19,7 +38,7 @@ const kitVersion = require('../package.json').version
 const kitProjectName = require('../package.json').name
 
 const argv = parse(process.argv, {
-  booleans: ['no-version-control', 'verbose', 'running-within-create-script', 'use-njk-extensions']
+  booleans: ['no-version-control', 'verbose', 'running-within-create-script', 'use-njk-extensions', 'suppress-node-version-warning']
 })
 
 const verboseLogger = !argv.options.verbose
@@ -253,11 +272,16 @@ async function runCreate () {
 
   progressLogger('Setting up your prototype')
 
-  await spawn('npx', ['govuk-prototype-kit', 'init', runningWithinCreateScriptFlag, installDirectory, `--created-from-version=${kitVersion}`, ...(getArgumentsToPassThrough())], {
+  await spawn('npx', ['govuk-prototype-kit', 'init', runningWithinCreateScriptFlag, installDirectory, `--created-from-version=${kitVersion}`, ...(getArgumentsToPassThrough()), '--suppress-node-version-warning'], {
     cwd: installDirectory,
     stdio: 'inherit'
   })
     .then(displaySuccessMessage)
+    .catch(e => {
+      console.error('Failed to initialise the kit')
+      console.error(e)
+      process.exit(0)
+    })
 }
 
 async function createStarterFiles (installDirectory) {
@@ -341,6 +365,11 @@ async function runMigrate () {
     await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
       stdio: 'inherit'
     })
+      .catch(e => {
+        console.error('Failed to complete migration.')
+        console.error(e)
+        process.exit(0)
+      })
   } else {
     // stage two
     if (process.argv.length !== 5) {
