@@ -13,6 +13,7 @@
 // core dependencies
 const fs = require('fs')
 const fsp = fs.promises
+const fse = require('fs-extra')
 const path = require('path')
 
 // npm dependencies
@@ -280,6 +281,15 @@ module.exports = function setupNodeEvents (on, config) {
               return validateExtractedVersion(fullFilename)
             })
         })
+        .then(makeSureCypressCanInterpretTheResult)
+    },
+
+    addToConfigJson: (additionalConfig) => {
+      log(`Adding config JSON => ${downloadsFolder}`)
+      const appConfigPath = path.join(config.env.projectFolder, 'app', 'config.json')
+      return fse.readJson(appConfigPath)
+        .then(existingConfig => Object.assign({}, existingConfig, additionalConfig))
+        .then(newConfig => fse.writeJson(appConfigPath, newConfig))
         .then(makeSureCypressCanInterpretTheResult)
     },
 
