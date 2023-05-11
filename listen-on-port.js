@@ -1,15 +1,16 @@
 
 // npm dependencies
-const browserSync = require('browser-sync')
 const { runErrorServer } = require('./lib/errorServer')
 
 try {
   // local dependencies
+  const syncChanges = require('./lib/sync-changes')
   const server = require('./server.js')
   const { generateAssetsSync } = require('./lib/build')
   const config = require('./lib/config.js').getConfig(null, false)
 
   const port = config.port
+  const proxyPort = port - 50
 
   generateAssetsSync()
 
@@ -28,16 +29,11 @@ try {
     if (config.isProduction || !config.useBrowserSync) {
       server.listen(port)
     } else {
-      server.listen(port - 50, () => {
-        browserSync({
-          proxy: 'localhost:' + (port - 50),
+      server.listen(proxyPort, () => {
+        syncChanges.sync({
           port,
-          ui: false,
-          files: ['.tmp/public/**/*.*', 'app/views/**/*.*', 'app/assets/**/*.*', 'app/config.json'],
-          ghostMode: false,
-          open: false,
-          notify: false,
-          logLevel: 'error'
+          proxyPort,
+          files: ['.tmp/public/**/*.*', 'app/views/**/*.*', 'app/assets/**/*.*', 'app/config.json']
         })
       })
     }
