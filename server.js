@@ -108,21 +108,13 @@ utils.addNunjucksFunctions(nunjucksAppEnv)
 // Set views engine
 app.set('view engine', 'njk')
 
-// Middleware to serve static assets
-app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
-app.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
-
 // Support for parsing data in POSTs
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-// Automatically store all data users enter
-if (config.useAutoStoreData) {
-  app.use(sessionUtils.autoStoreData)
-  sessionUtils.addCheckedFunction(nunjucksAppEnv)
-}
+sessionUtils.setupAutoStoreDataInNunjucksAppEnv(nunjucksAppEnv)
 
 // Prevent search indexing
 app.use((req, res, next) => {
@@ -132,11 +124,18 @@ app.use((req, res, next) => {
 })
 
 require('./lib/manage-prototype-routes.js')
-require('./lib/plugins/plugins-routes.js')
+
+const mainRouter = routesApi.external.setupRouter()
+
+// Middleware to serve static assets
+mainRouter.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
+mainRouter.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
 utils.addRouters(app)
 
+require('./lib/plugins/plugins-routes.js')
+
 // Strip .html, .htm and .njk if provided
-app.get(/\.(html|htm|njk)$/i, (req, res) => {
+mainRouter.get(/\.(html|htm|njk)$/i, (req, res) => {
   let path = req.path
   const parts = path.split('.')
   parts.pop()
@@ -147,25 +146,25 @@ app.get(/\.(html|htm|njk)$/i, (req, res) => {
 // Auto render any view that exists
 
 // App folder routes get priority
-app.get(/^([^.]+)$/, async (req, res, next) => {
+mainRouter.get(/^([^.]+)$/, [sessionUtils.autoStoreData], async (req, res, next) => {
   await utils.matchRoutes(req, res, next)
 })
 
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
-app.post(/^\/([^.]+)$/, (req, res) => {
+mainRouter.post(/^\/([^.]+)$/, [sessionUtils.autoStoreData], (req, res) => {
   res.redirect(url.format({
-    pathname: '/' + req.params[0],
-    query: req.query
-  })
+      pathname: '/' + req.params[0],
+      query: req.query
+    })
   )
 })
 
 // redirect old local docs to the docs site
-app.get('/docs/tutorials-and-examples', (req, res) => {
+mainRouter.get('/docs/tutorials-and-examples', (req, res) => {
   res.redirect('https://prototype-kit.service.gov.uk/docs')
 })
 
-app.get('/', async (req, res) => {
+mainRouter.get('/', [sessionUtils.autoStoreData], async (req, res) => {
   const starterHomepageCode = await fsp.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.njk'), 'utf8')
   res.render('views/backup-homepage', {
     starterHomepageCode
