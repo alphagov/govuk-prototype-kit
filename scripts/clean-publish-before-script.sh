@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Meant to be used with https://github.com/shashkovdanil/clean-publish#readme
 # npx clean-publish --before-script scripts/clean-publish-before-script.sh
