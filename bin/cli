@@ -38,7 +38,7 @@ const kitVersion = require('../package.json').version
 const kitProjectName = require('../package.json').name
 
 const argv = parse(process.argv, {
-  booleans: ['no-version-control', 'verbose', 'running-within-create-script', 'use-njk-extensions', 'suppress-node-version-warning']
+  booleans: ['no-version-control', 'verbose', 'running-within-create-script', 'use-njk-extensions', 'suppress-node-version-warning', 'edit-in-browser']
 })
 
 const verboseLogger = !argv.options.verbose
@@ -308,6 +308,10 @@ async function createStarterFiles (installDirectory) {
       addToConfigFile('useNjkExtensions', true),
       ...renameAllHtmlFilesToNjk()
     ])
+  }
+
+  if (argv.options['edit-in-browser']) {
+    await addToConfigFile('editInBrowser', true)
   }
 }
 
