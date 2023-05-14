@@ -17,14 +17,14 @@ const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
+const { projectDir, packageDir, finalBackupNunjucksDir, appViewsDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
 const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
-const { getInternalGovukFrontendDir } = require('./lib/utils')
+const { getInternalGovukFrontendDir, recursiveDirectoryContentsSync } = require('./lib/utils')
 
 const app = express()
 routesApi.setApp(app)
@@ -154,9 +154,9 @@ app.get(/^([^.]+)$/, async (req, res, next) => {
 // Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, (req, res) => {
   res.redirect(url.format({
-    pathname: '/' + req.params[0],
-    query: req.query
-  })
+      pathname: '/' + req.params[0],
+      query: req.query
+    })
   )
 })
 
@@ -197,9 +197,22 @@ app.use((err, req, res, next) => {
   switch (err.status) {
     case 404: {
       const path = req.path
+      const pages = recursiveDirectoryContentsSync(appViewsDir)
+        .filter(file => file.endsWith('.njk') || file.endsWith('.html'))
+        .filter(file => !file.startsWith('layouts') && !file.startsWith('includes') && !file.startsWith('partials'))
+        .map(file => file.substring(0, file.lastIndexOf('.')))
+        .map(file => file.split(path.sep).join('/'))
+        .map(url => `/${url}`)
+        .map(url => url.endsWith('/index') ? url.substring(0, url.length - 'index'.length) : url)
+        .map(url => ({
+          name: url === '/' ? '/index' : url,
+          url
+        }))
+
       res.status(err.status)
       res.render('views/error-handling/page-not-found', {
-        path
+        path,
+        pages
       })
       break
     }

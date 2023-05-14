@@ -22,8 +22,14 @@
         <li>you have not created the page yet</li>
       </ul>
       <p class="govuk-body">
-            You can try and fix this yourself or <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">contact the GOV.UK Prototype Kit team</a> if you need help.
-        </p>
+          You can try and fix this yourself or <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">contact the GOV.UK Prototype Kit team</a> if you need help.
+      </p>
+      <h2 class="govuk-heading-m">Pages that do exist:</h2>
+      <ul class="govuk-list">
+      {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.name }}</a></li>
+      {% endfor %}
+      </ul>
     </div>
   </div>
 {% endblock %}
