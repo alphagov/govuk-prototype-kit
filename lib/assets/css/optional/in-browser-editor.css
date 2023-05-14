@@ -1,0 +1,52 @@
+.govuk-prototype-kit__editor__bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 1rem;
+  background: #333;
+  border-top: 2px solid #999;
+
+  color: white;
+}
+
+.govuk-prototype-kit__editor__bar--menu {
+}
+
+.govuk-prototype-kit__editor__bar--menu--item,
+.govuk-prototype-kit__editor__bar--menu--item:link,
+.govuk-prototype-kit__editor__bar--menu--item:visited {
+  color: inherit;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.govuk-prototype-kit__editor__bar--menu--item:visited:focus {
+  background: #ffdd00;
+  color: black;
+}
+
+.govuk-prototype-kit__editor--hidden {
+  display: none;
+}
+
+.govuk-prototype-kit__editor__editor__code {
+  display: block;
+  min-height: 10rem;
+  height: 40vh;
+  margin: 1rem 0;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.govuk-prototype-kit__editor__editor button {
+  font-size: 1rem;
+}
+.govuk-prototype-kit__editor__editor button + button {
+  margin-left: 1rem;
+}
+
+.govuk-prototype-kit__editor__editor__delete-button {
+  float: right;
+}

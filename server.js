@@ -8,7 +8,6 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
-const fse = require('fs-extra')
 const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
@@ -17,13 +16,14 @@ const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
+const { projectDir, packageDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const utils = require('./lib/utils')
 const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
+const { getAppViews } = require('./lib/utils/appViews')
 const { getInternalGovukFrontendDir } = require('./lib/utils')
 const errorView = require('./lib/utils/errorView')
 
@@ -55,7 +55,8 @@ if (plugins.legacyGovukFrontendFixesNeeded()) {
 }
 // pluginConfig sets up variables used to add the scripts and stylesheets to each page.
 app.locals.pluginConfig = plugins.getAppConfig({
-  scripts: utils.prototypeAppScripts
+  scripts: utils.prototypeAppScripts,
+  stylesheets: utils.prototypeAppStylesheets
 })
 // keep extensionConfig around for backwards compatibility
 // TODO: remove in v14
@@ -71,19 +72,7 @@ app.use(cookieParser())
 // static assets to prevent unauthorised access
 app.use(require('./lib/authentication.js')())
 
-// Get internal govuk-frontend views
-const internalGovUkFrontendDir = getInternalGovukFrontendDir()
-const internalGovUkFrontendConfig = fse.readJsonSync(path.join(internalGovUkFrontendDir, 'govuk-prototype-kit.config.json'))
-const internalGovUkFrontendViews = internalGovUkFrontendConfig.nunjucksPaths.map(viewPath => path.join(internalGovUkFrontendDir, viewPath))
-
 // Set up App
-const appViews = [
-  path.join(projectDir, '/app/views/')
-].concat(plugins.getAppViews([
-  ...internalGovUkFrontendViews,
-  finalBackupNunjucksDir
-]))
-
 const nunjucksConfig = {
   autoescape: true,
   noCache: true,
@@ -96,7 +85,7 @@ if (config.isDevelopment) {
 
 nunjucksConfig.express = app
 
-const nunjucksAppEnv = getNunjucksAppEnv(appViews)
+const nunjucksAppEnv = getNunjucksAppEnv(getAppViews())
 
 expressNunjucks(nunjucksAppEnv, app)
 
