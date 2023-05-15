@@ -72,6 +72,7 @@
     "inquirer": "^8.2.0",
     "lodash": "^4.17.21",
     "marked": "^4.2.5",
+    "monaco-editor": "^0.38.0",
     "nodemon": "^2.0.20",
     "nunjucks": "^3.2.3",
     "portscanner": "^2.2.0",
