@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2164: Get live reloading working with the error screen](https://github.com/alphagov/govuk-prototype-kit/pull/2164)
+
 ## 13.7.0
 
 ### New features
