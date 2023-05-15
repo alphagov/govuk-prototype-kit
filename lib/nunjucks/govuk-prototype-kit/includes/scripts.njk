@@ -6,14 +6,3 @@
   {% endif %}
 {% endfor %}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    window.GOVUKPrototypeKit = window.GOVUKPrototypeKit || {}
-    window.GOVUKPrototypeKit.sendPageLoadedRequest = function () {
-      fetch('/manage-prototype/page-loaded').catch(() => {
-        setTimeout(window.GOVUKPrototypeKit.sendPageLoadedRequest, 500)
-      })
-    }
-    window.GOVUKPrototypeKit.sendPageLoadedRequest()
-  })
-</script>
