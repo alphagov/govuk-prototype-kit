@@ -207,7 +207,6 @@ app.use((err, req, res, next) => {
     default: {
       res.status(500)
       console.error(err.message)
-      console.log(err.internalErrorCode)
       res.render('views/error-handling/server-error', errorView(err))
       break
     }

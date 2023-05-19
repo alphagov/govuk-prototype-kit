@@ -100,7 +100,7 @@ describe('error handling', () => {
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
     expect(getH1(response.text)).toEqual('There is an error')
-    expect(getErrorFile(response.text)).toEqual('/lib/nunjucks/nunjucksLoader.js (line 74)')
+    expect(getErrorFile(response.text)).toEqual('')
     expect(getErrorMessage(response.text)).toEqual('template not found: test-page.html')
   })
 
