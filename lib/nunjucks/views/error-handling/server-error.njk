@@ -15,15 +15,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">There is an error</h1>
+
+      {% if error.filePath %}
       <p class="govuk-prototype-kit-error-info">
-        <strong>File:</strong> <span id="govuk-prototype-kit-error-file">{{ error.filePath }} (line {{ error.line }})</span>
+        <strong>File:</strong> <span id="govuk-prototype-kit-error-file">{{ error.filePath }} {%  if error.line %}(line {{ error.line }}){% endif %}</span>
       </p>
+      {% endif %}
+
       <p class="govuk-prototype-kit-error-info">
         <strong>Error:</strong> <span id="govuk-prototype-kit-error-message">{{ error.message }}</span>
       </p>
 
+      {% if error.sourceCode %}
       <pre id="govuk-prototype-kit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="govuk-prototype-kit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
-
+      {% endif %}
 
       <div id="govuk-prototype-kit-show-error-button-container" hidden>
         <button id="govuk-prototype-kit-show-error-button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
