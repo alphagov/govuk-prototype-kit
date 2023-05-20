@@ -1,4 +1,8 @@
-{%- set assetPath = assetPath | default('/plugin-assets/govuk-frontend/govuk/assets') -%}
+{% if pluginConfig.versions['govuk-frontend'] and pluginConfig.versions['govuk-frontend'].major < 5 %}
+  {%- set assetPath = assetPath | default('/plugin-assets/govuk-frontend/govuk/assets') -%}
+{% elseif pluginConfig.versions['govuk-frontend'] and pluginConfig.versions['govuk-frontend'].major >= 5 %}
+  {%- set assetPath = assetPath | default('/plugin-assets/govuk-frontend/dist/govuk/assets') -%}
+{% endif %}
 
 {% extends "govuk/template.njk" %}
 

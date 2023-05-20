@@ -1,4 +1,3 @@
-
 // local dependencies
 const { spawn } = require('../../lib/exec')
 const fse = require('fs-extra')
@@ -26,6 +25,7 @@ function splitSemverVersion (version) {
   const versionParts = version.split('.').map(Number)
 
   return {
+    version,
     major: versionParts[0],
     minor: versionParts[1],
     patch: versionParts[2]
@@ -37,9 +37,15 @@ async function getPackageVersionFromPackageJson (packageJsonPath) {
   return splitSemverVersion(version)
 }
 
+function getPackageVersionFromPackageJsonSync (packageJsonPath) {
+  const version = fse.readJsonSync(packageJsonPath).version
+  return splitSemverVersion(version)
+}
+
 module.exports = {
   npmInstall,
   packageJsonFormat,
   getPackageVersionFromPackageJson,
+  getPackageVersionFromPackageJsonSync,
   splitSemverVersion
 }
