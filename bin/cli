@@ -226,13 +226,16 @@ async function runInit () {
 
   const installLocation = getInstallLocation()
   const variantDefinition = await readVariantFile()
+  
 
   const variantDir = path.join(projectDir, 'node_modules', getVariant())
   
+  const dependencies = variantDefinition.installedPackages.map(x => x)
   const dirsToCopy = variantDefinition.starterFileDirectories.map(dir => path.join(variantDir, dir))
-
   const commands = variantDefinition.postCreateScripts.map(scriptLocation => [path.join(variantDir, scriptLocation), ...(getArgumentsToPassThrough())].join(' '))
-
+  
+  await npmInstall(installLocation, dependencies)
+  
   while (dirsToCopy.length > 0) {
     await fs.copy(dirsToCopy.shift(), installLocation)
   }
