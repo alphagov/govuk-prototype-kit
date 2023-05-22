@@ -24,10 +24,10 @@ const path = require('path')
 
 const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
+const { verboseLogger, progressLogger } = require('./utils/loggers')
 const { prepareMigration, preflightChecks } = require('../migrator')
-const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
-const { recursiveDirectoryContentsSync } = require('../lib/utils')
-const { appViewsDir } = require('../lib/utils/paths')
+const { npmInstall, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
+const { projectDir } = require('../lib/utils/paths')
 
 // Avoid requiring any kit server code at the top-level as we might want to
 // change environment variables below.
@@ -41,60 +41,6 @@ const argv = parse(process.argv, {
   booleans: ['no-version-control', 'verbose', 'running-within-create-script', 'use-njk-extensions', 'suppress-node-version-warning']
 })
 
-const verboseLogger = !argv.options.verbose
-  ? () => {}
-  : function () {
-    console.log('[verbose]', ...arguments)
-  }
-
-const progressLogger = function () {
-  if (argv.command === 'init') {
-    const versionOfInstaller = argv.options['created-from-version']
-    if (!versionOfInstaller) {
-      return
-    }
-    const version = splitSemverVersion(versionOfInstaller)
-    if (version.major === 13 && version.minor < 2) {
-      return
-    }
-  }
-
-  console.log(' - ', ...arguments)
-}
-
-const npmrc = `
-audit=false
-`.trimStart()
-
-const gitignore = `
-# Node.js ignores
-node_modules/
-
-# Prototype ignores - per-user
-.tmp/
-.env
-migrate.log
-usage-data-config.json
-
-# General ignores
-.DS_Store
-.idea
-`.trimStart()
-
-const packageJson = {
-  scripts: {
-    dev: 'govuk-prototype-kit dev',
-    serve: 'govuk-prototype-kit serve',
-    start: 'govuk-prototype-kit start'
-  }
-}
-
-async function updatePackageJson (packageJsonPath) {
-  let newPackageJson = Object.assign({}, packageJson)
-  newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
-  await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
-}
-
 function displaySuccessMessage () {
   console.log('')
   console.log('Prototype created')
@@ -107,32 +53,6 @@ function displaySuccessMessage () {
   console.log('To run your prototype:')
   console.log('  npm run dev')
   console.log('')
-}
-
-async function initialiseGitRepo () {
-  const noVersionControlArg = 'no-version-control'
-  if (argv.options[noVersionControlArg]) {
-    verboseLogger(`User specified --${noVersionControlArg}, skipping.`)
-    return
-  }
-  progressLogger('Initialising git')
-  try {
-    await exec('git init --initial-branch=main && git add -A .', {})
-  } catch (e) {
-    verboseLogger('Failed to initialise git')
-    verboseLogger(e.message)
-    verboseLogger(e.errorOutput)
-    return
-  }
-
-  const failSilently = () => {}
-
-  const commitMessage = 'Create prototype'
-  await exec(`git commit -am "${commitMessage}"`)
-    .catch(() =>
-      exec(`git -c "user.email=gov.uk-prototype@digital.cabinet-office.gov.uk" -c "user.name=GOV.UK Prototype Kit" commit -am "${commitMessage}"`)
-    )
-    .catch(failSilently)
 }
 
 function usage () {
@@ -250,13 +170,15 @@ async function runCreate () {
     return
   }
 
-  console.log('Creating your prototype')
+  const variant = getVariant()
+
+  console.log(`Creating your prototype with variant ${variant}`)
 
   await writeEmptyPackageJson(installDirectory)
 
   progressLogger('Installing dependencies')
 
-  await npmInstall(installDirectory, [kitDependency, 'govuk-frontend', '@govuk-prototype-kit/common-templates'])
+  await npmInstall(installDirectory, [kitDependency, variant])
 
   if ((argv.options.version || argv.options.v) === 'local-symlink') {
     const dependencyInstallLocation = path.join(installDirectory, 'node_modules', kitProjectName)
@@ -284,31 +206,12 @@ async function runCreate () {
     })
 }
 
-async function createStarterFiles (installDirectory) {
-  await fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory)
+function getVariant () {
+  return argv.options['variant'] || 'govuk-prototype-kit'
+}
 
-  async function addToConfigFile (key, value) {
-    const configFileLocation = path.join(installDirectory, 'app', 'config.json')
-    const config = await fs.readJson(configFileLocation)
-    config[key] = value
-    await fs.writeJson(configFileLocation, config, { spaces: 2 })
-  }
-
-  function renameAllHtmlFilesToNjk () {
-    return recursiveDirectoryContentsSync(appViewsDir)
-      .filter(filePath => filePath.endsWith('.html'))
-      .map(filePath => fs.move(
-        path.join(appViewsDir, filePath),
-        path.join(appViewsDir, filePath.substring(0, filePath.length - '.html'.length) + '.njk')
-      ))
-  }
-
-  if (argv.options['use-njk-extensions']) {
-    await Promise.all([
-      addToConfigFile('useNjkExtensions', true),
-      ...renameAllHtmlFilesToNjk()
-    ])
-  }
+async function readVariantFile () {
+  return await fs.readJson(path.join(projectDir, 'node_modules', getVariant(), 'govuk-prototype-kit.variant.json'))
 }
 
 async function runInit () {
@@ -321,18 +224,22 @@ async function runInit () {
     return
   }
 
-  const installDirectory = getInstallLocation()
+  const installLocation = getInstallLocation()
+  const variantDefinition = await readVariantFile()
 
-  const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+  const variantDir = path.join(projectDir, 'node_modules', getVariant())
+  
+  const dirsToCopy = variantDefinition.starterFileDirectories.map(dir => path.join(variantDir, dir))
 
-  await Promise.all([
-    createStarterFiles(installDirectory),
-    fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
-    fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
-    copyFile('LICENCE.txt'),
-    updatePackageJson(path.join(installDirectory, 'package.json'))
-  ])
-    .then(initialiseGitRepo)
+  const commands = variantDefinition.postCreateScripts.map(scriptLocation => [path.join(variantDir, scriptLocation), ...(getArgumentsToPassThrough())].join(' '))
+
+  while (dirsToCopy.length > 0) {
+    await fs.copy(dirsToCopy.shift(), installLocation)
+  }
+  
+  while (commands.length > 0) {
+    await exec(commands.shift(), { cwd: installLocation, env: { ...process.env }, stdio: 'inherit' })
+  }
 }
 
 async function runMigrate () {
@@ -380,12 +287,12 @@ async function runMigrate () {
 
     const projectDirectory = process.argv[4]
 
-    await Promise.all([
-      updatePackageJson(path.join(projectDirectory, 'package.json')),
-      fs.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8'),
-      fs.access(path.join(projectDirectory, '.gitignore'))
-        .catch(() => fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
-    ])
+    // await Promise.all([
+    //   updatePackageJson(path.join(projectDirectory, 'package.json')),
+    //   fs.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8'),
+    //   fs.access(path.join(projectDirectory, '.gitignore'))
+    //     .catch(() => fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
+    // ])
 
     await require('../migrator').migrate()
   }

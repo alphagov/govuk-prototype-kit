@@ -1,0 +1,13 @@
+{
+  "installedPackages": [
+    "govuk-frontend",
+    "@govuk-prototype-kit/common-templates"
+  ],
+  "starterFileDirectories": [
+    "/prototype-starter"
+  ],
+  "postCreateScripts": [
+    "/bin/updateStarterFiles",
+    "/bin/git-init"
+  ]
+}

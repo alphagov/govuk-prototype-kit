@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+const { parse } = require('./utils/argv-parser')
+const argv = parse(process.argv)
+const { verboseLogger, progressLogger } = require('./utils/loggers')
+const { exec } = require('../lib/exec')
+  
+;(async () => {
+  const noVersionControlArg = 'no-version-control'
+  if (argv.options[noVersionControlArg]) {
+    verboseLogger(`User specified --${noVersionControlArg}, skipping.`)
+    return
+  }
+  progressLogger('Initialising git')
+  try {
+    await exec('git init --initial-branch=main && git add -A .', {})
+  } catch (e) {
+    verboseLogger('Failed to initialise git')
+    verboseLogger(e.message)
+    verboseLogger(e.errorOutput)
+    return
+  }
+
+  const failSilently = () => {}
+
+  const commitMessage = 'Create prototype'
+  await exec(`git commit -am "${commitMessage}"`)
+    .catch(() =>
+      exec(`git -c "user.email=gov.uk-prototype@digital.cabinet-office.gov.uk" -c "user.name=GOV.UK Prototype Kit" commit -am "${commitMessage}"`)
+    )
+    .catch(failSilently)
+})()

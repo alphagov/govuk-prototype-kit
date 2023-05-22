@@ -1,0 +1,82 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const fse = require('fs-extra')
+const { recursiveDirectoryContentsSync } = require('../lib/utils')
+const { parse } = require('./utils/argv-parser')
+const fs = require('fs-extra')
+const { packageJsonFormat } = require('./utils')
+const { progressLogger } = require('./utils/loggers')
+
+const gitignore = `
+# Node.js ignores
+node_modules/
+
+# Prototype ignores - per-user
+.tmp/
+.env
+migrate.log
+usage-data-config.json
+
+# General ignores
+.DS_Store
+.idea
+`.trimStart()
+
+const npmrc = `
+audit=false
+`.trimStart()
+
+const packageJson = {
+  scripts: {
+    dev: 'govuk-prototype-kit dev',
+    serve: 'govuk-prototype-kit serve',
+    start: 'govuk-prototype-kit start'
+  }
+}
+
+const installDirectory = process.cwd()
+const appViewsDir = path.join(installDirectory, 'app', 'views')
+
+;(async () => {
+  async function updatePackageJson (packageJsonPath) {
+    let newPackageJson = Object.assign({}, packageJson)
+    newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
+    await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+  }
+  async function addToConfigFile (key, value) {
+    const configFileLocation = path.join(installDirectory, 'app', 'config.json')
+    const config = await fse.readJson(configFileLocation)
+    config[key] = value
+    await fse.writeJson(configFileLocation, config, { spaces: 2 })
+  }
+
+  function renameAllHtmlFilesToNjk () {
+    return recursiveDirectoryContentsSync(appViewsDir)
+      .filter(filePath => filePath.endsWith('.html'))
+      .map(filePath => fse.move(
+        path.join(appViewsDir, filePath),
+        path.join(appViewsDir, filePath.substring(0, filePath.length - '.html'.length) + '.njk')
+      ))
+  }
+
+  progressLogger('Step 1')
+
+  if (parse(process.argv).options['use-njk-extensions']) {
+    await Promise.all([
+      addToConfigFile('useNjkExtensions', true),
+      ...renameAllHtmlFilesToNjk()
+    ])
+  }
+  
+  progressLogger('Step 2')
+
+  await Promise.all([
+    fse.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
+    fse.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
+    fse.copy(path.join(__dirname, '..', 'LICENCE.txt'), path.join(installDirectory, 'LICENCE.txt')),
+    updatePackageJson(path.join(installDirectory, 'package.json'))
+  ])
+  
+  progressLogger('Step 3')
+})()
