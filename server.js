@@ -42,6 +42,7 @@ if (isSecure) {
 
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
+app.locals.managePrototypeUrl = '/manage-prototype'
 app.locals.useAutoStoreData = config.useAutoStoreData
 app.locals.releaseVersion = 'v' + releaseVersion
 app.locals.serviceName = config.serviceName
