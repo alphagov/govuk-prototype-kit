@@ -1,7 +1,9 @@
 {
   "installedPackages": [
     "govuk-frontend",
-    "@govuk-prototype-kit/common-templates"
+    "@govuk-prototype-kit/common-templates",
+    "govuk-prototype-filters",
+    "~/demo-plugin-2023"
   ],
   "starterFileDirectories": [
     "/prototype-starter"

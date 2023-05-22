@@ -170,15 +170,13 @@ async function runCreate () {
     return
   }
 
-  const variant = getVariant()
-
-  console.log(`Creating your prototype with variant ${variant}`)
+  console.log(`Creating your prototype with variant ${getVariant()}`)
 
   await writeEmptyPackageJson(installDirectory)
 
   progressLogger('Installing dependencies')
 
-  await npmInstall(installDirectory, [kitDependency, variant])
+  await npmInstall(installDirectory, [kitDependency, getVariantDependency()])
 
   if ((argv.options.version || argv.options.v) === 'local-symlink') {
     const dependencyInstallLocation = path.join(installDirectory, 'node_modules', kitProjectName)
@@ -210,8 +208,60 @@ function getVariant () {
   return argv.options['variant'] || 'govuk-prototype-kit'
 }
 
-async function readVariantFile () {
-  return await fs.readJson(path.join(projectDir, 'node_modules', getVariant(), 'govuk-prototype-kit.variant.json'))
+function getVariantDependency () {
+  return argv.options['variant-dependency'] || getVariant()
+}
+
+function getModelFromTree (inheritanceTree, key) {
+  const output = []
+
+  function getConfigFromTreePosition (position) {
+    if (inheritanceTree[position].variantFile[key]) {
+      inheritanceTree[position].variantFile[key].forEach(value => {
+        if (value === '__INHERIT__') {
+          getConfigFromTreePosition(position + 1)
+        } else {
+          output.push({
+            packageName: inheritanceTree[position].name,
+            value
+          })
+        }
+      })
+    } else {
+      getConfigFromTreePosition(position + 1)
+    }
+  }
+
+  getConfigFromTreePosition(0)
+  return output
+}
+
+async function buildVariantDefinition () {
+  const baseVariant = getVariant()
+
+  function readVariantFile (variantName) {
+    return fs.readJson(path.join(projectDir, 'node_modules', variantName, 'govuk-prototype-kit.variant.json'))
+  }
+
+  const variantFile = await readVariantFile(getVariant())
+  const inheritanceTree = await Promise.all((variantFile.inheritFrom || []).map(async name => ({
+    name: name,
+    variantFile: await readVariantFile(name)
+  })))
+  inheritanceTree.unshift({
+    name: getVariant(),
+    variantFile
+  })
+
+  const variantDefinition = {}
+
+  const nodeModulesDir = path.join(projectDir, 'node_modules')
+
+  variantDefinition.dependencies = getModelFromTree(inheritanceTree, 'installedPackages').map(({value}) => value)
+  variantDefinition.dirsToCopy = getModelFromTree(inheritanceTree, 'starterFileDirectories').map(({ packageName, value }) => path.join(nodeModulesDir, packageName, value))
+  variantDefinition.commands = getModelFromTree(inheritanceTree, 'postCreateScripts').map(({ packageName, value }) => [path.join(nodeModulesDir, packageName, value), ...(getArgumentsToPassThrough())].join(' '))
+
+  return variantDefinition
 }
 
 async function runInit () {
@@ -225,23 +275,17 @@ async function runInit () {
   }
 
   const installLocation = getInstallLocation()
-  const variantDefinition = await readVariantFile()
-  
+  const variantDefinition = await buildVariantDefinition()
 
-  const variantDir = path.join(projectDir, 'node_modules', getVariant())
-  
-  const dependencies = variantDefinition.installedPackages.map(x => x)
-  const dirsToCopy = variantDefinition.starterFileDirectories.map(dir => path.join(variantDir, dir))
-  const commands = variantDefinition.postCreateScripts.map(scriptLocation => [path.join(variantDir, scriptLocation), ...(getArgumentsToPassThrough())].join(' '))
-  
-  await npmInstall(installLocation, dependencies)
-  
-  while (dirsToCopy.length > 0) {
-    await fs.copy(dirsToCopy.shift(), installLocation)
+
+  await npmInstall(installLocation, variantDefinition.dependencies)
+
+  while (variantDefinition.dirsToCopy.length > 0) {
+    await fs.copy(variantDefinition.dirsToCopy.shift(), installLocation)
   }
-  
-  while (commands.length > 0) {
-    await exec(commands.shift(), { cwd: installLocation, env: { ...process.env }, stdio: 'inherit' })
+
+  while (variantDefinition.commands.length > 0) {
+    await exec(variantDefinition.commands.shift(), { cwd: installLocation, env: { ...process.env }, stdio: 'inherit' })
   }
 }
 
