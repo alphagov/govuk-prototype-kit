@@ -60,16 +60,12 @@ const appViewsDir = path.join(installDirectory, 'app', 'views')
       ))
   }
 
-  progressLogger('Step 1')
-
   if (parse(process.argv).options['use-njk-extensions']) {
     await Promise.all([
       addToConfigFile('useNjkExtensions', true),
       ...renameAllHtmlFilesToNjk()
     ])
   }
-  
-  progressLogger('Step 2')
 
   await Promise.all([
     fse.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
@@ -77,6 +73,4 @@ const appViewsDir = path.join(installDirectory, 'app', 'views')
     fse.copy(path.join(__dirname, '..', 'LICENCE.txt'), path.join(installDirectory, 'LICENCE.txt')),
     updatePackageJson(path.join(installDirectory, 'package.json'))
   ])
-  
-  progressLogger('Step 3')
 })()
