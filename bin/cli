@@ -216,6 +216,9 @@ function getModelFromTree (inheritanceTree, key) {
   const output = []
 
   function getConfigFromTreePosition (position) {
+    if (!inheritanceTree[position]) {
+      return
+    }
     if (inheritanceTree[position].variantFile[key]) {
       inheritanceTree[position].variantFile[key].forEach(value => {
         if (value === '__INHERIT__') {
