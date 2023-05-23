@@ -5,7 +5,7 @@ const assert = require('assert')
 const path = require('path')
 
 // npm dependencies
-const fs = require('fs-extra')
+const fse = require('fs-extra')
 const request = require('supertest')
 const sass = require('sass')
 
@@ -29,7 +29,7 @@ describe('The Prototype Kit', () => {
     await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
     app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
 
-    jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {})
+    jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
 
     require('../../lib/build').generateAssetsSync()
@@ -40,7 +40,7 @@ describe('The Prototype Kit', () => {
   })
 
   it('should call writeFileSync with result css from sass.compile', () => {
-    expect(fs.writeFileSync).toHaveBeenCalledWith(
+    expect(fse.writeFileSync).toHaveBeenCalledWith(
       path.join(projectDir, '.tmp', 'public', 'stylesheets', 'application.css'),
       path.join(packageDir, 'lib', 'assets', 'sass', 'prototype.scss')
     )
@@ -82,7 +82,7 @@ describe('The Prototype Kit', () => {
           } else {
             assert.strictEqual(
               '' + res.text,
-              fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
+              fse.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
             )
             done()
           }
@@ -100,7 +100,7 @@ describe('The Prototype Kit', () => {
           } else {
             assert.strictEqual(
               '' + res.body,
-              fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'assets', 'images', 'favicon.ico'), 'utf8')
+              fse.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'assets', 'images', 'favicon.ico'), 'utf8')
             )
             done()
           }
@@ -135,7 +135,7 @@ describe('The Prototype Kit', () => {
             } else {
               assert.strictEqual(
                 '' + res.text,
-                fs.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
+                fse.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
               )
               done()
             }

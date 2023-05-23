@@ -19,9 +19,9 @@ if (process.argv.indexOf('--suppress-node-version-warning') === -1 || (process.a
   }
 }
 
-const fs = require('fs-extra')
 const path = require('path')
 
+const fse = require('fs-extra')
 const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../migrator')
@@ -91,8 +91,8 @@ const packageJson = {
 
 async function updatePackageJson (packageJsonPath) {
   let newPackageJson = Object.assign({}, packageJson)
-  newPackageJson = Object.assign(newPackageJson, await fs.readJson(packageJsonPath))
-  await fs.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
+  newPackageJson = Object.assign(newPackageJson, await fse.readJson(packageJsonPath))
+  await fse.writeJson(packageJsonPath, newPackageJson, packageJsonFormat)
 }
 
 function displaySuccessMessage () {
@@ -207,7 +207,7 @@ function warnIfNpmStart (argv, env) {
 }
 
 function writeEmptyPackageJson (installDirectory) {
-  return fs.writeJson(path.join(installDirectory, 'package.json'), {})
+  return fse.writeJson(path.join(installDirectory, 'package.json'), {})
 }
 
 function getArgumentsToPassThrough () {
@@ -243,8 +243,8 @@ async function runCreate () {
   const installDirectory = getInstallLocation()
   const kitDependency = getChosenKitDependency()
 
-  await fs.ensureDir(installDirectory)
-  if ((await fs.readdir(installDirectory)).length > 0) {
+  await fse.ensureDir(installDirectory)
+  if ((await fse.readdir(installDirectory)).length > 0) {
     console.error(`Directory ${installDirectory} is not empty, please specify an empty location.`)
     process.exitCode = 3
     return
@@ -260,8 +260,8 @@ async function runCreate () {
 
   if ((argv.options.version || argv.options.v) === 'local-symlink') {
     const dependencyInstallLocation = path.join(installDirectory, 'node_modules', kitProjectName)
-    await fs.remove(dependencyInstallLocation)
-    await fs.ensureSymlink(kitDependency, dependencyInstallLocation)
+    await fse.remove(dependencyInstallLocation)
+    await fse.ensureSymlink(kitDependency, dependencyInstallLocation)
   }
 
   let runningWithinCreateScriptFlag = '--running-within-create-script'
@@ -285,19 +285,19 @@ async function runCreate () {
 }
 
 async function createStarterFiles (installDirectory) {
-  await fs.copy(path.join(kitRoot, 'prototype-starter'), installDirectory)
+  await fse.copy(path.join(kitRoot, 'prototype-starter'), installDirectory)
 
   async function addToConfigFile (key, value) {
     const configFileLocation = path.join(installDirectory, 'app', 'config.json')
-    const config = await fs.readJson(configFileLocation)
+    const config = await fse.readJson(configFileLocation)
     config[key] = value
-    await fs.writeJson(configFileLocation, config, { spaces: 2 })
+    await fse.writeJson(configFileLocation, config, { spaces: 2 })
   }
 
   function renameAllHtmlFilesToNjk () {
     return recursiveDirectoryContentsSync(appViewsDir)
       .filter(filePath => filePath.endsWith('.html'))
-      .map(filePath => fs.move(
+      .map(filePath => fse.move(
         path.join(appViewsDir, filePath),
         path.join(appViewsDir, filePath.substring(0, filePath.length - '.html'.length) + '.njk')
       ))
@@ -323,12 +323,12 @@ async function runInit () {
 
   const installDirectory = getInstallLocation()
 
-  const copyFile = (fileName) => fs.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
+  const copyFile = (fileName) => fse.copy(path.join(kitRoot, fileName), path.join(installDirectory, fileName))
 
   await Promise.all([
     createStarterFiles(installDirectory),
-    fs.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
-    fs.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
+    fse.writeFile(path.join(installDirectory, '.gitignore'), gitignore, 'utf8'),
+    fse.writeFile(path.join(installDirectory, '.npmrc'), npmrc, 'utf8'),
     copyFile('LICENCE.txt'),
     updatePackageJson(path.join(installDirectory, 'package.json'))
   ])
@@ -382,9 +382,9 @@ async function runMigrate () {
 
     await Promise.all([
       updatePackageJson(path.join(projectDirectory, 'package.json')),
-      fs.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8'),
-      fs.access(path.join(projectDirectory, '.gitignore'))
-        .catch(() => fs.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
+      fse.writeFile(path.join(projectDirectory, '.npmrc'), npmrc, 'utf8'),
+      fse.access(path.join(projectDirectory, '.gitignore'))
+        .catch(() => fse.writeFile(path.join(projectDirectory, '.gitignore'), gitignore, 'utf8'))
     ])
 
     await require('../migrator').migrate()

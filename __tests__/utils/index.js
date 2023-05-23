@@ -4,7 +4,7 @@ const os = require('os')
 const path = require('path')
 
 // npm dependencies
-const fs = require('fs-extra')
+const fse = require('fs-extra')
 
 // local dependencies
 const { exec } = require('../../lib/exec')
@@ -30,7 +30,7 @@ function _mkdtempPath () {
  */
 function mkdtempSync () {
   const tempdir = _mkdtempPath()
-  fs.mkdirSync(tempdir, { recursive: true })
+  fse.mkdirSync(tempdir, { recursive: true })
   return tempdir
 }
 
@@ -54,14 +54,14 @@ async function mkPrototype (prototypePath, {
   npmInstallLinks = undefined,
   commandLineParameters = ''
 } = {}) { // TODO: Use kitPath if provided
-  if (fs.existsSync(prototypePath)) {
+  if (fse.existsSync(prototypePath)) {
     if (!overwrite) {
       const err = new Error(`path already exists '${prototypePath}'`)
       err.path = prototypePath
       err.code = 'EEXIST'
       throw err
     } else {
-      await fs.remove(prototypePath)
+      await fse.remove(prototypePath)
     }
   }
 
@@ -84,7 +84,7 @@ async function mkPrototype (prototypePath, {
     )
 
     if (allowTracking !== undefined) {
-      await fs.writeJson(path.join(prototypePath, 'usage-data-config.json'), { collectUsageData: !!allowTracking })
+      await fse.writeJson(path.join(prototypePath, 'usage-data-config.json'), { collectUsageData: !!allowTracking })
     }
 
     process.stderr.write(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds\n`)

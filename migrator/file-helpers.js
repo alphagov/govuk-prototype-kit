@@ -1,7 +1,7 @@
 // core dependencies
 const path = require('path')
 const os = require('os')
-const fs = require('fs').promises
+const fsp = require('fs').promises
 
 // npm dependencies
 const fse = require('fs-extra')
@@ -42,13 +42,13 @@ const splitIntoLines = fileContents => fileContents.split('\n')
 const successOutput = () => true
 
 async function getFileAsLines (filePath) {
-  const fileContents = await fs.readFile(filePath, 'utf8')
+  const fileContents = await fsp.readFile(filePath, 'utf8')
   return splitIntoLines(normaliseLineEndings(fileContents))
 }
 
 async function writeFileLinesToFile (filePath, updatedFileLines) {
   try {
-    await fs.writeFile(filePath, joinLines(updatedFileLines))
+    await fsp.writeFile(filePath, joinLines(updatedFileLines))
     return true
   } catch (e) {
     await verboseLogError(e)
@@ -92,13 +92,13 @@ async function removeLineFromFile ({ filePath, lineToRemove }) {
 }
 
 async function deleteFile (filePath) {
-  return (fs.rm || fs.unlink)(filePath)
+  return (fsp.rm || fsp.unlink)(filePath)
     .then(successOutput)
     .catch(handleNotFound(true))
 }
 
 async function deleteDirectory (dirPath) {
-  return (fs.rm || fs.rmdir)(dirPath, { recursive: true })
+  return (fsp.rm || fsp.rmdir)(dirPath, { recursive: true })
     .then(successOutput)
     .catch(handleNotFound(true))
 }
@@ -109,7 +109,7 @@ async function deleteDirectoryIfEmpty (partialPath) {
   if (!exists) {
     return undefined
   }
-  const dirContents = await fs.readdir(dirPath)
+  const dirContents = await fsp.readdir(dirPath)
   if (dirContents.length === 0) {
     return await deleteDirectory(dirPath, undefined)
   }
@@ -145,7 +145,7 @@ function normaliseContent (str) {
 }
 
 async function getFileHash (filePath) {
-  const fileBuffer = await fs.readFile(filePath)
+  const fileBuffer = await fsp.readFile(filePath)
   const hashSum = crypto.createHash('sha256')
 
   if (filePath.endsWith('png')) {
