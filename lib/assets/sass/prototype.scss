@@ -14,7 +14,7 @@
 
 .govuk-prototype-kit-error-page-header {
   .govuk-header__container {
-    border-color: #d4351c;
+    border-color: govuk-colour("red");
   }
 }
 
@@ -38,8 +38,8 @@
 }
 
 #govuk-prototype-kit-error-line {
-  background: #d4351c;
-  color: #fff;
+  background: govuk-colour("red");
+  color: govuk-colour("white");
   padding-right: 1em;
 }
 
