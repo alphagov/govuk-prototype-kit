@@ -6,6 +6,8 @@
 
 - [#2164: Get live reloading working with the error screen](https://github.com/alphagov/govuk-prototype-kit/pull/2164)
 
+- [#2019: Improve the design of the error screen](https://github.com/alphagov/govuk-prototype-kit/pull/2019)
+
 ## 13.7.0
 
 ### New features

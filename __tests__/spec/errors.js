@@ -80,7 +80,7 @@ describe('error handling', () => {
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
     expect(getH1(response.text)).toEqual('There is an error')
-    expect(getErrorFile(response.text)).toEqual('/__tests__/spec/errors.js (line 71)'.replaceAll('/', path.sep))
+    expect(getErrorFile(response.text)).toEqual('/__tests__/spec/errors.js (line 71)')
     expect(getErrorMessage(response.text)).toEqual('test error')
 
     app.close()
