@@ -406,6 +406,10 @@ function runServe () {
   require('../listen-on-port')
 }
 
+function runValidatePlugin () {
+  console.log('Validate Plugin is being run')
+}
+
 ;(async () => {
   verboseLogger(`Using kit version [${kitVersion}] for command [${argv.command}]`)
   verboseLogger('Argv:', argv)
@@ -422,6 +426,8 @@ function runServe () {
       return runServe()
     case 'migrate':
       return runMigrate()
+    case 'validate-plugin':
+      return runValidatePlugin()
     case 'version':
       console.log(kitVersion)
       break
