@@ -5,7 +5,7 @@ const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 
 const pageName = 'There is an error'
 const contactSupportText = 'Get support'
-const expectedErrorFileAndLine = '/app/routes.js (line 1)'
+const expectedErrorFileAndLine = 'app/routes.js (line 1)'
 const expectedErrorMessage = 'lkewjflkjadsf is not defined'
 
 const homePageName = 'GOV.UK Prototype Kit'
