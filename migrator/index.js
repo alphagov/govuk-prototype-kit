@@ -1,9 +1,7 @@
-
-// core dependencies
-const fs = require('fs-extra')
 const path = require('path')
 
-// local dependencies
+const fse = require('fs-extra')
+
 const logger = require('./logger')
 const { projectDir } = require('../lib/utils/paths')
 const { npmInstall, packageJsonFormat } = require('../bin/utils')
@@ -104,10 +102,10 @@ async function prepareMigration (kitDependency, projectDirectory) {
   await logger.setup()
 
   // extract the name from the original package.json if it exists
-  const pkgJson = await fs.readJson(path.join(projectDirectory, 'package.json'))
+  const pkgJson = await fse.readJson(path.join(projectDirectory, 'package.json'))
   const { name } = pkgJson
   const pkgData = name ? { name } : {}
-  await fs.writeJson(path.join(projectDirectory, 'package.json'), pkgData, packageJsonFormat)
+  await fse.writeJson(path.join(projectDirectory, 'package.json'), pkgData, packageJsonFormat)
 
   console.log('Migrating your prototype to v13')
 

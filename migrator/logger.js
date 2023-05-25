@@ -1,6 +1,6 @@
 
 // core dependencies
-const fs = require('fs').promises
+const fsp = require('fs').promises
 const os = require('os')
 const path = require('path')
 
@@ -18,7 +18,7 @@ function sanitisePaths (str) {
 
 async function setup () {
   if (!migrateLogFileHandle) {
-    migrateLogFileHandle = await fs.open(migrateLogFilePath, 'a')
+    migrateLogFileHandle = await fsp.open(migrateLogFilePath, 'a')
 
     // log some information useful for debugging
     await module.exports.log(new Date().toISOString())
