@@ -133,7 +133,7 @@ app.use((req, res, next) => {
 
 require('./lib/manage-prototype-routes.js')
 require('./lib/plugins/plugins-routes.js')
-const { getErrorModel } = require('./lib/utils/errorView')
+const { getErrorModel } = require('./lib/utils/errorModel')
 utils.addRouters(app)
 
 // Strip .html, .htm and .njk if provided
