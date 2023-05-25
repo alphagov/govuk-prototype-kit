@@ -25,7 +25,6 @@ const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 const { getInternalGovukFrontendDir } = require('./lib/utils')
-const errorView = require('./lib/utils/errorView')
 
 const app = express()
 routesApi.setApp(app)
@@ -134,6 +133,7 @@ app.use((req, res, next) => {
 
 require('./lib/manage-prototype-routes.js')
 require('./lib/plugins/plugins-routes.js')
+const { getErrorModel } = require('./lib/utils/errorView')
 utils.addRouters(app)
 
 // Strip .html, .htm and .njk if provided
@@ -207,7 +207,7 @@ app.use((err, req, res, next) => {
     default: {
       res.status(500)
       console.error(err.message)
-      res.render('views/error-handling/server-error', errorView(err))
+      res.render('views/error-handling/server-error', getErrorModel(err))
       break
     }
   }
