@@ -4,8 +4,9 @@ const appRoutesPath = path.join('app', 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 
 const pageName = 'There is an error'
-const contactSupportText = 'You can try and fix this yourself or contact the GOV.UK Prototype Kit team if you need help.'
-const expectedErrorText = 'ReferenceError: lkewjflkjadsf is not defined'
+const contactSupportText = 'Get support'
+const expectedErrorFileAndLine = 'app/routes.js (line 1)'
+const expectedErrorMessage = 'lkewjflkjadsf is not defined'
 
 const homePageName = 'GOV.UK Prototype Kit'
 
@@ -29,8 +30,9 @@ describe('Fatal Error Test', () => {
     cy.task('copyFile', { source: completelyBrokenRoutesFixture, target: appRoutes })
 
     cy.get('.govuk-heading-l').contains(pageName)
-    cy.get('.govuk-body').contains(contactSupportText)
-    cy.get('code').contains(expectedErrorText)
+    cy.get('.govuk-body .govuk-link').contains(contactSupportText)
+    cy.get('#govuk-prototype-kit-error-file').contains(expectedErrorFileAndLine)
+    cy.get('#govuk-prototype-kit-error-message').contains(expectedErrorMessage)
 
     cy.task('log', `Restore ${appRoutes} with original routes`)
     restore()

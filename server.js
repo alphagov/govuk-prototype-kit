@@ -25,6 +25,7 @@ const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
 const { getInternalGovukFrontendDir } = require('./lib/utils')
+const errorView = require('./lib/utils/errorView')
 
 const app = express()
 routesApi.setApp(app)
@@ -204,12 +205,9 @@ app.use((err, req, res, next) => {
       break
     }
     default: {
-      const errorStack = err.stack
       res.status(500)
       console.error(err.message)
-      res.render('views/error-handling/server-error', {
-        errorStack
-      })
+      res.render('views/error-handling/server-error', errorView(err))
       break
     }
   }

@@ -5,7 +5,9 @@ const appRoutesPath = path.join('app', 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 
 const pageName = 'There is an error'
-const contactSupportText = 'You can try and fix this yourself or contact the GOV.UK Prototype Kit team if you need help.'
+const contactSupportText = 'Get support'
+const expectedErrorFileAndLine = 'app/routes.js (line 18)'
+const expectedErrorMessage = 'test error'
 
 const templateNotFoundText = 'template not found: test-page.html'
 
@@ -26,7 +28,9 @@ describe('Server Error Test', () => {
     cy.visit('/error', { failOnStatusCode: false })
 
     cy.get('.govuk-heading-l').contains(pageName)
-    cy.get('.govuk-body').contains(contactSupportText)
+    cy.get('.govuk-body .govuk-link').contains(contactSupportText)
+    cy.get('#govuk-prototype-kit-error-file').contains(expectedErrorFileAndLine)
+    cy.get('#govuk-prototype-kit-error-message').contains(expectedErrorMessage)
   })
   it('shows an error if a template cannot be found', () => {
     waitForApplication()
@@ -35,6 +39,7 @@ describe('Server Error Test', () => {
 
     cy.get('.govuk-heading-l').contains(pageName)
     cy.get('.govuk-body').contains(contactSupportText)
-    cy.get('code').contains(templateNotFoundText)
+    cy.get('.govuk-body .govuk-link').contains(contactSupportText)
+    cy.get('#govuk-prototype-kit-error-message').contains(templateNotFoundText)
   })
 })
