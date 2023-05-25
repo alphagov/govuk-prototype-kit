@@ -27,7 +27,7 @@
       </p>
 
       {% if error.sourceCode %}
-      <pre id="govuk-prototype-kit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="govuk-prototype-kit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
+      <pre tabindex="0" class="govuk-prototype-kit-error-code" id="govuk-prototype-kit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="govuk-prototype-kit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
       {% endif %}
 
       <div id="govuk-prototype-kit-show-error-button-container" hidden>
@@ -36,7 +36,7 @@
         </button>
       </div>
 
-      <pre id="govuk-prototype-kit-error-stack" class="js-hidden"><code>{{ errorStack }}</code></pre>
+      <pre tabindex="0" id="govuk-prototype-kit-error-stack" class="govuk-prototype-kit-error-code js-hidden"><code>{{ errorStack }}</code></pre>
 
       <p class="govuk-body">
         <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">Get support</a>
@@ -53,7 +53,7 @@
   ;(() => {
     const toggleErrorStack = () => {
       const element = document.getElementById('govuk-prototype-kit-error-stack')
-      element.className = element.className === 'js-hidden' ? '' : element.className = 'js-hidden'
+      element.classList.toggle('js-hidden')
     }
 
     document.getElementById('govuk-prototype-kit-show-error-button-container').hidden = false
