@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 13.7.1
+
+### Fixes
+
+- [#2192: Make callbacks optional in the session file store](https://github.com/alphagov/govuk-prototype-kit/pull/2192)
+
 ## 13.7.0
 
 ### New features
