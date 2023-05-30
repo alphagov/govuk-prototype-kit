@@ -408,8 +408,7 @@ function runServe () {
 }
 
 async function runValidatePlugin () {
-  const pluginName = process.argv[3]
-  validatePlugin(pluginName)
+  validatePlugin()
 }
 
 ;(async () => {
