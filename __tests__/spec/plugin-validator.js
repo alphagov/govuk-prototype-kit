@@ -3,10 +3,10 @@
 const childProcess = require('node:child_process')
 const path = require('path')
 
-function run (path) {
+async function run (pathToPlugin) {
   const stdOutParts = []
   const stdErrParts = []
-  return new Promise((resolve, reject) => {
+  const result = await new Promise((resolve, reject) => {
     const cp = childProcess.spawn('./bin/cli', ['validate-plugin', path], {
       env: {
         ...process.env
@@ -29,12 +29,13 @@ function run (path) {
       }
     })
   })
+
+  return result
 }
 
-const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'valid-plugin')
-
 describe('plugin-validator', () => {
-  it('should work', async () => {
+  it('should work', async (done) => {
+    const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'valid-plugin')
     const result = await run(fixtureProjectDirectory)
 
     expect(result).toEqual({
@@ -42,6 +43,7 @@ describe('plugin-validator', () => {
       stderr: '',
       statusCode: 0
     })
+    done()
   })
   it('should return list of errors found', async () => {
     const result = await run('../fixtures/mockPlugins/invalid-plugin')

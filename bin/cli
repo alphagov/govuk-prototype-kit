@@ -408,7 +408,7 @@ function runServe () {
 }
 
 async function runValidatePlugin () {
-  validatePlugin()
+  return validatePlugin()
 }
 
 ;(async () => {
