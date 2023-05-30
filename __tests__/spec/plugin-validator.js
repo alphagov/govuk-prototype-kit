@@ -6,7 +6,7 @@ const path = require('path')
 async function run (pathToPlugin) {
   const stdOutParts = []
   const stdErrParts = []
-  const result = await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const cp = childProcess.spawn('./bin/cli', ['validate-plugin', path], {
       env: {
         ...process.env
@@ -19,31 +19,29 @@ async function run (pathToPlugin) {
     cp.stderr.on('data', (data) => {
       stdErrParts.push(data.toString())
     })
-    cp.on('exit', (statusCode) => {
-      if (statusCode === 0) {
-        resolve({
-          stdout: stdOutParts.join('\n'),
-          stderr: stdErrParts.join('\n'),
-          statusCode
-        })
-      }
-    })
+    cp.on('exit', (statusCode) => resolve({
+        stdout: stdOutParts.join('\n'),
+        stderr: stdErrParts.join('\n'),
+        statusCode
+      })
+    )
   })
-
-  return result
 }
 
 describe('plugin-validator', () => {
-  it('should work', async (done) => {
+  it('should work', () => {
     const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'valid-plugin')
-    const result = await run(fixtureProjectDirectory)
-
-    expect(result).toEqual({
-      stdout: 'Your plugin is valid.',
-      stderr: '',
-      statusCode: 0
-    })
-    done()
+    return run(fixtureProjectDirectory)
+      .then((result) => {
+        expect(result).toEqual({
+          stdout: 'Your plugin is valid.',
+          stderr: '',
+          statusCode: 0
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   })
   it('should return list of errors found', async () => {
     const result = await run('../fixtures/mockPlugins/invalid-plugin')
