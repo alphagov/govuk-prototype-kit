@@ -440,52 +440,48 @@ body .govuk-prototype-kit-manage-prototype-govuk-tag {
 }
 
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list {
+.govuk-prototype-kit-manage-prototype-plugin-list {
   border-top: 1px solid #b1b4b6;
   margin-bottom: 2em;
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item {
+.govuk-prototype-kit-manage-prototype-plugin-list__item {
   border-bottom: 1px solid #b1b4b6;
   padding: .6em 0
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name {
+.govuk-prototype-kit-manage-prototype-plugin-list__item-name {
   display: inline-block;
-  width: 60%
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-link {
-  margin-right: 1em;
-}
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list {
+.govuk-prototype-kit-manage-prototype-plugin-list {
   border-top: 1px solid #b1b4b6;
   margin-bottom: 2em;
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item {
+.govuk-prototype-kit-manage-prototype-plugin-list__item {
   border-bottom: 1px solid #b1b4b6;
   padding: .6em 0
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name {
+.govuk-prototype-kit-manage-prototype-plugin-list__item-name {
   display: inline-block;
   width: 35%;
   vertical-align: middle;
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons,
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version{
+.govuk-prototype-kit-manage-prototype-plugin-list__item-buttons,
+.govuk-prototype-kit-manage-prototype-plugin-list__item-version{
   display: inline-block;
   vertical-align: middle;
 }
 
-.govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version {
+.govuk-prototype-kit-manage-prototype-plugin-list__item-version {
   width: 15%
 }
 
 @media(min-width: 40.0525em) {
-  .govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons {
+  .govuk-prototype-kit-manage-prototype-plugin-list__item-buttons {
     .govuk-button {
       margin: 0
     }
@@ -493,9 +489,9 @@ body .govuk-prototype-kit-manage-prototype-govuk-tag {
 }
 
 @media(max-width: 40.0525em) {
-  .govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name,
-  .govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons,
-  .govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version {
+  .govuk-prototype-kit-manage-prototype-plugin-list__item-name,
+  .govuk-prototype-kit-manage-prototype-plugin-list__item-buttons,
+  .govuk-prototype-kit-manage-prototype-plugin-list__item-version {
     display: block;
     width: auto;
   }
