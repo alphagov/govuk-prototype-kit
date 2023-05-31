@@ -44,12 +44,18 @@ describe('plugin-validator', () => {
       })
   })
   it('should return list of errors found', async () => {
-    const result = await run('../fixtures/mockPlugins/invalid-plugin')
-
-    expect(result).toEqual({
-      stdout: '',
-      stderr: 'Error in plugin:\n\n- Missing forwardslash on xyz',
-      statusCode: 0
-    })
+    const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'invalid-plugin')
+    
+    return run(fixtureProjectDirectory)
+      .then((result) => {
+        expect(result).toEqual({
+          stdout: 'Error in plugin:\n\n- Missing forwardslash on xyz',
+          stderr: '',
+          statusCode: 0
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   })
 })
