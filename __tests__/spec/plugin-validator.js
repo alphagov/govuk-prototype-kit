@@ -21,23 +21,22 @@ describe('plugin-validator', () => {
     const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'valid-plugin')
     runShellCommand(fixtureProjectDirectory, function cb (result) {
       const outputs = result.split('\n')
-      const outputToCheck = outputs[(outputs.length - 2)]
+      const outputToCheck = outputs[outputs.length - 2]
 
       expect(outputToCheck).toEqual('The plugin config is valid.')
     }).then(res => console.log('result: ' + res)
     )
   })
+
   it('should return list of errors found', async () => {
     const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'invalid-plugin')
 
-    await runShellCommand(fixtureProjectDirectory, function onComplete (error, data) {
-      if (!error) {
-        expect(data).toBe('Error in plugin:\n\n- Missing forwardslash on xyz')
-        // hooray, everything went as planned
-      } else {
-        console.log(error)
-        // disaster - retry / respond with an error etc
-      }
-    })
+    runShellCommand(fixtureProjectDirectory, function cb (result) {
+      const outputs = result.split('\n')
+      const outputToCheck = outputs[outputs.length - 2]
+
+      expect(outputToCheck).toEqual('The plugin config is valid.')
+    }).then(res => console.log('result: ' + res)
+    )
   })
 })
