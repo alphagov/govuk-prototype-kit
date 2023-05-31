@@ -27,18 +27,18 @@
       </p>
 
       {% if error.sourceCode %}
-      <pre tabindex="0" class="govuk-prototype-kit-error-code" id="govuk-prototype-kit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="govuk-prototype-kit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
+      <pre tabindex="0" class="govuk-prototype-kit-error-code govuk-!-margin-bottom-5" id="govuk-prototype-kit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="govuk-prototype-kit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
       {% endif %}
 
       <div id="govuk-prototype-kit-show-error-button-container" hidden>
-        <button id="govuk-prototype-kit-show-error-button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        <button id="govuk-prototype-kit-show-error-button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-1" data-module="govuk-button" aria-expanded="false" aria-controls="govuk-prototype-kit-error-stack">
           Show full error
         </button>
       </div>
 
       <pre tabindex="0" id="govuk-prototype-kit-error-stack" class="govuk-prototype-kit-error-code js-hidden"><code>{{ errorStack }}</code></pre>
 
-      <p class="govuk-body">
+      <p class="govuk-body govuk-!-margin-top-5">
         <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">Get support</a>
       </p>
 
@@ -51,7 +51,14 @@
 {% block pageScripts %}
 <script>
   ;(() => {
-    const toggleErrorStack = () => {
+    const toggleErrorStack = (event) => {
+      const button = event.target
+      const isExpanded = button.getAttribute('aria-expanded') === 'true'
+      const newState = isExpanded ? 'false' : 'true'
+      const newText = isExpanded ? 'Show full error' : 'Hide full error'
+      button.setAttribute('aria-expanded', newState)
+      button.textContent = newText
+
       const element = document.getElementById('govuk-prototype-kit-error-stack')
       element.classList.toggle('js-hidden')
     }
