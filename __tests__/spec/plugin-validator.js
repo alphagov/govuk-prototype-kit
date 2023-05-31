@@ -6,13 +6,11 @@ const cliPath = path.join(__dirname, '..', '..', 'bin', 'cli')
 const { exec } = require('child_process')
 
 async function runShellCommand (fixtureProjectDirectory, cb) {
-  await exec(`"${process.execPath}" ${cliPath} validate-plugin ${fixtureProjectDirectory}`,
+  exec(`"${process.execPath}" ${cliPath} validate-plugin ${fixtureProjectDirectory}`,
     { cwd: fixtureProjectDirectory, env: process.env, stdio: 'inherit' }, function (err, stdout, stderr) {
       if (err) {
-        console.log('stderr: ' + stdout)
         cb(stderr)
       } else {
-        console.log('stdout: ' + stdout)
         cb(stdout)
       }
     })
@@ -21,16 +19,25 @@ async function runShellCommand (fixtureProjectDirectory, cb) {
 describe('plugin-validator', () => {
   it('should work', async () => {
     const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'valid-plugin')
-    runShellCommand(fixtureProjectDirectory, function (result) {
-      // handle errors here
-      expect(result[0]).toEqual('The plugin config is valid.')
-    })
+    runShellCommand(fixtureProjectDirectory, function cb (result) {
+      const outputs = result.split('\n')
+      const outputToCheck = outputs[(outputs.length - 2)]
+
+      expect(outputToCheck).toEqual('The plugin config is valid.')
+    }).then(res => console.log('result: ' + res)
+    )
   })
   it('should return list of errors found', async () => {
     const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'invalid-plugin')
-    runShellCommand(fixtureProjectDirectory, function (result) {
-      // handle errors here
-      expect(result[0]).toEqual('Error in plugin:\n\n- Missing forwardslash on xyz')
+
+    await runShellCommand(fixtureProjectDirectory, function onComplete (error, data) {
+      if (!error) {
+        expect(data).toBe('Error in plugin:\n\n- Missing forwardslash on xyz')
+        // hooray, everything went as planned
+      } else {
+        console.log(error)
+        // disaster - retry / respond with an error etc
+      }
     })
   })
 })
