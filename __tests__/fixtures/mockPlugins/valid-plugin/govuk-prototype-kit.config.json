@@ -8,6 +8,7 @@
 	  "/javascripts/step-by-step-navigation.js",
 	  "/javascripts/step-by-step-polyfills.js"
 	],
+	"nunjucksFilters": "/lib/filters/core-filters",
 	"templates": [
 	  {
 		"name": "Step by step navigation page",
