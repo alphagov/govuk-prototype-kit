@@ -2,8 +2,9 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block content %}
-<form method="post">
-  <div class="govuk-grid-row">
+
+  <div class="govuk-grid-row govuk-!-margin-bottom-5">
+
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">Plugins</h1>
@@ -12,58 +13,68 @@
         Plugins provide you with new components, styles and other features
       </p>
 
-      {% for group in groupsOfPlugins %}
-        <h2 class="govuk-heading-m">{{ group.name }}</h2>
-
-        <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list" data-plugin-group-status="{{ group.status }}">
-          {% for plugin in group.plugins %}
-            <li class="govuk-prototype-kit-manage-prototype-plugin-list__item" data-plugin-package-name="{{ plugin.packageName }}">
-              <span class="govuk-prototype-kit-manage-prototype-plugin-list__item-name">
-                {{ plugin.name }}
-                {% if plugin.scope %}
-                  <br/>
-                  <span class="govuk-caption-m">From {{ plugin.scope }}</span>
-                {% endif %}
-                {% if plugin.upgradeLink %}
-                  <br/>
-                  v{{ plugin.latestVersion }} available
-                {% endif %}
-              </span>
-              <span class="govuk-prototype-kit-manage-prototype-plugin-list__item-version">
-                {{ plugin.installedVersion or plugin.latestVersion }}
-              </span>
-              <span class="govuk-prototype-kit-manage-prototype-plugin-list__item-buttons">
-                {% if not plugin.installedVersion %}
-                    {{ govukButton({
-                        html: 'Install <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
-                        classes: "govuk-button--secondary",
-                        attributes: { id: "install-" + plugin.packageName, formaction: plugin.installLink }
-                    }) }}
-                {% endif %}
-                {% if plugin.uninstallLink %}
-                    {{ govukButton({
-                        html: 'Uninstall <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
-                        classes: "govuk-button--secondary",
-                        attributes: { id: "uninstall-" + plugin.packageName, formaction: plugin.uninstallLink }
-                    }) }}
-                {% endif %}
-                {% if plugin.upgradeLink %}
-                    {{ govukButton({
-                        html: 'Upgrade <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
-                        classes: "govuk-button--secondary",
-                        attributes: { id: "upgrade-" + plugin.packageName, formaction: plugin.upgradeLink }
-                    }) }}
-                {% endif %}
-                {% if plugin.helpLink %}
-                  <a class=""
-                     href="{{ plugin.helpLink }}">Help<span class="govuk-visually-hidden"> - {{ plugin.name }}</span></a>
-                {% endif %}
-              </span>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endfor %}
     </div>
+
   </div>
-</form>
+
+  <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-one-quarter">
+
+        <div class="sub-nav">
+
+          <a href="./plugins" class="govuk-heading-m">
+            Find plugins
+          </a>
+          
+        </div>
+
+        <div class="sub-nav">
+
+          <h2 class="govuk-heading-m">
+            Your plugins
+          </h2>
+
+        </div>
+      
+      </div>
+
+      <div class="govuk-grid-column-three-quarters govuk-prototype-kit-manage-prototype-plugin-list">
+
+        {% for plugin in groupsOfPlugins[0].plugins %}
+          <div class="govuk-grid-row govuk-prototype-kit-manage-prototype-plugin-list__item">
+            <div class="govuk-grid-column-one-third govuk-body">
+                <a class="govuk-link govuk-!-font-weight-bold" href="#">
+                  {{ plugin.name }}
+                </a>
+                {% if plugin.scope %}
+                  <div>
+                    By {{ plugin.scope }}
+                  </div>
+                {% endif %}
+                <div class="govuk-!-margin-top-3">
+                  v{{ plugin.installedVersion }}
+                </div>
+              </span>
+            </div>
+            <div class="govuk-grid-column-two-thirds govuk-body">
+                {% if plugin.summary %}
+                  <div class="govuk-!-margin-bottom-3">
+                    {{ plugin.summary }}
+                  </div>
+                {% endif %}
+                {% if plugin.name != "GOV.UK Prototype Kit" %}
+                  <div>
+                    {{ govukButton({
+                      text: "Uninstall",
+                      classes:"govuk-button--secondary"
+                    }) }}
+                  </div>
+                {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+
 {% endblock %}
