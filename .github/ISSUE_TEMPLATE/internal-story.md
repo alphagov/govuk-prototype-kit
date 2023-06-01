@@ -1,8 +1,8 @@
 ---
-name: "Internal story template"
+name: Internal story template
 about: For internal use only
 title: ''
-labels: "awaiting triage"
+labels: ''
 assignees: ''
 
 ---

@@ -1,8 +1,8 @@
 ---
-name: "📖 Documentation"
+name: "\U0001F4D6 Documentation"
 about: Add new documentation, or report missing, incorrect or unclear documentation
 title: ''
-labels: "documentation, awaiting triage"
+labels: ''
 assignees: ''
 
 ---

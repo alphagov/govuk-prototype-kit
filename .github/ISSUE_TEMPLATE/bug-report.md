@@ -1,8 +1,8 @@
 ---
-name: "🐛 Bug report"
+name: "\U0001F41B Bug report"
 about: Report a bug or regression
 title: ''
-labels: "\U0001F41B bug, awaiting triage"
+labels: ''
 assignees: ''
 
 ---
