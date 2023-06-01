@@ -29,6 +29,8 @@ describe('Fatal Error Test', () => {
     cy.task('log', `Replace ${appRoutes} with Broken routes`)
     cy.task('copyFile', { source: completelyBrokenRoutesFixture, target: appRoutes })
 
+    cy.wait(5000)
+
     cy.get('.govuk-heading-l').contains(pageName)
     cy.get('.govuk-body .govuk-link').contains(contactSupportText)
     cy.get('#govuk-prototype-kit-error-file').contains(expectedErrorFileAndLine)
@@ -36,6 +38,8 @@ describe('Fatal Error Test', () => {
 
     cy.task('log', `Restore ${appRoutes} with original routes`)
     restore()
+
+    cy.wait(5000)
 
     cy.get('.govuk-heading-l').contains(homePageName)
   })
