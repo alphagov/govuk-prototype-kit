@@ -5,6 +5,8 @@ const request = require('supertest')
 const path = require('path')
 const cheerio = require('cheerio')
 
+jest.mock('../../lib/sync-changes')
+
 // local dependencies
 const { sleep } = require('../../lib/utils')
 
@@ -80,7 +82,7 @@ describe('error handling', () => {
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
     expect(getH1(response.text)).toEqual('There is an error')
-    expect(getErrorFile(response.text)).toEqual('__tests__/spec/errors.js (line 71)')
+    expect(getErrorFile(response.text)).toEqual('__tests__/spec/errors.js (line 73)')
     expect(getErrorMessage(response.text)).toEqual('test error')
 
     app.close()

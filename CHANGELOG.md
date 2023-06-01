@@ -8,6 +8,10 @@
 
 - [#2183: Improve the design of the error screen](https://github.com/alphagov/govuk-prototype-kit/pull/2183)
 
+### Fixes
+
+- [#2197: Prevent screen flickering when installing updates](https://github.com/alphagov/govuk-prototype-kit/pull/2197)
+
 ## 13.7.1
 
 ### Fixes
