@@ -24,8 +24,7 @@ describe('plugin-validator', () => {
       const outputToCheck = outputs[outputs.length - 2]
 
       expect(outputToCheck).toEqual('The plugin config is valid.')
-    }).then(res => console.log('result: ' + res)
-    )
+    })
   })
 
   it('should return list of errors found', async () => {
@@ -37,7 +36,6 @@ describe('plugin-validator', () => {
       const outputToCheck = outputs[outputs.length - 2]
 
       expect(outputToCheck).toEqual(expectedOutput)
-    }).then(res => console.log('result: ' + res)
-    )
+    })
   })
 })
