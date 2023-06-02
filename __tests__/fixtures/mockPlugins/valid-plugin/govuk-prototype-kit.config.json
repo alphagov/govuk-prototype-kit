@@ -6,8 +6,22 @@
 	],
 	"scripts": [
 	  "/javascripts/step-by-step-navigation.js",
-	  "/javascripts/step-by-step-polyfills.js"
+	  "/javascripts/step-by-step-polyfills.js",
+	  {
+		"path": "/javascripts/modules/foo-module.js",
+		"type": "module"
+	  },
+	  {
+		"path": "/javascripts/modules/foo-module.js",
+		"type": "module"
+	  }
 	],
+	"nunjucksMacros": [
+		{
+		  "importFrom": "foo-field.njk",
+		  "macroName": "fooField"
+		}
+	  ],
 	"nunjucksFilters": "/lib/filters/core-filters",
 	"templates": [
 	  {
