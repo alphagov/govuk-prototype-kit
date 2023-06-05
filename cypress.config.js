@@ -1,3 +1,4 @@
+const path = require('path')
 
 // npm dependencies
 const { defineConfig } = require('cypress')
@@ -9,6 +10,7 @@ module.exports = defineConfig({
   trashAssetsBeforeRun: true,
   e2e: {
     setupNodeEvents,
+    pathSeparator: path.sep,
     baseUrl: 'http://localhost:3000',
     specPattern: 'cypress/e2e/**/*.cypress.js'
   }
