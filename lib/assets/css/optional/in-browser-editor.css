@@ -1,5 +1,9 @@
+body:has(.govuk-prototype-kit__editor__bar) {
+  padding-bottom: 3rem;
+}
+
 .govuk-prototype-kit__editor__bar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
