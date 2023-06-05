@@ -6,7 +6,7 @@ const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 
 const pageName = 'There is an error'
 const contactSupportText = 'Get support'
-const expectedErrorFileAndLine = 'app/routes.js (line 18)'
+const expectedErrorFileAndLine = 'app/routes.js (line 18)'.replace('/', path.sep)
 const expectedErrorMessage = 'test error'
 
 const templateNotFoundText = 'template not found: test-page.html'
