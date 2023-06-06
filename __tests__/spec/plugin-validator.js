@@ -38,4 +38,14 @@ describe('plugin-validator', () => {
       expect(outputToCheck).toEqual(expectedOutput)
     })
   })
+
+  it('should return error because config does not exist', async () => {
+    const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'plugin-no-config')
+    runShellCommand(fixtureProjectDirectory, function cb (result) {
+      const outputs = result.split('\n')
+      const outputToCheck = outputs[outputs.length - 2]
+
+      expect(outputToCheck).toEqual('The plugin does not have a govuk-prototype-kit.config.json file, all plugins must have this file to be valid.')
+    })
+  })
 })
