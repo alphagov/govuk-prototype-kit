@@ -1,10 +1,70 @@
 {% extends "views/manage-prototype/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    href: "/manage-prototype/plugins",
+    text: 'Plugins'
+  })}}
+
+{% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row govuk-!-margin-bottom-5">
-      <h1>Plugin view</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-2">
+        {{ plugin.name }}
+      </h1>
+      <div class="govuk-body">
+        By {{ plugin.scope }}
+      </div>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      <div class="govuk-body">
+        v{{ plugin.latestVersion }}
+      </div>
+      <div>
+        {{ govukButton({
+          'text': 'Install'
+        })}}
+      </div>
+      <div>
+        <a href="#" class="govuk-link govuk-body">
+          Documentation
+        </a>
+      </div>
+      <div>
+        <a href="#" class="govuk-link govuk-body">
+          Support
+        </a>
+      </div>
+      <div>
+        <a href="#" class="govuk-link govuk-body">
+          Release notes
+        </a>
+      </div>
+      <div>
+        <a href="#" class="govuk-link govuk-body">
+          Version history
+        </a>
+      </div>
+      <div>
+        <a href="#" class="govuk-link govuk-body">
+          Report
+        </a>
+      </div>
+    </div>
+    <div class="govuk-grid-column-three-quarters">
+      <img src="" alt="" width="100%" height="300px">
+      <div class="govuk-body">
+        {{ plugin.summary }}
+      </div>
+    </div>
   </div>
 
 {% endblock %}

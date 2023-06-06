@@ -44,7 +44,7 @@
         {% for plugin in groupsOfPlugins[0].plugins %}
           <div class="govuk-grid-row govuk-prototype-kit-manage-prototype-plugin-list__item">
             <div class="govuk-grid-column-one-third govuk-body">
-                <a class="govuk-link govuk-!-font-weight-bold" href="./plugins/view/{{plugin.name}}">
+                <a class="govuk-link govuk-!-font-weight-bold" href="./plugins/view?package={{plugin.packageName}}">
                   {{ plugin.name }}
                 </a>
                 {% if plugin.scope %}
