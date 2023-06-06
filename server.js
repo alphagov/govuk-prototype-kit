@@ -60,6 +60,8 @@ app.locals.pluginConfig = plugins.getAppConfig({
 // TODO: remove in v14
 app.locals.extensionConfig = app.locals.pluginConfig
 
+app.locals.pluginConstants = plugins.getConstants()
+
 // Support session data storage
 app.use(sessionUtils.getSessionMiddleware())
 
