@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2215: Fixed unstyled unbranded issue](https://github.com/alphagov/govuk-prototype-kit/pull/2215)
+
 ## 13.8.0
 
 ### New features
