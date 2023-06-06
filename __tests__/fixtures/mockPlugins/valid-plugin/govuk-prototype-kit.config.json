@@ -8,11 +8,11 @@
 	  "/javascripts/step-by-step-navigation.js",
 	  "/javascripts/step-by-step-polyfills.js",
 	  {
-		"path": "/javascripts/modules/foo-module.js",
+		"path": "/javascripts/modules/foo-module-one.js",
 		"type": "module"
 	  },
 	  {
-		"path": "/javascripts/modules/foo-module.js",
+		"path": "/javascripts/modules/foo-module-two.js",
 		"type": "module"
 	  }
 	],
@@ -22,7 +22,7 @@
 		  "macroName": "fooField"
 		}
 	  ],
-	"nunjucksFilters": "/lib/filters/core-filters",
+	"nunjucksFilters": "/filters.js",
 	"templates": [
 	  {
 		"name": "Step by step navigation page",
