@@ -1,0 +1,6 @@
+{
+	"sass": [
+	  "/sass/_step-by-step-navigation.scss",
+	  "/sass/_step-by-step-navigation-header.scss",
+	  "/sass/_step-by-step-navigation-related.scss"
+	]

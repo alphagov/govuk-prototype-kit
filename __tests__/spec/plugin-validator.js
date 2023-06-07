@@ -47,4 +47,14 @@ describe('plugin-validator', () => {
       expect(outputToCheck).toEqual('The plugin does not have a govuk-prototype-kit.config.json file, all plugins must have this file to be valid.')
     })
   })
+
+  it('should return error because config is not a valid json', async () => {
+    const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'plugin-invalid-json')
+    runShellCommand(fixtureProjectDirectory, function cb (result) {
+      const outputs = result.split('\n')
+      const outputToCheck = outputs[outputs.length - 2]
+
+      expect(outputToCheck).toEqual('Your govuk-prototype-kit.config.json file is not a valid json.')
+    })
+  })
 })
