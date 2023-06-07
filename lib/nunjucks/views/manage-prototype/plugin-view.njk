@@ -30,19 +30,33 @@
       </div>
       <div>
         {{ govukButton({
-          'text': 'Install'
+          'text': 'Install',
+          'id': 'plugin-action-button',
+          'attributes':{
+            'data-mode': 'install'
+          }
         })}}
+        <div id="panel-processing" hidden>
+          Processing ...
+        </div>
       </div>
-      <div>
-        <a href="#" class="govuk-link govuk-body">
-          Documentation
-        </a>
-      </div>
-      <div>
-        <a href="#" class="govuk-link govuk-body">
-          Support
-        </a>
-      </div>
+
+      {% if plugin.links.documentation %}
+        <div>
+          <a href="{{ plugin.links.documentation }}" class="govuk-link govuk-body">
+            Documentation
+          </a>
+        </div>
+      {% endif %}
+
+      {% if plugin.links.support %}
+        <div>
+          <a href="{{ plugin.links.support }}" class="govuk-link govuk-body">
+            Support
+          </a>
+        </div>
+      {% endif %}
+
       <div>
         <a href="#" class="govuk-link govuk-body">
           Release notes
@@ -60,11 +74,28 @@
       </div>
     </div>
     <div class="govuk-grid-column-three-quarters">
-      <img src="" alt="" width="100%" height="300px">
+      <img src="/plugin-assets/govuk-prototype-kit/lib/assets/images/plugins/{{ plugin.image }}" alt="" width="100%" height="300px" class="govuk-!-margin-bottom-4">
       <div class="govuk-body">
         {{ plugin.summary }}
       </div>
     </div>
   </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    if (window.Promise) {
+      // Dynamically load and execute the script
+      const managePluginsScript = document.createElement('script')
+      managePluginsScript.addEventListener('load', () => {
+        window.GOVUKPrototypeKit.documentReady(window.GOVUKPrototypeKit.internal.managePlugins.init)
+      })
+      managePluginsScript.setAttribute('src', '/plugin-assets/govuk-prototype-kit/lib/assets/javascripts/manage-prototype/manage-plugins.js')
+      document.body.appendChild(managePluginsScript)
+    } else {
+      // Display the page as if javascript was not enabled
+      document.body.classList.remove('js-enabled')
+    }
+  </script>
 {% endblock %}
