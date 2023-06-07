@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        {
+            "name": "DWP Frontend",
+            "scope": "DWP",
+            "summary": "Components and styles for the DWP Design System",
+            "links": {
+                "documentation": "https://design-system.dwp.gov.uk",
+                "support": "https://design-system.dwp.gov.uk"
+            },
+            "image": "dwp-frontend.png"
+        }
+    ]
+}

@@ -1,4 +1,13 @@
 {
+    "dwp-frontend": {
+        "summary": "Components and styles for the DWP Design System",
+        "scope": "DWP",
+        "links": {
+            "documentation": "https://design-system.dwp.gov.uk",
+            "support": "https://design-system.dwp.gov.uk"
+        },
+        "image": "dwp-frontend.png"
+    },
     "govuk-frontend": {
         "summary": "Components and styles for the GOV.UK Design System",
         "scope": "GDS",
