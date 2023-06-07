@@ -57,4 +57,14 @@ describe('plugin-validator', () => {
       expect(outputToCheck).toEqual('Your govuk-prototype-kit.config.json file is not a valid json.')
     })
   })
+
+  it('should return error because config is empty', async () => {
+    const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'plugin-empty-config')
+    runShellCommand(fixtureProjectDirectory, function cb (result) {
+      const outputs = result.split('\n')
+      const outputToCheck = outputs[outputs.length - 2]
+
+      expect(outputToCheck).toEqual('There are no contents in your govuk-prototype.config file!')
+    })
+  })
 })
