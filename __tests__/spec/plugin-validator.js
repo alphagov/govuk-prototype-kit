@@ -54,7 +54,7 @@ describe('plugin-validator', () => {
       const outputs = result.split('\n')
       const outputToCheck = outputs[outputs.length - 2]
 
-      expect(outputToCheck).toEqual('Your govuk-prototype-kit.config.json file is not a valid json.')
+      expect(outputToCheck).toEqual('Your govuk-prototype-kit.config.json file is not valid json.')
     })
   })
 
