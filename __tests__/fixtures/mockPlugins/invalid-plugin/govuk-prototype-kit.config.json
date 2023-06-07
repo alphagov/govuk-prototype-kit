@@ -6,7 +6,11 @@
 	],
 	"scripts": [
 		"javascripts/step-by-step-navigation.js",
-		"javascripts/step-by-step-polyfills.js"
+		"javascripts/step-by-step-polyfills.js",
+		{
+			"path": "javascripts/modules/foo-module-one.js",
+			"type": "module"
+		}
 	],
 	"templates": [
 		{
