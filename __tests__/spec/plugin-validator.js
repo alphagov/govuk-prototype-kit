@@ -27,9 +27,20 @@ describe('plugin-validator', () => {
     expect(outputToCheck).toEqual('The plugin config is valid.')
   })
 
-  it('should return list of errors found', async () => {
+  it('should return list of path errors found', async () => {
     const expectedOutput = 'In section sass, the path \'/sass/_step-by-step-navigation.scss\' does not exist,In section sass, the path \'/sass/_step-by-step-navigation-header.scss\' does not exist,In section sass, the path \'/sass/_step-by-step-navigation-related.scss\' does not exist,In section scripts, the path \'javascripts/step-by-step-navigation.js\' does not start with a \'/\',In section scripts, the path \'javascripts/step-by-step-polyfills.js\' does not start with a \'/\',In section scripts, the path \'javascripts/modules/foo-module-one.js\' does not start with a \'/\',In section templates, the path \'/templates/step-by-step-navigation.html\' does not exist,In section templates, the path \'/templates/start-with-step-by-step.html\' does not exist'
     const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'invalid-plugin')
+
+    const result = await runShellCommand(fixtureProjectDirectory)
+    const outputs = result.split('\n')
+    const outputToCheck = outputs[outputs.length - 2]
+
+    expect(outputToCheck).toEqual(expectedOutput)
+  })
+
+  it('should return list of invalid keys', async () => {
+    const expectedOutput = 'The following invalid keys exist in your config: scss,unknown-key'
+    const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', 'plugin-invalid-keys')
 
     const result = await runShellCommand(fixtureProjectDirectory)
     const outputs = result.split('\n')
