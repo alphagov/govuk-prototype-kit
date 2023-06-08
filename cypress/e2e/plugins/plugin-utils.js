@@ -28,7 +28,7 @@ async function loadTemplatesPage () {
 function performPluginAction (action, plugin, pluginName) {
   cy.task('log', `The ${plugin} plugin should be displayed`)
   cy.get('h2')
-    .contains(`${capitalize(action)} ${pluginName}`)
+    .contains(pluginName)
 
   const processingText = `${action === 'upgrade' ? 'Upgrad' : action}ing ...`
 

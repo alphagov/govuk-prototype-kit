@@ -7,9 +7,15 @@
 
       <h1 class="govuk-heading-l">Plugins</h1>
 
-      <h2 class="govuk-heading-m">
-        {{ verb.title }} {{ chosenPlugin.name }} {% if chosenPlugin.version %} version {{ chosenPlugin.version }} {% endif %} {% if chosenPlugin.scope %} from {{ chosenPlugin.scope }} {% endif %}
-      </h2>
+      <div id="plugin-heading" {% if dependencyHeading %}hidden class="js-hidden"{% endif %} >
+        <h2 class="govuk-heading-m">{{ pluginHeading }}</h2>
+      </div>
+
+      {% if dependencyHeading %}
+      <div id="dependency-heading">
+        <h2 class="govuk-heading-m">{{ dependencyHeading }}</h2>
+      </div>
+      {% endif %}
 
       <div id="panel-manual-instructions" class="govuk-prototype-kit-manage-prototype-plugin-instructions js-hidden">
         <p>
@@ -28,7 +34,35 @@
 
       <div class="js-visible" aria-live="polite">
 
-        {% if not isSameOrigin %}
+        {% if chosenPlugin.dependencyPlugins|length or chosenPlugin.dependentPlugins|length %}
+          <div id="plugin-action-confirmation">
+
+          <ul class="govuk-list govuk-list--bullet">
+            {% for plugin in chosenPlugin.dependencyPlugins %}
+              <li>{{ plugin.name }}{% if plugin.scope %} from {{ plugin.scope }} {% endif %}</li>
+            {% endfor %}
+            {% for plugin in chosenPlugin.dependentPlugins %}
+              <li>{{ plugin.name }}{% if plugin.scope %} from {{ plugin.scope }} {% endif %}</li>
+            {% endfor %}
+          </ul>
+
+          <p class="govuk-body">
+            {% if verb.para == 'uninstall' %}
+              If you uninstall {{ chosenPlugin.name }}, these plugins will no longer work.
+            {% else %}
+              To {{ verb.para }} {{ chosenPlugin.name }} you also need to {{ verb.para }} these plugins.
+            {% endif %}
+          </p>
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: verb.title + ' these plugins',
+              attributes: { id: "plugin-action-button" }
+            }) }}
+
+            <a class="govuk-link" href="{{ returnLink.href }}">Cancel {{ verb.para }}</a>
+          </div>
+        </div>
+        {% elseif not isSameOrigin %}
           <div id="plugin-action-confirmation">
             <p class="govuk-body">
               Are you sure you want to {{ verb.para }} this plugin?
