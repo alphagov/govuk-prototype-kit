@@ -24,7 +24,7 @@ const https = require('https')
 // local dependencies
 const { starterDir } = require('../../lib/utils/paths')
 const { sleep } = require('../e2e/utils')
-const { requestHttpsJson } = require('../../lib/utils')
+const { requestHttpsJson } = require('../../lib/utils/requestHttps')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
 
