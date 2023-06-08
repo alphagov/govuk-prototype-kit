@@ -1,6 +1,22 @@
 {
     "plugins": [
         {
+            "packageName": "accessible-autocomplete",
+            "name": "Accessible autocomplete",
+            "scope": "GDS",
+            "summary": "An accessible autocomplete component"
+        },
+        {
+            "name": "X-GOVUK Prototype Filters",
+            "scope": "X-GOVUK",
+            "summary": "Use this GOV.UK Prototype Kit plugin to add helpful filters to Nunjucks templates. Rapidly modify and transform data while ensuring it follows the GOV.UK style guide."
+        },
+        {
+            "name": "Admin",
+            "scope": "Eleanor Stanton",
+            "summary": ""
+        },
+        {
             "name": "DWP Frontend",
             "scope": "DWP",
             "summary": "Components and styles for the DWP Design System",
