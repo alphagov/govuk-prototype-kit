@@ -25,6 +25,7 @@ const fse = require('fs-extra')
 const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../migrator')
+const { validatePlugin } = require('../lib/plugins/plugin-validator')
 const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
 const { recursiveDirectoryContentsSync } = require('../lib/utils')
 const { appViewsDir } = require('../lib/utils/paths')
@@ -406,6 +407,10 @@ function runServe () {
   require('../listen-on-port')
 }
 
+async function runValidatePlugin () {
+  return validatePlugin()
+}
+
 ;(async () => {
   verboseLogger(`Using kit version [${kitVersion}] for command [${argv.command}]`)
   verboseLogger('Argv:', argv)
@@ -422,6 +427,8 @@ function runServe () {
       return runServe()
     case 'migrate':
       return runMigrate()
+    case 'validate-plugin':
+      return runValidatePlugin()
     case 'version':
       console.log(kitVersion)
       break
