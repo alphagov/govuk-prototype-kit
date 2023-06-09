@@ -2,18 +2,25 @@
 
 const path = require('path')
 const cliPath = path.join(__dirname, '..', '..', 'bin', 'cli')
-const {exec} = require('child_process')
+const { exec } = require('child_process')
+const ansiColors = require('ansi-colors')
 
-function runShellCommand(fixtureDirectoryName) {
-  const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins',fixtureDirectoryName) 
+function runShellCommand (fixtureDirectoryName) {
+  const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', fixtureDirectoryName)
   return new Promise((resolve, reject) => {
-    const abc = exec(`"${process.execPath}" ${cliPath} validate-plugin ${fixtureProjectDirectory}`,
-      {env: process.env, stdio: 'inherit'}, function (err, stdout, stderr) {
-        resolve({
+    const execResult = exec(`"${process.execPath}" ${cliPath} validate-plugin ${fixtureProjectDirectory}`,
+      { env: process.env, stdio: 'inherit' }, function (err, stdout, stderr) {
+        const output = {
           stdout,
           stderr,
-          exitCode: abc.exitCode
-        })
+          exitCode: execResult.exitCode
+        }
+
+        if (err) {
+          resolve(output)
+        } else {
+          resolve(output)
+        }
       })
   })
 }
@@ -25,7 +32,8 @@ describe('plugin-validator', () => {
     expect(result.stdout).toEqual(`
 Config file exists, validating contents.
 Validating whether config paths meet criteria.
-The plugin config is valid.
+
+${ansiColors.green('The plugin config is valid.')}
 
 `)
   })
@@ -35,14 +43,14 @@ The plugin config is valid.
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-Error: In section sass, the path '/sass/_step-by-step-navigation.scss' does not exist
-Error: In section sass, the path '/sass/_step-by-step-navigation-header.scss' does not exist
-Error: In section sass, the path '/sass/_step-by-step-navigation-related.scss' does not exist
-Error: In section scripts, the path 'javascripts/step-by-step-navigation.js' does not start with a '/'
-Error: In section scripts, the path 'javascripts/step-by-step-polyfills.js' does not start with a '/'
-Error: In section scripts, the path 'javascripts/modules/foo-module-one.js' does not start with a '/'
-Error: In section templates, the path '/templates/step-by-step-navigation.html' does not exist
-Error: In section templates, the path '/templates/start-with-step-by-step.html' does not exist
+${ansiColors.red('Error: In section sass, the path \'/sass/_step-by-step-navigation.scss\' does not exist')}
+${ansiColors.red('Error: In section sass, the path \'/sass/_step-by-step-navigation-header.scss\' does not exist')}
+${ansiColors.red('Error: In section sass, the path \'/sass/_step-by-step-navigation-related.scss\' does not exist')}
+${ansiColors.red('Error: In section scripts, the path \'javascripts/step-by-step-navigation.js\' does not start with a \'/\'')}
+${ansiColors.red('Error: In section scripts, the path \'javascripts/step-by-step-polyfills.js\' does not start with a \'/\'')}
+${ansiColors.red('Error: In section scripts, the path \'javascripts/modules/foo-module-one.js\' does not start with a \'/\'')}
+${ansiColors.red('Error: In section templates, the path \'/templates/step-by-step-navigation.html\' does not exist')}
+${ansiColors.red('Error: In section templates, the path \'/templates/start-with-step-by-step.html\' does not exist')}
 
 `)
   })
@@ -52,7 +60,7 @@ Error: In section templates, the path '/templates/start-with-step-by-step.html' 
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-Error: The following invalid keys exist in your config: scss,unknown-key
+${ansiColors.red('Error: The following invalid keys exist in your config: scss,unknown-key')}
 
 `)
   })
@@ -62,7 +70,7 @@ Error: The following invalid keys exist in your config: scss,unknown-key
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-Error: The plugin does not have a govuk-prototype-kit.config.json file, all plugins must have this file to be valid.
+${ansiColors.red('Error: The plugin does not have a govuk-prototype-kit.config.json file, all plugins must have this file to be valid.')}
 
 `)
   })
@@ -72,7 +80,7 @@ Error: The plugin does not have a govuk-prototype-kit.config.json file, all plug
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-Error: Your govuk-prototype-kit.config.json file is not valid json.
+${ansiColors.red('Error: Your govuk-prototype-kit.config.json file is not valid json.')}
 
 `)
   })
@@ -82,7 +90,7 @@ Error: Your govuk-prototype-kit.config.json file is not valid json.
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-Error: There are no contents in your govuk-prototype.config file!
+${ansiColors.red('Error: There are no contents in your govuk-prototype.config file!')}
 
 `)
   })
