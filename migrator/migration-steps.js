@@ -47,6 +47,7 @@ async function preFlightChecksValidVersion (minimumVersion) {
 
 async function preflightChecks (filesToCheck, v6Folder, minimumVersion) {
   const reporter = await addReporter('Check migration is being applied to a pre v13 prototype')
+  console.log(minimumVersion)
   const checksPass = (
     !await fse.pathExists(v6Folder) &&
     await preFlightChecksFilesExist(filesToCheck) &&
