@@ -5,7 +5,7 @@
     "/lib/assets/javascripts/manage-prototype"
   ],
   "nunjucksPaths": "/lib/nunjucks",
-  "nunjucksFilters": "/lib/filters/core-filters",
+  "nunjucksFilters": "/lib/filters/core-filters.js",
   "scripts": [
     "/lib/assets/javascripts/kit.js",
     "/lib/assets/javascripts/auto-store-data.js"
