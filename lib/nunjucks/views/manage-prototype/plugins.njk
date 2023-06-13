@@ -1,6 +1,55 @@
 {% extends "views/manage-prototype/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
+{% block stylesheets %}
+ {{ super() }}
+ <link rel="stylesheet" href="/plugin-assets/govuk-prototype-kit/lib/assets/css/accessible-autocomplete.min.css" />
+ <style>
+ .autocomplete__hint, .autocomplete__input, .autocomplete__option {
+    color: #0b0c0c;
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+ }
+ </style>
+{% endblock %}
+
+{% block pageScripts %}
+  <script type="text/javascript" src="/plugin-assets/govuk-prototype-kit/lib/assets/javascripts/manage-prototype/accessible-autocomplete.min.js"></script>
+  <script type="text/javascript">
+
+    var groupsOfPlugins = {{ groupsOfPlugins|dump|safe }}
+
+    var inputValueTemplate = result => {
+      return result
+    }
+    var resultTemplate = result => {
+      return result
+    }
+    function suggest (query, populateResults) {
+      const results = [
+        'France',
+        'Germany',
+        'United Kingdom'
+      ]
+      const filteredResults = results.filter(result => result.indexOf(query) !== -1)
+      populateResults(filteredResults)
+    }
+    var element = document.querySelector('#search-input-container')
+    var id = 'search-input'
+    accessibleAutocomplete({
+      element: element,
+      id: id,
+      source: suggest,
+      displayMenu: 'overlay',
+      templates: {
+        inputValue: inputValueTemplate,
+        suggestion: resultTemplate
+      }
+    })
+  </script>
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row govuk-!-margin-bottom-5">
@@ -40,26 +89,34 @@
 
       </div>
 
-      <div class="govuk-grid-column-three-quarters govuk-prototype-kit-manage-prototype-plugin-list">
+      <div class="govuk-grid-column-three-quarters">
 
-        {% for plugin in groupsOfPlugins[1].plugins %}
-          <div class="govuk-grid-row govuk-prototype-kit-manage-prototype-plugin-list__item">
-            <div class="govuk-grid-column-one-third govuk-body">
-                <a class="govuk-link govuk-!-font-weight-bold" href="./plugins/view?package={{plugin.packageName}}">
-                  {{ plugin.name }}
-                </a>
-                {% if plugin.scope %}
-                  <div>
-                    By {{ plugin.scope }}
-                  </div>
-                {% endif %}
-              </span>
+        <div class="govuk-!-margin-bottom-5">
+          {{govukLabel({"text":"Search", classes:"govuk-!-font-weight-bold"})}}
+          <div id="search-input-container"></div>
+        </div>
+
+        <div class="govuk-prototype-kit-manage-prototype-plugin-list">
+
+          {% for plugin in groupsOfPlugins[1].plugins %}
+            <div class="govuk-grid-row govuk-prototype-kit-manage-prototype-plugin-list__item">
+              <div class="govuk-grid-column-one-third govuk-body">
+                  <a class="govuk-link govuk-!-font-weight-bold" href="./plugins/view?package={{plugin.packageName}}">
+                    {{ plugin.name }}
+                  </a>
+                  {% if plugin.scope %}
+                    <div>
+                      By {{ plugin.scope }}
+                    </div>
+                  {% endif %}
+                </span>
+              </div>
+              <div class="govuk-grid-column-two-thirds govuk-body">
+                  {{ plugin.summary }}
+              </div>
             </div>
-            <div class="govuk-grid-column-two-thirds govuk-body">
-                {{ plugin.summary }}
-            </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
   </div>
 
