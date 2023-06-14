@@ -85,7 +85,7 @@
 
 {% block pageScripts %}
   <script>
-    if (window.Promise) {
+    {# if (window.Promise) {
       // Dynamically load and execute the script
       const managePluginsScript = document.createElement('script')
       managePluginsScript.addEventListener('load', () => {
@@ -96,6 +96,6 @@
     } else {
       // Display the page as if javascript was not enabled
       document.body.classList.remove('js-enabled')
-    }
+    } #}
   </script>
 {% endblock %}
