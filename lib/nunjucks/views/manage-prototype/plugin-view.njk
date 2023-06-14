@@ -77,6 +77,18 @@
       <img src="/plugin-assets/govuk-prototype-kit/lib/assets/images/plugins/{{ plugin.image }}" alt="" width="100%" class="govuk-!-margin-bottom-4">
       <div class="govuk-body">
         {{ plugin.summary }}
+        {% if plugin.included %}
+          <div class="included govuk-!-margin-top-4">
+            <p class="govuk-heading-s">
+              Components and patterns in this plugin
+            </p>
+          <ul class="govuk-list govuk-list--bullet">
+            {% for item in plugin.included %}
+              <li>{{item}}</li>
+            {% endfor %}
+          </ul>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>

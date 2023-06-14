@@ -29,11 +29,41 @@
     "hmrc-frontend": {
         "summary": "Patterns designed specifically for the needs of HMRC users and patterns that are not yet in the GOV.UK Design System.",
         "scope": "HMRC",
+        "image": "hmrc-frontend.png",
         "links": {
             "documentation": "https://design.tax.service.gov.uk/hmrc-design-patterns/",
             "support": "https://design.tax.service.gov.uk/hmrc-design-patterns/"
         },
-        "tag": "Recommended"
+        "tag": "Recommended",
+        "included": [
+"Account header",
+"Accounts office reference",
+"Add to a list",
+"Ask the user for their consent",
+"Confirmed identity",
+"Could not confirm identity",
+"Currency input",
+"Employer PAYE reference",
+"EORI numbers",
+"File upload",
+"Hiding information",
+"HMRC banner",
+"Internal header",
+"Match an organisation to HMRC records",
+"Notification badge",
+"Page heading",
+"Page not found",
+"Page title",
+"Research banner",
+"Service timeout",
+"Service unavailable",
+"Sign out",
+"Status tags in Task list pages",
+"There is a problem with the service",
+"Timeline",
+"Unique taxpayer reference",
+"VAT registration number",
+"Welsh language toggle"]
     },
     "jquery": {
         "summary": "Makes the jQuery JavaScript library available on all pages.",
