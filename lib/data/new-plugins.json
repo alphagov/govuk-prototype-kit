@@ -6,7 +6,8 @@
             "scope": "GDS",
             "summary": "An accessible autocomplete component",
             "image": "accessible-autocomplete.png",
-            "latestVersion": "1.2.3"
+            "latestVersion": "1.2.3",
+            "tag": "Recommended"
         },
         {
             "packageName": "xgovuk-filters",
@@ -14,14 +15,16 @@
             "scope": "X-GOVUK",
             "summary": "Use this GOV.UK Prototype Kit plugin to add helpful filters to Nunjucks templates. Rapidly modify and transform data while ensuring it follows the GOV.UK style guide.",
             "image": "xgovuk-filters.png",
-            "latestVersion": "1.2.3"
+            "latestVersion": "1.2.3",
+            "tag": "Awaiting review"
         },
         {
             "packageName": "admin",
             "name": "Admin",
             "scope": "Eleanor Stanton",
             "summary": "",
-            "latestVersion": "1.2.3"
+            "latestVersion": "1.2.3",
+            "tag": "Unknown"
         },
         {
             "packageName": "dwp-frontend",
@@ -33,7 +36,8 @@
                 "support": "https://design-system.dwp.gov.uk"
             },
             "image": "dwp-frontend.png",
-            "latestVersion": "1.2.3"
+            "latestVersion": "1.2.3",
+            "tag": "Recommended"
         }
     ]
 }

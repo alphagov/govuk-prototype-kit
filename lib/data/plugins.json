@@ -6,21 +6,25 @@
             "documentation": "https://design-system.service.gov.uk/",
             "support": "https://design-system.service.gov.uk/get-in-touch/"
         },
-        "image": "govuk-frontend.png"
+        "image": "govuk-frontend.png",
+        "tag": "Recommended"
     },
     "@govuk-prototype-kit/common-templates": {
         "summary": "Templates for common GOV.UK service pages",
-        "scope": "GDS"
+        "scope": "GDS",
+        "tag": "Recommended"
     },
     "@govuk-prototype-kit/step-by-step": {
         "summary": "Templates for the GOV.UK Step by step pattern",
         "scope": "GDS",
-        "image": "step-by-step.png"
+        "image": "step-by-step.png",
+        "tag": "Recommended"
     },
     "@govuk-prototype-kit/task-list": {
         "summary": "Template for the GOV.UK Task list pattern",
         "scope": "GDS",
-        "image": "task-list.png"
+        "image": "task-list.png",
+        "tag": "Recommended"
     },
     "hmrc-frontend": {
         "summary": "Patterns designed specifically for the needs of HMRC users and patterns that are not yet in the GOV.UK Design System.",
@@ -28,7 +32,8 @@
         "links": {
             "documentation": "https://design.tax.service.gov.uk/hmrc-design-patterns/",
             "support": "https://design.tax.service.gov.uk/hmrc-design-patterns/"
-        }
+        },
+        "tag": "Recommended"
     },
     "jquery": {
         "summary": "Makes the jQuery JavaScript library available on all pages.",
@@ -39,6 +44,7 @@
         "name": "GOV.UK Notify",
         "summary": "Send emails and SMS from your prototype.",
         "scope": "GDS",
-        "image": "govuk-notify.png"
+        "image": "govuk-notify.png",
+        "tag": "Recommended"
     }
 }

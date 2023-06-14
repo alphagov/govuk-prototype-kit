@@ -81,12 +81,11 @@
         <div class="sub-nav">
 
           <a href="./plugins-installed" class="govuk-heading-m">
-            Your plugins
+            Your plugins <span class="badge">1</span>
           </a>
 
         </div>
       
-
       </div>
 
       <div class="govuk-grid-column-three-quarters">
@@ -112,6 +111,15 @@
                 </span>
               </div>
               <div class="govuk-grid-column-two-thirds govuk-body">
+                  {% if showStatus and plugin.tag %}
+                    <div class="status govuk-!-margin-bottom-2">
+                      {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+
+                      {{ govukTag({
+                        text: plugin.tag
+                      }) }}
+                    </div>
+                  {% endif %}
                   {{ plugin.summary }}
               </div>
             </div>

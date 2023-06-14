@@ -32,7 +32,7 @@
         <div class="sub-nav">
 
           <h2 class="govuk-heading-m">
-            Your plugins
+            Your plugins <span class="badge">1</span>
           </h2>
 
         </div>
@@ -63,14 +63,20 @@
                     {{ plugin.summary }}
                   </div>
                 {% endif %}
-                {% if plugin.name != "GOV.UK Prototype Kit" %}
                   <div>
+                {% if plugin.name != "GOV.UK Prototype Kit" %}
                     {{ govukButton({
                       text: "Uninstall",
                       classes:"govuk-button--secondary"
                     }) }}
-                  </div>
                 {% endif %}
+                {% if plugin.upgradeLink %}
+                    {{ govukButton({
+                      text: "Update",
+                      classes:"govuk-button--secondary"
+                    }) }}
+                {% endif %}
+                  </div>
             </div>
           </div>
         {% endfor %}

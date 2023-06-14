@@ -464,6 +464,24 @@ body .govuk-prototype-kit-manage-prototype-govuk-tag {
   width: 15%
 }
 
+.badge{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #1d70b8;
+  border-radius: 10px;
+  color: #fff;
+  display: inline-block;
+  font-family: GDS Transport,arial,sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  min-width: 10px;
+  padding: 2px 6px 0;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
 @media(min-width: 40.0525em) {
   .govuk-prototype-kit-manage-prototype-plugin-list__item-buttons {
     .govuk-button {
