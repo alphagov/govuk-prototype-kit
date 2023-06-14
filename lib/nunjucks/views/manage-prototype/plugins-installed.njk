@@ -70,7 +70,7 @@
                       classes:"govuk-button--secondary"
                     }) }}
                 {% endif %}
-                {% if plugin.upgradeLink %}
+                {% if plugin.upgradeLink and plugin.name != "GOV.UK Prototype Kit"%}
                     {{ govukButton({
                       text: "Update",
                       classes:"govuk-button--secondary"
