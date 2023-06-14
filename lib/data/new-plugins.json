@@ -4,19 +4,27 @@
             "packageName": "accessible-autocomplete",
             "name": "Accessible autocomplete",
             "scope": "GDS",
-            "summary": "An accessible autocomplete component"
+            "summary": "An accessible autocomplete component",
+            "image": "accessible-autocomplete.png",
+            "latestVersion": "1.2.3"
         },
         {
+            "packageName": "xgovuk-filters",
             "name": "X-GOVUK Prototype Filters",
             "scope": "X-GOVUK",
-            "summary": "Use this GOV.UK Prototype Kit plugin to add helpful filters to Nunjucks templates. Rapidly modify and transform data while ensuring it follows the GOV.UK style guide."
+            "summary": "Use this GOV.UK Prototype Kit plugin to add helpful filters to Nunjucks templates. Rapidly modify and transform data while ensuring it follows the GOV.UK style guide.",
+            "image": "xgovuk-filters.png",
+            "latestVersion": "1.2.3"
         },
         {
+            "packageName": "admin",
             "name": "Admin",
             "scope": "Eleanor Stanton",
-            "summary": ""
+            "summary": "",
+            "latestVersion": "1.2.3"
         },
         {
+            "packageName": "dwp-frontend",
             "name": "DWP Frontend",
             "scope": "DWP",
             "summary": "Components and styles for the DWP Design System",
@@ -24,7 +32,8 @@
                 "documentation": "https://design-system.dwp.gov.uk",
                 "support": "https://design-system.dwp.gov.uk"
             },
-            "image": "dwp-frontend.png"
+            "image": "dwp-frontend.png",
+            "latestVersion": "1.2.3"
         }
     ]
 }

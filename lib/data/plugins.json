@@ -1,13 +1,4 @@
 {
-    "dwp-frontend": {
-        "summary": "Components and styles for the DWP Design System",
-        "scope": "DWP",
-        "links": {
-            "documentation": "https://design-system.dwp.gov.uk",
-            "support": "https://design-system.dwp.gov.uk"
-        },
-        "image": "dwp-frontend.png"
-    },
     "govuk-frontend": {
         "summary": "Components and styles for the GOV.UK Design System",
         "scope": "GDS",
@@ -23,11 +14,13 @@
     },
     "@govuk-prototype-kit/step-by-step": {
         "summary": "Templates for the GOV.UK Step by step pattern",
-        "scope": "GDS"
+        "scope": "GDS",
+        "image": "step-by-step.png"
     },
     "@govuk-prototype-kit/task-list": {
         "summary": "Template for the GOV.UK Task list pattern",
-        "scope": "GDS"
+        "scope": "GDS",
+        "image": "task-list.png"
     },
     "hmrc-frontend": {
         "summary": "Patterns designed specifically for the needs of HMRC users and patterns that are not yet in the GOV.UK Design System.",
@@ -39,11 +32,13 @@
     },
     "jquery": {
         "summary": "Makes the jQuery JavaScript library available on all pages.",
-        "scope": "GDS"
+        "scope": "GDS",
+        "image": "jQuery.png"
     },
     "notifications-node-client": {
         "name": "GOV.UK Notify",
         "summary": "Send emails and SMS from your prototype.",
-        "scope": "GDS"
+        "scope": "GDS",
+        "image": "govuk-notify.png"
     }
 }
