@@ -41,37 +41,54 @@
         </div>
       </div>
 
-      {% if plugin.links.documentation %}
-        <div>
-          <a href="{{ plugin.links.documentation }}" class="govuk-link govuk-body">
-            Documentation
-          </a>
+      {% if plugin.links.documentation or plugin.links.support %}
+
+        <div class="links-section">
+
+          {% if plugin.links.documentation %}
+            <div class="govuk-!-margin-bottom-2">
+              <a href="{{ plugin.links.documentation }}" class="govuk-link govuk-body">
+                Documentation
+              </a>
+            </div>
+          {% endif %}
+
+          {% if plugin.links.support %}
+            <div class="govuk-!-margin-bottom-2">
+              <a href="{{ plugin.links.support }}" class="govuk-link govuk-body">
+                Support
+              </a>
+            </div>
+          {% endif %}
+
         </div>
+
       {% endif %}
 
-      {% if plugin.links.support %}
-        <div>
-          <a href="{{ plugin.links.support }}" class="govuk-link govuk-body">
-            Support
+      <div class="links-section">
+
+        <div class="govuk-!-margin-bottom-2">
+          <a href="#" class="govuk-link govuk-body">
+            Release notes
           </a>
         </div>
-      {% endif %}
+        <div class="govuk-!-margin-bottom-2">
+          <a href="#" class="govuk-link govuk-body">
+            Version history
+          </a>
+        </div>
 
-      <div>
-        <a href="#" class="govuk-link govuk-body">
-          Release notes
-        </a>
       </div>
-      <div>
-        <a href="#" class="govuk-link govuk-body">
-          Version history
-        </a>
+
+      <div class="links-section">
+
+        <div>
+          <a href="#" class="govuk-link govuk-body">
+            Report plugin
+          </a>
+        </div>
       </div>
-      <div>
-        <a href="#" class="govuk-link govuk-body">
-          Report plugin
-        </a>
-      </div>
+
     </div>
     <div class="govuk-grid-column-three-quarters">
       <img src="/plugin-assets/govuk-prototype-kit/lib/assets/images/plugins/{{ plugin.image }}" alt="" width="100%" class="govuk-!-margin-bottom-4">

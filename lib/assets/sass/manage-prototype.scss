@@ -482,6 +482,12 @@ body .govuk-prototype-kit-manage-prototype-govuk-tag {
   margin-left: 10px;
 }
 
+.links-section{
+  border-top: black 1px solid;
+  padding-top: 30px;
+  margin-bottom: 30px;
+}
+
 @media(min-width: 40.0525em) {
   .govuk-prototype-kit-manage-prototype-plugin-list__item-buttons {
     .govuk-button {
