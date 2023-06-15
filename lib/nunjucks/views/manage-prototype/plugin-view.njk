@@ -106,6 +106,18 @@
           </ul>
           </div>
         {% endif %}
+        {% if plugin.filters %}
+          <div class="included govuk-!-margin-top-4">
+            <p class="govuk-heading-s">
+              Filters in this plugin
+            </p>
+          <ul class="govuk-list govuk-list--bullet">
+            {% for item in plugin.filters %}
+              <li>{{item}}</li>
+            {% endfor %}
+          </ul>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
