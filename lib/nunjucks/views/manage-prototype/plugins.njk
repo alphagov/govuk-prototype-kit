@@ -26,13 +26,16 @@
     var resultTemplate = result => {
       return result
     }
+    var handleOnConfirm = result => {
+      window.location.href = '/manage-prototype/plugins/view?package=hmrc-frontend'
+    }
     function suggest (query, populateResults) {
       const results = [
-        'France',
-        'Germany',
-        'United Kingdom'
+        'Timeline (HMRC Frontend)',
+        'Accessible autocomplete',
+        'GOV.UK Frontend'
       ]
-      const filteredResults = results.filter(result => result.indexOf(query) !== -1)
+      const filteredResults = results.filter(result => result.toLowerCase().indexOf(query.toLowerCase()) !== -1)
       populateResults(filteredResults)
     }
     var element = document.querySelector('#search-input-container')
@@ -42,6 +45,7 @@
       id: id,
       source: suggest,
       displayMenu: 'overlay',
+      onConfirm: handleOnConfirm,
       templates: {
         inputValue: inputValueTemplate,
         suggestion: resultTemplate
