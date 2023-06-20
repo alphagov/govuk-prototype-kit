@@ -1,8 +1,8 @@
-const {startPerformanceTimer, endPerformanceTimer} = require("./lib/utils/performance")
-const {getConfigForPackage} = require("./lib/utils/requestHttps");
+const { startPerformanceTimer, endPerformanceTimer } = require('./lib/utils/performance')
+const { getConfigForPackage } = require('./lib/utils/requestHttps')
 
-async function demo(packageName) {
-  await getConfigForPackage(packageName);
+async function demo (packageName) {
+  await getConfigForPackage(packageName)
 
   console.log('got result for ', packageName)
 }
