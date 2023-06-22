@@ -1,0 +1,10 @@
+{
+  "templates": [
+    {
+      "name": "Plugin Fee page",
+      "path": "/templates/fee.njk",
+      "type": "nunjucks"
+    }
+  ],
+  "sass": "/sass/fee.scss"
+}

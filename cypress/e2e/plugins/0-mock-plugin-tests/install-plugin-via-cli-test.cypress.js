@@ -29,7 +29,7 @@ const pluginBazViewMarkup = `
 {% endblock %}
 `
 
-describe('Single Plugin Test', async () => {
+describe('Install Plugin via CLI Test', async () => {
   before(() => {
     uninstallPlugin('plugin-baz')
     createFile(pluginBazView, { data: pluginBazViewMarkup })
