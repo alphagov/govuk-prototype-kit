@@ -6,5 +6,9 @@
       "type": "nunjucks"
     }
   ],
-  "sass": "/sass/fee.scss"
+  "sass": "/sass/fee.scss",
+  "dependsUpon": [{
+    "packageName": "govuk-frontend",
+    "minVersion": "4.5.0"
+  }]
 }
