@@ -3,8 +3,5 @@
   "version": "1.0.0",
   "dependencies": {
     "govuk-prototype-kit": "file:../../../.."
-  },
-  "peerDependencies": {
-    "govuk-frontend": "^4.6.0"
   }
 }
