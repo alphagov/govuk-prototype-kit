@@ -35,7 +35,7 @@
 		"type": "nunjucks"
 	  }
 	],
-	"dependsUpon": [
+	"pluginDependencies": [
 	  {
 	    "packageName": "govuk-frontend",
 		  "minVersion": "4.5.0",

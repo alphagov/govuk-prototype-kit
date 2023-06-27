@@ -7,7 +7,7 @@
     }
   ],
   "sass": "/sass/fee.scss",
-  "dependsUpon": [{
+  "pluginDependencies": [{
     "packageName": "govuk-frontend",
     "minVersion": "4.5.0"
   }]
