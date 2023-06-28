@@ -51,6 +51,7 @@ ${ansiColors.red('Error: In section scripts, the path \'javascripts/step-by-step
 ${ansiColors.red('Error: In section scripts, the path \'javascripts/modules/foo-module-one.js\' does not start with a \'/\'')}
 ${ansiColors.red('Error: In section templates, the path \'/templates/step-by-step-navigation.html\' does not exist')}
 ${ansiColors.red('Error: In section templates, the path \'/templates/start-with-step-by-step.html\' does not exist')}
+${ansiColors.red('Error: The nunjucks file \'za-bar.njk\' does not exist')}
 
 `)
   })
