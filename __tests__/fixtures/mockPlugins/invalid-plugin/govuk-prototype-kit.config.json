@@ -4,6 +4,9 @@
 		"/sass/_step-by-step-navigation-header.scss",
 		"/sass/_step-by-step-navigation-related.scss"
 	],
+	"nunjucksPaths": [
+		"/macros"
+	],
 	"scripts": [
 		"javascripts/step-by-step-navigation.js",
 		"javascripts/step-by-step-polyfills.js",
@@ -23,5 +26,15 @@
 		"path": "/templates/start-with-step-by-step.html",
 		"type": "nunjucks"
 		}
-	]
+	],
+	"nunjucksMacros": [
+		{
+		  "importFrom": "foo-bar.njk",
+		  "macroName": "fooBar"
+		},
+		{
+		  "importFrom": "za-bar.njk",
+		  "macroName": "zaBar"
+		}
+	  ]
 }
