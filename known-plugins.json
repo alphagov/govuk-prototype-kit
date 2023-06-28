@@ -10,7 +10,7 @@
       "jquery",
       "notifications-node-client"
     ],
-    "mandatory": [
+    "required": [
       "govuk-prototype-kit",
       "govuk-frontend"
     ]
