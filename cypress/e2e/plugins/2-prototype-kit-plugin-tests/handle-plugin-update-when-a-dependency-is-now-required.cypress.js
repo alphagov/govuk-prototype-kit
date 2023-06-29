@@ -1,4 +1,4 @@
-import { installPlugin, uninstallPlugin, waitForApplication } from '../../utils'
+import { installPlugin, restoreStarterFiles, uninstallPlugin, waitForApplication } from '../../utils'
 
 const plugin = '@govuk-prototype-kit/common-templates'
 const pluginVersion = '1.1.1'
@@ -8,6 +8,8 @@ const dependencyPlugin = 'govuk-frontend'
 const dependencyPluginName = 'GOV.UK Frontend'
 
 describe('Handle a plugin update', () => {
+  after(restoreStarterFiles)
+
   it('when a dependency is now required', () => {
     installPlugin(plugin, pluginVersion)
     uninstallPlugin(dependencyPlugin)

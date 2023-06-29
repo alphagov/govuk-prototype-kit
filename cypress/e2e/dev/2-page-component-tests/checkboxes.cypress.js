@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const templatesView = path.join(Cypress.config('fixturesFolder'), 'views', 'checkbox-test.html')
 const appView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'checkbox-test.html')
@@ -15,6 +15,8 @@ describe('checkbox tests', () => {
     cy.task('log', `Copy ${templatesView} to ${appView}`)
     cy.task('copyFile', { source: templatesView, target: appView })
   })
+
+  after(restoreStarterFiles)
 
   const loadTestView = async () => {
     cy.task('log', 'The checkbox-test page should be displayed')

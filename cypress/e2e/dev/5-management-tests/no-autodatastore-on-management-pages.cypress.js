@@ -6,7 +6,7 @@ const path = require('path')
 const {
   copyFile,
   createFile,
-  waitForApplication
+  waitForApplication, restoreStarterFiles
 } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
@@ -41,6 +41,8 @@ describe('clear data page', () => {
     createFile(questionCheckView, { data: dataOutputNjk })
     cy.task('copyFromStarterFiles', { filename: 'app/data/session-data-defaults.js' })
   })
+
+  after(restoreStarterFiles)
 
   it('add data from query string, but not in magnagement pages', () => {
     waitForApplication()

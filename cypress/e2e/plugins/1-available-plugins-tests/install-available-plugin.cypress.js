@@ -93,8 +93,6 @@ describe('Management plugins: ', () => {
       .contains('Update')
       .click()
 
-    cy.get('#plugin-action-button').click()
-
     performPluginAction('update', plugin, pluginName)
   })
 

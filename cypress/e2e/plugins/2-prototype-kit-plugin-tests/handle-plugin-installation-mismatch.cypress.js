@@ -1,4 +1,4 @@
-const { replaceInFile, waitForApplication, uninstallPlugin, log } = require('../../utils')
+const { replaceInFile, waitForApplication, restoreStarterFiles, log } = require('../../utils')
 const path = require('path')
 const plugin = '@govuk-prototype-kit/task-list'
 const pluginVersion = '1.1.1'
@@ -7,13 +7,8 @@ const replacementText = `"dependencies": { "${plugin}": "${pluginVersion}",`
 const pkgJsonFile = path.join(Cypress.env('projectFolder'), 'package.json')
 const pluginsPage = '/manage-prototype/plugins'
 
-function restore () {
-  uninstallPlugin(plugin)
-}
-
 describe('Handle a plugin installation mismatch', () => {
-  before(restore)
-  after(restore)
+  after(restoreStarterFiles)
 
   it('where the prototype package.json specifies a dependency that has not been installed', () => {
     waitForApplication()
