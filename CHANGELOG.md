@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.9.1
+
 ### Fixes
 
 - [#2236: nunjucks macros validation error](https://github.com/alphagov/govuk-prototype-kit/pull/2236) - adding case for nunjucksMacros to the validator to fix bug.
