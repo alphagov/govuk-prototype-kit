@@ -15,10 +15,12 @@ const GREEN = 'rgb(0, 255, 0)'
 const settingsContent = `$govuk-brand-colour: ${RED}`
 const changedSettingsContent = `$govuk-brand-colour: ${GREEN}`
 
+function restore () {
+  cy.task('deleteFile', { filename: settingsStyle })
+}
+
 describe('watching settings.scss', () => {
-  before(() => {
-    cy.task('deleteFile', { filename: settingsStyle })
-  })
+  after(restore)
 
   it('Successfully reload settings changes', () => {
     waitForApplication()

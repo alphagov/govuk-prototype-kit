@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, copyFile } = require('../../utils')
+const { waitForApplication, copyFile, restoreStarterFiles } = require('../../utils')
 
 const appViewsPath = path.join('app', 'views')
 const indexViewPath = path.join(appViewsPath, 'index.html')
@@ -19,15 +19,16 @@ const startText = 'Click here to start'
 const linkText = `<a href="/start">${startText}</a>`
 
 describe('Link index page to start page', async () => {
-  before(() => {
+  beforeEach(() => {
     copyFile(templateStartView, startView)
-    cy.task('copyFromStarterFiles', { filename: indexViewPath })
     cy.task('replaceTextInFile', {
       filename: indexView,
       originalText: commentText,
       newText: linkText
     })
   })
+
+  afterEach(restoreStarterFiles)
 
   it('click start link', () => {
     waitForApplication()

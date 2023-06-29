@@ -3,9 +3,8 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
-const appIndexPath = path.join('app', 'views', 'index.html')
 const appConfigPath = path.join('app', 'config.json')
 const appConfig = path.join(Cypress.env('projectFolder'), appConfigPath)
 
@@ -17,11 +16,7 @@ const serverNameQuery = 'a.govuk-header__link.govuk-header__service-name, a.govu
 const managePagePath = '/manage-prototype'
 
 describe('change service name', () => {
-  before(() => {
-    // Restore index.html and config.json from prototype starter
-    cy.task('copyFromStarterFiles', { filename: appConfigPath })
-    cy.task('copyFromStarterFiles', { filename: appIndexPath })
-  })
+  afterEach(restoreStarterFiles)
 
   it('The service name should change to "cypress test" and the task should be set to "Done"', () => {
     waitForApplication()

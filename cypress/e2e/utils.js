@@ -38,6 +38,10 @@ const replaceInFile = (filename, originalText, source, newText) => {
   cy.task('replaceTextInFile', { filename, originalText, source, newText })
 }
 
+const restoreStarterFiles = () => {
+  cy.task('restoreStarterFiles')
+}
+
 function uninstallPlugin (plugin) {
   log(`Uninstalling ${plugin}`)
   cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
@@ -67,5 +71,6 @@ module.exports = {
   createFile,
   replaceInFile,
   installPlugin,
-  uninstallPlugin
+  uninstallPlugin,
+  restoreStarterFiles
 }

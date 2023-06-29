@@ -1,7 +1,7 @@
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
-const { setUpPages, cleanUpPages } = require('./link-page-utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
+const { setUpPages } = require('./link-page-utils')
 
 const startPath = '/start'
 
@@ -9,10 +9,11 @@ const howManyBalls = '3 or more'
 const mostImpressiveTrick = 'Standing on my head'
 
 describe('Question journey', async () => {
-  before(() => {
-    cleanUpPages()
+  beforeEach(() => {
     setUpPages()
   })
+
+  afterEach(restoreStarterFiles)
 
   it('Happy path journey', () => {
     waitForApplication()

@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { copyFile, deleteFile } = require('../../utils')
+const { copyFile } = require('../../utils')
 
 const templates = path.join(Cypress.config('fixturesFolder'), 'views')
 const startTemplate = path.join(templates, 'start.html')
@@ -43,14 +43,6 @@ const jugglingBallsAnswerRoute = '/juggling-balls-answer'
 const defaultHowManyBalls = 'None - I cannot juggle'
 const defaultMostImpressiveTrick = 'None - I cannot do tricks'
 
-const cleanUpPages = () => {
-  deleteFile(startView)
-  deleteFile(jugglingBallsView)
-  deleteFile(jugglingTrickView)
-  deleteFile(checkAnswersView)
-  deleteFile(confirmationView)
-}
-
 const createQuestionView = (view, content, nextPath) => {
   copyFile(questionTemplate, view)
   cy.task('replaceMultipleTextInFile', {
@@ -86,10 +78,6 @@ const setUpData = () => {
   cy.task('replaceTextInFile', { filename: appDataFile, originalText: '// Insert values here', newText: `"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"` })
 }
 
-const clearUpData = () => {
-  cy.task('replaceTextInFile', { filename: appDataFile, originalText: `"how-many-balls": "${defaultHowManyBalls}", "most-impressive-trick": "${defaultMostImpressiveTrick}"`, newText: '// Insert values here' })
-}
-
 const setUpBranchingPages = () => {
   // Set up ineligible view
   copyFile(contentTemplate, ineligibleView)
@@ -109,20 +97,8 @@ const setUpBranchingPages = () => {
   cy.task('replaceTextInFile', { filename: appRoutes, originalText: '// Add your routes here', source: jugglingBallsAnswerComponent })
 }
 
-const cleanUpBranchingPages = () => {
-  deleteFile(ineligibleView)
-}
-
-const restoreRoutes = () => {
-  cy.task('copyFromStarterFiles', { filename: appRoutesPath })
-}
-
 module.exports = {
   setUpPages,
   setUpBranchingPages,
-  setUpData,
-  cleanUpPages,
-  cleanUpBranchingPages,
-  clearUpData,
-  restoreRoutes
+  setUpData
 }

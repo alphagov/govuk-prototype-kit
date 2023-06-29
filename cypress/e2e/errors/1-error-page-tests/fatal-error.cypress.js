@@ -1,4 +1,5 @@
 const path = require('path')
+const { restoreStarterFiles } = require('../../utils')
 const completelyBrokenRoutesFixture = path.join(Cypress.config('fixturesFolder'), 'completely-broken-routes.js')
 const appRoutesPath = path.join('app', 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
@@ -10,15 +11,8 @@ const expectedErrorMessage = 'lkewjflkjadsf is not defined'
 
 const homePageName = 'GOV.UK Prototype Kit'
 
-function restore () {
-  // Restore config.json from prototype starter
-  cy.task('log', `Restore ${appRoutesPath}`)
-  cy.task('copyFromStarterFiles', { filename: appRoutesPath })
-}
-
 describe('Fatal Error Test', () => {
-  before(restore)
-  after(restore)
+  afterEach(restoreStarterFiles)
 
   it('fatal error should show an error page', () => {
     cy.task('waitUntilAppRestarts')
@@ -37,7 +31,7 @@ describe('Fatal Error Test', () => {
     cy.get('#govuk-prototype-kit-error-message').contains(expectedErrorMessage)
 
     cy.task('log', `Restore ${appRoutes} with original routes`)
-    restore()
+    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
 
     cy.wait(5000)
 

@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const imageFile = 'larry-the-cat.jpg'
 const cypressImages = path.join(Cypress.config('fixturesFolder'), 'images')
@@ -16,11 +16,7 @@ const pageFixturePath = path.join(Cypress.config('fixturesFolder'), 'views', pag
 const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
 
 describe('watch image files', () => {
-  before(() => {
-    cy.task('deleteFile', { filename: path.join(appImages, imageFile) })
-    cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), publicImages, imageFile) })
-    cy.task('deleteFile', { filename: pageAppPath })
-  })
+  afterEach(restoreStarterFiles)
 
   it(`image created in ${appImages} should be copied to ${publicImages} and accessible from the browser`, () => {
     const source = path.join(cypressImages, imageFile)

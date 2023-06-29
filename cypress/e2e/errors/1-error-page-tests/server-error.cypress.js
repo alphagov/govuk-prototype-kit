@@ -1,5 +1,5 @@
 const path = require('path')
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 const routesFixture = path.join(Cypress.config('fixturesFolder'), 'routes.js')
 const appRoutesPath = path.join('app', 'routes.js')
 const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
@@ -17,10 +17,7 @@ describe('Server Error Test', () => {
     cy.task('copyFile', { source: routesFixture, target: appRoutes })
   })
 
-  after(() => {
-    cy.task('log', `Restore ${appRoutesPath}`)
-    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
-  })
+  after(restoreStarterFiles)
 
   it('internal server error results in 500 page being displayed correctly', () => {
     waitForApplication()
@@ -32,6 +29,7 @@ describe('Server Error Test', () => {
     cy.get('#govuk-prototype-kit-error-file').contains(expectedErrorFileAndLine)
     cy.get('#govuk-prototype-kit-error-message').contains(expectedErrorMessage)
   })
+
   it('shows an error if a template cannot be found', () => {
     waitForApplication()
 

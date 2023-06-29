@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, installPlugin, uninstallPlugin, createFile } = require('../../utils')
+const { waitForApplication, installPlugin, uninstallPlugin, createFile, restoreStarterFiles } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const pluginBazView = path.join(appViews, 'plugin-baz.html')
@@ -35,6 +35,8 @@ describe('Install Plugin via CLI Test', async () => {
     createFile(pluginBazView, { data: pluginBazViewMarkup })
     installPlugin(`file:${pluginLocation}`)
   })
+
+  after(restoreStarterFiles)
 
   it('Loads plugin-baz view correctly', () => {
     waitForApplication('/plugin-baz')

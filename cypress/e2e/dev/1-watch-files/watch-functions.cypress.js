@@ -1,5 +1,5 @@
 const path = require('path')
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appFunctionsPath = path.join(Cypress.env('projectFolder'), 'app', 'functions.js')
 const appFiltersViewPath = path.join(Cypress.env('projectFolder'), 'app', 'views', 'functions.html')
@@ -16,11 +16,13 @@ const addFunction = govukPrototypeKit.views.addFunction
 addFunction('fooEmphasize', (content) => '<em>' + content + '</em>', { renderAsHtml: true })
 `
 describe('Functions Test', () => {
-  before(() => {
+  beforeEach(() => {
     // Restore functions file from prototype starter
     cy.task('createFile', { filename: appFunctionsPath, data: functionsAddition })
     cy.task('createFile', { filename: appFiltersViewPath, data: functionsViewMarkup })
   })
+
+  afterEach(restoreStarterFiles)
 
   it('view the functions html file', () => {
     waitForApplication('/functions')

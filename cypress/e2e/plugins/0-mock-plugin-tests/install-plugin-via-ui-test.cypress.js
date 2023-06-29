@@ -1,4 +1,4 @@
-const { installPlugin, uninstallPlugin } = require('../../utils')
+const { restoreStarterFiles } = require('../../utils')
 const path = require('path')
 const { loadTemplatesPage, managePluginsPagePath, performPluginAction, loadPluginsPage } = require('../plugin-utils')
 
@@ -10,14 +10,8 @@ const dependentPluginLocation = [fixtures, 'plugins', dependentPlugin].join(Cypr
 const dependencyPlugin = 'govuk-frontend'
 const dependencyPluginName = 'GOV.UK Frontend'
 
-function restore () {
-  installPlugin(dependencyPlugin)
-  uninstallPlugin(dependentPlugin)
-}
-
 describe('Install and uninstall Local Plugin via UI Test', async () => {
-  before(restore)
-  after(restore)
+  after(restoreStarterFiles)
 
   it(`The ${dependentPlugin} plugin templates are not available`, () => {
     loadTemplatesPage()
@@ -60,8 +54,7 @@ describe('Install and uninstall Local Plugin via UI Test', async () => {
 })
 
 describe('Install and uninstall Local Dependent Plugin via UI Test', async () => {
-  before(restore)
-  after(restore)
+  after(restoreStarterFiles)
 
   it(`The ${dependentPlugin} plugin templates are not available`, () => {
     loadTemplatesPage()

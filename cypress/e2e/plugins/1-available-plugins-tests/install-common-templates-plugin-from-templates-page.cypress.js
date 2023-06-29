@@ -1,4 +1,4 @@
-const { waitForApplication, uninstallPlugin } = require('../../utils')
+const { waitForApplication, uninstallPlugin, restoreStarterFiles } = require('../../utils')
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
@@ -13,6 +13,8 @@ describe('Install common templates from templates page', () => {
   before(() => {
     uninstallPlugin(plugin)
   })
+
+  after(restoreStarterFiles)
 
   it('install', () => {
     loadTemplatesPage()
