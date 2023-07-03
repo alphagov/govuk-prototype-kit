@@ -47,11 +47,7 @@
           </ul>
 
           <p class="govuk-body">
-            {% if verb.para == 'uninstall' %}
-              If you uninstall {{ chosenPlugin.name }}, these plugins will no longer work.
-            {% else %}
-              To {{ verb.para }} {{ chosenPlugin.name }} you also need to {{ verb.para }} these plugins.
-            {% endif %}
+            To {{ verb.para }} {{ chosenPlugin.name }} you also need to {{ verb.para }} {% if chosenPlugin.dependentPlugins | length > 1 %}these plugins{% else %}this plugin{% endif %}.
           </p>
           <div class="govuk-button-group">
             {{ govukButton({
