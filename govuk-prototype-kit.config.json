@@ -1,6 +1,7 @@
 {
   "assets": [
     "/lib/assets/images",
+    "/lib/assets/css",
     "/lib/assets/javascripts/optional",
     "/lib/assets/javascripts/manage-prototype"
   ],
