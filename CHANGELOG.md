@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [#2220: Specify plugin dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/2220)
+
 ## 13.9.1
 
 ### Fixes

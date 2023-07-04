@@ -1,0 +1,14 @@
+{
+  "templates": [
+    {
+      "name": "Plugin Fee page",
+      "path": "/templates/fee.njk",
+      "type": "nunjucks"
+    }
+  ],
+  "sass": "/sass/fee.scss",
+  "pluginDependencies": [{
+    "packageName": "govuk-frontend",
+    "minVersion": "4.5.0"
+  }]
+}

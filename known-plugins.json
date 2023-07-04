@@ -8,6 +8,10 @@
       "hmrc-frontend",
       "jquery",
       "notifications-node-client"
+    ],
+    "required": [
+      "govuk-prototype-kit",
+      "govuk-frontend"
     ]
   }
 }

@@ -34,5 +34,12 @@
 		"path": "/templates/start-with-step-by-step.html",
 		"type": "nunjucks"
 	  }
+	],
+	"pluginDependencies": [
+	  {
+	    "packageName": "govuk-frontend",
+		  "minVersion": "4.5.0",
+		  "maxVersion": "5.5.0"
+	  }
 	]
   }
