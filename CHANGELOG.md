@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 13.10.0
+
+### New features
+
 - [#2220: Specify plugin dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/2220)
 
 ## 13.9.1
