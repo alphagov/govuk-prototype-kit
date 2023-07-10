@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles } = require('../../utils')
+const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles, waitForApplication} = require('../../utils')
 const {
   failAction,
   performPluginAction,
@@ -56,6 +56,7 @@ describe('Management plugins: ', () => {
   after(restoreStarterFiles)
 
   it('CSRF Protection on POST action', () => {
+    waitForApplication()
     const installUrl = `${managePluginsPagePath}/install`
     cy.task('log', `Posting to ${installUrl} without csrf protection`)
     cy.request({

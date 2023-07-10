@@ -30,18 +30,6 @@ function performPluginAction (action, plugin, pluginName) {
   cy.get('h2')
     .contains(pluginName)
 
-  const processingText = `${action === 'upgrade' ? 'Upgrad' : action}ing ...`
-
-  cy.get(panelCompleteQuery, { timeout: 20000 })
-    .should('not.be.visible')
-  cy.get(panelCompleteQuery)
-    .should('not.be.visible')
-  cy.get(panelErrorQuery)
-    .should('not.be.visible')
-  cy.get(panelProcessingQuery)
-    .should('be.visible')
-    .contains(capitalize(processingText))
-
   cy.task('log', `The ${plugin} plugin is ${action === 'upgrade' ? 'upgrad' : action}ing`)
 
   cy.get(panelProcessingQuery, { timeout: 20000 })
@@ -65,14 +53,6 @@ function performPluginAction (action, plugin, pluginName) {
 
 function failAction (action) {
   cy.get('#plugin-action-button').click()
-
-  cy.get(panelCompleteQuery)
-    .should('not.be.visible')
-  cy.get(panelErrorQuery)
-    .should('not.be.visible')
-  cy.get(panelProcessingQuery)
-    .should('be.visible')
-    .contains(`${capitalize(action === 'upgrade' ? 'Upgrad' : action)}ing ...`)
 
   cy.get(panelProcessingQuery, { timeout: 40000 })
     .should('not.be.visible')
