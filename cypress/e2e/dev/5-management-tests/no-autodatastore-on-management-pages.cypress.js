@@ -6,7 +6,8 @@ const path = require('path')
 const {
   copyFile,
   createFile,
-  waitForApplication
+  waitForApplication,
+  restoreStarterFiles
 } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
@@ -36,6 +37,7 @@ function clearData () {
   cy.get('main a').should('contain.text', 'Prototype home page').click()
 }
 describe('clear data page', () => {
+  after(restoreStarterFiles)
   before(() => {
     copyFile(questionTemplate, questionView)
     createFile(questionCheckView, { data: dataOutputNjk })

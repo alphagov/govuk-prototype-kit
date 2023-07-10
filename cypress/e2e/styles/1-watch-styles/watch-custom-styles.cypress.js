@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const customStylesFixture = 'custom-styles'
 const customStylesFixtureName = `${customStylesFixture}.scss`
@@ -17,13 +17,8 @@ const pageFixturePath = path.join(Cypress.config('fixturesFolder'), 'views', pag
 const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
 
 describe('watch custom sass files', () => {
+  afterEach(restoreStarterFiles)
   describe(`sass file ${customStylesFixtureName} should be created and linked within ${pageFixturePath} and accessible from the browser as /${customStylesPublicPath}`, () => {
-    beforeEach(() => {
-      cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), customStylesPublicPath) })
-      cy.task('deleteFile', { filename: customStylesAppPath })
-      cy.task('deleteFile', { filename: pageAppPath })
-    })
-
     it('The colour of the paragraph should be changed to green', () => {
       waitForApplication()
       cy.visit('/')

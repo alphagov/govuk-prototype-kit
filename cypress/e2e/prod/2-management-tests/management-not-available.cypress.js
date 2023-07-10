@@ -1,8 +1,10 @@
 
 // local dependencies
-const { authenticate } = require('../../utils')
+const { authenticate, restoreStarterFiles } = require('../../utils')
 
 describe('management not available', () => {
+  after(restoreStarterFiles)
+
   it('when attempting to visit "/manage-prototype" page', () => {
     cy.task('waitUntilAppRestarts')
     cy.visit('/manage-prototype')

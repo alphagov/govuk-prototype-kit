@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, installPlugin } = require('../../utils')
+const { waitForApplication, installPlugin, restoreStarterFiles } = require('../../utils')
 const { manageTemplatesPagePath, getTemplateLink } = require('../plugin-utils')
 
 const plugin = '@govuk-prototype-kit/step-by-step'
@@ -19,13 +19,10 @@ const comments = el => cy.wrap(
 )
 
 describe('view template with default layout', () => {
-  before(() => {
-    cy.task('copyFromStarterFiles', { filename: defaultLayoutFilePath })
-    installPlugin(plugin, 'latest')
-  })
+  afterEach(restoreStarterFiles)
 
-  after(() => {
-    cy.task('copyFromStarterFiles', { filename: defaultLayoutFilePath })
+  beforeEach(() => {
+    installPlugin(plugin, 'latest')
   })
 
   it('deleting default layout does not cause viewing a template to fail to render', () => {

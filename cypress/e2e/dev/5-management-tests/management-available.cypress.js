@@ -1,8 +1,10 @@
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 describe('management available', () => {
+  after(restoreStarterFiles)
+
   it('when attempting to visit "/manage-prototype" page', () => {
     waitForApplication()
     cy.visit('/manage-prototype')

@@ -15,7 +15,7 @@ jobs:
       matrix:
         node-version: [18.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
-        type: [smoke, plugins, dev, prod, errors]
+        type: [smoke, plugins, styles, dev, prod, errors]
 
     name: Acceptance ${{ matrix.type }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}

@@ -1,9 +1,8 @@
-
 // core dependencies
 const path = require('path')
 
 // local dependencies
-const { copyFile, waitForApplication, installPlugin } = require('../../utils')
+const { copyFile, waitForApplication, installPlugin, restoreStarterFiles } = require('../../utils')
 const {
   assertHidden,
   assertVisible,
@@ -30,76 +29,79 @@ const stepByStepTestData = [{
   title2: 'Get a provisional licence'
 }]
 
-stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
-  const stepByStepTemplateView = path.join(Cypress.config('fixturesFolder'), 'views', `${name}.html`)
-  const stepByStepView = path.join(appViews, `${name}.html`)
-  const stepByStepPath = `/${name}`
+describe('step-by-step journeys', () => {
+  after(restoreStarterFiles)
+  stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
+    const stepByStepTemplateView = path.join(Cypress.config('fixturesFolder'), 'views', `${name}.html`)
+    const stepByStepView = path.join(appViews, `${name}.html`)
+    const stepByStepPath = `/${name}`
 
-  describe(`${name} journey`, async () => {
-    before(() => {
-      copyFile(stepByStepTemplateView, stepByStepView)
-    })
+    describe(`${name} journey`, async () => {
+      before(() => {
+        copyFile(stepByStepTemplateView, stepByStepView)
+      })
 
-    const loadPage = async () => {
-      cy.visit(stepByStepPath)
-      cy.get('h1').contains(heading)
-    }
+      const loadPage = async () => {
+        cy.visit(stepByStepPath)
+        cy.get('h1').contains(heading)
+      }
 
-    it('renders ok', () => {
-      waitForApplication()
+      it('renders ok', () => {
+        waitForApplication()
 
-      installPlugin(plugin)
+        installPlugin(plugin)
 
-      loadPage()
-      cy.get(titleQuery(1)).should('contain.text', title1)
-      cy.get(titleQuery(2)).should('contain.text', title2)
-      assertHidden(1)
-      assertHidden(2)
-    })
+        loadPage()
+        cy.get(titleQuery(1)).should('contain.text', title1)
+        cy.get(titleQuery(2)).should('contain.text', title2)
+        assertHidden(1)
+        assertHidden(2)
+      })
 
-    it('toggle step 1', () => {
-      waitForApplication()
+      it('toggle step 1', () => {
+        waitForApplication()
 
-      loadPage()
-      // click toggle button and check that only step 1 details are visible
-      cy.get(toggleButtonQuery(1)).click()
-      assertVisible(1)
-      assertHidden(2)
+        loadPage()
+        // click toggle button and check that only step 1 details are visible
+        cy.get(toggleButtonQuery(1)).click()
+        assertVisible(1)
+        assertHidden(2)
 
-      // click toggle button and check that only both steps are hidden
-      cy.get(toggleButtonQuery(1)).click()
-      assertHidden(1)
-      assertHidden(2)
-    })
+        // click toggle button and check that only both steps are hidden
+        cy.get(toggleButtonQuery(1)).click()
+        assertHidden(1)
+        assertHidden(2)
+      })
 
-    it('toggle step 2', () => {
-      waitForApplication()
+      it('toggle step 2', () => {
+        waitForApplication()
 
-      loadPage()
-      // click toggle button and check that only step 1 details are visible
-      cy.get(toggleButtonQuery(2)).click()
-      assertHidden(1)
-      assertVisible(2)
+        loadPage()
+        // click toggle button and check that only step 1 details are visible
+        cy.get(toggleButtonQuery(2)).click()
+        assertHidden(1)
+        assertVisible(2)
 
-      // click toggle button and check that only both steps are hidden
-      cy.get(toggleButtonQuery(2)).click()
-      assertHidden(1)
-      assertHidden(2)
-    })
+        // click toggle button and check that only both steps are hidden
+        cy.get(toggleButtonQuery(2)).click()
+        assertHidden(1)
+        assertHidden(2)
+      })
 
-    it('toggle all steps', () => {
-      waitForApplication()
+      it('toggle all steps', () => {
+        waitForApplication()
 
-      loadPage()
-      // click toggle button and check that all steps details are visible
-      cy.get(showHideAllLinkQuery).contains('Show all').click()
-      assertVisible(1)
-      assertVisible(2)
+        loadPage()
+        // click toggle button and check that all steps details are visible
+        cy.get(showHideAllLinkQuery).contains('Show all').click()
+        assertVisible(1)
+        assertVisible(2)
 
-      // click toggle button and check that all steps details are hidden
-      cy.get(showHideAllLinkQuery).contains('Hide all').click()
-      assertHidden(1)
-      assertHidden(2)
+        // click toggle button and check that all steps details are hidden
+        cy.get(showHideAllLinkQuery).contains('Hide all').click()
+        assertHidden(1)
+        assertHidden(2)
+      })
     })
   })
 })

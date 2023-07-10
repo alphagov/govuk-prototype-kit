@@ -7,7 +7,8 @@ const {
   copyFile,
   createFile,
   replaceInFile,
-  waitForApplication
+  waitForApplication,
+  restoreStarterFiles
 } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
@@ -47,6 +48,7 @@ function clearData () {
 const answer = 'Standing on my head'
 
 describe('clear data page', () => {
+  after(restoreStarterFiles)
   before(() => {
     copyFile(questionTemplate, questionView)
     replaceInFile(questionView, '<p>[Insert question content here]</p>', questionComponent)

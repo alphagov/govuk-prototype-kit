@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const pluginFooBarView = path.join(appViews, 'plugin-foo-bar.html')
@@ -33,6 +33,8 @@ const pluginFooBarSeparatedViewMarkup = `
 `
 
 describe('Plugins test', async () => {
+  after(restoreStarterFiles)
+
   before(() => {
     cy.task('createFile', { filename: pluginFooBarView, data: pluginFooBarSeparatedViewMarkup })
   })

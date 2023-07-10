@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appStylesPath = path.join('app', 'assets', 'sass')
 const appStylesheetPath = path.join(appStylesPath, 'application.scss')
@@ -18,18 +18,12 @@ const RED = 'rgb(255, 0, 0)'
 const BLACK = 'rgb(11, 12, 12)'
 
 describe('watch sass files', () => {
+  afterEach(restoreStarterFiles)
+
   describe(`sass file ${cypressTestStylePattern} should be created and included within the ${appStylesheet} and accessible from the browser as /${publicStylesheet}`, () => {
     const cssStatement = `
     .govuk-header { background: red; }
     `
-
-    before(() => {
-      cy.task('deleteFile', { filename: cypressTestStylePattern })
-
-      // Restore application.scss from prototype starter
-      cy.task('copyFromStarterFiles', { filename: appStylesheetPath })
-    })
-
     it('The colour of the header should be changed to red then back to black', () => {
       waitForApplication()
 

@@ -1,5 +1,5 @@
 const path = require('path')
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appFiltersPath = path.join(Cypress.env('projectFolder'), 'app', 'filters.js')
 const appFiltersViewPath = path.join(Cypress.env('projectFolder'), 'app', 'views', 'filters.html')
@@ -16,8 +16,8 @@ const addFilter = govukPrototypeKit.views.addFilter
 addFilter('foo__strong', (content) => '<strong>' + content + '</strong>', { renderAsHtml: true })
 `
 describe('Filters Test', () => {
+  after(restoreStarterFiles)
   before(() => {
-    // Restore filters file from prototype starter
     cy.task('createFile', { filename: appFiltersPath, data: filtersAddition })
     cy.task('createFile', { filename: appFiltersViewPath, data: filtersViewMarkup })
   })

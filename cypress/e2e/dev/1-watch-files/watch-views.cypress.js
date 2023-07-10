@@ -3,16 +3,14 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const templatesView = path.join(Cypress.config('fixturesFolder'), 'views', 'start.html')
 const appView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'start.html')
 const pagePath = '/start'
 
 describe('watching start page', () => {
-  before(() => {
-    cy.task('deleteFile', { filename: appView })
-  })
+  afterEach(restoreStarterFiles)
 
   it('Add and remove the start page', () => {
     waitForApplication()

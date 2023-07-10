@@ -5,6 +5,7 @@ const path = require('path')
 
 // local dependencies
 const { mkPrototype, startPrototype, installPlugins } = require('../../__tests__/utils')
+const { updateLastKnownVersions } = require('./restoreHelpers')
 
 const defaultKitPath = path.join(os.tmpdir(), 'cypress', 'test-prototype')
 
@@ -21,6 +22,8 @@ const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
     `"file:${fooLocation}"`,
     `"file:${barLocation}"`]
   )
+
+  await updateLastKnownVersions(testDir)
 
   if (process.argv.includes('--prodtest')) {
     await startPrototype(testDir, 'production')

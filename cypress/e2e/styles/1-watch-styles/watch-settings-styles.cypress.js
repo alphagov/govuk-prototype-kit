@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, createFile, deleteFile, replaceInFile } = require('../../utils')
+const { waitForApplication, createFile, deleteFile, replaceInFile, restoreStarterFiles } = require('../../utils')
 
 const appStylesPath = path.join('app', 'assets', 'sass')
 const appStylesFolder = path.join(Cypress.env('projectFolder'), appStylesPath)
@@ -16,9 +16,7 @@ const settingsContent = `$govuk-brand-colour: ${RED}`
 const changedSettingsContent = `$govuk-brand-colour: ${GREEN}`
 
 describe('watching settings.scss', () => {
-  before(() => {
-    cy.task('deleteFile', { filename: settingsStyle })
-  })
+  afterEach(restoreStarterFiles)
 
   it('Successfully reload settings changes', () => {
     waitForApplication()

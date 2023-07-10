@@ -25,6 +25,7 @@ const https = require('https')
 const { starterDir } = require('../../lib/utils/paths')
 const { sleep } = require('../e2e/utils')
 const { requestHttpsJson } = require('../../lib/utils/requestHttps')
+const { restoreToLastKnownVersion } = require('../scripts/restoreHelpers')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
 
@@ -61,6 +62,7 @@ module.exports = function setupNodeEvents (on, config) {
   config.env.password = process.env.PASSWORD
   config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
   config.env.tempFolder = path.join(__dirname, '..', 'temp')
+  config.env.starterDir = starterDir
 
   const packagePath = path.join(config.env.projectFolder, 'package.json')
   const packageContent = fs.readFileSync(packagePath, 'utf8')
@@ -96,19 +98,17 @@ module.exports = function setupNodeEvents (on, config) {
 
   const makeSureCypressCanInterpretTheResult = () => null
 
-  const existsFile = (filename, timeout = 0) => fsp.access(filename)
-    .then(makeSureCypressCanInterpretTheResult)
-    .catch((err) => err.code !== 'ENOENT'
-      ? err
-      : async () => {
-        if (timeout < 100) {
-          return null
-        } else {
-          await sleep(100)
-          return existsFile(filename, timeout - 100)
-        }
+  const existsFile = async (filename, timeout = 0) => {
+    do {
+      if (await fse.exists(filename)) {
+        return true
+      } else {
+        timeout -= 100
+        await sleep(100)
       }
-    )
+    } while (timeout > 0)
+    return false
+  }
 
   const notExistsFile = (filename, timeout = 0) => fsp.access(filename)
     .then(async () => {
@@ -238,8 +238,9 @@ module.exports = function setupNodeEvents (on, config) {
     deleteFile: ({ filename, timeout }) => deleteFile(filename, timeout)
       .then(makeSureCypressCanInterpretTheResult),
 
-    existsFile: ({ filename, timeout }) => existsFile(filename, timeout)
-      .then(makeSureCypressCanInterpretTheResult),
+    existsFile: ({ filename, timeout }) => existsFile(filename, timeout),
+
+    readFile: ({ filename }) => fsp.readFile(filename, 'utf8'),
 
     notExistsFile: ({ filename, timeout }) => notExistsFile(filename, timeout)
       .then(makeSureCypressCanInterpretTheResult),
@@ -290,6 +291,13 @@ module.exports = function setupNodeEvents (on, config) {
       return fse.readJson(appConfigPath)
         .then(existingConfig => Object.assign({}, existingConfig, additionalConfig))
         .then(newConfig => fse.writeJson(appConfigPath, newConfig))
+        .then(makeSureCypressCanInterpretTheResult)
+    },
+
+    restoreStarterFiles: () => {
+      const { projectFolder } = config.env
+
+      return restoreToLastKnownVersion(projectFolder)
         .then(makeSureCypressCanInterpretTheResult)
     },
 

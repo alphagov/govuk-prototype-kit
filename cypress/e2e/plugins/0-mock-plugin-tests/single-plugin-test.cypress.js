@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
 const pluginFooView = path.join(appViews, 'plugin-foo.html')
@@ -32,6 +32,8 @@ const pluginFooViewMarkup = `
 `
 
 describe('Single Plugin Test', async () => {
+  after(restoreStarterFiles)
+
   before(() => {
     cy.task('createFile', { filename: pluginFooView, data: pluginFooViewMarkup })
   })

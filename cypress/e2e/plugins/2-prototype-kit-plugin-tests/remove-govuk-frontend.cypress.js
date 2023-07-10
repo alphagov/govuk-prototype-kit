@@ -1,20 +1,17 @@
 const { managePluginsPagePath, performPluginAction } = require('../plugin-utils')
-const { uninstallPlugin, installPlugin } = require('../../utils')
-const path = require('path')
+const { uninstallPlugin, installPlugin, restoreStarterFiles } = require('../../utils')
 
 const plugin = 'govuk-frontend'
 const pluginName = 'GOV.UK Frontend'
 const dependentPlugin = '@govuk-prototype-kit/common-templates'
-const appConfigPath = path.join('app', 'config.json')
 
 describe('Manage prototype pages without govuk-frontend', () => {
-  before(() => {
-    cy.task('copyFromStarterFiles', { filename: appConfigPath })
+  beforeEach(() => {
     cy.task('addToConfigJson', { allowGovukFrontendUninstall: true })
   })
-  after(() => {
-    cy.task('copyFromStarterFiles', { filename: appConfigPath })
-  })
+
+  afterEach(restoreStarterFiles)
+
   it('Uninstall govuk-frontend', () => {
     uninstallPlugin(dependentPlugin)
 
