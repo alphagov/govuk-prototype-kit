@@ -6,7 +6,7 @@ const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 const fixtures = path.join(Cypress.config('fixturesFolder'))
 const dependentPlugin = 'plugin-fee'
 const dependentPluginName = 'Plugin Fee'
-const dependentPluginLocation = path.join(fixtures, 'plugins', dependentPlugin)
+const dependentPluginLocation = [fixtures, 'plugins', dependentPlugin].join(Cypress.config('pathSeparator'))
 const dependencyPlugin = 'govuk-frontend'
 const dependencyPluginName = 'GOV.UK Frontend'
 
