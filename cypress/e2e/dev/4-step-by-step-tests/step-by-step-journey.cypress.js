@@ -30,13 +30,13 @@ const stepByStepTestData = [{
 }]
 
 describe('step-by-step journeys', () => {
-  after(restoreStarterFiles)
   stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     const stepByStepTemplateView = path.join(Cypress.config('fixturesFolder'), 'views', `${name}.html`)
     const stepByStepView = path.join(appViews, `${name}.html`)
     const stepByStepPath = `/${name}`
 
     describe(`${name} journey`, async () => {
+      after(restoreStarterFiles)
       before(() => {
         copyFile(stepByStepTemplateView, stepByStepView)
       })
