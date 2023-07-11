@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles, waitForApplication} = require('../../utils')
+const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles, waitForApplication } = require('../../utils')
 const {
   failAction,
   performPluginAction,
