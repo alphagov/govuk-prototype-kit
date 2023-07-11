@@ -28,7 +28,7 @@ describe('Handle a plugin installation mismatch', () => {
       .find('button')
       .contains('Install')
 
-    log(`Force the plugins to be installed with an npm install`)
+    log('Force the plugins to be installed with an npm install')
     cy.exec(`cd ${Cypress.env('projectFolder')} && npm install`)
 
     log(`Make sure ${plugin} is displayed as installed`)
