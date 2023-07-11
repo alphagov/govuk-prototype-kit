@@ -11,12 +11,12 @@ describe('Meta - Reset', async () => {
 
     cy.task('createFile', { filename: fileToCreate, data: 'This is the content' })
 
-    cy.task('existsFile', { filename: fileToCreate })
+    cy.task('doesFileExist', { filename: fileToCreate })
       .should('eq', true)
   })
 
   it('should have deleted the file', () => {
-    cy.task('existsFile', { filename: fileToCreate })
+    cy.task('doesFileExist', { filename: fileToCreate })
       .should('eq', false)
   })
 
@@ -28,12 +28,12 @@ describe('Meta - Reset', async () => {
 
       cy.task('deleteFile', { filename, data: 'This is the content' })
 
-      cy.task('existsFile', { filename })
+      cy.task('doesFileExist', { filename })
         .should('eq', false)
     })
 
     it('should have recreated the file', () => {
-      cy.task('existsFile', { filename })
+      cy.task('doesFileExist', { filename })
         .should('eq', true)
 
       cy.task('readFile', { filename: path.join(Cypress.env('starterDir'), 'app', 'views', 'index.html') })
@@ -54,12 +54,12 @@ describe('Meta - Reset', async () => {
 
       cy.task('deleteFile', { filename })
 
-      cy.task('existsFile', { filename })
+      cy.task('doesFileExist', { filename })
         .should('eq', false)
     })
 
     it('should revert the file', () => {
-      cy.task('existsFile', { filename })
+      cy.task('doesFileExist', { filename })
         .should('eq', true)
 
       cy.task('readFile', { filename: path.join(Cypress.env('starterDir'), 'app', 'views', 'index.html') })
