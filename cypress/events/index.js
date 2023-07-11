@@ -112,7 +112,6 @@ module.exports = function setupNodeEvents (on, config) {
       }
     )
 
-
   const doesFileExist = async (filename, timeout = 0) => {
     do {
       if (await fse.exists(filename)) {
@@ -255,6 +254,8 @@ module.exports = function setupNodeEvents (on, config) {
 
     existsFile: ({ filename, timeout }) => existsFile(filename, timeout),
 
+    doesFileExist: ({ filename, timeout }) => doesFileExist(filename, timeout),
+    
     readFile: ({ filename }) => fsp.readFile(filename, 'utf8'),
 
     notExistsFile: ({ filename, timeout }) => notExistsFile(filename, timeout)
