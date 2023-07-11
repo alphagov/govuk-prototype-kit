@@ -1,10 +1,8 @@
 
 // local dependencies
-const { authenticate, restoreStarterFiles } = require('../../utils')
+const { authenticate } = require('../../utils')
 
 describe('home page in production', () => {
-  after(restoreStarterFiles)
-
   it('should load as expected', () => {
     cy.task('waitUntilAppRestarts')
     cy.visit('/')
