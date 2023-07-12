@@ -99,9 +99,17 @@ describe('migrate test prototype', () => {
   it('filters.js should be overwritten', () => {
     const filtersFileContents = getNormalisedFileContent(path.join(appDirectory, 'filters.js'))
 
-    expect(filtersFileContents).toEqual(
-      'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
-      'const addFilter = govukPrototypeKit.views.addFilter' + '\n'
+    expect(filtersFileContents).toEqual(`//
+// For guidance on how to create filters see:
+// https://prototype-kit.service.gov.uk/docs/filters
+//
+
+const govukPrototypeKit = require('govuk-prototype-kit')
+const addFilter = govukPrototypeKit.views.addFilter
+
+// Add your filters here
+
+`
     )
   })
 

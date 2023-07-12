@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2253: Add comments to the prototype-starter filters file](https://github.com/alphagov/govuk-prototype-kit/pull/2253)
+
 ## 13.10.0
 
 ### New features
