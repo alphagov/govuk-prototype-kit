@@ -20,7 +20,7 @@ const argv = parse(process.argv, {
 
 async function verboseLog () {
   await log(...arguments)
-  if (process.env.GPK_UPGRADE_DEBUG !== 'true' || !argv.options.verbose) {
+  if (process.env.GPK_UPDATE_DEBUG !== 'true' || !argv.options.verbose) {
     return
   }
   console.log('[debug]', ...arguments)

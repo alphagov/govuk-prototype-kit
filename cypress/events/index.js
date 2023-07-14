@@ -61,6 +61,7 @@ module.exports = function setupNodeEvents (on, config) {
   config.env.password = process.env.PASSWORD
   config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
   config.env.tempFolder = path.join(__dirname, '..', 'temp')
+  config.env.SKIP_PLUGIN_ACTION_INTERIM_STEP = process.env.SKIP_PLUGIN_ACTION_INTERIM_STEP
 
   const packagePath = path.join(config.env.projectFolder, 'package.json')
   const packageContent = fs.readFileSync(packagePath, 'utf8')
