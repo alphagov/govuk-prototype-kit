@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.10.1
+
 ### Fixes
 
 - [#2251: Fix plugin page failure after updating to 13.10.0](https://github.com/alphagov/govuk-prototype-kit/pull/2251)
