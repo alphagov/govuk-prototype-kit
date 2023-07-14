@@ -54,8 +54,8 @@ const {
   preflightChecks,
   deleteIfUnchanged,
   removeOldPatternIncludesFromSassFile,
-  upgradeIfUnchanged,
-  upgradeLayoutIfUnchanged,
+  updateIfUnchanged,
+  updateLayoutIfUnchanged,
   migrateConfig,
   prepareAppRoutes,
   prepareSass,
@@ -281,13 +281,13 @@ describe('migration steps', () => {
     expect(mockReporter).toHaveBeenNthCalledWith(3, true)
   })
 
-  it('upgrade unchanged application.js and fail changed filters.js', async () => {
+  it('update unchanged application.js and fail changed filters.js', async () => {
     const appFile = 'application.js'
     const filtersFile = 'filters.js'
     const additionalStep = jest.fn()
       .mockImplementationOnce(async () => true)
       .mockImplementationOnce(async () => false)
-    const result = await upgradeIfUnchanged([appFile, filtersFile], additionalStep)
+    const result = await updateIfUnchanged([appFile, filtersFile], additionalStep)
 
     expect(result).toEqual([true, false])
 
@@ -310,11 +310,11 @@ describe('migration steps', () => {
     ])
   })
 
-  it('upgrade if unchanged layout', async () => {
+  it('update if unchanged layout', async () => {
     const layout = 'app/views/layout.html'
     const starterLayout = 'app/views/layouts/main.html'
 
-    const result = await upgradeLayoutIfUnchanged(layout, starterLayout)
+    const result = await updateLayoutIfUnchanged(layout, starterLayout)
 
     expect(result).toBeTruthy()
 
@@ -334,7 +334,7 @@ describe('migration steps', () => {
 
     fileHelpers.matchAgainstOldVersions.mockReturnValue(false)
 
-    const result = await upgradeLayoutIfUnchanged(layout, starterLayout)
+    const result = await updateLayoutIfUnchanged(layout, starterLayout)
 
     expect(result).toBeFalsy()
 

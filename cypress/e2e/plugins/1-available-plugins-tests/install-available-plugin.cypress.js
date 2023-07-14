@@ -79,19 +79,19 @@ describe('Management plugins: ', () => {
     performPluginAction('install', plugin, pluginName)
   })
 
-  it(`Upgrade the ${plugin}@${version1} plugin to ${plugin}@${version2}`, () => {
+  it(`Update the ${plugin}@${version1} plugin to ${plugin}@${version2}`, () => {
     installPlugin(plugin, version1)
 
     loadPluginsPage()
-    cy.task('log', `Upgrade the ${plugin} plugin`)
+    cy.task('log', `Update the ${plugin} plugin`)
 
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
       .find('button')
-      .contains('Upgrade')
+      .contains('Update')
       .click()
 
-    performPluginAction('upgrade', plugin, pluginName)
+    performPluginAction('update', plugin, pluginName)
   })
 
   describe(`Create a page using a template from the ${plugin} plugin`, () => {

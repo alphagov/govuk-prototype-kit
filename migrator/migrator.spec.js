@@ -20,9 +20,9 @@ jest.mock('./migration-steps', () => {
     deleteUnusedFiles: jest.fn().mockResolvedValue(true),
     deleteUnusedDirectories: jest.fn().mockResolvedValue(true),
     deleteEmptyDirectories: jest.fn().mockResolvedValue([true]),
-    upgradeIfUnchanged: jest.fn(),
-    upgradeLayoutIfUnchanged: jest.fn().mockResolvedValue(true),
-    upgradeIfPossible: jest.fn(),
+    updateIfUnchanged: jest.fn(),
+    updateLayoutIfUnchanged: jest.fn().mockResolvedValue(true),
+    updateIfPossible: jest.fn(),
     updateUnbrandedLayouts: jest.fn().mockResolvedValue(true),
     deleteIfUnchanged: jest.fn().mockResolvedValue([true, true, true]),
     removeOldPatternIncludesFromSassFile: jest.fn().mockResolvedValue(true)
@@ -55,7 +55,7 @@ describe('migrator', () => {
 
   describe('migrate', () => {
     beforeEach(() => {
-      migrationSteps.upgradeIfUnchanged.mockResolvedValue([true, true, true])
+      migrationSteps.updateIfUnchanged.mockResolvedValue([true, true, true])
     })
 
     it('successful migration', async () => {
@@ -64,7 +64,7 @@ describe('migrator', () => {
     })
 
     it('unsuccessful migration', async () => {
-      migrationSteps.upgradeIfUnchanged.mockResolvedValue([true, false, true])
+      migrationSteps.updateIfUnchanged.mockResolvedValue([true, false, true])
       const success = await migrate()
       expect(success).toBeFalsy()
     })

@@ -25,7 +25,7 @@ const {
   deleteDirectoryIfEmpty,
   writeFileLinesToFile
 } = require('./file-helpers')
-const { upgradeIfPossible } = require('./upgrade-steps')
+const { updateIfPossible } = require('./update-steps')
 
 // Allows mocking of getOldConfig
 const getOldConfig = (oldConfigPath) => config.getConfig(require(path.join(projectDir, oldConfigPath)))
@@ -208,7 +208,7 @@ async function deleteIfUnchanged (filePaths) {
 
 // Special case app/views/layout.html, as it has moved in prototype
 // starter files, but we don't want to move for existing users
-async function upgradeLayoutIfUnchanged (filePath, starterFilePath) {
+async function updateLayoutIfUnchanged (filePath, starterFilePath) {
   const matchFound = await matchAgainstOldVersions(filePath)
   const reporter = await addReporter(`Overwrite ${filePath}`)
 
@@ -227,7 +227,7 @@ async function upgradeLayoutIfUnchanged (filePath, starterFilePath) {
   return result
 }
 
-async function upgradeIfUnchanged (filePaths, additionalStep) {
+async function updateIfUnchanged (filePaths, additionalStep) {
   const results = await Promise.all(filePaths.map(async filePath => {
     const matchFound = await matchAgainstOldVersions(filePath)
 
@@ -274,8 +274,8 @@ module.exports = {
   deleteUnusedDirectories,
   deleteEmptyDirectories,
   deleteIfUnchanged,
-  upgradeLayoutIfUnchanged,
-  upgradeIfUnchanged,
+  updateLayoutIfUnchanged,
+  updateIfUnchanged,
   updateUnbrandedLayouts,
-  upgradeIfPossible
+  updateIfPossible
 }
