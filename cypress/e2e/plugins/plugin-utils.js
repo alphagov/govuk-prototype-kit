@@ -30,19 +30,21 @@ function performPluginAction (action, plugin, pluginName) {
   cy.get('h2')
     .contains(pluginName)
 
-  const processingText = `${action === 'upgrade' ? 'Upgrad' : action}ing ...`
+  const processingText = `${action === 'update' ? 'Updat' : action}ing ...`
 
-  cy.get(panelCompleteQuery, { timeout: 20000 })
-    .should('not.be.visible')
-  cy.get(panelCompleteQuery)
-    .should('not.be.visible')
-  cy.get(panelErrorQuery)
-    .should('not.be.visible')
-  cy.get(panelProcessingQuery)
-    .should('be.visible')
-    .contains(capitalize(processingText))
+  if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
+    cy.get(panelCompleteQuery, { timeout: 20000 })
+      .should('not.be.visible')
+    cy.get(panelCompleteQuery)
+      .should('not.be.visible')
+    cy.get(panelErrorQuery)
+      .should('not.be.visible')
+    cy.get(panelProcessingQuery)
+      .should('be.visible')
+      .contains(capitalize(processingText))
+  }
 
-  cy.task('log', `The ${plugin} plugin is ${action === 'upgrade' ? 'upgrad' : action}ing`)
+  cy.task('log', `The ${plugin} plugin is ${action === 'update' ? 'updat' : action}ing`)
 
   cy.get(panelProcessingQuery, { timeout: 20000 })
     .should('not.be.visible')
@@ -66,13 +68,15 @@ function performPluginAction (action, plugin, pluginName) {
 function failAction (action) {
   cy.get('#plugin-action-button').click()
 
-  cy.get(panelCompleteQuery)
-    .should('not.be.visible')
-  cy.get(panelErrorQuery)
-    .should('not.be.visible')
-  cy.get(panelProcessingQuery)
-    .should('be.visible')
-    .contains(`${capitalize(action === 'upgrade' ? 'Upgrad' : action)}ing ...`)
+  if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
+    cy.get(panelCompleteQuery)
+      .should('not.be.visible')
+    cy.get(panelErrorQuery)
+      .should('not.be.visible')
+    cy.get(panelProcessingQuery)
+      .should('be.visible')
+      .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing ...`)
+  }
 
   cy.get(panelProcessingQuery, { timeout: 40000 })
     .should('not.be.visible')
@@ -82,7 +86,7 @@ function failAction (action) {
     .should('be.visible')
 
   cy.get(`${panelErrorQuery} .govuk-panel__title`)
-    .contains(`There was a problem ${action === 'upgrade' ? 'Upgrad' : action}ing`)
+    .contains(`There was a problem ${action === 'update' ? 'Updat' : action}ing`)
   cy.get(`${panelErrorQuery} a`)
     .contains('Please contact support')
 }

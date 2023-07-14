@@ -29,7 +29,7 @@ function occurencesOf (searchText, text) {
   return text.split(searchText).length - 1
 }
 
-async function upgradeApplicationJs (fullPath, reporter) {
+async function updateApplicationJs (fullPath, reporter) {
   const commentText = `//
 // For guidance on how to add JavaScript see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
@@ -131,7 +131,7 @@ const oldFilterThirdCommentLines = `
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */`.split('\n').map(line => line.trim())
 
-async function upgradeFiltersJs (fullPath, reporter) {
+async function updateFiltersJs (fullPath, reporter) {
   const firstLine = 'module.exports = function (env) {'
   const lastLine = 'return filters'
   const originalContent = await fsp.readFile(fullPath, 'utf8')
@@ -166,7 +166,7 @@ Object.entries(filters).forEach(([name, fn]) => addFilter(name, fn))
   return true
 }
 
-async function upgradeIfPossible (filePath, matchFound) {
+async function updateIfPossible (filePath, matchFound) {
   if (matchFound) {
     return true
   } else {
@@ -175,9 +175,9 @@ async function upgradeIfPossible (filePath, matchFound) {
     const filename = fullPath.split(path.sep).pop()
     switch (filename) {
       case 'application.js':
-        return await upgradeApplicationJs(fullPath, reporter)
+        return await updateApplicationJs(fullPath, reporter)
       case 'filters.js':
-        return await upgradeFiltersJs(fullPath, reporter)
+        return await updateFiltersJs(fullPath, reporter)
       default:
         await reporter(false)
         return false
@@ -186,5 +186,5 @@ async function upgradeIfPossible (filePath, matchFound) {
 }
 
 module.exports = {
-  upgradeIfPossible
+  updateIfPossible
 }

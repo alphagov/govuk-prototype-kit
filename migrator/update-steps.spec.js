@@ -27,9 +27,9 @@ jest.mock('./reporter', () => {
 const fsp = require('fs').promises
 const reporter = require('./reporter')
 const { projectDir } = require('../lib/utils/paths')
-const { upgradeIfPossible } = require('./upgrade-steps')
+const { updateIfPossible } = require('./update-steps')
 
-describe('upgrade steps', () => {
+describe('update steps', () => {
   const mockReporter = reporter.mockReporter
 
   afterEach(() => {
@@ -40,7 +40,7 @@ describe('upgrade steps', () => {
     const applicationJsFile = path.join('app', 'assets', 'javascripts', 'application.js')
     const globalDefinition = '/* global $ */'
 
-    it('upgrade application file if possible replacing jquery ready', async () => {
+    it('update application file if possible replacing jquery ready', async () => {
       const matchFound = false
       const originalFileContents = `${globalDefinition}
 
@@ -67,8 +67,8 @@ window.GOVUKPrototypeKit.documentReady(function () {
       fsp.readFile
         .mockReturnValueOnce(originalFileContents)
 
-      // mock call upgradeIfPossible method (get this working first)
-      const result = await upgradeIfPossible(applicationJsFile, matchFound)
+      // mock call updateIfPossible method (get this working first)
+      const result = await updateIfPossible(applicationJsFile, matchFound)
       expect(result).toBeTruthy()
       const expectedFileName = path.join(projectDir, applicationJsFile)
 
@@ -87,7 +87,7 @@ window.GOVUKPrototypeKit.documentReady(function () {
       expect(mockReporter).toHaveBeenCalledWith(true)
     })
 
-    it('upgrade application file if possible without replacing jquery ready', async () => {
+    it('update application file if possible without replacing jquery ready', async () => {
       const matchFound = false
       const originalFileContents = `${globalDefinition}
 
@@ -116,8 +116,8 @@ $(document).ready(function () {
 
       fsp.readFile.mockReturnValue(originalFileContents) // For the second call
 
-      // mock call upgradeIfPossible method (get this working first)
-      const result = await upgradeIfPossible(applicationJsFile, matchFound)
+      // mock call updateIfPossible method (get this working first)
+      const result = await updateIfPossible(applicationJsFile, matchFound)
       expect(result).toBeTruthy()
       const expectedFileName = path.join(projectDir, applicationJsFile)
 
@@ -136,7 +136,7 @@ $(document).ready(function () {
       expect(mockReporter).toHaveBeenCalledWith(true)
     })
 
-    it('upgrade application file when there are no similarities', async () => {
+    it('update application file when there are no similarities', async () => {
       const matchFound = false
       const mainFileContents = `$('a').on('click', function () {
   console.log('Hello')
@@ -157,8 +157,8 @@ ${mainFileContents}`
 
       fsp.readFile.mockReturnValue(fileContents)
 
-      // mock call upgradeIfPossible method (get this working first)
-      const result = await upgradeIfPossible(applicationJsFile, matchFound)
+      // mock call updateIfPossible method (get this working first)
+      const result = await updateIfPossible(applicationJsFile, matchFound)
       expect(result).toBeTruthy()
 
       const actualFileContent = fsp.writeFile.mock.calls[0][1]
@@ -171,7 +171,7 @@ ${mainFileContents}`
       expect(mockReporter).toHaveBeenCalledWith(true)
     })
 
-    it('upgrade application file if possible when there only multiple jquery document ready', async () => {
+    it('update application file if possible when there only multiple jquery document ready', async () => {
       const matchFound = false
       const fileContents = `${globalDefinition}
 
@@ -206,8 +206,8 @@ window.GOVUKPrototypeKit.documentReady(function () {
 
       fsp.readFile.mockReturnValue(fileContents)
 
-      // mock call upgradeIfPossible method (get this working first)
-      const result = await upgradeIfPossible(applicationJsFile, matchFound)
+      // mock call updateIfPossible method (get this working first)
+      const result = await updateIfPossible(applicationJsFile, matchFound)
       expect(result).toBeTruthy()
 
       const actualFileContent = fsp.writeFile.mock.calls[0][1]
@@ -220,7 +220,7 @@ window.GOVUKPrototypeKit.documentReady(function () {
       expect(mockReporter).toHaveBeenCalledWith(true)
     })
 
-    it('upgrade application file if possible when there are multiple jquery ready and other statements ', async () => {
+    it('update application file if possible when there are multiple jquery ready and other statements ', async () => {
       const matchFound = false
       const mainFileContents = `$(document).ready(function () {
   $.doSomething()
@@ -246,8 +246,8 @@ ${mainFileContents}`
 
       fsp.readFile.mockReturnValue(fileContents)
 
-      // mock call upgradeIfPossible method (get this working first)
-      const result = await upgradeIfPossible(applicationJsFile, matchFound)
+      // mock call updateIfPossible method (get this working first)
+      const result = await updateIfPossible(applicationJsFile, matchFound)
       expect(result).toBeTruthy()
 
       const actualFileContent = fsp.writeFile.mock.calls[0][1]
@@ -261,7 +261,7 @@ ${mainFileContents}`
     })
   })
 
-  it('upgrade filters file if possible', async () => {
+  it('update filters file if possible', async () => {
     const filtersJsFile = path.join('app', 'assets', 'javascripts', 'filters.js')
     const matchFound = false
     const originalFileContents = `module.exports = function (env) {
@@ -339,8 +339,8 @@ Object.entries(filters).forEach(([name, fn]) => addFilter(name, fn))
       .mockReturnValueOnce(originalFileContents) // For the first call
       .mockReturnValueOnce(starterFileContents) // For the second call
 
-    // mock call upgradeIfPossible method (get this working first)
-    const result = await upgradeIfPossible(filtersJsFile, matchFound)
+    // mock call updateIfPossible method (get this working first)
+    const result = await updateIfPossible(filtersJsFile, matchFound)
     expect(result).toBeTruthy()
     const expectedFileName = path.join(projectDir, filtersJsFile)
 

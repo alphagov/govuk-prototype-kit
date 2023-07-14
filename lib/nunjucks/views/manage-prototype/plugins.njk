@@ -24,7 +24,7 @@
                   <br/>
                   <span class="govuk-caption-m">From {{ plugin.scope }}</span>
                 {% endif %}
-                {% if plugin.upgradeLink %}
+                {% if plugin.updateLink %}
                   <br/>
                   v{{ plugin.latestVersion }} available
                 {% endif %}
@@ -47,11 +47,11 @@
                         attributes: { id: "uninstall-" + plugin.packageName, formaction: plugin.uninstallLink }
                     }) }}
                 {% endif %}
-                {% if plugin.upgradeLink %}
+                {% if plugin.updateLink %}
                     {{ govukButton({
-                        html: 'Upgrade <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                        html: 'Update <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
                         classes: "govuk-button--secondary",
-                        attributes: { id: "upgrade-" + plugin.packageName, formaction: plugin.upgradeLink }
+                        attributes: { id: "update-" + plugin.packageName, formaction: plugin.updateLink }
                     }) }}
                 {% endif %}
                 {% if plugin.helpLink %}
