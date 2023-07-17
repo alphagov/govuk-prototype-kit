@@ -47,7 +47,7 @@
           </ul>
 
           <p class="govuk-body">
-            To {{ verb.para }} {{ chosenPlugin.name }} you also need to {{ verb.other }} {% if chosenPlugin.dependentPlugins | length > 1 %}these plugins{% else %}this plugin{% endif %}.
+            To {{ verb.para }} {{ chosenPlugin.name }} you also need to {{ verb.dependencyPara }} {% if chosenPlugin.dependentPlugins | length > 1 %}these plugins{% else %}this plugin{% endif %}.
           </p>
           <div class="govuk-button-group">
             {{ govukButton({
