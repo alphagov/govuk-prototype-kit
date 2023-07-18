@@ -76,7 +76,7 @@ module.exports = function setupNodeEvents (on, config) {
     delay: 3000,
     resources: [config.baseUrl],
     timeout
-  }).then(() => sleep(2000))
+  })
   const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
   const replaceText = ({ text, originalText, newText, source }) => {
     return getReplacementText(newText, source)
