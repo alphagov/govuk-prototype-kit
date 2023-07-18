@@ -1,11 +1,13 @@
 // local dependencies
-const { uninstallPlugin } = require('../../utils')
+const { uninstallPlugin, restoreStarterFiles } = require('../../utils')
 const { managePluginsPagePath, loadTemplatesPage, loadPluginsPage } = require('../plugin-utils')
 
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 
 async function installPluginTests ({ plugin, templates, version }) {
   describe(plugin, () => {
+    after(restoreStarterFiles)
+
     it(`The ${plugin} plugin templates are not available`, () => {
       uninstallPlugin(plugin)
       loadTemplatesPage()
@@ -59,6 +61,8 @@ async function installPluginTests ({ plugin, templates, version }) {
 }
 
 describe('Plugin tests', () => {
+  after(restoreStarterFiles)
+
   installPluginTests({
     plugin: '@govuk-prototype-kit/common-templates',
     version: '1.1.1',

@@ -72,7 +72,11 @@ module.exports = function setupNodeEvents (on, config) {
     config.env.packageFolder = path.join(config.env.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
-  const waitUntilAppRestarts = async (timeout) => await waitOn({ delay: 3000, resources: [config.baseUrl], timeout })
+  const waitUntilAppRestarts = (timeout = 20000) => waitOn({
+    delay: 3000,
+    resources: [config.baseUrl],
+    timeout
+  })
   const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
   const replaceText = ({ text, originalText, newText, source }) => {
     return getReplacementText(newText, source)
@@ -208,6 +212,15 @@ module.exports = function setupNodeEvents (on, config) {
     })
   }
 
+  const restoreStarterFiles = () => {
+    const { projectFolder } = config.env
+    const appDir = path.join(projectFolder, 'app')
+    return fse.emptyDir(appDir)
+      .then(() => fse.copy(starterDir, projectFolder))
+      .then(() => waitUntilAppRestarts())
+      .then(makeSureCypressCanInterpretTheResult)
+  }
+
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)
       .then(() => fsp.copyFile(source, target))
@@ -291,6 +304,12 @@ module.exports = function setupNodeEvents (on, config) {
       return fse.readJson(appConfigPath)
         .then(existingConfig => Object.assign({}, existingConfig, additionalConfig))
         .then(newConfig => fse.writeJson(appConfigPath, newConfig))
+        .then(makeSureCypressCanInterpretTheResult)
+    },
+
+    restoreStarterFiles: () => {
+      log('Restoring to starter files')
+      return restoreStarterFiles()
         .then(makeSureCypressCanInterpretTheResult)
     },
 

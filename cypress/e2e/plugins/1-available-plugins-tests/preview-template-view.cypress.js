@@ -1,5 +1,5 @@
 // local dependencies
-const { installPlugin, waitForApplication } = require('../../utils')
+const { installPlugin, waitForApplication, restoreStarterFiles } = require('../../utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 const { manageTemplatesPagePath, getTemplateLink } = require('../plugin-utils')
 
@@ -13,6 +13,8 @@ describe('Management plugins: ', () => {
     cy.task('log', 'Visit the manage prototype plugins page')
     installPlugin(plugin, 'latest')
   })
+
+  after(restoreStarterFiles)
 
   it(`Preview a ${plugin} template`, () => {
     waitForApplication(manageTemplatesPagePath)

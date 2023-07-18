@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appRoutesPath = path.join('app', 'routes.js')
 
@@ -12,10 +12,7 @@ const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
 const pagePath = '/cypress-test'
 
 describe('watch route file', () => {
-  before(() => {
-    // Restore routes file from prototype starter
-    cy.task('copyFromStarterFiles', { filename: appRoutesPath })
-  })
+  afterEach(restoreStarterFiles)
 
   it(`add and remove ${pagePath} route`, () => {
     waitForApplication()

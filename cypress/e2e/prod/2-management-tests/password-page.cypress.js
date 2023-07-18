@@ -1,9 +1,12 @@
+const { restoreStarterFiles } = require('../../utils')
 const homePath = '/index'
 const passwordPath = '/manage-prototype/password'
 const errorQuery = 'error=wrong-password'
 const returnURLQuery = `returnURL=${encodeURIComponent(homePath)}`
 
 describe('password page', () => {
+  after(restoreStarterFiles)
+
   it('valid password', () => {
     cy.task('waitUntilAppRestarts')
     cy.visit(homePath)

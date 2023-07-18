@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication } = require('../../utils')
+const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appJsPath = path.join('app', 'assets', 'javascripts', 'application.js')
 const appJs = path.join(Cypress.env('projectFolder'), appJsPath)
@@ -14,10 +14,7 @@ const scriptToAdd = `
 `
 
 describe('watch application.js', () => {
-  before(() => {
-    // Restore application.js from prototype starter
-    cy.task('copyFromStarterFiles', { filename: appJsPath })
-  })
+  afterEach(restoreStarterFiles)
 
   it('changes to application.js should be reflected in browser', () => {
     waitForApplication()
