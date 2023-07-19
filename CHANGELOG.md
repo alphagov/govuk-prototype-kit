@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 13.11.0
+
+### New features
+
+- [#2257: Renamed upgrade to update](https://github.com/alphagov/govuk-prototype-kit/pull/2257)
+
+- [#2245: Upgrading plugins with dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/2245)
+
 ## 13.10.1
 
 ### Fixes
