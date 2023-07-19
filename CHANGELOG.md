@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2264: Add back to templates link](https://github.com/alphagov/govuk-prototype-kit/pull/2264)
+
 ## 13.11.0
 
 ### New features
