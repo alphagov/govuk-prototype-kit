@@ -20,7 +20,7 @@ describe('watch route file', () => {
     cy.task('log', 'The cypress test page should not be found')
     cy.visit(pagePath, { failOnStatusCode: false })
     cy.get('body')
-      .should('contains.text', `There is no page at ${pagePath}`)
+      .contains(`There is no page at ${pagePath}`)
 
     cy.task('log', `Replace ${appRoutes} with Cypress routes`)
     cy.task('copyFile', { source: routesFixture, target: appRoutes })
@@ -30,7 +30,7 @@ describe('watch route file', () => {
     cy.task('log', 'The cypress test page should be displayed')
     cy.visit(pagePath)
     cy.get('h1')
-      .should('contains.text', 'CYPRESS TEST PAGE')
+      .contains('CYPRESS TEST PAGE')
 
     cy.task('log', `Restore ${appRoutesPath}`)
     cy.task('copyFromStarterFiles', { filename: appRoutesPath })
@@ -40,6 +40,6 @@ describe('watch route file', () => {
     cy.task('log', 'The cypress test page should not be found')
     cy.visit(pagePath, { failOnStatusCode: false })
     cy.get('body')
-      .should('contains.text', `There is no page at ${pagePath}`)
+      .contains(`There is no page at ${pagePath}`)
   })
 })
