@@ -32,5 +32,7 @@ describe('Management plugins: ', () => {
     cy.get(showHideAllLinkQuery).contains('Show all').click()
     assertVisible(1)
     assertVisible(2)
+
+    cy.wait(2000) // Delay before restore otherwise restore fails in this test
   })
 })
