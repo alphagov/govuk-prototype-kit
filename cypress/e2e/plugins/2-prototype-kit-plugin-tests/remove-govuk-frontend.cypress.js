@@ -6,13 +6,11 @@ const pluginName = 'GOV.UK Frontend'
 const dependentPlugin = '@govuk-prototype-kit/common-templates'
 
 describe('Manage prototype pages without govuk-frontend', () => {
-  beforeEach(() => {
-    cy.task('addToConfigJson', { allowGovukFrontendUninstall: true })
-  })
-
   afterEach(restoreStarterFiles)
 
   it('Uninstall govuk-frontend', () => {
+    cy.task('addToConfigJson', { allowGovukFrontendUninstall: true })
+
     uninstallPlugin(dependentPlugin)
 
     cy.task('waitUntilAppRestarts')

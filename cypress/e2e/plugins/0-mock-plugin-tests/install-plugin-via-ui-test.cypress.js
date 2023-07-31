@@ -1,6 +1,11 @@
 const { restoreStarterFiles } = require('../../utils')
 const path = require('path')
-const { loadTemplatesPage, managePluginsPagePath, performPluginAction, loadPluginsPage } = require('../plugin-utils')
+const {
+  loadTemplatesPage,
+  managePluginsPagePath,
+  performPluginAction,
+  loadPluginsPage
+} = require('../plugin-utils')
 
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 const fixtures = path.join(Cypress.config('fixturesFolder'))

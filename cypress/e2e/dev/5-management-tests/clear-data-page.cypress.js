@@ -7,7 +7,7 @@ const {
   copyFile,
   createFile,
   replaceInFile,
-  waitForApplication
+  waitForApplication, restoreStarterFiles
 } = require('../../utils')
 
 const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
@@ -54,6 +54,8 @@ describe('clear data page', () => {
     createFile(questionCheckView, { data: questionTestMarkUp })
     cy.task('copyFromStarterFiles', { filename: 'app/data/session-data-defaults.js' })
   })
+
+  after(restoreStarterFiles)
 
   it('save and clear data', () => {
     waitForApplication()

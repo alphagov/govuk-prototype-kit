@@ -1,4 +1,4 @@
-const { replaceInFile, waitForApplication, uninstallPlugin, log } = require('../../utils')
+const { replaceInFile, waitForApplication, restoreStarterFiles, log } = require('../../utils')
 const path = require('path')
 const { performPluginAction } = require('../plugin-utils')
 const plugin = '@govuk-prototype-kit/task-list'
@@ -7,13 +7,8 @@ const originalText = '"dependencies": {'
 const replacementText = `"dependencies": { "${plugin}": "${pluginVersion}",`
 const pkgJsonFile = path.join(Cypress.env('projectFolder'), 'package.json')
 
-function restore () {
-  uninstallPlugin(plugin)
-}
-
 describe('Allow upgrade in URLs', () => {
-  before(restore)
-  after(restore)
+  after(restoreStarterFiles)
 
   it('When updating the old upgrade URL should still work', () => {
     waitForApplication()

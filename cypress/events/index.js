@@ -25,6 +25,8 @@ const https = require('https')
 const { starterDir } = require('../../lib/utils/paths')
 const { sleep } = require('../e2e/utils')
 const { requestHttpsJson } = require('../../lib/utils/requestHttps')
+const { getFileHash } = require('../../migrator/file-helpers')
+const { exec } = require('../../lib/exec')
 
 const log = (message) => console.log(`${new Date().toLocaleTimeString()} => ${message}`)
 
@@ -186,40 +188,81 @@ module.exports = function setupNodeEvents (on, config) {
     }
 
     const retry = async () => {
-      console.log(`Will retry in ${delay} milliseconds`)
+      log(`Will retry in ${delay} milliseconds`)
       await sleep(delay)
       await pluginInstalled(plugin, version, timeout - delay)
     }
 
     return new Promise((resolve) => {
       const pkgFilePath = pathToPackageFile(plugin)
-      console.log(`Waiting for ${pkgFilePath} to exist`)
+      log(`Waiting for ${pkgFilePath} to exist`)
       return existsFile(pkgFilePath, timeout).then(() => {
         if (version) {
           const packageContent = fs.readFileSync(pkgFilePath, 'utf8')
           const { version: currentVersion } = JSON.parse(packageContent)
-          console.log(`Current version of ${plugin} is @${currentVersion}`)
+          log(`Current version of ${plugin} is @${currentVersion}`)
           if (version === '@' + currentVersion) {
             resolve(makeSureCypressCanInterpretTheResult)
           } else {
             retry().then(() => resolve(makeSureCypressCanInterpretTheResult))
           }
         } else {
-          console.log('Skip version test')
+          log('Skip version test')
           resolve(makeSureCypressCanInterpretTheResult)
         }
       })
     })
   }
 
-  const restoreStarterFiles = () => {
-    const { projectFolder } = config.env
-    const appDir = path.join(projectFolder, 'app')
-    return fse.emptyDir(appDir)
-      .then(() => fse.copy(starterDir, projectFolder))
-      .then(() => waitUntilAppRestarts())
+  const backupStarterFiles = () => {
+    const projectDir = path.join(config.env.projectFolder)
+    const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
+
+    // Define the filter function
+    const filter = (dir) => !dir.includes('node_modules') && !dir.includes('package-lock.json')
+
+    return fse.emptyDir(backupDir)
+      // Copy the files using the filter
+      .then(() => fse.copy(projectDir, backupDir, { filter }))
       .then(makeSureCypressCanInterpretTheResult)
   }
+
+  const restoreStarterFiles = async (remainingRetries = 4) => {
+    try {
+      const tmpDir = path.join(config.env.projectFolder, '.tmp')
+      const appDir = path.join(config.env.projectFolder, 'app')
+      const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
+      const projectDir = path.join(config.env.projectFolder)
+
+      const originalPackageJsonHash = await getFileHash(path.join(backupDir, 'package.json'))
+      const currentPackageJsonHash = await getFileHash(path.join(projectDir, 'package.json'))
+
+      // Copy the files
+      await fse.emptyDir(tmpDir)
+      await fse.emptyDir(appDir)
+      await fse.copy(backupDir, projectDir)
+      if (originalPackageJsonHash !== currentPackageJsonHash) {
+        log('Restoring to starter plugins')
+        const command = 'npm prune && npm install'
+        await exec(command, { cwd: config.env.projectFolder })
+        await sleep(1000)
+        log(`Completed ${command}`)
+      }
+      await waitUntilAppRestarts()
+      return makeSureCypressCanInterpretTheResult()
+    } catch (error) {
+      if (remainingRetries > 0) {
+        remainingRetries = typeof remainingRetries === 'number' ? remainingRetries - 1 : 0
+        await sleep(1000)
+        log('Trying again')
+        return restoreStarterFiles(remainingRetries)
+      } else {
+        console.error(JSON.stringify({ error }, null, 2))
+      }
+    }
+  }
+
+  on('before:browser:launch', backupStarterFiles)
 
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)

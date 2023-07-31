@@ -3,7 +3,7 @@
 const path = require('path')
 
 // local dependencies
-const { copyFile, waitForApplication, installPlugin } = require('../../utils')
+const { copyFile, waitForApplication, installPlugin, restoreStarterFiles } = require('../../utils')
 const {
   assertHidden,
   assertVisible,
@@ -39,6 +39,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
     before(() => {
       copyFile(stepByStepTemplateView, stepByStepView)
     })
+
+    after(restoreStarterFiles)
 
     const loadPage = async () => {
       cy.visit(stepByStepPath)
