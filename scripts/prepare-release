@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+errLog() { echo "$@" 1>&2; }
+
+if ! command -v gh &> /dev/null
+then
+  errLog "The gh command could not be found.  Please install GitHub CLI."
+  exit 10
+fi
+
+if [ "$(gh auth status | grep "Logged in" | wc -l)" -eq 0 ]; then
+  errLog "You must be logged into the GitHub CLI.  You can do this by running:"
+  errLog ""
+  errLog "gh auth login"
+  exit 11
+fi
+
+tmpDir="${TMPDIR}gpk-releases/$(date +"%Y-%m-%dT%H:%M:%S%z")"
+
+mkdir -p $tmpDir
+
+(cd $tmpDir && gh repo clone alphagov/govuk-prototype-kit)
+
+tmpKitDir="${tmpDir}/govuk-prototype-kit"
+
+$tmpKitDir/scripts/utils/create-release-branch $tmpKitDir
+
+rm -Rf $tmpDir
+
+echo "Finished."
