@@ -20,13 +20,13 @@ describe('checkbox tests', () => {
     cy.task('log', 'The checkbox-test page should be displayed')
     cy.visit(pagePath)
     cy.get('h1')
-      .should('contains.text', 'Checkbox tests')
+      .contains('Checkbox tests')
   }
 
   const submitAndCheck = async (matchData) => {
     cy.intercept('POST', pagePath).as('submitPage')
     cy.get('button[data-module="govuk-button"]')
-      .should('contains.text', 'Continue')
+      .contains('Continue')
       .click()
     cy.wait('@submitPage').its('request.body')
       .then((body) => {

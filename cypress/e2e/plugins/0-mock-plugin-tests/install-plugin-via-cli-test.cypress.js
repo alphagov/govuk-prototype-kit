@@ -41,7 +41,7 @@ describe('Install Plugin via CLI Test', async () => {
   it('Loads plugin-baz view correctly', () => {
     waitForApplication('/plugin-baz')
     cy.get('.plugin-baz')
-      .should('contains.text', 'Plugin Baz')
+      .contains('Plugin Baz')
   })
 
   it('Loads plugin-baz style correctly', () => {

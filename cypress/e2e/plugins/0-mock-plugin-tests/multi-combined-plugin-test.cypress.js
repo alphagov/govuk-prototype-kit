@@ -45,7 +45,7 @@ describe('Multiple Plugin test', async () => {
       waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-bar')
-        .should('contains.text', 'Plugin Foo Bar')
+        .contains('Plugin Foo Bar')
     })
 
     it('Loads plugin-bar style correctly', () => {
@@ -77,7 +77,7 @@ describe('Multiple Plugin test', async () => {
       waitForApplication()
       cy.visit('/plugin-foo-bar')
       cy.get('.plugin-foo')
-        .should('contains.text', 'Plugin Foo Bar')
+        .contains('Plugin Foo Bar')
     })
 
     it('Loads plugin-foo style correctly', () => {

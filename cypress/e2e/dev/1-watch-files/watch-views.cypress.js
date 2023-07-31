@@ -18,7 +18,7 @@ describe('watching start page', () => {
     cy.task('log', 'The start page should not be found')
     cy.visit(pagePath, { failOnStatusCode: false })
     cy.get('body')
-      .should('contains.text', `There is no page at ${pagePath}`)
+      .contains(`There is no page at ${pagePath}`)
 
     cy.task('log', `Copy ${templatesView} to ${appView}`)
     cy.task('copyFile', { source: templatesView, target: appView })
@@ -26,6 +26,6 @@ describe('watching start page', () => {
     cy.task('log', 'The start page should be displayed')
     cy.visit(pagePath)
     cy.get('.govuk-button--start')
-      .should('contains.text', 'Start now')
+      .contains('Start now')
   })
 })

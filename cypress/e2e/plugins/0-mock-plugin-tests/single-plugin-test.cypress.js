@@ -42,7 +42,7 @@ describe('Single Plugin Test', async () => {
     waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('.plugin-foo')
-      .should('contains.text', 'Plugin Foo')
+      .contains('Plugin Foo')
   })
 
   it('Loads plugin-foo style correctly', () => {

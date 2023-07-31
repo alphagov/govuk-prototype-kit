@@ -12,7 +12,7 @@ describe('Prevent uninstalling kit from ui', () => {
     cy.task('waitUntilAppRestarts')
     cy.visit(`${managePluginsPagePath}/uninstall?package=${plugin}`)
     cy.get('h2')
-      .should('contains.text', `Uninstall ${pluginName}`)
+      .contains(`Uninstall ${pluginName}`)
     failAction('uninstall')
   })
 })
