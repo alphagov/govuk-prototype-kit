@@ -219,18 +219,15 @@ module.exports = function setupNodeEvents (on, config) {
     const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
 
     // Define the filter function
-    const filter = (dir) => !dir.includes('node_modules')
+    const filter = (dir) => !dir.includes('node_modules') && !dir.includes('package-lock.json')
 
     return fse.emptyDir(backupDir)
       // Copy the files using the filter
       .then(() => fse.copy(projectDir, backupDir, { filter }))
-      // Do not back up the package json
-      .then(() => fse.remove(path.join(backupDir, 'package-lock.json')))
       .then(makeSureCypressCanInterpretTheResult)
   }
 
-  const restoreStarterFiles = async (retries = 0) => {
-    retries = typeof retries === 'number' ? retries + 1 : 0
+  const restoreStarterFiles = async (remainingRetries = 4) => {
     try {
       const tmpDir = path.join(config.env.projectFolder, '.tmp')
       const appDir = path.join(config.env.projectFolder, 'app')
@@ -252,13 +249,13 @@ module.exports = function setupNodeEvents (on, config) {
         log(`Completed ${command}`)
       }
       await waitUntilAppRestarts()
-      await sleep(2000)
       return makeSureCypressCanInterpretTheResult()
     } catch (error) {
-      if (retries < 4) {
+      if (remainingRetries > 0) {
+        remainingRetries = typeof remainingRetries === 'number' ? remainingRetries - 1 : 0
         await sleep(1000)
         log('Trying again')
-        return restoreStarterFiles(retries)
+        return restoreStarterFiles(remainingRetries)
       } else {
         console.error(JSON.stringify({ error }, null, 2))
       }
