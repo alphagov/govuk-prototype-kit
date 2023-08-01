@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+
+const fsp = require('fs').promises
+const path = require('path')
+
+const projectDir = process.argv[2]
+
+const cp = require('child_process')
+
+function findIndexOfFirstMatchingLine (changelogLines, regExp) {
+  return changelogLines
+    .map((x, index) => x.match(regExp) ? index : undefined)
+    .filter(x => x !== undefined)
+    .at(0)
+}
+
+async function exec (command, { allowStderr = false, hideStd = false } = {}) {
+  const newVersion = await new Promise((resolve) => {
+    console.log('running command', command)
+    cp.exec(command, { cwd: projectDir },
+      (error, stdout, stderr) => {
+        if (error) {
+          console.log(`error: ${error.message}`)
+          process.exit(14)
+        }
+        if (stderr) {
+          if (!hideStd) {
+            console.log('===')
+            console.log('stderr:')
+            console.log('')
+            console.log(stderr)
+            console.log('===')
+          }
+          if (!allowStderr) {
+            process.exit(15)
+          }
+        }
+        if (!hideStd) {
+          console.log(`${stdout}`)
+        }
+        resolve(stdout)
+      })
+  })
+  return newVersion
+}
+
+(async () => {
+  const changelogPath = path.join(projectDir, 'CHANGELOG.md')
+  try {
+    await fsp.access(changelogPath)
+  } catch (e) {
+    console.error(`The directory provided does not include a changelog.  Directory was [${projectDir}]`)
+    process.exit(12)
+  }
+
+  const changelogLines = (await fsp.readFile(changelogPath, 'utf8')).split('\n')
+
+  const unreleasedLineIndex = findIndexOfFirstMatchingLine(changelogLines, /^#+\s+Unreleased\s*$/i)
+  const previousReleaseLineIndex = findIndexOfFirstMatchingLine(changelogLines, /^#+\s+\d+\.\d+\.\d+\s*$/i)
+  const firstFixes = findIndexOfFirstMatchingLine(changelogLines, /^#+\s+Fixes\s*$/i)
+  const firstNewFeatures = findIndexOfFirstMatchingLine(changelogLines, /^#+\s+New Features\s*$/i)
+  const firstBreakingChanges = findIndexOfFirstMatchingLine(changelogLines, /^#+\s+Breaking changes\s*$/i)
+
+  let releaseType
+
+  if (firstBreakingChanges > unreleasedLineIndex && firstBreakingChanges < previousReleaseLineIndex) {
+    releaseType = 'major'
+  } else if (firstNewFeatures > unreleasedLineIndex && firstNewFeatures < previousReleaseLineIndex) {
+    releaseType = 'minor'
+  } else if (firstFixes > unreleasedLineIndex && firstFixes < previousReleaseLineIndex) {
+    releaseType = 'patch'
+  }
+
+  if (!releaseType) {
+    console.error('No changes were detected, cannot continue with release.')
+    process.exit(13)
+  }
+
+  const command = `npm version ${releaseType}`
+  const newVersion = await exec(command).then(stdout => stdout.split('v')[1].trim())
+
+  const newChangelogLines = [].concat(changelogLines)
+  newChangelogLines.splice(unreleasedLineIndex + 1, 0, '', `## ${newVersion}`)
+
+  await fsp.writeFile(changelogPath, newChangelogLines.join('\n'))
+
+  const partialChangelog = changelogLines
+    .slice(unreleasedLineIndex + 1, previousReleaseLineIndex - 1)
+    .filter((value, index, arr) => {
+      if (value !== '') {
+        return true
+      }
+      if (index > 0 && arr[index - 1].startsWith('#')) {
+        return true
+      }
+      return false
+    })
+
+  await exec('git commit -am "Updated changelog automatically."')
+
+  const branchName = `release-${newVersion}`
+
+  await exec(`git checkout -b ${branchName}`, { allowStderr: true })
+
+  await exec(`git push -u origin ${branchName}`, { allowStderr: true, hideStd: true })
+
+  const prBodyFile = path.join(projectDir, '..', '.git-pr-body')
+  await fsp.writeFile(prBodyFile, partialChangelog.join('\n'))
+
+  await exec(`gh pr create --base main --title "Preparing for release ${newVersion} (automated)." --body-file "${prBodyFile}"`)
+})()

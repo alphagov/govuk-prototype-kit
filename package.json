@@ -34,7 +34,7 @@
     "start:test": "node cypress/scripts/run-starter-prototype",
     "start:test:prod": "cross-env PASSWORD=password USE_AUTH=true node cypress/scripts/run-starter-prototype --prodtest",
     "start:test:heroku": "cross-env USE_AUTH=false USE_HTTPS=false node scripts/create-prototype-and-run 'npx --yes heroku local --port 3000'",
-    "lint": "standard . bin/cli",
+    "lint": "standard . bin/cli scripts/utils/create-release-branch scripts/create-prototype-and-run.js scripts/generate-known-version-hashes.js",
     "lint:fix": "npm run lint -- --fix",
     "rapidtest": "jest --bail",
     "cypress:run": "cypress run",
