@@ -6,6 +6,10 @@
 
 - [#2264: Add back to templates link](https://github.com/alphagov/govuk-prototype-kit/pull/2264)
 
+### Fixes
+
+- [#2270: Fix corrupt session files issue](https://github.com/alphagov/govuk-prototype-kit/pull/2270)
+
 ## 13.11.0
 
 ### New features
