@@ -44,7 +44,9 @@ async function exec (command, { allowStderr = false, hideStd = false } = {}) {
   return newVersion
 }
 
-(async () => {
+const wait = time => new Promise((resolve) => setTimeout(resolve, time))
+
+;(async () => {
   const changelogPath = path.join(projectDir, 'CHANGELOG.md')
   try {
     await fsp.access(changelogPath)
@@ -107,11 +109,73 @@ async function exec (command, { allowStderr = false, hideStd = false } = {}) {
   const prBodyFile = path.join(projectDir, '..', '.git-pr-body')
   await fsp.writeFile(prBodyFile, partialChangelog.join('\n'))
 
-  const result = await exec(`gh pr create --json --base main --title "Preparing for release ${newVersion} (automated)." --body-file "${prBodyFile}"`)
+  const result = await exec(`gh pr create --base main --title "Preparing for release ${newVersion} (automated)." --body-file "${prBodyFile}"`)
 
-  try {
-    console.log(JSON.stringify(JSON.parse(result), null, 2))
-  } catch (e) {
-    console.log('Result was not parsable as JSON. (not a problem with the release)')
-  }
+  const prUrl = result.match(/(https:\/\/github\.com[^\s]+)/)[1]
+
+  console.log(`A pull request has been raised, please review it here: ${prUrl}`)
+
+  let isReadyToMerge = false
+
+  do {
+    await wait(5000)
+    await exec(`gh pr view ${prUrl} --json isDraft,reviewDecision,statusCheckRollup`, { hideStd: true })
+      .then(x => JSON.parse(x))
+      .then(result => {
+        const notDraft = !result.isDraft
+        const numberOfReviews = result.reviews.length
+        const requiredReviews = 2
+
+        let passingTests = 0
+        let failingTests = 0
+        let pendingTests = 0
+        const failedTestRuns = []
+
+        result.statusCheckRollup.forEach(statusResult => {
+          if (statusResult.status !== 'COMPLETED') {
+            pendingTests++
+          } else if (statusResult.conclusion === 'SUCCESS') {
+            passingTests++
+          } else {
+            failingTests++
+            failedTestRuns.push(statusResult)
+          }
+        })
+
+        isReadyToMerge = passingTests > 10 && failingTests === 0 && pendingTests === 0 && notDraft && numberOfReviews > requiredReviews
+
+        if (!isReadyToMerge) {
+          console.log('')
+          console.log('')
+          console.log('Not yet ready to merge.')
+          console.table({ notDraft, numberOfReviews: `${numberOfReviews}/${requiredReviews}`, passingTests, failingTests, pendingTests })
+          if (failedTestRuns.length > 0) {
+            console.log('')
+            console.log(`Re-run${failedTestRuns.length > 1 ? 's' : ''} required`)
+            failedTestRuns.forEach(details => {
+              console.log(details.detailsUrl)
+            })
+          }
+          console.log('')
+          console.log('')
+        }
+      })
+  } while (!isReadyToMerge)
+
+  console.log('Tests pass, approval granted, ready to continue.')
+
+  console.log('To continue run these commands:')
+  console.log('')
+  console.log(`cd ${projectDir}`)
+  console.log('')
+  console.log(`gh pr merge ${prUrl} -m -d`)
+  console.log('')
+  console.log(`gh release create "v${newVersion}" --notes-file "${prBodyFile}" --target "main"  --title "v${newVersion}" --latest`)
+  console.log('')
+  console.log('npm login')
+  console.log('')
+  console.log('npm run clean-publish')
+  console.log('')
+  console.log('npm logout')
+  console.log('')
 })()
