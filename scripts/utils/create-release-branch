@@ -38,7 +38,7 @@ async function exec (command, { allowStderr = false, hideStd = false } = {}) {
         if (!hideStd) {
           console.log(`${stdout}`)
         }
-        resolve(stdout)
+        resolve(`${stdout}`)
       })
   })
   return newVersion
@@ -107,5 +107,11 @@ async function exec (command, { allowStderr = false, hideStd = false } = {}) {
   const prBodyFile = path.join(projectDir, '..', '.git-pr-body')
   await fsp.writeFile(prBodyFile, partialChangelog.join('\n'))
 
-  await exec(`gh pr create --base main --title "Preparing for release ${newVersion} (automated)." --body-file "${prBodyFile}"`)
+  const result = await exec(`gh pr create --json --base main --title "Preparing for release ${newVersion} (automated)." --body-file "${prBodyFile}"`)
+
+  try {
+    console.log(JSON.stringify(JSON.parse(result), null, 2))
+  } catch (e) {
+    console.log('Result was not parsable as JSON. (not a problem with the release)')
+  }
 })()
