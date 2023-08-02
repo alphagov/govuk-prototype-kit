@@ -28,8 +28,8 @@ mkdir -p $tmpDir
 
 tmpKitDir="${tmpDir}/govuk-prototype-kit"
 
-$tmpKitDir/scripts/utils/create-release-branch $tmpKitDir
+$tmpKitDir/scripts/utils/create-release-pr $tmpKitDir
 
-rm -Rf $tmpDir
+#rm -Rf $tmpDir - do not delete as the final steps are manual and rely on the files created
 
 echo "Finished."
