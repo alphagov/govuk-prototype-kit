@@ -20,7 +20,11 @@ if [ "$(gh auth status | grep "Logged in" | wc -l)" -eq 0 ]; then
   exit 11
 fi
 
-tmpDir="${TMPDIR}gpk-releases/$(date +"%Y-%m-%dT%H:%M:%S%z")"
+systemTmpDir="$(mktemp -d)"
+
+chmod u+w $systemTmpDir
+
+tmpDir="${systemTmpDir}/gpk-releases/$(date +"%Y-%m-%dT%H:%M:%S%z")"
 
 mkdir -p $tmpDir
 
@@ -30,6 +34,8 @@ tmpKitDir="${tmpDir}/govuk-prototype-kit"
 
 $tmpKitDir/scripts/utils/create-release-pr $tmpKitDir
 
-#rm -Rf $tmpDir - do not delete as the final steps are manual and rely on the files created
+echo "rm -Rf $systemTmpDir" # - the final steps are manual and rely on the files created, delete them once it's finished.
+
+echo ""
 
 echo "Finished."

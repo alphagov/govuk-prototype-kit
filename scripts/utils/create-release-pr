@@ -92,7 +92,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
       if (value !== '') {
         return true
       }
-      if (index > 0 && arr[index - 1].startsWith('#')) {
+      if (arr[index + 1].startsWith('#') || (index > 0 && arr[index - 1].startsWith('#'))) {
         return true
       }
       return false
