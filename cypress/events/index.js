@@ -13,10 +13,10 @@
 // core dependencies
 const fs = require('fs')
 const fsp = fs.promises
-const fse = require('fs-extra')
 const path = require('path')
 
 // npm dependencies
+const fse = require('fs-extra')
 const waitOn = require('wait-on')
 const extract = require('extract-zip')
 const https = require('https')
@@ -214,67 +214,39 @@ module.exports = function setupNodeEvents (on, config) {
     })
   }
 
-  const backupStarterFiles = () => {
-    const projectDir = path.join(config.env.projectFolder)
-    const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
+  let originalPackageJsonHash
 
-    // Define the filter function
-    const filter = (dir) => !dir.includes('node_modules') && !dir.includes('package-lock.json')
-
-    return fse.emptyDir(backupDir)
-      // Copy the files using the filter
-      .then(() => fse.copy(projectDir, backupDir, { filter }))
-      .then(makeSureCypressCanInterpretTheResult)
+  const saveOriginalPackageJsonHash = async () => {
+    await waitUntilAppRestarts()
+    try {
+      originalPackageJsonHash = await getFileHash(path.join(config.env.projectFolder, 'package.json'))
+      await exec('git add -A', { cwd: config.env.projectFolder })
+      await exec('git commit -m "Acceptance test backup"', { cwd: config.env.projectFolder })
+    } catch (error) {
+      console.error(JSON.stringify({ error }, null, 2))
+    }
   }
 
-  const restoreStarterFiles = async (remainingRetries = 4) => {
+  const gitRestore = async () => {
     try {
-      const tmpDir = path.join(config.env.projectFolder, '.tmp')
-      const appDir = path.join(config.env.projectFolder, 'app')
-      const appViewsDir = path.join(appDir, 'views')
-      const appDataDir = path.join(appDir, 'data')
-      const appAssetsDir = path.join(appDir, 'assets')
-      const appSassDir = path.join(appAssetsDir, 'sass')
-      const appJSDir = path.join(appAssetsDir, 'javascripts')
-      const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
-      const projectDir = path.join(config.env.projectFolder)
-
-      const originalPackageJsonHash = await getFileHash(path.join(backupDir, 'package.json'))
-      const currentPackageJsonHash = await getFileHash(path.join(projectDir, 'package.json'))
-
-      // Delete the files
-      await Promise.all([
-        tmpDir,
-        appViewsDir,
-        appDataDir,
-        appJSDir,
-        appSassDir
-      ].map(async dir => fse.emptyDir(dir)))
-
-      // Copy the files
-      await fse.copy(backupDir, projectDir)
+      const currentPackageJsonHash = await getFileHash(path.join(config.env.projectFolder, 'package.json'))
+      await fse.emptyDir(path.join(config.env.projectFolder, '.tmp'))
+      await exec('git clean && git reset', { cwd: config.env.projectFolder })
       if (originalPackageJsonHash !== currentPackageJsonHash) {
         log('Restoring to starter plugins')
+        await deleteFile(path.join(config.env.projectFolder, 'package-lock.json'), 1000)
         const command = 'npm prune && npm install'
         await exec(command, { cwd: config.env.projectFolder })
         await sleep(1000)
         log(`Completed ${command}`)
       }
       await waitUntilAppRestarts()
-      return makeSureCypressCanInterpretTheResult()
     } catch (error) {
-      if (remainingRetries > 0) {
-        remainingRetries = typeof remainingRetries === 'number' ? remainingRetries - 1 : 0
-        await sleep(1000)
-        log('Trying again')
-        return restoreStarterFiles(remainingRetries)
-      } else {
-        console.error(JSON.stringify({ error }, null, 2))
-      }
+      console.error(JSON.stringify({ error }, null, 2))
     }
   }
 
-  on('before:browser:launch', backupStarterFiles)
+  on('before:run', saveOriginalPackageJsonHash)
 
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)
@@ -363,8 +335,7 @@ module.exports = function setupNodeEvents (on, config) {
     },
 
     restoreStarterFiles: () => {
-      log('Restoring to starter files')
-      return restoreStarterFiles()
+      return gitRestore()
         .then(makeSureCypressCanInterpretTheResult)
     },
 
