@@ -116,6 +116,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
   console.log(`A pull request has been raised, please review it here: ${prUrl}`)
 
   let isReadyToMerge = false
+  const requiredReviews = 2
 
   do {
     await wait(5000)
@@ -124,7 +125,6 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
       .then(result => {
         const notDraft = !result.isDraft
         const numberOfReviews = result.reviews.length
-        const requiredReviews = 2
 
         let passingTests = 0
         let failingTests = 0
@@ -142,23 +142,27 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
           }
         })
 
-        isReadyToMerge = passingTests > 10 && failingTests === 0 && pendingTests === 0 && notDraft && numberOfReviews >= requiredReviews
+        isReadyToMerge = passingTests > 20 && failingTests === 0 && pendingTests === 0 && notDraft && numberOfReviews >= requiredReviews
 
-        if (!isReadyToMerge) {
+        console.log('')
+        console.log('')
+        console.log(isReadyToMerge ? 'It is ready to merge' : 'Not yet ready to merge.')
+        console.table({
+          notDraft,
+          numberOfReviews: `${numberOfReviews}/${requiredReviews}`,
+          passingTests,
+          failingTests,
+          pendingTests
+        })
+        if (failedTestRuns.length > 0) {
           console.log('')
-          console.log('')
-          console.log('Not yet ready to merge.')
-          console.table({ notDraft, numberOfReviews: `${numberOfReviews}/${requiredReviews}`, passingTests, failingTests, pendingTests })
-          if (failedTestRuns.length > 0) {
-            console.log('')
-            console.log(`Re-run${failedTestRuns.length > 1 ? 's' : ''} required`)
-            failedTestRuns.forEach(details => {
-              console.log(details.detailsUrl)
-            })
-          }
-          console.log('')
-          console.log('')
+          console.log(`Re-run${failedTestRuns.length > 1 ? 's' : ''} required`)
+          failedTestRuns.forEach(details => {
+            console.log(details.detailsUrl)
+          })
         }
+        console.log('')
+        console.log('')
       })
   } while (!isReadyToMerge)
 
