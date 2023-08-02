@@ -142,7 +142,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
           }
         })
 
-        isReadyToMerge = passingTests > 10 && failingTests === 0 && pendingTests === 0 && notDraft && numberOfReviews > requiredReviews
+        isReadyToMerge = passingTests > 10 && failingTests === 0 && pendingTests === 0 && notDraft && numberOfReviews >= requiredReviews
 
         if (!isReadyToMerge) {
           console.log('')
