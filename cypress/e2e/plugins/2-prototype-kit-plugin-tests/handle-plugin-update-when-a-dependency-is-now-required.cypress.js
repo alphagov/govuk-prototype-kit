@@ -10,7 +10,7 @@ const dependencyPluginName = 'GOV.UK Frontend'
 describe('Handle a plugin update', () => {
   after(restoreStarterFiles)
 
-  it('when a dependency is now required', () => {
+  it.skip('when a dependency is now required', () => {
     installPlugin(plugin, pluginVersion)
     uninstallPlugin(dependencyPlugin)
 

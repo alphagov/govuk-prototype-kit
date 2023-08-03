@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2287: Support sass errors in error pages](https://github.com/alphagov/govuk-prototype-kit/pull/2287)
+
 ## 13.12.0
 
 ### New features

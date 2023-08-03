@@ -1,13 +1,15 @@
 
 // npm dependencies
 const { runErrorServer } = require('./lib/errorServer')
+const { verboseLog } = require('./lib/utils/verboseLogger')
+
+const config = require('./lib/config.js').getConfig(null, false)
 
 try {
   // local dependencies
   const syncChanges = require('./lib/sync-changes')
   const server = require('./server.js')
   const { generateAssetsSync } = require('./lib/build')
-  const config = require('./lib/config.js').getConfig(null, false)
 
   const port = config.port
   const proxyPort = port - 50
@@ -39,5 +41,10 @@ try {
     }
   }
 } catch (e) {
-  runErrorServer(e)
+  if (config.isDevelopment) {
+    verboseLog('************************ STARTING ERROR SERVER ***************************')
+    runErrorServer(e)
+  } else {
+    throw e
+  }
 }
