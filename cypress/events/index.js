@@ -231,15 +231,27 @@ module.exports = function setupNodeEvents (on, config) {
     try {
       const tmpDir = path.join(config.env.projectFolder, '.tmp')
       const appDir = path.join(config.env.projectFolder, 'app')
+      const appViewsDir = path.join(appDir, 'views')
+      const appDataDir = path.join(appDir, 'data')
+      const appAssetsDir = path.join(appDir, 'assets')
+      const appSassDir = path.join(appAssetsDir, 'sass')
+      const appJSDir = path.join(appAssetsDir, 'javascripts')
       const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
       const projectDir = path.join(config.env.projectFolder)
 
       const originalPackageJsonHash = await getFileHash(path.join(backupDir, 'package.json'))
       const currentPackageJsonHash = await getFileHash(path.join(projectDir, 'package.json'))
 
+      // Delete the files
+      await Promise.all([
+        tmpDir,
+        appViewsDir,
+        appDataDir,
+        appJSDir,
+        appSassDir
+      ].map(async dir => fse.emptyDir(dir)))
+
       // Copy the files
-      await fse.emptyDir(tmpDir)
-      await fse.emptyDir(appDir)
       await fse.copy(backupDir, projectDir)
       if (originalPackageJsonHash !== currentPackageJsonHash) {
         log('Restoring to starter plugins')
