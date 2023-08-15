@@ -1,0 +1,48 @@
+
+.govuk-prototype-kit-error-page-header {
+  .govuk-header__container {
+    border-color: govuk-colour("red");
+  }
+}
+
+.govuk-prototype-kit-error-info {
+  strong {
+    min-width: 4em;
+    display: inline-block;
+  }
+}
+
+
+.govuk-prototype-kit-error-code {
+  display: block;
+  border: 1px solid black;
+  padding: 1em;
+  overflow: auto;
+
+  code {
+    line-height: 1.5em;
+    display: inline-block;
+  }
+}
+
+.govuk-prototype-kit-error-code:focus{
+  outline: 3px solid govuk-colour("yellow");
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px;
+}
+
+#govuk-prototype-kit-error-line {
+  background: govuk-colour("red");
+  color: govuk-colour("white");
+  padding-right: 1em;
+}
+
+#govuk-prototype-kit-error-stack {
+  overflow: auto;
+}
+
+.js-enabled {
+  #govuk-prototype-kit-error-stack.js-hidden {
+    display: none;
+  }
+}

@@ -3,6 +3,9 @@ $govuk-assets-path: '/manage-prototype/dependencies/govuk-frontend/govuk/assets/
 // Import GOV.UK Frontend within the kit dependency
 @import ".tmp/sass/kit-frontend-dependency";
 
+// SASS for error page
+@import ".tmp/sass/error-page";
+
 .govuk-prototype-kit-manage-prototype-task-list {
   list-style-type: none;
   padding-left: 0;
