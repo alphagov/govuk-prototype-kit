@@ -1,4 +1,12 @@
 {
+  "meta": {
+    "description": "Quickly make interactive, accessible and realistic prototypes of GOV.UK services.",
+    "urls": {
+      "documentation": "https://prototype-kit.service.gov.uk/?linkFromKit={{kitVersion}}",
+      "versionHistory": "https://github.com/alphagov/govuk-prototype-kit/releases",
+      "releaseNotes": "https://github.com/alphagov/govuk-prototype-kit/releases/tag/v{{version}}"
+    }
+  },
   "assets": [
     "/lib/assets/images",
     "/lib/assets/javascripts/optional",
