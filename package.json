@@ -46,6 +46,7 @@
     "cypress:e2e:plugins": "cypress run --spec \"cypress/e2e/plugins/*/*\"",
     "cypress:e2e:errors": "cypress run --spec \"cypress/e2e/errors/*/*\"",
     "test:heroku": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test:heroku 3000 cypress:e2e:smoke",
+    "test:acceptance": "npm run test:acceptance:dev && npm run test:acceptance:prod && npm run test:acceptance:smoke && npm run test:acceptance:styles && npm run test:acceptance:plugins && npm run test:acceptance:errors",
     "test:acceptance:dev": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:dev",
     "test:acceptance:prod": "cross-env PASSWORD=password KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test:prod 3000 cypress:e2e:prod",
     "test:acceptance:smoke": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:smoke",
@@ -55,6 +56,7 @@
     "test:acceptance:open": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:open",
     "test:unit": "jest --detectOpenHandles lib bin migrator",
     "test:integration": "cross-env CREATE_KIT_TIMEOUT=240000 jest --detectOpenHandles --testTimeout=60000 __tests__",
+    "test:full": "npm test && npm run test:acceptance",
     "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
   "dependencies": {
