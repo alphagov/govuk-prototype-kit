@@ -29,29 +29,30 @@ const pluginBazViewMarkup = `
 {% endblock %}
 `
 
-describe('Install Plugin via CLI Test', async () => {
-  before(() => {
-    createFile(pluginBazView, { data: pluginBazViewMarkup })
-    installPlugin(`file:${pluginLocation}`)
-  })
+function installBaz () {
+  createFile(pluginBazView, { data: pluginBazViewMarkup })
+  installPlugin(`file:${pluginLocation}`)
+  return waitForApplication('/plugin-baz')
+}
 
-  after(restoreStarterFiles)
+describe('Install Plugin via CLI Test', async () => {
+  afterEach(restoreStarterFiles)
 
   it('Loads plugin-baz view correctly', () => {
-    waitForApplication('/plugin-baz')
+    installBaz()
     cy.get('.plugin-baz')
       .contains('Plugin Baz')
   })
 
   it('Loads plugin-baz style correctly', () => {
-    waitForApplication('/plugin-baz')
+    installBaz()
     cy.get('.plugin-baz')
       .should('have.css', 'background-color', MAGENTA)
       .should('have.css', 'border-color', CYAN)
   })
 
   it('Loads plugin-baz script correctly', () => {
-    waitForApplication('/plugin-baz')
+    installBaz()
     cy.get('.plugin-baz').click()
     cy.get('.plugin-baz')
       .should('have.css', 'background-color', CYAN)

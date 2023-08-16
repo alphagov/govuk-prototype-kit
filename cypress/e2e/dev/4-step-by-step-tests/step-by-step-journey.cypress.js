@@ -12,7 +12,7 @@ const {
   toggleButtonQuery
 } = require('../../step-by-step-utils')
 
-const plugin = '@govuk-prototype-kit/step-by-step'
+const plugin = '@govuk-prototype-kit/step-by-step@1'
 
 const projectFolder = Cypress.env('projectFolder')
 
@@ -51,6 +51,8 @@ stepByStepTestData.forEach(({ name, heading, title1, title2 }) => {
       waitForApplication()
 
       installPlugin(plugin)
+
+      waitForApplication()
 
       loadPage()
       cy.get(titleQuery(1)).should('contain.text', title1)

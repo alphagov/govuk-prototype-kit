@@ -258,6 +258,9 @@ module.exports = function setupNodeEvents (on, config) {
         const command = 'npm prune && npm install'
         await exec(command, { cwd: config.env.projectFolder })
         await sleep(1000)
+        // To allow for possible SASS recompilation, wait again
+        await waitUntilAppRestarts()
+        await sleep(1000)
         log(`Completed ${command}`)
       }
       await waitUntilAppRestarts()
