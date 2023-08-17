@@ -116,7 +116,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
   console.log(`A pull request has been raised, please review it here: ${prUrl}`)
 
   let isReadyToMerge = false
-  const requiredReviews = 2
+  const requiredReviews = 1
 
   do {
     await wait(5000)
@@ -124,7 +124,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
       .then(x => JSON.parse(x))
       .then(result => {
         const notDraft = !result.isDraft
-        const numberOfReviews = result.reviews.length
+        const numberOfReviews = result.reviews?.length || 0
 
         let passingTests = 0
         let failingTests = 0
