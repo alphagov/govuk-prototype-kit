@@ -2,8 +2,9 @@
 
 ## Unreleased
 
-## New features
+### New features
 
+- [#2305: Build the enhanced plugin page](https://github.com/alphagov/govuk-prototype-kit/pull/2305)
 - [#2314: Plugin validator allows the user to specify unknown keys](https://github.com/alphagov/govuk-prototype-kit/pull/2314)
 
 ## 13.12.2

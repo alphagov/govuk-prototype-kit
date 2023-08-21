@@ -1,6 +1,12 @@
 // local dependencies
-const { uninstallPlugin, restoreStarterFiles } = require('../../utils')
-const { managePluginsPagePath, loadTemplatesPage, loadPluginsPage } = require('../plugin-utils')
+const { uninstallPlugin, restoreStarterFiles, log } = require('../../utils')
+const {
+  managePluginsPagePath,
+  loadTemplatesPage,
+  loadPluginsPage,
+  manageTemplatesPagePath,
+  manageInstalledPluginsPagePath
+} = require('../plugin-utils')
 
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 
@@ -8,13 +14,15 @@ async function installPluginTests ({ plugin, templates, version }) {
   describe(plugin, () => {
     after(restoreStarterFiles)
 
-    it(`The ${plugin} plugin templates are not available`, () => {
+    it(`The ${plugin} templates will be installed`, () => {
+      log(`The ${plugin} plugin templates are not available`)
       uninstallPlugin(plugin)
       loadTemplatesPage()
       cy.get(`[data-plugin-package-name="${plugin}"]`).should('not.exist')
-    })
 
-    it(`Install the ${plugin} plugin`, () => {
+      //   ------------------------
+
+      log(`Install the ${plugin} plugin`)
       if (version) {
         cy.task('waitUntilAppRestarts')
         cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version}`)
@@ -22,7 +30,7 @@ async function installPluginTests ({ plugin, templates, version }) {
         cy.get('#plugin-action-button').click()
       } else {
         loadPluginsPage()
-        cy.task('log', `Install the ${plugin} plugin`)
+        log(`Install the ${plugin} plugin`)
         cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Install').click()
       }
 
@@ -30,25 +38,29 @@ async function installPluginTests ({ plugin, templates, version }) {
         .should('be.visible')
       cy.get('a').contains('Back to plugins').click()
 
+      cy.get('#installed-plugins-link').click()
       cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall')
-    })
 
-    it(`The ${plugin} plugin templates are available`, () => {
-      loadTemplatesPage()
+      //   ------------------------
+
+      log(`The ${plugin} plugin templates are available`)
+      cy.get('a').contains('Templates').click()
       cy.get(`[data-plugin-package-name="${plugin}"]`).should('exist')
-    })
 
-    templates.forEach(({ name, filename }) => {
-      it(`View ${name} template`, () => {
-        loadTemplatesPage()
+      //   ------------------------
+
+      templates.forEach(({ name, filename }) => {
+        log(`View ${name} template`)
+        cy.visit(manageTemplatesPagePath)
         cy.get(`[data-plugin-package-name="${plugin}"] a`).contains(`View ${name} page`).click()
         cy.url().then(url => expect(url).to.contain(filename))
       })
-    })
 
-    it(`Uninstall the ${plugin} plugin`, () => {
-      loadPluginsPage()
-      cy.task('log', `Uninstall the ${plugin} plugin`)
+      //   ------------------------
+
+      log(`Uninstall the ${plugin} plugin`)
+      cy.visit(manageInstalledPluginsPagePath)
+
       cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall').click()
 
       cy.get(panelCompleteQuery, { timeout: 20000 })

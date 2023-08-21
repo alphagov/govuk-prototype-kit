@@ -1,69 +1,145 @@
 {% extends "views/manage-prototype/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/label/macro.njk" import govukLabel %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
 
 {% block content %}
-<form method="post">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+    <form method="post" action="">
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-two-thirds-from-desktop">
+                <h1 class="govuk-heading-l">Plugins</h1>
+                <p class="govuk-body">
+                    Plugins provide you with new components, styles and other features
+                </p>
+            </div>
+        </div>
 
-      <h1 class="govuk-heading-l">Plugins</h1>
-
-      <p class="govuk-body">
-        Plugins provide you with new components, styles and other features
-      </p>
-
-      {% for group in groupsOfPlugins %}
-        <h2 class="govuk-heading-m">{{ group.name }}</h2>
-
-        <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list-plugin-list" data-plugin-group-status="{{ group.status }}">
-          {% for plugin in group.plugins %}
-            <li class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item" data-plugin-package-name="{{ plugin.packageName }}">
-              <span class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-name">
-                {{ plugin.name }}
-                {% if plugin.scope %}
-                  <br/>
-                  <span class="govuk-caption-m">From {{ plugin.scope }}</span>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+                {% if isAvailablePage %}
+                    <div class="sub-nav govuk-!-margin-bottom-6 govuk-prototype-kit-manage-prototype-plugin-subnav--current">
+                        <h2 class="govuk-heading-m">Find plugins</h2>
+                    </div>
+                    <div class="sub-nav">
+                        <a id="installed-plugins-link" href="./plugins-installed" class="govuk-heading-m govuk-link--no-visited-state">
+                            Installed plugins
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="sub-nav govuk-!-margin-bottom-6">
+                        <a id="available-plugins-link" href="./plugins" class="govuk-heading-m govuk-link--no-visited-state">
+                            Find plugins
+                        </a>
+                    </div>
+                    <div class="sub-nav govuk-prototype-kit-manage-prototype-plugin-subnav--current">
+                        <h2 class="govuk-heading-m">Installed plugins</h2>
+                    </div>
                 {% endif %}
-                {% if plugin.updateLink %}
-                  <br/>
-                  v{{ plugin.latestVersion }} available
-                {% endif %}
-              </span>
-              <span class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-version">
-                {{ plugin.installedVersion or plugin.latestVersion }}
-              </span>
-              <span class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons">
-                {% if not plugin.installedVersion %}
-                    {{ govukButton({
-                        html: 'Install <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
-                        classes: "govuk-button--secondary",
-                        attributes: { id: "install-" + plugin.packageName, formaction: plugin.installLink }
+                {% if updatesMessage %}
+                    {{ govukTag({
+                        text: updatesMessage
                     }) }}
                 {% endif %}
-                {% if plugin.uninstallLink %}
-                    {{ govukButton({
-                        html: 'Uninstall <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
-                        classes: "govuk-button--secondary",
-                        attributes: { id: "uninstall-" + plugin.packageName, formaction: plugin.uninstallLink }
-                    }) }}
+            </div>
+
+            <div class="govuk-grid-column-three-quarters">
+                {% if isAvailablePage %}
+                <div class="govuk-!-margin-bottom-5">
+                    <div id="search-container">
+                        {{ govukLabel({
+                            text:"Search",
+                            classes:"govuk-!-font-weight-bold"
+                        }) }}
+
+                        {{ govukInput({
+                            id: "search",
+                            classes: "govuk-!-width-one-half",
+                            formGroup: {
+                                classes: "govuk-!-margin-bottom-3"
+                            },
+                            name: "search",
+                            value: search
+                        }) }}
+
+                        {{ govukButton({
+                            text: "Search",
+                            classes: "govuk-button--secondary",
+                            attributes: { id: "search-button", formaction: "#" }
+                        }) }}
+
+                        {{ govukButton({
+                            text: "Clear search",
+                            classes: "govuk-button--secondary",
+                            attributes: { id: "clear-search-button", formaction: "?clear=true" }
+                        }) }}
+                    </div>
+                    <h4 class="govuk-body govuk-!-font-weight-bold">
+                        {{ foundMessage }}
+                    </h4>
+                </div>
                 {% endif %}
-                {% if plugin.updateLink %}
-                    {{ govukButton({
-                        html: 'Update <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
-                        classes: "govuk-button--secondary",
-                        attributes: { id: "update-" + plugin.packageName, formaction: plugin.updateLink }
-                    }) }}
-                {% endif %}
-                {% if plugin.helpLink %}
-                  <a class=""
-                     href="{{ plugin.helpLink }}">Help<span class="govuk-visually-hidden"> - {{ plugin.name }}</span></a>
-                {% endif %}
-              </span>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endfor %}
-    </div>
-  </div>
-</form>
+
+                <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list-plugin-list"
+                    data-plugin-group-status="{{ status }}">
+                    {% for plugin in plugins %}
+                        <li class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item"
+                            data-plugin-package-name="{{ plugin.packageName }}">
+
+                            <div class="govuk-grid-column-one-third govuk-body">
+                                <h4 class="govuk-body govuk-!-font-weight-bold">
+                                    {{ plugin.name }}
+                                </h4>
+                                {% if plugin.scope %}
+                                    <div>
+                                        By {{ plugin.scope }}
+                                    </div>
+                                {% endif %}
+                                {% if isInstalledPage %}
+                                    <div class="govuk-!-margin-top-3">
+                                        v{{ plugin.installedVersion }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="govuk-grid-column-two-thirds govuk-body">
+                                {% if plugin.description %}
+                                    <div class="govuk-!-margin-bottom-3">
+                                        {{ plugin.description }}
+                                    </div>
+                                {% endif %}
+                                <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons">
+                                {% if not plugin.installedVersion %}
+                                    {{ govukButton({
+                                        html: 'Install <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                                        classes: "govuk-button--secondary",
+                                        attributes: { id: "install-" + plugin.packageName, formaction: plugin.installLink }
+                                    }) }}
+                                {% endif %}
+                                {% if plugin.uninstallLink %}
+                                    {{ govukButton({
+                                        html: 'Uninstall <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                                        classes: "govuk-button--secondary",
+                                        attributes: { id: "uninstall-" + plugin.packageName, formaction: plugin.uninstallLink }
+                                    }) }}
+                                {% endif %}
+                                {% if plugin.updateLink %}
+                                    {{ govukButton({
+                                        html: 'Update <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                                        classes: "govuk-button--secondary",
+                                        attributes: { id: "update-" + plugin.packageName, formaction: plugin.updateLink }
+                                    }) }}
+                                {% endif %}
+                                {% if plugin.helpLink %}
+                                    <a class=""
+                                       href="{{ plugin.helpLink }}">Help<span
+                                                class="govuk-visually-hidden"> - {{ plugin.name }}</span></a>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </form>
 {% endblock %}

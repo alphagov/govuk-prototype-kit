@@ -5,6 +5,7 @@ const { waitForApplication } = require('../utils')
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
 const managePluginsPagePath = '/manage-prototype/plugins'
+const manageInstalledPluginsPagePath = '/manage-prototype/plugins-installed'
 
 const panelProcessingQuery = '[aria-live="polite"] #panel-processing'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
@@ -18,6 +19,11 @@ function getTemplateLink (type, packageName, path) {
 async function loadPluginsPage () {
   cy.task('log', 'Visit the manage prototype plugins page')
   await waitForApplication(managePluginsPagePath)
+}
+
+async function loadInstalledPluginsPage () {
+  cy.task('log', 'Visit the manage prototype plugins page')
+  await waitForApplication(manageInstalledPluginsPagePath)
 }
 
 async function loadTemplatesPage () {
@@ -93,8 +99,10 @@ function failAction (action) {
 
 module.exports = {
   managePluginsPagePath,
+  manageInstalledPluginsPagePath,
   manageTemplatesPagePath,
   loadPluginsPage,
+  loadInstalledPluginsPage,
   loadTemplatesPage,
   getTemplateLink,
   performPluginAction,

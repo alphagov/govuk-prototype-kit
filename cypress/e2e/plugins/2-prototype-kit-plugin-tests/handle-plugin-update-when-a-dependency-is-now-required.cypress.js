@@ -35,6 +35,8 @@ describe('Handle a plugin update', () => {
       .find('button')
       .contains('Install')
 
+    cy.get('#installed-plugins-link').click()
+
     cy.get('[data-plugin-group-status="installed"]')
       .find(`[data-plugin-package-name="${plugin}"]`)
       .find('button')
@@ -54,6 +56,8 @@ describe('Handle a plugin update', () => {
     cy.get('#instructions-complete a')
       .contains('Back to plugins')
       .click()
+
+    cy.get('#installed-plugins-link').click()
 
     cy.get('[data-plugin-group-status="installed"]')
       .find(`[data-plugin-package-name="${dependencyPlugin}"]`)
