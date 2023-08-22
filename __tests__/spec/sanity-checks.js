@@ -6,7 +6,7 @@ const path = require('path')
 // npm dependencies
 const fse = require('fs-extra')
 const request = require('supertest')
-const sass = require('sass')
+const sass = require('sass-embedded')
 
 // local dependencies
 const { mkPrototype, mkdtempSync } = require('../utils')
