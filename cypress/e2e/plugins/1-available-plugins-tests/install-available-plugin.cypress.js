@@ -62,7 +62,9 @@ describe('Management plugins: ', () => {
       url: `${managePluginsPagePath}/install`,
       method: 'POST',
       failOnStatusCode: false,
-      body: { package: plugin }
+      body: { package: plugin },
+      retryOnNetworkFailure: true,
+      timeout: 4000
     }).then(response => {
       expect(response.status).to.eq(403)
       expect(response.body).to.have.property('error', 'invalid csrf token')

@@ -57,7 +57,7 @@ describe('watch custom sass files', () => {
       cy.get('p.app-custom-style').should('have.css', 'background-color', 'rgb(0, 255, 0)')
 
       cy.task('log', `Request ${customStylesPublicPath}`)
-      cy.request(`/${customStylesPublicPath}`)
+      cy.request(`/${customStylesPublicPath}`, { retryOnNetworkFailure: true, timeout: 4000 })
         .then(response => expect(response.status).to.eq(200))
     })
   })
