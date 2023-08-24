@@ -56,15 +56,16 @@ describe('Management plugins: ', () => {
   after(restoreStarterFiles)
 
   it('CSRF Protection on POST action', () => {
+    // Load the plugins page, so we don't get any network errors when running the test
+    loadPluginsPage()
+    // Now run the test
     const installUrl = `${managePluginsPagePath}/install`
     cy.task('log', `Posting to ${installUrl} without csrf protection`)
     cy.request({
       url: `${managePluginsPagePath}/install`,
       method: 'POST',
       failOnStatusCode: false,
-      body: { package: plugin },
-      retryOnNetworkFailure: true,
-      timeout: 4000
+      body: { package: plugin }
     }).then(response => {
       expect(response.status).to.eq(403)
       expect(response.body).to.have.property('error', 'invalid csrf token')

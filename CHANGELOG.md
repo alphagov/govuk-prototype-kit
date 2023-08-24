@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2303: Update high vulnerability node modules](https://github.com/alphagov/govuk-prototype-kit/pull/2303)
+
 ## 13.12.1
 
 ### Fixes
