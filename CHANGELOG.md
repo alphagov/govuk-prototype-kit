@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## New features
+
+- [#2314: Plugin validator allows the user to specify unknown keys](https://github.com/alphagov/govuk-prototype-kit/pull/2314)
+
 ## 13.12.2
 
 ### Fixes

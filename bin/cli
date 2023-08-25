@@ -408,7 +408,7 @@ function runServe () {
 }
 
 async function runValidatePlugin () {
-  return validatePlugin(getInstallLocation())
+  return validatePlugin(getInstallLocation(), argv)
 }
 
 ;(async () => {

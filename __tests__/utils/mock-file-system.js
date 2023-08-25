@@ -4,6 +4,7 @@
 // core dependencies
 const path = require('path')
 const fs = require('fs')
+const fse = require('fs-extra')
 
 function throwNotFound (filePath) {
   const err = new Error(`ENOENT: no such file or directory, open '${filePath}'`)
@@ -156,6 +157,8 @@ function mockFileSystem (rootPath) {
     jest.spyOn(fs, 'existsSync').mockImplementation(existsImplementation)
     jest.spyOn(fs, 'lstatSync').mockImplementation(lstatImplementation)
     jest.spyOn(fs, 'readdirSync').mockImplementation(readdirImplementation)
+    jest.spyOn(fs, 'existsSync').mockImplementation(existsImplementation)
+    jest.spyOn(fse, 'exists').mockImplementation(promiseWrap(existsImplementation))
     jest.spyOn(fs.promises, 'readFile').mockImplementation(promiseWrap(readFileImplementation))
     jest.spyOn(fs.promises, 'writeFile').mockImplementation(promiseWrap(writeFileImplementation))
     jest.spyOn(fs.promises, 'lstat').mockImplementation(promiseWrap(lstatImplementation))
@@ -174,6 +177,7 @@ function mockFileSystem (rootPath) {
     spiesToTearDown.push(fs.writeFileSync)
     spiesToTearDown.push(fs.existsSync)
     spiesToTearDown.push(fs.lstatSync)
+    spiesToTearDown.push(fse.exists)
     spiesToTearDown.push(fs.promises.readFile)
     spiesToTearDown.push(fs.promises.writeFile)
     spiesToTearDown.push(fs.promises.lstat)
