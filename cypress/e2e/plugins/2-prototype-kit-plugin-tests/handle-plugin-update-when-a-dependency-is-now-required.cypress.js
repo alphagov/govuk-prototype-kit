@@ -30,7 +30,7 @@ describe('Handle a plugin update', () => {
 
     waitForApplication(pluginsPage)
 
-    cy.get('[data-plugin-group-status="available"]')
+    cy.get('[data-plugin-group-status="search"]')
       .find(`[data-plugin-package-name="${dependencyPlugin}"]`)
       .find('button')
       .contains('Install')

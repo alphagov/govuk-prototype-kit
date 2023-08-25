@@ -9,7 +9,8 @@ const {
   managePluginsPagePath,
   getTemplateLink,
   loadInstalledPluginsPage,
-  loadPluginsPage, manageInstalledPluginsPagePath
+  loadPluginsPage,
+  manageInstalledPluginsPagePath
 } = require('../plugin-utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
