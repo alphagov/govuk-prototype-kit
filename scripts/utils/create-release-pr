@@ -118,6 +118,8 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
   let isReadyToMerge = false
   const requiredReviews = 1
 
+  await exec('npm install')
+
   do {
     await wait(5000)
     await exec(`gh pr view ${prUrl} --json isDraft,reviewDecision,reviews,statusCheckRollup`, { hideStd: true })
@@ -168,13 +170,12 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
 
   console.log('Tests pass, approval granted, ready to continue.')
 
-  console.log('To continue run these commands:')
+  await exec(`gh pr merge ${prUrl} -m -d`)
+  await exec(`gh release create "v${newVersion}" --notes-file "${prBodyFile}" --target "main"  --title "v${newVersion}" --latest`)
+  console.log('')
+  console.log('Everything other than the publish to NPM is complete, to publish to NPM run:')
   console.log('')
   console.log(`cd ${projectDir}`)
-  console.log('')
-  console.log(`gh pr merge ${prUrl} -m -d`)
-  console.log('')
-  console.log(`gh release create "v${newVersion}" --notes-file "${prBodyFile}" --target "main"  --title "v${newVersion}" --latest`)
   console.log('')
   console.log('npm login')
   console.log('')
