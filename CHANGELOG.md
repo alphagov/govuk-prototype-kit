@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.13.0
+
 ### New features
 
 - [#2305: Build the enhanced plugin page](https://github.com/alphagov/govuk-prototype-kit/pull/2305)
