@@ -19,7 +19,7 @@ jobs:
 
     name: Acceptance ${{ matrix.type }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 25
+    timeout-minutes: 30
 
     env:
       CYPRESS_CACHE_FOLDER: ~/.cache/Cypress

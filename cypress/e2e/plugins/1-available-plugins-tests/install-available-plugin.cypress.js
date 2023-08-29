@@ -2,13 +2,15 @@
 const path = require('path')
 
 // local dependencies
-const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles } = require('../../utils')
+const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles, log } = require('../../utils')
 const {
   failAction,
   performPluginAction,
   managePluginsPagePath,
   getTemplateLink,
-  loadPluginsPage
+  loadInstalledPluginsPage,
+  loadPluginsPage,
+  manageInstalledPluginsPagePath
 } = require('../plugin-utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
@@ -22,7 +24,7 @@ const pluginPageTitle = 'Step by step navigation'
 const pluginPagePath = '/step-by-step-navigation'
 
 const provePluginFunctionalityWorks = () => {
-  cy.task('log', `Prove ${pluginName} functionality works`)
+  log(`Prove ${pluginName} functionality works`)
 
   cy.visit(pluginPagePath)
 
@@ -45,7 +47,7 @@ const provePluginFunctionalityFails = () => {
     return false
   })
 
-  cy.task('log', `Prove ${pluginName} functionality fails`)
+  log(`Prove ${pluginName} functionality fails`)
 
   cy.visit(pluginPagePath)
 
@@ -53,14 +55,14 @@ const provePluginFunctionalityFails = () => {
 }
 
 describe('Management plugins: ', () => {
-  after(restoreStarterFiles)
+  afterEach(restoreStarterFiles)
 
   it('CSRF Protection on POST action', () => {
     // Load the plugins page, so we don't get any network errors when running the test
     loadPluginsPage()
     // Now run the test
     const installUrl = `${managePluginsPagePath}/install`
-    cy.task('log', `Posting to ${installUrl} without csrf protection`)
+    log(`Posting to ${installUrl} without csrf protection`)
     cy.request({
       url: `${managePluginsPagePath}/install`,
       method: 'POST',
@@ -72,7 +74,8 @@ describe('Management plugins: ', () => {
     })
   })
 
-  it(`Install ${plugin}@${version1} directly`, () => {
+  it(`Update the ${plugin} plugin`, () => {
+    log(`Install ${plugin}@${version1} directly`)
     uninstallPlugin(plugin)
 
     loadPluginsPage()
@@ -82,13 +85,14 @@ describe('Management plugins: ', () => {
     cy.get('#plugin-action-button').click()
 
     performPluginAction('install', plugin, pluginName)
-  })
 
-  it(`Update the ${plugin}@${version1} plugin to ${plugin}@${version2}`, () => {
+    //   ------------------------
+
+    log(`Update the ${plugin}@${version1} plugin to ${plugin}@${version2}`)
     installPlugin(plugin, version1)
 
-    loadPluginsPage()
-    cy.task('log', `Update the ${plugin} plugin`)
+    loadInstalledPluginsPage()
+    log(`Update the ${plugin} plugin`)
 
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
@@ -99,90 +103,89 @@ describe('Management plugins: ', () => {
     performPluginAction('update', plugin, pluginName)
   })
 
-  describe(`Create a page using a template from the ${plugin} plugin`, () => {
-    it('Install the plugin, create the page, and test the functionality', () => {
-      deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
-      installPlugin(plugin, version2)
+  it(`Create a page using a template from the ${plugin} plugin`, () => {
+    log('Install the plugin, create the page, and test the functionality')
+    deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
+    installPlugin(plugin, version2)
 
-      loadPluginsPage()
-      cy.get('a[href*="/templates"]')
-        .contains('Templates').click()
+    loadInstalledPluginsPage()
+    cy.get('a[href*="/templates"]')
+      .contains('Templates').click()
 
-      cy.get('h2').contains(pluginName)
+    cy.get('h2').contains(pluginName)
 
-      cy.task('log', `Create a new ${pluginPageTitle} page`)
+    //   ------------------------
 
-      cy.get(`a[href="${getTemplateLink('install', '@govuk-prototype-kit/step-by-step', pluginPageTemplate)}"]`).click()
+    log(`Create a new ${pluginPageTitle} page`)
 
-      // create step-by-step-navigation page
-      cy.get('.govuk-heading-l')
-        .contains(`Create new ${pluginPageTitle} page`)
-      cy.get('#chosen-url')
-        .type(pluginPagePath)
-      cy.get('.govuk-button').contains('Create page').click()
+    cy.get(`a[href="${getTemplateLink('install', '@govuk-prototype-kit/step-by-step', pluginPageTemplate)}"]`).click()
 
-      provePluginFunctionalityWorks()
+    // create step-by-step-navigation page
+    cy.get('.govuk-heading-l')
+      .contains(`Create new ${pluginPageTitle} page`)
+    cy.get('#chosen-url')
+      .type(pluginPagePath)
+    cy.get('.govuk-button').contains('Create page').click()
 
-      cy.task('log', `Uninstall the ${plugin} plugin`)
+    provePluginFunctionalityWorks()
 
-      loadPluginsPage()
-      cy.task('log', `Uninstall the ${plugin} plugin`)
+    //   ------------------------
 
-      cy.get(`[data-plugin-package-name="${plugin}"]`)
-        .scrollIntoView()
-        .find('button')
-        .contains('Uninstall')
-        .click()
+    log(`Uninstall the ${plugin} plugin`)
 
-      performPluginAction('uninstall', plugin, pluginName)
+    cy.visit(manageInstalledPluginsPagePath)
 
-      provePluginFunctionalityFails()
+    cy.get(`[data-plugin-package-name="${plugin}"]`)
+      .scrollIntoView()
+      .find('button')
+      .contains('Uninstall')
+      .click()
 
-      cy.task('log', `Reinstall the ${plugin} plugin`)
+    performPluginAction('uninstall', plugin, pluginName)
 
-      loadPluginsPage()
-      cy.task('log', `Install the ${plugin} plugin`)
+    provePluginFunctionalityFails()
 
-      cy.get(`[data-plugin-package-name="${plugin}"]`)
-        .scrollIntoView()
-        .find('button')
-        .contains('Install')
-        .click()
+    //   ------------------------
 
-      performPluginAction('install', plugin, pluginName)
+    log(`Reinstall the ${plugin} plugin`)
 
-      provePluginFunctionalityWorks()
-    })
+    cy.visit(managePluginsPagePath)
+
+    cy.get(`[data-plugin-package-name="${plugin}"]`)
+      .scrollIntoView()
+      .find('button')
+      .contains('Install')
+      .click()
+
+    performPluginAction('install', plugin, pluginName)
+
+    provePluginFunctionalityWorks()
   })
 
-  describe('Get plugin page directly', () => {
-    it('Pass when installing a plugin already installed', () => {
-      cy.task('waitUntilAppRestarts')
-      cy.task('log', `Simulate refreshing the install ${plugin} plugin confirmation page`)
-      cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}`)
+  it('Get plugin page directly', () => {
+    log('Pass when installing a plugin already installed')
+    cy.task('waitUntilAppRestarts')
+    log(`Simulate refreshing the install ${plugin} plugin confirmation page`)
+    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}`)
 
-      cy.get('#plugin-action-button').click()
+    cy.get('#plugin-action-button').click()
 
-      performPluginAction('install', plugin, pluginName)
-    })
+    performPluginAction('install', plugin, pluginName)
 
-    describe('fail', () => {
-      it('Fail when installing a non existent plugin', () => {
-        cy.task('waitUntilAppRestarts')
-        const pkg = 'invalid-prototype-kit-plugin'
-        const pluginName = 'Invalid Prototype Kit Plugin'
-        cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(pkg)}`)
-        cy.get('h2').contains(`Install ${pluginName}`)
-        failAction('install')
-      })
+    //   ------------------------
 
-      it('Fail when installing a plugin with a non existent version', () => {
-        cy.task('waitUntilAppRestarts')
-        cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=0.0.1`)
-        cy.get('h2')
-          .contains(`Install ${pluginName}`)
-        failAction('install')
-      })
-    })
+    log('Fail when installing a non existent plugin')
+    const pkg = 'invalid-prototype-kit-plugin'
+    const invalidPluginName = 'Invalid Prototype Kit Plugin'
+    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(pkg)}`)
+    cy.get('h2').contains(`Install ${invalidPluginName}`)
+    failAction('install')
+
+    //   ------------------------
+
+    log('Fail when installing a plugin with a non existent version')
+    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=0.0.1`)
+    cy.get('h2').contains(`Install ${pluginName}`)
+    failAction('install')
   })
 })

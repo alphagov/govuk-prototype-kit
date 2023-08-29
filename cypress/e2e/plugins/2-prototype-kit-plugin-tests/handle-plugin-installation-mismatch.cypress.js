@@ -18,6 +18,7 @@ describe('Handle a plugin installation mismatch', () => {
 
     log(`Make sure ${plugin} is displayed as not installed`)
     cy.visit(pluginsPage)
+
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
       .find('button')
@@ -29,6 +30,8 @@ describe('Handle a plugin installation mismatch', () => {
     log(`Make sure ${plugin} is displayed as installed`)
     waitForApplication()
     cy.visit(pluginsPage)
+
+    cy.get('#installed-plugins-link').click()
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
       .find('button')

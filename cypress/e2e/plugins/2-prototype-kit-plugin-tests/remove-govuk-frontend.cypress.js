@@ -1,5 +1,5 @@
 const { managePluginsPagePath, performPluginAction } = require('../plugin-utils')
-const { uninstallPlugin, installPlugin, restoreStarterFiles } = require('../../utils')
+const { uninstallPlugin, restoreStarterFiles } = require('../../utils')
 
 const plugin = 'govuk-frontend'
 const pluginName = 'GOV.UK Frontend'
@@ -47,11 +47,11 @@ describe('Manage prototype pages without govuk-frontend', () => {
 
     performPluginAction('install', plugin, pluginName)
 
+    cy.get('#installed-plugins-link').click()
+
     cy.task('log', 'Make sure govuk-frontend is installed')
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .find('button')
       .contains('Uninstall')
-
-    installPlugin(dependentPlugin)
   })
 })
