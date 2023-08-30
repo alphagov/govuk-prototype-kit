@@ -69,12 +69,14 @@
                                 attributes: { id: "search-button", formaction: "#" }
                             }) }}
 
-                            <a class="govuk-link govuk-link--no-visited-state" href="?">Clear search</a>
+                            {% if search %}
+                                <a class="govuk-link govuk-link--no-visited-state" href="?">Clear search</a>
+                            {% endif %}
                         </div>
                     </div>
-                    <h4 class="govuk-body govuk-!-font-weight-bold">
+                    <h3 class="govuk-body govuk-!-font-weight-bold">
                         {{ foundMessage }}
-                    </h4>
+                    </h3>
                 </div>
                 {% endif %}
 
