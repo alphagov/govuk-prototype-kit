@@ -14,12 +14,12 @@ function findIndexOfFirstMatchingLine (changelogLines, regExp) {
     .at(0)
 }
 
-async function exec (command, { allowStderr = false, hideStd = false } = {}) {
+async function exec (command, { allowStderr = false, hideStd = false, allowErrorCode = false } = {}) {
   const newVersion = await new Promise((resolve) => {
     console.log('running command', command)
     cp.exec(command, { cwd: projectDir },
       (error, stdout, stderr) => {
-        if (error) {
+        if (error && !allowErrorCode) {
           console.log(`error: ${error.message}`)
           process.exit(14)
         }
@@ -172,12 +172,27 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
 
   await exec(`gh pr merge ${prUrl} -m -d`)
   await exec(`gh release create "v${newVersion}" --notes-file "${prBodyFile}" --target "main"  --title "v${newVersion}" --latest`)
+
+  let loggedInAsCorrectNpmUser = false
+  const correctNpmUser = 'govuk-prototype-kit'
+
+  do {
+    await wait(2000)
+    const output = await exec('npm whoami', { allowStderr: true, allowErrorCode: true, hideStd: true })
+    if (output === correctNpmUser) {
+      loggedInAsCorrectNpmUser = true
+    } else if (output) {
+      console.log(`Currently logged in as [${output}], should be loggd in as [${correctNpmUser}].  Run [npm login] in another terminal.`)
+    } else {
+      console.log(`Please log in as [${correctNpmUser}] to continue by running [npm login] in another terminal.`)
+    }
+  } while (!loggedInAsCorrectNpmUser)
+  console.log('')
+  console.log('logged in as the correct user')
   console.log('')
   console.log('Everything other than the publish to NPM is complete, to publish to NPM run:')
   console.log('')
   console.log(`cd ${projectDir}`)
-  console.log('')
-  console.log('npm login')
   console.log('')
   console.log('npm run clean-publish')
   console.log('')
