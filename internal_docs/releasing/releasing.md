@@ -6,23 +6,17 @@ Before the release, the content designer needs to draft the release notes, based
 
 2. Run `./scripts/prepare-release`.
 
-3. Once someone has merged the pull request, [draft a new release on GitHub](https://github.com/alphagov/govuk-prototype-kit/releases)
+3. When the script provides a Pull Request URL review it and approve when it's ready.
 
-4. In Tag version and Release title, put v[version number], for example `v7.0.0`.
+4. Once the script has finished checkout the *main* branch and pull the latest changes.
 
-5. In the description, paste the relevant section from the release notes.
+5. Sign in to npm (`npm login`), using the credentials for the govuk-prototype-kit npm user from Bitwarden.
 
-6. Checkout the *main* branch and pull the latest changes.
+6. Run `npm run clean-publish` and enter the one-time password when prompted.
 
-7. Sign in to npm (`npm login`), using the credentials for the govuk-prototype-kit npm user from Bitwarden.
+7. Run `npm logout` to log out from npm.
 
-8. Run `npm run clean-publish` and enter the one-time password when prompted.
-
-9. Run `npm logout` to log out from npm.
-
-10. On GitHub, click 'Publish release'.
-
-11. Let the community know about the release
+8. Let the community know about the release
 
 Write a brief summary with highlights from the release then send it to the following slack channels:
 
@@ -33,4 +27,4 @@ Write a brief summary with highlights from the release then send it to the follo
 
 Make sure to send a link to the 'create a new prototype' page rather than the GitHub release page: https://prototype-kit.service.gov.uk/docs/create-new-prototype.
 
-12. On the sprint board, move everything that's been released from the Ready for release column to the Done column
+9. On the sprint board, move everything that's been released from the Ready for release column to the Done column
