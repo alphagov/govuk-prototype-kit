@@ -5,7 +5,6 @@
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 
 {% block content %}
-    <form method="post" action="">
         <div class="govuk-grid-row govuk-!-margin-bottom-5">
             <div class="govuk-grid-column-two-thirds-from-desktop">
                 <h1 class="govuk-heading-l">Plugins</h1>
@@ -44,6 +43,7 @@
             </div>
 
             <div class="govuk-grid-column-three-quarters">
+                <form method="post" action="">
                 {% if isSearchPage %}
                 <div class="govuk-!-margin-bottom-5">
                     <div id="search-container">
@@ -149,7 +149,28 @@
                         </li>
                     {% endfor %}
                 </ul>
+                </form>
+                <form action="/manage-prototype/plugin" method="post">
+                {{ govukInput({
+                    label: {
+                        text: "Lookup a plugin that's not in this list",
+                        classes: "govuk-label--m"
+                    },
+                    classes: "govuk-input--width-30",
+                    hint: {
+                        text: "The name you enter must be exactly what NPM refers to this plugin as"
+                    },
+                    id: "plugin-package-name",
+                    name: "pluginPackageName",
+                    spellcheck: false
+                }) }}
+                {{ govukButton({
+                    text: "Lookup",
+                    attributes: {
+                        formaction: "/manage-prototype/plugin"
+                    }
+                }) }}
+    </form>
             </div>
         </div>
-    </form>
 {% endblock %}
