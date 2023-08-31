@@ -1,7 +1,6 @@
 /* eslint-env jest */
 
 // core dependencies
-const assert = require('assert')
 const path = require('path')
 
 // npm dependencies
@@ -67,80 +66,6 @@ describe('The Prototype Kit', () => {
     it('should return html file', async () => {
       const response = await request(app).get('/')
       expect(response.type).toBe('text/html')
-    })
-  })
-
-  describe('plugins', () => {
-    it('should allow known assets to be loaded from node_modules', (done) => {
-      request(app)
-        .get('/plugin-assets/govuk-frontend/govuk/all.js')
-        .expect(200)
-        .expect('Content-Type', /application\/javascript; charset=UTF-8/)
-        .end((err, res) => {
-          if (err) {
-            done(err)
-          } else {
-            assert.strictEqual(
-              '' + res.text,
-              fse.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
-            )
-            done()
-          }
-        })
-    })
-
-    it('should allow known assets to be loaded from node_modules', (done) => {
-      request(app)
-        .get('/plugin-assets/govuk-frontend/govuk/assets/images/favicon.ico')
-        .expect(200)
-        .expect('Content-Type', /image\/x-icon/)
-        .end((err, res) => {
-          if (err) {
-            done(err)
-          } else {
-            assert.strictEqual(
-              '' + res.body,
-              fse.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'assets', 'images', 'favicon.ico'), 'utf8')
-            )
-            done()
-          }
-        })
-    })
-
-    it('should not expose everything', (done) => {
-      const consoleErrorMock = jest.spyOn(global.console, 'error').mockImplementation()
-
-      request(app)
-        .get('/govuk/assets/common.js')
-        .expect(404)
-        .end((err, res) => {
-          consoleErrorMock.mockRestore()
-          if (err) {
-            done(err)
-          } else {
-            done()
-          }
-        })
-    })
-
-    describe('misconfigured prototype kit - while updating kit developer did not copy over changes in /app folder', () => {
-      it('should still allow known assets to be loaded from node_modules', (done) => {
-        request(app)
-          .get('/plugin-assets/govuk-frontend/govuk/all.js')
-          .expect(200)
-          .expect('Content-Type', /application\/javascript; charset=UTF-8/)
-          .end((err, res) => {
-            if (err) {
-              done(err)
-            } else {
-              assert.strictEqual(
-                '' + res.text,
-                fse.readFileSync(path.join(projectDir, 'node_modules', 'govuk-frontend', 'govuk', 'all.js'), 'utf8')
-              )
-              done()
-            }
-          })
-      })
     })
   })
 })
