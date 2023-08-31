@@ -5,6 +5,7 @@
 ### Fixes
 
 - [#2318: Only show Clear search link if there's a search](https://github.com/alphagov/govuk-prototype-kit/pull/2318)
+- [#2321: Update hint for create page](https://github.com/alphagov/govuk-prototype-kit/pull/2321)
 
 ## 13.13.0
 
