@@ -19,7 +19,7 @@
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-quarter">
-              <p>Version {{ pluginDetails.version | default(pluginDetails.latestVersion) }}</p>
+              <p>Version {{ pluginDetails.version | default(pluginDetails.installedVersion) | default(pluginDetails.latestVersion) }}</p>
 
               {% if not pluginDetails.installedVersion %}
                   {{ govukButton({
@@ -30,7 +30,6 @@
               {% if pluginDetails.updateLink %}
                   {{ govukButton({
                       text: 'Update',
-                      classes: "govuk-button--secondary",
                       href: pluginDetails.updateLink
                   }) }}
               {% endif %}
@@ -42,15 +41,19 @@
                   }) }}
               {% endif %}
                 
-              <div class="govuk-prototype-kit-manage-prototype-plugin-details-links">
-                <p class="govuk-body">Last updated <time datetime="{{ pluginDetails.releaseDateTime }}">{{ pluginDetails.releaseTimeSummary }}</time></p>
-                {% if preparedPluginLinks.releaseNotes %}
-                  <p><a href="{{ preparedPluginLinks.releaseNotes }}" class="govuk-link">Release notes</a></p>
-                {% endif %}
-                {% if preparedPluginLinks.versionHistory %}
-                  <p><a href="{{ preparedPluginLinks.versionHistory }}" class="govuk-link">Version history</a></p>
-                {% endif %}
-              </div>
+              {% if pluginDetails.releaseDateTime or preparedPluginLinks.releaseNotes or preparedPluginLinks.versionHistory %}
+                <div class="govuk-prototype-kit-manage-prototype-plugin-details-links">
+                  {% if pluginDetails.releaseDateTime %}
+                    <p class="govuk-body">Last updated <time datetime="{{ pluginDetails.releaseDateTime }}">{{ pluginDetails.releaseTimeSummary }}</time></p>
+                  {% endif %}
+                  {% if preparedPluginLinks.releaseNotes %}
+                    <p><a href="{{ preparedPluginLinks.releaseNotes }}" class="govuk-link">Release notes</a></p>
+                  {% endif %}
+                  {% if preparedPluginLinks.versionHistory %}
+                    <p><a href="{{ preparedPluginLinks.versionHistory }}" class="govuk-link">Version history</a></p>
+                  {% endif %}
+                </div>
+              {% endif %}
               <p class="govuk-body"><a href="https://prototype-kit.service.gov.uk/docs/support">Report</a></p>
             </div>
             
