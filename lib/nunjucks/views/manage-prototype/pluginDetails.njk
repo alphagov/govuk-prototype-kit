@@ -19,32 +19,35 @@
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-quarter">
-              <p>Version {{ pluginDetails.version | default(pluginDetails.installedVersion) | default(pluginDetails.latestVersion) }}</p>
+              <p>Version {{ pluginDetails.version }}</p>
+                {% if newerLink %}
+                    <p><a href="{{ newerLink }}">Version {{ newerVersion }} is the most recent</a></p>
+                {% endif %}
 
-              {% if not pluginDetails.installedVersion %}
+              {% if installLink %}
                   {{ govukButton({
                       text: 'Install',
-                      href: pluginDetails.installLink
+                      href: installLink
                   }) }}
               {% endif %}
-              {% if pluginDetails.updateLink %}
+              {% if updateLink %}
                   {{ govukButton({
                       text: 'Update',
-                      href: pluginDetails.updateLink
+                      href: updateLink
                   }) }}
               {% endif %}
-              {% if pluginDetails.installedVersion %}
+              {% if uninstallLink %}
                   {{ govukButton({
                       text: 'Uninstall',
                       classes: "govuk-button--secondary",
-                      href: pluginDetails.uninstallLink
+                      href: uninstallLink
                   }) }}
               {% endif %}
                 
               {% if pluginDetails.releaseDateTime or preparedPluginLinks.releaseNotes or preparedPluginLinks.versionHistory %}
                 <div class="govuk-prototype-kit-manage-prototype-plugin-details-links">
                   {% if pluginDetails.releaseDateTime %}
-                    <p class="govuk-body">Last updated <time datetime="{{ pluginDetails.releaseDateTime }}">{{ pluginDetails.releaseTimeSummary }}</time></p>
+                    <p class="govuk-body">Released <time title="{{ pluginDetails.releaseDateTime }}" datetime="{{ pluginDetails.releaseDateTime }}">{{ releaseTimeSummary }}</time></p>
                   {% endif %}
                   {% if preparedPluginLinks.releaseNotes %}
                     <p><a href="{{ preparedPluginLinks.releaseNotes }}" class="govuk-link">Release notes</a></p>
@@ -60,7 +63,7 @@
             <div class="govuk-grid-column-three-quarters">
               <h2 class="govuk-heading-l">About this plugin</h2>
                 
-              <p class="govuk-body">{{ pluginDetails.description | default('No description has been provided.') }}</p>
+              <p class="govuk-body">{{ pluginDescription | default('No description has been provided.') }}</p>
                 
               {% if preparedPluginLinks.documentation %}
                 <p class="govuk-heading-m"><a href="{{ preparedPluginLinks.documentation }}">How to use this plugin</a></p>

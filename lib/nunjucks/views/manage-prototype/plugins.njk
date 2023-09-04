@@ -138,27 +138,7 @@
                     {% endfor %}
                 </ul>
                 </form>
-                <form action="/manage-prototype/plugin" method="post">
-                {{ govukInput({
-                    label: {
-                        text: "Lookup a plugin that's not in this list",
-                        classes: "govuk-label--m"
-                    },
-                    classes: "govuk-input--width-30",
-                    hint: {
-                        text: "The name you enter must be exactly what NPM refers to this plugin as"
-                    },
-                    id: "plugin-package-name",
-                    name: "pluginPackageName",
-                    spellcheck: false
-                }) }}
-                {{ govukButton({
-                    text: "Lookup",
-                    attributes: {
-                        formaction: "/manage-prototype/plugin"
-                    }
-                }) }}
-    </form>
+                {% include "views/manage-prototype/lookup-plugin.njk" %}
             </div>
         </div>
 {% endblock %}
