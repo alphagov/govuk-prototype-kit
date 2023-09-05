@@ -18,10 +18,6 @@ process.env.KIT_PROJECT_DIR = testDir
 process.env.NODE_ENV = 'production'
 process.env.USE_HTTPS = 'true'
 
-jest.mock('../../lib/plugins/packages.js', () => {
-  return {}
-})
-
 const app = require('../../server.js')
 
 describe('The Prototype Kit - force HTTPS redirect functionality', () => {
