@@ -24,9 +24,9 @@
                     <p><a href="{{ newerLink }}">Version {{ newerVersion }} is the most recent</a></p>
                 {% endif %}
 
-              {% if installLink %}
+              {% if installLink %}  
                   {{ govukButton({
-                      text: 'Install',
+                      text: installLinkText | default('Install'),
                       href: installLink
                   }) }}
               {% endif %}
@@ -58,6 +58,11 @@
                 </div>
               {% endif %}
               <p class="govuk-body"><a href="https://prototype-kit.service.gov.uk/docs/support">Report</a></p>
+              {% if debugInfo %}
+              <code><pre>
+                   {{ debugInfo }}
+                  </pre></code>
+              {% endif %}
             </div>
             
             <div class="govuk-grid-column-three-quarters">

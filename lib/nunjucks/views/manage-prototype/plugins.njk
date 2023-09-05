@@ -88,21 +88,21 @@
 
                             <div class="govuk-grid-column-one-third govuk-body">
                                 <h4 class="govuk-body govuk-!-font-weight-bold">
-                                    <a href="/manage-prototype/plugin/{{ plugin.urlEncodedPackageName }}">{{ plugin.name }}</a>
+                                    <a href="{{ plugin.pluginDetailsLink }}">{{ plugin.name }}</a>
                                 </h4>
                                 {% if plugin.scope %}
                                     <div>
                                         By {{ plugin.scope }}
                                     </div>
                                 {% endif %}
-                                {% if plugin.installedVersion %}
+                                {% if plugin.isInstalled %}
                                     <div class="govuk-!-margin-top-3">
                                         v{{ plugin.installedVersion }}
                                     </div>
                                 {% endif %}
                             </div>
                             <div class="govuk-grid-column-two-thirds govuk-body">
-                                {% if isSearchPage and plugin.installedVersion %}
+                                {% if isSearchPage and plugin.isInstalled %}
                                     <p>
                                         {{ govukTag({
                                             text: "Installed",
@@ -110,7 +110,7 @@
                                         }) }}
                                     </p>
                                 {% endif %}
-                                {% if plugin.updateLink %}
+                                {% if plugin.updateAvailable %}
                                 <p>
                                     
                                     {{ govukTag({
@@ -138,7 +138,9 @@
                     {% endfor %}
                 </ul>
                 </form>
+              {% if showPluginLookup %}
                 {% include "views/manage-prototype/lookup-plugin.njk" %}
+              {% endif %}
             </div>
         </div>
 {% endblock %}
