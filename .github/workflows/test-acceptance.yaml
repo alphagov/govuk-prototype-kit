@@ -43,13 +43,12 @@ jobs:
 
     - run: npm ci
 
-    - run: npm run test:acceptance:${{ matrix.type }} -- --auto-cancel-after-failures 1
+    - run: npm run test:acceptance:${{ matrix.type }}
       env:
         CYPRESS_REQUEST_TIMEOUT: 20000
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
         CYPRESS_PAGE_LOAD_TIMEOUT: 120000
         CYPRESS_RETRIES: 3
-        
 
     - if: ${{ failure() }}
       uses: actions/upload-artifact@v3
