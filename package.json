@@ -1,7 +1,7 @@
 {
   "name": "govuk-prototype-kit",
   "description": "Rapidly create HTML prototypes of GOV.UK services",
-  "version": "13.13.1",
+  "version": "13.13.0",
   "engines": {
     "node": "^16.x || >= 18.x"
   },
@@ -91,7 +91,7 @@
     "cheerio": "^1.0.0-rc.12",
     "clean-publish": "^4.0.2",
     "cross-env": "^7.0.3",
-    "cypress": "^12.3.0",
+    "cypress": "^13.1.0",
     "eslint-plugin-cypress": "^2.14.0",
     "eslint-plugin-jest": "^27.2.1",
     "extract-zip": "^2.0.1",
@@ -126,6 +126,6 @@
       "/node_modules/",
       "/tmp/"
     ],
-    "testTimeout": 30000
+    "testTimeout": 5000
   }
 }

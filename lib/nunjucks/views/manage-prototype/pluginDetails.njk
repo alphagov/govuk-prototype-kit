@@ -1,0 +1,88 @@
+{% extends "views/manage-prototype/layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+    {{ super() }}
+    <a href="/manage-prototype/plugins" class="govuk-back-link">Back to plugins</a>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="">
+        {% include "views/manage-prototype/plugin-header.njk" %}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+                {% if newerLink %}
+                    <p><a href="{{ newerLink }}">Latest version: {{ newerVersion }}</a></p>
+                {% endif %}
+                {% if installedLinkAsDifferentLink %}
+                    <p><a href="{{ installedLinkAsDifferentLink }}">Installed version: {{ installedLinkAsDifferentVersion }}</a></p>
+                {% endif %}
+
+              {% if installLink %}  
+                  {{ govukButton({
+                      text: installLinkText | default('Install'),
+                      href: installLink,
+                      classes: 'govuk-prototype-kit-plugin-install-button'
+                  }) }}
+              {% endif %}
+              {% if updateLink %}
+                  {{ govukButton({
+                      text: 'Update',
+                      href: updateLink,
+                      classes: 'govuk-prototype-kit-plugin-update-button'
+                  }) }}
+              {% endif %}
+              {% if uninstallLink %}
+                  {{ govukButton({
+                      text: 'Uninstall',
+                      classes: 'govuk-button--secondary govuk-prototype-kit-plugin-uninstall-button',
+                      href: uninstallLink
+                  }) }}
+              {% endif %}
+                
+              {% if plugin.releaseDateTime or preparedPluginLinks.releaseNotes or preparedPluginLinks.versionHistory %}
+                <div class="govuk-prototype-kit-manage-prototype-plugin-details-links">
+                  {% if plugin.releaseDateTime %}
+                    <p class="govuk-body">Released <time title="{{ plugin.releaseDateTime }}" datetime="{{ plugin.releaseDateTime }}">{{ releaseTimeSummary }}</time></p>
+                  {% endif %}
+                  {% if preparedPluginLinks.releaseNotes %}
+                    <p><a href="{{ preparedPluginLinks.releaseNotes }}" class="govuk-link">Release notes</a></p>
+                  {% endif %}
+                  {% if preparedPluginLinks.versionHistory %}
+                    <p><a href="{{ preparedPluginLinks.versionHistory }}" class="govuk-link">Version history</a></p>
+                  {% endif %}
+                </div>
+              {% endif %}
+              <p class="govuk-body"><a href="https://prototype-kit.service.gov.uk/docs/support">Report</a></p>
+              {% if debugInfo %}
+              <code><pre>
+                   {{ debugInfo }}
+                  </pre></code>
+              {% endif %}
+            </div>
+            
+            <div class="govuk-grid-column-three-quarters">
+              <h2 class="govuk-heading-l">About this plugin</h2>
+                
+              <p class="govuk-body">{{ pluginDescription | default('No description has been provided.') }}</p>
+                
+              {% if preparedPluginLinks.documentation %}
+                <p class="govuk-heading-m"><a href="{{ preparedPluginLinks.documentation }}">How to use this plugin</a></p>
+              {% endif %}
+                
+              {% if inThisPlugin.length %}
+                  <h3 class="govuk-heading-m">Included in this plugin</h3>
+                {% for section in inThisPlugin %}
+                    <h4 class="govuk-heading-s">{{ section.title }}</h4>
+                    <ul class="govuk-list--bullet">
+                    {% for item in section.items %}
+                        <li class="govuk-body">{{ item }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endfor %}
+              {% endif %}
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,11 +1,11 @@
 // local dependencies
-const { uninstallPlugin, restoreStarterFiles, log } = require('../../utils')
+const { uninstallPlugin, restoreStarterFiles, log, waitForApplication } = require('../../utils')
 const {
-  managePluginsPagePath,
   loadTemplatesPage,
   loadPluginsPage,
   manageTemplatesPagePath,
-  manageInstalledPluginsPagePath
+  manageInstalledPluginsPagePath,
+  managePrototypeContextPath
 } = require('../plugin-utils')
 
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
@@ -25,7 +25,7 @@ async function installPluginTests ({ plugin, templates, version }) {
       log(`Install the ${plugin} plugin`)
       if (version) {
         cy.task('waitUntilAppRestarts')
-        cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version}`)
+        cy.visit(`${managePrototypeContextPath}/plugin/npm:${encodeURIComponent(plugin)}:${version}/install`)
 
         cy.get('#plugin-action-button').click()
       } else {
@@ -36,10 +36,11 @@ async function installPluginTests ({ plugin, templates, version }) {
 
       cy.get(panelCompleteQuery, { timeout: 20000 })
         .should('be.visible')
-      cy.get('a').contains('Back to plugins').click()
+      cy.get('a').contains('Back to plugin details').should('exist')
 
-      cy.get('#installed-plugins-link').click()
-      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall')
+      waitForApplication(manageInstalledPluginsPagePath)
+
+      cy.get(`[data-plugin-package-name="${plugin}"]`, { timeout: 3000 })
 
       //   ------------------------
 
@@ -59,15 +60,18 @@ async function installPluginTests ({ plugin, templates, version }) {
       //   ------------------------
 
       log(`Uninstall the ${plugin} plugin`)
-      cy.visit(manageInstalledPluginsPagePath)
+      waitForApplication(manageInstalledPluginsPagePath)
 
-      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall').click()
+      cy.get(`[data-plugin-package-name="${plugin}"] .plugin-details-link`, { timeout: 20000 }).click()
+
+      cy.get('.govuk-prototype-kit-plugin-uninstall-button', { timeout: 20000 }).contains('Uninstall').click()
 
       cy.get(panelCompleteQuery, { timeout: 20000 })
         .should('be.visible')
-      cy.get('a').contains('Back to plugins').click()
 
-      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Install')
+      cy.visit(`${managePrototypeContextPath}/plugin/npm:${encodeURIComponent(plugin)}:${version}`, { retryOnNetworkFailure: true, timeout: 10000 })
+
+      cy.get('.govuk-prototype-kit-plugin-install-button', { timeout: 20000 }).contains('Install').should('exist')
     })
   })
 }

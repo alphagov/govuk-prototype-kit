@@ -32,18 +32,27 @@ describe('Handle a plugin update', () => {
 
     cy.get('[data-plugin-group-status="search"]')
       .find(`[data-plugin-package-name="${dependencyPlugin}"]`)
-      .find('button')
+      .find('.plugin-details-link')
+      .contains(dependencyPluginName)
+      .click()
+
+    cy.get('.govuk-prototype-kit-plugin-install-button', { timeout: 4000 })
       .contains('Install')
+
+    waitForApplication(pluginsPage)
 
     cy.get('#installed-plugins-link').click()
 
     cy.get('[data-plugin-group-status="installed"]')
       .find(`[data-plugin-package-name="${plugin}"]`)
-      .find('button')
+      .find('.plugin-details-link')
+      .click()
+
+    cy.get('.govuk-prototype-kit-plugin-update-button', { timeout: 4000 })
       .contains('Update')
       .click()
 
-    cy.get('#plugin-action-confirmation')
+    cy.get('#dependency-heading', { timeout: 4000 })
       .find('ul')
       .contains(dependencyPluginName)
 
@@ -54,6 +63,10 @@ describe('Handle a plugin update', () => {
       .contains('Update complete')
 
     cy.get('#instructions-complete a')
+      .contains('Back to plugin details')
+      .click()
+
+    cy.get('.govuk-back-link', { timeout: 5000 })
       .contains('Back to plugins')
       .click()
 

@@ -1,9 +1,11 @@
-const { managePluginsPagePath, performPluginAction } = require('../plugin-utils')
-const { uninstallPlugin, restoreStarterFiles } = require('../../utils')
+const { performPluginAction, managePrototypeContextPath } = require('../plugin-utils')
+const { uninstallPlugin, restoreStarterFiles, waitForApplication } = require('../../utils')
 
 const plugin = 'govuk-frontend'
 const pluginName = 'GOV.UK Frontend'
 const dependentPlugin = '@govuk-prototype-kit/common-templates'
+const pluginListUrl = `${managePrototypeContextPath}/plugins`
+const pluginPageUrl = `${managePrototypeContextPath}/plugin/npm:${plugin}`
 
 describe('Manage prototype pages without govuk-frontend', () => {
   afterEach(restoreStarterFiles)
@@ -14,15 +16,23 @@ describe('Manage prototype pages without govuk-frontend', () => {
     uninstallPlugin(dependentPlugin)
 
     cy.task('waitUntilAppRestarts')
-    cy.visit(`${managePluginsPagePath}/uninstall?package=${plugin}`)
+    cy.visit(`${pluginPageUrl}/uninstall`)
 
     cy.get('#plugin-action-button').contains('Uninstall').click()
 
     performPluginAction('uninstall', plugin, pluginName)
 
     cy.task('log', 'Make sure govuk-frontend is uninstalled')
+
+    waitForApplication(pluginListUrl)
+
     cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .find('button')
+      .scrollIntoView()
+      .find('.plugin-details-link')
+      .contains(pluginName)
+      .click()
+
+    cy.get('.govuk-prototype-kit-plugin-install-button', { timeout: 3000 })
       .contains('Install')
 
     cy.task('log', 'Test home page')
@@ -41,17 +51,22 @@ describe('Manage prototype pages without govuk-frontend', () => {
 
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('button')
-      .contains('Install')
+      .find('.plugin-details-link')
+      .contains(pluginName)
+      .click()
+
+    cy.get('.govuk-prototype-kit-plugin-install-button', { timeout: 6000 })
       .click()
 
     performPluginAction('install', plugin, pluginName)
 
-    cy.get('#installed-plugins-link').click()
-
     cy.task('log', 'Make sure govuk-frontend is installed')
+
+    waitForApplication(pluginListUrl)
+
     cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .find('button')
-      .contains('Uninstall')
+      .scrollIntoView()
+      .find('.govuk-prototype-kit-installed')
+      .contains('Installed')
   })
 })
