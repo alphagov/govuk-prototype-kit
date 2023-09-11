@@ -2,10 +2,17 @@
 
 ## Unreleased
 
+### New features
+
+- [#2328: New Plugin Details page](https://github.com/alphagov/govuk-prototype-kit/pull/2328)
+
+## 13.13.1
+
 ### Fixes
 
 - [#2318: Only show Clear search link if there's a search](https://github.com/alphagov/govuk-prototype-kit/pull/2318)
 - [#2321: Update hint for create page](https://github.com/alphagov/govuk-prototype-kit/pull/2321)
+- [#2317: Using internal GOV.UK Frontend more widely](https://github.com/alphagov/govuk-prototype-kit/pull/2317) - this makes error pages, password pages etc. more reliable.
 
 ## 13.13.0
 
