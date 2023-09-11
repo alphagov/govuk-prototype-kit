@@ -12,7 +12,6 @@ try {
   const { generateAssetsSync } = require('./lib/build')
 
   const port = config.port
-  const proxyPort = port - 50
 
   generateAssetsSync()
 
@@ -31,7 +30,11 @@ try {
     if (config.isProduction || !config.useBrowserSync) {
       server.listen(port)
     } else {
-      server.listen(proxyPort, () => {
+      const listener = server.listen(() => {
+        const proxyPort = listener.address().port
+        if (config.verbose) {
+          console.log('Proxy port was generated automatically and is', proxyPort)
+        }
         syncChanges.sync({
           port,
           proxyPort,
