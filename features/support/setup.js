@@ -1,25 +1,28 @@
 // setup.js
-const { Status, Before, After, setWorldConstructor } = require('@cucumber/cucumber')
+const { Status, Before, After, setWorldConstructor, AfterAll } = require('@cucumber/cucumber')
 const { CustomWorld } = require('./global/DefaultCustomWorld')
 const fsp = require('fs/promises')
 const path = require('path')
+const { longTimeout } = require('./global/config')
 
 setWorldConstructor(CustomWorld)
 
-Before({ timeout: 60 * 1000 }, async function (scenario) {
+Before({ timeout: longTimeout }, async function (scenario) {
   await this.init(scenario)
 })
 
-After(async function (testCase) {
+After({ timeout: longTimeout }, async function (testCase) {
   if (testCase.result.status === Status.FAILED) {
-    console.log(testCase)
     const screenshot = await this.driver.takeScreenshot()
     await fsp.writeFile(path.join(__dirname, '..', `${testCase.pickle.name}${new Date().getTime()}.png`), screenshot, 'base64')
-    console.log(testCase.pickle.name)
     this.attach(screenshot, {
       mediaType: 'base64:image/png',
       fileName: 'screenshot.png'
     })
   }
-  this.resetState()
+  await this.resetState()
+})
+
+AfterAll(async function () {
+  await CustomWorld.CleanupEverything()
 })

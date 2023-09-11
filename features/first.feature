@@ -2,22 +2,22 @@
 Feature: Installed and uninstalled plugins
 
   
-  Scenario: Installed
+  Scenario: Installed - show on installed plugins
     When I visit the the installed plugins page
     Then I should see the plugin "Common Templates" in the list
     
-  Scenario: Installed
+  Scenario: Installed - tag as installed
     When I visit the the available plugins page
     Then I should see the plugin "Common Templates" in the list
     And The "Common Templates" plugin should be tagged as "Installed"
 
-  Scenario: Uninstalled
-    Given I uninstall the "Common Templates" plugin
+  Scenario: Uninstalled - hide on installed plugins
+    Given I uninstall the "installed:@govuk-prototype-kit/common-templates" plugin
     When I visit the the installed plugins page
     Then I should not see the plugin "Common Templates" in the list
     
-  Scenario: Uninstalled
-    Given I uninstall the "Common Templates" plugin
+  Scenario: Uninstalled - don't tag as installed
+    Given I uninstall the "installed:@govuk-prototype-kit/common-templates" plugin
     When I visit the the available plugins page
     Then I should see the plugin "Common Templates" in the list
     And The "Common Templates" plugin should not be tagged as "Installed"

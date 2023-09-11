@@ -1,11 +1,14 @@
 const cp = require('child_process')
 const os = require('os')
 const path = require('path')
+const events = require('events')
 
-let nextPort = 18888
+const { startingPort } = require('./config')
+
+let nextPort = startingPort
+
 
 function addInitialGitCommitToConfig (config) {
-  console.log('addInitialGitCommitToConfig config', config)
   return new Promise((resolve, reject) => {
     cp.exec('git log --pretty="%H"', { cwd: config.directory }, (err, stdout, stderr) => {
       const result = (stdout || '').split(/[\n\r]+/)[0]
@@ -19,17 +22,23 @@ function addInitialGitCommitToConfig (config) {
 }
 
 function resetState (config) {
-  console.log('resetState config', config)
   if (!config?.initialCommit) {
     throw new Error('It\'s not possible to reset the state as no innitial commit exists in the config.')
   }
-  return new Promise(async (resolve, reject) => {
-    cp.exec(`git reset --hard ${config.initialCommit} && rm -Rf .tmp && npm prune && npm install`, { cwd: config.directory })
+  return new Promise((resolve, reject) => {
+    cp.exec(`git reset --hard ${config.initialCommit} && rm -Rf .tmp && npm prune && npm install`, { cwd: config.directory }, (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        config.kitStartedEventEmitter.on('started', () => {
+          resolve()
+        })
+      }
+    })
   })
 }
 
 function initKit (config) {
-  console.log('initKit config', config)
   if (config.directory) {
     return Promise.resolve({ startCommand: 'npm run dev', ...config })
   }
@@ -42,7 +51,6 @@ function initKit (config) {
     initProcess.stderr.on('data', (data) => console.warn('[stderr]', data.toString()))
     initProcess.stdout.on('data', (data) => {
       const str = data.toString()
-      console.log(str)
       const [_, command] = str.split('To run your prototype:')
       if (command && command.trim()) {
         startCommand = command.trim()
@@ -54,7 +62,7 @@ function initKit (config) {
 
     initProcess.on('close', code => {
       if (startCommand) {
-        resolve({ ...config, startCommand, directory: tmpDir })
+        resolve({ ...config, startCommand, directory: tmpDir, kitStartedEventEmitter: new events.EventEmitter() })
       } else {
         reject(new Error('initialisation failed'))
       }
@@ -64,7 +72,6 @@ function initKit (config) {
 
 function runKit (config) {
   let hasReturned = false
-  console.log('runKit config', config)
 
   return new Promise((resolve, reject) => {
     const [command, ...args] = config.startCommand.split(' ')
@@ -83,7 +90,7 @@ function runKit (config) {
       const str = data.toString()
       const regExpMatchArray = str.match(/(http:\/\/localhost:\d+)/)
       if (regExpMatchArray && regExpMatchArray[1]) {
-        console.log('server address found', regExpMatchArray[1])
+        config.kitStartedEventEmitter.emit('started')
         if (hasReturned) {
           return
         }

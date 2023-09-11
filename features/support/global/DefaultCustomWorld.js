@@ -1,9 +1,12 @@
 // CustomWorld.js
 const { World } = require('@cucumber/cucumber')
 const seleniumWebdriver = require('selenium-webdriver')
+const chrome = require('selenium-webdriver/chrome')
+const firefox = require('selenium-webdriver/firefox')
 const { startKit, resetState } = require('./initKit')
-
-const cheerio = require('cheerio')
+const { verboseLogging, browserName, browserWidth, browserHeight, browserHeadless } = require('./config')
+const verboseLog = verboseLogging ? console.log : () => {}
+const sharedState = {}
 
 /*
  * The only method to be inherited from the default world is
@@ -14,24 +17,11 @@ const cheerio = require('cheerio')
 class CustomWorld extends World {
   driver = null
 
-  /*
-   * A constructor is only needed if you have custom actions
-   * to take after the Cucumber parses the options or you
-   * want to override how the options are parsed.
-   * 
-   * The options are an object with three members
-   * {
-   *   log: Cucumber log function,
-   *   attach: Cucumber attachment function,
-   *   params: World Parameters object
-   * }
-   */
   constructor (options) {
     /*
      * If you don't call the super method you will need
      * to bind the options here as you see fit.
      */
-    console.log('custom world')
     super(options)
     // Custom actions go here.
   }
@@ -40,8 +30,7 @@ class CustomWorld extends World {
    * Constructors cannot be asynchronous! To work around this we'll
    * use an init method with the Before hook
    */
-  async init (scenario) {
-    console.log('initialising scenario', scenario)
+  async init () {
     await Promise.all([
       this.startKitIfNotRunning(),
       this.getDriver()
@@ -49,62 +38,70 @@ class CustomWorld extends World {
   }
 
   async getDriver () {
-    if (!this.driver) {
-      this.driver = await new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build()
-      this.driver.manage().setTimeouts({ implicit: 2000 })
+    const setOptions = (obj) => {
+      let objUpdated = obj
+      if (browserHeadless) {
+        objUpdated = objUpdated.headless()
+      }
+      objUpdated.windowSize({
+        width: browserWidth,
+        height: browserHeight
+      })
+      return objUpdated
     }
+    if (!sharedState.driver) {
+      sharedState.driver = await new seleniumWebdriver.Builder().forBrowser(browserName)
+        .setChromeOptions(setOptions(new chrome.Options()))
+        .setFirefoxOptions(setOptions(new firefox.Options()))
+        .build()
+
+      await sharedState.driver.manage().setTimeouts({ implicit: 2000 })
+    }
+    this.driver = sharedState.driver
     return this.driver
   }
 
   async startKitIfNotRunning (config) {
-    if (this.runningKit) {
-      return
+    if (!sharedState.runningKit) {
+      this.runningKit = sharedState.runningKit = await this.retryOnFailure(async attemptNumber => {
+        verboseLog('starting kit, attempt [%s]', attemptNumber)
+        return await startKit(config)
+      })
     }
-    this.runningKit = await startKit(config)
+    this.runningKit = sharedState.runningKit
     return this.runningKit
   }
 
   async resetState () {
-    if (!this.runningKit) {
+    if (!sharedState.runningKit) {
       return
     }
-    await resetState(this.runningKit)
+    await resetState(sharedState.runningKit)
   }
 
-  async cleanup () {
-    if (this.driver) {
-      this.driver.quit()
+  static async CleanupEverything () {
+    if (sharedState.driver) {
+      sharedState.driver.quit()
     }
-    if (this.runningKit) {
-      this.runningKit.close()
+    if (sharedState.runningKit) {
+      sharedState.runningKit.close()
     }
-    console.log('finished.')
   }
-  
+
   async wait (millis) {
     return new Promise((resolve, reject) => {
       setTimeout(resolve, millis)
     })
   }
 
-  async visit (relativeUrl) {
+  async retryOnFailure (fn) {
     const delayBetweenRetries = 500
     let attemptNumber = 1
     let retries = 10
-    let success = false
-    if (!this.driver) {
-      throw new Error(`Can't visit the URL ${relativeUrl} because WebDriver - fix this by running .init`)
-    }
-    if (!this.runningKit) {
-      throw new Error(`Can't visit the URL ${relativeUrl} because the kit isn't running - fix this by running .startKitIfNotRunning or .startKitAndReplaceIfRunning`)
-    }
-    const url = `${this.runningKit.serverAddress}${relativeUrl}`
-    console.log('visiting url', url)
-    while (success === false) {
+
+    while (true) {
       try {
-        console.log('loading [%s] attempt [%s]', url, attemptNumber++)
-        await this.driver.get(url)
-        success = true
+        return await fn(attemptNumber++)
       } catch (e) {
         if (retries-- > 0) {
           await this.wait(delayBetweenRetries)
@@ -113,6 +110,20 @@ class CustomWorld extends World {
         }
       }
     }
+  }
+
+  async visit (relativeUrl) {
+    if (!sharedState.driver) {
+      throw new Error(`Can't visit the URL ${relativeUrl} because WebDriver - fix this by running .init`)
+    }
+    if (!sharedState.runningKit) {
+      throw new Error(`Can't visit the URL ${relativeUrl} because the kit isn't running - fix this by running .startKitIfNotRunning or .startKitAndReplaceIfRunning`)
+    }
+    const url = `${sharedState.runningKit.serverAddress}${relativeUrl}`
+    return this.retryOnFailure(async (attemptNumber) => {
+      verboseLog('loading [%s] attempt [%s]', url, attemptNumber++)
+      return await sharedState.driver.get(url)
+    })
   }
 }
 
