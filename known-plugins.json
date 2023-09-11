@@ -7,12 +7,7 @@
       "@govuk-prototype-kit/task-list",
       "hmrc-frontend",
       "jquery",
-      "notifications-node-client",
-      "@ministryofjustice/frontend",
-      "@x-govuk/edit-prototype-in-browser",
-      "@x-govuk/govuk-prototype-components",
-      "@x-govuk/govuk-prototype-filters",
-      "home-office-kit"
+      "notifications-node-client"
     ],
     "required": [
       "govuk-prototype-kit",
