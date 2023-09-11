@@ -16,7 +16,7 @@ const waitForApplication = async (path = '/index') => {
   cy.task('waitUntilAppRestarts')
   cy.visit(path, { retryOnNetworkFailure: true, timeout: 10000 })
   cy.get('.govuk-header__logotype-text')
-    .contains('GOV.UK')
+    .contains('GOV.UK', { timeout: 10000 })
 }
 
 const copyFile = (source, target) => {
