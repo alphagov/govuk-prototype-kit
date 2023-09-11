@@ -114,8 +114,6 @@ describe('Management plugins: ', () => {
     deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
     installPlugin(plugin, version2)
 
-    waitForApplication()
-
     loadInstalledPluginsPage()
     cy.get('a[href*="/templates"]')
       .contains('Templates').click()
