@@ -19,7 +19,6 @@ describe('Install and uninstall Local Plugin via UI Test', async () => {
   beforeEach(() => () => {
     cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${dependentPluginPackageName}`)
     cy.task('addToConfigJson', { allowGovukFrontendUninstall: true })
-    waitForApplication()
   })
 
   it(`The ${dependentPlugin} plugin will be installed`, () => {
