@@ -68,14 +68,14 @@ Given('I install the {string} plugin', async function (pluginNameOrRef) {
 
 Given('I uninstall the {string} plugin', async function (pluginNameOrRef) {
   // TODO: Support names as well as refs
-  await this.visit(`/manage-prototype/plugin/${encodeURIComponent(pluginNameOrRef)}`, lookForH1(self))
+  await this.visit(`/manage-prototype/plugin/${encodeURIComponent(pluginNameOrRef)}`, lookForH1(this))
   const uninstallButton = await this.driver.findElement(By.className('govuk-prototype-kit-plugin-uninstall-button'))
   uninstallButton.click()
 })
 
 Given('I update the {string} plugin', async function (pluginNameOrRef) {
   // TODO: Support names as well as refs
-  await this.visit(`/manage-prototype/plugin/${encodeURIComponent(pluginNameOrRef)}`, lookForH1(self))
+  await this.visit(`/manage-prototype/plugin/${encodeURIComponent(pluginNameOrRef)}`, lookForH1(this))
   const updateButton = await this.driver.findElement(By.className('govuk-prototype-kit-plugin-update-button'))
   updateButton.click()
 })
