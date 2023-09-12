@@ -3,14 +3,16 @@ const os = require('os')
 const path = require('path')
 const events = require('events')
 
-const { startingPort } = require('./config')
+const { startingPort, verboseLogging } = require('./config')
 
 let nextPort = startingPort
-
 
 function addInitialGitCommitToConfig (config) {
   return new Promise((resolve, reject) => {
     cp.exec('git log --pretty="%H"', { cwd: config.directory }, (err, stdout, stderr) => {
+      if (err) {
+        reject(err)
+      }
       const result = (stdout || '').split(/[\n\r]+/)[0]
       if (result && result.trim()) {
         resolve({ ...config, initialCommit: result.trim() })
@@ -51,6 +53,10 @@ function initKit (config) {
     initProcess.stderr.on('data', (data) => console.warn('[stderr]', data.toString()))
     initProcess.stdout.on('data', (data) => {
       const str = data.toString()
+      if (verboseLogging) {
+        console.log(str)
+      }
+      // eslint-disable-next-line no-unused-vars
       const [_, command] = str.split('To run your prototype:')
       if (command && command.trim()) {
         startCommand = command.trim()

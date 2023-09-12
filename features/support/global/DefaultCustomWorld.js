@@ -8,28 +8,9 @@ const { verboseLogging, browserName, browserWidth, browserHeight, browserHeadles
 const verboseLog = verboseLogging ? console.log : () => {}
 const sharedState = {}
 
-/*
- * The only method to be inherited from the default world is
- * the constructor, so if you want to handle the options in
- * an entirely customized manner you don't have to extend from
- * World as seen here.
- */
 class CustomWorld extends World {
   driver = null
 
-  constructor (options) {
-    /*
-     * If you don't call the super method you will need
-     * to bind the options here as you see fit.
-     */
-    super(options)
-    // Custom actions go here.
-  }
-
-  /*
-   * Constructors cannot be asynchronous! To work around this we'll
-   * use an init method with the Before hook
-   */
   async init () {
     await Promise.all([
       this.startKitIfNotRunning(),
@@ -63,10 +44,12 @@ class CustomWorld extends World {
 
   async startKitIfNotRunning (config) {
     if (!sharedState.runningKit) {
-      this.runningKit = sharedState.runningKit = await this.retryOnFailure(async attemptNumber => {
+      this.runningKit = sharedState.runningKit = await this.retryOnFailure(async ({ attemptNumber, previousError }) => {
+        verboseLog('Previous error', previousError)
         verboseLog('starting kit, attempt [%s]', attemptNumber)
         return await startKit(config)
       })
+      console.log('Kit running at:', this.runningKit.directory)
     }
     this.runningKit = sharedState.runningKit
     return this.runningKit
@@ -99,11 +82,17 @@ class CustomWorld extends World {
     let attemptNumber = 1
     let retries = 10
 
+    let previousError
+
     while (true) {
       try {
-        return await fn(attemptNumber++)
+        return await fn({
+          attemptNumber: attemptNumber++,
+          previousError
+        })
       } catch (e) {
-        if (retries-- > 0) {
+        if (--retries > 0) {
+          previousError = e
           await this.wait(delayBetweenRetries)
         } else {
           throw e
@@ -112,7 +101,7 @@ class CustomWorld extends World {
     }
   }
 
-  async visit (relativeUrl) {
+  async visit (relativeUrl, checkContent = async () => {}) {
     if (!sharedState.driver) {
       throw new Error(`Can't visit the URL ${relativeUrl} because WebDriver - fix this by running .init`)
     }
@@ -120,9 +109,11 @@ class CustomWorld extends World {
       throw new Error(`Can't visit the URL ${relativeUrl} because the kit isn't running - fix this by running .startKitIfNotRunning or .startKitAndReplaceIfRunning`)
     }
     const url = `${sharedState.runningKit.serverAddress}${relativeUrl}`
-    return this.retryOnFailure(async (attemptNumber) => {
-      verboseLog('loading [%s] attempt [%s]', url, attemptNumber++)
-      return await sharedState.driver.get(url)
+    await this.retryOnFailure(async ({ attemptNumber, previousError }) => {
+      verboseLog('previousError ' + previousError)
+      verboseLog('loading [%s] attempt [%s], time [%s]', url, attemptNumber++, new Date().toISOString())
+      await sharedState.driver.get(url)
+      await checkContent(attemptNumber)
     })
   }
 }
