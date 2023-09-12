@@ -51,7 +51,7 @@ function initKit (config) {
 
   return new Promise((resolve, reject) => {
     let startCommand
-    const initProcess = cp.spawn('npx', ['govuk-prototype-kit@./bin/cli', 'create', `--version=${rootDir}`, tmpDir], { cwd: rootDir })
+    const initProcess = cp.spawn('npx', [`govuk-prototype-kit@${rootDir}`, 'create', `--version=${rootDir}`, tmpDir], { cwd: rootDir })
     initProcess.stderr.on('data', (data) => console.warn('[stderr]', data.toString()))
     initProcess.stdout.on('data', (data) => {
       const str = data.toString()
