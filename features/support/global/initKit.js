@@ -1,10 +1,8 @@
 const cp = require('child_process')
-const os = require('os')
 const path = require('path')
 const events = require('events')
 
 const { startingPort, verboseLogging, baseDir } = require('./config')
-const { recursiveDirectoryContentsSync } = require('../../../lib/utils')
 const fs = require('fs')
 
 let nextPort = startingPort
