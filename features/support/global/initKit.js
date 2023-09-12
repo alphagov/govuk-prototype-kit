@@ -4,6 +4,8 @@ const path = require('path')
 const events = require('events')
 
 const { startingPort, verboseLogging, baseDir } = require('./config')
+const { recursiveDirectoryContentsSync } = require('../../../lib/utils')
+const fs = require('fs')
 
 let nextPort = startingPort
 
@@ -46,6 +48,8 @@ function initKit (config) {
   }
   const tmpDir = config.directory || path.join(baseDir, new Date().getTime() + '_' + ('' + Math.random()).split('.')[1])
   const rootDir = path.resolve(__dirname, '../../..')
+
+  console.log('Directory contents', fs.readdirSync(rootDir))
 
   return new Promise((resolve, reject) => {
     let startCommand
