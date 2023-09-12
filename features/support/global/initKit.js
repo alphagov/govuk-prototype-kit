@@ -28,7 +28,7 @@ function resetState (config) {
     throw new Error('It\'s not possible to reset the state as no innitial commit exists in the config.')
   }
   return new Promise((resolve, reject) => {
-    cp.exec(`git reset --hard ${config.initialCommit} && rm -Rf .tmp && npm prune && npm install`, { cwd: config.directory }, (err) => {
+    cp.exec(`git reset --hard ${config.initialCommit} && npm prune && npm install`, { cwd: config.directory }, (err) => {
       if (err) {
         reject(err)
       } else {
