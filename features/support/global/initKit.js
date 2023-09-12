@@ -1,9 +1,9 @@
+const { spawn: crossSpawn } = require('cross-spawn')
 const cp = require('child_process')
 const path = require('path')
 const events = require('events')
 
 const { startingPort, verboseLogging, baseDir } = require('./config')
-const fs = require('fs')
 
 let nextPort = startingPort
 
@@ -47,11 +47,9 @@ function initKit (config) {
   const tmpDir = config.directory || path.join(baseDir, new Date().getTime() + '_' + ('' + Math.random()).split('.')[1])
   const rootDir = path.resolve(__dirname, '../../..')
 
-  console.log('Directory contents', fs.readdirSync(rootDir))
-
   return new Promise((resolve, reject) => {
     let startCommand
-    const initProcess = cp.spawn('npx', [`govuk-prototype-kit@${rootDir}`, 'create', `--version=${rootDir}`, tmpDir], { cwd: rootDir })
+    const initProcess = crossSpawn('npx', [`govuk-prototype-kit@${rootDir}`, 'create', `--version=${rootDir}`, tmpDir], { cwd: rootDir })
     initProcess.stderr.on('data', (data) => console.warn('[stderr]', data.toString()))
     initProcess.stdout.on('data', (data) => {
       const str = data.toString()
