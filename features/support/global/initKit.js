@@ -4,6 +4,7 @@ const path = require('path')
 const events = require('events')
 
 const { startingPort, verboseLogging, baseDir } = require('./config')
+const fse = require('fs-extra')
 
 let nextPort = startingPort
 
@@ -76,6 +77,11 @@ function initKit (config) {
   })
 }
 
+async function setUsageDataPermission(config) {
+  await fse.writeJson(path.join(config.directory, 'usage-data-config.json'), { collectUsageData: false })
+  return config
+}
+
 function runKit (config) {
   let hasReturned = false
 
@@ -128,6 +134,7 @@ function runKit (config) {
 
 module.exports = {
   startKit: (config = {}) => initKit(config)
+    .then(setUsageDataPermission)
     .then(addInitialGitCommitToConfig)
     .then(runKit),
   resetState
