@@ -53,7 +53,7 @@
     "test:acceptance:prod": "cross-env PASSWORD=password KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test:prod 3000 cypress:e2e:prod",
     "test:acceptance:smoke": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:smoke",
     "test:acceptance:styles": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:styles",
-    "test:acceptance:plugins": "cucumber-js --fail-fast --tags \"@plugins\" && cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:plugins",
+    "test:acceptance:plugins": "cucumber-js --tags \"@plugins\" && cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:plugins",
     "test:acceptance:errors": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:errors",
     "test:acceptance:open": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:open",
     "test:unit": "jest --detectOpenHandles lib bin migrator",
