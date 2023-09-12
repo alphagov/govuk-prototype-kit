@@ -25,6 +25,8 @@ describe('Handle a plugin update', () => {
 
   it('when a dependency is now required', () => {
     cy.task('createFile', { filename: additionalScssPath, data: additionalScssContents })
+
+    waitForApplication(pluginsPage)
     installPlugin(plugin, pluginVersion)
     uninstallPlugin(dependencyPlugin)
 
