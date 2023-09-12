@@ -4,7 +4,7 @@ const { CustomWorld } = require('./global/DefaultCustomWorld')
 const fsp = require('fs/promises')
 const fse = require('fs-extra')
 const path = require('path')
-const { longTimeout } = require('./global/config')
+const { longTimeout, screenshotOnFailure } = require('./global/config')
 
 setWorldConstructor(CustomWorld)
 
@@ -14,7 +14,7 @@ Before({ timeout: longTimeout }, async function (scenario) {
 })
 
 After({ timeout: longTimeout }, async function (testCase) {
-  if (testCase.result.status === Status.FAILED) {
+  if (testCase.result.status === Status.FAILED && screenshotOnFailure) {
     const screenshot = await this.driver.takeScreenshot()
     const filePath = path.join(__dirname, '..', 'screenshots', `${testCase.pickle.name}${new Date().getTime()}.png`)
     await fse.ensureDir(path.dirname(filePath))

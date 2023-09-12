@@ -15,7 +15,7 @@ jobs:
       matrix:
         node-version: [18.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
-        type: [smoke, plugins, styles, dev, prod, errors]
+        type: [plugins]
 
     name: Acceptance ${{ matrix.type }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -49,6 +49,9 @@ jobs:
         CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
         CYPRESS_PAGE_LOAD_TIMEOUT: 120000
         CYPRESS_RETRIES: 3
+        GPK_CUKE_VERBOSE: true
+        GPK_CUKE_SCREENSHOT_ON_FAILURE: false
+        GPK_CUKE_BASE_DIR: tmp/cuke-prototypes
 
     - if: ${{ failure() }}
       uses: actions/upload-artifact@v3

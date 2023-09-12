@@ -3,7 +3,7 @@ const os = require('os')
 const path = require('path')
 const events = require('events')
 
-const { startingPort, verboseLogging } = require('./config')
+const { startingPort, verboseLogging, baseDir } = require('./config')
 
 let nextPort = startingPort
 
@@ -44,7 +44,7 @@ function initKit (config) {
   if (config.directory) {
     return Promise.resolve({ startCommand: 'npm run dev', ...config })
   }
-  const tmpDir = config.directory || path.join(os.tmpdir(), new Date().getTime() + '_' + ('' + Math.random()).split('.')[1])
+  const tmpDir = config.directory || path.join(baseDir, new Date().getTime() + '_' + ('' + Math.random()).split('.')[1])
   const rootDir = path.resolve(__dirname, '../../..')
 
   return new Promise((resolve, reject) => {
