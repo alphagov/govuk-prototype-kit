@@ -1,0 +1,9 @@
+<div class="govuk-grid-row govuk-!-margin-bottom-5">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l govuk-prototype-kit-manage-prototype-plugin-heading">{{ plugin.name }}</h1>
+    <p class="govuk-body-lead govuk-prototype-kit-manage-prototype-plugin-sub-heading">v{{ plugin.version }}</p>
+    {% if plugin.scope %}
+      <p class="govuk-body-lead govuk-prototype-kit-manage-prototype-plugin-sub-heading">By {{ plugin.scope }}</p>
+    {% endif %}
+  </div>
+</div>

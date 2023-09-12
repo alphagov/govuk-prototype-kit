@@ -3,8 +3,9 @@ const { capitalize } = require('lodash')
 const { urlencode } = require('nunjucks/src/filters')
 const { waitForApplication } = require('../utils')
 
-const manageTemplatesPagePath = '/manage-prototype/templates'
-const managePluginsPagePath = '/manage-prototype/plugins'
+const managePrototypeContextPath = '/manage-prototype'
+const manageTemplatesPagePath = `${managePrototypeContextPath}/templates`
+const managePluginsPagePath = `${managePrototypeContextPath}/plugins`
 const manageInstalledPluginsPagePath = '/manage-prototype/plugins-installed'
 
 const panelProcessingQuery = '[aria-live="polite"] #panel-processing'
@@ -33,7 +34,7 @@ async function loadTemplatesPage () {
 
 function performPluginAction (action, plugin, pluginName) {
   cy.task('log', `The ${plugin} plugin should be displayed`)
-  cy.get('h2')
+  cy.get('h1')
     .contains(pluginName)
 
   const processingText = `${action === 'update' ? 'Updat' : action}ing ...`
@@ -62,49 +63,20 @@ function performPluginAction (action, plugin, pluginName) {
 
   cy.task('log', `The ${plugin} plugin ${action} has completed`)
 
+  const expectedButtonContents = action === 'uninstall' ? 'Back to plugins' : 'Back to plugin details'
+
   cy.get('#instructions-complete a')
-    .contains('Back to plugins')
-    .click()
-
-  cy.task('log', 'Returning to plugins page')
-
-  cy.get('h1').contains('Plugins')
-}
-
-function failAction (action) {
-  cy.get('#plugin-action-button').click()
-
-  if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
-    cy.get(panelCompleteQuery)
-      .should('not.be.visible')
-    cy.get(panelErrorQuery)
-      .should('not.be.visible')
-    cy.get(panelProcessingQuery)
-      .should('be.visible')
-      .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing ...`)
-  }
-
-  cy.get(panelProcessingQuery, { timeout: 40000 })
-    .should('not.be.visible')
-  cy.get(panelCompleteQuery)
-    .should('not.be.visible')
-  cy.get(panelErrorQuery)
-    .should('be.visible')
-
-  cy.get(`${panelErrorQuery} .govuk-panel__title`)
-    .contains(`There was a problem ${action === 'update' ? 'Updat' : action}ing`)
-  cy.get(`${panelErrorQuery} a`)
-    .contains('Please contact support')
+    .contains(expectedButtonContents)
 }
 
 module.exports = {
   managePluginsPagePath,
   manageInstalledPluginsPagePath,
   manageTemplatesPagePath,
+  managePrototypeContextPath,
   loadPluginsPage,
   loadInstalledPluginsPage,
   loadTemplatesPage,
   getTemplateLink,
-  performPluginAction,
-  failAction
+  performPluginAction
 }
