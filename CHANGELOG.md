@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+ - [#(2330): Adding more plugins to the available plugin list](https://github.com/alphagov/govuk-prototype-kit/pull/(2330)) 
+
 ## 13.13.1
 
 ### Fixes
