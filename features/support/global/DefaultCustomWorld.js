@@ -4,7 +4,7 @@ const seleniumWebdriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 const firefox = require('selenium-webdriver/firefox')
 const { startKit, resetState } = require('./initKit')
-const { verboseLogging, browserName, browserWidth, browserHeight, browserHeadless } = require('./config')
+const { verboseLogging, browserName, browserWidth, browserHeight, browserHeadless, fnRetryDelay, fnRetries } = require('./config')
 const verboseLog = verboseLogging ? console.log : () => {}
 const sharedState = {}
 
@@ -78,9 +78,9 @@ class CustomWorld extends World {
   }
 
   async retryOnFailure (fn) {
-    const delayBetweenRetries = 500
+    const delayBetweenRetries = fnRetryDelay
     let attemptNumber = 1
-    let retries = 10
+    let retries = fnRetries
 
     let previousError
 
