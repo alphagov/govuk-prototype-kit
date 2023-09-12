@@ -81,7 +81,7 @@ function runKit (config) {
 
   return new Promise((resolve, reject) => {
     const [command, ...args] = config.startCommand.split(' ')
-    const kitProcess = cp.spawn(command, args, {
+    const kitProcess = crossSpawn(command, args, {
       cwd: config.directory,
       detached: true,
       env: {
