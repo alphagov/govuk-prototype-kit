@@ -61,6 +61,10 @@ function installPlugin (plugin, version = '') {
   cy.task('pluginInstalled', { plugin, version, timeout: 15000 })
 }
 
+function createAndStartPrototype (kitVersion, port) {
+  cy.task('createAndStartPrototype', { kitVersion, port })
+}
+
 module.exports = {
   authenticate,
   sleep,
@@ -72,5 +76,6 @@ module.exports = {
   replaceInFile,
   installPlugin,
   uninstallPlugin,
-  restoreStarterFiles
+  restoreStarterFiles,
+  createAndStartPrototype
 }

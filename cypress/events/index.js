@@ -64,6 +64,7 @@ module.exports = function setupNodeEvents (on, config) {
   config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
   config.env.tempFolder = path.join(__dirname, '..', 'temp')
   config.env.skipPluginActionInterimStep = process.env.SKIP_PLUGIN_ACTION_INTERIM_STEP
+  config.env.upgradeProjectFolder = process.env.KIT_UPGRADE_TEST_DIR ? path.resolve(process.env.KIT_UPGRADE_TEST_DIR) : null
 
   const packagePath = path.join(config.env.projectFolder, 'package.json')
   const packageContent = fs.readFileSync(packagePath, 'utf8')
@@ -214,6 +215,55 @@ module.exports = function setupNodeEvents (on, config) {
     })
   }
 
+  const createTgzOfCurrentKit = () => {
+    log('Create TGZ of current kit')
+    const repoRoot = path.resolve(__dirname, '..', '..')
+    return exec('npm pack', { cwd: repoRoot }, (data) => {
+      config.env.tgzKitFilename = path.resolve(repoRoot, data.toString().trim())
+    })
+      .then(makeSureCypressCanInterpretTheResult)
+  }
+
+  const createPrototype = (kitVersion) => {
+    log(`Create a prototype using version ${kitVersion} of the kit`)
+    const command = `npx govuk-prototype-kit@${kitVersion} create --version=${kitVersion}`
+    const upgradeProjectFolder = path.resolve(config.env.upgradeProjectFolder, kitVersion)
+    return deleteFolder(upgradeProjectFolder, 2000)
+      .then(() => fsp.mkdir(upgradeProjectFolder, { recursive: true }))
+      .then(() => exec(command, { cwd: upgradeProjectFolder }))
+      .then(makeSureCypressCanInterpretTheResult)
+  }
+
+  const startPrototype = (kitVersion, port) => {
+    log(`Start prototype on port ${port}`)
+    const command = `PORT=${port} npm run dev`
+    const upgradeProjectFolder = path.resolve(config.env.upgradeProjectFolder, kitVersion)
+    setImmediate(() => exec(command, { cwd: upgradeProjectFolder }))
+    return waitOn({
+      delay: 3000,
+      resources: [`http://localhost:${port}`],
+      timeout: 10000
+    }).then(makeSureCypressCanInterpretTheResult)
+  }
+
+  const stopPrototype = (kitVersion, port) => {
+    log(`Stop prototype on port ${port}`)
+    return new Promise((resolve) => {
+      return exec(`lsof -t -i:${port}`, { cwd: config.env.upgradeProjectFolder }, (data) => {
+        const pid = data.toString().trim()
+        if (pid) {
+          return exec(`kill -9 ${pid}`).then(() => resolve())
+        } else {
+          resolve()
+        }
+      })
+        .catch(() => {
+          resolve()
+        })
+    })
+      .then(makeSureCypressCanInterpretTheResult)
+  }
+
   const backupStarterFiles = () => {
     const projectDir = path.join(config.env.projectFolder)
     const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
@@ -224,7 +274,15 @@ module.exports = function setupNodeEvents (on, config) {
     return fse.emptyDir(backupDir)
       // Copy the files using the filter
       .then(() => fse.copy(projectDir, backupDir, { filter }))
-      .then(makeSureCypressCanInterpretTheResult)
+      .then(() => makeSureCypressCanInterpretTheResult)
+  }
+
+  const beforeBrowserLaunch = () => {
+    if (config.env.upgradeProjectFolder) {
+      return Promise.all([createTgzOfCurrentKit(), backupStarterFiles()])
+        .then(makeSureCypressCanInterpretTheResult)
+    }
+    return backupStarterFiles()
   }
 
   const restoreStarterFiles = async (remainingRetries = 4) => {
@@ -277,7 +335,7 @@ module.exports = function setupNodeEvents (on, config) {
     }
   }
 
-  on('before:browser:launch', backupStarterFiles)
+  on('before:browser:launch', beforeBrowserLaunch)
 
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)
@@ -368,6 +426,13 @@ module.exports = function setupNodeEvents (on, config) {
     restoreStarterFiles: () => {
       log('Restoring to starter files')
       return restoreStarterFiles()
+        .then(makeSureCypressCanInterpretTheResult)
+    },
+
+    createAndStartPrototype: ({ kitVersion, port }) => {
+      return createPrototype(kitVersion)
+        .then(() => stopPrototype(kitVersion, port))
+        .then(() => startPrototype(kitVersion, port))
         .then(makeSureCypressCanInterpretTheResult)
     },
 
