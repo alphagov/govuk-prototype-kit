@@ -11,8 +11,7 @@
       "@ministryofjustice/frontend",
       "home-office-kit",
       "@x-govuk/govuk-prototype-filters",
-      "@x-govuk/govuk-prototype-components",
-      "@x-govuk/edit-prototype-in-browser"
+      "@x-govuk/govuk-prototype-components"
     ],
     "required": [
       "govuk-prototype-kit",
