@@ -170,8 +170,8 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
 
   console.log('Tests pass, approval granted, ready to continue.')
 
-  await exec(`gh pr merge ${prUrl} -m -d`)
-  await exec(`gh release create "v${newVersion}" --notes-file "${prBodyFile}" --target "main"  --title "v${newVersion}" --latest`)
+  await exec(`gh pr merge ${prUrl} -m -d`, { allowStderr: true })
+  await exec(`gh release create "v${newVersion}" --notes-file "${prBodyFile}" --target "main"  --title "v${newVersion}" --latest`, { allowStderr: true })
 
   let loggedInAsCorrectNpmUser = false
   const correctNpmUser = 'govuk-prototype-kit'
