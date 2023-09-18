@@ -115,14 +115,14 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
 
   console.log(`A pull request has been raised, please review it here: ${prUrl}`)
 
-  let isReadyToMerge = false
+  let isMerged = false
   const requiredReviews = 1
 
   await exec('npm install')
 
   do {
     await wait(5000)
-    await exec(`gh pr view ${prUrl} --json isDraft,reviewDecision,reviews,statusCheckRollup`, { hideStd: true })
+    await exec(`gh pr view ${prUrl} --json isDraft,reviewDecision,reviews,statusCheckRollup,mergedAt`, { hideStd: true })
       .then(x => JSON.parse(x))
       .then(result => {
         const notDraft = !result.isDraft
@@ -144,11 +144,11 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
           }
         })
 
-        isReadyToMerge = passingTests > 20 && failingTests === 0 && pendingTests === 0 && notDraft && numberOfReviews >= requiredReviews
+        isMerged = !!result.mergedAt
 
         console.log('')
         console.log('')
-        console.log(isReadyToMerge ? 'It is ready to merge' : 'Not yet ready to merge.')
+        console.log(isMerged ? 'Already merged, moving on.' : 'Not yet merged.')
         console.table({
           notDraft,
           numberOfReviews: `${numberOfReviews}/${requiredReviews}`,
@@ -166,7 +166,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
         console.log('')
         console.log('')
       })
-  } while (!isReadyToMerge)
+  } while (!isMerged)
 
   console.log('Tests pass, approval granted, ready to continue.')
 
@@ -179,7 +179,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
   do {
     await wait(2000)
     const output = await exec('npm whoami', { allowStderr: true, allowErrorCode: true, hideStd: true })
-    if (output === correctNpmUser) {
+    if ((output || '').trim() === correctNpmUser) {
       loggedInAsCorrectNpmUser = true
     } else if (output) {
       console.log(`Currently logged in as [${output}], should be loggd in as [${correctNpmUser}].  Run [npm login] in another terminal.`)
@@ -187,15 +187,8 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
       console.log(`Please log in as [${correctNpmUser}] to continue by running [npm login] in another terminal.`)
     }
   } while (!loggedInAsCorrectNpmUser)
-  console.log('')
-  console.log('logged in as the correct user')
-  console.log('')
-  console.log('Everything other than the publish to NPM is complete, to publish to NPM run:')
-  console.log('')
-  console.log(`cd ${projectDir}`)
-  console.log('')
-  console.log('npm run clean-publish')
-  console.log('')
-  console.log('npm logout')
-  console.log('')
+
+  await exec('npm run clean-publish')
+
+  await exec('npm logout')
 })()
