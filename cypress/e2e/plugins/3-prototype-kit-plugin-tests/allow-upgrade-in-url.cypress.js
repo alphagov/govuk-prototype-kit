@@ -18,7 +18,7 @@ describe('Allow upgrade in URLs', () => {
     cy.exec(`cd ${Cypress.env('projectFolder')} && npm install`)
 
     log('Make sure old upgrade URL still works')
-    cy.visit(`/manage-prototype/plugins/upgrade?package=${encodeURIComponent(plugin)}`)
+    cy.visit(`/manage-prototype/plugin/npm:${encodeURIComponent(plugin)}/update`)
     cy.get('button#plugin-action-button')
       .contains('Update')
       .click()

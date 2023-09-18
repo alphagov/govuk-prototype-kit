@@ -2,15 +2,15 @@
 const path = require('path')
 
 // local dependencies
-const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles, log } = require('../../utils')
+const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles, log, waitForApplication } = require('../../utils')
 const {
-  failAction,
   performPluginAction,
   managePluginsPagePath,
   getTemplateLink,
   loadInstalledPluginsPage,
   loadPluginsPage,
-  manageInstalledPluginsPagePath
+  manageInstalledPluginsPagePath,
+  managePrototypeContextPath
 } = require('../plugin-utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
@@ -26,7 +26,7 @@ const pluginPagePath = '/step-by-step-navigation'
 const provePluginFunctionalityWorks = () => {
   log(`Prove ${pluginName} functionality works`)
 
-  cy.visit(pluginPagePath)
+  cy.visit(pluginPagePath, { retryOnNetworkFailure: true, timeout: 4000 })
 
   // click toggle button and check that all steps details are visible
   cy.get(showHideAllLinkQuery).contains('Show all').click()
@@ -49,7 +49,7 @@ const provePluginFunctionalityFails = () => {
 
   log(`Prove ${pluginName} functionality fails`)
 
-  cy.visit(pluginPagePath)
+  cy.visit(pluginPagePath, { retryOnNetworkFailure: true, timeout: 4000 })
 
   cy.get(showHideAllLinkQuery).should('not.exist')
 }
@@ -61,13 +61,13 @@ describe('Management plugins: ', () => {
     // Load the plugins page, so we don't get any network errors when running the test
     loadPluginsPage()
     // Now run the test
-    const installUrl = `${managePluginsPagePath}/install`
+    const installUrl = `${managePrototypeContextPath}/plugin/npm:${encodeURIComponent(plugin)}/install`
     log(`Posting to ${installUrl} without csrf protection`)
     cy.request({
-      url: `${managePluginsPagePath}/install`,
+      url: installUrl,
       method: 'POST',
       failOnStatusCode: false,
-      body: { package: plugin }
+      body: {}
     }).then(response => {
       expect(response.status).to.eq(403)
       expect(response.body).to.have.property('error', 'invalid csrf token')
@@ -78,9 +78,11 @@ describe('Management plugins: ', () => {
     log(`Install ${plugin}@${version1} directly`)
     uninstallPlugin(plugin)
 
+    waitForApplication()
+
     loadPluginsPage()
 
-    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version1}`)
+    cy.visit(`${managePrototypeContextPath}/plugin/npm:${encodeURIComponent(plugin)}:${version1}/install`)
 
     cy.get('#plugin-action-button').click()
 
@@ -91,13 +93,17 @@ describe('Management plugins: ', () => {
     log(`Update the ${plugin}@${version1} plugin to ${plugin}@${version2}`)
     installPlugin(plugin, version1)
 
+    waitForApplication()
+
     loadInstalledPluginsPage()
     log(`Update the ${plugin} plugin`)
 
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('button')
-      .contains('Update')
+      .find('.plugin-details-link')
+      .click()
+
+    cy.get('.govuk-prototype-kit-plugin-update-button', { timeout: 6000 })
       .click()
 
     performPluginAction('update', plugin, pluginName)
@@ -137,8 +143,10 @@ describe('Management plugins: ', () => {
 
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('button')
-      .contains('Uninstall')
+      .find('.plugin-details-link')
+      .click()
+
+    cy.get('.govuk-prototype-kit-plugin-uninstall-button', { timeout: 6000 })
       .click()
 
     performPluginAction('uninstall', plugin, pluginName)
@@ -153,8 +161,10 @@ describe('Management plugins: ', () => {
 
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('button')
-      .contains('Install')
+      .find('.plugin-details-link')
+      .click()
+
+    cy.get('.govuk-prototype-kit-plugin-install-button', { timeout: 6000 })
       .click()
 
     performPluginAction('install', plugin, pluginName)
@@ -164,9 +174,9 @@ describe('Management plugins: ', () => {
 
   it('Get plugin page directly', () => {
     log('Pass when installing a plugin already installed')
-    cy.task('waitUntilAppRestarts')
+    waitForApplication()
     log(`Simulate refreshing the install ${plugin} plugin confirmation page`)
-    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}`)
+    cy.visit(`${managePrototypeContextPath}/plugin/npm:${encodeURIComponent(plugin)}/install`)
 
     cy.get('#plugin-action-button').click()
 
@@ -176,16 +186,27 @@ describe('Management plugins: ', () => {
 
     log('Fail when installing a non existent plugin')
     const pkg = 'invalid-prototype-kit-plugin'
-    const invalidPluginName = 'Invalid Prototype Kit Plugin'
-    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(pkg)}`)
-    cy.get('h2').contains(`Install ${invalidPluginName}`)
-    failAction('install')
+    cy.request({
+      url: `${managePrototypeContextPath}/plugin/npm:${encodeURIComponent(pkg)}/install`,
+      method: 'GET',
+      failOnStatusCode: false,
+      retryOnNetworkFailure: true,
+      timeout: 4000
+    }).then(response => {
+      expect(response.status).to.eq(404)
+    })
 
     //   ------------------------
 
     log('Fail when installing a plugin with a non existent version')
-    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=0.0.1`)
-    cy.get('h2').contains(`Install ${pluginName}`)
-    failAction('install')
+    cy.request({
+      url: `${managePrototypeContextPath}/plugin/npm:${encodeURIComponent(plugin)}:0.0.1/install`,
+      method: 'GET',
+      failOnStatusCode: false,
+      retryOnNetworkFailure: true,
+      timeout: 4000
+    }).then(response => {
+      expect(response.status).to.eq(404)
+    })
   })
 })

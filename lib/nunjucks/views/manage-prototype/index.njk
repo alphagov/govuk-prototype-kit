@@ -13,8 +13,8 @@
         </p>
         {% if kitUpdateAvailable %}
           <p>
-            <a href="{{ currentUrl }}/plugins">
-              New version available: {{ latestAvailableKit }}
+            <a href="{{ latestKitUrl }}">
+              New version available: v{{ latestAvailableKit }}
             </a>
           </p>
         {% endif %}

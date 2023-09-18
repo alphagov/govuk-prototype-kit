@@ -1,0 +1,128 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% set npm %}
+    {{ govukInput({
+        id: "npm-package",
+        name: "npmPackage",
+        value: playback.npmPackage,
+        spellcheck: false,
+        label: {
+            text: "Package name"
+        },
+        hint: {
+            text: "The package name is what you'd normally put after 'npm install'."
+        }
+    }) }}
+    {{ govukInput({
+        id: "npm-version",
+        name: "npmVersion",
+        value: playback.npmVersion,
+        spellcheck: false,
+        classes: "govuk-!-width-one-third",
+        label: {
+            text: "Version number"
+        },
+        hint: {
+            text: "If you want to install a specific version you can enter it here e.g. 5.0.1"
+        }
+    }) }}
+{% endset -%}
+
+{% set github %}
+    {{ govukInput({
+        id: "github-org",
+        name: "githubOrg",
+        value: playback.githubOrg,
+        spellcheck: false,
+        label: {
+            text: "The organisation in Github"
+        }
+    }) }}
+    {{ govukInput({
+        id: "github-project",
+        name: "githubProject",
+        value: playback.githubProject,
+        spellcheck: false,
+        label: {
+            text: "The project name in Github"
+        }
+    }) }}
+    {{ govukInput({
+        id: "github-branch",
+        name: "githubBranch",
+        value: playback.githubBranch,
+        spellcheck: false,
+        label: {
+            text: "The branch name in Github (optional)"
+        }
+    }) }}
+{% endset -%}
+
+{% set fs %}
+    {{ govukInput({
+        id: "fs-path",
+        spellcheck: false,
+        name: "fsPath",
+        value: playback.fsPath,
+        label: {
+            text: "File system path"
+        },
+        hint: {
+            text: "Use this if you're working on a plugin and want to try it before releasing."
+        }
+    }) }}
+{% endset -%}
+
+{% if playback.error == 'plugin-lookup-no-results' %}
+{{ govukErrorSummary({
+    titleText: "There is a problem",
+    errorList: [
+        {
+            text: "The package you requested couldn't be found"
+        }
+    ]
+}) }}
+{% endif %}
+<form action="/manage-prototype/plugin" method="post">
+{{ govukRadios({
+    name: "source",
+    value: playback.source,
+    fieldset: {
+        legend: {
+            text: "Install a package that's not on the list",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+        }
+    },
+    hint: {
+        text: "Select one option."
+    },
+    items: [
+        {
+            value: "npm",
+            text: "NPM",
+            conditional: {
+            html: npm
+        }
+        },
+        {
+            value: "github",
+            text: "Github",
+            conditional: {
+            html: github
+        }
+        },
+        {
+            value: "fs",
+            text: "File system",
+            conditional: {
+            html: fs
+        }
+        }
+    ]
+}) }}
+    <input type="hidden" name="notFoundErrorUrl" value="/manage-prototype/plugins?error=plugin-lookup-no-results"/>
+    {{ govukButton({text: "Lookup"}) }}
+</form>
