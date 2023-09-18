@@ -5,9 +5,13 @@
       "@govuk-prototype-kit/common-templates",
       "@govuk-prototype-kit/step-by-step",
       "@govuk-prototype-kit/task-list",
-      "hmrc-frontend",
+      "notifications-node-client",
       "jquery",
-      "notifications-node-client"
+      "hmrc-frontend",
+      "@ministryofjustice/frontend",
+      "home-office-kit",
+      "@x-govuk/govuk-prototype-filters",
+      "@x-govuk/govuk-prototype-components"
     ],
     "required": [
       "govuk-prototype-kit",
