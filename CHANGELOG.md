@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2336: Fix misleading error when starting a migrated prototype first time](https://github.com/alphagov/govuk-prototype-kit/pull/2336)
+
 ## 13.13.1
 
 ### Fixes
