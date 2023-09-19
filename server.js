@@ -39,6 +39,9 @@ if (isSecure) {
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
 
+// Find GOV.UK Frontend (via project, internal package fallback)
+const govukFrontend = govukFrontendPaths([projectDir, packageDir])
+
 // Find GOV.UK Frontend (via internal package, project fallback)
 const govukFrontendInternal = govukFrontendPaths([packageDir, projectDir])
 
@@ -58,6 +61,11 @@ if (plugins.legacyGovukFrontendFixesNeeded()) {
 app.locals.pluginConfig = plugins.getAppConfig({
   scripts: utils.prototypeAppScripts
 })
+
+// Add GOV.UK Frontend paths to Nunjucks locals
+app.locals.govukFrontend = govukFrontend
+app.locals.govukFrontendInternal = govukFrontendInternal
+
 // keep extensionConfig around for backwards compatibility
 // TODO: remove in v14
 app.locals.extensionConfig = app.locals.pluginConfig
