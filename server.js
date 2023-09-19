@@ -8,7 +8,6 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
-const fse = require('fs-extra')
 const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
@@ -20,11 +19,11 @@ dotenv.config()
 const { projectDir, packageDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
+const { govukFrontendPaths } = require('./lib/govukFrontendPaths')
 const utils = require('./lib/utils')
 const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const routesApi = require('./lib/routes/api.js')
-const { getInternalGovukFrontendDir } = require('./lib/utils')
 
 const app = express()
 routesApi.setApp(app)
@@ -39,6 +38,9 @@ if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
+
+// Find GOV.UK Frontend (via internal package, project fallback)
+const govukFrontendInternal = govukFrontendPaths([packageDir, projectDir])
 
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
@@ -70,16 +72,15 @@ app.use(cookieParser())
 // static assets to prevent unauthorised access
 app.use(require('./lib/authentication.js')())
 
-// Get internal govuk-frontend views
-const internalGovUkFrontendDir = getInternalGovukFrontendDir()
-const internalGovUkFrontendConfig = fse.readJsonSync(path.join(internalGovUkFrontendDir, 'govuk-prototype-kit.config.json'))
-const internalGovUkFrontendViews = internalGovUkFrontendConfig.nunjucksPaths.map(viewPath => path.join(internalGovUkFrontendDir, viewPath))
+// Get GOV.UK Frontend (internal) views
+const govukFrontendNunjucksPaths = (govukFrontendInternal.config?.nunjucksPaths || [])
+  .map(nunjucksPath => path.join(govukFrontendInternal.baseDir, nunjucksPath))
 
 // Set up App
 const appViews = [
   path.join(projectDir, '/app/views/')
 ].concat(plugins.getAppViews([
-  ...internalGovUkFrontendViews,
+  ...govukFrontendNunjucksPaths,
   finalBackupNunjucksDir
 ]))
 
