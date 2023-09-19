@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2342: Open fewer files at once during migration](https://github.com/alphagov/govuk-prototype-kit/pull/2342)
+
 ## 13.13.2
 
 ### Fixes

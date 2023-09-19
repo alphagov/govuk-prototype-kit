@@ -126,6 +126,6 @@
       "/node_modules/",
       "/tmp/"
     ],
-    "testTimeout": 30000
+    "testTimeout": 5000
   }
 }
