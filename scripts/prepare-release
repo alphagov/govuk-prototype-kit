@@ -28,7 +28,7 @@ tmpDir="${systemTmpDir}/gpk-releases/$(date +"%Y-%m-%dT%H:%M:%S%z")"
 
 mkdir -p $tmpDir
 
-(cd $tmpDir && gh repo clone --depth=1 alphagov/govuk-prototype-kit)
+(cd $tmpDir && gh repo clone alphagov/govuk-prototype-kit)
 
 tmpKitDir="${tmpDir}/govuk-prototype-kit"
 
