@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2306: Locate GOV.UK Frontend using `require.resolve()`](https://github.com/alphagov/govuk-prototype-kit/pull/2306)
+
 ## 13.13.3
 
 ### Fixes
