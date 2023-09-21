@@ -5,6 +5,8 @@
 ### Fixes
 
 - [#2342: Open fewer files at once during migration](https://github.com/alphagov/govuk-prototype-kit/pull/2342)
+- [#2340: Do not compile sass files with an underscore prefix](https://github.com/alphagov/govuk-prototype-kit/pull/2340)
+- [#2334: Making sure Manage Prototype pages use govuk-frontend v4.7.0](https://github.com/alphagov/govuk-prototype-kit/pull/2334)
 
 ## 13.13.2
 
