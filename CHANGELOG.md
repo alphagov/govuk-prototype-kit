@@ -5,6 +5,7 @@
 ### Fixes
 
 - [#2306: Locate GOV.UK Frontend using `require.resolve()`](https://github.com/alphagov/govuk-prototype-kit/pull/2306)
+- [#2349: Fix GOV.UK Frontend `initAll()` on management pages](https://github.com/alphagov/govuk-prototype-kit/pull/2349)
 
 ## 13.13.3
 
