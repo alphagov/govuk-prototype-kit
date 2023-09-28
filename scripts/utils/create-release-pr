@@ -14,10 +14,14 @@ function findIndexOfFirstMatchingLine (changelogLines, regExp) {
     .at(0)
 }
 
-async function exec (command, { allowStderr = false, hideStd = false, allowErrorCode = false } = {}) {
+async function exec (command, { allowStderr = false, hideStd = false, allowErrorCode = false, inheritStd = true } = {}) {
   const newVersion = await new Promise((resolve) => {
     console.log('running command', command)
-    cp.exec(command, { cwd: projectDir },
+    const config = { cwd: projectDir }
+    if (inheritStd) {
+      config.stdio = 'pipe'
+    }
+    cp.exec(command, config,
       (error, stdout, stderr) => {
         if (error && !allowErrorCode) {
           console.log(`error: ${error.message}`)
@@ -42,6 +46,19 @@ async function exec (command, { allowStderr = false, hideStd = false, allowError
       })
   })
   return newVersion
+}
+
+function spawnWithTty (command, args = []) {
+  return new Promise((resolve, reject) => {
+    const result = cp.spawn(command, args, { stdio: 'inherit' })
+    result.on('exit', function (code, signal) {
+      if (code === 0) {
+        resolve()
+      } else {
+        reject(new Error('Command failed'))
+      }
+    })
+  })
 }
 
 const wait = time => new Promise((resolve) => setTimeout(resolve, time))
@@ -188,7 +205,25 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
     }
   } while (!loggedInAsCorrectNpmUser)
 
-  await exec('npm run clean-publish')
+  let isPublished = false
+
+  while (isPublished === false) {
+    await spawnWithTty('npm', ['run', 'clean-publish'])
+      .then(() => {
+        isPublished = true
+        console.log('')
+        console.log('Publish successful')
+        console.log('')
+      })
+      .catch(() => {
+        console.warn('')
+        console.warn('Something went wrong, trying again.')
+        console.warn('If you don\'t want to try again exit this process.  If you want to run the rest of the release manually run:')
+        console.warn('')
+        console.warn('git checkout main && git fetch && git reset --hard origin/main && npm run clean-publish')
+        console.warn('')
+      })
+  }
 
   await exec('npm logout')
 })()
