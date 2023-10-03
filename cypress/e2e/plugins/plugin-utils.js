@@ -42,22 +42,26 @@ function provePluginTemplatesUninstalled (plugin) {
 }
 
 function initiatePluginAction (action, plugin, pluginName, options = {}) {
-  if (action === 'install') {
-    cy.visit(managePluginsPagePath)
-  } else {
-    cy.visit(manageInstalledPluginsPagePath)
-  }
+  cy.visit(managePluginsPagePath)
 
   if (pluginName) {
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('h4')
+      .find('a')
       .contains(pluginName)
   }
 
   cy.get(`[data-plugin-package-name="${plugin}"]`)
     .scrollIntoView()
-    .find('button')
+    .find('a')
+    .click()
+
+  if (action === 'update') {
+    cy.get('a')
+      .contains('Latest version:').click()
+  }
+
+  cy.get('button')
     .contains(capitalize(action))
     .click()
 
@@ -73,7 +77,7 @@ function provePluginInstalled (plugin, pluginName) {
   if (pluginName) {
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('h4')
+      .find('a')
       .contains(pluginName)
   }
 
@@ -91,7 +95,7 @@ function provePluginUninstalled (plugin, pluginName) {
   if (pluginName) {
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('h4')
+      .find('a')
       .contains(pluginName)
   }
 
@@ -108,7 +112,13 @@ function provePluginUpdated (plugin, pluginName) {
   provePluginInstalled(plugin, pluginName)
   cy.get(`[data-plugin-package-name="${plugin}"]`)
     .scrollIntoView()
-    .find('button')
+    .find('a')
+    .click()
+
+  cy.get('a')
+    .contains('Latest version:').should('not.exist')
+
+  cy.get('button')
     .contains(capitalize('update')).should('not.exist')
 }
 
@@ -117,9 +127,12 @@ function provePluginInstalledOldVersion (plugin, pluginName) {
   if (pluginName) {
     cy.get(`[data-plugin-package-name="${plugin}"]`)
       .scrollIntoView()
-      .find('h4')
+      .find('a')
       .contains(pluginName)
   }
+
+  cy.get(`[data-plugin-package-name="${plugin}"] strong.govuk-tag`)
+    .contains('Update available')
 
   cy.get('#installed-plugins-link').click()
 
