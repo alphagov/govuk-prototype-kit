@@ -74,6 +74,11 @@ module.exports = function setupNodeEvents (on, config) {
     config.env.packageFolder = path.join(config.env.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
+  if ('govuk-frontend' in dependencies) {
+    const frontEndConfigFile = path.join(config.env.projectFolder, 'node_modules', 'govuk-frontend', 'govuk-prototype-kit.config.json')
+    config.env.frontendAssetsFolder = fse.readJsonSync(frontEndConfigFile).assets.find(asset => !asset.split(path.sep).pop().includes('.'))
+  }
+
   const waitUntilAppRestarts = (timeout = 20000) => waitOn({
     delay: 3000,
     resources: [config.baseUrl],
