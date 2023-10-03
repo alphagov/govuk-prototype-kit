@@ -1,0 +1,80 @@
+{% extends "views/manage-prototype/layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+    {{ super() }}
+    <a href="/manage-prototype/plugins" class="govuk-back-link">Back to plugins</a>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="">
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-two-thirds-from-desktop">
+                <h1 class="govuk-heading-l">{{ pluginDetails.name }}</h1>
+                {% if pluginDetails.scope %}
+                  <p>By {{ pluginDetails.scope }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+              <p>Version {{ pluginDetails.version | default(pluginDetails.latestVersion) }}</p>
+
+              {% if not pluginDetails.installedVersion %}
+                  {{ govukButton({
+                      text: 'Install',
+                      href: pluginDetails.installLink
+                  }) }}
+              {% endif %}
+              {% if pluginDetails.updateLink %}
+                  {{ govukButton({
+                      text: 'Update',
+                      classes: "govuk-button--secondary",
+                      href: pluginDetails.updateLink
+                  }) }}
+              {% endif %}
+              {% if pluginDetails.installedVersion %}
+                  {{ govukButton({
+                      text: 'Uninstall',
+                      classes: "govuk-button--secondary",
+                      href: pluginDetails.uninstallLink
+                  }) }}
+              {% endif %}
+                
+              <div class="govuk-prototype-kit-manage-prototype-plugin-details-links">
+                <p class="govuk-body">Last updated <time datetime="{{ pluginDetails.releaseDateTime }}">{{ pluginDetails.releaseTimeSummary }}</time></p>
+                {% if preparedPluginLinks.releaseNotes %}
+                  <p><a href="{{ preparedPluginLinks.releaseNotes }}" class="govuk-link">Release notes</a></p>
+                {% endif %}
+                {% if preparedPluginLinks.versionHistory %}
+                  <p><a href="{{ preparedPluginLinks.versionHistory }}" class="govuk-link">Version history</a></p>
+                {% endif %}
+              </div>
+              <p class="govuk-body"><a href="https://prototype-kit.service.gov.uk/docs/support">Report</a></p>
+            </div>
+            
+            <div class="govuk-grid-column-three-quarters">
+              <h2 class="govuk-heading-l">About this plugin</h2>
+                
+              <p class="govuk-body">{{ pluginDetails.description | default('No description has been provided.') }}</p>
+                
+              {% if preparedPluginLinks.documentation %}
+                <p class="govuk-heading-m"><a href="{{ preparedPluginLinks.documentation }}">How to use this plugin</a></p>
+              {% endif %}
+                
+              {% if inThisPlugin.length %}
+                  <h3 class="govuk-heading-m">Included in this plugin</h3>
+                {% for section in inThisPlugin %}
+                    <h4 class="govuk-heading-s">{{ section.title }}</h4>
+                    <ul class="govuk-list--bullet">
+                    {% for item in section.items %}
+                        <li class="govuk-body">{{ item }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endfor %}
+              {% endif %}
+            </div>
+        </div>
+    </form>
+{% endblock %}

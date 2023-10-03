@@ -88,7 +88,7 @@
 
                             <div class="govuk-grid-column-one-third govuk-body">
                                 <h4 class="govuk-body govuk-!-font-weight-bold">
-                                    {{ plugin.name }}
+                                    <a href="/manage-prototype/plugin/{{ plugin.urlEncodedPackageName }}">{{ plugin.name }}</a>
                                 </h4>
                                 {% if plugin.scope %}
                                     <div>
