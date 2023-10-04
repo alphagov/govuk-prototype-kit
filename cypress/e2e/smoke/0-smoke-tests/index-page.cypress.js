@@ -9,9 +9,9 @@ describe('smoke test', () => {
   })
 
   it('GOV.UK Frontend fonts loaded', () => {
-    waitForApplication('/')
+    waitForApplication('/manage-prototype')
 
-    const fontUrl = '/plugin-assets/govuk-frontend/govuk/assets/fonts/bold-b542beb274-v2.woff2'
+    const fontUrl = '/manage-prototype/dependencies/govuk-frontend/dist/govuk/assets/fonts/bold-b542beb274-v2.woff2'
 
     cy.task('log', 'Requesting govuk-frontend font')
     cy.request(`/${fontUrl}`, { retryOnStatusCodeFailure: true })
