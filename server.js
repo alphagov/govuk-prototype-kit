@@ -81,7 +81,7 @@ app.use(cookieParser())
 app.use(require('./lib/authentication.js')())
 
 // Get GOV.UK Frontend (internal) views
-const govukFrontendNunjucksPaths = (govukFrontendInternal.config?.nunjucksPaths || [])
+const govukFrontendNunjucksPaths = [govukFrontendInternal.config.nunjucksPaths].flat()
   .map(nunjucksPath => path.join(govukFrontendInternal.baseDir, nunjucksPath))
 
 // Set up App
