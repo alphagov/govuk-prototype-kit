@@ -158,7 +158,7 @@ async function deleteUnusedDirectories (directoriesToDelete) {
       return true
     }
     const reporter = await addReporter(`Remove unused directory ${dir}`)
-    const result = await deleteDirectory(dirPath, { recursive: true })
+    const result = await deleteDirectory(dirPath)
     await reporter(result)
     return result
   }))

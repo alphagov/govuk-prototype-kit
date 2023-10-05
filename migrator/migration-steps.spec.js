@@ -272,8 +272,8 @@ describe('migration steps', () => {
     expect(result).toBeTruthy()
 
     expect(fileHelpers.deleteDirectory).toHaveBeenCalledTimes(2)
-    expect(fileHelpers.deleteDirectory).toHaveBeenNthCalledWith(1, path.join(projectDir, directoriesToDelete[0]), { recursive: true })
-    expect(fileHelpers.deleteDirectory).toHaveBeenNthCalledWith(2, path.join(projectDir, directoriesToDelete[1]), { recursive: true })
+    expect(fileHelpers.deleteDirectory).toHaveBeenNthCalledWith(1, path.join(projectDir, directoriesToDelete[0]))
+    expect(fileHelpers.deleteDirectory).toHaveBeenNthCalledWith(2, path.join(projectDir, directoriesToDelete[1]))
 
     expect(mockReporter).toHaveBeenCalledTimes(3)
     expect(mockReporter).toHaveBeenNthCalledWith(1, true)
