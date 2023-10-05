@@ -44,7 +44,7 @@ function mkdtempSync () {
  * @param {bool} [options.allowTracking] - If undefined no usage-data-config.json is created,
  *                                         if true a usage-data-config.json is created allowing tracking,
  *                                         if false a usage-data-config.json is crated disallowing tracking
- * @returns {void}
+ * @returns {Promise<void>}
  */
 async function mkPrototype (prototypePath, {
   kitPath,
