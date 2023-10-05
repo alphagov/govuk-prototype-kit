@@ -41,9 +41,12 @@ function mkdtempSync () {
  * @param {string} prototypePath
  * @param {Object} [options]
  * @param {string} [options.kitPath] - Path to the kit to use when creating prototype, if not provided uses mkReleaseArchive
- * @param {bool} [options.allowTracking] - If undefined no usage-data-config.json is created,
+ * @param {boolean} [options.overwrite] - Allow existing prototype to be overwritten (optional)
+ * @param {boolean} [options.allowTracking] - If undefined no usage-data-config.json is created (optional),
  *                                         if true a usage-data-config.json is created allowing tracking,
  *                                         if false a usage-data-config.json is crated disallowing tracking
+ * @param {boolean} [options.npmInstallLinks] - Set value for npm config install-links (optional)
+ * @param {string} [options.commandLineParameters] - Command line parameters (optional)
  * @returns {Promise<void>}
  */
 async function mkPrototype (prototypePath, {
