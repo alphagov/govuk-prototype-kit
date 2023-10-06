@@ -80,11 +80,15 @@ describe('Management plugins: ', () => {
 
     loadPluginsPage()
 
+    cy.get('#plugins-updates-available-message').should('not.exist')
+
     cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version1}`)
 
     cy.get('#plugin-action-button').click()
 
     performPluginAction('install', plugin, pluginName)
+
+    cy.get('#plugins-updates-available-message').contains('1 UPDATE AVAILABLE')
 
     //   ------------------------
 
@@ -92,6 +96,7 @@ describe('Management plugins: ', () => {
     installPlugin(plugin, version1)
 
     loadInstalledPluginsPage()
+
     log(`Update the ${plugin} plugin`)
 
     cy.get(`[data-plugin-package-name="${plugin}"]`)
@@ -101,6 +106,8 @@ describe('Management plugins: ', () => {
       .click()
 
     performPluginAction('update', plugin, pluginName)
+
+    cy.get('#plugins-updates-available-message').should('not.exist')
   })
 
   it(`Create a page using a template from the ${plugin} plugin`, () => {
