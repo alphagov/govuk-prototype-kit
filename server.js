@@ -92,8 +92,11 @@ if (config.isDevelopment) {
 
 nunjucksConfig.express = app
 
+// Finds GOV.UK Frontend via `getAppViews()` only if installed
+// but uses the internal package as a backup if uninstalled
 const nunjucksAppEnv = getNunjucksAppEnv(
-  plugins.getAppViews([appViewsDir, finalBackupNunjucksDir])
+  plugins.getAppViews([appViewsDir, finalBackupNunjucksDir]),
+  govukFrontendInternal
 )
 
 expressNunjucks(nunjucksAppEnv, app)
