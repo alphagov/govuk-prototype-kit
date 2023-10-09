@@ -31,17 +31,114 @@ async function loadTemplatesPage () {
   await waitForApplication(manageTemplatesPagePath)
 }
 
+function provePluginTemplatesInstalled (plugin) {
+  cy.visit(manageTemplatesPagePath)
+  cy.get(`[data-plugin-package-name="${plugin}"]`).should('exist')
+}
+
+function provePluginTemplatesUninstalled (plugin) {
+  cy.visit(manageTemplatesPagePath)
+  cy.get(`[data-plugin-package-name="${plugin}"]`).should('not.exist')
+}
+
+function initiatePluginAction (action, plugin, pluginName, options = {}) {
+  if (action === 'install') {
+    cy.visit(managePluginsPagePath)
+  } else {
+    cy.visit(manageInstalledPluginsPagePath)
+  }
+
+  if (pluginName) {
+    cy.get(`[data-plugin-package-name="${plugin}"]`)
+      .scrollIntoView()
+      .find('h4')
+      .contains(pluginName)
+  }
+
+  cy.get(`[data-plugin-package-name="${plugin}"]`)
+    .scrollIntoView()
+    .find('button')
+    .contains(capitalize(action))
+    .click()
+
+  if (options.confirmation) {
+    options.confirmation()
+  }
+
+  performPluginAction(action, plugin, pluginName)
+}
+
+function provePluginInstalled (plugin, pluginName) {
+  cy.visit(managePluginsPagePath)
+  if (pluginName) {
+    cy.get(`[data-plugin-package-name="${plugin}"]`)
+      .scrollIntoView()
+      .find('h4')
+      .contains(pluginName)
+  }
+
+  cy.get(`[data-plugin-package-name="${plugin}"] strong.govuk-tag`)
+    .contains('Installed')
+
+  cy.get('#installed-plugins-link').click()
+
+  cy.get(`[data-plugin-package-name="${plugin}"]`)
+    .should('exist')
+}
+
+function provePluginUninstalled (plugin, pluginName) {
+  cy.visit(managePluginsPagePath)
+  if (pluginName) {
+    cy.get(`[data-plugin-package-name="${plugin}"]`)
+      .scrollIntoView()
+      .find('h4')
+      .contains(pluginName)
+  }
+
+  cy.get(`[data-plugin-package-name="${plugin}"] strong.govuk-tag`)
+    .should('not.exist')
+
+  cy.get('#installed-plugins-link').click()
+
+  cy.get(`[data-plugin-package-name="${plugin}"]`)
+    .should('not.exist')
+}
+
+function provePluginUpdated (plugin, pluginName) {
+  provePluginInstalled(plugin, pluginName)
+  cy.get(`[data-plugin-package-name="${plugin}"]`)
+    .scrollIntoView()
+    .find('button')
+    .contains(capitalize('update')).should('not.exist')
+}
+
+function provePluginInstalledOldVersion (plugin, pluginName) {
+  cy.visit(managePluginsPagePath)
+  if (pluginName) {
+    cy.get(`[data-plugin-package-name="${plugin}"]`)
+      .scrollIntoView()
+      .find('h4')
+      .contains(pluginName)
+  }
+
+  cy.get('#installed-plugins-link').click()
+
+  cy.get(`[data-plugin-package-name="${plugin}"]`)
+    .should('exist')
+}
+
 function performPluginAction (action, plugin, pluginName) {
   cy.task('log', `The ${plugin} plugin should be displayed`)
-  cy.get('h2')
-    .contains(pluginName)
+
+  if (pluginName) {
+    cy.get('h2')
+      .contains(pluginName)
+  }
 
   const processingText = `${action === 'update' ? 'Updat' : action}ing ...`
 
   if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
     cy.get(panelCompleteQuery, { timeout: 20000 })
-      .should('not.be.visible')
-    cy.get(panelCompleteQuery)
       .should('not.be.visible')
     cy.get(panelErrorQuery)
       .should('not.be.visible')
@@ -75,7 +172,7 @@ function failAction (action) {
   cy.get('#plugin-action-button').click()
 
   if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
-    cy.get(panelCompleteQuery)
+    cy.get(panelCompleteQuery, { timeout: 20000 })
       .should('not.be.visible')
     cy.get(panelErrorQuery)
       .should('not.be.visible')
@@ -105,6 +202,13 @@ module.exports = {
   loadInstalledPluginsPage,
   loadTemplatesPage,
   getTemplateLink,
+  initiatePluginAction,
   performPluginAction,
+  provePluginInstalled,
+  provePluginUninstalled,
+  provePluginUpdated,
+  provePluginInstalledOldVersion,
+  provePluginTemplatesInstalled,
+  provePluginTemplatesUninstalled,
   failAction
 }

@@ -1,11 +1,19 @@
-const { replaceInFile, waitForApplication, restoreStarterFiles, log } = require('../../utils')
+const {
+  replaceInFile,
+  waitForApplication,
+  restoreStarterFiles,
+  log
+} = require('../../utils')
 const path = require('path')
+const {
+  provePluginUninstalled,
+  provePluginInstalledOldVersion
+} = require('../plugin-utils')
 const plugin = '@govuk-prototype-kit/task-list'
 const pluginVersion = '1.1.1'
 const originalText = '"dependencies": {'
 const replacementText = `"dependencies": { "${plugin}": "${pluginVersion}",`
 const pkgJsonFile = path.join(Cypress.env('projectFolder'), 'package.json')
-const pluginsPage = '/manage-prototype/plugins'
 
 describe('Handle a plugin installation mismatch', () => {
   after(restoreStarterFiles)
@@ -17,24 +25,14 @@ describe('Handle a plugin installation mismatch', () => {
     replaceInFile(pkgJsonFile, originalText, '', replacementText)
 
     log(`Make sure ${plugin} is displayed as not installed`)
-    cy.visit(pluginsPage)
-
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .scrollIntoView()
-      .find('button')
-      .contains('Install')
+    provePluginUninstalled(plugin)
 
     log('Force the plugins to be installed with an npm install')
     cy.exec(`cd ${Cypress.env('projectFolder')} && npm install`)
 
     log(`Make sure ${plugin} is displayed as installed`)
     waitForApplication()
-    cy.visit(pluginsPage)
 
-    cy.get('#installed-plugins-link').click()
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .scrollIntoView()
-      .find('button')
-      .contains('Uninstall')
+    provePluginInstalledOldVersion(plugin)
   })
 })

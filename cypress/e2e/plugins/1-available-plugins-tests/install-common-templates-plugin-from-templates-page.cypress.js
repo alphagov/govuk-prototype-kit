@@ -1,4 +1,5 @@
 const { waitForApplication, uninstallPlugin, restoreStarterFiles } = require('../../utils')
+const { provePluginTemplatesInstalled } = require('../plugin-utils')
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
@@ -25,7 +26,7 @@ describe('Install common templates from templates page', () => {
 
     cy.get('a').contains('Back to templates').click()
 
-    cy.get(`[data-plugin-package-name="${plugin}"]`).contains('Common Templates')
+    provePluginTemplatesInstalled(plugin)
 
     cy.get('a.govuk-button').should('not.exist')
   })

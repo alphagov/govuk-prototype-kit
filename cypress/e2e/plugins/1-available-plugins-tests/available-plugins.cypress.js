@@ -5,7 +5,11 @@ const {
   loadTemplatesPage,
   loadPluginsPage,
   manageTemplatesPagePath,
-  manageInstalledPluginsPagePath
+  provePluginUninstalled,
+  performPluginAction,
+  initiatePluginAction,
+  provePluginTemplatesUninstalled,
+  provePluginTemplatesInstalled
 } = require('../plugin-utils')
 
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
@@ -18,7 +22,7 @@ async function installPluginTests ({ plugin, templates, version }) {
       log(`The ${plugin} plugin templates are not available`)
       uninstallPlugin(plugin)
       loadTemplatesPage()
-      cy.get(`[data-plugin-package-name="${plugin}"]`).should('not.exist')
+      provePluginTemplatesUninstalled(plugin)
 
       //   ------------------------
 
@@ -30,22 +34,21 @@ async function installPluginTests ({ plugin, templates, version }) {
         cy.get('#plugin-action-button').click()
       } else {
         loadPluginsPage()
+        provePluginUninstalled(plugin)
         log(`Install the ${plugin} plugin`)
-        cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Install').click()
+        performPluginAction('install', plugin)
       }
 
       cy.get(panelCompleteQuery, { timeout: 20000 })
         .should('be.visible')
       cy.get('a').contains('Back to plugins').click()
 
-      cy.get('#installed-plugins-link').click()
-      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall')
-
       //   ------------------------
 
       log(`The ${plugin} plugin templates are available`)
       cy.get('a').contains('Templates').click()
-      cy.get(`[data-plugin-package-name="${plugin}"]`).should('exist')
+
+      provePluginTemplatesInstalled(plugin)
 
       //   ------------------------
 
@@ -59,15 +62,11 @@ async function installPluginTests ({ plugin, templates, version }) {
       //   ------------------------
 
       log(`Uninstall the ${plugin} plugin`)
-      cy.visit(manageInstalledPluginsPagePath)
+      cy.visit(managePluginsPagePath)
 
-      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Uninstall').click()
+      initiatePluginAction('uninstall', plugin)
 
-      cy.get(panelCompleteQuery, { timeout: 20000 })
-        .should('be.visible')
-      cy.get('a').contains('Back to plugins').click()
-
-      cy.get(`[data-plugin-package-name="${plugin}"] button`).contains('Install')
+      provePluginUninstalled(plugin)
     })
   })
 }
