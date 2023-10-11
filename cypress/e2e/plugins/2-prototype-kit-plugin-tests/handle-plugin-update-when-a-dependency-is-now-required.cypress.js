@@ -1,5 +1,17 @@
-import { installPlugin, restoreStarterFiles, uninstallPlugin, waitForApplication } from '../../utils'
 import path from 'path'
+
+import {
+  installPlugin,
+  restoreStarterFiles,
+  uninstallPlugin,
+  waitForApplication
+} from '../../utils'
+
+import {
+  initiatePluginAction,
+  provePluginInstalled,
+  provePluginUninstalled
+} from '../plugin-utils'
 
 const plugin = '@govuk-prototype-kit/common-templates'
 const pluginVersion = '1.1.1'
@@ -30,39 +42,19 @@ describe('Handle a plugin update', () => {
 
     waitForApplication(pluginsPage)
 
-    cy.get('[data-plugin-group-status="search"]')
-      .find(`[data-plugin-package-name="${dependencyPlugin}"]`)
-      .find('button')
-      .contains('Install')
+    provePluginUninstalled(dependencyPlugin)
 
-    cy.get('#installed-plugins-link').click()
+    initiatePluginAction('update', plugin, null, {
+      confirmation: () => {
+        cy.get('#plugin-action-confirmation')
+          .find('ul')
+          .contains(dependencyPluginName)
 
-    cy.get('[data-plugin-group-status="installed"]')
-      .find(`[data-plugin-package-name="${plugin}"]`)
-      .find('button')
-      .contains('Update')
-      .click()
+        cy.get('#plugin-action-button').click()
+      }
+    })
 
-    cy.get('#plugin-action-confirmation')
-      .find('ul')
-      .contains(dependencyPluginName)
-
-    cy.get('#plugin-action-button').click()
-
-    cy.get('#panel-complete', { timeout: 20000 })
-      .should('be.visible')
-      .contains('Update complete')
-
-    cy.get('#instructions-complete a')
-      .contains('Back to plugins')
-      .click()
-
-    cy.get('#installed-plugins-link').click()
-
-    cy.get('[data-plugin-group-status="installed"]')
-      .find(`[data-plugin-package-name="${dependencyPlugin}"]`)
-
-    cy.get('[data-plugin-group-status="installed"]')
-      .find(`[data-plugin-package-name="${plugin}"]`)
+    provePluginInstalled(plugin)
+    provePluginInstalled(dependencyPlugin, dependencyPluginName)
   })
 })

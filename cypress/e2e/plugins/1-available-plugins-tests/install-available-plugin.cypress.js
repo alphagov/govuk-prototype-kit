@@ -10,7 +10,9 @@ const {
   getTemplateLink,
   loadInstalledPluginsPage,
   loadPluginsPage,
-  manageInstalledPluginsPagePath
+  manageInstalledPluginsPagePath,
+  initiatePluginAction,
+  provePluginUpdated
 } = require('../plugin-utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
@@ -98,14 +100,8 @@ describe('Management plugins: ', () => {
     loadInstalledPluginsPage()
 
     log(`Update the ${plugin} plugin`)
-
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .scrollIntoView()
-      .find('button')
-      .contains('Update')
-      .click()
-
-    performPluginAction('update', plugin, pluginName)
+    initiatePluginAction('update', plugin, pluginName)
+    provePluginUpdated(plugin)
 
     cy.get('#plugins-updates-available-message').should('not.exist')
   })
@@ -141,14 +137,7 @@ describe('Management plugins: ', () => {
     log(`Uninstall the ${plugin} plugin`)
 
     cy.visit(manageInstalledPluginsPagePath)
-
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .scrollIntoView()
-      .find('button')
-      .contains('Uninstall')
-      .click()
-
-    performPluginAction('uninstall', plugin, pluginName)
+    initiatePluginAction('uninstall', plugin, pluginName)
 
     provePluginFunctionalityFails()
 
@@ -157,14 +146,7 @@ describe('Management plugins: ', () => {
     log(`Reinstall the ${plugin} plugin`)
 
     cy.visit(managePluginsPagePath)
-
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .scrollIntoView()
-      .find('button')
-      .contains('Install')
-      .click()
-
-    performPluginAction('install', plugin, pluginName)
+    initiatePluginAction('install', plugin, pluginName)
 
     provePluginFunctionalityWorks()
   })

@@ -3,7 +3,11 @@ const path = require('path')
 const {
   loadTemplatesPage,
   managePluginsPagePath,
-  performPluginAction
+  performPluginAction,
+  initiatePluginAction,
+  provePluginInstalled,
+  provePluginTemplatesInstalled,
+  provePluginTemplatesUninstalled
 } = require('../plugin-utils')
 
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
@@ -20,7 +24,7 @@ describe('Install and uninstall Local Plugin via UI Test', async () => {
   it(`The ${dependentPlugin} plugin will be installed`, () => {
     log(`The ${dependentPlugin} plugin templates are not available`)
     loadTemplatesPage()
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"]`).should('not.exist')
+    provePluginTemplatesUninstalled(dependentPlugin)
 
     //   ------------------------
 
@@ -33,41 +37,32 @@ describe('Install and uninstall Local Plugin via UI Test', async () => {
       .should('be.visible')
     cy.get('a').contains('Back to plugins').click()
 
-    cy.get('#installed-plugins-link').click()
-
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"] button`).contains('Uninstall')
+    provePluginInstalled(dependentPlugin, dependentPluginName)
 
     //   ------------------------
 
     log(`The ${dependentPlugin} plugin templates are available`)
     cy.get('a').contains('Templates').click()
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"]`).should('exist')
+    provePluginTemplatesInstalled(dependentPlugin)
 
     //   ------------------------
 
     log('Uninstall the local plugin')
     cy.get('a').contains('Plugins').click()
-    cy.get('#installed-plugins-link').click()
 
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"]`)
-      .scrollIntoView()
-      .find('button')
-      .contains('Uninstall')
-      .click()
-
-    performPluginAction('uninstall', dependentPlugin, dependentPluginName)
+    initiatePluginAction('uninstall', dependentPlugin, dependentPluginName)
 
     //   ------------------------
 
     log(`The ${dependentPlugin} plugin templates are not available`)
     cy.get('a').contains('Templates').click()
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"]`).should('not.exist')
+    provePluginTemplatesUninstalled(dependentPlugin)
   })
 
   it(`The ${dependentPlugin} plugin and ${dependencyPlugin} will be installed`, () => {
     log(`The ${dependentPlugin} plugin templates are not available`)
     loadTemplatesPage()
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"]`).should('not.exist')
+    provePluginTemplatesUninstalled(dependentPlugin)
 
     //   ------------------------
 
@@ -91,7 +86,7 @@ describe('Install and uninstall Local Plugin via UI Test', async () => {
 
     log(`The ${dependentPlugin} plugin templates are available`)
     cy.get('a').contains('Templates').click()
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"]`).should('exist')
+    provePluginTemplatesInstalled(dependentPlugin)
 
     //   ------------------------
 
@@ -107,6 +102,6 @@ describe('Install and uninstall Local Plugin via UI Test', async () => {
 
     log(`The ${dependentPlugin} plugin templates are not available`)
     cy.get('a').contains('Templates').click()
-    cy.get(`[data-plugin-package-name="${dependentPlugin}"]`).should('not.exist')
+    provePluginTemplatesUninstalled(dependentPlugin)
   })
 })

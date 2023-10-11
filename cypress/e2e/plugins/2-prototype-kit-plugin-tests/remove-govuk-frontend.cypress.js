@@ -1,4 +1,10 @@
-const { managePluginsPagePath, performPluginAction } = require('../plugin-utils')
+const {
+  managePluginsPagePath,
+  performPluginAction,
+  provePluginInstalled,
+  provePluginUninstalled,
+  initiatePluginAction
+} = require('../plugin-utils')
 const { uninstallPlugin, restoreStarterFiles } = require('../../utils')
 
 const plugin = 'govuk-frontend'
@@ -21,9 +27,8 @@ describe('Manage prototype pages without govuk-frontend', () => {
     performPluginAction('uninstall', plugin, pluginName)
 
     cy.task('log', 'Make sure govuk-frontend is uninstalled')
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .find('button')
-      .contains('Install')
+
+    provePluginUninstalled(plugin)
 
     cy.task('log', 'Test home page')
     cy.get('a').contains('Home').click()
@@ -39,19 +44,10 @@ describe('Manage prototype pages without govuk-frontend', () => {
 
     cy.task('log', `Install the ${plugin} plugin`)
 
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .scrollIntoView()
-      .find('button')
-      .contains('Install')
-      .click()
-
-    performPluginAction('install', plugin, pluginName)
-
-    cy.get('#installed-plugins-link').click()
+    initiatePluginAction('install', plugin, pluginName)
 
     cy.task('log', 'Make sure govuk-frontend is installed')
-    cy.get(`[data-plugin-package-name="${plugin}"]`)
-      .find('button')
-      .contains('Uninstall')
+
+    provePluginInstalled(plugin, pluginName)
   })
 })

@@ -6,6 +6,7 @@
 
 - [#2355: Prevent management pages using "plugin" GOV.UK Frontend views](https://github.com/alphagov/govuk-prototype-kit/pull/2355)
 - [#2356: Only allow plugin update functionality when installed from npm](https://github.com/alphagov/govuk-prototype-kit/pull/2356)
+- [#2357: Simplify and improve acceptance tests](https://github.com/alphagov/govuk-prototype-kit/pull/2357)
 - [#2358: Suppress Sass warnings for `$legacy` deprecated colour palette](https://github.com/alphagov/govuk-prototype-kit/pull/2358)
 - [#2359: Update application.js to `<script type"module">`](https://github.com/alphagov/govuk-prototype-kit/pull/2359)
 
