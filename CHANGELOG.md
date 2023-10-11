@@ -5,6 +5,7 @@
 ### Fixes
 
 - [#2355: Prevent management pages using "plugin" GOV.UK Frontend views](https://github.com/alphagov/govuk-prototype-kit/pull/2355)
+- [#2358: Suppress Sass warnings for `$legacy` deprecated colour palette](https://github.com/alphagov/govuk-prototype-kit/pull/2358)
 
 ## 13.13.4
 
