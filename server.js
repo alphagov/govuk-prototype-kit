@@ -16,7 +16,7 @@ const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./
 dotenv.config()
 
 // Local dependencies
-const { projectDir, packageDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
+const { projectDir, packageDir, appViewsDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
 const config = require('./lib/config.js').getConfig()
 const packageJson = require('./package.json')
 const { govukFrontendPaths } = require('./lib/govukFrontendPaths')
@@ -80,18 +80,6 @@ app.use(cookieParser())
 // static assets to prevent unauthorised access
 app.use(require('./lib/authentication.js')())
 
-// Get GOV.UK Frontend (internal) views
-const govukFrontendNunjucksPaths = (govukFrontendInternal.config?.nunjucksPaths || [])
-  .map(nunjucksPath => path.join(govukFrontendInternal.baseDir, nunjucksPath))
-
-// Set up App
-const appViews = [
-  path.join(projectDir, '/app/views/')
-].concat(plugins.getAppViews([
-  ...govukFrontendNunjucksPaths,
-  finalBackupNunjucksDir
-]))
-
 const nunjucksConfig = {
   autoescape: true,
   noCache: true,
@@ -104,7 +92,12 @@ if (config.isDevelopment) {
 
 nunjucksConfig.express = app
 
-const nunjucksAppEnv = getNunjucksAppEnv(appViews)
+// Finds GOV.UK Frontend via `getAppViews()` only if installed
+// but uses the internal package as a backup if uninstalled
+const nunjucksAppEnv = getNunjucksAppEnv(
+  plugins.getAppViews([appViewsDir, finalBackupNunjucksDir]),
+  govukFrontendInternal
+)
 
 expressNunjucks(nunjucksAppEnv, app)
 
