@@ -38,6 +38,7 @@
                 {% endif %}
                 {% if updatesMessage %}
                     {{ govukTag({
+                        attributes: {id: "plugins-updates-available-message"},
                         text: updatesMessage
                     }) }}
                 {% endif %}
