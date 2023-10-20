@@ -31,6 +31,19 @@ routesApi.setApp(app)
 // Set up configuration variables
 const releaseVersion = packageJson.version
 
+// Find GOV.UK Frontend (via project, internal package fallback)
+const govukFrontend = govukFrontendPaths([projectDir, packageDir])
+
+// Find GOV.UK Frontend (via internal package, project fallback)
+const govukFrontendInternal = govukFrontendPaths([packageDir, projectDir])
+
+// Finds GOV.UK Frontend via `getAppViews()` only if installed
+// but uses the internal package as a backup if uninstalled
+const nunjucksAppEnv = getNunjucksAppEnv(
+  plugins.getAppViews([appViewsDir, finalBackupNunjucksDir]),
+  govukFrontendInternal
+)
+
 // Force HTTPS on production. Do this before using basicAuth to avoid
 // asking for username/password twice (for `http`, then `https`).
 const isSecure = (config.isProduction && config.useHttps)
@@ -38,12 +51,6 @@ if (isSecure) {
   app.use(utils.forceHttps)
   app.set('trust proxy', 1) // needed for secure cookies on heroku
 }
-
-// Find GOV.UK Frontend (via project, internal package fallback)
-const govukFrontend = govukFrontendPaths([projectDir, packageDir])
-
-// Find GOV.UK Frontend (via internal package, project fallback)
-const govukFrontendInternal = govukFrontendPaths([packageDir, projectDir])
 
 // Add variables that are available in all views
 app.locals.asset_path = '/public/'
@@ -90,23 +97,6 @@ if (config.isDevelopment) {
   nunjucksConfig.watch = true
 }
 
-nunjucksConfig.express = app
-
-// Finds GOV.UK Frontend via `getAppViews()` only if installed
-// but uses the internal package as a backup if uninstalled
-const nunjucksAppEnv = getNunjucksAppEnv(
-  plugins.getAppViews([appViewsDir, finalBackupNunjucksDir]),
-  govukFrontendInternal
-)
-
-expressNunjucks(nunjucksAppEnv, app)
-
-// Add Nunjucks filters
-utils.addNunjucksFilters(nunjucksAppEnv)
-
-// Add Nunjucks functions
-utils.addNunjucksFunctions(nunjucksAppEnv)
-
 // Set views engine
 app.set('view engine', 'njk')
 
@@ -120,18 +110,18 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-// Automatically store all data users enter
-if (config.useAutoStoreData) {
-  app.use(sessionUtils.autoStoreData)
-  sessionUtils.addCheckedFunction(nunjucksAppEnv)
-}
-
 // Prevent search indexing
 app.use((req, res, next) => {
   // Setting headers stops pages being indexed even if indexed pages link to them.
   res.setHeader('X-Robots-Tag', 'noindex')
   next()
 })
+
+// Automatically store all data users enter
+if (config.useAutoStoreData) {
+  app.use(sessionUtils.autoStoreData)
+  sessionUtils.addCheckedFunction(nunjucksAppEnv)
+}
 
 require('./lib/manage-prototype-routes.js')
 require('./lib/plugins/plugins-routes.js')
@@ -216,5 +206,15 @@ app.use((err, req, res, next) => {
 })
 
 app.close = stopWatchingNunjucks
+
+nunjucksConfig.express = app
+
+expressNunjucks(nunjucksAppEnv, app)
+
+// Add Nunjucks filters
+utils.addNunjucksFilters(nunjucksAppEnv)
+
+// Add Nunjucks functions
+utils.addNunjucksFunctions(nunjucksAppEnv)
 
 module.exports = app
