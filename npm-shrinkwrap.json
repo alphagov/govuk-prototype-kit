@@ -56,7 +56,7 @@
         "wait-on": "^7.0.1"
       },
       "engines": {
-        "node": "^16.x || >= 18.x"
+        "node": "^18.x || >= 20.x"
       }
     },
     "node_modules/@aashutoshrathi/word-wrap": {

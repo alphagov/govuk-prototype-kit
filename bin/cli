@@ -2,16 +2,16 @@
 
 if (process.argv.indexOf('--suppress-node-version-warning') === -1 || (process.argv[2] === 'migrate' && process.argv[3] === '--')) {
   const majorNodeVersion = parseInt(process.version.split('.')[0].substring(1), 10)
-  const versionIsWithinRecommendation = majorNodeVersion === 18 || majorNodeVersion === 16
+  const versionIsWithinRecommendation = majorNodeVersion === 20 || majorNodeVersion === 18
   if (!versionIsWithinRecommendation) {
     const nodeVersionIsTooOldToUse = majorNodeVersion < 14
-    const updateOrDownload = majorNodeVersion < 18 ? 'update to' : 'download'
+    const updateOrDownload = majorNodeVersion < 20 ? 'update to' : 'download'
     const printLn = nodeVersionIsTooOldToUse ? console.error.bind(console) : console.warn.bind(console)
     const additionalText = nodeVersionIsTooOldToUse ? '' : ' Some features may not work with your version.'
 
     printLn('\nYou\'re using Node', process.version)
-    printLn('The GOV.UK Prototype Kit only supports Node v16 and v18.' + additionalText + '\n')
-    printLn('You can', updateOrDownload, 'Node v18 at https://nodejs.org/en/download\n')
+    printLn('The GOV.UK Prototype Kit only supports Node v18 and v20.' + additionalText + '\n')
+    printLn('You can', updateOrDownload, 'Node v20 at https://nodejs.org/en/download\n')
 
     if (nodeVersionIsTooOldToUse) {
       process.exit(0)
