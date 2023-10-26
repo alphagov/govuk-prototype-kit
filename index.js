@@ -1,4 +1,3 @@
-
 // local dependencies
 const filtersApi = require('./lib/filters/api').external
 const functionsApi = require('./lib/functions/api').external

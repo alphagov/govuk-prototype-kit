@@ -1,4 +1,3 @@
-
 // npm dependencies
 const { runErrorServer } = require('./lib/errorServer')
 const { verboseLog } = require('./lib/utils/verboseLogger')

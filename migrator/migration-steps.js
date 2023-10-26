@@ -1,4 +1,3 @@
-
 // core dependencies
 const path = require('path')
 
@@ -228,7 +227,7 @@ async function updateLayoutIfUnchanged (filePath, starterFilePath) {
 }
 
 async function updateIfUnchanged (filePaths, additionalStep) {
-  const results = await Promise.all(filePaths.map(async filePath => {
+  return Promise.all(filePaths.map(async filePath => {
     const matchFound = await matchAgainstOldVersions(filePath)
 
     const reporter = await addReporter(`Overwrite ${filePath}`)
@@ -251,7 +250,6 @@ async function updateIfUnchanged (filePaths, additionalStep) {
     await reporter(result)
     return result
   }))
-  return results
 }
 
 async function updateUnbrandedLayouts (dir) {

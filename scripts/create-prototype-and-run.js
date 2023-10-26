@@ -1,4 +1,3 @@
-
 // core dependencies
 const os = require('os')
 const path = require('path')
@@ -22,6 +21,7 @@ console.log('and after changing directory')
 console.log(`running prototype using command "${command}"`)
 console.log()
 
+// noinspection JSVoidFunctionReturnValueUsed
 mkPrototype(testDir, { overwrite: true, allowTracking: false })
   .then(() => {
     console.log()

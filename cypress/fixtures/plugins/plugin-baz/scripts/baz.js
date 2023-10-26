@@ -1,4 +1,3 @@
-
 window.BAZ = window.BAZ || {}
 window.BAZ.Modules = window.BAZ.Modules || {};
 

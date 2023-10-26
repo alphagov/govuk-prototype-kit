@@ -1,4 +1,3 @@
-
 // local dependencies
 const { authenticate, restoreStarterFiles } = require('../../utils')
 

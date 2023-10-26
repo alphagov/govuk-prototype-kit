@@ -1,4 +1,3 @@
-
 window.FOO = window.FOO || {}
 window.FOO.Modules = window.FOO.Modules || {};
 

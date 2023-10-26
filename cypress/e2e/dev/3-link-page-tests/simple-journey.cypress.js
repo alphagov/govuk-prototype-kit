@@ -1,4 +1,3 @@
-
 // local dependencies
 const { waitForApplication, restoreStarterFiles } = require('../../utils')
 const { setUpPages } = require('./link-page-utils')
