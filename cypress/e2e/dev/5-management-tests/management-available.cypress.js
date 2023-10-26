@@ -1,4 +1,3 @@
-
 // local dependencies
 const { waitForApplication } = require('../../utils')
 

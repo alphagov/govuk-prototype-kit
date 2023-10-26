@@ -1,4 +1,3 @@
-
 window.BAR = window.BAR || {}
 window.BAR.Modules = window.BAR.Modules || {};
 

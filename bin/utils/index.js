@@ -1,4 +1,3 @@
-
 // local dependencies
 const { spawn } = require('../../lib/exec')
 const fse = require('fs-extra')

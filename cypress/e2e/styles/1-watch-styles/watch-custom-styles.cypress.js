@@ -1,4 +1,3 @@
-
 // core dependencies
 const path = require('path')
 

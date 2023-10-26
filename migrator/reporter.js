@@ -1,4 +1,3 @@
-
 // npm dependencies
 const c = require('ansi-colors')
 
