@@ -7,7 +7,7 @@ const path = require('path')
 const del = require('del')
 const fse = require('fs-extra')
 const fs = require('graceful-fs') // fs-extra uses graceful-fs, so we need to mock that instead of fs
-const sass = require('sass')
+const sass = require('sass-embedded')
 
 // local dependencies
 const { mkdtempSync } = require('../utils')
