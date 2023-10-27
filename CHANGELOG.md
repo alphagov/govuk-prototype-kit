@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.13.6
+
 ### Fixes
 
 - [#2364: Fix plugin update detection](https://github.com/alphagov/govuk-prototype-kit/pull/2364)
