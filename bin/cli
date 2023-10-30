@@ -2,7 +2,7 @@
 
 if (process.argv.indexOf('--suppress-node-version-warning') === -1 || (process.argv[2] === 'migrate' && process.argv[3] === '--')) {
   const majorNodeVersion = parseInt(process.version.split('.')[0].substring(1), 10)
-  const versionIsWithinRecommendation = majorNodeVersion === 20 || majorNodeVersion === 18
+  const versionIsWithinRecommendation = [16, 18, 20].includes(majorNodeVersion)
   if (!versionIsWithinRecommendation) {
     const nodeVersionIsTooOldToUse = majorNodeVersion < 14
     const updateOrDownload = majorNodeVersion < 20 ? 'update to' : 'download'
