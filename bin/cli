@@ -10,7 +10,7 @@ if (process.argv.indexOf('--suppress-node-version-warning') === -1 || (process.a
     const additionalText = nodeVersionIsTooOldToUse ? '' : ' Some features may not work with your version.'
 
     printLn('\nYou\'re using Node', process.version)
-    printLn('The GOV.UK Prototype Kit only supports Node v18 and v20.' + additionalText + '\n')
+    printLn('The GOV.UK Prototype Kit only supports Node v16, v18 and v20.' + additionalText + '\n')
     printLn('You can', updateOrDownload, 'Node v20 at https://nodejs.org/en/download\n')
 
     if (nodeVersionIsTooOldToUse) {
