@@ -3,7 +3,7 @@
   "description": "Rapidly create HTML prototypes of GOV.UK services",
   "version": "13.13.6",
   "engines": {
-    "node": "^16.x || >= 18.x"
+    "node": "^16.x || ^18.x || >= 20.x"
   },
   "main": "index.js",
   "bin": {

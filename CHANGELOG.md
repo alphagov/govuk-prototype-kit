@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2363: Support for the new Node LTS (version 20)](https://github.com/alphagov/govuk-prototype-kit/pull/2363)
+
 ## 13.13.6
 
 ### Fixes
