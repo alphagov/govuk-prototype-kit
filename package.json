@@ -48,7 +48,7 @@
     "test:heroku": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test:heroku 3000 cypress:e2e:smoke",
     "test:acceptance": "npm run test:acceptance:dev && npm run test:acceptance:prod && npm run test:acceptance:smoke && npm run test:acceptance:styles && npm run test:acceptance:plugins && npm run test:acceptance:errors",
     "test:acceptance:dev": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:dev",
-    "test:acceptance:prod": "cross-env PASSWORD=password KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test:prod 3000 cypress:e2e:prod",
+    "test:acceptance:prod": "cross-env PASSWORD=password PASSWORD_KEYS=PASSWORD_01,PASSWORD_02 PASSWORD_01=p1 PASSWORD_02=p2 KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test:prod 3000 cypress:e2e:prod",
     "test:acceptance:smoke": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:smoke",
     "test:acceptance:styles": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:styles",
     "test:acceptance:plugins": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:plugins",
