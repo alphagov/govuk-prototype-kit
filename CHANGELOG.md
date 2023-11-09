@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2370: Support no internet connection](https://github.com/alphagov/govuk-prototype-kit/pull/2370)
+
 ## 13.14.0
 
 ### New features
