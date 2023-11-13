@@ -61,6 +61,10 @@ module.exports = function setupNodeEvents (on, config) {
   // `config` is the resolved Cypress config
 
   config.env.password = process.env.PASSWORD
+  config.env.additionalPasswords = (process.env.PASSWORD_KEYS || '')
+    .split(',')
+    .map(passwordKey => process.env[passwordKey.trim()])
+    .filter(password => !!password)
   config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
   config.env.tempFolder = path.join(__dirname, '..', 'temp')
   config.env.skipPluginActionInterimStep = process.env.SKIP_PLUGIN_ACTION_INTERIM_STEP
