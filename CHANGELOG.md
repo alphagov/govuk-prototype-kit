@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2369: Support multiple passwords](https://github.com/alphagov/govuk-prototype-kit/pull/2369)
+
 ## 13.14.1
 
 ### Fixes
