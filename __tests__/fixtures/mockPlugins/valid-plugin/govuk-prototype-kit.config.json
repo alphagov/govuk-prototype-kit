@@ -23,6 +23,7 @@
 		}
 	  ],
 	"nunjucksFilters": "/filters.js",
+	"nunjucksFunctions": "/functions.js",
 	"templates": [
 	  {
 		"name": "Step by step navigation page",
