@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.15.1
+
 ### Fixes
 
 - [#2375: Plugin validator should support nunjucks functions](https://github.com/alphagov/govuk-prototype-kit/pull/2375)
