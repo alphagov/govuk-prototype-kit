@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2378: Add filters and functions when the environment is ready](https://github.com/alphagov/govuk-prototype-kit/pull/2378)
+
 ## 13.15.1
 
 ### Fixes
