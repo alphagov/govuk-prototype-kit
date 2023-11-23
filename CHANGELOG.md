@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2380: Only display packages that are plugins](https://github.com/alphagov/govuk-prototype-kit/pull/2380)
+
 ## 13.15.2
 
 ### Fixes
