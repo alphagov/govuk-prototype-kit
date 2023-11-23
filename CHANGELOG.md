@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2382: Make any npm module a plugin via a proxy plugin config](https://github.com/alphagov/govuk-prototype-kit/pull/2382)
+
 ## 13.15.3
 
 ### Fixes
