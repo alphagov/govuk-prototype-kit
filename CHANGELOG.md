@@ -4,6 +4,7 @@
 
 ### New features
 
+- [#2384: Add format items filter to core filters](https://github.com/alphagov/govuk-prototype-kit/pull/2384)
 - [#2382: Make any npm module a plugin via a proxy plugin config](https://github.com/alphagov/govuk-prototype-kit/pull/2382)
 
 ## 13.15.3
