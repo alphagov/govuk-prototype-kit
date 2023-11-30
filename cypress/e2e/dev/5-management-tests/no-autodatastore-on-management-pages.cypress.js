@@ -55,9 +55,9 @@ describe('clear data page', () => {
 
     cy.task('log', 'Add some data')
     cy.visit(`/question-check?most-impressive-trick=${encodeURIComponent(answer)}`)
-    cy.get('.govuk-header__logotype-text')
+    cy.get('.govuk-header__logotype')
     cy.visit('/manage-prototype/plugins?abc=def')
-    cy.get('.govuk-header__logotype-text')
+    cy.get('.govuk-header__logotype')
 
     cy.task('log', 'Check data has been saved')
     cy.visit('/question-check')
