@@ -10,6 +10,7 @@ const manageInstalledPluginsPagePath = '/manage-prototype/plugins-installed'
 const panelProcessingQuery = '[aria-live="polite"] #panel-processing'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 const panelErrorQuery = '[aria-live="polite"] #panel-error'
+const processingIndicatorQuery = '#manage-plugin-progress-indicator'
 
 function getTemplateLink (type, packageName, path) {
   const queryString = `?package=${urlencode(packageName)}&template=${urlencode(path)}`
@@ -135,13 +136,15 @@ function performPluginAction (action, plugin, pluginName) {
       .contains(pluginName)
   }
 
-  const processingText = `${action === 'update' ? 'Updat' : action}ing ...`
+  const processingText = `${action === 'update' ? 'Updat' : action}ing`
 
   if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
     cy.get(panelCompleteQuery, { timeout: 20000 })
       .should('not.be.visible')
     cy.get(panelErrorQuery)
       .should('not.be.visible')
+    cy.get(processingIndicatorQuery)
+      .should('be.visible')
     cy.get(panelProcessingQuery)
       .should('be.visible')
       .contains(capitalize(processingText))
@@ -150,6 +153,8 @@ function performPluginAction (action, plugin, pluginName) {
   cy.task('log', `The ${plugin} plugin is ${action === 'update' ? 'updat' : action}ing`)
 
   cy.get(panelProcessingQuery, { timeout: 20000 })
+    .should('not.be.visible')
+  cy.get(processingIndicatorQuery)
     .should('not.be.visible')
   cy.get(panelErrorQuery)
     .should('not.be.visible')
@@ -176,12 +181,16 @@ function failAction (action) {
       .should('not.be.visible')
     cy.get(panelErrorQuery)
       .should('not.be.visible')
+    cy.get(processingIndicatorQuery)
+      .should('be.visible')
     cy.get(panelProcessingQuery)
       .should('be.visible')
-      .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing ...`)
+      .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing`)
   }
 
   cy.get(panelProcessingQuery, { timeout: 40000 })
+    .should('not.be.visible')
+  cy.get(processingIndicatorQuery)
     .should('not.be.visible')
   cy.get(panelCompleteQuery)
     .should('not.be.visible')
