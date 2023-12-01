@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2362: Delay adding filters and functions until last](https://github.com/alphagov/govuk-prototype-kit/pull/2362)
+
 ## 13.16.0
 
 ### New features
