@@ -1,0 +1,89 @@
+{% extends "views/manage-prototype/layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+    {{ super() }}
+    <a href="/manage-prototype/plugins" class="govuk-back-link">Back to plugins</a>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="">
+        {% include "views/manage-prototype/plugin-header.njk" %}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+
+                {% if updateLink %}
+                    {% if latestLink %}
+                        <p><a href="{{ latestLink }}">Latest version: {{ latestVersion }}</a></p>
+                    {% endif %}
+                    {% if installedLink %}
+                        <p><a href="{{ installedLink }}">Installed version: {{ installedVersion }}</a></p>
+                    {% endif %}
+                {% endif %}
+
+                <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons">
+                    <div class="govuk-button-group">
+                        {% if installLink %}
+                            {{ govukButton({
+                                html: 'Install <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                                attributes: { id: "install-" + packageName, formaction: installLink }
+                            }) }}
+                        {% endif %}
+                        {% if updateLink %}
+                            {{ govukButton({
+                                html: 'Update <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                                attributes: { id: "update-" + packageName, formaction: updateLink }
+                            }) }}
+                        {% endif %}
+                        {% if uninstallLink %}
+                            {{ govukButton({
+                                html: 'Uninstall <span class="govuk-visually-hidden"> ' + plugin.name + '</span>',
+                                classes: "govuk-button--secondary",
+                                attributes: { id: "uninstall-" + packageName, formaction: uninstallLink }
+                            }) }}
+                        {% endif %}
+                    </div>
+                </div>
+
+              {% if plugin.releaseDateTime or preparedPluginLinks.releaseNotes or preparedPluginLinks.versionHistory %}
+                <div class="govuk-prototype-kit-manage-prototype-plugin-details-links">
+                  {% if plugin.releaseDateTime %}
+                    <p class="govuk-body">Released <time title="{{ plugin.releaseDateTime }}" datetime="{{ plugin.releaseDateTime }}">{{ releaseTimeSummary }}</time></p>
+                  {% endif %}
+                  {% if preparedPluginLinks.releaseNotes %}
+                    <p><a href="{{ preparedPluginLinks.releaseNotes }}" class="govuk-link">Release notes</a></p>
+                  {% endif %}
+                  {% if preparedPluginLinks.versionHistory %}
+                    <p><a href="{{ preparedPluginLinks.versionHistory }}" class="govuk-link">Version history</a></p>
+                  {% endif %}
+                </div>
+              {% endif %}
+                <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l" />
+              <p class="govuk-body"><a href="https://prototype-kit.service.gov.uk/docs/support">Report</a></p>
+            </div>
+
+            <div class="govuk-grid-column-three-quarters">
+              <h2 class="govuk-heading-l">About this plugin</h2>
+
+              <p class="govuk-body">{{ description | default('No description has been provided.') }}</p>
+
+              {% if preparedPluginLinks.documentation %}
+                <p class="govuk-heading-m"><a href="{{ preparedPluginLinks.documentation }}">How to use this plugin</a></p>
+              {% endif %}
+
+              {% if inThisPlugin.length %}
+                  <h3 class="govuk-heading-m">Included in this plugin</h3>
+                {% for section in inThisPlugin %}
+                    <h4 class="govuk-heading-s">{{ section.title }}</h4>
+                    <ul class="govuk-list--bullet">
+                    {% for item in section.items %}
+                        <li class="govuk-body">{{ item }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endfor %}
+              {% endif %}
+            </div>
+        </div>
+    </form>
+{% endblock %}

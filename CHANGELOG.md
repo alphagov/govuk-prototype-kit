@@ -2,10 +2,14 @@
 
 ## Unreleased
 
+### New features
+
+- [#2351: Build the basic plugin details page](https://github.com/alphagov/govuk-prototype-kit/pull/2351)
+
 ## 13.16.0
 
 ### New features
-
+- 
 - [#2384: Add format items filter to core filters](https://github.com/alphagov/govuk-prototype-kit/pull/2384)
 - [#2382: Make any npm module a plugin via a proxy plugin config](https://github.com/alphagov/govuk-prototype-kit/pull/2382)
 
