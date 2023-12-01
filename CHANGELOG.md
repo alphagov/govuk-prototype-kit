@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.16.0
+
 ### New features
 
 - [#2384: Add format items filter to core filters](https://github.com/alphagov/govuk-prototype-kit/pull/2384)
