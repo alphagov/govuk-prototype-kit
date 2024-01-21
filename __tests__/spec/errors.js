@@ -30,11 +30,11 @@ const getFirstParagraph = html => {
 }
 const getErrorFile = html => {
   const $ = cheerio.load(html)
-  return $('#govuk-prototype-kit-error-file').text().trim()
+  return $('#nowprototypeit-error-file').text().trim()
 }
 const getErrorMessage = html => {
   const $ = cheerio.load(html)
-  return $('#govuk-prototype-kit-error-message').text().trim()
+  return $('#nowprototypeit-error-message').text().trim()
 }
 
 describe('error handling', () => {
@@ -80,7 +80,7 @@ describe('error handling', () => {
     expect(console.error).toHaveBeenCalledWith('test error')
 
     expect(response.status).toBe(500)
-    expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
+    expect(getPageTitle(response.text)).toEqual('Error – Now Prototype It')
     expect(getH1(response.text)).toEqual('There is an error')
     expect(getErrorFile(response.text)).toEqual(`${path.join('__tests__', 'spec', 'errors.js')} (line 73)`)
     expect(getErrorMessage(response.text)).toEqual('test error')
@@ -100,7 +100,7 @@ describe('error handling', () => {
     expect(console.error).toHaveBeenCalledWith('template not found: test-page.html')
 
     expect(response.status).toBe(500)
-    expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
+    expect(getPageTitle(response.text)).toEqual('Error – Now Prototype It')
     expect(getH1(response.text)).toEqual('There is an error')
     expect(getErrorFile(response.text)).toEqual('')
     expect(getErrorMessage(response.text)).toEqual('template not found: test-page.html')
@@ -113,7 +113,7 @@ describe('error handling', () => {
     expect(console.error).not.toHaveBeenCalled()
 
     expect(response.status).toBe(404)
-    expect(getPageTitle(response.text)).toEqual('Page not found – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
+    expect(getPageTitle(response.text)).toEqual('Page not found – Now Prototype It')
     expect(getH1(response.text)).toEqual('Page not found')
     expect(getFirstParagraph(response.text)).toMatch(/^There is no page at/)
   })

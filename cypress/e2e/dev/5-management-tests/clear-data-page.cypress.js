@@ -20,7 +20,7 @@ const questionView = path.join(appViews, 'question.html')
 const questionCheckView = path.join(appViews, 'question-check.html')
 
 const questionTestMarkUp = `
-{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
+{% extends "nowprototypeit/layouts/govuk-branded.html" %}
 
 {% block content %}
 

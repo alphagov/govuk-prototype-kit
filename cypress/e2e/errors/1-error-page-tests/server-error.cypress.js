@@ -26,8 +26,8 @@ describe('Server Error Test', () => {
 
     cy.get('.govuk-heading-l').contains(errorPageName)
     cy.get('.govuk-body .govuk-link').contains(contactSupportText)
-    cy.get('#govuk-prototype-kit-error-file').contains(expectedErrorFileAndLine)
-    cy.get('#govuk-prototype-kit-error-message').contains(expectedErrorMessage)
+    cy.get('#nowprototypeit-error-file').contains(expectedErrorFileAndLine)
+    cy.get('#nowprototypeit-error-message').contains(expectedErrorMessage)
   })
 
   it('shows an error if a template cannot be found', () => {
@@ -39,7 +39,7 @@ describe('Server Error Test', () => {
 
     cy.get('.govuk-heading-l').contains(errorPageName)
     cy.get('.govuk-body .govuk-link').contains(contactSupportText)
-    cy.get('#govuk-prototype-kit-error-message').contains(templateNotFoundText)
+    cy.get('#nowprototypeit-error-message').contains(templateNotFoundText)
   })
 
   it('shows an error if sass is broken', () => {
@@ -61,7 +61,7 @@ describe('Server Error Test', () => {
     // Page now shows an error
     cy.get('.govuk-heading-l').contains(errorPageName)
     cy.get('.govuk-body .govuk-link').contains(contactSupportText)
-    cy.get('#govuk-prototype-kit-error-line').contains(brokenSassText)
+    cy.get('#nowprototypeit-error-line').contains(brokenSassText)
 
     // Restore the application.scss from prototype starter
     cy.task('copyFromStarterFiles', { filename: appSassPath })

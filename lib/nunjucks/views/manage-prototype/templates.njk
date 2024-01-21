@@ -31,17 +31,17 @@
             {% endif %}
           </h2>
 
-          <ul class="govuk-list govuk-prototype-kit-manage-prototype-template-list-template-list">
+          <ul class="govuk-list nowprototypeit-manage-prototype-template-list-template-list">
             {% for template in plugin.templates %}
-              <li class="govuk-prototype-kit-manage-prototype-template-list-template-list__item">
-                <div class="govuk-prototype-kit-manage-prototype-template-list-template-list__item-name">
+              <li class="nowprototypeit-manage-prototype-template-list-template-list__item">
+                <div class="nowprototypeit-manage-prototype-template-list-template-list__item-name">
                   {{ template.name }}
                 </div>
-                <div class="govuk-prototype-kit-manage-prototype-template-list-template-list__item-links">
-                  <a class="govuk-prototype-kit-manage-prototype-template-list-template-list__item-link"
+                <div class="nowprototypeit-manage-prototype-template-list-template-list__item-links">
+                  <a class="nowprototypeit-manage-prototype-template-list-template-list__item-link"
                      href="{{ template.viewLink }}">
                     View<span class="govuk-visually-hidden"> {{ template.name }}</span></a>
-                  <a class="govuk-prototype-kit-manage-prototype-template-list-template-list__item-link"
+                  <a class="nowprototypeit-manage-prototype-template-list-template-list__item-link"
                      href="{{ template.installLink }}">
                     Create<span class="govuk-visually-hidden"> {{ template.name }}</span></a>
                 </div>

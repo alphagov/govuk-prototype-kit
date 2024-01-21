@@ -104,7 +104,7 @@ describe('migrate test prototype', () => {
 // https://prototype-kit.service.gov.uk/docs/filters
 //
 
-const govukPrototypeKit = require('govuk-prototype-kit')
+const govukPrototypeKit = require('@nowprototypeit/govuk')
 const addFilter = govukPrototypeKit.views.addFilter
 
 // Add your filters here
@@ -172,7 +172,7 @@ window.GOVUKPrototypeKit.documentReady(function () {
       'https://prototype-kit.service.gov.uk/docs/how-to-use-layouts\n' +
       '#}\n' +
       '\n' +
-      '{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}' + '\n'
+      '{% extends "nowprototypeit/layouts/govuk-branded.njk" %}' + '\n'
     )
   })
 
@@ -180,7 +180,7 @@ window.GOVUKPrototypeKit.documentReady(function () {
     const unbrandedFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'nested-test-folder', 'unbranded-test.html'))
 
     expect(unbrandedFileContents).toEqual(
-      '{% extends "govuk-prototype-kit/layouts/unbranded.html" %}\n' +
+      '{% extends "nowprototypeit/layouts/unbranded.html" %}\n' +
       '{% block pageScripts %}\n' +
       '  <script>\n' +
       '    console.log(\'Hello Unbranded\')\n' +

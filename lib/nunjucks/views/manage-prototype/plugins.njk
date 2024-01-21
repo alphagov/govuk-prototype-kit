@@ -18,7 +18,7 @@
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-quarter">
                 {% if isSearchPage %}
-                    <div class="sub-nav govuk-!-margin-bottom-6 govuk-prototype-kit-manage-prototype-plugin-subnav--current">
+                    <div class="sub-nav govuk-!-margin-bottom-6 nowprototypeit-manage-prototype-plugin-subnav--current">
                         <h2 class="govuk-heading-m">Find plugins</h2>
                     </div>
                     <div class="sub-nav">
@@ -32,7 +32,7 @@
                             Find plugins
                         </a>
                     </div>
-                    <div class="sub-nav govuk-prototype-kit-manage-prototype-plugin-subnav--current">
+                    <div class="sub-nav nowprototypeit-manage-prototype-plugin-subnav--current">
                         <h2 class="govuk-heading-m">Installed plugins</h2>
                     </div>
                 {% endif %}
@@ -81,10 +81,10 @@
                 </div>
                 {% endif %}
 
-                <ul class="govuk-list govuk-prototype-kit-manage-prototype-plugin-list-plugin-list"
+                <ul class="govuk-list nowprototypeit-manage-prototype-plugin-list-plugin-list"
                     data-plugin-group-status="{{ status }}">
                     {% for plugin in plugins %}
-                        <li class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item"
+                        <li class="nowprototypeit-manage-prototype-plugin-list-plugin-list__item"
                             data-plugin-package-name="{{ plugin.packageName }}">
 
                             <div class="govuk-grid-column-one-third govuk-body">
@@ -116,7 +116,7 @@
                                         {{ plugin.description }}
                                     </div>
                                 {% endif %}
-                                <div class="govuk-prototype-kit-manage-prototype-plugin-list-plugin-list__item-buttons">
+                                <div class="nowprototypeit-manage-prototype-plugin-list-plugin-list__item-buttons">
                                     <div class="govuk-button-group">
                                         {% if not plugin.installedVersion %}
                                             {{ govukButton({

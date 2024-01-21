@@ -1,4 +1,4 @@
-const router = require('govuk-prototype-kit').requests.setupRouter()
+const router = require('@nowprototypeit/govuk').requests.setupRouter()
 
 router.get('/cypress-test', (req, res) => {
   const heading = 'CYPRESS TEST PAGE'

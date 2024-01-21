@@ -10,7 +10,7 @@ if (process.argv.indexOf('--suppress-node-version-warning') === -1 || (process.a
     const additionalText = nodeVersionIsTooOldToUse ? '' : ' Some features may not work with your version.'
 
     printLn('\nYou\'re using Node', process.version)
-    printLn('The GOV.UK Prototype Kit only supports Node v16, v18 and v20.' + additionalText + '\n')
+    printLn('The Now Prototype It Kit only supports Node v16, v18 and v20.' + additionalText + '\n')
     printLn('You can', updateOrDownload, 'Node v20 at https://nodejs.org/en/download\n')
 
     if (nodeVersionIsTooOldToUse) {
@@ -84,9 +84,9 @@ usage-data-config.json
 
 const packageJson = {
   scripts: {
-    dev: 'govuk-prototype-kit dev',
-    serve: 'govuk-prototype-kit serve',
-    start: 'govuk-prototype-kit start'
+    dev: '@nowprototypeit/govuk dev',
+    serve: '@nowprototypeit/govuk serve',
+    start: '@nowprototypeit/govuk start'
   }
 }
 
@@ -131,13 +131,13 @@ async function initialiseGitRepo () {
   const commitMessage = 'Create prototype'
   await exec(`git commit -am "${commitMessage}"`)
     .catch(() =>
-      exec(`git -c "user.email=gov.uk-prototype@digital.cabinet-office.gov.uk" -c "user.name=GOV.UK Prototype Kit" commit -am "${commitMessage}"`)
+      exec(`git -c "user.email=auto-commit@nowprototypeit.com" -c "user.name=Now Prototype It" commit -am "${commitMessage}"`)
     )
     .catch(failSilently)
 }
 
 function usage () {
-  const prog = 'npx govuk-prototype-kit'
+  const prog = 'npx @nowprototypeit/govuk'
   console.log(`
 ${prog} <command>
 
@@ -167,7 +167,7 @@ function getInstallLocation () {
 }
 
 function getChosenKitDependency () {
-  const defaultValue = 'govuk-prototype-kit'
+  const defaultValue = '@nowprototypeit/govuk'
   const versionRequested = argv.options.version || argv.options.v
 
   if (!versionRequested) {
@@ -216,18 +216,11 @@ function getArgumentsToPassThrough () {
   return additionalArgs
 }
 
-async function initialiserRequiresOldInitSyntax () {
-  const version = await getPackageVersionFromPackageJson(path.join(getInstallLocation(), 'node_modules', 'govuk-prototype-kit', 'package.json'))
-
-  const requiresOldInitSyntax = version.major === 13 && version.minor < 2
-  return requiresOldInitSyntax
-}
-
 async function runCreate () {
   // Install as a two-stage bootstrap process.
   //
   // In stage one (`create`) we create an empty project folder and install
-  // govuk-prototype-kit and govuk-frontend, then bootstrap stage two from
+  // @nowprototypeit/govuk and govuk-frontend, then bootstrap stage two from
   // the newly installed package.
   //
   // In stage two (`init`) we do the actual setup of the starter files.
@@ -265,15 +258,9 @@ async function runCreate () {
     await fse.ensureSymlink(kitDependency, dependencyInstallLocation)
   }
 
-  let runningWithinCreateScriptFlag = '--running-within-create-script'
-
-  if (await initialiserRequiresOldInitSyntax()) {
-    runningWithinCreateScriptFlag = '--'
-  }
-
   progressLogger('Setting up your prototype')
 
-  await spawn('npx', ['govuk-prototype-kit', 'init', runningWithinCreateScriptFlag, installDirectory, `--created-from-version=${kitVersion}`, ...(getArgumentsToPassThrough()), '--suppress-node-version-warning'], {
+  await spawn('npx', ['@nowprototypeit/govuk', 'init', '--running-within-create-script', installDirectory, `--created-from-version=${kitVersion}`, ...(getArgumentsToPassThrough()), '--suppress-node-version-warning'], {
     cwd: installDirectory,
     stdio: 'inherit'
   })
@@ -363,7 +350,7 @@ async function runMigrate () {
 
     await prepareMigration(kitDependency, projectDirectory)
 
-    await spawn('npx', ['govuk-prototype-kit', 'migrate', '--', projectDirectory], {
+    await spawn('npx', ['@nowprototypeit/govuk', 'migrate', '--', projectDirectory], {
       stdio: 'inherit'
     })
       .catch(e => {
@@ -393,7 +380,7 @@ async function runMigrate () {
 }
 
 async function runDev () {
-  console.log(`GOV.UK Prototype Kit ${kitVersion}`)
+  console.log(`Now Prototype It Kit ${kitVersion}`)
   console.log('')
   console.log('starting...')
 

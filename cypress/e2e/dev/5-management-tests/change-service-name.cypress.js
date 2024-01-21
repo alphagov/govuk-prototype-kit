@@ -29,18 +29,18 @@ describe('change service name', () => {
     cy.task('log', 'Visit the manage prototype page')
 
     cy.get(serverNameQuery).contains(originalText)
-    cy.get('.govuk-prototype-kit-manage-prototype-task-list__item')
+    cy.get('.nowprototypeit-manage-prototype-task-list__item')
       .contains(appConfigPath)
-      .get('.govuk-prototype-kit-manage-prototype-task-list__tag').contains('To do')
+      .get('.nowprototypeit-manage-prototype-task-list__tag').contains('To do')
 
     cy.task('replaceTextInFile', { filename: appConfig, originalText, newText })
 
     waitForApplication(managePagePath)
 
     cy.get(serverNameQuery).contains(newText)
-    cy.get('.govuk-prototype-kit-manage-prototype-task-list__item')
+    cy.get('.nowprototypeit-manage-prototype-task-list__item')
       .contains(appConfigPath)
-      .get('.govuk-prototype-kit-manage-prototype-task-list__tag').contains('Done')
+      .get('.nowprototypeit-manage-prototype-task-list__tag').contains('Done')
 
     cy.visit('/index')
     cy.get('.govuk-heading-xl').contains(newText)

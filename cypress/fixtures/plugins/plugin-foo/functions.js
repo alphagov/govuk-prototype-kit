@@ -1,2 +1,2 @@
-const { addFunction } = require('govuk-prototype-kit').views
+const { addFunction } = require('@nowprototypeit/govuk').views
 addFunction('fooEmphasize', (content) => `<em>${content}</em>`, { renderAsHtml: true })

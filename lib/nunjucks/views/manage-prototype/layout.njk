@@ -1,5 +1,5 @@
 {%- set assetPath = '/manage-prototype/dependencies/govuk-frontend' + govukFrontendInternal.assetPath -%}
-{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% extends "nowprototypeit/layouts/branded.njk" %}
 
 {% block pageTitle %}
   {% if pageName %}
@@ -9,7 +9,7 @@
   {% endif %}
   Manage your prototype
   - {{ serviceName }}
-  - GOV.UK Prototype Kit
+  - Now Prototype It
 {% endblock %}
 
 {% block stylesheets %}
@@ -22,17 +22,17 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <nav id="govuk-prototype-kit-manage-prototype-navigation" class="govuk-prototype-kit-manage-prototype-navigation js-govuk-prototype-kit-manage-prototype-navigation govuk-clearfix" role="navigation"
-       aria-labelledby="govuk-prototype-kit-manage-prototype-navigation-heading">
-    <h2 class="govuk-visually-hidden" id="govuk-prototype-kit-manage-prototype-navigation-heading">Menu</h2>
-    <ul class="govuk-prototype-kit-manage-prototype-navigation__list govuk-prototype-kit-manage-prototype-width-container">
+  <nav id="nowprototypeit-manage-prototype-navigation" class="nowprototypeit-manage-prototype-navigation js-nowprototypeit-manage-prototype-navigation govuk-clearfix" role="navigation"
+       aria-labelledby="nowprototypeit-manage-prototype-navigation-heading">
+    <h2 class="govuk-visually-hidden" id="nowprototypeit-manage-prototype-navigation-heading">Menu</h2>
+    <ul class="nowprototypeit-manage-prototype-navigation__list nowprototypeit-manage-prototype-width-container">
 
       
       {% for link in links %}
 
-        <li class="govuk-prototype-kit-manage-prototype-navigation__list-item {{ "govuk-prototype-kit-manage-prototype-navigation__list-item--current" if link.text === currentSection }}">
+        <li class="nowprototypeit-manage-prototype-navigation__list-item {{ "nowprototypeit-manage-prototype-navigation__list-item--current" if link.text === currentSection }}">
           <a
-            class="govuk-link govuk-link--no-visited-state govuk-link--no-underline govuk-prototype-kit-manage-prototype-navigation__link js-govuk-prototype-kit-manage-prototype-navigation__link"
+            class="govuk-link govuk-link--no-visited-state govuk-link--no-underline nowprototypeit-manage-prototype-navigation__link js-nowprototypeit-manage-prototype-navigation__link"
             href="{{ link.url }}">
             {{ link.text }}
           </a>

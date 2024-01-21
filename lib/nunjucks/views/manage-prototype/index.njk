@@ -8,8 +8,8 @@
         <h1 class="govuk-heading-l">
           Manage your prototype
         </h1>
-        <p class="govuk-prototype-kit-manage-prototype-version">
-          GOV.UK Prototype Kit {{ releaseVersion }}
+        <p class="nowprototypeit-manage-prototype-version">
+          Now Prototype It - GOV.UK Kit {{ releaseVersion }}
         </p>
         {% if kitUpdateAvailable %}
           <p>
@@ -28,13 +28,13 @@
         <h2 class="govuk-heading-m">
           Start a new prototype
         </h2>
-        <ul class="govuk-prototype-kit-manage-prototype-task-list__items govuk-prototype-kit-manage-prototype-task-list__items">
+        <ul class="nowprototypeit-manage-prototype-task-list__items nowprototypeit-manage-prototype-task-list__items">
           {% for task in tasks %}
-          <li class="govuk-prototype-kit-manage-prototype-task-list__item">
-          <span class="govuk-prototype-kit-manage-prototype-task-list__task-name">
+          <li class="nowprototypeit-manage-prototype-task-list__item">
+          <span class="nowprototypeit-manage-prototype-task-list__task-name">
             {{ task.html | safe }}
           </span>
-            <strong class="govuk-tag govuk-prototype-kit-manage-prototype-govuk-tag govuk-prototype-kit-manage-prototype-task-list__tag">
+            <strong class="govuk-tag nowprototypeit-manage-prototype-govuk-tag nowprototypeit-manage-prototype-task-list__tag">
               {% if task.done %}Done{% else %}To do{% endif %}
             </strong>
           </li>

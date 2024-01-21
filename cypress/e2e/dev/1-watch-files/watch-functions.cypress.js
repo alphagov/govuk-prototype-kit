@@ -11,7 +11,7 @@ const functionsViewMarkup = `
 {% endblock %}
 `
 const functionsAddition = `
-const govukPrototypeKit = require('govuk-prototype-kit')
+const govukPrototypeKit = require('@nowprototypeit/govuk')
 const addFunction = govukPrototypeKit.views.addFunction
 addFunction('fooEmphasize', (content) => '<em>' + content + '</em>', { renderAsHtml: true })
 `

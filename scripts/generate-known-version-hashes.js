@@ -100,7 +100,7 @@ async function retrieveArchiveVersion (version) {
 async function processVersion (version) {
   await retrieveArchiveVersion(version)
   const versionData = await Promise.all(knownFiles.map(async knownFile => {
-    const filePath = path.join(tmpDir, `govuk-prototype-kit-${version}`, knownFile)
+    const filePath = path.join(tmpDir, `nowprototypeit-${version}`, knownFile)
     if (await fse.pathExistsSync(filePath)) {
       return { filename: knownFile, hash: await getFileHash(filePath) }
     }

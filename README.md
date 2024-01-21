@@ -1,53 +1,23 @@
-# GOV.UK Prototype Kit
+# No Prototype It - GOV.UK Prototype Kit
 
-Go to the [GOV.UK Prototype Kit site](https://prototype-kit.service.gov.uk/docs) to get the latest version and read the documentation.
-
-## About the Prototype Kit
-
-The Prototype Kit provides a simple way to make interactive prototypes that look like pages on GOV.UK. These prototypes can be used to show ideas to people you work with, and to do user research.
-
-Read the [project principles](https://prototype-kit.service.gov.uk/docs/principles).
-
-## Make sure prototypes are password-protected
-
-If you publish your prototypes online, they **must** be [protected by a password](https://prototype-kit.service.gov.uk/docs/publishing). This is to prevent members of the public finding prototypes and thinking they are real services.
-
-You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like GOV.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.
-
-## Installation instructions
-
-- [Installation guide for new users (non technical)](https://prototype-kit.service.gov.uk/docs/install/getting-started)
-- [Installation guide for developers (technical)](https://prototype-kit.service.gov.uk/docs/install/getting-started-advanced)
-
-## Node version requirements
-
-We always recommend you use the [current long term support (LTS) version of Node.js](https://github.com/nodejs/release#release-schedule).
-
-The Prototype Kit always supports at least the current and previous LTS releases.
+This prototype kit is designed to be compatible with [The GOV.UK Prototype Kit](https://prototype-kit.service.gov.uk/docs), 
 
 ## Support
 
-The GOV.UK Prototype Kit is maintained by the Government Digital Service. If you’ve got a question or need support you can:
+At this time there is no regular support offering for this prototype kit, it's something
+we want to add in the future.  In the meantime you can:
 
-* email [govuk-design-system-support@digital.cabinet-office.gov.uk](mailto:govuk-design-system-support@digital.cabinet-office.gov.uk)
-* [get in touch on Slack](https://ukgovernmentdigital.slack.com/app_redirect?channel=prototype-kit)
-* [view known issues on GitHub](https://github.com/alphagov/govuk-prototype-kit/issues)
+ - [Raise an issue on GitHub](https://github.com/nowprototypeit/govuk/issues)
+ - [Email to request support](mailto:natalie@nataliecarey.uk)
+ - If you want to access [the support offered by GOV.UK](https://github.com/alphagov/govuk-prototype-kit?tab=readme-ov-file#support) you can move back to their prototype kit and then request support
 
 ## Contributing
 
 If you’ve got an idea or suggestion, you can:
 
-* [get in touch on the developer Slack channel](https://ukgovernmentdigital.slack.com/app_redirect?channel=prototype-kit-dev)
-* [create a GitHub issue](https://github.com/alphagov/govuk-prototype-kit/issues)
-
-The govuk-prototype-kit repository is public and we welcome contributions from anyone.
-
-Contributors to alphagov repositories are expected to follow the [Contributor Covenant Code of Conduct](https://github.com/alphagov/.github/blob/main/CODE_OF_CONDUCT.md#contributor-covenant-code-of-conduct). Contributors working within government are also expected to follow the [Civil Service code](https://www.gov.uk/government/publications/civil-service-code/the-civil-service-code).
-
-We're unable to monitor activity on this repository outside of our office hours (10am to 4pm, UK time). To get a faster response at other times, you can [report abuse or spam to GitHub](https://docs.github.com/en/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam).
+- [Raise an issue on GitHub](https://github.com/nowprototypeit/govuk/issues)
+- [Raise a Pull Request on GitHub](https://github.com/nowprototypeit/govuk/pulls)
 
 ### Security
 
-GDS is an advocate of responsible vulnerability disclosure. If you’ve found a vulnerability, we would like to know so we can fix it.
-
-For full details on how to tell us about vulnerabilities, [see our security policy](https://github.com/alphagov/govuk-prototype-kit/security/policy).
+If you’ve found a vulnerability, we would like to know by [Raising an issue on GitHub](https://github.com/nowprototypeit/govuk/issues) so we can fix it.

@@ -20,9 +20,9 @@ describe('edit home page', () => {
 
     cy.task('log', 'Visit the manage prototype templates page')
 
-    cy.get('.govuk-prototype-kit-manage-prototype-task-list__item')
+    cy.get('.nowprototypeit-manage-prototype-task-list__item')
       .contains(appHomePath)
-      .get('.govuk-prototype-kit-manage-prototype-task-list__tag').contains('To do')
+      .get('.nowprototypeit-manage-prototype-task-list__tag').contains('To do')
 
     cy.visit('/index')
     cy.get('.govuk-heading-xl').contains(originalText)
@@ -31,9 +31,9 @@ describe('edit home page', () => {
 
     waitForApplication(managePagePath)
 
-    cy.get('.govuk-prototype-kit-manage-prototype-task-list__item')
+    cy.get('.nowprototypeit-manage-prototype-task-list__item')
       .contains(appHomePath)
-      .get('.govuk-prototype-kit-manage-prototype-task-list__tag').contains('Done')
+      .get('.nowprototypeit-manage-prototype-task-list__tag').contains('Done')
 
     cy.visit('/index')
     cy.get('.govuk-heading-xl').contains(newText)

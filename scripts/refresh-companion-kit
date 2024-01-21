@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mkdir -p ~/projects/prototype-kits/ && rm -Rf ~/projects/prototype-kits/companion-prototype-kit && ./bin/cli create --version=local-symlink ~/projects/prototype-kits/companion-prototype-kit --use-njk-extensions
-echo '{"collectUsageData": false}' > ~/projects/prototype-kits/companion-prototype-kit/usage-data-config.json
+mkdir -p ~/projects/prototype-kits/ && rm -Rf ~/projects/prototype-kits/now-prototype-it-govuk-companion && ./bin/cli create --version=local-symlink ~/projects/prototype-kits/now-prototype-it-govuk-companion --use-njk-extensions
+echo '{"collectUsageData": false}' > ~/projects/prototype-kits/now-prototype-it-govuk-companion/usage-data-config.json

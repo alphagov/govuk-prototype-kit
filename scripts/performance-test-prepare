@@ -15,9 +15,9 @@ else
 #  dependency="kit-dependency.tar"
 fi
 cd tmp/performance-testing
-rm -Rf govuk-prototype-kit-performance-kit 
-git clone git@github.com:alphagov/govuk-prototype-kit-performance-kit.git
-cd govuk-prototype-kit-performance-kit
+rm -Rf nowprototypeit-performance-kit 
+git clone git@github.com:alphagov/nowprototypeit-performance-kit.git
+cd nowprototypeit-performance-kit
 echo '{"collectUsageData": false}' > usage-data-config.json
 npm install $dependency --save-exact
 npm install

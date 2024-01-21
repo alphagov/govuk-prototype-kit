@@ -1,13 +1,14 @@
 {
-  "name": "govuk-prototype-kit",
-  "description": "Rapidly create HTML prototypes of GOV.UK services",
-  "version": "13.16.0",
+  "name": "@nowprototypeit/govuk",
+  "description": "A High Fidelity prototype kit for UK Government",
+  "version": "0.0.1",
   "engines": {
     "node": "^16.x || ^18.x || >= 20.x"
   },
   "main": "index.js",
   "bin": {
-    "govuk-prototype-kit": "bin/cli"
+    "@nowprototyeit/govuk": "bin/cli",
+    "now-prototype-it-govuk": "bin/cli"
   },
   "files": [
     "bin/",
@@ -18,7 +19,7 @@
     "CONTRIBUTING.md",
     "LICENCE.txt",
     "README.md",
-    "govuk-prototype-kit.config.json",
+    "nowprototypeit.config.json",
     "known-plugins.json",
     "index.js",
     "listen-on-port.js",
@@ -27,8 +28,8 @@
   ],
   "scripts": {
     "clean-publish": "clean-publish --before-script scripts/clean-publish-before-script.sh",
-    "prepublishOnly": "echo '***\nUse `npm run clean-publish` to publish govuk-prototype-kit\n***' && exit 1",
-    "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm run dev",
+    "prepublishOnly": "echo '***\nUse `npm run clean-publish` to publish @now-prototype-it/govuk\n***' && exit 1",
+    "tmp-kit": "mkdir -p $TMPDIR/now-prototype-it-govuk-playground && cd $TMPDIR/now-prototype-it-govuk-playground && rm -Rf ./* && now-prototype-it-govukx create --version local . && npm run dev",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
     "start:dev": "node scripts/create-prototype-and-run",
     "start:test": "node cypress/scripts/run-starter-prototype",

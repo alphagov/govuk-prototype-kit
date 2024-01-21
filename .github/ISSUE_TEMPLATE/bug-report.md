@@ -23,9 +23,9 @@ assignees: ''
 <!-- What is happening vs what would you expect to happen instead? -->
 
 ## Environment (where applicable)
-<!-- Details of your operating system, browser and the version of the GOV.UK Prototype Kit you’re using may help us to reproduce your issue. -->
+<!-- Details of your operating system, browser and the version of the Now Prototype It Kit you’re using may help us to reproduce your issue. -->
 
 - Operating system:
 - Browser:
 - Browser version:
-- GOV.UK Prototype Kit version:
+- Prototype Kit version:

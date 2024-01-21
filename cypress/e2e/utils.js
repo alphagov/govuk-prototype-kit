@@ -12,7 +12,7 @@ const authenticate = () => {
 }
 
 const waitForApplication = async (path = '/index') => {
-  log(`Waiting for app to restart and load ${path} page`)
+  log(`Waiting for app to restart and load ${path} page - TODO: Change this`)
   cy.task('waitUntilAppRestarts')
   cy.visit(path)
   cy.get('.govuk-header__logotype')

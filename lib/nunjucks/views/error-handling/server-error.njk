@@ -1,11 +1,11 @@
 {% extends "views/manage-prototype/layout.njk" %}
 
 {% block pageTitle %}
-  Error {% if serviceName %}– {{ serviceName }}{% endif %} – GOV.UK Prototype Kit
+  Error {% if serviceName %}– {{ serviceName }}{% endif %} – Now Prototype It
 {% endblock %}
 
 {% block header %}
-  <div class="govuk-prototype-kit-error-page-header">
+  <div class="nowprototypeit-error-page-header">
   {{ super() }}
   </div>
 {% endblock %}
@@ -17,26 +17,26 @@
       <h1 class="govuk-heading-l">There is an error</h1>
 
       {% if error.filePath %}
-      <p class="govuk-prototype-kit-error-info">
-        <strong>File:</strong> <span id="govuk-prototype-kit-error-file">{{ error.filePath }} {%  if error.line %}(line {{ error.line }}){% endif %}</span>
+      <p class="nowprototypeit-error-info">
+        <strong>File:</strong> <span id="nowprototypeit-error-file">{{ error.filePath }} {%  if error.line %}(line {{ error.line }}){% endif %}</span>
       </p>
       {% endif %}
 
-      <p class="govuk-prototype-kit-error-info">
-        <strong>Error:</strong> <span id="govuk-prototype-kit-error-message">{{ error.message }}</span>
+      <p class="nowprototypeit-error-info">
+        <strong>Error:</strong> <span id="nowprototypeit-error-message">{{ error.message }}</span>
       </p>
 
       {% if error.sourceCode %}
-      <pre tabindex="0" class="govuk-prototype-kit-error-code govuk-!-margin-bottom-5" id="govuk-prototype-kit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="govuk-prototype-kit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
+      <pre tabindex="0" class="nowprototypeit-error-code govuk-!-margin-bottom-5" id="nowprototypeit-error-block"><code>{{ error.sourceCode.before }}</code><br><code id="nowprototypeit-error-line">{{ error.sourceCode.error }}</code><br><code>{{ error.sourceCode.after }}</code></pre>
       {% endif %}
 
-      <div id="govuk-prototype-kit-show-error-button-container" hidden>
-        <button id="govuk-prototype-kit-show-error-button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-1" data-module="govuk-button" aria-expanded="false" aria-controls="govuk-prototype-kit-error-stack">
+      <div id="nowprototypeit-show-error-button-container" hidden>
+        <button id="nowprototypeit-show-error-button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-1" data-module="govuk-button" aria-expanded="false" aria-controls="nowprototypeit-error-stack">
           Show full error
         </button>
       </div>
 
-      <pre tabindex="0" id="govuk-prototype-kit-error-stack" class="govuk-prototype-kit-error-code js-hidden"><code>{{ error.errorStack }}</code></pre>
+      <pre tabindex="0" id="nowprototypeit-error-stack" class="nowprototypeit-error-code js-hidden"><code>{{ error.errorStack }}</code></pre>
 
       <p class="govuk-body govuk-!-margin-top-5">
         <a class="govuk-link" href="https://prototype-kit.service.gov.uk/docs/support">Get support</a>
@@ -65,13 +65,13 @@
       button.setAttribute('aria-expanded', newState)
       button.textContent = newText
 
-      const element = document.getElementById('govuk-prototype-kit-error-stack')
+      const element = document.getElementById('nowprototypeit-error-stack')
       element.classList.toggle('js-hidden')
     }
 
-    document.getElementById('govuk-prototype-kit-show-error-button-container').hidden = false
+    document.getElementById('nowprototypeit-show-error-button-container').hidden = false
 
-    document.getElementById('govuk-prototype-kit-show-error-button')
+    document.getElementById('nowprototypeit-show-error-button')
             .addEventListener('click', toggleErrorStack)
   })()
 </script>

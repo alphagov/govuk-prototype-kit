@@ -19,7 +19,8 @@
     "/lib/assets/javascripts/auto-store-data.js"
   ],
   "importNunjucksMacrosInto": [
-    "/lib/nunjucks/govuk-prototype-kit/layouts/govuk-branded.njk",
-    "/lib/nunjucks/govuk-prototype-kit/layouts/unbranded.njk"
+    "/lib/nunjucks/nowprototypeit/layouts/govuk-branded.njk",
+    "/lib/nunjucks/nowprototypeit/layouts/unbranded.njk",
+    "/lib/nunjucks/nowprototypeit/layouts/branded.njk"
   ]
 }

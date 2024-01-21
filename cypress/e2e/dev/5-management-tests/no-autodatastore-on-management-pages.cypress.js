@@ -17,7 +17,7 @@ const questionView = path.join(appViews, 'question.html')
 const questionCheckView = path.join(appViews, 'question-check.html')
 
 const dataOutputNjk = `
-{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
+{% extends "nowprototypeit/layouts/govuk-branded.html" %}
 
 {% block content %}
     <p>Answer: <span id="answer">{{ data['most-impressive-trick'] }}</span></p>

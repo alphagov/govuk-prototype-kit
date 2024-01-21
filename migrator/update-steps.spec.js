@@ -46,7 +46,7 @@ describe('update steps', () => {
 
 // Warn about using the kit in production
 if (window.console && window.console.info) {
-  window.console.info('GOV.UK Prototype Kit - do not use for production')
+  window.console.info('Now Prototype It - do not use for production')
 }
 
 $(document).ready(function () {
@@ -93,7 +93,7 @@ window.GOVUKPrototypeKit.documentReady(function () {
 
 // Warn about using the kit in production
 if (window.console && window.console.info) {
-  window.console.info('GOV.UK Prototype Kit - do not use for production')
+  window.console.info('Now Prototype It - do not use for production')
 }
 
 $(document).ready(function () {
@@ -314,10 +314,10 @@ ${mainFileContents}`
   return filters
 }
 `
-    const starterFileContents = `const govukPrototypeKit = require('govuk-prototype-kit')
+    const starterFileContents = `const govukPrototypeKit = require('@nowprototypeit/govuk')
 const addFilter = govukPrototypeKit.views.addFilter
 `
-    const expectedFileContents = `const govukPrototypeKit = require('govuk-prototype-kit')
+    const expectedFileContents = `const govukPrototypeKit = require('@nowprototypeit/govuk')
 const addFilter = govukPrototypeKit.views.addFilter
 
   var filters = {}

@@ -11,7 +11,7 @@ const filtersViewMarkup = `
 {% endblock %}
 `
 const filtersAddition = `
-const govukPrototypeKit = require('govuk-prototype-kit')
+const govukPrototypeKit = require('@nowprototypeit/govuk')
 const addFilter = govukPrototypeKit.views.addFilter
 addFilter('foo__strong', (content) => '<strong>' + content + '</strong>', { renderAsHtml: true })
 `

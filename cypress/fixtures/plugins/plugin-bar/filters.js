@@ -1,5 +1,5 @@
 // local dependencies
-const { addFilter } = require('govuk-prototype-kit').views
+const { addFilter } = require('@nowprototypeit/govuk').views
 
 addFilter('bar__link',
   (content, url) => `<a href="${url || '#'}">${content}</a>`,

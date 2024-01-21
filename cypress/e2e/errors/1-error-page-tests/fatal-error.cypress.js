@@ -27,8 +27,8 @@ describe('Fatal Error Test', () => {
 
     cy.get('.govuk-heading-l').contains(pageName)
     cy.get('.govuk-body .govuk-link').contains(contactSupportText)
-    cy.get('#govuk-prototype-kit-error-file').contains(expectedErrorFileAndLine)
-    cy.get('#govuk-prototype-kit-error-message').contains(expectedErrorMessage)
+    cy.get('#nowprototypeit-error-file').contains(expectedErrorFileAndLine)
+    cy.get('#nowprototypeit-error-message').contains(expectedErrorMessage)
 
     cy.task('log', `Restore ${appRoutes} with original routes`)
     cy.task('copyFromStarterFiles', { filename: appRoutesPath })

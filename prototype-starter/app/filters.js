@@ -3,7 +3,7 @@
 // https://prototype-kit.service.gov.uk/docs/filters
 //
 
-const govukPrototypeKit = require('govuk-prototype-kit')
+const govukPrototypeKit = require('@nowprototypeit/govuk')
 const addFilter = govukPrototypeKit.views.addFilter
 
 // Add your filters here
