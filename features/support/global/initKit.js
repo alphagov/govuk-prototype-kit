@@ -4,7 +4,6 @@ const path = require('path')
 const events = require('events')
 
 const { startingPort, verboseLogging, baseDir } = require('./config')
-const fse = require('fs-extra')
 
 let nextPort = startingPort
 
@@ -77,7 +76,7 @@ function initKit (config) {
   })
 }
 
-async function setUsageDataPermission(config) {
+async function setUsageDataPermission (config) {
   // const filePath = path.join(config.directory, 'usage-data-config.json')
   // console.log('Writing usage data file', filePath)
   // await fse.writeJson(filePath, { collectUsageData: false })
