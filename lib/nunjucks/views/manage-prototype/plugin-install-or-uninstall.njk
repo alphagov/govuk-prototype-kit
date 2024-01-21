@@ -1,20 +1,38 @@
 {% extends "views/manage-prototype/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
 {% block content %}
   <div class="govuk-grid-row nowprototypeit-manage-prototype-plugin-processing">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Plugins</h1>
-
-      <div id="plugin-heading" {% if dependencyHeading %}hidden class="js-hidden"{% endif %} >
-        <h2 class="govuk-heading-m">{{ pluginHeading }}</h2>
+      <div id="plugin-heading">
+        {% include "views/manage-prototype/plugin-header.njk" %}
       </div>
 
       {% if dependencyHeading %}
-      <div id="dependency-heading">
-        <h2 class="govuk-heading-m">{{ dependencyHeading }}</h2>
-      </div>
+        <div id="dependency-heading">
+
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              {{ dependencyHeading }}
+            </p>
+
+            {% if relatedPlugins|length %}
+              <div>
+                <ul class="govuk-list govuk-list--bullet">
+                  {% for plugin in relatedPlugins %}
+                    <li>{{ plugin.name }}{% if plugin.scope %} from {{ plugin.scope }} {% endif %}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          {% endset %}
+
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        </div>
       {% endif %}
 
       <div id="panel-manual-instructions" class="nowprototypeit-manage-prototype-plugin-instructions js-hidden">
@@ -33,31 +51,17 @@
       </div>
 
       <div class="js-visible" aria-live="polite">
-
-        {% if chosenPlugin.dependencyPlugins|length or chosenPlugin.dependentPlugins|length %}
+        {% if relatedPlugins|length %}
           <div id="plugin-action-confirmation">
+            <div class="govuk-button-group">
+              {{ govukButton({
+                text: verb.title + ' these plugins',
+                attributes: { id: "plugin-action-button" }
+              }) }}
 
-          <ul class="govuk-list govuk-list--bullet">
-            {% for plugin in chosenPlugin.dependencyPlugins %}
-              <li>{{ plugin.name }}{% if plugin.scope %} from {{ plugin.scope }} {% endif %}</li>
-            {% endfor %}
-            {% for plugin in chosenPlugin.dependentPlugins %}
-              <li>{{ plugin.name }}{% if plugin.scope %} from {{ plugin.scope }} {% endif %}</li>
-            {% endfor %}
-          </ul>
-
-          <p class="govuk-body">
-            To {{ verb.para }} {{ chosenPlugin.name }} you also need to {{ verb.dependencyPara }} {% if chosenPlugin.dependentPlugins | length > 1 %}these plugins{% else %}this plugin{% endif %}.
-          </p>
-          <div class="govuk-button-group">
-            {{ govukButton({
-              text: verb.title + ' these plugins',
-              attributes: { id: "plugin-action-button" }
-            }) }}
-
-            <a class="govuk-link" href="{{ returnLink.href }}">Cancel {{ verb.para }}</a>
+              <a class="govuk-link" href="{{ cancelLink }}">Cancel {{ verb.para }}</a>
+            </div>
           </div>
-        </div>
         {% elseif not isSameOrigin %}
           <div id="plugin-action-confirmation">
             <p class="govuk-body">

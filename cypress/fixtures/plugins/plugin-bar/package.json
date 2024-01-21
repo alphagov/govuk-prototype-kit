@@ -1,7 +1,0 @@
-{
-  "name": "plugin-bar",
-  "version": "1.0.0",
-  "dependencies": {
-    "govuk-prototype-kit": "file:../../../.."
-  }
-}

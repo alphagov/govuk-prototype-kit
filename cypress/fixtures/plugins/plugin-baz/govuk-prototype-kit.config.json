@@ -1,6 +1,0 @@
-{
-  "nunjucksFilters": "/filters.js",
-  "nunjucksPaths": "/views",
-  "scripts": "/scripts/baz.js",
-  "sass": "/sass/baz.scss"
-}

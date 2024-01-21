@@ -158,6 +158,7 @@ function mockFileSystem (rootPath) {
     jest.spyOn(fs, 'lstatSync').mockImplementation(lstatImplementation)
     jest.spyOn(fs, 'readdirSync').mockImplementation(readdirImplementation)
     jest.spyOn(fs, 'existsSync').mockImplementation(existsImplementation)
+    jest.spyOn(fse, 'existsSync').mockImplementation(existsImplementation)
     jest.spyOn(fse, 'exists').mockImplementation(promiseWrap(existsImplementation))
     jest.spyOn(fs.promises, 'readFile').mockImplementation(promiseWrap(readFileImplementation))
     jest.spyOn(fs.promises, 'writeFile').mockImplementation(promiseWrap(writeFileImplementation))

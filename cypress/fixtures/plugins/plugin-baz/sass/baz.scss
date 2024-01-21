@@ -1,8 +1,0 @@
-.plugin-baz {
-  border: rgb(0, 255, 255) solid 10px;
-  background: rgb(255, 0, 255);
-  &.plugin-baz-clicked {
-    border: rgb(255, 0, 255) solid 10px;;
-    background: rgb(0, 255, 255);
-  }
-}

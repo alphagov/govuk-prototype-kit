@@ -26,7 +26,7 @@ const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../migrator')
 const { validatePlugin } = require('../lib/plugins/plugin-validator')
-const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
+const { npmInstall, packageJsonFormat, splitSemverVersion } = require('./utils')
 const { recursiveDirectoryContentsSync } = require('../lib/utils')
 const { appViewsDir } = require('../lib/utils/paths')
 
@@ -84,9 +84,9 @@ usage-data-config.json
 
 const packageJson = {
   scripts: {
-    dev: '@nowprototypeit/govuk dev',
-    serve: '@nowprototypeit/govuk serve',
-    start: '@nowprototypeit/govuk start'
+    dev: 'now-prototype-it-govuk dev',
+    serve: 'now-prototype-it-govuk serve',
+    start: 'now-prototype-it-govuk start'
   }
 }
 

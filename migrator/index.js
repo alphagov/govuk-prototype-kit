@@ -122,7 +122,7 @@ async function prepareMigration (kitDependency, projectDirectory) {
 async function migrate () {
   console.warn('The Now Prototype It Kit doesn\'t currently support migration.')
   process.exit(1)
-  
+
   await logger.setup()
 
   let success = false
