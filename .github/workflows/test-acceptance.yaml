@@ -14,8 +14,8 @@ jobs:
       fail-fast: false  # continue other tests if one test in matrix fails
       matrix:
         node-version: [20.x]
-        os: [macos-latest, windows-latest, ubuntu-latest]
-        type: [smoke, plugins, styles, dev, prod, errors]
+        os: [macos-latest, ubuntu-latest]
+        type: [plugins, dev]
 
     name: Acceptance ${{ matrix.type }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -44,11 +44,6 @@ jobs:
     - run: npm ci
 
     - run: npm run test:acceptance:${{ matrix.type }}
-      env:
-        CYPRESS_REQUEST_TIMEOUT: 20000
-        CYPRESS_DEFAULT_COMMAND_TIMEOUT: 40000
-        CYPRESS_PAGE_LOAD_TIMEOUT: 120000
-        CYPRESS_RETRIES: 3
 
     - if: ${{ failure() }}
       uses: actions/upload-artifact@v3

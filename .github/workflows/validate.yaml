@@ -15,4 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: npx govuk-prototype-kit@snapshot validate-plugin
+      - run: npm ci
+
+      - run: ./bin/cli validate-plugin validate-plugin
