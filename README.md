@@ -27,11 +27,9 @@ The Prototype Kit always supports at least the current and previous LTS releases
 
 ## Support
 
-The GOV.UK Prototype Kit is maintained by the Government Digital Service. If you’ve got a question or need support you can:
+The GOV.UK Prototype Kit is currently maintained by the [GOV.UK Design System team](https://design-system.service.gov.uk/get-in-touch/). There is only [minimal support in place](https://github.com/alphagov/govuk-prototype-kit/issues/2389).
 
-* email [govuk-design-system-support@digital.cabinet-office.gov.uk](mailto:govuk-design-system-support@digital.cabinet-office.gov.uk)
-* [get in touch on Slack](https://ukgovernmentdigital.slack.com/app_redirect?channel=prototype-kit)
-* [view known issues on GitHub](https://github.com/alphagov/govuk-prototype-kit/issues)
+If you’ve got a question, idea or suggestion, share with the community of users on the [#govuk-prototype-kit channel on cross-government Slack](https://ukgovernmentdigital.slack.com/archives/C0647LW4R).
 
 ## Contributing
 
