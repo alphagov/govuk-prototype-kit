@@ -7,6 +7,7 @@
 - [#2327: Use GOV.UK Frontend v5 on management pages and tests](https://github.com/alphagov/govuk-prototype-kit/pull/2327)
 - [#2394: Update Browsersync to resolve `axios` vulnerability](https://github.com/alphagov/govuk-prototype-kit/pull/2394)
 - [#2395: Update to GOV.UK Frontend v5.2.0 on management pages](https://github.com/alphagov/govuk-prototype-kit/pull/2395)
+- [#2398: Associate the plugin search input with its label](https://github.com/alphagov/govuk-prototype-kit/pull/2398)
 - [#2399: Stop accidentally cleaning up non-expired sessions](https://github.com/alphagov/govuk-prototype-kit/pull/2399)
 
 ## 13.16.0
