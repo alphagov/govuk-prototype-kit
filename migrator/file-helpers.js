@@ -111,7 +111,7 @@ async function deleteDirectoryIfEmpty (partialPath) {
   }
   const dirContents = await fsp.readdir(dirPath)
   if (dirContents.length === 0) {
-    return await deleteDirectory(dirPath, undefined)
+    return await deleteDirectory(dirPath)
   }
   return false
 }
