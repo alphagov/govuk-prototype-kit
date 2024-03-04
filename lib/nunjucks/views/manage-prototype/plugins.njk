@@ -1,6 +1,5 @@
 {% extends "views/manage-prototype/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/label/macro.njk" import govukLabel %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 
@@ -48,13 +47,12 @@
                 {% if isSearchPage %}
                 <div class="govuk-!-margin-bottom-5">
                     <div id="search-container">
-                        {{ govukLabel({
-                            text:"Search",
-                            classes:"govuk-!-font-weight-bold"
-                        }) }}
-
                         {{ govukInput({
                             id: "search",
+                            label: {
+                                text: "Search",
+                                classes: "govuk-label--s"
+                            },
                             classes: "govuk-!-width-one-half",
                             formGroup: {
                                 classes: "govuk-!-margin-bottom-3"
