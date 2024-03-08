@@ -1,0 +1,16 @@
+{
+  "exclude": [
+    "**/*.spec.*",
+    "**/*.test.*",
+    "__tests__",
+    "cypress",
+    "lib/assets",
+    "prototype-starter",
+    "scripts"
+  ],
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "NodeNext",
+    "resolveJsonModule": true
+  }
+}
