@@ -1,11 +1,23 @@
+/**
+ *
+ * @param {NodeJS.Process["argv"]} argvInput
+ * @param {{ booleans?: string[] }} config
+ */
 function parse (argvInput, config = {}) {
   const args = [...argvInput].splice(2)
-  const options = {}
-  const paths = []
+  const options = /** @type {Object<string, string | boolean>} */ ({})
+  const paths = /** @type {string[]} */ ([])
   const booleanOptions = config.booleans || []
+
+  /** @type {string | undefined} */
   let command
+
+  /** @type {{ option: string } | undefined} */
   let contextFromPrevious
 
+  /**
+   * @param {string} unprocessed
+   */
   const processOptionName = (unprocessed) => {
     if (unprocessed.startsWith('--')) {
       return unprocessed.substring(2)
@@ -15,6 +27,9 @@ function parse (argvInput, config = {}) {
     }
   }
 
+  /**
+   * @param {string} arg
+   */
   const prepareArg = (arg) => {
     if ((arg.startsWith('"') && arg.endsWith('"')) || (arg.startsWith('\'') && arg.endsWith('\''))) {
       return arg.substring(1, arg.length - 1)
@@ -64,3 +79,7 @@ function parse (argvInput, config = {}) {
 module.exports = {
   parse
 }
+
+/**
+ * @typedef {ReturnType<typeof parse>} ArgvParsed
+ */
