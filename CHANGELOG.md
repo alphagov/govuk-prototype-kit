@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2404: Fix issues creating prototypes when using npm v10.4.0 or newer by removing dependency on zlib](https://github.com/alphagov/govuk-prototype-kit/pull/2404)
+
 ## 13.16.1
 
 ### Fixes
