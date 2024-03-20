@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2404: Remove old zlib in favour of built in](https://github.com/alphagov/govuk-prototype-kit/pull/2404)
+
 ## 13.16.1
 
 ### Fixes
