@@ -9,6 +9,7 @@
 ### Fixes
 
 - [#2437: Fix version logic for showing whether a plugin has updates](https://github.com/alphagov/govuk-prototype-kit/pull/2437)
+- [#2413: Update dependencies to resolve npm audit warnings](https://github.com/alphagov/govuk-prototype-kit/pull/2413)
 
 ## 13.16.2
 
