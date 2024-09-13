@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2413: Update dependencies to resolve npm audit warnings](https://github.com/alphagov/govuk-prototype-kit/pull/2413)
+
 ## 13.16.2
 
 ### Fixes
