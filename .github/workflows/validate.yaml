@@ -20,4 +20,6 @@ jobs:
           cache: 'npm'
           node-version-file: '.nvmrc'
 
-      - run: npx govuk-prototype-kit@snapshot validate-plugin
+      - run: npm ci
+
+      - run: npx . validate-plugin
