@@ -25,18 +25,18 @@ jobs:
       CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.2.2
       with:
         fetch-depth: 0
 
     - name: Use Node v${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4.4.0
       with:
         cache: 'npm'
         node-version: ${{ matrix.node-version }}
 
     - name: Cache Cypress binary
-      uses: actions/cache@v3
+      uses: actions/cache@v4.2.3
       with:
         path: ~/.cache/Cypress
         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
@@ -51,7 +51,7 @@ jobs:
         CYPRESS_RETRIES: 3
 
     - if: ${{ failure() }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.2
       with:
         name: cypress-screenshots-${{ matrix.type }}-${{ runner.os }}-${{ matrix.node-version }}
         path: cypress/screenshots/
