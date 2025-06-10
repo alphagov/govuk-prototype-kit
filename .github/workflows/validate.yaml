@@ -15,4 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.2
 
+      - uses: actions/setup-node@v4.4.0
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+
       - run: npx govuk-prototype-kit@snapshot validate-plugin
