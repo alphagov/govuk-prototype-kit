@@ -181,7 +181,7 @@ function failAction (action) {
       .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing ...`)
   }
 
-  cy.get(panelProcessingQuery, { timeout: 40000 })
+  cy.get(panelProcessingQuery)
     .should('not.be.visible')
   cy.get(panelCompleteQuery)
     .should('not.be.visible')

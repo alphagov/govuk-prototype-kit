@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.2.2
 
-      - run: npx govuk-prototype-kit@snapshot validate-plugin
+      - uses: actions/setup-node@v4.4.0
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+
+      - run: npm ci
+
+      - run: npx . validate-plugin
