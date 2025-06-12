@@ -81,6 +81,7 @@
     "portscanner": "^2.2.0",
     "require-dir": "^1.2.0",
     "sass": "^1.71.1",
+    "semver": "^7.7.2",
     "sync-request": "^6.1.0",
     "tar-stream": "^3.1.7",
     "universal-analytics": "^0.5.3",
