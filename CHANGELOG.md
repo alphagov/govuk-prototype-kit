@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2437: Fix version logic for showing whether a plugin has updates](https://github.com/alphagov/govuk-prototype-kit/pull/2437)
+
 ## 13.16.2
 
 ### Fixes
