@@ -5,6 +5,7 @@
       "@govuk-prototype-kit/common-templates",
       "@govuk-prototype-kit/step-by-step",
       "@govuk-prototype-kit/task-list",
+      "home-office-kit",
       "hmrc-frontend",
       "jquery",
       "notifications-node-client"
