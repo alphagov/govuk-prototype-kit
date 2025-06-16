@@ -1,3 +1,5 @@
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
 {% set assetPath = '/manage-prototype/dependencies/govuk-frontend' + govukFrontendInternal.assetPath -%}
 {% if not 'assets/rebrand' in assetPath %}
   {% set assetPath = assetPath + '/rebrand' %}
@@ -24,29 +26,13 @@
   {% block pageScripts %}{% endblock %}
 {% endblock %}
 
-{% block beforeContent %}
-  {% if links | length %}
-    <nav id="govuk-prototype-kit-manage-prototype-navigation" class="govuk-prototype-kit-manage-prototype-navigation js-govuk-prototype-kit-manage-prototype-navigation govuk-clearfix" role="navigation"
-        aria-labelledby="govuk-prototype-kit-manage-prototype-navigation-heading">
-      <h2 class="govuk-visually-hidden" id="govuk-prototype-kit-manage-prototype-navigation-heading">Menu</h2>
-      <ul class="govuk-prototype-kit-manage-prototype-navigation__list govuk-prototype-kit-manage-prototype-width-container">
-
-        
-        {% for link in links %}
-
-          <li class="govuk-prototype-kit-manage-prototype-navigation__list-item {{ "govuk-prototype-kit-manage-prototype-navigation__list-item--current" if link.text === currentSection }}">
-            <a
-              class="govuk-link govuk-link--no-visited-state govuk-link--no-underline govuk-prototype-kit-manage-prototype-navigation__link js-govuk-prototype-kit-manage-prototype-navigation__link"
-              href="{{ link.url }}">
-              {{ link.text }}
-            </a>
-          </li>
-          
-        {% endfor %}
-        
-      </ul>
-    </nav>
-  {% endif %}
-  
+{% block header %}
   {{ super() }}
+  {%- if links | length %}
+    {{ govukServiceNavigation({
+      serviceName: 'Manage your prototype',
+      serviceUrl: '/manage-prototype',
+      navigation: links
+    }) }}
+  {% endif -%}
 {% endblock %}

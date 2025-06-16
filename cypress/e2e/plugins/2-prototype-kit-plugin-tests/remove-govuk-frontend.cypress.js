@@ -31,7 +31,7 @@ describe('Manage prototype pages without govuk-frontend', () => {
     provePluginUninstalled(plugin)
 
     cy.task('log', 'Test home page')
-    cy.get('a').contains('Home').click()
+    cy.get('a').contains('Manage your prototype').click()
     cy.get('h1').contains('Manage your prototype')
 
     cy.task('log', 'Test templates page')
