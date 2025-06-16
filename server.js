@@ -169,7 +169,7 @@ app.get('/docs/tutorials-and-examples', (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-  const starterHomepageCode = await fsp.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.njk'), 'utf8')
+  const starterHomepageCode = await fsp.readFile(path.join(packageDir, 'prototype-starter', 'app', 'views', 'index.html'), 'utf8')
   res.render('views/backup-homepage', {
     starterHomepageCode
   })
