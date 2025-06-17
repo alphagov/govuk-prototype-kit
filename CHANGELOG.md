@@ -8,10 +8,12 @@
 
 ### Fixes
 
+- [#2408: Fix kit version update link](https://github.com/alphagov/govuk-prototype-kit/pull/2408)
 - [#2420: Fixing the default homepage](https://github.com/alphagov/govuk-prototype-kit/pull/2420)
 - [#2425: Fix open redirect vuln in login page](https://github.com/alphagov/govuk-prototype-kit/pull/2425)
 - [#2437: Fix version logic for showing whether a plugin has updates](https://github.com/alphagov/govuk-prototype-kit/pull/2437)
 - [#2413: Update dependencies to resolve npm audit warnings](https://github.com/alphagov/govuk-prototype-kit/pull/2413)
+
 
 ## 13.16.2
 
