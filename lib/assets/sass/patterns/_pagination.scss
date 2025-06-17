@@ -33,7 +33,7 @@
 
   &:hover,
   &:active {
-    background-color: govuk-colour("light-grey", $legacy: "grey-4");
+    background-color: govuk-colour("light-grey");
 
     // Add govuk-link hover decoration to title if no label present
     .app-pagination__link-text--decorated {
@@ -80,7 +80,7 @@
   margin-bottom: 1px;
   height: .482em;
   width: .63em;
-  fill: govuk-colour("dark-grey", $legacy: "grey-1");
+  fill: govuk-colour("dark-grey");
 }
 
 .app-pagination__link-label {
