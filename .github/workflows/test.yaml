@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false  # continue other tests if one test in matrix fails
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [16.x, 18.x, 20.x, 22.x]
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     name: Test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
