@@ -22,6 +22,7 @@
     "known-plugins.json",
     "index.js",
     "listen-on-port.js",
+    "npm-shrinkwrap.json",
     "server.js",
     "start.js"
   ],
