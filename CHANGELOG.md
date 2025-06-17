@@ -5,6 +5,7 @@
 ### New features
 
 - [#2434: Apply brand updates manage prototype pages](https://github.com/alphagov/govuk-prototype-kit/pull/2434)
+- [#2443: Add support for Node 22](https://github.com/alphagov/govuk-prototype-kit/pull/2443)
 
 ### Fixes
 
