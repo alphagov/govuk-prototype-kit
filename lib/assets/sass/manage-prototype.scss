@@ -31,10 +31,12 @@ $govuk-new-typography-scale: true;
 }
 
 .govuk-prototype-kit-manage-prototype-task-list__items {
-  @include govuk-font($size: 19);
-  @include govuk-responsive-margin(9, "bottom");
   list-style: none;
   padding-left: 0;
+
+  @include govuk-font($size: 19);
+  @include govuk-responsive-margin(9, "bottom");
+
   @include govuk-media-query($from: tablet) {
     padding-left: govuk-spacing(6);
   }

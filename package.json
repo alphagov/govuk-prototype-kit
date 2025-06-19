@@ -22,6 +22,7 @@
     "known-plugins.json",
     "index.js",
     "listen-on-port.js",
+    "npm-shrinkwrap.json",
     "server.js",
     "start.js"
   ],
@@ -80,7 +81,7 @@
     "nunjucks": "^3.2.4",
     "portscanner": "^2.2.0",
     "require-dir": "^1.2.0",
-    "sass": "^1.71.1",
+    "sass": "^1.89.2",
     "semver": "^7.7.2",
     "sync-request": "^6.1.0",
     "tar-stream": "^3.1.7",
