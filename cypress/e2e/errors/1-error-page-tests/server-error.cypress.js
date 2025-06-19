@@ -71,4 +71,33 @@ describe('Server Error Test', () => {
     // Page should recover with no error
     cy.get('.govuk-heading-l').contains(homePageName)
   })
+
+  it('shows an error if session-data-defaults.js is malformed', () => {
+    const brokenSessionDataDefaultsFixture = path.join(Cypress.config('fixturesFolder'), 'broken-session-data-defaults.js')
+    const appSessionDataDefaultsPath = path.join('app', 'data', 'session-data-defaults.js')
+    const appSessionDataDefaults = path.join(Cypress.env('projectFolder'), appSessionDataDefaultsPath)
+
+    waitForApplication()
+
+    // Page has no error
+    cy.get('.govuk-heading-l').contains(homePageName)
+
+    // Break session-data-defaults.js
+    cy.task('copyFile', { source: brokenSessionDataDefaultsFixture, target: appSessionDataDefaults })
+
+    cy.wait(2000)
+
+    // Page now shows an error
+    cy.get('.govuk-heading-l').contains(errorPageName)
+    cy.get('.govuk-body .govuk-link').contains(contactSupportText)
+    cy.get('#govuk-prototype-kit-error-line').contains('broken')
+
+    // Restore session-data-defaults.js from prototype starter
+    cy.task('copyFromStarterFiles', { filename: appSessionDataDefaultsPath })
+
+    waitForApplication()
+
+    // Page should recover with no error
+    cy.get('.govuk-heading-l').contains(homePageName)
+  })
 })

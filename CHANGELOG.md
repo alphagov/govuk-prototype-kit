@@ -16,7 +16,7 @@
 - [#2437: Fix version logic for showing whether a plugin has updates](https://github.com/alphagov/govuk-prototype-kit/pull/2437)
 - [#2442: Avoid warnings in the console when Sass files get compiled](https://github.com/alphagov/govuk-prototype-kit/pull/2442)
 - [#2413: Update dependencies to resolve npm audit warnings](https://github.com/alphagov/govuk-prototype-kit/pull/2413)
-
+- [#2417: Causing an error when session-data-defaults is malformed](https://github.com/alphagov/govuk-prototype-kit/pull/2417)
 
 ## 13.16.2
 

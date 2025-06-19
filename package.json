@@ -108,7 +108,8 @@
   "standard": {
     "ignore": [
       "__tests__/fixtures/",
-      "prototype-starter/"
+      "prototype-starter/",
+      "cypress/fixtures/broken-session-data-defaults.js"
     ],
     "plugins": [
       "cypress",
