@@ -189,6 +189,8 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
 
   await exec(`gh release create "v${newVersion}" --notes-file "${prBodyFile}" --target "main"  --title "v${newVersion}" --latest`, { allowStderr: true })
 
+  await exec('git checkout main && git fetch && git reset --hard origin/main', { allowStderr: true })
+
   let loggedInAsCorrectNpmUser = false
   const correctNpmUser = 'govuk-prototype-kit'
 
