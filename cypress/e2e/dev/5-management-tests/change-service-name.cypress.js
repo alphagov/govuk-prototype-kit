@@ -10,7 +10,7 @@ const appConfig = path.join(Cypress.env('projectFolder'), appConfigPath)
 const originalText = 'Service name goes here'
 const newText = 'Cypress test'
 
-const serverNameQuery = 'a.govuk-header__link.govuk-header__service-name, a.govuk-header__link--service-name'
+const serviceNameQuery = '.govuk-service-navigation__service-name'
 
 const managePagePath = '/manage-prototype'
 
@@ -28,7 +28,7 @@ describe('change service name', () => {
 
     cy.task('log', 'Visit the manage prototype page')
 
-    cy.get(serverNameQuery).contains(originalText)
+    cy.get(serviceNameQuery).contains(originalText)
     cy.get('.govuk-prototype-kit-manage-prototype-task-list__item')
       .contains(appConfigPath)
       .get('.govuk-prototype-kit-manage-prototype-task-list__tag').contains('To do')
@@ -37,7 +37,7 @@ describe('change service name', () => {
 
     waitForApplication(managePagePath)
 
-    cy.get(serverNameQuery).contains(newText)
+    cy.get(serviceNameQuery).contains(newText)
     cy.get('.govuk-prototype-kit-manage-prototype-task-list__item')
       .contains(appConfigPath)
       .get('.govuk-prototype-kit-manage-prototype-task-list__tag').contains('Done')
