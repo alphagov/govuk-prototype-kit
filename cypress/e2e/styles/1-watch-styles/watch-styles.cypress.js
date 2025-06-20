@@ -14,21 +14,21 @@ const cypressTestStylePattern = path.join(appStylesFolder, 'patterns', `_${cypre
 const publicStylesheet = 'public/stylesheets/application.css'
 
 const RED = 'rgb(255, 0, 0)'
-const BLACK = 'rgb(11, 12, 12)'
+const BLUE = 'rgb(29, 112, 184)'
 
 describe('watch sass files', () => {
   describe(`sass file ${cypressTestStylePattern} should be created and included within the ${appStylesheet} and accessible from the browser as /${publicStylesheet}`, () => {
     const cssStatement = `
-    .govuk-header { background: red; }
+      .govuk-template--rebranded .govuk-header { background: red; }
     `
 
     afterEach(restoreStarterFiles)
 
-    it('The colour of the header should be changed to red then back to black', () => {
+    it('The colour of the header should be changed to red then back to blue', () => {
       waitForApplication()
 
-      cy.task('log', 'The colour of the header should be black')
-      cy.get('.govuk-header').should('have.css', 'background-color', BLACK)
+      cy.task('log', 'The colour of the header should be blue')
+      cy.get('.govuk-header').should('have.css', 'background-color', BLUE)
 
       cy.task('log', `Create ${cypressTestStylePattern}`)
       cy.task('createFile', {

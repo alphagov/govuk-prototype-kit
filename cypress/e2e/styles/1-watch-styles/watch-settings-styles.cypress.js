@@ -21,28 +21,28 @@ describe('watching settings.scss', () => {
   it('Successfully reload settings changes', () => {
     waitForApplication()
 
-    cy.task('log', 'The colour of the header bottom border should be as designed')
-    cy.get('.govuk-header__container').should('not.have.css', 'border-bottom-color', RED)
+    cy.task('log', 'The colour of the header should be as designed')
+    cy.get('.govuk-header').should('not.have.css', 'background-color', RED)
 
     createFile(settingsStyle, { data: settingsContent })
 
     waitForApplication()
 
-    cy.task('log', 'The colour of the header bottom border should be changed to red')
-    cy.get('.govuk-header__container').should('have.css', 'border-bottom-color', RED)
+    cy.task('log', 'The colour of the header should be changed to red')
+    cy.get('.govuk-header').should('have.css', 'background-color', RED)
 
     replaceInFile(settingsStyle, settingsContent, '', changedSettingsContent)
 
     waitForApplication()
 
-    cy.task('log', 'The colour of the header bottom border should be changed to green')
-    cy.get('.govuk-header__container').should('have.css', 'border-bottom-color', GREEN)
+    cy.task('log', 'The colour of the header should be changed to green')
+    cy.get('.govuk-header').should('have.css', 'background-color', GREEN)
 
     deleteFile(settingsStyle)
 
     waitForApplication()
 
-    cy.task('log', 'The colour of the header bottom border should be as designed')
-    cy.get('.govuk-header__container').should('not.have.css', 'border-bottom-color', GREEN)
+    cy.task('log', 'The colour of the header should be as designed')
+    cy.get('.govuk-header').should('not.have.css', 'background-color', GREEN)
   })
 })
