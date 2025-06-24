@@ -26,9 +26,9 @@ const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
 describe('The Prototype Kit', () => {
   beforeAll(async () => {
     await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
-    app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
 
-    jest.spyOn(fse, 'writeFileSync').mockImplementation(() => {})
+    app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
+    jest.spyOn(fse, 'writeFileSync')
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
 
     require('../../lib/build').generateAssetsSync()
