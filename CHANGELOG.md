@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.17.0
+
 ### New features
 
 - [#2434: Apply brand updates manage prototype pages](https://github.com/alphagov/govuk-prototype-kit/pull/2434)
