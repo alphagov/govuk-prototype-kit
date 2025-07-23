@@ -27,11 +27,13 @@
 {% endblock %}
 
 {% block header %}
-  {{ super() }}
+  {{ govukHeader({
+    productName: "Prototype Kit"
+  }) }}
   {%- if links | length %}
     {{ govukServiceNavigation({
-      serviceName: 'Manage your prototype',
-      serviceUrl: '/manage-prototype',
+      serviceName: serviceName,
+      serviceUrl: '/',
       navigation: links
     }) }}
   {% endif -%}
