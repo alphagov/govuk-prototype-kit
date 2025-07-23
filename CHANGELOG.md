@@ -5,6 +5,7 @@
 ### New features
 
 - [#2452: Update manage prototype header](https://github.com/alphagov/govuk-prototype-kit/pull/2452)
+- [#2451: Apply new brand to new prototypes](https://github.com/alphagov/govuk-prototype-kit/pull/2451)
 
 ## 13.17.0
 
