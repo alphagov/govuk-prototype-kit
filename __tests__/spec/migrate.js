@@ -167,12 +167,23 @@ window.GOVUKPrototypeKit.documentReady(function () {
     const layoutFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'layout.html'))
 
     expect(layoutFileContents).toEqual(
-      '{#\n' +
-      'For guidance on how to use layouts see:\n' +
-      'https://prototype-kit.service.gov.uk/docs/how-to-use-layouts\n' +
-      '#}\n' +
-      '\n' +
-      '{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}' + '\n'
+`{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block header %}
+
+    {{ govukHeader() }}
+    {{ govukServiceNavigation({
+        serviceName: serviceName
+    })}}
+
+{% endblock %}
+`
     )
   })
 
