@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.18.0
+
 ### New features
 
 - [#2452: Update manage prototype header](https://github.com/alphagov/govuk-prototype-kit/pull/2452)
