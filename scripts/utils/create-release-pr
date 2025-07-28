@@ -50,7 +50,10 @@ async function exec (command, { allowStderr = false, hideStd = false, allowError
 
 function spawnWithTty (command, args = []) {
   return new Promise((resolve, reject) => {
-    const result = cp.spawn(command, args, { stdio: 'inherit' })
+    const result = cp.spawn(command, args, {
+      cwd: projectDir,
+      stdio: 'inherit'
+    })
     result.on('exit', function (code, signal) {
       if (code === 0) {
         resolve()
