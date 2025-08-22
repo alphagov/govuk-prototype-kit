@@ -74,7 +74,7 @@
     "express-session": "^1.18.0",
     "fs-extra": "^11.2.0",
     "govuk-frontend": "5.11.0",
-    "inquirer": "^8.2.6",
+    "inquirer": "^12.9.3",
     "lodash": "^4.17.21",
     "marked": "^4.3.0",
     "nodemon": "^3.0.3",
