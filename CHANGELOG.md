@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.18.1
+
 ### Fixes
 
 - [#2462: Update from inquirer 8.2.6 to @inquirer/confirm 5.1.15 to address a vulnerability in tmp](https://github.com/alphagov/govuk-prototype-kit/pull/2462)
