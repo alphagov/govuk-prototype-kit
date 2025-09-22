@@ -1,12 +1,12 @@
 {
   "name": "govuk-prototype-kit",
-  "version": "13.18.0",
+  "version": "13.18.1",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "govuk-prototype-kit",
-      "version": "13.18.0",
+      "version": "13.18.1",
       "dependencies": {
         "@inquirer/confirm": "^5.1.15",
         "ansi-colors": "^4.1.3",
