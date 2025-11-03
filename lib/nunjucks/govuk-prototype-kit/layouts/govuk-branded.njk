@@ -1,4 +1,5 @@
 {%- set assetPath = assetPath | default('/plugin-assets/govuk-frontend' + govukFrontend.assetPath) -%}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {% extends "govuk/template.njk" %}
 
@@ -16,9 +17,11 @@
 {% block header %}
   {{ govukHeader({
     homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
     containerClasses: "govuk-width-container"
+  }) }}
+  {{ govukServiceNavigation({
+    serviceName: serviceName,
+    serviceUrl: '/'
   }) }}
 {% endblock %}
 

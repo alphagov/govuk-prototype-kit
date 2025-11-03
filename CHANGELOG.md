@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2466: Use service nav for govuk branded templates](https://github.com/alphagov/govuk-prototype-kit/pull/2466)
+
 ## 13.18.1
 
 ### Fixes
