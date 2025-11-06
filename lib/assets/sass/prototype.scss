@@ -4,9 +4,6 @@
 // Import GOV.UK Frontend and any plugin styles if plugins have been configured
 @import ".tmp/sass/plugins";
 
-// Patterns that support pages built with legacy templates
-@import ".tmp/sass/legacy-patterns";
-
 // SASS for error page
 @import ".tmp/sass/error-page";
 

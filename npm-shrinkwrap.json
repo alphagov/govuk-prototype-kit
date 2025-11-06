@@ -21,7 +21,7 @@
         "express": "^4.18.2",
         "express-session": "^1.18.0",
         "fs-extra": "^11.2.0",
-        "govuk-frontend": "5.11.0",
+        "govuk-frontend": "^6.0.0-beta.0",
         "lodash": "^4.17.21",
         "marked": "^4.3.0",
         "nodemon": "^3.0.3",
@@ -6573,9 +6573,9 @@
       }
     },
     "node_modules/govuk-frontend": {
-      "version": "5.11.0",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-5.11.0.tgz",
-      "integrity": "sha512-RYZDEF1J6nVw5XauQGH+91qplExgHUXfXII7dtIme6I4u3eSvU59yZ0/EFKEwRgTslSqlhJODOnAi5rnQFU5Gw==",
+      "version": "6.0.0-beta.0",
+      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-6.0.0-beta.0.tgz",
+      "integrity": "sha512-6qzf+/2bFMexkB+BJYoRxQD9qb3iCjvrId9FXH2JqUMOzV+8mMv1VWm509+V0CcIS9B1h+Z4S8j4Gx2sdxTgBg==",
       "license": "MIT",
       "engines": {
         "node": ">= 4.2.0"
@@ -17040,9 +17040,9 @@
       "integrity": "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg=="
     },
     "govuk-frontend": {
-      "version": "5.11.0",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-5.11.0.tgz",
-      "integrity": "sha512-RYZDEF1J6nVw5XauQGH+91qplExgHUXfXII7dtIme6I4u3eSvU59yZ0/EFKEwRgTslSqlhJODOnAi5rnQFU5Gw=="
+      "version": "6.0.0-beta.0",
+      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-6.0.0-beta.0.tgz",
+      "integrity": "sha512-6qzf+/2bFMexkB+BJYoRxQD9qb3iCjvrId9FXH2JqUMOzV+8mMv1VWm509+V0CcIS9B1h+Z4S8j4Gx2sdxTgBg=="
     },
     "graceful-fs": {
       "version": "4.2.10",
