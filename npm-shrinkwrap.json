@@ -21,7 +21,7 @@
         "express": "^4.18.2",
         "express-session": "^1.18.0",
         "fs-extra": "^11.2.0",
-        "govuk-frontend": "5.11.0",
+        "govuk-frontend": "github:alphagov/govuk-frontend#4e255359e",
         "lodash": "^4.17.21",
         "marked": "^4.3.0",
         "nodemon": "^3.0.3",
@@ -6573,9 +6573,8 @@
       }
     },
     "node_modules/govuk-frontend": {
-      "version": "5.11.0",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-5.11.0.tgz",
-      "integrity": "sha512-RYZDEF1J6nVw5XauQGH+91qplExgHUXfXII7dtIme6I4u3eSvU59yZ0/EFKEwRgTslSqlhJODOnAi5rnQFU5Gw==",
+      "version": "6.0.0-beta.1-spike-page-template-blocks-3",
+      "resolved": "git+ssh://git@github.com/alphagov/govuk-frontend.git#4e255359edf286e781cb5bdf8fe1255c84230963",
       "license": "MIT",
       "engines": {
         "node": ">= 4.2.0"
@@ -17040,9 +17039,8 @@
       "integrity": "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg=="
     },
     "govuk-frontend": {
-      "version": "5.11.0",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-5.11.0.tgz",
-      "integrity": "sha512-RYZDEF1J6nVw5XauQGH+91qplExgHUXfXII7dtIme6I4u3eSvU59yZ0/EFKEwRgTslSqlhJODOnAi5rnQFU5Gw=="
+      "version": "git+ssh://git@github.com/alphagov/govuk-frontend.git#4e255359edf286e781cb5bdf8fe1255c84230963",
+      "from": "govuk-frontend@github:alphagov/govuk-frontend#4e255359e"
     },
     "graceful-fs": {
       "version": "4.2.10",
