@@ -2,26 +2,6 @@
 
 {% extends "govuk/template.njk" %}
 
-{% block head %}
-  {% block meta %}{% endblock %}
-  {% block stylesheets %}
-    {% include "govuk-prototype-kit/includes/stylesheets.njk" %}
-  {% endblock %}
-{% endblock %}
-
-{% block pageTitle %}
-  {% if pageName %}{{ pageName }} - {% endif %}{{ serviceName }} - GOV.UK
-{% endblock %}
-
-{% block header %}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
-  }) }}
-{% endblock %}
-
 {% if (GOVUKPrototypeKit.isDevelopment) %}
   {% set footerItems = [
     {
@@ -41,13 +21,15 @@
   ] %}
 {% endif %}
 
-{% block footer %}
-  {{ govukFooter({
-    meta: {
-      items: footerItems,
-      visuallyHiddenTitle: "Footer links"
-    }
-  }) }}
+{% block head %}
+  {% block meta %}{% endblock %}
+  {% block stylesheets %}
+    {% include "govuk-prototype-kit/includes/stylesheets.njk" %}
+  {% endblock %}
+{% endblock %}
+
+{% block pageTitle %}
+  {% if pageName %}{{ pageName }} - {% endif %}{{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block bodyEnd %}

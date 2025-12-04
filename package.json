@@ -74,7 +74,7 @@
     "express": "^4.18.2",
     "express-session": "^1.18.0",
     "fs-extra": "^11.2.0",
-    "govuk-frontend": "github:alphagov/govuk-frontend#4e255359e",
+    "govuk-frontend": "github:alphagov/govuk-frontend#07f4a6f9c",
     "lodash": "^4.17.21",
     "marked": "^4.3.0",
     "nodemon": "^3.0.3",

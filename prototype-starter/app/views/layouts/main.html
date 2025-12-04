@@ -7,10 +7,19 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {% block header %}
-
-    {{ govukHeader() }}
+    {{ govukHeader({
+        homepageUrl: "/"
+    })}}
     {{ govukServiceNavigation({
         serviceName: serviceName
     })}}
+{% endblock %}
 
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: footerItems,
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
 {% endblock %}
