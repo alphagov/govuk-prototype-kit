@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Breaking changes
+
+- [#2479: Remove pagination and task list legacy stylesheets](https://github.com/alphagov/govuk-prototype-kit/pull/2479)
+
 ## 13.18.1
 
 ### Fixes
