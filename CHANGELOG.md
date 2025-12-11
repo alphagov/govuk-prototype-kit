@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Breaking
+
+- [#2486: Move header and footer blocks out of govuk-branded into main](https://github.com/alphagov/govuk-prototype-kit/pull/2486)
+
 ## 13.18.1
 
 ### Fixes

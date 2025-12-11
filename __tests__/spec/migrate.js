@@ -177,10 +177,22 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% block header %}
 
-    {{ govukHeader() }}
-    {{ govukServiceNavigation({
-        serviceName: serviceName
-    })}}
+  {{ govukHeader() }}
+  {{ govukServiceNavigation({
+    serviceName: serviceName,
+    serviceUrl: "/"
+  })}}
+
+{% endblock %}
+
+{% block footer %}
+
+  {{ govukFooter({
+    meta: {
+      items: footerItems,
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
 
 {% endblock %}
 `
