@@ -18,11 +18,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4.2.2
-    - name: Use Node v18
+    - name: Use Node v24
       uses: actions/setup-node@v4.4.0
       with:
         cache: 'npm'
-        node-version: '22'
+        node-version: '24'
     - name: Cache Cypress binary
       uses: actions/cache@v4.2.3
       with:

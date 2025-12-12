@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false  # continue other tests if one test in matrix fails
       matrix:
-        node-version: [22.x]
+        node-version: [24.x]
         os: [macos-latest, windows-2022, ubuntu-latest]
         type: [smoke, plugins, styles, dev, prod, errors]
 
