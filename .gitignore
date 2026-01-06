@@ -16,6 +16,7 @@ usage-data-config.json
 /cypress/fixtures/plugins/*/package-lock.json
 /govuk-prototype-kit*.zip
 /govuk-prototype-kit*.tgz
+/govuk-prototype-kit.spdx.json
 tmp/
 
 # General ignores

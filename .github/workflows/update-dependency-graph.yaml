@@ -1,0 +1,47 @@
+# GitHub's dependency graph only provides support for package-lock.json manifest
+# files [1], but we're using npm-shrinkwrap.json.
+#
+# So that we still get the benefit of the dependency graph, for example
+# Dependabot alerts, update the dependency graph by generating a software bill
+# of materials (SBOM) and sending it to the  dependency submission API [2] using
+# the advanced-security/spdx-dependency-submission-action action.
+#
+# The generated SBOM is also uploaded as an artifact for debugging.
+#
+# [1]: https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/dependency-graph-supported-package-ecosystems#supported-package-ecosystems
+# [2]: https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/using-the-dependency-submission-api
+
+name: Update dependency graph
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-dependency-graph:
+
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Node
+        uses: actions/setup-node@v4.4.0
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+
+      - name: Generate SBOM
+        run: npm sbom --sbom-format spdx --package-lock-only > govuk-prototype-kit.spdx.json
+
+      - name: Save artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: govuk-prototype-kit.spdx.json
+
+      - name: Update dependency graph using generated SBOM
+        uses: advanced-security/spdx-dependency-submission-action@v0.1.1
