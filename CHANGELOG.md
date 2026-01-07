@@ -672,7 +672,7 @@ If you're not using Nunjucks macros, remove the `tabindex` attribute from the er
 
 This change was introduced in [pull request #2491: Prevent error summary from being refocused after it has been initially focused on page load](https://github.com/alphagov/govuk-frontend/pull/2491).
 
-If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/contact/).
 
 ## 12.0.0 (Breaking release)
 
@@ -712,7 +712,7 @@ This was added in [#1120: Preserve query string when redirecting POSTs to GETs](
 
 - [#1155: Replace `keypather` package with `lodash.get`](https://github.com/alphagov/govuk-prototype-kit/pull/1155)
 
-If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/get-in-touch/).
+If you need help with the Prototype Kit, [contact the GOV.UK Prototype team](https://design-system.service.gov.uk/contact/).
 
 
 
@@ -755,7 +755,7 @@ We have updated the Notify client library to version 5.1.0. This may break exist
 
 ### Breaking change pull requests
 
-- [Pull request #925: Upgrade Notify client library from 4.7.2 to 5.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/925). This may break existing prototypes which are using the Notify client. If you have any issues, please [contact the GOV.UK Prototype Kit team](https://design-system.service.gov.uk/get-in-touch/).
+- [Pull request #925: Upgrade Notify client library from 4.7.2 to 5.1.0](https://github.com/alphagov/govuk-prototype-kit/pull/925). This may break existing prototypes which are using the Notify client. If you have any issues, please [contact the GOV.UK Prototype Kit team](https://design-system.service.gov.uk/contact/).
 - [Pull request #1127: Update to Node 16 and drop support for Node 10](https://github.com/alphagov/govuk-prototype-kit/pull/1127)
 
 ### Fixes
@@ -1017,7 +1017,7 @@ You must follow our [guidance on updating your version of the Prototype Kit](htt
 
 If you need help updating or installing the Prototype Kit, you can:
 
-- [contact the GOV.UK Design System team](https://design-system.service.gov.uk/get-in-touch/)
+- [contact the GOV.UK Design System team](https://design-system.service.gov.uk/contact/)
 - talk to a developer on your team
 
 ### Breaking changes
