@@ -16,6 +16,14 @@ const testDir = path.join(mkdtempSync(), 'build')
 
 process.env.KIT_PROJECT_DIR = testDir
 
+// Use `doMock` so the mock is not hoisted
+// and `virtual` as the file does not exist
+jest.doMock(
+  path.join(testDir, 'package.json'),
+  () => ({}),
+  { virtual: true }
+)
+
 const { packageDir, projectDir } = require('../../lib/utils/paths')
 const { generateAssetsSync } = require('../../lib/build')
 
@@ -73,7 +81,10 @@ describe('the build pipeline', () => {
         quietDeps: true,
         loadPaths: [projectDir],
         sourceMap: true,
-        style: 'expanded'
+        style: 'expanded',
+        functions: expect.objectContaining({
+          'plugin-version-satisfies($plugin-name, $semver-range)': expect.any(Function)
+        })
       }
       expect(sass.compile).toHaveBeenCalledWith(
         expect.stringContaining(path.join(packageDir, 'lib', 'assets', 'sass', 'prototype.scss')),
