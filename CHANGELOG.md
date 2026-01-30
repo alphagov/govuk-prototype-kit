@@ -2,10 +2,6 @@
 
 ## Unreleased
 
-### Fixes
-
-- [#2485: Replace `$govuk-template-background-colour` with direct definition](https://github.com/alphagov/govuk-prototype-kit/pull/2485)
-
 ## 13.18.1
 
 ### Fixes
