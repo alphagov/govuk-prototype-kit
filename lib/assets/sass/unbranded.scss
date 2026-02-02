@@ -6,7 +6,13 @@
 // Override the default GOV.UK Frontend font stack
 $govuk-font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
 
-// Override the template background colour, which is normally grey to blend with the GOV.UK footer.
-$govuk-template-background-colour: #ffffff;
+@if plugin-version-satisfies('govuk-frontend', '<6.0.0') {
+    // Override the template background colour, which is normally grey to blend with the GOV.UK footer.
+    $govuk-template-background-colour: #ffffff;
+} @else {
+    $govuk-functional-colours: (
+        template-background: #ffffff
+    );
+}
 
 @import "prototype";
