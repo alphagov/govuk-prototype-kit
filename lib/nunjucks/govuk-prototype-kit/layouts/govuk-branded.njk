@@ -45,13 +45,29 @@
   ] %}
 {% endif %}
 
-{% block footer %}
+{# 
+  Because the macro is used inside `set` rather than a `block`
+  `govukFooter` needs to be explicitely imported
+#}
+{% from 'govuk/components/footer/macro.njk' import govukFooter %}
+{% set govukFooterHtml %}
   {{ govukFooter({
     meta: {
       items: footerItems,
       visuallyHiddenTitle: "Footer links"
     }
   }) }}
+{% endset %}
+
+{# Override only the GOV.UK Footer component for GOV.UK Frontend >=6.0.0 #}
+{% block govukFooter %}{{govukFooterHtml | safe}}{% endblock %}
+
+{% block footer %}
+  {% if pluginVersionSatisfies('govuk-frontend', '<6.0.0') %}
+    {{govukFooterHtml | safe }}
+  {% else %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
 
 {% block bodyEnd %}

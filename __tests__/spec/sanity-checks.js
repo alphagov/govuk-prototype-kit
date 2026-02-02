@@ -27,6 +27,13 @@ describe('The Prototype Kit', () => {
   beforeAll(async () => {
     await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
 
+    const { setPackagesCache } = require('../../lib/plugins/packages')
+    setPackagesCache([{
+      packageName: 'available-installed-plugin',
+      installedVersion: '1.0.0',
+      pluginConfig: {}
+    }])
+
     app = require(path.join(tmpDir, 'node_modules', 'govuk-prototype-kit', 'server.js'))
     jest.spyOn(fse, 'writeFileSync')
     jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
