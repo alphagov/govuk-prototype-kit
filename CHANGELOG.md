@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New features
+
+- [#2500: Add function to check range of plugin versions in Sass and Nunjucks](https://github.com/alphagov/govuk-prototype-kit/pull/2500)
+
 ## 13.18.1
 
 ### Fixes

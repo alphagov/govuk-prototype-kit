@@ -23,6 +23,7 @@ const { govukFrontendPaths } = require('./lib/govukFrontendPaths')
 const utils = require('./lib/utils')
 const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
+const { pluginVersionSatisfies } = require('./lib/plugins/packages.js')
 const routesApi = require('./lib/routes/api.js')
 
 const app = express()
@@ -66,6 +67,9 @@ app.locals.pluginConfig = plugins.getAppConfig({
 app.locals.govukFrontend = govukFrontend
 app.locals.govukFrontendInternal = govukFrontendInternal
 
+// Expose `pluginVersionSatisfies` to Nunjucks
+app.locals.pluginVersionSatisfies = pluginVersionSatisfies
+
 // keep extensionConfig around for backwards compatibility
 // TODO: remove in v14
 app.locals.extensionConfig = app.locals.pluginConfig
@@ -101,10 +105,9 @@ const nunjucksAppEnv = getNunjucksAppEnv(
 
 expressNunjucks(nunjucksAppEnv, app)
 
-// Add Nunjucks filters
+// Add Nunjucks filters and functions
 utils.addNunjucksFilters(nunjucksAppEnv)
 
-// Add Nunjucks functions
 utils.addNunjucksFunctions(nunjucksAppEnv)
 
 // Set views engine
