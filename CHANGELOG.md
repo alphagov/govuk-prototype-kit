@@ -2,14 +2,6 @@
 
 ## Unreleased
 
-### Breaking changes
-
-- [#2479: Remove pagination and task list legacy stylesheets](https://github.com/alphagov/govuk-prototype-kit/pull/2479)
-
-### Fixes
-
-- [#2485: Replace `$govuk-template-background-colour` with direct definition](https://github.com/alphagov/govuk-prototype-kit/pull/2485)
-
 ## 13.18.1
 
 ### Fixes
