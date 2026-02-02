@@ -50,6 +50,7 @@ const govukFrontendInternal = govukFrontendPaths([packageDir, projectDir])
 app.locals.asset_path = '/public/'
 app.locals.useAutoStoreData = config.useAutoStoreData
 app.locals.releaseVersion = 'v' + releaseVersion
+app.locals.useServiceNavigation = config.useServiceNavigation
 app.locals.serviceName = config.serviceName
 app.locals.serviceUrl = '/'
 app.locals.GOVUKPrototypeKit = {

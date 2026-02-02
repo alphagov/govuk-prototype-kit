@@ -17,10 +17,18 @@
   {% if pluginVersionSatisfies('govuk-frontend', '<6.0.0') %}
     {{ govukHeader({
       homepageUrl: "/",
-      serviceName: serviceName,
-      serviceUrl: serviceUrl,
+      serviceName: serviceName if not useServiceNavigation,
+      serviceUrl: serviceUrl if not useServiceNavigation,
       containerClasses: "govuk-width-container"
     }) }}
+    {% if useServiceNavigation %}
+      {{
+        govukServiceNavigation({
+          serviceName: serviceName,
+          serviceUrl: serviceUrl
+        })
+      }}
+    {% endif %}
   {% else %}
     {{ super() }}
   {% endif %}
