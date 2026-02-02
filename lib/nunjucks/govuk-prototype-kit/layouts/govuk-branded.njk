@@ -14,12 +14,16 @@
 {% endblock %}
 
 {% block header %}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: serviceUrl,
-    containerClasses: "govuk-width-container"
-  }) }}
+  {% if pluginVersionSatisfies('govuk-frontend', '<6.0.0') %}
+    {{ govukHeader({
+      homepageUrl: "/",
+      serviceName: serviceName,
+      serviceUrl: serviceUrl,
+      containerClasses: "govuk-width-container"
+    }) }}
+  {% else %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
 
 {% if (GOVUKPrototypeKit.isDevelopment) %}
