@@ -28,7 +28,11 @@
   &:hover,
   &:active,
   &:visited {
-    color: $govuk-link-colour;
+    @if plugin-version-satisfies('govuk-frontend', '<6.0.0') {
+      color: $govuk-link-colour;
+    } @else {
+      color: govuk-functional-colour(link);
+    }
   }
 
   &:hover,
@@ -58,14 +62,22 @@
     }
 
     .app-pagination__link-icon {
-      fill: $govuk-text-colour;
+      @if plugin-version-satisfies('govuk-frontend', '<6.0.0') {
+        fill: $govuk-text-colour;
+      } @else {
+        fill: govuk-functional-colour(text);
+      }
     }
   }
 }
 
 .app-pagination__link-title {
   display: block;
-  border-top: 1px solid $govuk-border-colour;
+  @if plugin-version-satisfies('govuk-frontend', '<6.0.0') {
+    border-top: 1px solid $govuk-border-colour;
+  } @else {
+    border-top: 1px solid govuk-functional-colour(border);
+  }
   padding-top: govuk-spacing(3);
 }
 
