@@ -14,7 +14,9 @@
 {% endblock %}
 
 {% block header %}
-  {% if pluginVersionSatisfies('govuk-frontend', '<6.0.0') %}
+  {% if pluginVersionSatisfies('govuk-frontend', '>=6.0.0') %}
+    {{ super() }}
+  {% else %}
     {{ govukHeader({
       homepageUrl: "/",
       serviceName: serviceName if not useServiceNavigation,
@@ -29,8 +31,6 @@
         })
       }}
     {% endif %}
-  {% else %}
-    {{ super() }}
   {% endif %}
 {% endblock %}
 
@@ -71,10 +71,10 @@
 {% block govukFooter %}{{govukFooterHtml | safe}}{% endblock %}
 
 {% block footer %}
-  {% if pluginVersionSatisfies('govuk-frontend', '<6.0.0') %}
-    {{govukFooterHtml | safe }}
-  {% else %}
+  {% if pluginVersionSatisfies('govuk-frontend', '>=6.0.0') %}
     {{ super() }}
+  {% else %}
+    {{govukFooterHtml | safe }}
   {% endif %}
 {% endblock %}
 

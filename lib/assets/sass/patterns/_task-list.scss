@@ -35,10 +35,10 @@
 }
 
 .app-task-list__item {
-  @if plugin-version-satisfies('govuk-frontend', '<6.0.0') {
-    border-bottom: 1px solid $govuk-border-colour;
-  } @else {
+  @if plugin-version-satisfies('govuk-frontend', '>=6.0.0') {
     border-bottom: 1px solid govuk-functional-colour(border);
+  } @else {
+    border-bottom: 1px solid $govuk-border-colour;
   }
   margin-bottom: 0 !important;
   padding-top: govuk-spacing(2);
@@ -47,10 +47,10 @@
 }
 
 .app-task-list__item:first-child {
-  @if plugin-version-satisfies('govuk-frontend', '<6.0.0') {
-    border-top: 1px solid $govuk-border-colour;
-  } @else {
+  @if plugin-version-satisfies('govuk-frontend', '>=6.0.0') {
     border-top: 1px solid govuk-functional-colour(border);
+  } @else {
+    border-top: 1px solid $govuk-border-colour;
   }
 }
 
