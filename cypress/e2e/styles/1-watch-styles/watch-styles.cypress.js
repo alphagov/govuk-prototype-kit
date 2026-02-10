@@ -19,7 +19,7 @@ const BLUE = 'rgb(29, 112, 184)'
 describe('watch sass files', () => {
   describe(`sass file ${cypressTestStylePattern} should be created and included within the ${appStylesheet} and accessible from the browser as /${publicStylesheet}`, () => {
     const cssStatement = `
-      .govuk-template--rebranded .govuk-header { background: red; }
+      .govuk-header { background: red; }
     `
 
     afterEach(restoreStarterFiles)
