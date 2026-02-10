@@ -36,7 +36,7 @@ const questionTestMarkUp = `
 `
 
 function clearData () {
-  cy.get('footer a[href*="/manage-prototype/clear-data"]').click()
+  cy.get('.govuk-footer a[href*="/manage-prototype/clear-data"]').click()
   cy.get('h1').should('contain.text', 'Clear session data')
   cy.get('button').should('contain.text', 'Clear the data').click()
   cy.get('main h1').should('contain.text', 'Data cleared')
