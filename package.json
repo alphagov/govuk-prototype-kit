@@ -75,7 +75,7 @@
     "express-session": "^1.18.0",
     "fs-extra": "^11.2.0",
     "govuk-frontend": "5.11.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "marked": "^4.3.0",
     "nodemon": "^3.0.3",
     "nunjucks": "^3.2.4",
