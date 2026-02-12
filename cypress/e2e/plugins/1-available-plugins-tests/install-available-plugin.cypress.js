@@ -76,7 +76,9 @@ describe('Management plugins: ', () => {
     })
   })
 
-  it(`Update the ${plugin} plugin`, () => {
+  // Step by step v1 is not compatible with GOV.UK Frontend v6.0.0
+  // which is the version installed in new prototypes by default
+  it.skip(`Update the ${plugin} plugin`, () => {
     log(`Install ${plugin}@${version1} directly`)
     uninstallPlugin(plugin)
 
