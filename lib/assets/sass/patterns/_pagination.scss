@@ -28,12 +28,20 @@
   &:hover,
   &:active,
   &:visited {
-    color: $govuk-link-colour;
+    @if plugin-version-satisfies('govuk-frontend', '>=6.0.0') {
+      color: govuk-functional-colour(link);
+    } @else {
+      color: $govuk-link-colour;
+    }
   }
 
   &:hover,
   &:active {
-    background-color: govuk-colour("light-grey");
+    @if (plugin-version-satisfies("govuk-frontend", ">=6.0.0")) {
+      background-color: govuk-colour("black", $variant: "tint-95");
+    } @else {
+      background-color: govuk-colour("light-grey");
+    }
 
     // Add govuk-link hover decoration to title if no label present
     .app-pagination__link-text--decorated {
@@ -54,14 +62,22 @@
     }
 
     .app-pagination__link-icon {
-      fill: $govuk-text-colour;
+      @if plugin-version-satisfies('govuk-frontend', '>=6.0.0') {
+        fill: govuk-functional-colour(text);
+      } @else {
+        fill: $govuk-text-colour;
+      }
     }
   }
 }
 
 .app-pagination__link-title {
   display: block;
-  border-top: 1px solid $govuk-border-colour;
+  @if plugin-version-satisfies('govuk-frontend', '>=6.0.0') {
+    border-top: 1px solid govuk-functional-colour(border);
+  } @else {
+    border-top: 1px solid $govuk-border-colour;
+  }
   padding-top: govuk-spacing(3);
 }
 
@@ -80,7 +96,11 @@
   margin-bottom: 1px;
   height: .482em;
   width: .63em;
-  fill: govuk-colour("dark-grey");
+  @if plugin-version-satisfies("govuk-frontend", ">=6.0.0") {
+    fill: govuk-colour("black", $variant: "tint-25");
+  } @else {
+    fill: govuk-colour("dark-grey");
+  }
 }
 
 .app-pagination__link-label {

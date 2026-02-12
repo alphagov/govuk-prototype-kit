@@ -2,6 +2,17 @@
 
 {% extends "govuk/template.njk" %}
 
+{# 
+  Import ServiceNavigation for when the Kit runs and GOV.UK Frontend is
+  uninstalled. In that situation, it loads the Page template from GOV.UK
+  Frontend used by the management pages. The version used by the management
+  pages predates when we added the Service Navigation to the page template, so
+  we need to import it explicitly.
+  
+  TODO: Remove once the management pages run GOV.UK Frontend 6.0.0
+#}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
 {% block head %}
   {% block meta %}{% endblock %}
   {% block stylesheets %}
@@ -14,12 +25,24 @@
 {% endblock %}
 
 {% block header %}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
-  }) }}
+  {% if pluginVersionSatisfies('govuk-frontend', '>=6.0.0') %}
+    {{ super() }}
+  {% else %}
+    {{ govukHeader({
+      homepageUrl: "/",
+      serviceName: serviceName if not useServiceNavigation,
+      serviceUrl: serviceUrl if not useServiceNavigation,
+      containerClasses: "govuk-width-container"
+    }) }}
+    {% if useServiceNavigation %}
+      {{
+        govukServiceNavigation({
+          serviceName: serviceName,
+          serviceUrl: serviceUrl
+        })
+      }}
+    {% endif %}
+  {% endif %}
 {% endblock %}
 
 {% if (GOVUKPrototypeKit.isDevelopment) %}
@@ -41,13 +64,29 @@
   ] %}
 {% endif %}
 
-{% block footer %}
+{# 
+  Because the macro is used inside `set` rather than a `block`
+  `govukFooter` needs to be explicitely imported
+#}
+{% from 'govuk/components/footer/macro.njk' import govukFooter %}
+{% set govukFooterHtml %}
   {{ govukFooter({
     meta: {
       items: footerItems,
       visuallyHiddenTitle: "Footer links"
     }
   }) }}
+{% endset %}
+
+{# Override only the GOV.UK Footer component for GOV.UK Frontend >=6.0.0 #}
+{% block govukFooter %}{{govukFooterHtml | safe}}{% endblock %}
+
+{% block footer %}
+  {% if pluginVersionSatisfies('govuk-frontend', '>=6.0.0') %}
+    {{ super() }}
+  {% else %}
+    {{govukFooterHtml | safe }}
+  {% endif %}
 {% endblock %}
 
 {% block bodyEnd %}

@@ -43,6 +43,18 @@ describe('error handling', () => {
   beforeEach(() => {
     jest.resetModules()
 
+    // Because of `jest.resetModules` this need to be required here
+    // rather than at the root. If not, `resetModules` will create
+    // `setPackagesCache` will refer to the first instance of the module
+    // rather than the instance currently used for testing
+    // See: https://jestjs.io/docs/jest-object#jestresetmodules
+    const { setPackagesCache } = require('../../lib/plugins/packages.js')
+    setPackagesCache([{
+      packageName: 'available-installed-plugin',
+      installedVersion: '1.0.0',
+      pluginConfig: {}
+    }])
+
     const pluginsApi = require('../../lib/plugins/plugins')
     const sessionApi = require('../../lib/session')
     const originalGetAppViews = pluginsApi.getAppViews
@@ -82,7 +94,7 @@ describe('error handling', () => {
     expect(response.status).toBe(500)
     expect(getPageTitle(response.text)).toEqual('Error – GOV.UK Prototype Kit – GOV.UK Prototype Kit')
     expect(getH1(response.text)).toEqual('There is an error')
-    expect(getErrorFile(response.text)).toEqual(`${path.join('__tests__', 'spec', 'errors.js')} (line 73)`)
+    expect(getErrorFile(response.text)).toEqual(`${path.join('__tests__', 'spec', 'errors.js')} (line 85)`)
     expect(getErrorMessage(response.text)).toEqual('test error')
 
     app.close()

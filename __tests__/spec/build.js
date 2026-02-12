@@ -26,6 +26,7 @@ jest.doMock(
 
 const { packageDir, projectDir } = require('../../lib/utils/paths')
 const { generateAssetsSync } = require('../../lib/build')
+const { setPackagesCache } = require('../../lib/plugins/packages')
 
 describe('the build pipeline', () => {
   describe('generate assets', () => {
@@ -50,6 +51,12 @@ describe('the build pipeline', () => {
       }))
 
       jest.spyOn(sass, 'compile').mockImplementation((css, options) => ({ css }))
+
+      setPackagesCache([{
+        packageName: 'available-installed-plugin',
+        installedVersion: '1.0.0',
+        pluginConfig: {}
+      }])
 
       generateAssetsSync()
     })

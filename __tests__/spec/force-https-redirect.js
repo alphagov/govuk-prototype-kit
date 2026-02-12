@@ -18,13 +18,31 @@ process.env.KIT_PROJECT_DIR = testDir
 process.env.NODE_ENV = 'production'
 process.env.USE_HTTPS = 'true'
 
-jest.mock('../../lib/plugins/packages.js', () => {
-  return {}
-})
+// Mock the project's package.json, which is accessed
+// by the `packages module`
+// Use `doMock` so the mock is not hoisted
+// and `virtual` as the file does not exist
+jest.doMock(
+  path.join(testDir, 'package.json'),
+  () => ({}),
+  { virtual: true }
+)
 
-const app = require('../../server.js')
+const { setPackagesCache } = require('../../lib/plugins/packages.js')
 
 describe('The Prototype Kit - force HTTPS redirect functionality', () => {
+  let app
+
+  beforeAll(() => {
+    setPackagesCache([{
+      packageName: 'available-installed-plugin',
+      installedVersion: '1.0.0',
+      pluginConfig: {}
+    }])
+
+    app = require('../../server.js')
+  })
+
   beforeEach(() => {
     jest.spyOn(console, 'log').mockImplementation(jest.fn)
   })
