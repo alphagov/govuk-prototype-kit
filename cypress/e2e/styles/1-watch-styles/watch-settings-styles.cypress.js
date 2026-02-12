@@ -12,8 +12,8 @@ const settingsStyle = path.join(appStylesFolder, 'settings.scss')
 const RED = 'rgb(255, 0, 0)'
 const GREEN = 'rgb(0, 255, 0)'
 
-const settingsContent = `$govuk-brand-colour: ${RED}`
-const changedSettingsContent = `$govuk-brand-colour: ${GREEN}`
+const settingsContent = `$govuk-functional-colours: (brand: ${RED});`
+const changedSettingsContent = `$govuk-functional-colours: (brand: ${GREEN});`
 
 describe('watching settings.scss', () => {
   afterEach(restoreStarterFiles)
