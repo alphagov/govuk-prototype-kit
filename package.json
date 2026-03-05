@@ -64,7 +64,7 @@
     "browser-sync": {
       "immutable": "4.3.8"
     },
-    "jest-environment-jsdom": {
+    "http-proxy-agent": {
       "@tootallnate/once": "3.0.1"
     }
   },
