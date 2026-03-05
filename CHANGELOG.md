@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2510: Update ajv and minimatch](https://github.com/alphagov/govuk-prototype-kit/pull/2510)
+
 ## 13.19.0
 
 ### New features
