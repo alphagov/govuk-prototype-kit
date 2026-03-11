@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2516: Update immutable](https://github.com/alphagov/govuk-prototype-kit/pull/2516)
+
 ## 13.19.1
 
 ### Fixes
