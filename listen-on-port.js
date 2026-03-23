@@ -1,16 +1,11 @@
 // npm dependencies
 const { runErrorServer } = require('./lib/errorServer')
-const { waitForPackagesCache } = require('./lib/plugins/packages.js')
 const { verboseLog } = require('./lib/utils/verboseLogger')
 
 const config = require('./lib/config.js').getConfig(null, false)
 
 ;(async () => {
   try {
-    // Wait for the package cache to be built before doing anything
-    // to ensure that `pluginVersionSatisfies` runs against accurate data
-    await waitForPackagesCache()
-
     // local dependencies
     const syncChanges = require('./lib/sync-changes')
     const server = require('./server.js')
