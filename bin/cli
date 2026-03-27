@@ -403,8 +403,6 @@ async function runDev () {
 async function runServe () {
   warnIfNpmStart(argv, process.env)
   process.env.NODE_ENV = process.env.NODE_ENV || 'production'
-  const { waitForPackagesCache } = require('../lib/plugins/packages')
-  await waitForPackagesCache()
   require('../lib/build.js').generateAssetsSync()
   require('../listen-on-port')
 }
