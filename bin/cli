@@ -66,6 +66,7 @@ const progressLogger = function () {
 const npmrc = `
 audit=false
 ignore-scripts=true
+allow-git=none
 `.trimStart()
 
 const gitignore = `
