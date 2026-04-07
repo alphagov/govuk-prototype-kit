@@ -4,23 +4,23 @@
 
 ### New features
 
-When you install plugins via the 'Manage prototype' page or install other dependencies using the `npm` command:
+When you install plugins using the 'Manage prototype' page or install other dependencies using the `npm` command:
 
 - npm scripts will no longer be run for the installed plugins or dependencies
-- you will not be able to install plugins or dependencies using git references if you are using npm v11.10.0 or newer
+- you will not be able to install plugins or dependencies using Git references if you're using npm v11.10.0 or later
 
 This only applies to new prototypes created using `npx govuk-prototype-kit@latest create`.
 
-To protect existing prototypes add the following lines to the `.npmrc` file in your prototype:
+To protect existing prototypes, add the following lines to the `.npmrc` file in your prototype:
 
 ```
 ignore-scripts=true
 allow-git=none
 ```
 
-We've made these changes to help protect prototype kit users against [supply chain attacks](https://ico.org.uk/about-the-ico/research-reports-impact-and-evaluation/research-and-reports/learning-from-the-mistakes-of-others-a-retrospective-review/supply-chain-attacks/), where malicious code is included in a dependency.
+We've made these changes to help protect Prototype Kit users against [supply chain attacks](https://ico.org.uk/about-the-ico/research-reports-impact-and-evaluation/research-and-reports/learning-from-the-mistakes-of-others-a-retrospective-review/supply-chain-attacks/), where malicious code is included in a dependency.
 
-It's still possible for dependencies to execute malicious code. Be careful to only install dependencies from trusted sources.
+It's still possible for dependencies to execute malicious code. Make sure you only install dependencies from trusted sources.
 
 [#2519: Disable npm scripts and installing from git dependencies by default for new prototypes](https://github.com/alphagov/govuk-prototype-kit/pull/2519)
 
