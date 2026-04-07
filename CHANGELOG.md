@@ -27,6 +27,7 @@ It's still possible for dependencies to execute malicious code. Make sure you on
 ### Fixes
 
 - [#2516: Update immutable](https://github.com/alphagov/govuk-prototype-kit/pull/2516)
+- [#2518: Only fetch plugin package info from NPM when needed](https://github.com/alphagov/govuk-prototype-kit/pull/2518) – thanks to @RichardBradley for reporting this issue and contributing a fix
 
 ## 13.19.1
 
