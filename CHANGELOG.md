@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.20.0
+
 ### New features
 
 When you install plugins using the 'Manage prototype' page or install other dependencies using the `npm` command:
