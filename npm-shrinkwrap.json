@@ -33,7 +33,7 @@
         "sync-request": "^6.1.0",
         "tar-stream": "^3.1.7",
         "universal-analytics": "^0.5.3",
-        "uuid": "^9.0.1"
+        "uuid": "^14.0.0"
       },
       "bin": {
         "govuk-prototype-kit": "bin/cli"
@@ -12010,15 +12010,15 @@
       }
     },
     "node_modules/uuid": {
-      "version": "9.0.1",
-      "resolved": "https://registry.npmjs.org/uuid/-/uuid-9.0.1.tgz",
-      "integrity": "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==",
+      "version": "14.0.0",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-14.0.0.tgz",
+      "integrity": "sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==",
       "funding": [
         "https://github.com/sponsors/broofa",
         "https://github.com/sponsors/ctavan"
       ],
       "bin": {
-        "uuid": "dist/bin/uuid"
+        "uuid": "dist-node/bin/uuid"
       }
     },
     "node_modules/v8-to-istanbul": {
@@ -21008,9 +21008,9 @@
       "integrity": "sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM="
     },
     "uuid": {
-      "version": "9.0.1",
-      "resolved": "https://registry.npmjs.org/uuid/-/uuid-9.0.1.tgz",
-      "integrity": "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA=="
+      "version": "14.0.0",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-14.0.0.tgz",
+      "integrity": "sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg=="
     },
     "v8-to-istanbul": {
       "version": "9.1.3",
