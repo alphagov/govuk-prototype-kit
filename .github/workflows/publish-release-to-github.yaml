@@ -1,0 +1,71 @@
+name: 'RELEASE: GitHub release'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-release-to-github:
+    name: Publish release to GitHub
+    runs-on: Ubuntu-22.04
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Setup Node
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set up Git
+        run: |
+          git config user.name '${{ github.actor }}'
+          git config user.email '${{ github.actor }}@users.noreply.github.com'
+      
+      - name: Create GitHub tag
+        id: create-github-tag
+        run: |
+          PACKAGE_VERSION=$(npm run version --silent)
+          TAG="v${PACKAGE_VERSION}"
+
+          if [ $(git tag -l "$TAG") ]; then
+            echo "⚠️ Tag $TAG already exists. Please delete $TAG via the GitHub UI and re-run this workflow"
+            exit 1
+          else
+            echo "🗒 Tagging repo using tag version: $TAG ..."
+            git tag -a $TAG -m "GOV.UK Prototype Kit release $TAG"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} --tags
+            echo "🗒 Tag $TAG created and pushed to remote."
+            echo "GH_TAG=${TAG}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub archive
+        run: git archive -o ./release-${{ steps.create-github-tag.outputs.GH_TAG }}.zip HEAD:dist
+
+      - name: Generate release notes
+        uses: actions/github-script@v8.0.0
+        with:
+          script: |
+            const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/github-actions/changelog-release-helper.mjs')
+
+            await generateReleaseNotes('${{ steps.create-github-tag.outputs.GH_TAG }}')
+
+      - name: Create GitHub release
+        run: |
+          GH_TAG=${{ steps.create-github-tag.outputs.GH_TAG }}
+          RELEASE_NAME="GOV.UK Prototype Kit $GH_TAG"
+          RELEASE_BODY=$(cat release-notes-body)
+
+          if gh release view "$GH_TAG" > /dev/null 2>&1; then
+            echo "⚠️ Release $GH_TAG already exists. Please delete the release and tag via the GitHub UI and re-run this workflow"
+            exit 1
+          else
+            gh release create "$GH_TAG" ./release-"${GH_TAG}".zip --title "${RELEASE_NAME}" --notes "$RELEASE_BODY"
+          fi
