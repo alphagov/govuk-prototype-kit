@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2530: Replace uuid with Node's in-built UUID generator](https://github.com/alphagov/govuk-prototype-kit/pull/2530)
+
 ## 13.20.0
 
 ### New features
