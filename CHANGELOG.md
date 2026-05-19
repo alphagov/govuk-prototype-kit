@@ -5,6 +5,7 @@
 ### Fixes
 
 - [#2530: Replace uuid with Node's in-built UUID generator](https://github.com/alphagov/govuk-prototype-kit/pull/2530)
+- [#2533: Run `npm audit` and update packages](https://github.com/alphagov/govuk-prototype-kit/pull/2533)
 
 ## 13.20.0
 
