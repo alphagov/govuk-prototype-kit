@@ -71,7 +71,7 @@ describe('migrate test prototype', () => {
     ])
 
     expect(scripts).toEqual({
-      dev: 'govuk-prototype-kit dev',
+      dev: 'govuk-prototype-kit dev || npm install && govuk-prototype-kit dev',
       serve: 'govuk-prototype-kit serve',
       start: 'govuk-prototype-kit start'
     })
