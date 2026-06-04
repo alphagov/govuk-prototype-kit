@@ -26,7 +26,7 @@ const { spawn, exec } = require('../lib/exec')
 const { parse } = require('./utils/argv-parser')
 const { prepareMigration, preflightChecks } = require('../migrator')
 const { validatePlugin } = require('../lib/plugins/plugin-validator')
-const { npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
+const { getKitInstallDependency, kitPackageAlias, npmInstall, packageJsonFormat, getPackageVersionFromPackageJson, splitSemverVersion } = require('./utils')
 const { recursiveDirectoryContentsSync } = require('../lib/utils')
 const { appViewsDir } = require('../lib/utils/paths')
 
@@ -169,26 +169,13 @@ function getInstallLocation () {
 }
 
 function getChosenKitDependency () {
-  const defaultValue = 'govuk-prototype-kit'
   const versionRequested = argv.options.version || argv.options.v
-
-  if (!versionRequested) {
-    return defaultValue
-  }
 
   if (versionRequested === 'local' || versionRequested === 'local-symlink') {
     return kitRoot
-  } else if (versionRequested) {
-    if (versionRequested.match(/\d+\.\d+\.\d+/) ||
-      versionRequested.match(/\d+\.\d+\.\d+-alpha\.\d+]/) ||
-      versionRequested.match(/\d+\.\d+\.\d+-beta\.\d+]/)
-    ) {
-      return `${defaultValue}@${versionRequested}`
-    } else {
-      return versionRequested
-    }
   }
-  return defaultValue
+
+  return getKitInstallDependency(kitProjectName, versionRequested)
 }
 
 // do some heuristics to try and catch situations where a user has run
@@ -219,7 +206,7 @@ function getArgumentsToPassThrough () {
 }
 
 async function initialiserRequiresOldInitSyntax () {
-  const version = await getPackageVersionFromPackageJson(path.join(getInstallLocation(), 'node_modules', 'govuk-prototype-kit', 'package.json'))
+  const version = await getPackageVersionFromPackageJson(path.join(getInstallLocation(), 'node_modules', kitPackageAlias, 'package.json'))
 
   const requiresOldInitSyntax = version.major === 13 && version.minor < 2
   return requiresOldInitSyntax
@@ -262,7 +249,7 @@ async function runCreate () {
   await npmInstall(installDirectory, [kitDependency, 'govuk-frontend', '@govuk-prototype-kit/common-templates'])
 
   if ((argv.options.version || argv.options.v) === 'local-symlink') {
-    const dependencyInstallLocation = path.join(installDirectory, 'node_modules', kitProjectName)
+    const dependencyInstallLocation = path.join(installDirectory, 'node_modules', kitPackageAlias)
     await fse.remove(dependencyInstallLocation)
     await fse.ensureSymlink(kitDependency, dependencyInstallLocation)
   }

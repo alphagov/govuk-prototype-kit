@@ -1,5 +1,5 @@
 {
-  "name": "govuk-prototype-kit",
+  "name": "@dwp/govuk-prototype-kit",
   "description": "Rapidly create HTML prototypes of GOV.UK services",
   "version": "13.20.1",
   "engines": {
@@ -22,13 +22,12 @@
     "known-plugins.json",
     "index.js",
     "listen-on-port.js",
-    "npm-shrinkwrap.json",
     "server.js",
     "start.js"
   ],
   "scripts": {
     "clean-publish": "clean-publish --before-script scripts/clean-publish-before-script.sh",
-    "prepublishOnly": "echo '***\nUse `npm run clean-publish` to publish govuk-prototype-kit\n***' && exit 1",
+    "prepublishOnly": "echo '***\nUse `npm run clean-publish` to publish @dwp/govuk-prototype-kit\n***' && exit 1",
     "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm run dev",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
     "start:dev": "node scripts/create-prototype-and-run",

@@ -2,6 +2,7 @@
 
 // local dependencies
 const parser = require('./argv-parser')
+const { getKitInstallDependency } = require('./index')
 
 const addStandardArgs = arr => [
   '/Users/user.name/.nvm/versions/node/node.version/bin/node',
@@ -214,5 +215,29 @@ describe('argv parser', () => {
       },
       paths: ['/tmp/hello-world']
     })
+  })
+})
+
+describe('kit install dependency', () => {
+  it('uses the package name directly when it has not been renamed', () => {
+    expect(getKitInstallDependency('govuk-prototype-kit')).toBe('govuk-prototype-kit')
+  })
+
+  it('installs renamed packages under the govuk-prototype-kit alias', () => {
+    expect(getKitInstallDependency('@dwp/govuk-prototype-kit')).toBe('govuk-prototype-kit@npm:@dwp/govuk-prototype-kit')
+  })
+
+  it('installs renamed semver versions under the govuk-prototype-kit alias', () => {
+    expect(getKitInstallDependency('@dwp/govuk-prototype-kit', '13.20.1')).toBe('govuk-prototype-kit@npm:@dwp/govuk-prototype-kit@13.20.1')
+  })
+
+  it('passes through local installs for development', () => {
+    expect(getKitInstallDependency('@dwp/govuk-prototype-kit', 'local')).toBe('local')
+    expect(getKitInstallDependency('@dwp/govuk-prototype-kit', 'local-symlink')).toBe('local-symlink')
+  })
+
+  it('passes through explicit dependency specs', () => {
+    const dependencySpec = 'git+ssh://git@gitlab.example/dwp/govuk-prototype-kit.git'
+    expect(getKitInstallDependency('@dwp/govuk-prototype-kit', dependencySpec)).toBe(dependencySpec)
   })
 })

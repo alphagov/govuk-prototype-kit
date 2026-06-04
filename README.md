@@ -19,6 +19,27 @@ You must protect user privacy at all times, even when using prototypes. Prototyp
 - [Installation guide for new users (non technical)](https://prototype-kit.service.gov.uk/docs/install/getting-started)
 - [Installation guide for developers (technical)](https://prototype-kit.service.gov.uk/docs/install/getting-started-advanced)
 
+## DWP GitLab package
+
+This fork is packaged as `@dwp/govuk-prototype-kit` so it can be published to the DWP GitLab npm registry without taking the public `govuk-prototype-kit` package name.
+
+The command exposed by the package is still `govuk-prototype-kit`, and newly created prototypes install the DWP package under the npm alias `govuk-prototype-kit`. This keeps existing prototype code such as `require('govuk-prototype-kit')` working.
+
+Configure the registry for your GitLab project before publishing:
+
+```ini
+@dwp:registry=https://gitlab.example.com/api/v4/projects/<project-id>/packages/npm/
+//gitlab.example.com/api/v4/projects/<project-id>/packages/npm/:_authToken=${NPM_TOKEN}
+```
+
+Then publish with:
+
+```sh
+npm run clean-publish
+```
+
+This fork uses `package-lock.json` for local development only. It does not publish `npm-shrinkwrap.json`, so consuming prototypes can update dependencies or use npm `overrides` without being forced onto the package maintainer's exact transitive dependency tree.
+
 ## Node version requirements
 
 We always recommend you use the [current long term support (LTS) version of Node.js](https://github.com/nodejs/release#release-schedule).

@@ -7,11 +7,7 @@ set -euo pipefail
 
 cd "$1"
 
-# clean-publish removes devDependencies from package.json, but we need to
-# run npm install so devDependencies are removed from npm-shrinkwrap.json
-npm install
-
-# Remove `deprecated` lines from npm-shrinkwrap.json so users don't see
-# warnings (but devs still will)
-sed -i.bak '/deprecated/ d' npm-shrinkwrap.json
-rm npm-shrinkwrap.json.bak
+# clean-publish removes devDependencies from package.json before publishing.
+# Do not generate or publish npm-shrinkwrap.json here: this package is intended
+# to let consuming prototypes update or override dependency resolutions.
+rm -f npm-shrinkwrap.json
