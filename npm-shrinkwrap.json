@@ -27,7 +27,6 @@
         "nodemon": "^3.0.3",
         "nunjucks": "^3.2.4",
         "portscanner": "^2.2.0",
-        "require-dir": "^1.2.0",
         "sass": "^1.89.2",
         "semver": "^7.7.2",
         "tar-stream": "^3.1.7",
@@ -9904,14 +9903,6 @@
         "throttleit": "^1.0.0"
       }
     },
-    "node_modules/require-dir": {
-      "version": "1.2.0",
-      "resolved": "https://registry.npmjs.org/require-dir/-/require-dir-1.2.0.tgz",
-      "integrity": "sha512-LY85DTSu+heYgDqq/mK+7zFHWkttVNRXC9NKcKGyuGLdlsfbjEPrIEYdCVrx6hqnJb+xSu3Lzaoo8VnmOhhjNA==",
-      "engines": {
-        "node": "*"
-      }
-    },
     "node_modules/require-directory": {
       "version": "2.1.1",
       "resolved": "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz",
@@ -19268,11 +19259,6 @@
       "requires": {
         "throttleit": "^1.0.0"
       }
-    },
-    "require-dir": {
-      "version": "1.2.0",
-      "resolved": "https://registry.npmjs.org/require-dir/-/require-dir-1.2.0.tgz",
-      "integrity": "sha512-LY85DTSu+heYgDqq/mK+7zFHWkttVNRXC9NKcKGyuGLdlsfbjEPrIEYdCVrx6hqnJb+xSu3Lzaoo8VnmOhhjNA=="
     },
     "require-directory": {
       "version": "2.1.1",

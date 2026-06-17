@@ -80,7 +80,6 @@
     "nodemon": "^3.0.3",
     "nunjucks": "^3.2.4",
     "portscanner": "^2.2.0",
-    "require-dir": "^1.2.0",
     "sass": "^1.89.2",
     "semver": "^7.7.2",
     "tar-stream": "^3.1.7",
