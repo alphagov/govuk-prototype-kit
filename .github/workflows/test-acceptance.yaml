@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false  # continue other tests if one test in matrix fails
       matrix:
-        node-version: [24.x]
+        node-version: [24.15.0] # pinned – see cypress-io/cypress#33891
         os: [macos-latest, windows-2022, ubuntu-latest]
         type: [smoke, plugins, styles, dev, prod, errors]
 
