@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [#2539: Remove dependency on `sync-request`](https://github.com/alphagov/govuk-prototype-kit/pull/2539)
+- [#2540: Remove dependency on `require-dir`](https://github.com/alphagov/govuk-prototype-kit/pull/2540)
 
 ## 13.20.1
 
