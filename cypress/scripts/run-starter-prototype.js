@@ -10,7 +10,7 @@ const defaultKitPath = path.join(os.tmpdir(), 'cypress', 'test-prototype')
 const testDir = path.resolve(process.env.KIT_TEST_DIR || defaultKitPath)
 
 ;(async () => {
-  await mkPrototype(testDir, { overwrite: true, allowTracking: false, npmInstallLinks: true })
+  await mkPrototype(testDir, { overwrite: true, npmInstallLinks: true })
 
   const fooLocation = path.join(__dirname, '..', 'fixtures', 'plugins', 'plugin-foo')
   const barLocation = path.join(__dirname, '..', 'fixtures', 'plugins', 'plugin-bar')

@@ -25,7 +25,7 @@ const createKitTimeout = parseInt(process.env.CREATE_KIT_TIMEOUT || '90000', 10)
  */
 describe('The Prototype Kit', () => {
   beforeAll(async () => {
-    await mkPrototype(tmpDir, { allowTracking: false, overwrite: true })
+    await mkPrototype(tmpDir, { overwrite: true })
 
     const { setPackagesCache } = require('../../lib/plugins/packages')
     setPackagesCache([{
