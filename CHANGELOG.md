@@ -5,6 +5,7 @@
 - [#2539: Remove dependency on `sync-request`](https://github.com/alphagov/govuk-prototype-kit/pull/2539)
 - [#2540: Remove dependency on `require-dir`](https://github.com/alphagov/govuk-prototype-kit/pull/2540)
 - [#2543: Update `qs`, `ws`, `body-parser`, `express`, `engine.io`, `engine.io-client` and `socket.io-adapter`](https://github.com/alphagov/govuk-prototype-kit/pull/2543)
+- [#2545: Remove usage data tracking](https://github.com/alphagov/govuk-prototype-kit/pull/2545)
 
 ## 13.20.1
 
