@@ -22,7 +22,7 @@ console.log(`running prototype using command "${command}"`)
 console.log()
 
 // noinspection JSVoidFunctionReturnValueUsed
-mkPrototype(testDir, { overwrite: true, allowTracking: false })
+mkPrototype(testDir, { overwrite: true })
   .then(() => {
     console.log()
     return exec(command, { cwd: testDir, env: { ...process.env, env: 'test' }, stdio: 'inherit' })

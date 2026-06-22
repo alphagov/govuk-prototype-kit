@@ -77,7 +77,6 @@ node_modules/
 .tmp/
 .env
 migrate.log
-usage-data-config.json
 
 # General ignores
 .DS_Store

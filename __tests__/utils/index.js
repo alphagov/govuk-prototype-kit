@@ -42,9 +42,6 @@ function mkdtempSync () {
  * @param {Object} [options]
  * @param {string} [options.kitPath] - Path to the kit to use when creating prototype, if not provided uses mkReleaseArchive
  * @param {boolean} [options.overwrite] - Allow existing prototype to be overwritten (optional)
- * @param {boolean} [options.allowTracking] - If undefined no usage-data-config.json is created (optional),
- *                                         if true a usage-data-config.json is created allowing tracking,
- *                                         if false a usage-data-config.json is crated disallowing tracking
  * @param {boolean} [options.npmInstallLinks] - Set value for npm config install-links (optional)
  * @param {string} [options.commandLineParameters] - Command line parameters (optional)
  * @returns {Promise<void>}
@@ -52,7 +49,6 @@ function mkdtempSync () {
 async function mkPrototype (prototypePath, {
   kitPath,
   overwrite = false,
-  allowTracking = undefined,
   npmInstallLinks = undefined,
   commandLineParameters = ''
 } = {}) { // TODO: Use kitPath if provided
@@ -84,10 +80,6 @@ async function mkPrototype (prototypePath, {
       `"${process.execPath}" bin/cli create --version local ${commandLineParameters} ${prototypePath}`,
       { cwd: repoDir, env: execEnv, stdio: 'inherit' }
     )
-
-    if (allowTracking !== undefined) {
-      await fse.writeJson(path.join(prototypePath, 'usage-data-config.json'), { collectUsageData: !!allowTracking })
-    }
 
     process.stderr.write(`Kit creation took [${Math.round((Date.now() - startTime) / 100) / 10}] seconds\n`)
   } catch (error) {

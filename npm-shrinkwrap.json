@@ -29,8 +29,7 @@
         "portscanner": "^2.2.0",
         "sass": "^1.89.2",
         "semver": "^7.7.2",
-        "tar-stream": "^3.1.7",
-        "universal-analytics": "^0.5.3"
+        "tar-stream": "^3.1.7"
       },
       "bin": {
         "govuk-prototype-kit": "bin/cli"
@@ -11632,40 +11631,6 @@
       "integrity": "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==",
       "license": "MIT"
     },
-    "node_modules/universal-analytics": {
-      "version": "0.5.3",
-      "resolved": "https://registry.npmjs.org/universal-analytics/-/universal-analytics-0.5.3.tgz",
-      "integrity": "sha512-HXSMyIcf2XTvwZ6ZZQLfxfViRm/yTGoRgDeTbojtq6rezeyKB0sTBcKH2fhddnteAHRcHiKgr/ACpbgjGOC6RQ==",
-      "license": "MIT",
-      "dependencies": {
-        "debug": "^4.3.1",
-        "uuid": "^8.0.0"
-      },
-      "engines": {
-        "node": ">=12.18.2"
-      }
-    },
-    "node_modules/universal-analytics/node_modules/debug": {
-      "version": "4.3.2",
-      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.2.tgz",
-      "integrity": "sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==",
-      "dependencies": {
-        "ms": "2.1.2"
-      },
-      "engines": {
-        "node": ">=6.0"
-      },
-      "peerDependenciesMeta": {
-        "supports-color": {
-          "optional": true
-        }
-      }
-    },
-    "node_modules/universal-analytics/node_modules/ms": {
-      "version": "2.1.2",
-      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
-      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
-    },
     "node_modules/universalify": {
       "version": "0.1.2",
       "resolved": "https://registry.npmjs.org/universalify/-/universalify-0.1.2.tgz",
@@ -11754,6 +11719,7 @@
       "resolved": "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz",
       "integrity": "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==",
       "deprecated": "uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "dev": true,
       "license": "MIT",
       "bin": {
         "uuid": "dist/bin/uuid"
@@ -20417,30 +20383,6 @@
       "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-6.21.0.tgz",
       "integrity": "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ=="
     },
-    "universal-analytics": {
-      "version": "0.5.3",
-      "resolved": "https://registry.npmjs.org/universal-analytics/-/universal-analytics-0.5.3.tgz",
-      "integrity": "sha512-HXSMyIcf2XTvwZ6ZZQLfxfViRm/yTGoRgDeTbojtq6rezeyKB0sTBcKH2fhddnteAHRcHiKgr/ACpbgjGOC6RQ==",
-      "requires": {
-        "debug": "^4.3.1",
-        "uuid": "^8.0.0"
-      },
-      "dependencies": {
-        "debug": {
-          "version": "4.3.2",
-          "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.2.tgz",
-          "integrity": "sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==",
-          "requires": {
-            "ms": "2.1.2"
-          }
-        },
-        "ms": {
-          "version": "2.1.2",
-          "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
-          "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
-        }
-      }
-    },
     "universalify": {
       "version": "0.1.2",
       "resolved": "https://registry.npmjs.org/universalify/-/universalify-0.1.2.tgz",
@@ -20494,7 +20436,8 @@
     "uuid": {
       "version": "8.3.2",
       "resolved": "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz",
-      "integrity": "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="
+      "integrity": "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==",
+      "dev": true
     },
     "v8-to-istanbul": {
       "version": "9.1.3",
