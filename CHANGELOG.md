@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.20.2
+
 ### Fixes
 
 - [#2539: Remove dependency on `sync-request`](https://github.com/alphagov/govuk-prototype-kit/pull/2539)
