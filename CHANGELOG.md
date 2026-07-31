@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#2549: Update `axios`, `body-parser`, `brace-expansion` and `js-yaml`](https://github.com/alphagov/govuk-prototype-kit/pull/2549)
+
 ## 13.20.2
 
 ### Fixes
