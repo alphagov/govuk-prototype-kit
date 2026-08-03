@@ -45,7 +45,6 @@
         "glob": "^10.3.10",
         "jest": "^29.7.0",
         "jest-environment-jsdom": "^29.7.0",
-        "proper-lockfile": "^4.1.2",
         "standard": "^17.1.0",
         "start-server-and-test": "^2.0.3",
         "supertest": "^6.3.4",
@@ -9583,17 +9582,6 @@
         "react-is": "^16.13.1"
       }
     },
-    "node_modules/proper-lockfile": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/proper-lockfile/-/proper-lockfile-4.1.2.tgz",
-      "integrity": "sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==",
-      "dev": true,
-      "dependencies": {
-        "graceful-fs": "^4.2.4",
-        "retry": "^0.12.0",
-        "signal-exit": "^3.0.2"
-      }
-    },
     "node_modules/proxy-addr": {
       "version": "2.0.7",
       "resolved": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.7.tgz",
@@ -9952,15 +9940,6 @@
       },
       "engines": {
         "node": ">=8"
-      }
-    },
-    "node_modules/retry": {
-      "version": "0.12.0",
-      "resolved": "https://registry.npmjs.org/retry/-/retry-0.12.0.tgz",
-      "integrity": "sha512-9LkiTwjUh6rT555DtE9rTX+BKByPfrMzEAtnlEtdEwr3Nkffwiihqe2bWADg+OQRjt9gl6ICdmB/ZFDCGAtSow==",
-      "dev": true,
-      "engines": {
-        "node": ">= 4"
       }
     },
     "node_modules/reusify": {
@@ -18922,17 +18901,6 @@
         "react-is": "^16.13.1"
       }
     },
-    "proper-lockfile": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/proper-lockfile/-/proper-lockfile-4.1.2.tgz",
-      "integrity": "sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==",
-      "dev": true,
-      "requires": {
-        "graceful-fs": "^4.2.4",
-        "retry": "^0.12.0",
-        "signal-exit": "^3.0.2"
-      }
-    },
     "proxy-addr": {
       "version": "2.0.7",
       "resolved": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.7.tgz",
@@ -19179,12 +19147,6 @@
         "onetime": "^5.1.0",
         "signal-exit": "^3.0.2"
       }
-    },
-    "retry": {
-      "version": "0.12.0",
-      "resolved": "https://registry.npmjs.org/retry/-/retry-0.12.0.tgz",
-      "integrity": "sha512-9LkiTwjUh6rT555DtE9rTX+BKByPfrMzEAtnlEtdEwr3Nkffwiihqe2bWADg+OQRjt9gl6ICdmB/ZFDCGAtSow==",
-      "dev": true
     },
     "reusify": {
       "version": "1.0.4",
