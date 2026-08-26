@@ -4,7 +4,6 @@
 const path = require('path')
 
 // npm dependencies
-const del = require('del')
 const fse = require('fs-extra')
 const fs = require('graceful-fs') // fs-extra uses graceful-fs, so we need to mock that instead of fs
 const sass = require('sass')
@@ -64,7 +63,7 @@ describe('the build pipeline', () => {
     afterAll(() => {
       jest.restoreAllMocks()
 
-      del([path.join('app', 'assets', 'test')])
+      fse.removeSync(path.join('app', 'assets', 'test'))
     })
 
     it('makes the plugins sass file', () => {
