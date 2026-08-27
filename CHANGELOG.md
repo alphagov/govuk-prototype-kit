@@ -6,6 +6,7 @@
 
 - [#2563: Bump Immutable to 3.8.4 & 5.1.9](https://github.com/alphagov/govuk-prototype-kit/pull/2563)
 - [#2564: Remove `marked` from dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/2564)
+- [#2564: Remove dependency on `del`](https://github.com/alphagov/govuk-prototype-kit/pull/2570)
 
 ## 13.20.3
 
