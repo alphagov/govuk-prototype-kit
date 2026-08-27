@@ -4,7 +4,6 @@ const path = require('path')
 const url = require('url')
 
 // npm dependencies
-const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 const express = require('express')
@@ -120,8 +119,8 @@ app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
 app.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
 
 // Support for parsing data in POSTs
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
+app.use(express.json())
+app.use(express.urlencoded({
   extended: true
 }))
 
