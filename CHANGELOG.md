@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 13.20.4
+
 ### Fixes
 
 - [#2563: Bump Immutable to 3.8.4 & 5.1.9](https://github.com/alphagov/govuk-prototype-kit/pull/2563)
