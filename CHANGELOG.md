@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+### Breaking changes
+
+#### Update Node.js
+
+You can no longer run the GOV.UK Prototype Kit on versions of Node.js older than version 22. These versions are no longer maintained, which means they no longer get security fixes.
+
+If you currently use an older version of Node.js, you'll need to update it before you update your prototype. We recommend you update to the latest LTS (long term support) version of Node.js.
+
+You can find more information in the [install guide for your operating system](https://prototype-kit.service.gov.uk/docs/install/requirements).
+
+- [#2578: Bump supported Node version](https://github.com/alphagov/govuk-prototype-kit/pull/2578)
+
 ## 13.20.4
 
 ### Fixes
