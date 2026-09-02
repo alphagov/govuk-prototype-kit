@@ -22,10 +22,10 @@
     "known-plugins.json",
     "index.js",
     "listen-on-port.js",
-    "npm-shrinkwrap.json",
     "server.js",
     "start.js"
   ],
+  "bundleDependencies": true,
   "scripts": {
     "clean-publish": "clean-publish --before-script scripts/clean-publish-before-script.sh",
     "prepublishOnly": "echo '***\nUse `npm run clean-publish` to publish govuk-prototype-kit\n***' && exit 1",
