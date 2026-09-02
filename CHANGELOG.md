@@ -22,6 +22,7 @@ You can find more information in the [install guide for your operating system](h
 - [#2564: Remove `marked` from dependencies](https://github.com/alphagov/govuk-prototype-kit/pull/2564)
 - [#2564: Remove dependency on `del`](https://github.com/alphagov/govuk-prototype-kit/pull/2570)
 - [#2574: Use json and urlencoded middlewares from Express](https://github.com/alphagov/govuk-prototype-kit/pull/2574)
+- [#2569: Replace @inquirer/confirm with Node's built in readline](https://github.com/alphagov/govuk-prototype-kit/pull/2569)
 
 ## 13.20.3
 
