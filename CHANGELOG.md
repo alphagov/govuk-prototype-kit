@@ -14,6 +14,14 @@ You can find more information in the [install guide for your operating system](h
 
 - [#2578: Bump supported Node version](https://github.com/alphagov/govuk-prototype-kit/pull/2578)
 
+### New features
+
+#### MOJ Frontend is available as a plugin
+
+You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-frontend) from the 'Manage prototype' pages in your browser, so you can use MOJ Design System components in your prototype.
+
+- [#2478: Add MOJ Frontend to known-plugins.json](https://github.com/alphagov/govuk-prototype-kit/pull/2478)
+
 ## 13.20.4
 
 ### Fixes
