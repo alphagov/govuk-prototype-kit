@@ -212,7 +212,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
   let isPublished = false
 
   while (isPublished === false) {
-    await spawnWithTty('npm', ['run', 'clean-publish'])
+    await spawnWithTty('npm', ['publish'])
       .then(() => {
         isPublished = true
         console.log('')
@@ -224,7 +224,7 @@ const wait = time => new Promise((resolve) => setTimeout(resolve, time))
         console.warn('Something went wrong, trying again.')
         console.warn('If you don\'t want to try again exit this process.  If you want to run the rest of the release manually run:')
         console.warn('')
-        console.warn('git checkout main && git fetch && git reset --hard origin/main && npm run clean-publish')
+        console.warn('git checkout main && git fetch && git reset --hard origin/main && npm publish')
         console.warn('')
       })
   }

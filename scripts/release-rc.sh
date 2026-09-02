@@ -39,6 +39,6 @@ git reset --hard origin/$branch
 npm version $version
 git push -u origin release-$version
 npm login
-npm run clean-publish -- --tag snapshot
+npm publish --tag snapshot
 npm logout
 git checkout $currentBranch > /dev/null
