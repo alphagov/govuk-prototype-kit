@@ -14,6 +14,22 @@ You can find more information in the [install guide for your operating system](h
 
 - [#2578: Bump supported Node version](https://github.com/alphagov/govuk-prototype-kit/pull/2578)
 
+#### Check any pagination or task lists look correct
+
+If your prototype uses pagination or a task list, check that these look correct after updating.
+
+If not, your prototype may be using outdated CSS which has now been removed from the kit. Update your prototype to use the [Pagination](https://design-system.service.gov.uk/components/pagination/) and [Task list](https://design-system.service.gov.uk/components/task-list/) components from the GOV.UK Design System.
+
+- [#2586: Remove legacy pattern stylesheets](https://github.com/alphagov/govuk-prototype-kit/pull/2586)
+
+#### Check any start pages or mainstream guides look correct
+
+If your prototype includes pages that use the 'Start' or 'Mainstream guide' format, check that these look correct after updating.
+
+If not, make sure the 'Common Templates' plugin is installed.
+
+- [#2586: Remove legacy pattern stylesheets](https://github.com/alphagov/govuk-prototype-kit/pull/2586)
+
 ### New features
 
 #### MOJ Frontend is available as a plugin
