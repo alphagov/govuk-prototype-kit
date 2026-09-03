@@ -17,4 +17,4 @@ jobs:
         uses: actions/dependency-review-action@v5
         with:
           vulnerability-check: false
-          allow-licenses: Apache-2.0, BSD-2-Clause, MIT, ISC
+          allow-licenses: Apache-2.0, BSD-2-Clause, BSD-3-Clause, MIT, ISC
