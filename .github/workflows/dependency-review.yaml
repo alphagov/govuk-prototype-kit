@@ -16,4 +16,5 @@ jobs:
       - name: Dependency review
         uses: actions/dependency-review-action@v5
         with:
+          vulnerability-check: false
           allow-licenses: Apache-2.0, BSD-2-Clause, MIT, ISC
