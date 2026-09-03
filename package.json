@@ -22,13 +22,11 @@
     "known-plugins.json",
     "index.js",
     "listen-on-port.js",
-    "npm-shrinkwrap.json",
     "server.js",
     "start.js"
   ],
+  "bundleDependencies": true,
   "scripts": {
-    "clean-publish": "clean-publish --before-script scripts/clean-publish-before-script.sh",
-    "prepublishOnly": "echo '***\nUse `npm run clean-publish` to publish govuk-prototype-kit\n***' && exit 1",
     "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm run dev",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
     "start:dev": "node scripts/create-prototype-and-run",
@@ -82,7 +80,6 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "clean-publish": "^4.2.0",
     "cross-env": "^7.0.3",
     "cypress": "^13.6.5",
     "eslint-plugin-cypress": "^2.15.1",
