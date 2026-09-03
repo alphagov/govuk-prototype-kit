@@ -14,6 +14,14 @@ You can find more information in the [install guide for your operating system](h
 
 - [#2578: Bump supported Node version](https://github.com/alphagov/govuk-prototype-kit/pull/2578)
 
+#### Update Express to version 5
+
+We've updated Express, the web server used by the Prototype Kit, to its version 5.
+
+If your prototype uses [custom routes](https://prototype-kit.service.gov.uk/docs/create-routes), review [Express' migration guide](https://expressjs.com/en/guide/migrating-5/) to verify if your routes custom code needs any change.
+
+- [ #2577: Update Express to version 5](https://github.com/alphagov/govuk-prototype-kit/pull/2577)
+
 ### New features
 
 #### MOJ Frontend is available as a plugin

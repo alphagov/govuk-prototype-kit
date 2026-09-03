@@ -17,7 +17,11 @@ const config = require('./lib/config.js').getConfig(null, false)
     generateAssetsSync()
 
     if (config.isTest) {
-      server.listen()
+      server.listen((listenError) => {
+        if (listenError) {
+          throw listenError
+        }
+      })
     } else {
       if (config.isDevelopment) {
         console.log('You can manage your prototype at:')
@@ -29,9 +33,17 @@ const config = require('./lib/config.js').getConfig(null, false)
       console.log('')
 
       if (config.isProduction || !config.useBrowserSync) {
-        server.listen(port)
+        server.listen(port, (listenError) => {
+          if (listenError) {
+            throw listenError
+          }
+        })
       } else {
-        server.listen(proxyPort, () => {
+        server.listen(proxyPort, (listenError) => {
+          if (listenError) {
+            throw listenError
+          }
+
           syncChanges.sync({
             port,
             proxyPort,
