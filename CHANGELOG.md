@@ -55,6 +55,10 @@ You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-fron
 
 - [#2478: Add MOJ Frontend to known-plugins.json](https://github.com/alphagov/govuk-prototype-kit/pull/2478)
 
+### Dependency updates
+
+- [#2613: Bump sass from 1.89.2 to 1.103.1](https://github.com/alphagov/govuk-prototype-kit/pull/2613)
+
 ## 13.20.4
 
 ### Fixes
