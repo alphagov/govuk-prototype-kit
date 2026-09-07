@@ -57,6 +57,7 @@ You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-fron
 
 ### Dependency updates
 
+- [#2606: Bump nodemon from 3.0.3 to 3.1.14](https://github.com/alphagov/govuk-prototype-kit/pull/2606)
 - [#2613: Bump sass from 1.89.2 to 1.103.1](https://github.com/alphagov/govuk-prototype-kit/pull/2613)
 
 ## 13.20.4
