@@ -45,4 +45,4 @@ jobs:
           path: govuk-prototype-kit.spdx.json
 
       - name: Update dependency graph using generated SBOM
-        uses: advanced-security/spdx-dependency-submission-action@v0.1.1
+        uses: advanced-security/spdx-dependency-submission-action@v0.3.2
