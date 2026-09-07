@@ -80,7 +80,7 @@
     "tar-stream": "^3.1.7"
   },
   "devDependencies": {
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.2.0",
     "clean-publish": "^4.2.0",
     "cross-env": "^7.0.3",
     "cypress": "^13.6.5",
