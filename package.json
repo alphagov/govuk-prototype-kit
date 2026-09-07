@@ -63,7 +63,6 @@
   "dependencies": {
     "browser-sync": "^3.0.2",
     "chokidar": "^3.6.0",
-    "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.3",
     "csrf-csrf": "^2.3.0",
     "express": "^5.2.1",

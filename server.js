@@ -4,7 +4,6 @@ const path = require('path')
 const url = require('url')
 
 // npm dependencies
-const cookieParser = require('cookie-parser')
 const express = require('express')
 const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
@@ -85,7 +84,7 @@ app.locals.extensionConfig = app.locals.pluginConfig
 app.use(sessionUtils.getSessionMiddleware())
 
 // use cookie middleware for reading authentication cookie
-app.use(cookieParser())
+app.use(require('./lib/cookie-parser.js')())
 
 // Authentication middleware must be loaded before other middleware such as
 // static assets to prevent unauthorised access
