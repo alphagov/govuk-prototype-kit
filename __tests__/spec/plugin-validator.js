@@ -3,7 +3,7 @@
 const path = require('path')
 const cliPath = path.join(__dirname, '..', '..', 'bin', 'cli')
 const { exec } = require('child_process')
-const ansiColors = require('ansi-colors')
+const { green, red } = require('../../lib/utils/colors')
 
 function runShellCommand (fixtureDirectoryName) {
   const fixtureProjectDirectory = path.join(__dirname, '..', 'fixtures', 'mockPlugins', fixtureDirectoryName)
@@ -33,7 +33,7 @@ describe('plugin-validator', () => {
 Config file exists, validating contents.
 Validating whether config paths meet criteria.
 
-${ansiColors.green('The plugin config is valid.')}
+${green('The plugin config is valid.')}
 
 `)
   })
@@ -43,15 +43,15 @@ ${ansiColors.green('The plugin config is valid.')}
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-${ansiColors.red('Error: In section sass, the path \'/sass/_step-by-step-navigation.scss\' does not exist')}
-${ansiColors.red('Error: In section sass, the path \'/sass/_step-by-step-navigation-header.scss\' does not exist')}
-${ansiColors.red('Error: In section sass, the path \'/sass/_step-by-step-navigation-related.scss\' does not exist')}
-${ansiColors.red('Error: In section scripts, the path \'javascripts/step-by-step-navigation.js\' does not start with a \'/\'')}
-${ansiColors.red('Error: In section scripts, the path \'javascripts/step-by-step-polyfills.js\' does not start with a \'/\'')}
-${ansiColors.red('Error: In section scripts, the path \'javascripts/modules/foo-module-one.js\' does not start with a \'/\'')}
-${ansiColors.red('Error: In section templates, the path \'/templates/step-by-step-navigation.html\' does not exist')}
-${ansiColors.red('Error: In section templates, the path \'/templates/start-with-step-by-step.html\' does not exist')}
-${ansiColors.red('Error: The nunjucks file \'za-bar.njk\' does not exist')}
+${red('Error: In section sass, the path \'/sass/_step-by-step-navigation.scss\' does not exist')}
+${red('Error: In section sass, the path \'/sass/_step-by-step-navigation-header.scss\' does not exist')}
+${red('Error: In section sass, the path \'/sass/_step-by-step-navigation-related.scss\' does not exist')}
+${red('Error: In section scripts, the path \'javascripts/step-by-step-navigation.js\' does not start with a \'/\'')}
+${red('Error: In section scripts, the path \'javascripts/step-by-step-polyfills.js\' does not start with a \'/\'')}
+${red('Error: In section scripts, the path \'javascripts/modules/foo-module-one.js\' does not start with a \'/\'')}
+${red('Error: In section templates, the path \'/templates/step-by-step-navigation.html\' does not exist')}
+${red('Error: In section templates, the path \'/templates/start-with-step-by-step.html\' does not exist')}
+${red('Error: The nunjucks file \'za-bar.njk\' does not exist')}
 
 `)
   })
@@ -61,7 +61,7 @@ ${ansiColors.red('Error: The nunjucks file \'za-bar.njk\' does not exist')}
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-${ansiColors.red('Error: The following invalid keys exist in your config: scss,unknown-key')}
+${red('Error: The following invalid keys exist in your config: scss,unknown-key')}
 
 `)
   })
@@ -71,7 +71,7 @@ ${ansiColors.red('Error: The following invalid keys exist in your config: scss,u
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-${ansiColors.red('Error: The plugin does not have a govuk-prototype-kit.config.json file, all plugins must have this file to be valid.')}
+${red('Error: The plugin does not have a govuk-prototype-kit.config.json file, all plugins must have this file to be valid.')}
 
 `)
   })
@@ -81,7 +81,7 @@ ${ansiColors.red('Error: The plugin does not have a govuk-prototype-kit.config.j
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-${ansiColors.red('Error: Your govuk-prototype-kit.config.json file is not valid json.')}
+${red('Error: Your govuk-prototype-kit.config.json file is not valid json.')}
 
 `)
   })
@@ -91,7 +91,7 @@ ${ansiColors.red('Error: Your govuk-prototype-kit.config.json file is not valid 
 
     expect(result.exitCode).toEqual(100)
     expect(result.stderr).toEqual(`
-${ansiColors.red('Error: There are no contents in your govuk-prototype.config file!')}
+${red('Error: There are no contents in your govuk-prototype.config file!')}
 
 `)
   })
