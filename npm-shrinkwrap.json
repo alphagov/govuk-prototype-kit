@@ -22,7 +22,7 @@
         "nodemon": "^3.0.3",
         "nunjucks": "^3.2.4",
         "portscanner": "^2.2.0",
-        "sass": "^1.89.2",
+        "sass": "^1.103.1",
         "semver": "^7.7.2",
         "tar-stream": "^3.1.7"
       },
@@ -9983,35 +9983,35 @@
       "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
     },
     "node_modules/sass": {
-      "version": "1.89.2",
-      "resolved": "https://registry.npmjs.org/sass/-/sass-1.89.2.tgz",
-      "integrity": "sha512-xCmtksBKd/jdJ9Bt9p7nPKiuqrlBMBuuGkQlkhZjjQk3Ty48lv93k5Dq6OPkKt4XwxDJ7tvlfrTa1MPA9bf+QA==",
+      "version": "1.103.1",
+      "resolved": "https://registry.npmjs.org/sass/-/sass-1.103.1.tgz",
+      "integrity": "sha512-9icZURbP51S6S0QGoyaeqk9uB06GNWxsFYWfH5RgpFgqK5FA8tJcM3AdVxrZEVJ7dz+L87nG95gBKf4VuaMHGw==",
       "license": "MIT",
       "dependencies": {
-        "chokidar": "^4.0.0",
-        "immutable": "^5.0.2",
+        "chokidar": "^5.0.0",
+        "immutable": "^5.1.5",
         "source-map-js": ">=0.6.2 <2.0.0"
       },
       "bin": {
         "sass": "sass.js"
       },
       "engines": {
-        "node": ">=14.0.0"
+        "node": ">=20.19.0"
       },
       "optionalDependencies": {
         "@parcel/watcher": "^2.4.1"
       }
     },
     "node_modules/sass/node_modules/chokidar": {
-      "version": "4.0.3",
-      "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-4.0.3.tgz",
-      "integrity": "sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==",
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-5.0.0.tgz",
+      "integrity": "sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==",
       "license": "MIT",
       "dependencies": {
-        "readdirp": "^4.0.1"
+        "readdirp": "^5.0.0"
       },
       "engines": {
-        "node": ">= 14.16.0"
+        "node": ">= 20.19.0"
       },
       "funding": {
         "url": "https://paulmillr.com/funding/"
@@ -10024,12 +10024,12 @@
       "license": "MIT"
     },
     "node_modules/sass/node_modules/readdirp": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-4.1.2.tgz",
-      "integrity": "sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==",
+      "version": "5.1.1",
+      "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-5.1.1.tgz",
+      "integrity": "sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA==",
       "license": "MIT",
       "engines": {
-        "node": ">= 14.18.0"
+        "node": ">= 20.19.0"
       },
       "funding": {
         "type": "individual",
@@ -19079,22 +19079,22 @@
       "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
     },
     "sass": {
-      "version": "1.89.2",
-      "resolved": "https://registry.npmjs.org/sass/-/sass-1.89.2.tgz",
-      "integrity": "sha512-xCmtksBKd/jdJ9Bt9p7nPKiuqrlBMBuuGkQlkhZjjQk3Ty48lv93k5Dq6OPkKt4XwxDJ7tvlfrTa1MPA9bf+QA==",
+      "version": "1.103.1",
+      "resolved": "https://registry.npmjs.org/sass/-/sass-1.103.1.tgz",
+      "integrity": "sha512-9icZURbP51S6S0QGoyaeqk9uB06GNWxsFYWfH5RgpFgqK5FA8tJcM3AdVxrZEVJ7dz+L87nG95gBKf4VuaMHGw==",
       "requires": {
         "@parcel/watcher": "^2.4.1",
-        "chokidar": "^4.0.0",
-        "immutable": "^5.0.2",
+        "chokidar": "^5.0.0",
+        "immutable": "^5.1.5",
         "source-map-js": ">=0.6.2 <2.0.0"
       },
       "dependencies": {
         "chokidar": {
-          "version": "4.0.3",
-          "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-4.0.3.tgz",
-          "integrity": "sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==",
+          "version": "5.0.0",
+          "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-5.0.0.tgz",
+          "integrity": "sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==",
           "requires": {
-            "readdirp": "^4.0.1"
+            "readdirp": "^5.0.0"
           }
         },
         "immutable": {
@@ -19103,9 +19103,9 @@
           "integrity": "sha512-m8nVez3rwrgmWxtLMt1ZYXB2Lv7OKYn/disyxAlSDYAlKSlFoPPfIAmAM/M5xqL4m4C/wAPw7S2/CNaUii1Hxg=="
         },
         "readdirp": {
-          "version": "4.1.2",
-          "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-4.1.2.tgz",
-          "integrity": "sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg=="
+          "version": "5.1.1",
+          "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-5.1.1.tgz",
+          "integrity": "sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA=="
         }
       }
     },
