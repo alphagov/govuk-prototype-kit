@@ -5,14 +5,20 @@ const url = require('url')
 
 // npm dependencies
 const cookieParser = require('cookie-parser')
-const dotenv = require('dotenv')
 const express = require('express')
 const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
-// envvars in a `.env` file, run dotenv before other code to make sure those
-// variables are available
-dotenv.config()
+// envvars in a `.env` file, load it before other code to make sure those
+// variables are available. `loadEnvFile` fails if it can't find a .env file
+// so we want to handle that case (since users don't HAVE to have one).
+try {
+  process.loadEnvFile()
+} catch (err) {
+  if (err.code !== 'ENOENT') {
+    throw err
+  }
+}
 
 // Local dependencies
 const { projectDir, packageDir, appViewsDir, finalBackupNunjucksDir } = require('./lib/utils/paths')
