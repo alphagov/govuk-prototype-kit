@@ -1,9 +1,9 @@
 // core dependencies
 const path = require('path')
+const { isDeepStrictEqual } = require('util')
 
 // npm dependencies
 const fse = require('fs-extra')
-const lodash = require('lodash')
 
 // local dependencies
 const { searchAndReplaceFiles } = require('../lib/utils')
@@ -65,7 +65,7 @@ async function migrateConfig (oldConfigPath) {
     const defaultConfig = config.getConfig()
 
     const newConfig = Object.entries(defaultConfig).reduce((config, [prop, value]) => {
-      if (!Object.keys(oldConfig).includes(prop) || lodash.isEqual(oldConfig[prop], value)) {
+      if (!Object.keys(oldConfig).includes(prop) || isDeepStrictEqual(oldConfig[prop], value)) {
         return config
       } else {
         return { ...config, [prop]: oldConfig[prop] }

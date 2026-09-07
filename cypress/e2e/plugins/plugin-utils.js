@@ -1,7 +1,8 @@
 // npm dependencies
-const { capitalize } = require('lodash')
 const { urlencode } = require('nunjucks/src/filters')
 const { waitForApplication } = require('../utils')
+
+const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1)
 
 const manageTemplatesPagePath = '/manage-prototype/templates'
 const managePluginsPagePath = '/manage-prototype/plugins'
