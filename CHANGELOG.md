@@ -22,6 +22,15 @@ If your prototype uses [custom routes](https://prototype-kit.service.gov.uk/docs
 
 - [ #2577: Update Express to version 5](https://github.com/alphagov/govuk-prototype-kit/pull/2577)
 
+#### Check you can still access your .env variables
+
+We now use Node.js's built-in `.env` file support instead of the `dotenv` package to load environment variables from the `.env` file in your prototype.
+
+If your prototype uses a `.env` file, check that you can still access its variables in your
+prototype.
+
+- [#2593: Replace dotenv with Node's built-in .env support](https://github.com/alphagov/govuk-prototype-kit/pull/2593)
+
 ### New features
 
 #### MOJ Frontend is available as a plugin
