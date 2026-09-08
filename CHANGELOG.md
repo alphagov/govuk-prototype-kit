@@ -49,6 +49,14 @@ If not, make sure the 'Common Templates' plugin is installed.
 
 ### New features
 
+#### We've changed how the kit's dependencies are installed
+
+We now use npm's `bundleDependencies` option to avoid unknowningly installing newer versions of the Prototype Kit dependencies when installing your prototype.
+
+This replaces npm's shrinkwrap feature, which was removed in npm 12.
+
+- [#2584: Bundle dependencies instead of shrinkwrapping](https://github.com/alphagov/govuk-prototype-kit/pull/2584)
+
 #### MOJ Frontend is available as a plugin
 
 You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-frontend) from the 'Manage prototype' pages in your browser, so you can use MOJ Design System components in your prototype.
