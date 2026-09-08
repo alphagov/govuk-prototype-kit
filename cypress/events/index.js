@@ -266,8 +266,11 @@ module.exports = function setupNodeEvents (on, config) {
         await waitUntilAppRestarts()
         await sleep(1000)
         log(`Completed ${command}`)
+      } else {
+        // The dependencies did not change, so just wait for the app to
+        // restart after the starter files were copied back
+        await waitUntilAppRestarts()
       }
-      await waitUntilAppRestarts()
       return makeSureCypressCanInterpretTheResult()
     } catch (error) {
       if (remainingRetries > 0) {
