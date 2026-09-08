@@ -58,6 +58,7 @@ You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-fron
 ### Dependency updates
 
 - [#2602: Bump semver from 7.7.2 to 7.8.5](https://github.com/alphagov/govuk-prototype-kit/pull/2602)
+- [#2605: Bump csrf-csrf from 2.3.0 to 4.0.3](https://github.com/alphagov/govuk-prototype-kit/pull/2605)
 - [#2606: Bump nodemon from 3.0.3 to 3.1.14](https://github.com/alphagov/govuk-prototype-kit/pull/2606)
 - [#2613: Bump sass from 1.89.2 to 1.103.1](https://github.com/alphagov/govuk-prototype-kit/pull/2613)
 - [#2614: Bump fs-extra from 11.2.0 to 11.4.0](https://github.com/alphagov/govuk-prototype-kit/pull/2614)
