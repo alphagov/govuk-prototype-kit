@@ -259,7 +259,7 @@ module.exports = function setupNodeEvents (on, config) {
       await fse.copy(backupDir, projectDir)
       if (originalPackageJsonHash !== currentPackageJsonHash) {
         log('Restoring to starter plugins')
-        const command = 'npm prune && npm install'
+        const command = 'npm prune --no-audit --no-fund && npm install --no-audit --no-fund --prefer-offline'
         await exec(command, { cwd: config.env.projectFolder })
         await sleep(1000)
         // To allow for possible SASS recompilation, wait again
