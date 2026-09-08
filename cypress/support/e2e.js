@@ -18,3 +18,10 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+
+// When a test fails do not run any more tests within the the current spec file
+afterEach(function () {
+  if (this.currentTest.state === 'failed') {
+    Cypress.stop()
+  }
+})
