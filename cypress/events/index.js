@@ -261,10 +261,13 @@ module.exports = function setupNodeEvents (on, config) {
         log('Restoring to starter plugins')
         const command = 'npm prune --no-audit --no-fund && npm install --no-audit --no-fund --prefer-offline'
         await exec(command, { cwd: config.env.projectFolder })
-        await sleep(1000)
-        // To allow for possible SASS recompilation, wait again
         await waitUntilAppRestarts()
-        await sleep(1000)
+        // To allow for possible SASS recompilation, wait for the
+        // recompiled stylesheet to be served
+        await waitOn({
+          resources: [`${config.baseUrl}/stylesheets/application.css`],
+          timeout: 20000
+        })
         log(`Completed ${command}`)
       } else {
         // The dependencies did not change, so just wait for the app to
