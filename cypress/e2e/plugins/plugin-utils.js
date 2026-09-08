@@ -137,15 +137,13 @@ function performPluginAction (action, plugin, pluginName) {
 
   const processingText = `${action === 'update' ? 'Updat' : action}ing ...`
 
-  if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
-    cy.get(panelCompleteQuery, { timeout: 20000 })
-      .should('not.be.visible')
-    cy.get(panelErrorQuery)
-      .should('not.be.visible')
-    cy.get(panelProcessingQuery)
-      .should('be.visible')
-      .contains(capitalize(processingText))
-  }
+  cy.get(panelCompleteQuery, { timeout: 20000 })
+    .should('not.be.visible')
+  cy.get(panelErrorQuery)
+    .should('not.be.visible')
+  cy.get(panelProcessingQuery)
+    .should('be.visible')
+    .contains(capitalize(processingText))
 
   cy.task('log', `The ${plugin} plugin is ${action === 'update' ? 'updat' : action}ing`)
 
@@ -171,15 +169,13 @@ function performPluginAction (action, plugin, pluginName) {
 function failAction (action) {
   cy.get('#plugin-action-button').click()
 
-  if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
-    cy.get(panelCompleteQuery, { timeout: 20000 })
-      .should('not.be.visible')
-    cy.get(panelErrorQuery)
-      .should('not.be.visible')
-    cy.get(panelProcessingQuery)
-      .should('be.visible')
-      .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing ...`)
-  }
+  cy.get(panelCompleteQuery, { timeout: 20000 })
+    .should('not.be.visible')
+  cy.get(panelErrorQuery)
+    .should('not.be.visible')
+  cy.get(panelProcessingQuery)
+    .should('be.visible')
+    .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing ...`)
 
   cy.get(panelProcessingQuery)
     .should('not.be.visible')
