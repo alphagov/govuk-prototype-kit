@@ -13,7 +13,7 @@ const {
 
 const plugin = '@govuk-prototype-kit/step-by-step@1'
 
-const projectFolder = Cypress.env('projectFolder')
+const projectFolder = Cypress.expose('projectFolder')
 
 const appViews = path.join(projectFolder, 'app', 'views')
 

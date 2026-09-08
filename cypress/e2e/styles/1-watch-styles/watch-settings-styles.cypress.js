@@ -5,7 +5,7 @@ const path = require('path')
 const { waitForApplication, createFile, deleteFile, replaceInFile, restoreStarterFiles } = require('../../utils')
 
 const appStylesPath = path.join('app', 'assets', 'sass')
-const appStylesFolder = path.join(Cypress.env('projectFolder'), appStylesPath)
+const appStylesFolder = path.join(Cypress.expose('projectFolder'), appStylesPath)
 
 const settingsStyle = path.join(appStylesFolder, 'settings.scss')
 

@@ -3,13 +3,13 @@ const homePath = '/index'
 const passwordPath = '/manage-prototype/password'
 const errorQuery = 'error=wrong-password'
 const returnURLQuery = `returnURL=${encodeURIComponent(homePath)}`
-const additionalPasswords = Cypress.env('additionalPasswords') || []
+const additionalPasswords = Cypress.expose('additionalPasswords') || []
 
 describe('password page', () => {
   after(restoreStarterFiles)
 
   it('valid password', () => {
-    const password = Cypress.env('password')
+    const password = Cypress.expose('password')
     cy.task('waitUntilAppRestarts')
     cy.visit(homePath)
     cy.url().then(passwordUrl => {

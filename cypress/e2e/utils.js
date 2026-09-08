@@ -3,7 +3,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const log = (message) => cy.task('log', message)
 
 const authenticate = () => {
-  const password = Cypress.env('password')
+  const password = Cypress.expose('password')
   if (password) {
     log(`Authenticating with ${password}`)
     cy.get('input#password').type(password)
@@ -44,7 +44,7 @@ const restoreStarterFiles = () => {
 
 function uninstallPlugin (plugin) {
   log(`Uninstalling ${plugin}`)
-  cy.exec(`cd ${Cypress.env('projectFolder')} && npm uninstall ${plugin}`)
+  cy.exec(`cd ${cy.env('projectFolder')} && npm uninstall ${plugin}`)
   cy.task('pluginUninstalled', { plugin, timeout: 15000 })
 }
 
@@ -53,7 +53,7 @@ function installPlugin (plugin, version = '') {
     version = '@' + version
   }
   log(`Installing ${plugin}${version}`)
-  cy.exec(`cd ${Cypress.env('projectFolder')} && npm install ${plugin}${version} --save-exact `)
+  cy.exec(`cd ${cy.env('projectFolder')} && npm install ${plugin}${version} --save-exact `)
   if (plugin.startsWith('file:')) {
     plugin = plugin.substring(plugin.lastIndexOf('/') + 1)
   }

@@ -16,7 +16,7 @@ const {
 } = require('../plugin-utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
+const appViews = path.join(Cypress.expose('projectFolder'), 'app', 'views')
 const plugin = '@govuk-prototype-kit/step-by-step'
 const version1 = '1.0.0'
 const version2 = 'latest'

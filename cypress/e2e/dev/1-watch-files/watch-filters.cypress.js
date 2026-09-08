@@ -1,8 +1,8 @@
 const path = require('path')
 const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
-const appFiltersPath = path.join(Cypress.env('projectFolder'), 'app', 'filters.js')
-const appFiltersViewPath = path.join(Cypress.env('projectFolder'), 'app', 'views', 'filters.html')
+const appFiltersPath = path.join(Cypress.expose('projectFolder'), 'app', 'filters.js')
+const appFiltersViewPath = path.join(Cypress.expose('projectFolder'), 'app', 'views', 'filters.html')
 
 const filtersViewMarkup = `
 {% extends "layouts/main.html" %}

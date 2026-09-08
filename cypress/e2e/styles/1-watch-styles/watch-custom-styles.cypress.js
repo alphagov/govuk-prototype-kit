@@ -7,13 +7,13 @@ const { waitForApplication, restoreStarterFiles } = require('../../utils')
 const customStylesFixture = 'custom-styles'
 const customStylesFixtureName = `${customStylesFixture}.scss`
 const customStylesFixturePath = path.join(Cypress.config('fixturesFolder'), 'sass', customStylesFixtureName)
-const customStylesAppPath = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'sass', customStylesFixtureName)
+const customStylesAppPath = path.join(Cypress.expose('projectFolder'), 'app', 'assets', 'sass', customStylesFixtureName)
 const customStylesPublicPath = 'public/stylesheets/custom-styles.css'
 
 const pageFixture = 'custom-styles'
 const pageFixtureName = `${pageFixture}.html`
 const pageFixturePath = path.join(Cypress.config('fixturesFolder'), 'views', pageFixtureName)
-const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
+const pageAppPath = path.join(Cypress.expose('projectFolder'), 'app', 'views', pageFixtureName)
 
 describe('watch custom sass files', () => {
   describe(`sass file ${customStylesFixtureName} should be created and linked within ${pageFixturePath} and accessible from the browser as /${customStylesPublicPath}`, () => {

@@ -8,7 +8,7 @@ const {
   waitForApplication, restoreStarterFiles
 } = require('../../utils')
 
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
+const appViews = path.join(Cypress.expose('projectFolder'), 'app', 'views')
 const templates = path.join(Cypress.config('fixturesFolder'), 'views')
 
 const questionTemplate = path.join(templates, 'question.html')

@@ -5,7 +5,7 @@ const plugin = '@govuk-prototype-kit/task-list'
 const pluginVersion = '1.1.1'
 const originalText = '"dependencies": {'
 const replacementText = `"dependencies": { "${plugin}": "${pluginVersion}",`
-const pkgJsonFile = path.join(Cypress.env('projectFolder'), 'package.json')
+const pkgJsonFile = path.join(Cypress.expose('projectFolder'), 'package.json')
 
 describe('Allow upgrade in URLs', () => {
   after(restoreStarterFiles)
@@ -15,7 +15,7 @@ describe('Allow upgrade in URLs', () => {
 
     log(`Add an old version of ${plugin} within the package.json`)
     replaceInFile(pkgJsonFile, originalText, '', replacementText)
-    cy.exec(`cd ${Cypress.env('projectFolder')} && npm install`)
+    cy.exec(`cd ${cy.env('projectFolder')} && npm install`)
 
     log('Make sure old upgrade URL still works')
     cy.visit(`/manage-prototype/plugins/upgrade?package=${encodeURIComponent(plugin)}`)

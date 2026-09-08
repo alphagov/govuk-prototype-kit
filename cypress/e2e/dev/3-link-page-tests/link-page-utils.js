@@ -20,7 +20,7 @@ const jugglingBallsComponent = path.join(components, 'juggling-balls-component.h
 const jugglingTrickComponent = path.join(components, 'juggling-trick-component.html')
 const jugglingBallsAnswerComponent = path.join(components, 'juggling-balls-route-component.js')
 
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
+const appViews = path.join(Cypress.expose('projectFolder'), 'app', 'views')
 const startView = path.join(appViews, 'start.html')
 const jugglingBallsView = path.join(appViews, 'juggling-balls.html')
 const jugglingTrickView = path.join(appViews, 'juggling-trick.html')
@@ -29,9 +29,9 @@ const confirmationView = path.join(appViews, 'confirmation.html')
 const ineligibleView = path.join(appViews, 'ineligible.html')
 
 const appRoutesPath = path.join('app', 'routes.js')
-const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
+const appRoutes = path.join(Cypress.expose('projectFolder'), appRoutesPath)
 
-const appDataFile = path.join(Cypress.env('projectFolder'), 'app', 'data', 'session-data-defaults.js')
+const appDataFile = path.join(Cypress.expose('projectFolder'), 'app', 'data', 'session-data-defaults.js')
 
 const jugglingBallsPath = '/juggling-balls'
 const jugglingTrickPath = '/juggling-trick'

@@ -7,8 +7,8 @@ const { waitForApplication, copyFile, restoreStarterFiles } = require('../../uti
 const appViewsPath = path.join('app', 'views')
 const indexViewPath = path.join(appViewsPath, 'index.html')
 
-const indexView = path.join(Cypress.env('projectFolder'), indexViewPath)
-const startView = path.join(Cypress.env('projectFolder'), appViewsPath, 'start.html')
+const indexView = path.join(Cypress.expose('projectFolder'), indexViewPath)
+const startView = path.join(Cypress.expose('projectFolder'), appViewsPath, 'start.html')
 const templateStartView = path.join(Cypress.config('fixturesFolder'), 'views', 'start.html')
 
 const commentText = '{% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}'

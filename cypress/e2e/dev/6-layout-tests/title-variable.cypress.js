@@ -20,7 +20,7 @@ describe('', () => {
     cy.task('log', 'Update index.html using "set pageName" to display customised page title')
 
     cy.task('createFile', {
-      filename: path.join(Cypress.env('projectFolder'), indexFile),
+      filename: path.join(Cypress.expose('projectFolder'), indexFile),
       data: `
     {% extends "layouts/main.html" %}
 
@@ -37,7 +37,7 @@ describe('', () => {
     cy.task('log', 'Update index.html using "block pageTitle" to display overridden page title')
 
     cy.task('createFile', {
-      filename: path.join(Cypress.env('projectFolder'), indexFile),
+      filename: path.join(Cypress.expose('projectFolder'), indexFile),
       data: `
     {% extends "layouts/main.html" %}
 

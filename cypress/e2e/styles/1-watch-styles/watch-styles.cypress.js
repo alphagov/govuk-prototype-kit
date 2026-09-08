@@ -6,8 +6,8 @@ const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appStylesPath = path.join('app', 'assets', 'sass')
 const appStylesheetPath = path.join(appStylesPath, 'application.scss')
-const appStylesFolder = path.join(Cypress.env('projectFolder'), appStylesPath)
-const appStylesheet = path.join(Cypress.env('projectFolder'), appStylesheetPath)
+const appStylesFolder = path.join(Cypress.expose('projectFolder'), appStylesPath)
+const appStylesheet = path.join(Cypress.expose('projectFolder'), appStylesheetPath)
 
 const cypressTestStyles = 'cypress-test'
 const cypressTestStylePattern = path.join(appStylesFolder, 'patterns', `_${cypressTestStyles}.scss`)

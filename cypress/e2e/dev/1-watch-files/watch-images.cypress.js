@@ -6,13 +6,13 @@ const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const imageFile = 'larry-the-cat.jpg'
 const cypressImages = path.join(Cypress.config('fixturesFolder'), 'images')
-const appImages = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'images')
+const appImages = path.join(Cypress.expose('projectFolder'), 'app', 'assets', 'images')
 const publicImages = 'public/images'
 
 const pageFixture = 'larry-the-cat'
 const pageFixtureName = `${pageFixture}.html`
 const pageFixturePath = path.join(Cypress.config('fixturesFolder'), 'views', pageFixtureName)
-const pageAppPath = path.join(Cypress.env('projectFolder'), 'app', 'views', pageFixtureName)
+const pageAppPath = path.join(Cypress.expose('projectFolder'), 'app', 'views', pageFixtureName)
 
 describe('watch image files', () => {
   afterEach(restoreStarterFiles)

@@ -4,7 +4,7 @@ const path = require('path')
 // local dependencies
 const { waitForApplication, installPlugin, createFile, restoreStarterFiles } = require('../../utils')
 
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
+const appViews = path.join(Cypress.expose('projectFolder'), 'app', 'views')
 const pluginBazView = path.join(appViews, 'plugin-baz.html')
 const fixtures = path.join(Cypress.config('fixturesFolder'))
 const pluginLocation = path.join(fixtures, 'plugins', 'plugin-baz')

@@ -20,7 +20,7 @@ const pluginsPage = '/manage-prototype/plugins'
 const dependencyPlugin = 'govuk-frontend'
 const dependencyPluginName = 'GOV.UK Frontend'
 
-const additionalScssPath = path.join(Cypress.env('projectFolder'), 'app', 'assets', 'sass', 'settings.scss')
+const additionalScssPath = path.join(Cypress.expose('projectFolder'), 'app', 'assets', 'sass', 'settings.scss')
 const additionalScssContents = `
 @mixin govuk-text-colour {
   color: black;
