@@ -15,7 +15,15 @@ jobs:
       matrix:
         node-version: [24.15.0] # pinned – see cypress-io/cypress#33891
         os: [macos-latest, windows-2022, ubuntu-latest]
-        type: [smoke, plugins, styles, dev, prod, errors]
+        type:
+        - smoke
+        - plugins-mock
+        - plugins-available
+        - plugins-kit
+        - styles
+        - dev
+        - prod
+        - errors
 
     name: Acceptance ${{ matrix.type }} test kit on Node v${{ matrix.node-version }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
