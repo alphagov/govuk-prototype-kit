@@ -33,7 +33,7 @@ jobs:
       CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v7.0.1
       with:
         fetch-depth: 0
 

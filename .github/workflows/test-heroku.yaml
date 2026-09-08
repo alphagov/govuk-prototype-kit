@@ -17,7 +17,7 @@ jobs:
       CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
 
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v7.0.1
     - name: Use Node v24
       uses: actions/setup-node@v4.4.0
       with:
