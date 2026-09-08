@@ -377,6 +377,10 @@ module.exports = function setupNodeEvents (on, config) {
     log: (message) => {
       log(message)
       return makeSureCypressCanInterpretTheResult()
+    },
+
+    exec: (command) => {
+      return exec(command, { cwd: config.expose.projectFolder })
     }
   })
 

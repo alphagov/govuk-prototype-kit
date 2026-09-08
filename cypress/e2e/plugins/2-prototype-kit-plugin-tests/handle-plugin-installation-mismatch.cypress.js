@@ -28,7 +28,7 @@ describe('Handle a plugin installation mismatch', () => {
     provePluginUninstalled(plugin)
 
     log('Force the plugins to be installed with an npm install')
-    cy.exec(`cd ${cy.env('projectFolder')} && npm install`)
+    cy.task('exec', 'npm install')
 
     log(`Make sure ${plugin} is displayed as installed`)
     waitForApplication()

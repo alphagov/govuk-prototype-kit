@@ -44,7 +44,7 @@ const restoreStarterFiles = () => {
 
 function uninstallPlugin (plugin) {
   log(`Uninstalling ${plugin}`)
-  cy.exec(`cd ${cy.env('projectFolder')} && npm uninstall ${plugin}`)
+  cy.task('exec', `npm uninstall ${plugin}`)
   cy.task('pluginUninstalled', { plugin, timeout: 15000 })
 }
 
@@ -53,7 +53,7 @@ function installPlugin (plugin, version = '') {
     version = '@' + version
   }
   log(`Installing ${plugin}${version}`)
-  cy.exec(`cd ${cy.env('projectFolder')} && npm install ${plugin}${version} --save-exact `)
+  cy.task('exec', `npm install ${plugin}${version} --save-exact`)
   if (plugin.startsWith('file:')) {
     plugin = plugin.substring(plugin.lastIndexOf('/') + 1)
   }

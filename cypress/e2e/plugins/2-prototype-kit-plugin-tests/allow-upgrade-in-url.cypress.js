@@ -15,7 +15,7 @@ describe('Allow upgrade in URLs', () => {
 
     log(`Add an old version of ${plugin} within the package.json`)
     replaceInFile(pkgJsonFile, originalText, '', replacementText)
-    cy.exec(`cd ${cy.env('projectFolder')} && npm install`)
+    cy.task('exec', 'npm install')
 
     log('Make sure old upgrade URL still works')
     cy.visit(`/manage-prototype/plugins/upgrade?package=${encodeURIComponent(plugin)}`)
