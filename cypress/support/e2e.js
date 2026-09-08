@@ -22,6 +22,14 @@ require('./commands')
 // When a test fails do not run any more tests within the the current spec file
 afterEach(function () {
   if (this.currentTest.state === 'failed') {
+    console.log("============ STOPPED THE TESTS??? ===============")
+    console.log("============ STOPPED THE TESTS??? ===============")
+    console.log("============ STOPPED THE TESTS??? ===============")
+    console.log("============ STOPPED THE TESTS??? ===============")
+    console.log("============ STOPPED THE TESTS??? ===============")
+    console.log("============ STOPPED THE TESTS??? ===============")
+    console.log("============ STOPPED THE TESTS??? ===============")
+    console.log("============ STOPPED THE TESTS??? ===============")
     Cypress.stop()
   }
 })
