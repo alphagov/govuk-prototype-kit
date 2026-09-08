@@ -35,23 +35,21 @@ function installBaz () {
 }
 
 describe('Install Plugin via CLI Test', async () => {
-  afterEach(restoreStarterFiles)
+  after(restoreStarterFiles)
 
-  it('Loads plugin-baz view correctly', () => {
+  it('Loads plugin-baz view, styles and script correctly', () => {
     installBaz()
+
+    // check the view loads
     cy.get('.plugin-baz')
       .contains('Plugin Baz')
-  })
 
-  it('Loads plugin-baz style correctly', () => {
-    installBaz()
+    // check the styles load
     cy.get('.plugin-baz')
       .should('have.css', 'background-color', MAGENTA)
       .should('have.css', 'border-color', CYAN)
-  })
 
-  it('Loads plugin-baz script correctly', () => {
-    installBaz()
+    // check the script loads
     cy.get('.plugin-baz').click()
     cy.get('.plugin-baz')
       .should('have.css', 'background-color', CYAN)
