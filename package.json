@@ -92,7 +92,7 @@
     "jest": "^30.5.1",
     "jest-environment-jsdom": "^30.5.1",
     "standard": "^17.1.2",
-    "start-server-and-test": "^2.0.3",
+    "start-server-and-test": "^3.0.12",
     "supertest": "^6.3.4",
     "wait-on": "^9.1.0"
   },
