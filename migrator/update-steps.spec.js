@@ -56,7 +56,7 @@ $(document).ready(function () {
 `
       const expectedFileContents = `//
 // For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+// https://prototype-kit.service.gov.uk/adding-css-javascript-and-images/
 //
 
 window.GOVUKPrototypeKit.documentReady(function () {
@@ -105,7 +105,7 @@ $(document).ready(function () {
 
 //
 // For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+// https://prototype-kit.service.gov.uk/adding-css-javascript-and-images/
 //
 
 
@@ -150,7 +150,7 @@ $('hr').on('click', function () {
 
 //
 // For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+// https://prototype-kit.service.gov.uk/adding-css-javascript-and-images/
 //
 
 ${mainFileContents}`
@@ -189,7 +189,7 @@ $(document).ready(function () {
 
       const expectedFileContents = `//
 // For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+// https://prototype-kit.service.gov.uk/adding-css-javascript-and-images/
 //
 
 window.GOVUKPrototypeKit.documentReady(function () {
@@ -239,7 +239,7 @@ $(document).ready(function () {
 
 //
 // For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+// https://prototype-kit.service.gov.uk/adding-css-javascript-and-images/
 //
 
 ${mainFileContents}`
