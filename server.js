@@ -78,7 +78,7 @@ app.locals.govukFrontendInternal = govukFrontendInternal
 app.locals.pluginVersionSatisfies = pluginVersionSatisfies
 
 // keep extensionConfig around for backwards compatibility
-// TODO: remove in v14
+// TODO: remove in a breaking release
 app.locals.extensionConfig = app.locals.pluginConfig
 
 // Support session data storage
