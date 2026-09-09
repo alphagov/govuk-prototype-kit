@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "cheerio": "^1.2.0",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.1.0",
     "cypress": "^16.0.0",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-jest": "^27.9.0",
