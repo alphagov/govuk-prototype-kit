@@ -5,7 +5,7 @@ const path = require('path')
 const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appConfigPath = path.join('app', 'config.json')
-const appConfig = path.join(Cypress.env('projectFolder'), appConfigPath)
+const appConfig = path.join(Cypress.expose('projectFolder'), appConfigPath)
 
 const originalText = 'Service name goes here'
 const newText = 'Cypress test'

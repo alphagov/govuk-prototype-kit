@@ -5,7 +5,7 @@ const path = require('path')
 const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const appJsPath = path.join('app', 'assets', 'javascripts', 'application.js')
-const appJs = path.join(Cypress.env('projectFolder'), appJsPath)
+const appJs = path.join(Cypress.expose('projectFolder'), appJsPath)
 
 const heading = 'Test Heading'
 

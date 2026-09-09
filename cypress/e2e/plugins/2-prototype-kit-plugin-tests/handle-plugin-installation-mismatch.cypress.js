@@ -13,7 +13,7 @@ const plugin = '@govuk-prototype-kit/task-list'
 const pluginVersion = '1.1.1'
 const originalText = '"dependencies": {'
 const replacementText = `"dependencies": { "${plugin}": "${pluginVersion}",`
-const pkgJsonFile = path.join(Cypress.env('projectFolder'), 'package.json')
+const pkgJsonFile = path.join(Cypress.expose('projectFolder'), 'package.json')
 
 describe('Handle a plugin installation mismatch', () => {
   after(restoreStarterFiles)
@@ -28,7 +28,7 @@ describe('Handle a plugin installation mismatch', () => {
     provePluginUninstalled(plugin)
 
     log('Force the plugins to be installed with an npm install')
-    cy.exec(`cd ${Cypress.env('projectFolder')} && npm install`)
+    cy.task('exec', 'npm install')
 
     log(`Make sure ${plugin} is displayed as installed`)
     waitForApplication()

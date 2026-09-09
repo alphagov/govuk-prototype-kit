@@ -39,7 +39,7 @@ describe('view template with default layout', () => {
       comments(doc.head).should('not.contain', backupLayoutComment)
     )
 
-    cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), defaultLayoutFilePath) })
+    cy.task('deleteFile', { filename: path.join(Cypress.expose('projectFolder'), defaultLayoutFilePath) })
 
     waitForApplication(manageTemplatesPagePath)
     cy.visit(manageTemplatesPagePath)

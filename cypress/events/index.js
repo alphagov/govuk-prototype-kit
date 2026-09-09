@@ -60,21 +60,21 @@ module.exports = function setupNodeEvents (on, config) {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  config.env.password = process.env.PASSWORD
-  config.env.additionalPasswords = (process.env.PASSWORD_KEYS || '')
+  config.expose.password = process.env.PASSWORD
+  config.expose.additionalPasswords = (process.env.PASSWORD_KEYS || '')
     .split(',')
     .map(passwordKey => process.env[passwordKey.trim()])
     .filter(password => !!password)
-  config.env.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
-  config.env.tempFolder = path.join(__dirname, '..', 'temp')
+  config.expose.projectFolder = path.resolve(process.env.KIT_TEST_DIR || process.cwd())
+  config.expose.tempFolder = path.join(__dirname, '..', 'temp')
 
-  const packagePath = path.join(config.env.projectFolder, 'package.json')
+  const packagePath = path.join(config.expose.projectFolder, 'package.json')
   const packageContent = fs.readFileSync(packagePath, 'utf8')
   const packageObject = JSON.parse(packageContent)
   const dependencies = packageObject.dependencies || {}
 
   if ('govuk-prototype-kit' in dependencies) {
-    config.env.packageFolder = path.join(config.env.projectFolder, 'node_modules', 'govuk-prototype-kit')
+    config.expose.packageFolder = path.join(config.expose.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
   const waitUntilAppRestarts = (timeout = 20000) => waitOn({
@@ -178,7 +178,7 @@ module.exports = function setupNodeEvents (on, config) {
     })
   }
 
-  const getPathFromProjectRoot = (...all) => path.join(...[config.env.projectFolder].concat(all))
+  const getPathFromProjectRoot = (...all) => path.join(...[config.expose.projectFolder].concat(all))
   const pathToPackageFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'package.json')
 
   const pluginInstalled = async (plugin, version, timeout) => {
@@ -218,8 +218,8 @@ module.exports = function setupNodeEvents (on, config) {
   }
 
   const backupStarterFiles = () => {
-    const projectDir = path.join(config.env.projectFolder)
-    const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
+    const projectDir = path.join(config.expose.projectFolder)
+    const backupDir = path.join(config.expose.tempFolder, 'backupStarterFiles')
 
     // Define the filter function
     const filter = (dir) => !dir.includes('node_modules') && !dir.includes('package-lock.json')
@@ -232,15 +232,15 @@ module.exports = function setupNodeEvents (on, config) {
 
   const restoreStarterFiles = async (remainingRetries = 4) => {
     try {
-      const tmpDir = path.join(config.env.projectFolder, '.tmp')
-      const appDir = path.join(config.env.projectFolder, 'app')
+      const tmpDir = path.join(config.expose.projectFolder, '.tmp')
+      const appDir = path.join(config.expose.projectFolder, 'app')
       const appViewsDir = path.join(appDir, 'views')
       const appDataDir = path.join(appDir, 'data')
       const appAssetsDir = path.join(appDir, 'assets')
       const appSassDir = path.join(appAssetsDir, 'sass')
       const appJSDir = path.join(appAssetsDir, 'javascripts')
-      const backupDir = path.join(config.env.tempFolder, 'backupStarterFiles')
-      const projectDir = path.join(config.env.projectFolder)
+      const backupDir = path.join(config.expose.tempFolder, 'backupStarterFiles')
+      const projectDir = path.join(config.expose.projectFolder)
 
       const originalPackageJsonHash = await getFileHash(path.join(backupDir, 'package.json'))
       const currentPackageJsonHash = await getFileHash(path.join(projectDir, 'package.json'))
@@ -259,7 +259,7 @@ module.exports = function setupNodeEvents (on, config) {
       if (originalPackageJsonHash !== currentPackageJsonHash) {
         log('Restoring to starter plugins')
         const command = 'npm prune && npm install'
-        await exec(command, { cwd: config.env.projectFolder })
+        await exec(command, { cwd: config.expose.projectFolder })
         await sleep(1000)
         // To allow for possible SASS recompilation, wait again
         await waitUntilAppRestarts()
@@ -292,7 +292,7 @@ module.exports = function setupNodeEvents (on, config) {
 
     copyFromStarterFiles: ({ starterFilename = undefined, filename }) => {
       const src = path.join(starterDir, starterFilename || filename)
-      const dest = path.join(config.env.projectFolder, filename)
+      const dest = path.join(config.expose.projectFolder, filename)
       return createFolderForFile(dest)
         .then(() => fsp.copyFile(src, dest))
         // The sleep of 2 seconds allows for the file to be copied completely to prevent
@@ -361,7 +361,7 @@ module.exports = function setupNodeEvents (on, config) {
 
     addToConfigJson: (additionalConfig) => {
       log(`Adding config JSON => ${downloadsFolder}`)
-      const appConfigPath = path.join(config.env.projectFolder, 'app', 'config.json')
+      const appConfigPath = path.join(config.expose.projectFolder, 'app', 'config.json')
       return fse.readJson(appConfigPath)
         .then(existingConfig => Object.assign({}, existingConfig, additionalConfig))
         .then(newConfig => fse.writeJson(appConfigPath, newConfig))
@@ -377,6 +377,10 @@ module.exports = function setupNodeEvents (on, config) {
     log: (message) => {
       log(message)
       return makeSureCypressCanInterpretTheResult()
+    },
+
+    exec: (command) => {
+      return exec(command, { cwd: config.expose.projectFolder })
     }
   })
 

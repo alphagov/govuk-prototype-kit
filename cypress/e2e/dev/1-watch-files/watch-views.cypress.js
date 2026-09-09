@@ -5,7 +5,7 @@ const path = require('path')
 const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
 const templatesView = path.join(Cypress.config('fixturesFolder'), 'views', 'start.html')
-const appView = path.join(Cypress.env('projectFolder'), 'app', 'views', 'start.html')
+const appView = path.join(Cypress.expose('projectFolder'), 'app', 'views', 'start.html')
 const pagePath = '/start'
 
 describe('watching start page', () => {

@@ -2,7 +2,7 @@ const path = require('path')
 const { waitForApplication, restoreStarterFiles } = require('../../utils')
 const routesFixture = path.join(Cypress.config('fixturesFolder'), 'routes.js')
 const appRoutesPath = path.join('app', 'routes.js')
-const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
+const appRoutes = path.join(Cypress.expose('projectFolder'), appRoutesPath)
 
 const homePageName = 'GOV.UK Prototype Kit'
 const errorPageName = 'There is an error'
@@ -45,7 +45,7 @@ describe('Server Error Test', () => {
   it('shows an error if sass is broken', () => {
     const brokenStylesFixture = path.join(Cypress.config('fixturesFolder'), 'sass', 'broken-styles.scss')
     const appSassPath = path.join('app', 'assets', 'sass', 'application.scss')
-    const appSass = path.join(Cypress.env('projectFolder'), appSassPath)
+    const appSass = path.join(Cypress.expose('projectFolder'), appSassPath)
     const brokenSassText = 'color red'
 
     waitForApplication()
@@ -75,7 +75,7 @@ describe('Server Error Test', () => {
   it('shows an error if session-data-defaults.js is malformed', () => {
     const brokenSessionDataDefaultsFixture = path.join(Cypress.config('fixturesFolder'), 'broken-session-data-defaults.js')
     const appSessionDataDefaultsPath = path.join('app', 'data', 'session-data-defaults.js')
-    const appSessionDataDefaults = path.join(Cypress.env('projectFolder'), appSessionDataDefaultsPath)
+    const appSessionDataDefaults = path.join(Cypress.expose('projectFolder'), appSessionDataDefaultsPath)
 
     waitForApplication()
 

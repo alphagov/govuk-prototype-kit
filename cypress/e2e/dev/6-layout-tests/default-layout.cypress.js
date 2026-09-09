@@ -24,7 +24,7 @@ describe('default-layout', () => {
       comments(doc.head).should('not.contain', backupLayoutComment)
     )
 
-    cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), defaultLayoutFilePath) })
+    cy.task('deleteFile', { filename: path.join(Cypress.expose('projectFolder'), defaultLayoutFilePath) })
 
     cy.visit('/', { failOnStatusCode: false })
     cy.get('body').should('not.contains.text', 'Error: template not found')

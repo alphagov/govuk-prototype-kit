@@ -4,7 +4,7 @@ const path = require('path')
 // local dependencies
 const { waitForApplication, restoreStarterFiles } = require('../../utils')
 
-const appViews = path.join(Cypress.env('projectFolder'), 'app', 'views')
+const appViews = path.join(Cypress.expose('projectFolder'), 'app', 'views')
 const pluginFooBarView = path.join(appViews, 'plugin-foo-bar.html')
 
 const WHITE = 'rgb(255, 255, 255)'

@@ -2,7 +2,7 @@ const path = require('path')
 const { restoreStarterFiles } = require('../../utils')
 const completelyBrokenRoutesFixture = path.join(Cypress.config('fixturesFolder'), 'completely-broken-routes.js')
 const appRoutesPath = path.join('app', 'routes.js')
-const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
+const appRoutes = path.join(Cypress.expose('projectFolder'), appRoutesPath)
 
 const pageName = 'There is an error'
 const contactSupportText = 'Get support'

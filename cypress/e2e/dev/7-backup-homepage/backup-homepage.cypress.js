@@ -13,7 +13,7 @@ describe('backup homepage', () => {
     waitForApplication()
     cy.visit('/')
 
-    cy.task('deleteFile', { filename: path.join(Cypress.env('projectFolder'), homepageFile) })
+    cy.task('deleteFile', { filename: path.join(Cypress.expose('projectFolder'), homepageFile) })
 
     cy.visit('/')
     cy.get('h1').should('contains.text', 'Your prototype homepage is missing')

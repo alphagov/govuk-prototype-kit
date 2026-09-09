@@ -7,7 +7,7 @@ const { waitForApplication, restoreStarterFiles } = require('../../utils')
 const appRoutesPath = path.join('app', 'routes.js')
 
 const routesFixture = path.join(Cypress.config('fixturesFolder'), 'routes.js')
-const appRoutes = path.join(Cypress.env('projectFolder'), appRoutesPath)
+const appRoutes = path.join(Cypress.expose('projectFolder'), appRoutesPath)
 const pagePath = '/cypress-test'
 
 describe('watch route file', () => {
