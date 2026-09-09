@@ -1,6 +1,13 @@
 {
   "name": "govuk-prototype-kit",
   "description": "Rapidly create HTML prototypes of GOV.UK services",
+  "homepage": "https://prototype-kit.service.gov.uk/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphagov/govuk-prototype-kit.git"
+  },
+  "bugs": "https://github.com/alphagov/govuk-prototype-kit/issues",
+  "license": "MIT",
   "version": "14.0.0-internal.2",
   "engines": {
     "node": ">= 22.x"
