@@ -1,18 +1,18 @@
 // npm dependencies
-const c = require('ansi-colors')
+const { styleText } = require('node:util')
 
 // local dependencies
 const logger = require('./logger')
 
 async function reportSuccess (tag) {
   const message = `Succeeded [${tag}]`
-  console.log(c.green(message))
+  console.log(styleText('green', message))
   await logger.log(message)
 }
 
 async function reportFailure (tag, link) {
   const message = `Failed [${tag}]${link ? ` - documentation for the manual process is here: ${link}` : ''}`
-  console.warn(c.yellow(message))
+  console.warn(styleText('yellow', message))
   await logger.log(message)
 }
 
