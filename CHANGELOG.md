@@ -47,6 +47,14 @@ If not, make sure the 'Common Templates' plugin is installed.
 
 - [#2586: Remove legacy pattern stylesheets](https://github.com/alphagov/govuk-prototype-kit/pull/2586)
 
+#### Check terminal output colours look correct
+
+We've replaced the `ansi-colors` package with Node.js' built-in text styling to apply colours to the terminal output of the Prototype Kit.
+
+If your prototype has custom code that changes the colour of terminal output, check that the colours still look correct after updating.
+
+- [#2637: Remove `ansi-colors`](https://github.com/alphagov/govuk-prototype-kit/pull/2637)
+
 ### New features
 
 #### We've changed how the kit's dependencies are installed
