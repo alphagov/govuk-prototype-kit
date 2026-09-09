@@ -94,7 +94,7 @@
     "standard": "^17.1.2",
     "start-server-and-test": "^2.0.3",
     "supertest": "^6.3.4",
-    "wait-on": "^7.0.1"
+    "wait-on": "^9.1.0"
   },
   "standard": {
     "ignore": [
