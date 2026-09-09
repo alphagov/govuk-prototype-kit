@@ -17,7 +17,11 @@ updates:
         patterns:
           - 'jest'
           - 'jest-*'
-          - 'eslint-plugin-jest'
+
+      lint:
+        patterns:
+          - 'standard'
+          - 'eslint-*'
 
     schedule:
       interval: monthly
