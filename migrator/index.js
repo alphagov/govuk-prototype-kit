@@ -21,7 +21,7 @@ const {
   updateIfPossible
 } = require('./migration-steps')
 
-const supportPage = 'https://prototype-kit.service.gov.uk/docs/support'
+const supportPage = 'https://prototype-kit.service.gov.uk/support/'
 
 const minimumPrototypeVersionForMigration = 8
 

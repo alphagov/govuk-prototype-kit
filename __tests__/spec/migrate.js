@@ -85,7 +85,7 @@ describe('migrate test prototype', () => {
     expect(routesFileContents).toEqual(
       '//\n' +
       '// For guidance on how to create routes see:\n' +
-      '// https://prototype-kit.service.gov.uk/docs/create-routes\n' +
+      '// https://prototype-kit.service.gov.uk/create-routes/\n' +
       '//\n' +
       '\n' +
       'const govukPrototypeKit = require(\'govuk-prototype-kit\')\n' +
@@ -101,7 +101,7 @@ describe('migrate test prototype', () => {
 
     expect(filtersFileContents).toEqual(`//
 // For guidance on how to create filters see:
-// https://prototype-kit.service.gov.uk/docs/filters
+// https://prototype-kit.service.gov.uk/filters/
 //
 
 const govukPrototypeKit = require('govuk-prototype-kit')
@@ -124,7 +124,7 @@ const addFilter = govukPrototypeKit.views.addFilter
 
 //
 // For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+// https://prototype-kit.service.gov.uk/adding-css-javascript-and-images/
 //
 
 
@@ -151,7 +151,7 @@ window.GOVUKPrototypeKit.documentReady(function () {
     expect(sassFileContents).toEqual(
       '//\n' +
       '// For guidance on how to add CSS and SCSS see:\n' +
-      '// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images\n' +
+      '// https://prototype-kit.service.gov.uk/adding-css-javascript-and-images/\n' +
       '// \n' +
       '\n' +
       '// Add extra styles here' +
@@ -169,7 +169,7 @@ window.GOVUKPrototypeKit.documentReady(function () {
     expect(layoutFileContents).toEqual(
 `{#
 For guidance on how to use layouts see:
-https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+https://prototype-kit.service.gov.uk/how-to-use-layouts/
 #}
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
