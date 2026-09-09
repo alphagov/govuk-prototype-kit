@@ -18,8 +18,6 @@ const path = require('path')
 
 // npm dependencies
 const waitOn = require('wait-on')
-const extract = require('extract-zip')
-const https = require('https')
 
 // local dependencies
 const { starterDir } = require('../../lib/utils/paths')
@@ -38,23 +36,6 @@ const createFolderForFile = async (filepath) => {
     })
   }
 }
-
-const validateExtractedVersion = async fullFilename => {
-  // Retrieve the name and version from the package.json from the extracted zip file
-  const extractFolder = path.resolve(fullFilename.substring(0, fullFilename.lastIndexOf('.zip')))
-  log(`validating extract => ${extractFolder}`)
-  const data = fs.readFileSync(path.join(extractFolder, 'package.json'))
-  const { name, version } = JSON.parse(data)
-  // Retrieve the directory name of the extracted files
-  const separator = (extractFolder.indexOf('/') > -1) ? '/' : '\\'
-  const dirname = extractFolder.substring(extractFolder.lastIndexOf(separator) + 1)
-  // Make sure they match
-  if (`${name}-${version}` !== dirname) {
-    throw new Error(`Extracted folder ${extractFolder} contains wrong version in package.json >> ${name}-${version}`)
-  }
-}
-
-const downloadsFolder = path.resolve('cypress', 'downloads')
 
 module.exports = function setupNodeEvents (on, config) {
   // `on` is used to hook into various events Cypress emits
@@ -135,48 +116,6 @@ module.exports = function setupNodeEvents (on, config) {
     .then(() => sleep(timeout))
     .catch((err) => err.code !== 'ENOENT' ? err : null
     )
-
-  const deleteFolder = (folder, timeout = 0) => fsp.rmdir(folder, { recursive: true })
-    .then(() => sleep(timeout))
-    .catch((err) => err.code !== 'ENOENT' ? err : null
-    )
-
-  const download = async (url, zipFile) => {
-    return new Promise((resolve, reject) => {
-      log(`downloading => ${url}`)
-      const request = https.get(url, response => {
-        if (response.statusCode === 200) {
-          const filename = path.join(downloadsFolder, zipFile)
-          log(`writing => ${filename}`)
-          const file = fs.createWriteStream(filename, { flags: 'wx' })
-          file.on('finish', () => resolve(filename))
-          file.on('error', (err) => {
-            file.close()
-            fs.unlink(downloadsFolder, () => {
-              log(`writing => ${filename} => ${err.message}`)
-              reject(err.message)
-            }) // Delete temp file
-          })
-          response.pipe(file)
-        } else if (response.statusCode === 302 || response.statusCode === 301) {
-          // Recursively follow redirects, only a 200 will resolve.
-          const { location } = response.headers
-          if (!zipFile && location.endsWith('.zip')) {
-            const uri = new URL(location)
-            zipFile = uri.pathname.split('/').pop()
-          }
-          return download(location, zipFile).then((filename) =>
-            resolve(filename))
-        } else {
-          reject(new Error(`Server responded with ${response.statusCode}: ${response.statusMessage}`))
-        }
-      })
-
-      request.on('error', err => {
-        reject(err.message)
-      })
-    })
-  }
 
   const getPathFromProjectRoot = (...all) => path.join(...[config.expose.projectFolder].concat(all))
   const pathToPackageFile = packageName => getPathFromProjectRoot('node_modules', packageName, 'package.json')
@@ -344,24 +283,9 @@ module.exports = function setupNodeEvents (on, config) {
       .then((text) => fsp.writeFile(filename, text.toString()))
       .then(makeSureCypressCanInterpretTheResult),
 
-    download: async ({ filename }) => {
-      log(`deleting folder => ${downloadsFolder}`)
-      return deleteFolder(downloadsFolder, 2000)
-        .then(() => fsp.mkdir(downloadsFolder, { recursive: true }))
-        .then(() => download(filename))
-        .then((fullFilename) => {
-          log(`extracting => ${fullFilename}`)
-          return extract(fullFilename, { dir: downloadsFolder })
-            .then(() => {
-              return validateExtractedVersion(fullFilename)
-            })
-        })
-        .then(makeSureCypressCanInterpretTheResult)
-    },
-
     addToConfigJson: (additionalConfig) => {
-      log(`Adding config JSON => ${downloadsFolder}`)
       const appConfigPath = path.join(config.expose.projectFolder, 'app', 'config.json')
+      log(`Adding config JSON => ${appConfigPath}`)
       return fse.readJson(appConfigPath)
         .then(existingConfig => Object.assign({}, existingConfig, additionalConfig))
         .then(newConfig => fse.writeJson(appConfigPath, newConfig))
