@@ -6,6 +6,19 @@ updates:
     directory: /
     open-pull-requests-limit: 15
 
+    groups:
+      express:
+        patterns:
+          - 'express'
+          - 'express-*'
+          - 'cookie-parser'
+
+      jest:
+        patterns:
+          - 'jest'
+          - 'jest-*'
+          - 'eslint-plugin-jest'
+
     schedule:
       interval: monthly
       time: '10:30'
