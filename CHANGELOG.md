@@ -22,15 +22,6 @@ If your prototype uses [custom routes](https://prototype-kit.service.gov.uk/docs
 
 - [ #2577: Update Express to version 5](https://github.com/alphagov/govuk-prototype-kit/pull/2577)
 
-#### Check you can still access your .env variables
-
-We now use Node.js's built-in `.env` file support instead of the `dotenv` package to load environment variables from the `.env` file in your prototype.
-
-If your prototype uses a `.env` file, check that you can still access its variables in your
-prototype.
-
-- [#2593: Replace dotenv with Node's built-in .env support](https://github.com/alphagov/govuk-prototype-kit/pull/2593)
-
 #### Check any pagination or task lists look correct
 
 If your prototype uses pagination or a task list, check that these look correct after updating.
@@ -46,14 +37,6 @@ If your prototype includes pages that use the 'Start' or 'Mainstream guide' form
 If not, make sure the 'Common Templates' plugin is installed.
 
 - [#2586: Remove legacy pattern stylesheets](https://github.com/alphagov/govuk-prototype-kit/pull/2586)
-
-#### Check terminal output colours look correct
-
-We've replaced the `ansi-colors` package with Node.js' built-in text styling to apply colours to the terminal output of the Prototype Kit.
-
-If your prototype has custom code that changes the colour of terminal output, check that the colours still look correct after updating.
-
-- [#2637: Remove `ansi-colors`](https://github.com/alphagov/govuk-prototype-kit/pull/2637)
 
 ### New features
 
@@ -73,6 +56,8 @@ You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-fron
 
 ### Dependency updates
 
+- [#2637: Remove `ansi-colors`](https://github.com/alphagov/govuk-prototype-kit/pull/2637)
+- [#2593: Replace dotenv with Node's built-in .env support](https://github.com/alphagov/govuk-prototype-kit/pull/2593)
 - [#2601: Bump tar-stream from 3.1.7 to 3.2.1](https://github.com/alphagov/govuk-prototype-kit/pull/2601)
 - [#2602: Bump semver from 7.7.2 to 7.8.5](https://github.com/alphagov/govuk-prototype-kit/pull/2602)
 - [#2605: Bump csrf-csrf from 2.3.0 to 4.0.3](https://github.com/alphagov/govuk-prototype-kit/pull/2605)
