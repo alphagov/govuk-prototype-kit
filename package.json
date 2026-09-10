@@ -73,6 +73,7 @@
     "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
   "dependencies": {
+    "@11ty/eleventy-dev-server": "^2.0.8",
     "browser-sync": "^3.0.2",
     "chokidar": "^3.6.0",
     "cookie-parser": "^1.4.6",
