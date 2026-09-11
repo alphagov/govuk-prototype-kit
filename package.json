@@ -131,6 +131,7 @@
     "cypress@16.0.0": true
   },
   "overrides": {
+    "immutable": "3.8.3",
     "browser-sync@3.0.4": {
       "browser-sync-client": "3.0.4",
       "browser-sync-client@3.0.4": {
@@ -143,7 +144,6 @@
         "async-each-series": "0.1.1",
         "chalk": "4.1.2",
         "connect-history-api-fallback": "1.6.0",
-        "immutable": "3.8.3",
         "server-destroy": "1.0.1",
         "socket.io-client": "4.8.1",
         "socket.io-client@4.8.1": {
