@@ -17,7 +17,7 @@ To create new prototypes with this version:
 
 1.  [Create a new folder for your prototype](https://prototype-kit.service.gov.uk/install/create-a-prototype/#make-a-folder-for-your-prototypes) in a terminal.
 2.  [Navigate to your prototype folder](https://prototype-kit.service.gov.uk/install/create-a-prototype/#navigate-to-your-prototype-folder).
-3.  Run the command `npx govuk-prototype-kit@14.0.0-beta.0 create –version 14.0.0-beta.0`.
+3.  Run the command `npx govuk-prototype-kit@14.0.0-beta.0 create --version 14.0.0-beta.0`.
 
 ### Breaking changes
 
