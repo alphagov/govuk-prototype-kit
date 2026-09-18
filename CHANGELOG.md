@@ -8,9 +8,8 @@
 > This is a beta release. Do not [publish prototypes](https://prototype-kit.service.gov.uk/publishing/) using this version.
 > Use this release to give feedback on the changes coming in version 14.0.0.
 
-To install this version in an existing prototype, you can either:
+To install this version in an existing prototype:
 
-- add `showPrereleases: true` to your prototype’s `app/config.json` and follow the instructions to [update to the latest version of the Prototype Kit](https://prototype-kit.service.gov.uk/update-to-latest-version/)
 - [navigate to your prototype folder](https://prototype-kit.service.gov.uk/install/create-a-prototype/#navigate-to-your-prototype-folder) in a terminal and run the command: `npm install govuk-prototype-kit@14.0.0-beta.0`
 
 To create new prototypes with this version:
