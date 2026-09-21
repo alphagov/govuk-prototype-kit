@@ -67,7 +67,7 @@
     "test:acceptance:plugins-kit": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:plugins-kit",
     "test:acceptance:errors": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:e2e:errors",
     "test:acceptance:open": "cross-env KIT_TEST_DIR=tmp/test-prototype start-server-and-test start:test 3000 cypress:open",
-    "test:unit": "jest --detectOpenHandles lib bin migrator",
+    "test:unit": "jest --detectOpenHandles lib bin scripts migrator",
     "test:integration": "cross-env CREATE_KIT_TIMEOUT=240000 jest --detectOpenHandles --testTimeout=60000 __tests__",
     "test:full": "npm test && npm run test:acceptance",
     "test": "npm run test:unit && npm run test:integration && npm run lint"
