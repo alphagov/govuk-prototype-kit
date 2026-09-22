@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { join } = require('path')
 
 const { outdent } = require('outdent')
 
@@ -10,7 +9,7 @@ const {
 
 jest.mock('fs')
 
-const CHANGELOG_FILE_PATH = join(__dirname, '../../CHANGELOG.md')
+const CHANGELOG_FILE_PATH = 'path/to/CHANGELOG.md'
 
 describe('Changelog release helper', () => {
   afterEach(() => {
@@ -31,7 +30,7 @@ describe('Changelog release helper', () => {
 
   describe('Update changelog', () => {
     it('adds a new heading to the changelog for the new version', () => {
-      updateChangelog('3.1.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0 (Feature release)')
@@ -39,7 +38,7 @@ describe('Changelog release helper', () => {
     })
 
     it('prefixes a new heading with a beta pre-release identifier', () => {
-      updateChangelog('3.1.0-beta.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0-beta.0 (Beta release)')
@@ -47,7 +46,7 @@ describe('Changelog release helper', () => {
     })
 
     it('prefixes a new heading with a release candidate pre-release identifier', () => {
-      updateChangelog('3.1.0-rc.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-rc.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0-rc.0 (Release candidate)')
@@ -65,7 +64,7 @@ describe('Changelog release helper', () => {
         ## v3.1.0-beta.0 (Beta release)
       `)
 
-      updateChangelog('3.1.0-beta.1', '3.1.0-beta.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0-beta.1 (Beta release)')
@@ -83,7 +82,7 @@ describe('Changelog release helper', () => {
         ## v3.1.0-beta.0 (Beta release)
       `)
 
-      updateChangelog('3.1.0-beta.1', '3.1.0-beta.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
@@ -113,7 +112,7 @@ describe('Changelog release helper', () => {
         ## v3.1.0 (Feature release)
       `)
 
-      updateChangelog('3.1.1', '3.1.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
       expect(fs.writeFileSync).not.toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('> [!WARNING]')
@@ -131,7 +130,7 @@ describe('Changelog release helper', () => {
         ## v3.1.0 (Feature release)
       `)
 
-      updateChangelog('3.1.1', '3.1.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
@@ -145,7 +144,7 @@ describe('Changelog release helper', () => {
     it('does not change the changelog if the provided version is an internal pre-release', () => {
       const consoleLogSpy = jest.spyOn(console, 'log')
 
-      updateChangelog('3.1.0-internal.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-internal.0', '3.0.0')
       expect(consoleLogSpy).toHaveBeenCalledWith(
         'This is an internal release, intended for testing only. The changelog will therefore not be updated.'
       )
@@ -154,7 +153,7 @@ describe('Changelog release helper', () => {
 
     it('throws an error if the newVersion is not a semantic version string', () => {
       expect(() => {
-        updateChangelog('a.b.c', '3.0.0')
+        updateChangelog(CHANGELOG_FILE_PATH, 'a.b.c', '3.0.0')
       }).toThrow(
         new Error(
           'Version number "a.b.c" could not be parsed as a semantic versioned string.'
@@ -164,7 +163,7 @@ describe('Changelog release helper', () => {
 
     it('throws an error if the previousVersion is not a semantic version string', () => {
       expect(() => {
-        updateChangelog('3.0.0', 'x.y.z')
+        updateChangelog(CHANGELOG_FILE_PATH, '3.0.0', 'x.y.z')
       }).toThrow(
         new Error(
           'Version number "x.y.z" could not be parsed as a semantic versioned string.'
@@ -187,7 +186,7 @@ describe('Changelog release helper', () => {
         ## v3.0.0 (Breaking release)
       `)
 
-      generateReleaseNotes('3.1.0')
+      generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining('Bing bong')
@@ -207,7 +206,7 @@ describe('Changelog release helper', () => {
         ## v3.0.0 (Breaking release)
       `)
 
-      generateReleaseNotes('3.1.0-beta.0')
+      generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining('Bing bong')
@@ -215,7 +214,7 @@ describe('Changelog release helper', () => {
     })
 
     it('writes release notes from the changelog from the Unreleased heading if the version is internal', () => {
-      generateReleaseNotes('3.1.0-internal.0')
+      generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0-internal.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining('Bing bong')
@@ -223,7 +222,7 @@ describe('Changelog release helper', () => {
     })
 
     it('increases the heading levels from the changelog by one', () => {
-      generateReleaseNotes('Unreleased')
+      generateReleaseNotes(CHANGELOG_FILE_PATH, 'Unreleased')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining('## Fixes')
@@ -235,7 +234,7 @@ describe('Changelog release helper', () => {
     })
 
     it('adds a note on the generation workflow if options param provided', () => {
-      generateReleaseNotes('3.1.0-internal.0', {
+      generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0-internal.0', {
         actor: 'bingbong',
         runId: '12345'
       })

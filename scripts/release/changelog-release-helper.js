@@ -1,9 +1,6 @@
 const { readFileSync, writeFileSync } = require('fs')
-const { join } = require('path')
 
 const semver = require('semver')
-
-const CHANGELOG_FILE_PATH = join(__dirname, '../../CHANGELOG.md')
 
 const processingErrorMessage =
   'There was a problem processing information from the changelog. This likely means that there is an issue with the changelog content itself. Please check it and try running this task again.'
@@ -14,11 +11,12 @@ const processingErrorMessage =
  * Inserts a new heading between the 'Unreleased' heading and the most recent
  * content
  *
+ * @param {string} path - Path to the CHANGELOG file
  * @param {string} newVersion - New version to add to the changelog
  * @param {string} previousVersion - Previous version. Used for calculating difference
  *   in versions to build the changelog title
  */
-function updateChangelog(newVersion, previousVersion) {
+function updateChangelog (path, newVersion, previousVersion) {
   const validatedNewVersion = validateVersionNumber(newVersion)
   const validatedPreviousVersion = validateVersionNumber(previousVersion)
 
@@ -35,7 +33,7 @@ function updateChangelog(newVersion, previousVersion) {
     }
   }
 
-  const changelogLines = getChangelogLines()
+  const changelogLines = readFileLinesSync(path)
   const [startIndex] = getChangelogLineIndexes(changelogLines)
 
   const versionDiff = semver.diff(validatedNewVersion, validatedPreviousVersion)
@@ -44,27 +42,27 @@ function updateChangelog(newVersion, previousVersion) {
   }
   const newVersionTitle = `## v${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
 
-  const newLines = [newVersionTitle, ``]
+  const newLines = [newVersionTitle, '']
   if (newVersionIsAPrerelease) {
     newLines.push(
-      `> [!WARNING]`,
-      `> Do not use in production.`,
+      '> [!WARNING]',
+      '> Do not use in production.',
       `> Use this release to prepare for the changes coming in version \`${removePrereleaseFlag(validatedNewVersion)}\`.`,
-      ``
+      ''
     )
   }
 
   // Add content on how to install the release
   newLines.push(
     `To install this version with npm, run \`npm install govuk-frontend@${validatedNewVersion}\`. ` +
-      `You can also find more information about [how to stay up to date](https://frontend.design-system.service.gov.uk/staying-up-to-date/#updating-to-the-latest-version) in our documentation.`,
-    ``
+      'You can also find more information about [how to stay up to date](https://frontend.design-system.service.gov.uk/staying-up-to-date/#updating-to-the-latest-version) in our documentation.',
+    ''
   )
 
   // Inject the new lines into the CHANGELOG
   changelogLines.splice(startIndex + 1, 0, '', ...newLines)
 
-  writeFileSync(CHANGELOG_FILE_PATH, changelogLines.join('\n'))
+  writeFileSync(path, changelogLines.join('\n'))
 }
 
 /**
@@ -74,19 +72,20 @@ function updateChangelog(newVersion, previousVersion) {
  * release heading passed to it by newVersion or the 'Unreleased' heading and the
  * following release heading if newVersion is tagged as internal
  *
+ * @param {string} path - Path to the CHANGELOG file
  * @param {string} newVersion - Version used to find start point for release notes
  * @param {object} [options] - Release notes options
  * @param {string} [options.actor] - Github username of user who ran workflow
  * @param {string} [options.runId] - ID of Build release workflow to reference
  */
-function generateReleaseNotes(newVersion, options) {
+function generateReleaseNotes (path, newVersion, options) {
   // Get the identifier from the version if there is one as we'll use this to
   // change what we pass to getChangelogLineIndexes if the version has an
   // 'internal' tag
   const identifier = versionIsAPrerelease(newVersion)
     ? getPrereleaseIdentifier(newVersion)
     : undefined
-  const changelogLines = getChangelogLines()
+  const changelogLines = readFileLinesSync(path)
   const [startIndex, previousReleaseLineIndex] = getChangelogLineIndexes(
     changelogLines,
     identifier === 'internal' ? undefined : newVersion
@@ -116,7 +115,7 @@ function generateReleaseNotes(newVersion, options) {
  * @param {string} version - version number
  * @returns {string} - Validated semver of version
  */
-function validateVersionNumber(version) {
+function validateVersionNumber (version) {
   const validatedVersion = semver.valid(version)
 
   if (!validatedVersion) {
@@ -129,12 +128,13 @@ function validateVersionNumber(version) {
 }
 
 /**
- * Get the changelog and split it into an array separated by lines
+ * Synchronously reads the content of the given file into an array of lines
  *
+ * @param {string} path - Path to the file to read
  * @returns {Array<string>} - Changelog split into an array by lines
  */
-function getChangelogLines() {
-  return readFileSync(CHANGELOG_FILE_PATH, 'utf8').split('\n')
+function readFileLinesSync (path) {
+  return readFileSync(path, 'utf8').split('\n')
 }
 
 /**
@@ -146,7 +146,7 @@ function getChangelogLines() {
  *   where the first index is pulled from eg: 'Unreleased'
  * @returns {Array<number>} - Indexes in the changelog identifying start and end lines
  */
-function getChangelogLineIndexes(changelogLines, heading = undefined) {
+function getChangelogLineIndexes (changelogLines, heading = undefined) {
   // Build regex for finding the correct heading in the changelog
   // If a heading hasn't been passed to the function, use 'Unreleased'
   const defaultHeadingRegex = '\\d+\\.\\d+\\.\\d+(-.+\\.\\d+)?'
@@ -182,7 +182,7 @@ function getChangelogLineIndexes(changelogLines, heading = undefined) {
  * @param {string} identifier - Either the semantic version or 'Unreleased'
  * @returns {RegExp} - Complete heading regex including hashes and release type formatting
  */
-function buildHeadingRegexQuery(identifier) {
+function buildHeadingRegexQuery (identifier) {
   return new RegExp(`^\\s*#+\\s+v?${identifier}\\s*(\\(.+\\))?$`, 'i')
 }
 
@@ -194,7 +194,7 @@ function buildHeadingRegexQuery(identifier) {
  * @param {number} offset - Offset from start of the changelogLines array
  * @returns {number} - Index in changeLogLines or -1 if we can't locate the index
  */
-function findIndexOfFirstMatchingLine(changelogLines, regExp, offset = 0) {
+function findIndexOfFirstMatchingLine (changelogLines, regExp, offset = 0) {
   const foundIndex = changelogLines
     .slice(offset)
     .map((x, index) => (x.match(regExp) ? index : undefined))
@@ -217,7 +217,7 @@ function findIndexOfFirstMatchingLine(changelogLines, regExp, offset = 0) {
  * @param {string} version
  * @returns {boolean} - If the passed version is a pre-release or not
  */
-function versionIsAPrerelease(version) {
+function versionIsAPrerelease (version) {
   return /^\d+\.\d+\.\d+-\D+\.\d+$/i.test(version)
 }
 
@@ -227,7 +227,7 @@ function versionIsAPrerelease(version) {
  * @param {string} version
  * @returns {string} - the identifier of the pre-release
  */
-function getPrereleaseIdentifier(version) {
+function getPrereleaseIdentifier (version) {
   if (!versionIsAPrerelease(version)) {
     return ''
   }
@@ -250,7 +250,7 @@ function getPrereleaseIdentifier(version) {
  * @param {string|null} version - SemVer version
  * @returns {string} - The reworded increment type
  */
-function convertIncTypeWord(incType, version) {
+function convertIncTypeWord (incType, version) {
   let rewordedIncType = incType
 
   // If there's a prerelease flag e.g. 1.0.0-beta.0 use that to decide
@@ -277,7 +277,7 @@ function convertIncTypeWord(incType, version) {
  * @param {string} version - version number
  * @returns {string} - version number without any pre-release flag
  */
-function removePrereleaseFlag(version) {
+function removePrereleaseFlag (version) {
   const parsedVersion = semver.parse(version)
   parsedVersion.prerelease = []
   return parsedVersion.format()
@@ -289,7 +289,7 @@ function removePrereleaseFlag(version) {
  * @param {string} word
  * @returns {string} - capitalised string
  */
-function capitalise(word) {
+function capitalise (word) {
   return word.charAt(0).toUpperCase() + word.slice(1)
 }
 
