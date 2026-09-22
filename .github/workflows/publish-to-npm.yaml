@@ -1,0 +1,65 @@
+name: '[Release] Publish package to npm'
+run-name: '[Release] Publish package to npm (${{inputs.environment}})'
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment
+        required: true
+        type: choice
+        options:
+          - test
+          - production
+
+# Disable top-level permissions, set them per job as needed
+permissions: {}
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-24.04
+    environment: ${{ inputs.environment == 'production' && 'production' || null }}
+    permissions:
+      id-token: write # required for Trusted publishing (https://docs.npmjs.com/trusted-publishers)
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false # never use caching in release builds
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate tag
+        id: generate_tag
+        run: |
+          TAG=$(./scripts/generate-npm-tag.sh)
+          echo "NPM_TAG=${TAG}" >> $GITHUB_OUTPUT
+
+      - name: Print information on package
+        id: pack
+        run: |
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          # Redirect the stderr which contains the useful meta data to the Action summary
+          ARCHIVE_FILE_PATH=$(npm pack 2>> $GITHUB_STEP_SUMMARY)
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+          echo "ARCHIVE_FILE_PATH=${ARCHIVE_FILE_PATH}" >> $GITHUB_OUTPUT
+
+      - name: Upload npm package archive artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: ${{steps.pack.outputs.ARCHIVE_FILE_PATH}}
+          archive: false # file is already compressed
+
+      # Publish the package using Trusted publishing (https://docs.npmjs.com/trusted-publishers)
+      - name: Publish to npm
+        if: inputs.environment == 'production'
+        run: npm publish --tag ${{steps.generate_tag.outputs.NPM_TAG}}
