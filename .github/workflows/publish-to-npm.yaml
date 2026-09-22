@@ -43,12 +43,17 @@ jobs:
           TAG=$(./scripts/generate-npm-tag.sh)
           echo "NPM_TAG=${TAG}" >> $GITHUB_OUTPUT
 
+      - name: Check dependencies are installed to bundle
+        # Run the prepack script manually rather than automatically so that npm pack
+        # returns only the archive file path.
+        run: npm run prepack
+
       - name: Print information on package
         id: pack
         run: |
           echo '```bash' >> $GITHUB_STEP_SUMMARY
           # Redirect the stderr which contains the useful meta data to the Action summary
-          ARCHIVE_FILE_PATH=$(npm pack 2>> $GITHUB_STEP_SUMMARY)
+          ARCHIVE_FILE_PATH=$(npm pack --ignore-scripts 2>> $GITHUB_STEP_SUMMARY)
           echo '```' >> $GITHUB_STEP_SUMMARY
 
           echo "ARCHIVE_FILE_PATH=${ARCHIVE_FILE_PATH}" >> $GITHUB_OUTPUT
