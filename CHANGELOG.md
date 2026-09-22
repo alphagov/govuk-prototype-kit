@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### New features
+
+#### Use `pkg:` URLs in Sass
+
+You can now use [`pkg:` URLs](https://sass-lang.com/blog/announcing-pkg-importers/) in your Prototype's Sass code or include Sass libraries that use `pkg:` URLs.
+
+- [#2668: [v13.x] Add support for `pkg:` URLs in Sass](https://github.com/alphagov/govuk-prototype-kit/pull/2668)
+
 ## 13.20.5
 
 ### Fixes
