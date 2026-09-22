@@ -12,6 +12,9 @@ on:
           - test
           - production
 
+# Disable top-level permissions, set them per job as needed
+permissions: {}
+
 jobs:
   publish:
     name: Publish to npm
