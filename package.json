@@ -98,6 +98,7 @@
     "eslint-plugin-jest": "^27.9.0",
     "jest": "^30.5.1",
     "jest-environment-jsdom": "^30.5.1",
+    "outdent": "^0.8.0",
     "standard": "^17.1.2",
     "start-server-and-test": "^3.0.12",
     "supertest": "^7.2.2",
