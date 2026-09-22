@@ -1,10 +1,15 @@
 #!/bin/sh
 set -e
 
-PACKAGE_NAME=$(npm pkg get name)
+get_package_info () {
+  # Recursively find the value from the package.json
+  npm pkg get "$@" --json | jq -r 'last(..)'
+}
+
+PACKAGE_NAME=$(get_package_info name)
 
 # Use first argument as version or get it from the package.json
-PACKAGE_VERSION=${1:-$(npm pkg get version)}
+PACKAGE_VERSION=${1:-$(get_package_info version)}
 
 # Use second argument as latest published version or get latest tag published on Github
 LATEST_PUBLISHED_VERSION=${2:-$(npm view "$PACKAGE_NAME" version)}
