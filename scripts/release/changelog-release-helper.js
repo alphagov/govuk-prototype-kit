@@ -46,18 +46,30 @@ function updateChangelog (path, newVersion, previousVersion) {
   if (newVersionIsAPrerelease) {
     newLines.push(
       '> [!WARNING]',
-      '> Do not use in production.',
+      '> This is a prerelease. Do not publish prototypes using this version.',
       `> Use this release to prepare for the changes coming in version \`${removePrereleaseFlag(validatedNewVersion)}\`.`,
       ''
     )
+    // Add content for installing pre-releases
+    newLines.push(
+      'To install this version in an existing prototype:',
+      '',
+      `- navigate to your prototype folder in a terminal and run the command: \`npm install govuk-prototype-kit@${validatedNewVersion}\``,
+      '',
+      'To create new prototypes with this version:',
+      '',
+      '1. Create a new folder for your prototype in a terminal.',
+      '2. Navigate to your prototype folder.',
+      `3. Run the command \`npx govuk-prototype-kit@${validatedNewVersion} create --version ${validatedNewVersion}\`.`,
+      ''
+    )
+  } else {
+    // Add content on how to install the release
+    newLines.push(
+      'You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.',
+      ''
+    )
   }
-
-  // Add content on how to install the release
-  newLines.push(
-    `To install this version with npm, run \`npm install govuk-frontend@${validatedNewVersion}\`. ` +
-      'You can also find more information about [how to stay up to date](https://frontend.design-system.service.gov.uk/staying-up-to-date/#updating-to-the-latest-version) in our documentation.',
-    ''
-  )
 
   // Inject the new lines into the CHANGELOG
   changelogLines.splice(startIndex + 1, 0, '', ...newLines)

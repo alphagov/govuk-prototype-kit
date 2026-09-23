@@ -89,15 +89,11 @@ describe('Changelog release helper', () => {
           ## v3.1.0-beta.1 (Beta release)
 
           > [!WARNING]
-          > Do not use in production.
+          > This is a prerelease. Do not publish prototypes using this version.
           > Use this release to prepare for the changes coming in version \`3.1.0\`.
 
-          To install this version with npm
+          To install this version in an existing prototype:
         `)
-      )
-      expect(fs.writeFileSync).toHaveBeenCalledWith(
-        CHANGELOG_FILE_PATH,
-        expect.stringContaining('To install this version with npm')
       )
     })
 
@@ -136,7 +132,7 @@ describe('Changelog release helper', () => {
         expect.stringContaining(outdent`
             ## v3.1.1 (Fix release)
 
-            To install this version with npm, run \`npm install govuk-frontend@3.1.1\`. You can also find more information about [how to stay up to date](https://frontend.design-system.service.gov.uk/staying-up-to-date/#updating-to-the-latest-version) in our documentation.
+            You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.
         `)
       )
     })
