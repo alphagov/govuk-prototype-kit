@@ -47,6 +47,8 @@ jobs:
 
       - name: Create GitHub tag
         id: create-github-tag
+        env:
+          ENVIRONMENT: ${{ inputs.environment }}
         run: |
           ALL_PACKAGE_VERSION=$(npm pkg get version | tr -d '"')
           TAG="v${ALL_PACKAGE_VERSION}"
@@ -57,8 +59,12 @@ jobs:
           else
             echo "🗒 Tagging repo using tag version: $TAG ..."
             git tag -a $TAG -m "GOV.UK Prototype Kit release $TAG"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} --tags
-            echo "🗒 Tag $TAG created and pushed to remote."
+            if [ "$ENVIRONMENT" = "production" ]; then
+              git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} --tags
+              echo "🗒 Tag $TAG created and pushed to remote."
+            else
+              echo "🧪 Test environment: tag $TAG created locally but not pushed."
+            fi
             echo "GH_TAG=${TAG}" >> $GITHUB_OUTPUT
           fi
 
