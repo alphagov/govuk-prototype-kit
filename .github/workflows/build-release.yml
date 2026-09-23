@@ -1,0 +1,115 @@
+name: '[Release] Build release for review'
+run-name: "[Release] Build release for review (${{ join(inputs.*, ', ') }})"
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Release type'
+        required: true
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+          - premajor
+          - preminor
+          - prepatch
+          - prerelease
+      preid:
+        description: "Prerelease label (for example: 'beta')"
+        type: string
+
+# Disable top-level permissions, set them per job as needed
+permissions: {}
+
+jobs:
+  build-release:
+    name: Build release
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+
+    env:
+      RELEASE_TYPE: ${{inputs.release_type}}
+      PREID: ${{inputs.preid}}
+
+    steps:
+      - name: Log inputs in the action summary
+        run: |
+          # Output the inputs in the summary before anything
+          {
+            echo "## Inputs"
+            echo '|Input|Value|'
+            echo '|-----|-----|'
+            echo "|release_type|\`$RELEASE_TYPE\`|"
+            echo "|preid|\`$PREID\`|"
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update package version and CHANGELOG
+        run: |
+          npm version --no-git-tag-version  "$RELEASE_TYPE" --preid "$PREID"
+          # After `npm version` runs, the `postversion` lifecycle hook script 
+          # defined in the package.json will be run which then updates the CHANGELOG.
+
+          # Save the new version number for access in future steps
+          echo "PACKAGE_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+
+      - name: Generate release notes
+        uses: actions/github-script@v9.0.0
+        with:
+          script: |
+            const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/release/changelog-release-helper.mjs')
+
+            generateReleaseNotes('CHANGELOG.md', process.env.PACKAGE_VERSION, { actor: '${{ github.actor }}', runId: '${{ github.run_id }}' })
+
+      - name: Build release
+        run: npm run build:release
+
+      - name: Output PR content in action summary
+        run: |
+          {
+            echo '## PR body'
+            cat release-notes-body
+            echo ''
+            echo '## Files in archive'
+            echo '```diff'
+            git diff
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload CHANGELOG as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: CHANGELOG.md
+          archive: false # Saves having to decompress the CHANGELOG
+
+      - name: Configure Git
+        run: |
+          git config --global user.name '${{ github.actor }}'
+          git config --global user.email '${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com'
+
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ secrets.CI_PAT }}
+        run: |
+          RELEASE_BRANCH_NAME="release-$PACKAGE_VERSION"
+          RELEASE_TITLE="Release $PACKAGE_VERSION"
+
+          git add .
+          git commit -m "$RELEASE_TITLE"
+          git checkout -b "$RELEASE_BRANCH_NAME"
+          git push -u origin "$RELEASE_BRANCH_NAME"
+          gh pr create --base "${{ github.ref_name }}" --head "$RELEASE_BRANCH_NAME" --title "$RELEASE_TITLE" --body-file "release-notes-body"
