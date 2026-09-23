@@ -1,0 +1,21 @@
+name: '[Release] Publish to GitHub releases'
+run-name: '[Release] Publish to GitHub releases (${{inputs.environment}})'
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment
+        required: true # For UI consistency with other required options
+        type: choice
+        options:
+          - test
+          - production
+
+# Disable top-level permissions, set them per job as needed
+permissions: {}
+
+jobs:
+  publish-release-to-github:
+    name: Publish release to GitHub
+    runs-on: ubuntu-24.04
