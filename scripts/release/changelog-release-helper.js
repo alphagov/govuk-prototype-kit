@@ -162,57 +162,24 @@ function getChangelogLineIndexes (changelogLines, heading = undefined) {
   // Build regex for finding the correct heading in the changelog
   // If a heading hasn't been passed to the function, use 'Unreleased'
   const defaultHeadingRegex = '\\d+\\.\\d+\\.\\d+(-.+\\.\\d+)?'
-  const headingRegex = heading
-    ? heading.replaceAll('.', '\\.').replace('v', '')
-    : 'Unreleased'
 
-  const startIndex = findIndexOfFirstMatchingLine(
-    changelogLines,
-    buildHeadingRegexQuery(headingRegex)
-  )
+  const startIndex = changelogLines
+    .findIndex((line) => line.startsWith(`## ${heading ?? 'Unreleased'}`))
 
   if (startIndex === -1) {
-    console.error('Could not find', headingRegex, 'in', changelogLines);
+    console.error('Could not find', heading, 'in', changelogLines);
     throw new Error(processingErrorMessage)
   }
 
-  const endIndex = findIndexOfFirstMatchingLine(
-    changelogLines,
-    buildHeadingRegexQuery(defaultHeadingRegex),
-    startIndex + 1
-  )
+  const endIndex = changelogLines
+    .slice(startIndex + 1) // Start next line from the start heading
+    .findIndex((line) => line.match(defaultHeadingRegex))
 
   if (endIndex === -1) {
     throw new Error(processingErrorMessage)
   }
 
-  return [startIndex, endIndex]
-}
-
-/**
- * Builds the search query for headings when getting indexes in the changelog
- *
- * @param {string} identifier - Either the semantic version or 'Unreleased'
- * @returns {RegExp} - Complete heading regex including hashes and release type formatting
- */
-function buildHeadingRegexQuery (identifier) {
-  return new RegExp(`^\\s*#+\\s+v?${identifier}\\s*(\\(.+\\))?$`, 'i')
-}
-
-/**
- * Get the first matching line in the changelog that matches the passed regex
- *
- * @param {Array<string>} changelogLines - Produced from getChangelogLines
- * @param {RegExp} regExp - Regular Expression to match against
- * @param {number} offset - Offset from start of the changelogLines array
- * @returns {number} - Index in changeLogLines or -1 if we can't locate the index
- */
-function findIndexOfFirstMatchingLine (changelogLines, regExp, offset = 0) {
-  const foundIndex = changelogLines
-    .slice(offset)
-    .findIndex((line) => line.match(regExp))
-
-  return foundIndex ? foundIndex + offset : -1
+  return [startIndex, startIndex + endIndex + 1]
 }
 
 /**
