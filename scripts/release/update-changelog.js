@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 
-const { updateChangelog } = require('./release/changelog-release-helper.js')
+const { updateChangelog } = require('./changelog-release-helper.js')
 
 // npm exposes these environment variable as part of the lifecycle hooks
 // (https://github.com/npm/cli/blob/c97b39b1e3436cd20a67ab5f4012a5f395c538b9/workspaces/libnpmversion/lib/version.js#L100-L103)
