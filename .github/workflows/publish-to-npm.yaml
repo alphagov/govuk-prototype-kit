@@ -40,7 +40,7 @@ jobs:
       - name: Generate tag
         id: generate_tag
         run: |
-          TAG=$(./scripts/generate-npm-tag.sh)
+          TAG=$(./scripts/release/generate-npm-tag.sh)
           echo "NPM_TAG=${TAG}" >> $GITHUB_OUTPUT
 
       - name: Check dependencies are installed to bundle
