@@ -210,9 +210,8 @@ function buildHeadingRegexQuery (identifier) {
 function findIndexOfFirstMatchingLine (changelogLines, regExp, offset = 0) {
   const foundIndex = changelogLines
     .slice(offset)
-    .map((x, index) => (x.match(regExp) ? index : undefined))
-    .filter((x) => x !== undefined)
-    .at(0)
+    .findIndex((line) => line.match(regExp))
+
   return foundIndex ? foundIndex + offset : -1
 }
 
