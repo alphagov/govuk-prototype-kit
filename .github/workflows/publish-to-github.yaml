@@ -19,3 +19,91 @@ jobs:
   publish-release-to-github:
     name: Publish release to GitHub
     runs-on: ubuntu-24.04
+    environment: ${{ inputs.environment == 'production' && 'production' || null }}
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-tags: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false # never use caching in release builds
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config --global user.name '${{ github.actor }}'
+          git config --global user.email '${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com'
+
+      - name: Create GitHub tag
+        id: create-github-tag
+        run: |
+          ALL_PACKAGE_VERSION=$(npm pkg get version | tr -d '"')
+          TAG="v${ALL_PACKAGE_VERSION}"
+
+          if [ $(git tag -l "$TAG") ]; then
+            echo "::error::Tag $TAG already exists. Please delete $TAG via the GitHub UI and re-run this workflow"
+            exit 1
+          else
+            echo "🗒 Tagging repo using tag version: $TAG ..."
+            git tag -a $TAG -m "GOV.UK Prototype Kit release $TAG"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} --tags
+            echo "🗒 Tag $TAG created and pushed to remote."
+            echo "GH_TAG=${TAG}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub archive
+        id: archive
+        run: |
+          ARCHIVE_FILE_PATH="./release-${{ steps.create-github-tag.outputs.GH_TAG }}.zip"
+          git archive -o "${ARCHIVE_FILE_PATH}" HEAD:dist
+          echo "ARCHIVE_FILE_PATH=${ARCHIVE_FILE_PATH}" >> $GITHUB_OUTPUT
+
+      - name: Upload GitHub archive artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: ${{steps.archive.outputs.ARCHIVE_FILE_PATH}}
+          archive: false # file is already compressed
+
+      - name: Generate release notes
+        uses: actions/github-script@v9.0.0
+        with:
+          script: |
+            const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/release/changelog-release-helper.js')
+
+            await generateReleaseNotes('CHANGELOG.md', '${{ steps.create-github-tag.outputs.GH_TAG }}')
+
+      - name: Print information on release notes
+        run: |
+          {
+            echo "## Generated release notes"
+            cat release-notes-body
+            echo '## Files in archive'
+            echo '```bash'
+            tree dist
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: Create GitHub release
+        if: inputs.environment == 'production'
+        run: |
+          GH_TAG=${{ steps.create-github-tag.outputs.GH_TAG }}
+          RELEASE_BODY=$(cat release-notes-body)
+          ARCHIVE_FILE_PATH="${{steps.archive.outputs.ARCHIVE_FILE_PATH}}"
+
+          if gh release view "$GH_TAG" > /dev/null 2>&1; then
+            echo "::error::Release $GH_TAG already exists. Please delete the release and tag via the GitHub UI and re-run this workflow"
+            exit 1
+          else
+            gh release create "$GH_TAG" "$ARCHIVE_FILE_PATH" --title "${GH_TAG}" --notes "$RELEASE_BODY"
+          fi
