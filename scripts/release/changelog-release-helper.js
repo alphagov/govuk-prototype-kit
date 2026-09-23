@@ -40,7 +40,7 @@ function updateChangelog (path, newVersion, previousVersion) {
   if (!versionDiff) {
     throw new Error(processingErrorMessage)
   }
-  const newVersionTitle = `## v${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
+  const newVersionTitle = `## ${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
 
   const newLines = [newVersionTitle, '']
   if (newVersionIsAPrerelease) {
@@ -159,24 +159,21 @@ function readFileLinesSync (path) {
  * @returns {Array<number>} - Indexes in the changelog identifying start and end lines
  */
 function getChangelogLineIndexes (changelogLines, heading = undefined) {
-  // Build regex for finding the correct heading in the changelog
-  // If a heading hasn't been passed to the function, use 'Unreleased'
-  const defaultHeadingRegex = '\\d+\\.\\d+\\.\\d+(-.+\\.\\d+)?'
+  const startHeading = `## ${heading ?? 'Unreleased'}`
 
   const startIndex = changelogLines
-    .findIndex((line) => line.startsWith(`## ${heading ?? 'Unreleased'}`))
+    .findIndex((line) => line.startsWith(startHeading))
 
   if (startIndex === -1) {
-    console.error('Could not find', heading, 'in', changelogLines);
-    throw new Error(processingErrorMessage)
+    throw new Error(`Could not find ${startHeading} in CHANGELOG lines`)
   }
 
   const endIndex = changelogLines
     .slice(startIndex + 1) // Start next line from the start heading
-    .findIndex((line) => line.match(defaultHeadingRegex))
+    .findIndex((line) => line.startsWith('## '))
 
   if (endIndex === -1) {
-    throw new Error(processingErrorMessage)
+    throw new Error(`Could not find heading after line ${startIndex} in CHANGELOG`)
   }
 
   return [startIndex, startIndex + endIndex + 1]
