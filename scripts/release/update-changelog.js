@@ -15,4 +15,4 @@ console.log(
   `Updating changelog from version ${previousVersion} to ${newVersion}...`
 )
 
-updateChangelog(resolve(__dirname, '../CHANGELOG.md'), newVersion, previousVersion)
+updateChangelog(resolve(__dirname, '../../CHANGELOG.md'), newVersion, previousVersion)
