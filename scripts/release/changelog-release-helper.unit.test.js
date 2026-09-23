@@ -237,7 +237,7 @@ describe('Changelog release helper', () => {
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining(
-          'Pull request generated on behalf of @bingbong by [run 12345](https://github.com/alphagov/govuk-frontend/actions/runs/12345) of the [Build release workflow](https://github.com/alphagov/govuk-frontend/actions/workflows/build-release.yml)'
+          'Pull request generated on behalf of @bingbong by [run 12345](https://github.com/alphagov/govuk-prototype-kit/actions/runs/12345) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)'
         )
       )
     })

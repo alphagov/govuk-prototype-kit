@@ -114,7 +114,7 @@ function generateReleaseNotes (path, newVersion, options) {
   if (options && options.actor && options.runId) {
     releaseNotes.push('')
     releaseNotes.push(
-      `Pull request generated on behalf of @${options.actor} by [run ${options.runId}](https://github.com/alphagov/govuk-frontend/actions/runs/${options.runId}) of the [Build release workflow](https://github.com/alphagov/govuk-frontend/actions/workflows/build-release.yml)`
+      `Pull request generated on behalf of @${options.actor} by [run ${options.runId}](https://github.com/alphagov/govuk-prototype-kit/actions/runs/${options.runId}) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)`
     )
   }
 
