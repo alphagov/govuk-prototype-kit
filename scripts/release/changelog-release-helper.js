@@ -172,6 +172,7 @@ function getChangelogLineIndexes (changelogLines, heading = undefined) {
   )
 
   if (startIndex === -1) {
+    console.error('Could not find', headingRegex, 'in', changelogLines);
     throw new Error(processingErrorMessage)
   }
 
