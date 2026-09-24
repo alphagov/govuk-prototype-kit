@@ -18,6 +18,7 @@ usage-data-config.json
 /govuk-prototype-kit*.tgz
 /govuk-prototype-kit.spdx.json
 tmp/
+release-notes-body
 
 # General ignores
 .DS_Store

@@ -17,14 +17,14 @@ describe('Changelog release helper', () => {
   })
 
   beforeEach(() => {
-    jest.mocked(fs.readFileSync).mockReturnValue(`
+    jest.mocked(fs.readFileSync).mockReturnValue(outdent`
       ## Unreleased
 
       ### Fixes
 
       Bing bong
 
-      ## v3.0.0 (Breaking release)
+      ## 3.0.0 (Breaking release)
     `)
   })
 
@@ -33,7 +33,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## v3.1.0 (Feature release)')
+        expect.stringContaining('## 3.1.0 (Feature release)')
       )
     })
 
@@ -41,7 +41,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## v3.1.0-beta.0 (Beta release)')
+        expect.stringContaining('## 3.1.0-beta.0 (Beta release)')
       )
     })
 
@@ -49,67 +49,63 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-rc.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## v3.1.0-rc.0 (Release candidate)')
+        expect.stringContaining('## 3.1.0-rc.0 (Release candidate)')
       )
     })
 
     it('copies the previous release type if the new version is a prerelease increment', () => {
-      jest.mocked(fs.readFileSync).mockReturnValue(`
+      jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
         ### Fixes
 
         Bing bong
 
-        ## v3.1.0-beta.0 (Beta release)
+        ## 3.1.0-beta.0 (Beta release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## v3.1.0-beta.1 (Beta release)')
+        expect.stringContaining('## 3.1.0-beta.1 (Beta release)')
       )
     })
 
     it('displays a warning to not use non-stable releases in production', () => {
-      jest.mocked(fs.readFileSync).mockReturnValue(`
+      jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
         ### Fixes
 
         Bing bong
 
-        ## v3.1.0-beta.0 (Beta release)
+        ## 3.1.0-beta.0 (Beta release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
-          ## v3.1.0-beta.1 (Beta release)
+          ## 3.1.0-beta.1 (Beta release)
 
           > [!WARNING]
-          > Do not use in production.
+          > This is a prerelease. Do not publish prototypes using this version.
           > Use this release to prepare for the changes coming in version \`3.1.0\`.
 
-          To install this version with npm
+          To install this version in an existing prototype:
         `)
-      )
-      expect(fs.writeFileSync).toHaveBeenCalledWith(
-        CHANGELOG_FILE_PATH,
-        expect.stringContaining('To install this version with npm')
       )
     })
 
     it('does not display a warning when the change is a stable release', () => {
-      jest.mocked(fs.readFileSync).mockReturnValue(`
+      jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
         ### Fixes
 
         Bing bong
 
-        ## v3.1.0 (Feature release)
+        ## 3.1.0 (Feature release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
@@ -120,23 +116,23 @@ describe('Changelog release helper', () => {
     })
 
     it('has instructions for how to install the release', () => {
-      jest.mocked(fs.readFileSync).mockReturnValue(`
+      jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
         ### Fixes
 
         Bing bong
 
-        ## v3.1.0 (Feature release)
+        ## 3.1.0 (Feature release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
-            ## v3.1.1 (Fix release)
+            ## 3.1.1 (Fix release)
 
-            To install this version with npm, run \`npm install govuk-frontend@3.1.1\`. You can also find more information about [how to stay up to date](https://frontend.design-system.service.gov.uk/staying-up-to-date/#updating-to-the-latest-version) in our documentation.
+            You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.
         `)
       )
     })
@@ -174,16 +170,16 @@ describe('Changelog release helper', () => {
 
   describe('Generate release notes', () => {
     it('writes release notes from the changelog from the last version heading', () => {
-      jest.mocked(fs.readFileSync).mockReturnValue(`
+      jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
-        ## v3.1.0 (Feature release)
+        ## 3.1.0 (Feature release)
 
         ### Fixes
 
         Bing bong
 
-        ## v3.0.0 (Breaking release)
+        ## 3.0.0 (Breaking release)
       `)
 
       generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0')
@@ -194,16 +190,16 @@ describe('Changelog release helper', () => {
     })
 
     it('writes release notes from the changelog from the last version heading if that version is a pre-release', () => {
-      jest.mocked(fs.readFileSync).mockReturnValue(`
+      jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
-        ## v3.1.0-beta.0 (Feature release)
+        ## 3.1.0-beta.0 (Feature release)
 
         ### Fixes
 
         Bing bong
 
-        ## v3.0.0 (Breaking release)
+        ## 3.0.0 (Breaking release)
       `)
 
       generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0-beta.0')
@@ -241,7 +237,7 @@ describe('Changelog release helper', () => {
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining(
-          'Pull request generated on behalf of @bingbong by [run 12345](https://github.com/alphagov/govuk-frontend/actions/runs/12345) of the [Build release workflow](https://github.com/alphagov/govuk-frontend/actions/workflows/build-release.yml)'
+          'Pull request generated on behalf of @bingbong by [run 12345](https://github.com/alphagov/govuk-prototype-kit/actions/runs/12345) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)'
         )
       )
     })

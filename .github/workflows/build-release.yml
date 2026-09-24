@@ -65,18 +65,21 @@ jobs:
           # defined in the package.json will be run which then updates the CHANGELOG.
 
           # Save the new version number for access in future steps
-          echo "PACKAGE_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(npm pkg get version | jq -r)" >> $GITHUB_ENV
+
+      - name: Upload CHANGELOG as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: CHANGELOG.md
+          archive: false # Saves having to decompress the CHANGELOG
 
       - name: Generate release notes
         uses: actions/github-script@v9.0.0
         with:
           script: |
-            const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/release/changelog-release-helper.mjs')
+            const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/release/changelog-release-helper.js')
 
             generateReleaseNotes('CHANGELOG.md', process.env.PACKAGE_VERSION, { actor: '${{ github.actor }}', runId: '${{ github.run_id }}' })
-
-      - name: Build release
-        run: npm run build:release
 
       - name: Output PR content in action summary
         run: |
@@ -89,12 +92,6 @@ jobs:
             git diff
             echo '```'
           } >> $GITHUB_STEP_SUMMARY
-
-      - name: Upload CHANGELOG as artifact
-        uses: actions/upload-artifact@v7
-        with:
-          path: CHANGELOG.md
-          archive: false # Saves having to decompress the CHANGELOG
 
       - name: Configure Git
         run: |

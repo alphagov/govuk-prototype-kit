@@ -40,24 +40,36 @@ function updateChangelog (path, newVersion, previousVersion) {
   if (!versionDiff) {
     throw new Error(processingErrorMessage)
   }
-  const newVersionTitle = `## v${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
+  const newVersionTitle = `## ${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
 
   const newLines = [newVersionTitle, '']
   if (newVersionIsAPrerelease) {
     newLines.push(
       '> [!WARNING]',
-      '> Do not use in production.',
+      '> This is a prerelease. Do not publish prototypes using this version.',
       `> Use this release to prepare for the changes coming in version \`${removePrereleaseFlag(validatedNewVersion)}\`.`,
       ''
     )
+    // Add content for installing pre-releases
+    newLines.push(
+      'To install this version in an existing prototype:',
+      '',
+      `- navigate to your prototype folder in a terminal and run the command: \`npm install govuk-prototype-kit@${validatedNewVersion}\``,
+      '',
+      'To create new prototypes with this version:',
+      '',
+      '1. Create a new folder for your prototype in a terminal.',
+      '2. Navigate to your prototype folder.',
+      `3. Run the command \`npx govuk-prototype-kit@${validatedNewVersion} create --version ${validatedNewVersion}\`.`,
+      ''
+    )
+  } else {
+    // Add content on how to install the release
+    newLines.push(
+      'You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.',
+      ''
+    )
   }
-
-  // Add content on how to install the release
-  newLines.push(
-    `To install this version with npm, run \`npm install govuk-frontend@${validatedNewVersion}\`. ` +
-      'You can also find more information about [how to stay up to date](https://frontend.design-system.service.gov.uk/staying-up-to-date/#updating-to-the-latest-version) in our documentation.',
-    ''
-  )
 
   // Inject the new lines into the CHANGELOG
   changelogLines.splice(startIndex + 1, 0, '', ...newLines)
@@ -102,7 +114,7 @@ function generateReleaseNotes (path, newVersion, options) {
   if (options && options.actor && options.runId) {
     releaseNotes.push('')
     releaseNotes.push(
-      `Pull request generated on behalf of @${options.actor} by [run ${options.runId}](https://github.com/alphagov/govuk-frontend/actions/runs/${options.runId}) of the [Build release workflow](https://github.com/alphagov/govuk-frontend/actions/workflows/build-release.yml)`
+      `Pull request generated on behalf of @${options.actor} by [run ${options.runId}](https://github.com/alphagov/govuk-prototype-kit/actions/runs/${options.runId}) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)`
     )
   }
 
@@ -147,60 +159,24 @@ function readFileLinesSync (path) {
  * @returns {Array<number>} - Indexes in the changelog identifying start and end lines
  */
 function getChangelogLineIndexes (changelogLines, heading = undefined) {
-  // Build regex for finding the correct heading in the changelog
-  // If a heading hasn't been passed to the function, use 'Unreleased'
-  const defaultHeadingRegex = '\\d+\\.\\d+\\.\\d+(-.+\\.\\d+)?'
-  const headingRegex = heading
-    ? heading.replaceAll('.', '\\.').replace('v', '')
-    : 'Unreleased'
+  const startHeading = `## ${heading ?? 'Unreleased'}`
 
-  const startIndex = findIndexOfFirstMatchingLine(
-    changelogLines,
-    buildHeadingRegexQuery(headingRegex)
-  )
+  const startIndex = changelogLines
+    .findIndex((line) => line.startsWith(startHeading))
 
   if (startIndex === -1) {
-    throw new Error(processingErrorMessage)
+    throw new Error(`Could not find ${startHeading} in CHANGELOG lines`)
   }
 
-  const endIndex = findIndexOfFirstMatchingLine(
-    changelogLines,
-    buildHeadingRegexQuery(defaultHeadingRegex),
-    startIndex + 1
-  )
+  const endIndex = changelogLines
+    .slice(startIndex + 1) // Start next line from the start heading
+    .findIndex((line) => line.startsWith('## '))
 
   if (endIndex === -1) {
-    throw new Error(processingErrorMessage)
+    throw new Error(`Could not find heading after line ${startIndex} in CHANGELOG`)
   }
 
-  return [startIndex, endIndex]
-}
-
-/**
- * Builds the search query for headings when getting indexes in the changelog
- *
- * @param {string} identifier - Either the semantic version or 'Unreleased'
- * @returns {RegExp} - Complete heading regex including hashes and release type formatting
- */
-function buildHeadingRegexQuery (identifier) {
-  return new RegExp(`^\\s*#+\\s+v?${identifier}\\s*(\\(.+\\))?$`, 'i')
-}
-
-/**
- * Get the first matching line in the changelog that matches the passed regex
- *
- * @param {Array<string>} changelogLines - Produced from getChangelogLines
- * @param {RegExp} regExp - Regular Expression to match against
- * @param {number} offset - Offset from start of the changelogLines array
- * @returns {number} - Index in changeLogLines or -1 if we can't locate the index
- */
-function findIndexOfFirstMatchingLine (changelogLines, regExp, offset = 0) {
-  const foundIndex = changelogLines
-    .slice(offset)
-    .map((x, index) => (x.match(regExp) ? index : undefined))
-    .filter((x) => x !== undefined)
-    .at(0)
-  return foundIndex ? foundIndex + offset : -1
+  return [startIndex, startIndex + endIndex + 1]
 }
 
 /**
