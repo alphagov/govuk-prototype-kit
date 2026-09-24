@@ -65,7 +65,7 @@ jobs:
           # defined in the package.json will be run which then updates the CHANGELOG.
 
           # Save the new version number for access in future steps
-          echo "PACKAGE_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(npm pkg get version | jq -r)" >> $GITHUB_ENV
 
       - name: Upload CHANGELOG as artifact
         uses: actions/upload-artifact@v7
