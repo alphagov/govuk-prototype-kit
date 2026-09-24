@@ -81,9 +81,6 @@ jobs:
 
             generateReleaseNotes('CHANGELOG.md', process.env.PACKAGE_VERSION, { actor: '${{ github.actor }}', runId: '${{ github.run_id }}' })
 
-      - name: Build release
-        run: npm run build:release
-
       - name: Output PR content in action summary
         run: |
           {
