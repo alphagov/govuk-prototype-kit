@@ -90,8 +90,8 @@ describe('Plugin tests', () => {
   })
 
   installPluginTests({
-    plugin: '@govuk-prototype-kit/task-list',
-    version: '1.0.0',
-    templates: [{ name: 'Task list', filename: 'task-list.html' }]
+    plugin: '@govuk-prototype-kit/step-by-step',
+    version: '3.0.0',
+    templates: [{ name: 'Step by step navigation', filename: 'step-by-step-navigation.html' }]
   })
 })

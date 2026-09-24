@@ -1,8 +1,8 @@
 const { replaceInFile, waitForApplication, restoreStarterFiles, log } = require('../../utils')
 const path = require('path')
 const { performPluginAction } = require('../plugin-utils')
-const plugin = '@govuk-prototype-kit/task-list'
-const pluginVersion = '1.1.1'
+const plugin = '@govuk-prototype-kit/step-by-step'
+const pluginVersion = '2.0.0'
 const originalText = '"dependencies": {'
 const replacementText = `"dependencies": { "${plugin}": "${pluginVersion}",`
 const pkgJsonFile = path.join(Cypress.expose('projectFolder'), 'package.json')
@@ -24,6 +24,6 @@ describe('Allow upgrade in URLs', () => {
       .click()
 
     log('Force the plugins to be installed with an npm install')
-    performPluginAction('update', plugin, 'Task List')
+    performPluginAction('update', plugin, 'Step By Step')
   })
 })
