@@ -78,50 +78,6 @@ function updateChangelog (path, newVersion, previousVersion) {
 }
 
 /**
- * Generates release notes from the most recent changelog
- *
- * Creates a text file 'release-notes-body' from the content between either the
- * release heading passed to it by newVersion or the 'Unreleased' heading and the
- * following release heading if newVersion is tagged as internal
- *
- * @param {string} path - Path to the CHANGELOG file
- * @param {string} newVersion - Version used to find start point for release notes
- * @param {object} [options] - Release notes options
- * @param {string} [options.actor] - Github username of user who ran workflow
- * @param {string} [options.runId] - ID of Build release workflow to reference
- */
-function generateReleaseNotes (path, newVersion, options) {
-  // Get the identifier from the version if there is one as we'll use this to
-  // change what we pass to getChangelogLineIndexes if the version has an
-  // 'internal' tag
-  const identifier = versionIsAPrerelease(newVersion)
-    ? getPrereleaseIdentifier(newVersion)
-    : undefined
-  const changelogLines = readFileLinesSync(path)
-  const [startIndex, previousReleaseLineIndex] = getChangelogLineIndexes(
-    changelogLines,
-    identifier === 'internal' ? undefined : newVersion
-  )
-
-  const releaseNotes = changelogLines
-    .slice(startIndex + 1, previousReleaseLineIndex - 1)
-    .map((line) =>
-      line.replace(/^\s+/, '').startsWith('##')
-        ? line.replace(/^\s+/, '').substring(1)
-        : line
-    )
-
-  if (options && options.actor && options.runId) {
-    releaseNotes.push('')
-    releaseNotes.push(
-      `Pull request generated on behalf of @${options.actor} by [run ${options.runId}](https://github.com/alphagov/govuk-prototype-kit/actions/runs/${options.runId}) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)`
-    )
-  }
-
-  writeFileSync('./release-notes-body', releaseNotes.join('\n'))
-}
-
-/**
  * Validates the version number that it is a semantic versioned string.
  *
  * @param {string} version - version number
@@ -271,5 +227,8 @@ function capitalise (word) {
 
 module.exports = {
   updateChangelog,
-  generateReleaseNotes
+  versionIsAPrerelease,
+  getPrereleaseIdentifier,
+  readFileLinesSync,
+  getChangelogLineIndexes
 }
