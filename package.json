@@ -92,6 +92,7 @@
     "tar-stream": "^3.2.1"
   },
   "devDependencies": {
+    "@govuk-prototype-kit/release": "*",
     "cheerio": "^1.2.0",
     "cross-env": "^10.1.0",
     "cypress": "^16.0.0",
@@ -132,5 +133,6 @@
   },
   "allowScripts": {
     "cypress@16.0.0": true
-  }
+  },
+  "workspaces": ["packages/*"]
 }
