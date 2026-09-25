@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+## 14.1.0-test.0 (Test release)
+
+> [!WARNING]
+> This is a prerelease. Do not publish prototypes using this version.
+> Use this release to prepare for the changes coming in version `14.1.0`.
+
+To install this version in an existing prototype:
+
+- navigate to your prototype folder in a terminal and run the command: `npm install govuk-prototype-kit@14.1.0-test.0`
+
+To create new prototypes with this version:
+
+1. Create a new folder for your prototype in a terminal.
+2. Navigate to your prototype folder.
+3. Run the command `npx govuk-prototype-kit@14.1.0-test.0 create --version 14.1.0-test.0`.
+
+
 ### New features
 
 #### Use `pkg:` URLs in Sass
