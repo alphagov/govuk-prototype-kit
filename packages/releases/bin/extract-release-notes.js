@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const { resolve } = require('node:path')
-const {writeFileSync} = require('node:fs')
 
 /**
  * Extracts the release notes from a CHANGELOG file
@@ -8,11 +7,9 @@ const {writeFileSync} = require('node:fs')
 const { readFileLinesSync, versionIsAPrerelease, getPrereleaseIdentifier, getChangelogLineIndexes } = require('../changelog-release-helper.js')
 
 if (require.main === module) {
-    (async () => {
-      const changelogPath = resolve(process.argv[2] ?? 'CHANGELOG.md')
+  const changelogPath = resolve(process.argv[2] ?? 'CHANGELOG.md')
 
-      process.stdout.write(generateReleaseNotes(changelogPath, process.env.PACKAGE_VERSION, { actor: process.env.GITHUB_ACTOR, runId: process.env.GITHUB_RUN_ID }))``
-    })   
+  process.stdout.write(generateReleaseNotes(changelogPath, process.env.PACKAGE_VERSION, { actor: process.env.GITHUB_ACTOR, runId: process.env.GITHUB_RUN_ID }))
 }
 
 /**
