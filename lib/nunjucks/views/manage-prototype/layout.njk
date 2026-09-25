@@ -24,10 +24,13 @@
   {% block pageScripts %}{% endblock %}
 {% endblock %}
 
-{% block header %}
+{% block govukHeader %}
   {{ govukHeader({
     productName: "Prototype Kit"
   }) }}
+{% endblock %}
+
+{% block govukServiceNavigation %}
   {%- if links | length %}
     {{ govukServiceNavigation({
       serviceName: serviceName,
