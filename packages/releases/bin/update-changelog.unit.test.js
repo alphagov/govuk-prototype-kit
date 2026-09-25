@@ -4,13 +4,13 @@ const { outdent } = require('outdent')
 
 const {
   updateChangelog
-} = require('./changelog-release-helper.js')
+} = require('./update-changelog.js')
 
 jest.mock('fs')
 
 const CHANGELOG_FILE_PATH = 'path/to/CHANGELOG.md'
 
-describe('Changelog release helper', () => {
+describe('updateChangelog', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
