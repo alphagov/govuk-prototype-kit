@@ -9,8 +9,8 @@ const {
   provePluginUninstalled,
   provePluginInstalledOldVersion
 } = require('../plugin-utils')
-const plugin = '@govuk-prototype-kit/task-list'
-const pluginVersion = '1.1.1'
+const plugin = '@govuk-prototype-kit/step-by-step'
+const pluginVersion = '3.0.0'
 const originalText = '"dependencies": {'
 const replacementText = `"dependencies": { "${plugin}": "${pluginVersion}",`
 const pkgJsonFile = path.join(Cypress.expose('projectFolder'), 'package.json')

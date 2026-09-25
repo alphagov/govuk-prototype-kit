@@ -10,6 +10,10 @@ You can now use [`pkg:` URLs](https://sass-lang.com/blog/announcing-pkg-importer
 
 - [#2669: Add support for `pkg:` URLs in Sass](https://github.com/alphagov/govuk-prototype-kit/pull/2669)
 
+### Fixes
+
+- [#2676: Remove deprecated @govuk-prototype-kit/task-list known plugin](https://github.com/alphagov/govuk-prototype-kit/pull/2539)
+
 ## 14.0.0-beta.0
 
 > [!WARNING]
