@@ -1,9 +1,7 @@
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {% set assetPath = '/manage-prototype/dependencies/govuk-frontend' + govukFrontendInternal.assetPath -%}
-{% if not 'assets/rebrand' in assetPath %}
-  {% set assetPath = assetPath + '/rebrand' %}
-{% endif %}
+
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" -%}
 
 {% block pageTitle %}
@@ -26,10 +24,13 @@
   {% block pageScripts %}{% endblock %}
 {% endblock %}
 
-{% block header %}
+{% block govukHeader %}
   {{ govukHeader({
     productName: "Prototype Kit"
   }) }}
+{% endblock %}
+
+{% block govukServiceNavigation %}
   {%- if links | length %}
     {{ govukServiceNavigation({
       serviceName: serviceName,

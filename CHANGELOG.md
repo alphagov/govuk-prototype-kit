@@ -15,6 +15,10 @@ You can now use [`pkg:` URLs](https://sass-lang.com/blog/announcing-pkg-importer
 - [#2678: Remove deprecated @govuk-prototype-kit/task-list known plugin](https://github.com/alphagov/govuk-prototype-kit/pull/2678)
 - [#2683: Remove unnecessary rebrand configuration from new Prototypes](https://github.com/alphagov/govuk-prototype-kit/pull/2683)
 
+### Dependency updates
+
+- [#2682: Update GOV.UK Frontend to version 6 in the management UI](https://github.com/alphagov/govuk-prototype-kit/pull/2682)
+
 ## 14.0.0-beta.0
 
 > [!WARNING]
