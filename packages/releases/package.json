@@ -2,6 +2,7 @@
     "name": "@govuk-prototype-kit/release",
     "private": true,
     "bin": {
-        "generate-npm-tag": "bin/generate-npm-tag.sh"
+        "generate-npm-tag": "bin/generate-npm-tag.sh",
+        "update-changelog": "bin/update-changelog.js"
     }
 }

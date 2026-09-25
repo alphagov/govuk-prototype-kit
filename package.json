@@ -43,7 +43,7 @@
     "lint": "standard . bin/cli",
     "lint:fix": "npm run lint -- --fix",
     "prepack": "npm ls --all",
-    "postversion": "node scripts/release/update-changelog.js",
+    "postversion": "update-changelog",
     "rapidtest": "jest --bail",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
@@ -134,5 +134,7 @@
   "allowScripts": {
     "cypress@16.0.0": true
   },
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ]
 }
