@@ -8,7 +8,8 @@
 
 .govuk-prototype-kit-error-code {
   display: block;
-  border: 1px solid black;
+  color: govuk-functional-colour(text);
+  border: 1px solid;
   padding: 1em;
   overflow: auto;
 
@@ -19,14 +20,14 @@
 }
 
 .govuk-prototype-kit-error-code:focus{
-  outline: 3px solid govuk-colour("yellow");
+  outline: 3px solid govuk-functional-colour(focus);
   outline-offset: 0;
   box-shadow: inset 0 0 0 2px;
 }
 
 #govuk-prototype-kit-error-line {
-  background: govuk-colour("red");
-  color: govuk-colour("white");
+  background: govuk-functional-colour(error);
+  color: govuk-functional-colour(inverse-text);
   padding-right: 1em;
 }
 
