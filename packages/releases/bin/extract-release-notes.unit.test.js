@@ -66,7 +66,6 @@ describe('generateReleaseNotes', () => {
 
   it('increases the heading levels from the changelog by one', () => {
     const releaseNotes = generateReleaseNotes(CHANGELOG_FILE_PATH, 'Unreleased')
-    console.log(releaseNotes);
     // The release notes should no longer contain the original heading
     expect(releaseNotes).not.toContain('### Fixes')
     // But one level up
@@ -79,7 +78,7 @@ describe('generateReleaseNotes', () => {
       runId: '12345'
     })
     expect(releaseNotes).toContain(
-        'Pull request generated on behalf of @bingbong by [run 12345](https://github.com/alphagov/govuk-prototype-kit/actions/runs/12345) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)'
+      'Pull request generated on behalf of @bingbong by [run 12345](https://github.com/alphagov/govuk-prototype-kit/actions/runs/12345) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)'
     )
   })
 })

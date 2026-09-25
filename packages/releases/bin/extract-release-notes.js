@@ -5,6 +5,7 @@ const { resolve } = require('node:path')
  * Extracts the release notes from a CHANGELOG file
  */
 const { readFileLinesSync, versionIsAPrerelease, getPrereleaseIdentifier, getChangelogLineIndexes } = require('../changelog-release-helper.js')
+const config = require('../config.js')
 
 if (require.main === module) {
   const changelogPath = resolve(process.argv[2] ?? 'CHANGELOG.md')
@@ -50,7 +51,7 @@ function generateReleaseNotes (path, newVersion, options) {
   if (options && options.actor && options.runId) {
     releaseNotes.push('')
     releaseNotes.push(
-      `Pull request generated on behalf of @${options.actor} by [run ${options.runId}](https://github.com/alphagov/govuk-prototype-kit/actions/runs/${options.runId}) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)`
+      config.prAttribution(options)
     )
   }
 

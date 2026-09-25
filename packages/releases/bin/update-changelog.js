@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
 const { resolve } = require('node:path')
-const {writeFileSync} = require('node:fs')
+const { writeFileSync } = require('node:fs')
 
 const semver = require('semver')
 
 const { readFileLinesSync, versionIsAPrerelease, getPrereleaseIdentifier, getChangelogLineIndexes } = require('../changelog-release-helper.js')
+
+const config = require('../config.js')
 
 if (require.main === module) {
   // npm exposes these environment variable as part of the lifecycle hooks
@@ -67,28 +69,18 @@ function updateChangelog (path, newVersion, previousVersion) {
   const newLines = [newVersionTitle, '']
   if (newVersionIsAPrerelease) {
     newLines.push(
-      '> [!WARNING]',
-      '> This is a prerelease. Do not publish prototypes using this version.',
-      `> Use this release to prepare for the changes coming in version \`${removePrereleaseFlag(validatedNewVersion)}\`.`,
+      config.prereleaseWarning(removePrereleaseFlag(validatedNewVersion)),
       ''
     )
     // Add content for installing pre-releases
     newLines.push(
-      'To install this version in an existing prototype:',
-      '',
-      `- navigate to your prototype folder in a terminal and run the command: \`npm install govuk-prototype-kit@${validatedNewVersion}\``,
-      '',
-      'To create new prototypes with this version:',
-      '',
-      '1. Create a new folder for your prototype in a terminal.',
-      '2. Navigate to your prototype folder.',
-      `3. Run the command \`npx govuk-prototype-kit@${validatedNewVersion} create --version ${validatedNewVersion}\`.`,
+      config.prereleaseInstallationInstructions(validatedNewVersion),
       ''
     )
   } else {
     // Add content on how to install the release
     newLines.push(
-      'You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.',
+      config.installationInstructions(),
       ''
     )
   }
@@ -116,7 +108,6 @@ function validateVersionNumber (version) {
 
   return validatedVersion
 }
-
 
 /**
  * Convert a standard SemVer increment word eg: major, minor or patch into the
