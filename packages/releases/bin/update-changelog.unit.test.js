@@ -5,6 +5,7 @@ const { outdent } = require('outdent')
 const {
   updateChangelog
 } = require('./update-changelog.js')
+const { VersionBump } = require('../version-bump.js')
 
 jest.mock('fs')
 
@@ -29,7 +30,7 @@ describe('updateChangelog', () => {
 
   describe('Update changelog', () => {
     it('adds a new heading to the changelog for the new version', () => {
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.0', '3.0.0'))
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0 (Feature release)')
@@ -37,7 +38,7 @@ describe('updateChangelog', () => {
     })
 
     it('prefixes a new heading with a beta pre-release identifier', () => {
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.0-beta.0', '3.0.0'))
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0-beta.0 (Beta release)')
@@ -45,7 +46,7 @@ describe('updateChangelog', () => {
     })
 
     it('prefixes a new heading with a release candidate pre-release identifier', () => {
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-rc.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.0-rc.0', '3.0.0'))
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0-rc.0 (Release candidate)')
@@ -63,7 +64,7 @@ describe('updateChangelog', () => {
         ## v3.1.0-beta.0 (Beta release)
       `)
 
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.0-beta.1', '3.1.0-beta.0'))
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('## v3.1.0-beta.1 (Beta release)')
@@ -81,7 +82,7 @@ describe('updateChangelog', () => {
         ## v3.1.0-beta.0 (Beta release)
       `)
 
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.0-beta.1', '3.1.0-beta.0'))
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
@@ -107,7 +108,7 @@ describe('updateChangelog', () => {
         ## v3.1.0 (Feature release)
       `)
 
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.1', '3.1.0'))
       expect(fs.writeFileSync).not.toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining('> [!WARNING]')
@@ -125,7 +126,7 @@ describe('updateChangelog', () => {
         ## v3.1.0 (Feature release)
       `)
 
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.1', '3.1.0'))
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
@@ -139,7 +140,7 @@ describe('updateChangelog', () => {
     it('does not change the changelog if the provided version is an internal pre-release', () => {
       const consoleLogSpy = jest.spyOn(console, 'log')
 
-      updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-internal.0', '3.0.0')
+      updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.1.0-internal.0', '3.0.0'))
       expect(consoleLogSpy).toHaveBeenCalledWith(
         'This is an internal release, intended for testing only. The changelog will therefore not be updated.'
       )
@@ -148,7 +149,7 @@ describe('updateChangelog', () => {
 
     it('throws an error if the newVersion is not a semantic version string', () => {
       expect(() => {
-        updateChangelog(CHANGELOG_FILE_PATH, 'a.b.c', '3.0.0')
+        updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('a.b.c', '3.0.0'))
       }).toThrow(
         new Error(
           'Version number "a.b.c" could not be parsed as a semantic versioned string.'
@@ -158,7 +159,7 @@ describe('updateChangelog', () => {
 
     it('throws an error if the previousVersion is not a semantic version string', () => {
       expect(() => {
-        updateChangelog(CHANGELOG_FILE_PATH, '3.0.0', 'x.y.z')
+        updateChangelog(CHANGELOG_FILE_PATH, new VersionBump('3.0.0', 'x.y.z'))
       }).toThrow(
         new Error(
           'Version number "x.y.z" could not be parsed as a semantic versioned string.'
