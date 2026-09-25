@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 const { resolve } = require('node:path')
-const { writeFileSync } = require('node:fs')
+const { writeFileSync, readFileSync } = require('node:fs')
 
-const semver = require('semver')
-
-const { readFileLinesSync, versionIsAPrerelease, getPrereleaseIdentifier, getChangelogLineIndexes } = require('../changelog-release-helper.js')
+const { getChangelogLineIndexes } = require('../changelog-release-helper.js')
 
 const config = require('../config.js')
+const { VersionBump } = require('../version-bump.js')
 
 if (require.main === module) {
   // npm exposes these environment variable as part of the lifecycle hooks
@@ -41,113 +40,59 @@ if (require.main === module) {
  *   in versions to build the changelog title
  */
 function updateChangelog (path, newVersion, previousVersion) {
-  const validatedNewVersion = validateVersionNumber(newVersion)
-  const validatedPreviousVersion = validateVersionNumber(previousVersion)
 
-  // Skip the entire function if the release version is internal eg: 5.1.0-internal.0
-  const newVersionIsAPrerelease = versionIsAPrerelease(validatedNewVersion)
-  if (newVersionIsAPrerelease) {
-    const identifier = getPrereleaseIdentifier(validatedNewVersion)
+  const bump = new VersionBump(newVersion, previousVersion);
 
-    if (identifier === 'internal') {
-      console.log(
-        'This is an internal release, intended for testing only. The changelog will therefore not be updated.'
+  if (!bump.needsChangelogUpdate) {
+    console.log('This is an internal release, intended for testing only. The changelog will therefore not be updated.')
+    return
+  }
+
+  updateFile(path, (content) => {
+    const changelogLines = content.split('\n');
+
+    const [startIndex] = getChangelogLineIndexes(changelogLines)
+
+    const newVersionTitle = `## ${bump.newVersion} (${capitalise(bump.releaseLabel)})`
+
+    const newLines = [newVersionTitle, '']
+    if (bump.toPrerelease) {
+      newLines.push(
+        config.prereleaseWarning(bump.withoutPrereleaseTag),
+        ''
       )
-      return
+      // Add content for installing pre-releases
+      newLines.push(
+        config.prereleaseInstallationInstructions(bump.newVersion),
+        ''
+      )
+    } else {
+      // Add content on how to install the release
+      newLines.push(
+        config.installationInstructions(),
+        ''
+      )
     }
-  }
 
-  const changelogLines = readFileLinesSync(path)
-  const [startIndex] = getChangelogLineIndexes(changelogLines)
+    // Inject the new lines into the CHANGELOG
+    changelogLines.splice(startIndex + 1, 0, '', ...newLines)
 
-  const versionDiff = semver.diff(validatedNewVersion, validatedPreviousVersion)
-  if (!versionDiff) {
-    throw new Error(`New version (${validatedNewVersion}) and previous version (${validatedPreviousVersion}) are the same`)
-  }
-  const newVersionTitle = `## ${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
-
-  const newLines = [newVersionTitle, '']
-  if (newVersionIsAPrerelease) {
-    newLines.push(
-      config.prereleaseWarning(removePrereleaseFlag(validatedNewVersion)),
-      ''
-    )
-    // Add content for installing pre-releases
-    newLines.push(
-      config.prereleaseInstallationInstructions(validatedNewVersion),
-      ''
-    )
-  } else {
-    // Add content on how to install the release
-    newLines.push(
-      config.installationInstructions(),
-      ''
-    )
-  }
-
-  // Inject the new lines into the CHANGELOG
-  changelogLines.splice(startIndex + 1, 0, '', ...newLines)
-
-  writeFileSync(path, changelogLines.join('\n'))
+    return changelogLines.join('\n');
+  })
 }
 
 /**
- * Validates the version number that it is a semantic versioned string.
- *
- * @param {string} version - version number
- * @returns {string} - Validated semver of version
+ * Updates file at given path with the result from the given function
+ * 
+ * @param {string} path - The path of the file to update
+ * @param {string => string | null | undefined} callback - The function updating the content 
  */
-function validateVersionNumber (version) {
-  const validatedVersion = semver.valid(version)
-
-  if (!validatedVersion) {
-    throw new Error(
-      `Version number "${version}" could not be parsed as a semantic versioned string.`
-    )
+function updateFile(path, callback) {
+  const content = readFileSync(path, {encoding: 'utf-8'});
+  const updatedContent = callback(content);
+  if (updatedContent) {
+    writeFileSync(path, content)
   }
-
-  return validatedVersion
-}
-
-/**
- * Convert a standard SemVer increment word eg: major, minor or patch into the
- * wording we use for release titles.
- *
- * @param {string} incType - SemVer increment type
- * @param {string|null} version - SemVer version
- * @returns {string} - The reworded increment type
- */
-function convertIncTypeWord (incType, version) {
-  let rewordedIncType = incType
-
-  // If there's a prerelease flag e.g. 1.0.0-beta.0 use that to decide
-  const prereleaseIdentifier = getPrereleaseIdentifier(version)
-  if (prereleaseIdentifier) {
-    if (prereleaseIdentifier === 'rc') {
-      return 'release candidate'
-    }
-    rewordedIncType = prereleaseIdentifier
-  } else if (incType === 'major') {
-    rewordedIncType = 'breaking'
-  } else if (incType === 'minor') {
-    rewordedIncType = 'feature'
-  } else if (incType === 'patch') {
-    rewordedIncType = 'fix'
-  }
-
-  return `${rewordedIncType} release`
-}
-
-/**
- * Remove any pre-release flag from a version e.g. 1.0.0-alpha -> 1.0.0
- *
- * @param {string} version - version number
- * @returns {string} - version number without any pre-release flag
- */
-function removePrereleaseFlag (version) {
-  const parsedVersion = semver.parse(version)
-  parsedVersion.prerelease = []
-  return parsedVersion.format()
 }
 
 /**
