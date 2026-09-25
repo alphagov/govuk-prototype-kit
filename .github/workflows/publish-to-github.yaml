@@ -72,7 +72,7 @@ jobs:
         uses: actions/github-script@v9.0.0
         with:
           script: |
-            const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/release/changelog-release-helper.js')
+            const { generateReleaseNotes } = require('@govuk-prototype-kit/release/changelog-release-helper.js')
 
             await generateReleaseNotes('CHANGELOG.md', '${{ steps.create-github-tag.outputs.GH_TAG }}')
 
