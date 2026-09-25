@@ -1,4 +1,7 @@
 {
     "name": "@govuk-prototype-kit/release",
-    "private": true
+    "private": true,
+    "bin": {
+        "generate-npm-tag": "bin/generate-npm-tag.sh"
+    }
 }

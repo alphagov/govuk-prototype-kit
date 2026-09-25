@@ -19,7 +19,7 @@ describeIf(process.platform !== 'win32')('generate-npm-tag.sh', () => {
     ['latest-...', '4.0.0', 'latest-v4']
   ])('%s bump', async (label, version, expectedTag) => {
     const { stdout } = await exec(
-      `scripts/release/generate-npm-tag.sh ${version} ${highestReleasedVersion}`
+      `npm exec generate-npm-tag ${version} ${highestReleasedVersion}`
     )
 
     expect(stdout.trim()).toBe(expectedTag)
