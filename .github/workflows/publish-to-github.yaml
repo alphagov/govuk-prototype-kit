@@ -69,7 +69,7 @@ jobs:
           fi
 
       - name: Generate release notes
-        run: npm exec extract-release-notes
+        run: npm exec extract-release-notes > release-notes-body
         with:
           PACKAGE_VERSION: ${{ steps.create-github-tag.outputs.GH_TAG }}
 

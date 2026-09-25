@@ -8,9 +8,11 @@ const {writeFileSync} = require('node:fs')
 const { readFileLinesSync, versionIsAPrerelease, getPrereleaseIdentifier, getChangelogLineIndexes } = require('../changelog-release-helper.js')
 
 if (require.main === module) {
-    const changelogPath = resolve(process.argv[2] ?? 'CHANGELOG.md')
+    (async () => {
+      const changelogPath = resolve(process.argv[2] ?? 'CHANGELOG.md')
 
-    generateReleaseNotes(changelogPath, process.env.PACKAGE_VERSION, { actor: process.env.GITHUB_ACTOR, runId: process.env.GITHUB_RUN_ID })
+      process.stdout.write(generateReleaseNotes(changelogPath, process.env.PACKAGE_VERSION, { actor: process.env.GITHUB_ACTOR, runId: process.env.GITHUB_RUN_ID }))``
+    })   
 }
 
 /**
@@ -55,7 +57,7 @@ function generateReleaseNotes (path, newVersion, options) {
     )
   }
 
-  writeFileSync('./release-notes-body', releaseNotes.join('\n'))
+  return releaseNotes.join('\n')
 }
 
 module.exports = {

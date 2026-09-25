@@ -74,7 +74,7 @@ jobs:
           archive: false # Saves having to decompress the CHANGELOG
 
       - name: Generate release notes
-        run: npm exec extract-release-notes
+        run: npm exec extract-release-notes > release-notes-body
         with:
           GITHUB_ACTOR: ${{ github.actor }}
           RUN_ID: ${{ github.run_id }}
