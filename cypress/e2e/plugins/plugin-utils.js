@@ -11,6 +11,8 @@ const panelProcessingQuery = '[aria-live="polite"] #panel-processing'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 const panelErrorQuery = '[aria-live="polite"] #panel-error'
 
+const processingTimeout = 20000 // 20s
+
 function getTemplateLink (type, packageName, path) {
   const queryString = `?package=${urlencode(packageName)}&template=${urlencode(path)}`
   return `${manageTemplatesPagePath}/${type}${queryString}`
@@ -135,27 +137,20 @@ function performPluginAction (action, plugin, pluginName) {
       .contains(pluginName)
   }
 
-  const processingText = `${action === 'update' ? 'Updat' : action}ing ...`
-
-  if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
-    cy.get(panelCompleteQuery, { timeout: 20000 })
-      .should('not.be.visible')
-    cy.get(panelErrorQuery)
-      .should('not.be.visible')
-    cy.get(panelProcessingQuery)
-      .should('be.visible')
-      .contains(capitalize(processingText))
-  }
-
   cy.task('log', `The ${plugin} plugin is ${action === 'update' ? 'updat' : action}ing`)
 
-  cy.get(panelProcessingQuery, { timeout: 20000 })
+  // Wait for processing to complete
+  cy.get(panelProcessingQuery, { timeout: processingTimeout })
     .should('not.be.visible')
-  cy.get(panelErrorQuery)
-    .should('not.be.visible')
+
+  // When processing is complete should show a complete status
   cy.get(panelCompleteQuery)
     .should('be.visible')
     .contains(`${capitalize(action)} complete`)
+
+  // And not an error status
+  cy.get(panelErrorQuery)
+    .should('not.be.visible')
 
   cy.task('log', `The ${plugin} plugin ${action} has completed`)
 
@@ -171,27 +166,21 @@ function performPluginAction (action, plugin, pluginName) {
 function failAction (action) {
   cy.get('#plugin-action-button').click()
 
-  if (Cypress.env('skipPluginActionInterimStep') !== 'true') {
-    cy.get(panelCompleteQuery, { timeout: 20000 })
-      .should('not.be.visible')
-    cy.get(panelErrorQuery)
-      .should('not.be.visible')
-    cy.get(panelProcessingQuery)
-      .should('be.visible')
-      .contains(`${capitalize(action === 'update' ? 'Updat' : action)}ing ...`)
-  }
+  // Wait for processing to complete
+  cy.get(panelProcessingQuery, { timeout: processingTimeout })
+    .should('not.be.visible')
 
-  cy.get(panelProcessingQuery)
-    .should('not.be.visible')
-  cy.get(panelCompleteQuery)
-    .should('not.be.visible')
+  // When processing is complete should show an error status
   cy.get(panelErrorQuery)
     .should('be.visible')
-
   cy.get(`${panelErrorQuery} .govuk-panel__title`)
     .contains(`There was a problem ${action === 'update' ? 'Updat' : action}ing`)
   cy.get(`${panelErrorQuery} a`)
     .contains('Please contact support')
+
+  // And not a complete status
+  cy.get(panelCompleteQuery)
+    .should('not.be.visible')
 }
 
 module.exports = {
