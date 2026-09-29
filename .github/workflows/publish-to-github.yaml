@@ -51,7 +51,7 @@ jobs:
           ENVIRONMENT: ${{ inputs.environment }}
         run: |
           ALL_PACKAGE_VERSION=$(npm pkg get version | tr -d '"')
-          TAG="v${ALL_PACKAGE_VERSION}"
+          TAG="${ALL_PACKAGE_VERSION}"
 
           if [ $(git tag -l "$TAG") ]; then
             echo "::error::Tag $TAG already exists. Please delete $TAG via the GitHub UI and re-run this workflow"
