@@ -40,7 +40,7 @@ function updateChangelog (path, newVersion, previousVersion) {
   if (!versionDiff) {
     throw new Error(processingErrorMessage)
   }
-  const newVersionTitle = `## ${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
+  const newVersionTitle = `## v${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
 
   const newLines = [newVersionTitle, '']
   if (newVersionIsAPrerelease) {
@@ -159,7 +159,7 @@ function readFileLinesSync (path) {
  * @returns {Array<number>} - Indexes in the changelog identifying start and end lines
  */
 function getChangelogLineIndexes (changelogLines, heading = undefined) {
-  const startHeading = `## ${heading ?? 'Unreleased'}`
+  const startHeading = `## ${heading ? 'v' + heading : 'Unreleased'}`
 
   const startIndex = changelogLines
     .findIndex((line) => line.startsWith(startHeading))

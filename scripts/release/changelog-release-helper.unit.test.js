@@ -33,7 +33,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0 (Feature release)')
+        expect.stringContaining('## v3.1.0 (Feature release)')
       )
     })
 
@@ -41,7 +41,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0-beta.0 (Beta release)')
+        expect.stringContaining('## v3.1.0-beta.0 (Beta release)')
       )
     })
 
@@ -49,7 +49,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-rc.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0-rc.0 (Release candidate)')
+        expect.stringContaining('## v3.1.0-rc.0 (Release candidate)')
       )
     })
 
@@ -67,7 +67,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0-beta.1 (Beta release)')
+        expect.stringContaining('## v3.1.0-beta.1 (Beta release)')
       )
     })
 
@@ -86,7 +86,7 @@ describe('Changelog release helper', () => {
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
-          ## 3.1.0-beta.1 (Beta release)
+          ## v3.1.0-beta.1 (Beta release)
 
           > [!WARNING]
           > This is a prerelease. Do not publish prototypes using this version.
@@ -130,7 +130,7 @@ describe('Changelog release helper', () => {
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
-            ## 3.1.1 (Fix release)
+            ## v3.1.1 (Fix release)
 
             You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.
         `)
