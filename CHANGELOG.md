@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## 14.0.0-beta.1 (Beta release)
+## v14.0.0-beta.1 (Beta release)
 
 > [!WARNING]
 > This is a prerelease. Do not publish prototypes using this version.
