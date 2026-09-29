@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { deleteFile, uninstallPlugin, installPlugin, restoreStarterFiles, log } = require('../../utils')
+const { deleteFile, installPlugin, restoreStarterFiles, log } = require('../../utils')
 const {
   failAction,
   performPluginAction,
@@ -11,15 +11,13 @@ const {
   loadInstalledPluginsPage,
   loadPluginsPage,
   manageInstalledPluginsPagePath,
-  initiatePluginAction,
-  provePluginUpdated
+  initiatePluginAction
 } = require('../plugin-utils')
 const { showHideAllLinkQuery, assertVisible, assertHidden } = require('../../step-by-step-utils')
 
 const appViews = path.join(Cypress.expose('projectFolder'), 'app', 'views')
 const plugin = '@govuk-prototype-kit/step-by-step'
-const version1 = '1.0.0'
-const version2 = 'latest'
+const version = 'latest'
 const pluginName = 'Step By Step'
 const pluginPageTemplate = '/templates/step-by-step-navigation.html'
 const pluginPageTitle = 'Step by step navigation'
@@ -76,42 +74,10 @@ describe('Management plugins: ', () => {
     })
   })
 
-  // Step by step v1 is not compatible with GOV.UK Frontend v6.0.0
-  // which is the version installed in new prototypes by default
-  it.skip(`Update the ${plugin} plugin`, () => {
-    log(`Install ${plugin}@${version1} directly`)
-    uninstallPlugin(plugin)
-
-    loadPluginsPage()
-
-    cy.get('#plugins-updates-available-message').should('not.exist')
-
-    cy.visit(`${managePluginsPagePath}/install?package=${encodeURIComponent(plugin)}&version=${version1}`)
-
-    cy.get('#plugin-action-button').click()
-
-    performPluginAction('install', plugin, pluginName)
-
-    cy.get('#plugins-updates-available-message').contains('1 UPDATE AVAILABLE')
-
-    //   ------------------------
-
-    log(`Update the ${plugin}@${version1} plugin to ${plugin}@${version2}`)
-    installPlugin(plugin, version1)
-
-    loadInstalledPluginsPage()
-
-    log(`Update the ${plugin} plugin`)
-    initiatePluginAction('update', plugin, pluginName)
-    provePluginUpdated(plugin)
-
-    cy.get('#plugins-updates-available-message').should('not.exist')
-  })
-
   it(`Create a page using a template from the ${plugin} plugin`, () => {
     log('Install the plugin, create the page, and test the functionality')
     deleteFile(path.join(appViews, 'step-by-step-navigation.html'))
-    installPlugin(plugin, version2)
+    installPlugin(plugin, version)
 
     loadInstalledPluginsPage()
     cy.get('a[href*="/templates"]')
