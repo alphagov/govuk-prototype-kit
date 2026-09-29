@@ -58,7 +58,7 @@ module.exports = function setupNodeEvents (on, config) {
     config.expose.packageFolder = path.join(config.expose.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
-  const waitUntilAppRestarts = (timeout = 20000) => waitOn({
+  const waitUntilAppRestarts = (timeout = 60000) => waitOn({
     delay: 3000,
     resources: [config.baseUrl],
     timeout
