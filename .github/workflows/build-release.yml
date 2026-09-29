@@ -79,7 +79,7 @@ jobs:
           script: |
             const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/release/changelog-release-helper.js')
 
-            generateReleaseNotes('CHANGELOG.md', process.env.PACKAGE_VERSION, { actor: '${{ github.actor }}', runId: '${{ github.run_id }}' })
+            generateReleaseNotes('CHANGELOG.md', `v${process.env.PACKAGE_VERSION}`, { actor: '${{ github.actor }}', runId: '${{ github.run_id }}' })
 
       - name: Output PR content in action summary
         run: |

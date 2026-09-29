@@ -24,7 +24,7 @@ describe('Changelog release helper', () => {
 
       Bing bong
 
-      ## 3.0.0 (Breaking release)
+      ## v3.0.0 (Breaking release)
     `)
   })
 
@@ -33,7 +33,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0 (Feature release)')
+        expect.stringContaining('## v3.1.0 (Feature release)')
       )
     })
 
@@ -41,7 +41,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0-beta.0 (Beta release)')
+        expect.stringContaining('## v3.1.0-beta.0 (Beta release)')
       )
     })
 
@@ -49,7 +49,7 @@ describe('Changelog release helper', () => {
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-rc.0', '3.0.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0-rc.0 (Release candidate)')
+        expect.stringContaining('## v3.1.0-rc.0 (Release candidate)')
       )
     })
 
@@ -61,13 +61,13 @@ describe('Changelog release helper', () => {
 
         Bing bong
 
-        ## 3.1.0-beta.0 (Beta release)
+        ## v3.1.0-beta.0 (Beta release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
-        expect.stringContaining('## 3.1.0-beta.1 (Beta release)')
+        expect.stringContaining('## v3.1.0-beta.1 (Beta release)')
       )
     })
 
@@ -79,14 +79,14 @@ describe('Changelog release helper', () => {
 
         Bing bong
 
-        ## 3.1.0-beta.0 (Beta release)
+        ## v3.1.0-beta.0 (Beta release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.0-beta.1', '3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
-          ## 3.1.0-beta.1 (Beta release)
+          ## v3.1.0-beta.1 (Beta release)
 
           > [!WARNING]
           > This is a prerelease. Do not publish prototypes using this version.
@@ -105,7 +105,7 @@ describe('Changelog release helper', () => {
 
         Bing bong
 
-        ## 3.1.0 (Feature release)
+        ## v3.1.0 (Feature release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
@@ -123,14 +123,14 @@ describe('Changelog release helper', () => {
 
         Bing bong
 
-        ## 3.1.0 (Feature release)
+        ## v3.1.0 (Feature release)
       `)
 
       updateChangelog(CHANGELOG_FILE_PATH, '3.1.1', '3.1.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         CHANGELOG_FILE_PATH,
         expect.stringContaining(outdent`
-            ## 3.1.1 (Fix release)
+            ## v3.1.1 (Fix release)
 
             You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.
         `)
@@ -173,16 +173,16 @@ describe('Changelog release helper', () => {
       jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
-        ## 3.1.0 (Feature release)
+        ## v3.1.0 (Feature release)
 
         ### Fixes
 
         Bing bong
 
-        ## 3.0.0 (Breaking release)
+        ## v3.0.0 (Breaking release)
       `)
 
-      generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0')
+      generateReleaseNotes(CHANGELOG_FILE_PATH, 'v3.1.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining('Bing bong')
@@ -193,16 +193,16 @@ describe('Changelog release helper', () => {
       jest.mocked(fs.readFileSync).mockReturnValue(outdent`
         ## Unreleased
 
-        ## 3.1.0-beta.0 (Feature release)
+        ## v3.1.0-beta.0 (Feature release)
 
         ### Fixes
 
         Bing bong
 
-        ## 3.0.0 (Breaking release)
+        ## v3.0.0 (Breaking release)
       `)
 
-      generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0-beta.0')
+      generateReleaseNotes(CHANGELOG_FILE_PATH, 'v3.1.0-beta.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining('Bing bong')
