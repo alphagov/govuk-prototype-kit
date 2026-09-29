@@ -222,7 +222,9 @@ body .govuk-prototype-kit-manage-prototype-govuk-tag {
   }
   .panel-error{
     --govuk-text-colour: #{govuk-functional-colour(error)};
-    --govuk-link-colour: var(--govuk-text-colour);
     border: 2px solid;
+    .govuk-link {
+      @include govuk-link-style-error;
+    }
   }
 }
