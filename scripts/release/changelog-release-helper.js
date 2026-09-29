@@ -40,7 +40,7 @@ function updateChangelog (path, newVersion, previousVersion) {
   if (!versionDiff) {
     throw new Error(processingErrorMessage)
   }
-  const newVersionTitle = `## ${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
+  const newVersionTitle = `## v${validatedNewVersion} (${capitalise(convertIncTypeWord(versionDiff, validatedNewVersion))})`
 
   const newLines = [newVersionTitle, '']
   if (newVersionIsAPrerelease) {
