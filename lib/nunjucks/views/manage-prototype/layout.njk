@@ -1,10 +1,10 @@
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {% set assetPath = '/manage-prototype/dependencies/govuk-frontend' + govukFrontendInternal.assetPath -%}
-{% if not 'assets/rebrand' in assetPath %}
-  {% set assetPath = assetPath + '/rebrand' %}
-{% endif %}
-{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" -%}
+
+{% extends "govuk/template.njk" %}
 
 {% block pageTitle %}
   {% if pageName %}
@@ -17,19 +17,22 @@
   - GOV.UK Prototype Kit
 {% endblock %}
 
-{% block stylesheets %}
+{% block head %}
   {% include "views/manage-prototype/stylesheets.njk" %}
 {% endblock %}
 
-{% block scripts %}
+{% block bodyEnd %}
   {% include "views/manage-prototype/scripts.njk" %}
   {% block pageScripts %}{% endblock %}
 {% endblock %}
 
-{% block header %}
+{% block govukHeader %}
   {{ govukHeader({
     productName: "Prototype Kit"
   }) }}
+{% endblock %}
+
+{% block govukServiceNavigation %}
   {%- if links | length %}
     {{ govukServiceNavigation({
       serviceName: serviceName,
@@ -37,4 +40,21 @@
       navigation: links
     }) }}
   {% endif -%}
+{% endblock %}
+
+{% block govukFooter %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/manage-prototype",
+          text: "Manage your prototype"
+        }, {
+          href: "/manage-prototype/clear-data",
+          text: "Clear data"
+        }
+      ],
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
 {% endblock %}

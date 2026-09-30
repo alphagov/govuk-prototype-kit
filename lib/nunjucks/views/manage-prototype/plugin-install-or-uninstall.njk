@@ -70,7 +70,7 @@
           </div>
         {% endif %}
 
-        <div hidden class="panel-processing govuk-panel govuk-panel--confirmation" id="panel-processing">
+        <div hidden class="govuk-panel panel-processing" id="panel-processing">
           <div class="govuk-panel__title govuk-!-font-size-27">
             {{ verb.progressive|capitalize }} ...
           </div>
@@ -82,12 +82,12 @@
           </div>
         </div>
 
-        <div hidden class="panel-error govuk-panel govuk-panel--confirmation" id="panel-error">
+        <div hidden class="govuk-panel panel-error" id="panel-error">
           <div class="govuk-panel__title govuk-!-font-size-27">
             There was a problem {{ verb.progressive }}
           </div>
           <div class="govuk-panel__body govuk-!-font-size-19">
-            <a href="https://prototype-kit.service.gov.uk/support/">
+            <a class="govuk-link govuk-link--no-visited-state" href="https://prototype-kit.service.gov.uk/support/">
               Please contact support
             </a>
           </div>
