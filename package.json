@@ -27,15 +27,13 @@
     "start.js"
   ],
   "scripts": {
-    "clean-publish": "clean-publish --before-script scripts/clean-publish-before-script.sh",
-    "prepublishOnly": "echo '***\nUse `npm run clean-publish` to publish govuk-prototype-kit\n***' && exit 1",
     "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm run dev",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
     "start:dev": "node scripts/create-prototype-and-run",
     "start:test": "node cypress/scripts/run-starter-prototype",
     "start:test:prod": "cross-env PASSWORD=password USE_AUTH=true node cypress/scripts/run-starter-prototype --prodtest",
     "start:test:heroku": "cross-env USE_AUTH=false USE_HTTPS=false node scripts/create-prototype-and-run 'npx --yes heroku@10 local --port 3000'",
-    "lint": "standard . bin/cli scripts/utils/create-release-pr scripts/create-prototype-and-run.js scripts/generate-known-version-hashes.js",
+    "lint": "standard . bin/cli",
     "lint:fix": "npm run lint -- --fix",
     "postversion": "node scripts/release/update-changelog.js",
     "rapidtest": "jest --bail",
@@ -90,7 +88,6 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "clean-publish": "^4.2.0",
     "cross-env": "^7.0.3",
     "cypress": "^13.6.5",
     "eslint-plugin-cypress": "^2.15.1",
