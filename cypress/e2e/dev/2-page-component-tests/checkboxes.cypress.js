@@ -46,7 +46,6 @@ describe('checkbox tests', () => {
   })
 
   it('when the GPS checkbox is selected, the request should include the GPS option', () => {
-    waitForApplication()
     loadTestView()
     cy.get('input[value="GPS"]').check()
     submitAndCheck(['vehicle1[vehicle-features]=_unchecked', 'vehicle1[vehicle-features]=GPS'])
