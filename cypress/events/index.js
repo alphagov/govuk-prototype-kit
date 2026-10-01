@@ -58,8 +58,13 @@ module.exports = function setupNodeEvents (on, config) {
     config.expose.packageFolder = path.join(config.expose.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
+  // The delay guards against a false positive: nodemon debounces restarts by
+  // 2 seconds (lib/dev-server.js), so polling earlier could hit the server
+  // before it has restarted. Windows CI keeps the larger delay as process
+  // teardown is slower there.
   const waitUntilAppRestarts = (timeout = 60000) => waitOn({
-    delay: 3000,
+    delay: process.platform === 'win32' ? 3000 : 2500,
+    interval: 100,
     resources: [config.baseUrl],
     timeout
   })
@@ -204,8 +209,11 @@ module.exports = function setupNodeEvents (on, config) {
         await waitUntilAppRestarts()
         await sleep(1000)
         log(`Completed ${command}`)
+      } else {
+        // The npm install path above already waited for a restart, so only
+        // wait here when it didn't run
+        await timing.timeOperation('restart', 'restoreStarterFiles: waitUntilAppRestarts', () => waitUntilAppRestarts())
       }
-      await waitUntilAppRestarts()
       return makeSureCypressCanInterpretTheResult()
     } catch (error) {
       if (remainingRetries > 0) {
