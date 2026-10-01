@@ -46,11 +46,14 @@ describe('watch custom sass files', () => {
         target: customStylesAppPath
       })
 
-      // When we add our stylesheet, we expect Browsersync to detect that and
-      // tell the browser to fetch it, so let's wait for that resource to
-      // become available.
-      cy.task('log', 'Wait for the stylesheet to be loaded')
-      cy.waitForResource(`${customStylesFixture}.css`)
+      // The stylesheet already exists (created empty above), so waiting for
+      // the resource by name isn't enough — the browser can refetch the stale
+      // version before Sass has recompiled. Poll until the compiled CSS
+      // actually contains our rule, then let Browsersync pick it up.
+      cy.task('log', 'Wait for the stylesheet to be recompiled')
+      cy.request({ url: `/${customStylesPublicPath}`, retryOnNetworkFailure: true, timeout: 20000 })
+        .its('body', { timeout: 20000 })
+        .should('include', 'rgb(0, 255, 0)')
 
       cy.task('log', 'The colour of the paragraph should be changed to green')
       cy.get('p.app-custom-style').should('have.css', 'background-color', 'rgb(0, 255, 0)')

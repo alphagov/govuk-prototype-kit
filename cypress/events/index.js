@@ -234,7 +234,7 @@ module.exports = function setupNodeEvents (on, config) {
       .then(() => fsp.copyFile(source, target))
       // The sleep of 2 seconds allows for the file to be copied completely to prevent
       // it from not existing when the file is needed in a subsequent step
-      .then(() => sleep(1000)) // pause after the copy
+      .then(() => sleep(2000)) // pause after the copy
       .then(makeSureCypressCanInterpretTheResult),
 
     copyFromStarterFiles: ({ starterFilename = undefined, filename }) => {
@@ -244,7 +244,7 @@ module.exports = function setupNodeEvents (on, config) {
         .then(() => fsp.copyFile(src, dest))
         // The sleep of 2 seconds allows for the file to be copied completely to prevent
         // it from not existing when the file is needed in a subsequent step
-        .then(() => sleep(1000)) // pause after the copy
+        .then(() => sleep(2000)) // pause after the copy
         .then(makeSureCypressCanInterpretTheResult)
     },
 
