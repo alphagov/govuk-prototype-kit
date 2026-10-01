@@ -2,7 +2,7 @@
 const path = require('path')
 
 // local dependencies
-const { waitForApplication, copyFile, restoreStarterFiles } = require('../../utils')
+const { copyFile, restoreStarterFiles } = require('../../utils')
 
 const appViewsPath = path.join('app', 'views')
 const indexViewPath = path.join(appViewsPath, 'index.html')
@@ -30,7 +30,10 @@ describe('Link index page to start page', async () => {
   afterEach(restoreStarterFiles)
 
   it('click start link', () => {
-    waitForApplication()
+    // beforeEach only changed app/views, which doesn't trigger a restart
+    cy.visit('/index')
+    cy.get('.govuk-header__logotype')
+      .contains('GOV.UK')
     cy.get('a[href="/start"]').contains(startText).click()
     cy.get('a[role="button"]')
       .contains('Start')

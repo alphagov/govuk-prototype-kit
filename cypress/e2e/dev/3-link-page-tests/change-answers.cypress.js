@@ -1,5 +1,5 @@
 // local dependencies
-const { waitForApplication, restoreStarterFiles } = require('../../utils')
+const { restoreStarterFiles } = require('../../utils')
 const { setUpPages, setUpData } = require('./link-page-utils')
 
 const checkAnswersPath = '/check-answers'
@@ -20,9 +20,10 @@ describe('Change answers', async () => {
 
   it('Change juggling balls journey', () => {
     // Visit Check answers page, click change juggling balls
-    waitForApplication()
-    cy.task('log', 'The check answers page should be displayed')
+    // Setup only changed app/views and app/data, which don't trigger a restart
     cy.visit(checkAnswersPath)
+    cy.get('.govuk-header__logotype')
+      .contains('GOV.UK')
     cy.get('h1').contains('Check your answers before sending your application')
     cy.get('.govuk-summary-list__value:first').contains(defaultHowManyBalls)
     cy.get('.govuk-summary-list__value:last').contains(defaultMostImpressiveTrick)
@@ -50,7 +51,6 @@ describe('Change answers', async () => {
 
   it('Change juggling trick journey', () => {
     // Visit Check answers page, click change juggling trick
-    waitForApplication()
     cy.task('log', 'The check answers page should be displayed')
     cy.visit(checkAnswersPath)
     cy.get('h1').contains('Check your answers before sending your application')

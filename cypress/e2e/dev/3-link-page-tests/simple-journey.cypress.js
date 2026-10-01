@@ -1,5 +1,5 @@
 // local dependencies
-const { waitForApplication, restoreStarterFiles } = require('../../utils')
+const { restoreStarterFiles } = require('../../utils')
 const { setUpPages } = require('./link-page-utils')
 
 const startPath = '/start'
@@ -15,8 +15,7 @@ describe('Question journey', async () => {
   afterEach(restoreStarterFiles)
 
   it('Happy path journey', () => {
-    waitForApplication()
-    // Visit start page and click start
+    // setUpPages only changed app/views, which doesn't trigger a restart
     cy.task('log', 'The start page should be displayed')
     cy.visit(startPath)
     cy.get('body').contains('Start now')

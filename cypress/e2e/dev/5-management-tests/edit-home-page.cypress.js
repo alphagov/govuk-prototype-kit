@@ -29,7 +29,8 @@ describe('edit home page', () => {
 
     cy.task('replaceTextInFile', { filename: appHome, originalText: '{{ serviceName }}', newText })
 
-    waitForApplication(managePagePath)
+    // Changes to app/views are picked up on the next render without a restart
+    cy.visit(managePagePath)
 
     cy.get('.govuk-prototype-kit-manage-prototype-task-list__item')
       .contains(appHomePath)
