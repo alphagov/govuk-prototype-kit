@@ -6,7 +6,7 @@ const {
   copyFile,
   createFile,
   replaceInFile,
-  restoreStarterFiles
+  waitForApplication, restoreStarterFiles
 } = require('../../utils')
 
 const appViews = path.join(Cypress.expose('projectFolder'), 'app', 'views')
@@ -57,10 +57,10 @@ describe('clear data page', () => {
   after(restoreStarterFiles)
 
   it('save and clear data', () => {
-    // Setup only changed app/views and app/data, which don't trigger a restart
+    waitForApplication()
+
+    cy.task('log', 'Check data is cleared initially')
     cy.visit('/index')
-    cy.get('.govuk-header__logotype')
-      .contains('GOV.UK')
     clearData()
     cy.visit('/question-check')
     cy.get('#answer').should('have.text', '')
