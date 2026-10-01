@@ -224,9 +224,9 @@ module.exports = function setupNodeEvents (on, config) {
   on('task', {
     copyFile: ({ source, target }) => createFolderForFile(target)
       .then(() => fsp.copyFile(source, target))
-      // The sleep of 2 seconds allows for the file to be copied completely to prevent
-      // it from not existing when the file is needed in a subsequent step
-      .then(() => sleep(2000)) // pause after the copy
+      // A short pause after the copy so file watchers have a chance to
+      // register the change before subsequent steps proceed
+      .then(() => sleep(250))
       .then(makeSureCypressCanInterpretTheResult),
 
     copyFromStarterFiles: ({ starterFilename = undefined, filename }) => {
@@ -234,9 +234,9 @@ module.exports = function setupNodeEvents (on, config) {
       const dest = path.join(config.expose.projectFolder, filename)
       return createFolderForFile(dest)
         .then(() => fsp.copyFile(src, dest))
-        // The sleep of 2 seconds allows for the file to be copied completely to prevent
-        // it from not existing when the file is needed in a subsequent step
-        .then(() => sleep(2000)) // pause after the copy
+        // A short pause after the copy so file watchers have a chance to
+        // register the change before subsequent steps proceed
+        .then(() => sleep(250))
         .then(makeSureCypressCanInterpretTheResult)
     },
 
