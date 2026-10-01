@@ -10,6 +10,7 @@ describe('password page', () => {
 
   it('valid password', () => {
     const password = Cypress.expose('password')
+    // The production server never restarts, so only the first test waits for it
     cy.task('waitUntilAppRestarts')
     cy.visit(homePath)
     cy.url().then(passwordUrl => {
@@ -23,7 +24,6 @@ describe('password page', () => {
   })
 
   it('invalid password', () => {
-    cy.task('waitUntilAppRestarts')
     cy.visit(homePath)
     cy.url().then(passwordUrl => {
       const urlObject = new URL(passwordUrl)
@@ -38,7 +38,6 @@ describe('password page', () => {
 
   additionalPasswords.map(password =>
     it(`valid additional password "${password}"`, () => {
-      cy.task('waitUntilAppRestarts')
       cy.visit(homePath)
       cy.url().then(passwordUrl => {
         const urlObject = new URL(passwordUrl)
