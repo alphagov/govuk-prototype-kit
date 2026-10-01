@@ -14,10 +14,8 @@
 const fs = require('fs')
 const fsp = fs.promises
 const fse = require('fs-extra')
+const http = require('http')
 const path = require('path')
-
-// npm dependencies
-const waitOn = require('wait-on')
 
 // local dependencies
 const { starterDir } = require('../../lib/utils/paths')
@@ -58,11 +56,44 @@ module.exports = function setupNodeEvents (on, config) {
     config.expose.packageFolder = path.join(config.expose.projectFolder, 'node_modules', 'govuk-prototype-kit')
   }
 
-  const waitUntilAppRestarts = (timeout = 60000) => waitOn({
-    delay: 3000,
-    resources: [config.baseUrl],
-    timeout
+  const getStartedAt = () => new Promise((resolve) => {
+    const req = http.get(config.baseUrl, (res) => {
+      res.resume()
+      resolve(res.headers['x-prototype-kit-started-at'] || null)
+    })
+    req.setTimeout(5000, () => {
+      req.destroy()
+      resolve(null)
+    })
+    req.on('error', () => resolve(null))
   })
+
+  // Waits until the app has settled: it is responding and the
+  // x-prototype-kit-started-at header (a new value on every app boot)
+  // has stayed the same for longer than the nodemon restart debounce
+  // (2s), meaning any restart triggered before this wait has finished
+  // and no further restart is pending.
+  const waitUntilAppRestarts = async (timeout = 60000) => {
+    const deadline = Date.now() + timeout
+    let startedAt
+    let stableSince
+
+    while (Date.now() < deadline) {
+      const currentStartedAt = await getStartedAt()
+      if (!currentStartedAt || currentStartedAt !== startedAt) {
+        // the app is down or has just (re)started
+        startedAt = currentStartedAt
+        stableSince = undefined
+      } else if (stableSince === undefined) {
+        stableSince = Date.now()
+      } else if (Date.now() - stableSince > 2500) {
+        return
+      }
+      await sleep(200)
+    }
+
+    throw new Error(`Timed out after ${timeout}ms waiting for the app to restart`)
+  }
   const getReplacementText = async (text, source) => source ? fsp.readFile(source) : text
   const replaceText = ({ text, originalText, newText, source }) => {
     return getReplacementText(newText, source)

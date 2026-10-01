@@ -34,6 +34,14 @@ const routesApi = require('./lib/routes/api.js')
 const app = express()
 routesApi.setApp(app)
 
+// Expose the time this process started as a header, so acceptance tests
+// can detect when the app has restarted
+const startedAt = Date.now().toString()
+app.use((req, res, next) => {
+  res.set('x-prototype-kit-started-at', startedAt)
+  next()
+})
+
 // Set up configuration variables
 const releaseVersion = packageJson.version
 
