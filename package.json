@@ -81,7 +81,7 @@
     "csrf-csrf": "^4.0.3",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
-    "fs-extra": "^11.4.0",
+    "fs-extra": "^11.4.1",
     "govuk-frontend": "^6.5.1",
     "lodash": "^4.17.23",
     "nodemon": "^3.1.14",
