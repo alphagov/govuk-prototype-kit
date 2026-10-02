@@ -66,7 +66,6 @@ describe('generateReleaseNotes', () => {
 
   it('increases the heading levels from the changelog by one', () => {
     const releaseNotes = generateReleaseNotes(CHANGELOG_FILE_PATH, 'Unreleased')
-    console.log(releaseNotes)
     // The release notes should no longer contain the original heading
     expect(releaseNotes).not.toContain('### Fixes')
     // But one level up

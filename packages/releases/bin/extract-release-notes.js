@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 const { resolve } = require('node:path')
-const { writeFileSync } = require('node:fs')
 
 /**
  * Extracts the release notes from a CHANGELOG file
  */
 const { readFileLinesSync, versionIsAPrerelease, getPrereleaseIdentifier, getChangelogLineIndexes } = require('../changelog-release-helper.js')
+const config = require('../config.js')
 
 if (require.main === module) {
   (async () => {
     const changelogPath = resolve(process.argv[2] ?? 'CHANGELOG.md')
 
-    process.stdout.write(generateReleaseNotes(changelogPath, `v${process.env.PACKAGE_VERSION}`, { actor: process.env.GITHUB_ACTOR, runId: process.env.GITHUB_RUN_ID }))
+    process.stdout.write(generateReleaseNotes(changelogPath, process.env.PACKAGE_VERSION, { actor: process.env.GITHUB_ACTOR, runId: process.env.GITHUB_RUN_ID }))
   })()
 }
 
@@ -53,7 +53,7 @@ function generateReleaseNotes (path, newVersion, options) {
   if (options && options.actor && options.runId) {
     releaseNotes.push('')
     releaseNotes.push(
-      `Pull request generated on behalf of @${options.actor} by [run ${options.runId}](https://github.com/alphagov/govuk-prototype-kit/actions/runs/${options.runId}) of the [Build release workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/build-release.yml)`
+      config.prAttribution(options)
     )
   }
 
