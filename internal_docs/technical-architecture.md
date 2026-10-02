@@ -2,7 +2,7 @@
 
 ## How the kit is used
 
-Users create a new prototype as a Node.js project with the kit as a dependency. The kit is published as a package on npm (see the docs on [releasing](./releasing/releasing.md))
+Users create a new prototype as a Node.js project with the kit as a dependency. The kit is published as a package on npm (see the docs on [releasing](./releasing.md))
 
 The kit includes a command line tool which users should run to start the kit (usually via an npm script).
 
