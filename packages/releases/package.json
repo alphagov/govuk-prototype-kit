@@ -1,0 +1,9 @@
+{
+    "name": "@govuk-prototype-kit/release",
+    "private": true,
+    "bin": {
+        "generate-npm-tag": "bin/generate-npm-tag.sh",
+        "update-changelog": "bin/update-changelog.js",
+        "extract-release-notes": "bin/extract-release-notes.js"
+    }
+}

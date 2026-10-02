@@ -59,13 +59,14 @@ jobs:
         run: npm ci
 
       - name: Update package version and CHANGELOG
+        id: npm-version
         run: |
           npm version --no-git-tag-version  "$RELEASE_TYPE" --preid "$PREID"
           # After `npm version` runs, the `postversion` lifecycle hook script 
           # defined in the package.json will be run which then updates the CHANGELOG.
 
           # Save the new version number for access in future steps
-          echo "PACKAGE_VERSION=$(npm pkg get version | jq -r)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(npm pkg get version | jq -r)" >> $GITHUB_OUTPUT
 
       - name: Upload CHANGELOG as artifact
         uses: actions/upload-artifact@v7
@@ -74,12 +75,11 @@ jobs:
           archive: false # Saves having to decompress the CHANGELOG
 
       - name: Generate release notes
-        uses: actions/github-script@v9.0.0
-        with:
-          script: |
-            const { generateReleaseNotes } = await import('${{ github.workspace }}/scripts/release/changelog-release-helper.js')
-
-            generateReleaseNotes('CHANGELOG.md', `v${process.env.PACKAGE_VERSION}`, { actor: '${{ github.actor }}', runId: '${{ github.run_id }}' })
+        run: npm exec extract-release-notes > release-notes-body
+        env:
+          PACKAGE_VERSION: v${{ steps.npm-version.outputs.PACKAGE_VERSION}}
+          GITHUB_ACTOR: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
 
       - name: Output PR content in action summary
         run: |
@@ -101,6 +101,7 @@ jobs:
       - name: Create pull request
         env:
           GH_TOKEN: ${{ secrets.CI_PAT }}
+          PACKAGE_VERSION: v${{ steps.npm-version.outputs.PACKAGE_VERSION}}
         run: |
           RELEASE_BRANCH_NAME="release-$PACKAGE_VERSION"
           RELEASE_TITLE="Release $PACKAGE_VERSION"
