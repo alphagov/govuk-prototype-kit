@@ -75,7 +75,7 @@
   },
   "dependencies": {
     "browser-sync": "^3.0.2",
-    "chokidar": "^3.6.0",
+    "chokidar": "^5.0.0",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.3",
     "csrf-csrf": "^4.0.3",
@@ -104,6 +104,11 @@
     "start-server-and-test": "^3.0.12",
     "supertest": "^7.3.0",
     "wait-on": "^9.1.0"
+  },
+  "overrides": {
+    "nunjucks": {
+      "chokidar": "^5.0.0"
+    }
   },
   "standard": {
     "ignore": [
