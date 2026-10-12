@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Dependency updates
+
+- [#2725: Bump chokidar from 3.6.0 to 5.0.0](https://github.com/alphagov/govuk-prototype-kit/pull/2725)
+
 ## v14.0.0-beta.1 (Beta release)
 
 > [!WARNING]
