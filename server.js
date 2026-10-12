@@ -91,18 +91,6 @@ app.use(cookieParser())
 // static assets to prevent unauthorised access
 app.use(require('./lib/authentication.js')())
 
-const nunjucksConfig = {
-  autoescape: true,
-  noCache: true,
-  watch: false // We are now setting this to `false` (it's by default false anyway) as having it set to `true` for production was making the tests hang
-}
-
-if (config.isDevelopment) {
-  nunjucksConfig.watch = true
-}
-
-nunjucksConfig.express = app
-
 // Finds GOV.UK Frontend via `getAppViews()` only if installed
 // but uses the internal package as a backup if uninstalled
 const nunjucksAppEnv = getNunjucksAppEnv(
