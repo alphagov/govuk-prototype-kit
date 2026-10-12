@@ -106,9 +106,7 @@
     "wait-on": "^9.1.0"
   },
   "overrides": {
-    "nunjucks": {
-      "chokidar": "^5.0.0"
-    }
+    "chokidar": "^5.0.0"
   },
   "standard": {
     "ignore": [
