@@ -23,6 +23,12 @@ updates:
           - 'standard'
           - 'eslint-*'
 
+    ignore:
+      # nunjucks and browser-sync still depend on chokidar 3.x
+      # and cannot be updated with overrides.
+      - dependency-name: 'chokidar'
+        update-types: ['version-update:semver-major']
+
     schedule:
       interval: monthly
       time: '10:30'
