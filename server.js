@@ -6,6 +6,7 @@ const url = require('url')
 // npm dependencies
 const cookieParser = require('cookie-parser')
 const express = require('express')
+const cors = require('cors')
 const { expressNunjucks, getNunjucksAppEnv, stopWatchingNunjucks } = require('./lib/nunjucks/nunjucksConfiguration')
 
 // We want users to be able to keep api keys, config variables and other
@@ -30,6 +31,7 @@ const sessionUtils = require('./lib/session.js')
 const plugins = require('./lib/plugins/plugins.js')
 const { pluginVersionSatisfies } = require('./lib/plugins/packages.js')
 const routesApi = require('./lib/routes/api.js')
+const { syncChangesHandler } = require('./lib/sync-changes/index.js')
 
 const app = express()
 routesApi.setApp(app)
@@ -184,6 +186,11 @@ app.get('/', async (req, res) => {
     starterHomepageCode
   })
 })
+
+if (config.isDevelopment) {
+  // Sync local changes when files are editted.
+  app.get('/sync-changes', cors(), syncChangesHandler);
+}
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {

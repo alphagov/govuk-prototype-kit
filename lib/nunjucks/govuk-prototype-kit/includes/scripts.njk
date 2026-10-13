@@ -6,3 +6,25 @@
   {% endif %}
 {% endfor %}
 
+<script>
+  const fileChanges = new EventSource(window.location.href + 'sync-changes');
+  fileChanges.onopen = (event) => {
+      console.log("connected to live reload thingy")
+  };
+  fileChanges.addEventListener("change", (event) => {
+      const data = JSON.parse(event.data);
+      console.log(data);
+      const { path } = data;
+      // TODO: Create manifest of what's on the page and
+      // only refresh if something on the current page changed?
+      // TODO: Replace CSS cleverly
+      if (path.includes(".html") || path.includes(".css") || path.includes(".js")) {
+        console.log("Reload page")
+        window.location.reload();
+      }
+  });
+  fileChanges.onerror = (event) => {
+      console.log('Error occurred:', event);
+  };
+</script>
+

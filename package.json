@@ -32,7 +32,23 @@
     "server.js",
     "start.js"
   ],
-  "bundleDependencies": true,
+  "bundleDependencies": [
+    "chokidar",
+    "cookie-parser",
+    "cross-spawn",
+    "csrf-csrf",
+    "express",
+    "express-session",
+    "fs-extra",
+    "govuk-frontend",
+    "lodash",
+    "nodemon",
+    "nunjucks",
+    "portscanner",
+    "sass",
+    "semver",
+    "tar-stream"
+  ],
   "scripts": {
     "tmp-kit": "mkdir -p $TMPDIR/govuk-prototype-kit-playground && cd $TMPDIR/govuk-prototype-kit-playground && rm -Rf ./* && govuk-prototype-kit create --version local . && npm run dev",
     "start": "echo 'This project cannot be started, in order to test this project please create a prototype kit using the cli.'",
@@ -74,7 +90,6 @@
     "test": "npm run test:unit && npm run test:integration && npm run lint"
   },
   "dependencies": {
-    "browser-sync": "^3.0.2",
     "chokidar": "^3.6.0",
     "cookie-parser": "^1.4.6",
     "cross-spawn": "^7.0.3",
