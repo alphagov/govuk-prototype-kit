@@ -89,7 +89,7 @@
     "portscanner": "^2.2.0",
     "sass": "^1.105.0",
     "semver": "^7.8.5",
-    "tar-stream": "^3.2.1"
+    "tar-stream": "^3.2.2"
   },
   "devDependencies": {
     "cheerio": "^1.2.0",
