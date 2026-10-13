@@ -42,6 +42,7 @@
     "start:test:heroku": "cross-env USE_AUTH=false USE_HTTPS=false node scripts/create-prototype-and-run 'npx --yes heroku@10 local --port 3000'",
     "lint": "standard . bin/cli",
     "lint:fix": "npm run lint -- --fix",
+    "postdependencies": "npm pkg set bundleDependencies=true --json",
     "prepack": "npm ls --all",
     "postversion": "node scripts/release/update-changelog.js",
     "rapidtest": "jest --bail",
