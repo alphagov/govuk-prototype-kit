@@ -45,7 +45,6 @@ describe('Single Plugin Test', async () => {
   })
 
   it('Loads plugin-foo style correctly', () => {
-    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('.plugin-foo')
       .should('have.css', 'background-color', YELLOW)
@@ -53,28 +52,24 @@ describe('Single Plugin Test', async () => {
   })
 
   it('Loads plugin-foo filter correctly', () => {
-    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('#test-foo-strong-filter')
       .should('have.html', '<strong>abc</strong>')
   })
 
   it('Loads plugin-foo function correctly', () => {
-    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('#test-foo-emphasize-function')
       .should('have.html', '<em>def</em>')
   })
 
   it('Loads plugin-foo foo-field macro correctly', () => {
-    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('#test-foo-field-macro input')
       .should('have.value', 'ghi')
   })
 
   it('Loads plugin-foo script correctly', () => {
-    waitForApplication()
     cy.visit('/plugin-foo')
     cy.get('.plugin-foo').click()
     cy.get('.plugin-foo').should('have.css', 'background-color', BLUE)
