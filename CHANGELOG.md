@@ -2,56 +2,6 @@
 
 ## Unreleased
 
-## v14.0.0-beta.1 (Beta release)
-
-> [!WARNING]
-> This is a prerelease. Do not publish prototypes using this version.
-> Use this release to prepare for the changes coming in version `14.0.0`.
-
-To install this version in an existing prototype:
-
-- navigate to your prototype folder in a terminal and run the command: `npm install govuk-prototype-kit@14.0.0-beta.1`
-
-To create new prototypes with this version:
-
-1. Create a new folder for your prototype in a terminal.
-2. Navigate to your prototype folder.
-3. Run the command `npx govuk-prototype-kit@14.0.0-beta.1 create --version 14.0.0-beta.1`.
-
-
-### New features
-
-#### Use `pkg:` URLs in Sass
-
-You can now use [`pkg:` URLs](https://sass-lang.com/blog/announcing-pkg-importers/) in your Prototype's Sass code or include Sass libraries that use `pkg:` URLs.
-
-- [#2669: Add support for `pkg:` URLs in Sass](https://github.com/alphagov/govuk-prototype-kit/pull/2669)
-
-### Fixes
-
-- [#2678: Remove deprecated @govuk-prototype-kit/task-list known plugin](https://github.com/alphagov/govuk-prototype-kit/pull/2678)
-- [#2683: Remove unnecessary rebrand configuration from new Prototypes](https://github.com/alphagov/govuk-prototype-kit/pull/2683)
-
-### Dependency updates
-
-- [#2682: Update GOV.UK Frontend to version 6 in the management UI](https://github.com/alphagov/govuk-prototype-kit/pull/2682)
-
-## 14.0.0-beta.0
-
-> [!WARNING]
-> This is a beta release. Do not [publish prototypes](https://prototype-kit.service.gov.uk/publishing/) using this version.
-> Use this release to give feedback on the changes coming in version 14.0.0.
-
-To install this version in an existing prototype:
-
-- [navigate to your prototype folder](https://prototype-kit.service.gov.uk/install/create-a-prototype/#navigate-to-your-prototype-folder) in a terminal and run the command: `npm install govuk-prototype-kit@14.0.0-beta.0`
-
-To create new prototypes with this version:
-
-1.  [Create a new folder for your prototype](https://prototype-kit.service.gov.uk/install/create-a-prototype/#make-a-folder-for-your-prototypes) in a terminal.
-2.  [Navigate to your prototype folder](https://prototype-kit.service.gov.uk/install/create-a-prototype/#navigate-to-your-prototype-folder).
-3.  Run the command `npx govuk-prototype-kit@14.0.0-beta.0 create --version 14.0.0-beta.0`.
-
 ### Breaking changes
 
 #### Update Node.js
@@ -105,6 +55,17 @@ You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-fron
 
 - [#2478: Add MOJ Frontend to known-plugins.json](https://github.com/alphagov/govuk-prototype-kit/pull/2478)
 
+#### Use `pkg:` URLs in Sass
+
+You can now use [`pkg:` URLs](https://sass-lang.com/blog/announcing-pkg-importers/) in your Prototype's Sass code or include Sass libraries that use `pkg:` URLs.
+
+- [#2669: Add support for `pkg:` URLs in Sass](https://github.com/alphagov/govuk-prototype-kit/pull/2669)
+
+### Fixes
+
+- [#2678: Remove deprecated @govuk-prototype-kit/task-list known plugin](https://github.com/alphagov/govuk-prototype-kit/pull/2678)
+- [#2683: Remove unnecessary rebrand configuration from new Prototypes](https://github.com/alphagov/govuk-prototype-kit/pull/2683)
+
 ### Dependency updates
 
 - [#2593: Replace dotenv with Node's built-in .env support](https://github.com/alphagov/govuk-prototype-kit/pull/2593)
@@ -116,6 +77,7 @@ You can now install [MOJ Frontend](https://github.com/ministryofjustice/moj-fron
 - [#2613: Bump sass from 1.89.2 to 1.103.1](https://github.com/alphagov/govuk-prototype-kit/pull/2613)
 - [#2614: Bump fs-extra from 11.2.0 to 11.4.0](https://github.com/alphagov/govuk-prototype-kit/pull/2614)
 - [#2637: Remove ansi-colors](https://github.com/alphagov/govuk-prototype-kit/pull/2637)
+- [#2682: Update GOV.UK Frontend to version 6 in the management UI](https://github.com/alphagov/govuk-prototype-kit/pull/2682)
 
 ## 13.20.4
 
