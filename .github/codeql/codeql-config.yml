@@ -1,0 +1,5 @@
+name: "CodeQL config"
+paths-ignore:
+  # Intentionally broken fixture file so we can test 
+  # what happens if a user breaks their configuration
+  - cypress/fixtures/broken-session-data-defaults.js
