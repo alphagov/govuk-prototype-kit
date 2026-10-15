@@ -39,7 +39,12 @@ Developers must pair on releases, so do not publish on your own. You should crea
 
 3. Ask a second developer to [review and approve the workflow run](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/review-deployments) - this will build the release and generate a pull request to review the new build.
 
-4. Verify the presence of the release and its tag on [npm](https://www.npmjs.com/package/govuk-prototype-kit?activeTab=versions) - refresh npm if you do not see the published release there once the Action is complete.
+4. Verify the presence of the release and its tag on [npm](https://www.npmjs.com/package/govuk-prototype-kit?activeTab=versions)
+
+> [!NOTE]
+> [npm scans new packages for malware](https://github.blog/changelog/2026-07-28-npm-publish-time-malware-scanning-and-dual-use-metadata/#packages-are-scanned-before-they-become-available).
+> 
+> The new version may take up to 10min to appear in the public list of published package. You can log in on npm and the version should be listed as 'Validating' in the meantime.
 
 5. Compare the diff of the new package with the previous one:
 
@@ -49,7 +54,7 @@ Developers must pair on releases, so do not publish on your own. You should crea
 
 ## Create a release on GitHub
 
-1. Open the ["[Release] Publish to GitHub releases" workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/publish-release-to-github.yaml) and run the workflow:
+1. Open the ["[Release] Publish to GitHub releases" workflow](https://github.com/alphagov/govuk-prototype-kit/actions/workflows/publish-to-github.yaml) and run the workflow:
    1. Set the **Use workflow from** select field to `main` or the `support/*` branch you're releasing from.
    2. Set the **Environment** select field to `production`.
    3. Select **Run workflow**.
