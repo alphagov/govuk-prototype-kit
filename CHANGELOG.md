@@ -9,7 +9,7 @@ You can find [how to update to the latest version](https://prototype-kit.service
 
 ### Fixes
 
-- [#2745: Remove import of error pages CSS from prototype stylesheet](https://github.com/alphagov/govuk-prototype-kit/pull/2745)
+- [#2745: Remove import of error pages CSS from prototype stylesheet](https://github.com/alphagov/govuk-prototype-kit/pull/2745) - thanks to @markhobson for reporting the issue. 
 
 ## v14.0.0 (Breaking release)
 
