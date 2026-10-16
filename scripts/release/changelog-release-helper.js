@@ -194,7 +194,7 @@ function getChangelogLineIndexes (changelogLines, heading = undefined) {
  * @returns {boolean} - If the passed version is a pre-release or not
  */
 function versionIsAPrerelease (version) {
-  return /^\d+\.\d+\.\d+-\D+\.\d+$/i.test(version)
+  return /^v?\d+\.\d+\.\d+-\D+\.\d+$/i.test(version)
 }
 
 /**
