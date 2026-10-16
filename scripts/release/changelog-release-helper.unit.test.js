@@ -210,7 +210,7 @@ describe('Changelog release helper', () => {
     })
 
     it('writes release notes from the changelog from the Unreleased heading if the version is internal', () => {
-      generateReleaseNotes(CHANGELOG_FILE_PATH, '3.1.0-internal.0')
+      generateReleaseNotes(CHANGELOG_FILE_PATH, 'v3.1.0-internal.0')
       expect(fs.writeFileSync).toHaveBeenCalledWith(
         './release-notes-body',
         expect.stringContaining('Bing bong')
