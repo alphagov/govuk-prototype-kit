@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v14.0.1 (Fix release)
+
+You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.
+
+
 ### Fixes
 
 - [#2745: Remove import of error pages CSS from prototype stylesheet](https://github.com/alphagov/govuk-prototype-kit/pull/2745)
