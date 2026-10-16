@@ -4,8 +4,5 @@
 // Import GOV.UK Frontend and any plugin styles if plugins have been configured
 @import ".tmp/sass/plugins";
 
-// SASS for error page
-@import ".tmp/sass/error-page";
-
 // SASS that is user defined
 @import ".tmp/sass/user/application";
