@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v14.0.2 (Fix release)
+
+You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.
+
+
 ### Fixes
 
 - [2755: Fix nested keys parsing in query string](https://github.com/alphagov/govuk-prototype-kit/pull/2755) - thanks to @adamsilver for reporting the issues and the NHS digital service manual team for the solution.
