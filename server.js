@@ -124,6 +124,9 @@ app.set('view engine', 'njk')
 app.use('/public', express.static(path.join(projectDir, '.tmp', 'public')))
 app.use('/public', express.static(path.join(projectDir, 'app', 'assets')))
 
+// Parse nested objects in query strings
+app.set('query parser', 'extended')
+
 // Support for parsing data in POSTs
 app.use(express.json())
 app.use(express.urlencoded({
