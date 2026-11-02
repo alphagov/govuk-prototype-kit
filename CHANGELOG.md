@@ -5,7 +5,9 @@
 ### Dependency updates
 
 - [2757: Bumped body-parser, follow-redirects, qs and undici](https://github.com/alphagov/govuk-prototype-kit/pull/2757)
+- [2760: Bump govuk-frontend from 6.5.1 to 6.6.0](https://github.com/alphagov/govuk-prototype-kit/pull/2760)
 - [2763: Bump sass from 1.105.1 to 1.106.1](https://github.com/alphagov/govuk-prototype-kit/pull/2763)
+
 
 ## v14.0.2 (Fix release)
 
