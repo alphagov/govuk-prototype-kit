@@ -24,6 +24,11 @@ updates:
           - 'eslint-*'
 
     ignore:
+      # eslint-plugin-cypress 4+ requires ESLint 9+, 
+      # but Standard 17 uses ESLint 8.
+      - dependency-name: 'eslint-plugin-cypress'
+        update-types: ['version-update:semver-major']
+
       # nunjucks and browser-sync still depend on chokidar 3.x
       # and cannot be updated with overrides.
       - dependency-name: 'chokidar'
