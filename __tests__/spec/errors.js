@@ -131,9 +131,11 @@ describe('error handling', () => {
   })
 
   it('non-fatal errors are not shown in the browser', async () => {
+    const thrownError = new Error('test non-fatal error')
+
     testRouter.get('/non-fatal-error', (req, res, next) => {
       // an error in a background thread
-      setImmediate(next, new Error('test non-fatal error'))
+      setImmediate(next, thrownError)
       res.send('OK')
     })
 
@@ -143,9 +145,7 @@ describe('error handling', () => {
     await sleep(500) // wait for next(err) to be called
 
     expect(console.error).toHaveBeenCalledTimes(1)
-    expect(console.error).toHaveBeenCalledWith(expect.stringMatching(
-      /^Error: test non-fatal error/
-    ))
+    expect(console.error).toHaveBeenCalledWith(thrownError)
 
     expect(response.status).toBe(200)
     expect(response.text).toEqual('OK')
