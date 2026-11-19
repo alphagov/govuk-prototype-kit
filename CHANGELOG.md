@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## v14.0.3 (Fix release)
+
+You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.
+
+
 ### Dependency updates
 
 - [2757: Bumped body-parser, follow-redirects, qs and undici](https://github.com/alphagov/govuk-prototype-kit/pull/2757)
