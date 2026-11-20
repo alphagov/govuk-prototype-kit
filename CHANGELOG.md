@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+### New features
+
+#### `node_modules` in Sass' URLs `@import` is now optional
+
+If your prototype's custom styles (in `app/assets/sass/application.scss` or a file it imports) explicitly imports Sass stylesheets from inside the `node_modules` folder, you can now omit the leading `node_modules` from the URLs after `@import`.
+
+For example:
+
+```scss
+// Before
+@import "node_modules/not-a-prototype-kit-plugin/awesome-styles.scss";
+
+// After
+@import "not-a-prototype-kit-plugin/awesome-styles.scss";
+```
+
 ## v14.0.3 (Fix release)
 
 You can find [how to update to the latest version](https://prototype-kit.service.gov.uk/update-to-latest-version/) in our documentation.

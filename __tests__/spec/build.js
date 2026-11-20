@@ -85,7 +85,7 @@ describe('the build pipeline', () => {
     it('compiles sass', () => {
       const options = {
         quietDeps: true,
-        loadPaths: [projectDir],
+        loadPaths: [projectDir, path.join(projectDir, 'node_modules')],
         sourceMap: true,
         style: 'expanded',
         functions: expect.objectContaining({
